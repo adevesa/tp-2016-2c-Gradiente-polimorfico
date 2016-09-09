@@ -38,6 +38,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sockets-commons}&quot;"/>
 								</option>
 								<option id="gnu.c.compiler.option.misc.pic.259580039" name="Position Independent Code (-fPIC)" superClass="gnu.c.compiler.option.misc.pic" value="true" valueType="boolean"/>
+								<option id="gnu.c.compiler.option.dialect.std.1341579774" superClass="gnu.c.compiler.option.dialect.std" value="gnu.c.compiler.dialect.default" valueType="enumerated"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1574011612" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.so.debug.1186763872" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.so.debug">
