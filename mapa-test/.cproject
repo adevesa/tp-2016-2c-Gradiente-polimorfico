@@ -37,7 +37,8 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/mapa-prueba/Debug}&quot;"/>
 								</option>
 								<option id="gnu.c.link.option.libs.1761731611" name="Libraries (-l)" superClass="gnu.c.link.option.libs" valueType="libs">
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="mapa-prueba"/>
+									<listOptionValue builtIn="false" value="mapa-prueba"/>
+									<listOptionValue builtIn="false" value="cunit"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.1200538761" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>

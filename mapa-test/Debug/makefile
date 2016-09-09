@@ -26,13 +26,13 @@ endif
 all: mapa-test
 
 dependents:
-	-cd /home/utnso/workspace/mapa-prueba/Debug && $(MAKE) all
+	-cd /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/mapa/Debug && $(MAKE) all
 
 # Tool invocations
-mapa-test: $(OBJS) $(USER_OBJS) /home/utnso/workspace/mapa-prueba/Debug/libmapa-prueba.so
+mapa-test: $(OBJS) $(USER_OBJS) /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/mapa/Debug/libmapa-prueba.so
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C Linker'
-	gcc -L"/home/utnso/workspace/mapa-prueba/Debug" -o "mapa-test" $(OBJS) $(USER_OBJS) $(LIBS)
+	gcc -L"/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/mapa/Debug" -o "mapa-test" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -43,6 +43,6 @@ clean:
 
 .PHONY: all clean dependents
 .SECONDARY:
-/home/utnso/workspace/mapa-prueba/Debug/libmapa-prueba.so:
+/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/mapa/Debug/libmapa-prueba.so:
 
 -include ../makefile.targets

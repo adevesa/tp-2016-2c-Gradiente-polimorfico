@@ -7,6 +7,13 @@
 
 #ifndef MAPA_TESTING_H_
 #define MAPA_TESTING_H_
+#include <mapa-commons/map-commons.h>
+#include<stdio.h>
+#include <stdlib.h>
+#include "CUnit/Basic.h"
+#include <unistd.h>
+
+
 
 void mapa_reconoce_nombre();
 void mapa_reconoce_rutaPokedex();

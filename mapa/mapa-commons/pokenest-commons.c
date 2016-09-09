@@ -6,11 +6,7 @@
  */
 #include "pokenest-commons.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <commons/collections/list.h>
-#include <commons/config.h>
-#include <commons/string.h>
+
 
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
 t_pokeNest* pokenest_create(char* nombre,char *ruta)
@@ -70,10 +66,16 @@ t_list* obtener_info_pokenest_pokemones(char *nombrePokenest, char *ruta)
 
 	//A MODO DE EJEMPLO//
 	char *nombre_dato = string_new();
-	strcpy(&nombre_dato, nombrePokenest);
-	string_append(&nombre_dato, "001.dat");
-	char *ruta_new = obtener_ruta_determinada(ruta, nombrePokenest, nombre_dato);
-	t_pokemon *pokemon_new = pokemon_create(ruta_new);
+
+	/*string_append(&nombre_dato,ruta);
+	string_append(&nombre_dato,"/");
+	string_append(&nombre_dato,nombrePokenest);
+	string_append(&nombre_dato,"/");
+	string_append(&nombre_dato,nombrePokenest);
+	string_append(&nombre_dato, "001");*/
+	nombre_dato = obtener_ruta_determinada(ruta, nombrePokenest, nombrePokenest);
+	string_append(&nombre_dato, "001");
+	t_pokemon *pokemon_new = pokemon_create(nombre_dato);
 	list_add(new_list_pokemones, pokemon_new);
 	//FIN EJEMPLO
 
@@ -84,17 +86,17 @@ t_list* obtener_info_pokenest_pokemones(char *nombrePokenest, char *ruta)
 char* obtener_ruta_determinada(char *ruta_inicial, char *directorio_o_nombre_archivo, char *sub_directorio_o_nombre_archivo)
 {
 	char* ruta = string_new();
-	strcpy(ruta, ruta_inicial);
-	string_append(&ruta, "/");
-	string_append(&ruta, directorio_o_nombre_archivo);
-	if(sub_directorio_o_nombre_archivo != NULL)
-	{
-		string_append(&ruta,sub_directorio_o_nombre_archivo);
-		return ruta;
+		string_append(&ruta,ruta_inicial);
+		string_append(&ruta, "/");
+		string_append(&ruta, directorio_o_nombre_archivo);
+		if(sub_directorio_o_nombre_archivo != NULL)
+		{	string_append(&ruta, "/");
+			string_append(&ruta,sub_directorio_o_nombre_archivo);
+			return ruta;
+			free(ruta);
+		}
+		else return ruta;
 		free(ruta);
-	}
-	else return ruta;
-	free(ruta);
 }
 
 

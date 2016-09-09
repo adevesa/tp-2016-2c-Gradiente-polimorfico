@@ -4,11 +4,8 @@
  *  Created on: 9/9/2016
  *      Author: utnso
  */
-#include <mapa-commons/map-commons.h>
-#include<stdio.h>
-#include <stdlib.h>
-#include "CUnit/Basic.h"
-#include <unistd.h>
+#include "mapa-testing.h"
+
 
 void mapa_reconoce_nombre()
 {

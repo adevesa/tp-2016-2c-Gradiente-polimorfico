@@ -26,14 +26,14 @@ endif
 all: libmapa-prueba.so
 
 dependents:
-	-cd /home/utnso/workspace/sockets-commons/Debug && $(MAKE) all
+	-cd /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/sockets-commons/Debug && $(MAKE) all
 	-cd /home/utnso/workspace/commons/Debug && $(MAKE) all
 
 # Tool invocations
-libmapa-prueba.so: $(OBJS) $(USER_OBJS) /home/utnso/workspace/sockets-commons/Debug/libsockets-commons.so /home/utnso/workspace/commons/Debug/libcommons.so
+libmapa-prueba.so: $(OBJS) $(USER_OBJS) /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/sockets-commons/Debug/libsockets-commons.so /home/utnso/workspace/commons/Debug/libcommons.so
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C Linker'
-	gcc -L"/home/utnso/workspace/commons/Debug" -L"/home/utnso/workspace/sockets-commons/Debug" -shared -o "libmapa-prueba.so" $(OBJS) $(USER_OBJS) $(LIBS)
+	gcc -L"/home/utnso/workspace/commons/Debug" -L"/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/sockets-commons/Debug" -shared -o "libmapa-prueba.so" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -44,7 +44,7 @@ clean:
 
 .PHONY: all clean dependents
 .SECONDARY:
-/home/utnso/workspace/sockets-commons/Debug/libsockets-commons.so:
+/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/sockets-commons/Debug/libsockets-commons.so:
 /home/utnso/workspace/commons/Debug/libcommons.so:
 
 -include ../makefile.targets

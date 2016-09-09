@@ -8,8 +8,7 @@
  ============================================================================
  */
 
-#include <stdio.h>
-#include <stdlib.h>
+
 #include "CUnit/Basic.h"
 #include <unistd.h>
 #include "cunitdeclarations.h"

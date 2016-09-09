@@ -6,16 +6,6 @@
  */
 #include "map-commons.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <commons/collections/queue.h>
-#include <commons/collections/list.h>
-#include <commons/config.h>
-#include <commons/txt.h>
-#include <commons/string.h>
-#include "string.h"
-#include "server-pthread.h"
-#include "pokenest-commons.h"
 
 
 /*------------------------------------------EXECUTE----------------------------------------------------------------*/
@@ -44,7 +34,7 @@ t_mapa* mapa_create(char *nombre, char *rutaPokedex)
 	t_mapa *new_mapa = malloc(sizeof(t_mapa));
 	new_mapa->nombre = nombre;
 	new_mapa->ruta_pokedex = rutaPokedex;
-	new_mapa->configuracion = config_create(obtener_ruta_especifica(obtener_ruta_especifica(rutaPokedex, "Mapas", nombre), "metadata", NULL));
+	new_mapa->configuracion = configuracion_metadata_create(nombre, rutaPokedex);
 	new_mapa->entrenadores = controllers_create();
 	new_mapa->info_socket = obtener_info_mapa_socket(new_mapa->configuracion);
 	new_mapa->info_algoritmo = obtener_info_mapa_algoritmo(new_mapa->configuracion);
@@ -124,6 +114,14 @@ t_entrenador* entrenador_create(int id_proceso)
 	return new_entrenador;
 }
 
+t_config* configuracion_metadata_create(char *nombre, char *ruta)
+{
+	char *ruta_final = string_new();
+	ruta_final = obtener_ruta_especifica(ruta, "Mapas", nombre);
+	ruta_final = obtener_ruta_especifica(ruta_final, "metadata", NULL);
+	t_config *config_new = config_create(ruta_final);
+	return config_new;;
+}
 /*--------------------------------------------PRINCIPALES----------------------------------------------------------*/
 
 t_posicion* mapa_dame_ubicacion_pokenest(t_list *pokenest,char *nombrePokemon)
@@ -213,12 +211,15 @@ t_list* obtener_info_pokenest_pokemones(char *nombreMapa, char *rutaPokedex)
 t_list* obtener_info_mapa_pokenest(char *nombreMapa, char *rutaPokedex)
 {
 	t_list *new_list_pokenest = list_create();
-	char *ruta = obtener_ruta_especifica(obtener_ruta_especifica(rutaPokedex,"Mapas", nombreMapa), "PokeNest", NULL) ;
+	char *ruta_final = string_new();
+	ruta_final = obtener_ruta_especifica(rutaPokedex, "Mapas", nombreMapa);
+	ruta_final = obtener_ruta_especifica(ruta_final, "PokeNest", NULL);
+
 
 	//ACA VA LA LOGICA DE RECORRER CADA POKENEST Y CREAR LOS POKENEST//
 
 	//A  MODO EJEMPLO//
-	t_pokeNest *new_pokenest =pokenest_create("pikachu", ruta);
+	t_pokeNest *new_pokenest =pokenest_create("pikachu", ruta_final);
 	list_add(new_list_pokenest, new_pokenest);
 	//FIN EJEMPLO//
 
@@ -229,11 +230,11 @@ t_list* obtener_info_mapa_pokenest(char *nombreMapa, char *rutaPokedex)
 char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_archivo, char *sub_directorio_o_nombre_archivo)
 {
 	char* ruta = string_new();
-	strcpy(ruta, ruta_inicial);
+	string_append(&ruta,ruta_inicial);
 	string_append(&ruta, "/");
 	string_append(&ruta, directorio_o_nombre_archivo);
 	if(sub_directorio_o_nombre_archivo != NULL)
-	{
+	{	string_append(&ruta, "/");
 		string_append(&ruta,sub_directorio_o_nombre_archivo);
 		return ruta;
 		free(ruta);

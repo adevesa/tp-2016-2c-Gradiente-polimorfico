@@ -4,12 +4,8 @@
  *  Created on: 9/9/2016
  *      Author: utnso
  */
-#include <stdio.h>
-#include <stdlib.h>
-#include "CUnit/Basic.h"
-#include <unistd.h>
-// *Acá se debe incluir el .h que contiene los tests creados por el programmer*
-#include "mapa-testing.h"
+
+#include "cunitdeclarations.h"
 
 
 // *COMIENZO* DEFINICION DE INICILIZADOR Y LIMPIADOR//

@@ -8,6 +8,16 @@
 #ifndef MAPA_COMMONS_MAP_COMMONS_H_
 #define MAPA_COMMONS_MAP_COMMONS_H_
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <commons/collections/queue.h>
+#include <commons/collections/list.h>
+#include <commons/config.h>
+#include <commons/txt.h>
+#include <commons/string.h>
+#include "string.h"
+//#include <server-pthread.h>
+#include "pokenest-commons.h"
 /* ----------------------------------------STRUCTS----------------------------------------------------------------*/
 typedef struct posicion t_posicion;
 typedef struct pokemon t_pokemon;
@@ -101,6 +111,7 @@ t_pokeNest* pokenest_create(char *nombreDelMapa, char *rutaPokedex);
 */
 
 t_entrenador* entrenador_create(int id_proceso);
+t_config* configuracion_metadata_create(char *nombre, char *ruta);
 /*--------------------------------------------PRINCIPALES----------------------------------------------------------*/
 t_posicion* mapa_dame_ubicacion_pokenest(t_list *pokenest,char *nombrePokemon);
 t_pokemon* mapa_atrapa_pokemon(char *nombrePokemon);

@@ -8,6 +8,12 @@
 #ifndef MAPA_COMMONS_POKENEST_COMMONS_H_
 #define MAPA_COMMONS_POKENEST_COMMONS_H_
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <commons/collections/list.h>
+#include <commons/config.h>
+#include <commons/string.h>
+
 /* ----------------------------------------ESTRUCTURAS--------------------------------------------------*/
 typedef struct pokemon
 {

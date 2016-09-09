@@ -25,7 +25,7 @@ endif
 all: libsockets-commons.so
 
 dependents:
-	-cd /home/utnso/workspace/commons/Debug && $(MAKE) all
+	-cd /home/utnso/workspace/commons/Debug && $(MAKE) clean all
 
 # Tool invocations
 libsockets-commons.so: $(OBJS) $(USER_OBJS) /home/utnso/workspace/commons/Debug/libcommons.so
