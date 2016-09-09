@@ -8,7 +8,8 @@ mapa-commons/map-commons.d: ../mapa-commons/map-commons.c \
  /home/utnso/workspace/commons/commons/collections/dictionary.h \
  /home/utnso/workspace/commons/commons/txt.h \
  /home/utnso/workspace/commons/commons/string.h \
- ../mapa-commons/pokenest-commons.h
+ ../mapa-commons/pokenest-commons.h \
+ /home/utnso/workspace/directorios-commons/recorrer-directorios.h
 
 ../mapa-commons/map-commons.h:
 
@@ -29,3 +30,5 @@ mapa-commons/map-commons.d: ../mapa-commons/map-commons.c \
 /home/utnso/workspace/commons/commons/string.h:
 
 ../mapa-commons/pokenest-commons.h:
+
+/home/utnso/workspace/directorios-commons/recorrer-directorios.h:

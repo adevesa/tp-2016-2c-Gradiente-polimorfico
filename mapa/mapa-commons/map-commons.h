@@ -16,12 +16,8 @@
 #include <commons/txt.h>
 #include <commons/string.h>
 #include "string.h"
-//#include <server-pthread.h>
 #include "pokenest-commons.h"
 /* ----------------------------------------STRUCTS----------------------------------------------------------------*/
-typedef struct posicion t_posicion;
-typedef struct pokemon t_pokemon;
-
 
 typedef struct controllers
 {
@@ -44,29 +40,6 @@ typedef struct info_algoritmo
 	int retardo;
 }t_info_algoritmo;
 
-/*
-//MUDADO A POKENEST-COMMMONS
-typedef struct pokemon
-{
-	int nivel;
-
-}t_pokemon;
-
-typedef struct posicion
-{
-	int x;
-	int y;
-}t_posicion;
-
-typedef struct pokeNest
-{
-	char *tipo;
-	t_posicion *posicion;
-	char identificador;
-	t_list *pokemones;
-}t_pokeNest;
-//HASTA ACA
-*/
 
 //SOLO SE GUARDA LO MINIMO NECESARIO DEL ENTRENADOR//
 typedef struct entrenador

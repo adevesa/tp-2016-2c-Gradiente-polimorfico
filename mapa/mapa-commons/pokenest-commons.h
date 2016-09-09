@@ -13,6 +13,7 @@
 #include <commons/collections/list.h>
 #include <commons/config.h>
 #include <commons/string.h>
+#include <recorrer-directorios.h>
 
 /* ----------------------------------------ESTRUCTURAS--------------------------------------------------*/
 typedef struct pokemon
@@ -55,5 +56,9 @@ char* obtener_info_pokenest_id(t_config *configuracion);
 t_list* obtener_info_pokenest_pokemones(char *nombrePokenest, char *ruta);
 
 char* obtener_ruta_determinada(char *ruta_inicial, char *directorio_o_nombre_archivo, char *sub_directorio_o_nombre_archivo);
+
+void foreach_pokenest(void *lista_origen,void *lista_destino, void *ruta);
+
+bool es_metadata(void *argumento);
 
 #endif /* MAPA_COMMONS_POKENEST_COMMONS_H_ */

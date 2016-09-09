@@ -22,26 +22,22 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: libsockets-commons.so
-
-dependents:
-	-cd /home/utnso/workspace/commons/Debug && $(MAKE) clean all
+all: libcliente-servidor.so
 
 # Tool invocations
-libsockets-commons.so: $(OBJS) $(USER_OBJS) /home/utnso/workspace/commons/Debug/libcommons.so
+libcliente-servidor.so: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C Linker'
-	gcc -L"/home/utnso/workspace/commons/Debug" -shared -o "libsockets-commons.so" $(OBJS) $(USER_OBJS) $(LIBS)
+	gcc -shared -o "libcliente-servidor.so" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(C_DEPS)$(LIBRARIES) libsockets-commons.so
+	-$(RM) $(OBJS)$(C_DEPS)$(LIBRARIES) libcliente-servidor.so
 	-@echo ' '
 
 .PHONY: all clean dependents
 .SECONDARY:
-/home/utnso/workspace/commons/Debug/libcommons.so:
 
 -include ../makefile.targets

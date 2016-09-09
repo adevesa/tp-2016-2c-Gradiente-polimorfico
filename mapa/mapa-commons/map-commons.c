@@ -176,38 +176,6 @@ int obtener_info_mapa_tiempo_deadlock(t_config *configuracion)
 	return tiempo;
 }
 
-/*
-//MUDADO DESDE ACA
-char* obtener_info_pokenest_tipo(char *nombreMAoa,char *rutaPokedex)
-{
-	//ACA VA TODA LA LOGICA PARA OBTENER EL TIPO//
-	char *pokenest_tipo = malloc(sizeof(char) * 5); //<----- el malloc es solo a modo de ejemplo
-	return pokenest_tipo;
-}
-
-t_posicion* obtener_info_pokenest_posicion(char *nombreMapa,char *rutaPokedex)
-{
-	//ACA VA TODA LA LOGICA DE BUSCAR LA POSICION EN EL ARCHIVO//
-	t_posicion *new_posicion = posicion_create(1,2); //<----- acá se debe settear los valores obtenidos
-	return new_posicion;
-}
-
-int obtener_info_pokenest_id(char *nombreMapa, char *rutaPokedex)
-{
-	//ACA VA TODA LA LOGICA PARA OBTENER EL ID DESDE EL ARCHIVO//
-	return 1;
-}
-
-t_list* obtener_info_pokenest_pokemones(char *nombreMapa, char *rutaPokedex)
-{
-	t_list *new_list_pokemones = list_create();
-	//ACA VA TODA LA LOGICA DE BUSCAR LOS POKEMONES EN EL ARCHIVO Y AGREGARLOS A LA LISTA//
-	return new_list_pokemones;
-}
-//HASTA ACA
-*/
-
-//OJO ACA -- CAMBIAR
 t_list* obtener_info_mapa_pokenest(char *nombreMapa, char *rutaPokedex)
 {
 	t_list *new_list_pokenest = list_create();

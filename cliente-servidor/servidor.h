@@ -1,13 +1,25 @@
 /*
- * server-pthread.h
+ * servidor.h
  *
- *  Created on: 2/9/2016
+ *  Created on: 6/9/2016
  *      Author: utnso
  */
 
-#ifndef SERVER_PTHREAD_H_
-#define SERVER_PTHREAD_H_
+#ifndef SERVIDOR_H_
+#define SERVIDOR_H_
+#include <arpa/inet.h>
+#include <sys/socket.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <netinet/in.h>
+#include <commons/collections/list.h>
+#include "string.h"
+#include <pthread.h>
+#include <commons/process.h>
 
+
+/* ----------------------------------------STRUCTS---------------------------------------------*/
 typedef struct sockaddr_in address_config_in;
 
 typedef struct server
@@ -27,8 +39,18 @@ typedef struct cliente_servidor
 typedef struct arg
 {
 	t_cliente_servidor *conexion;
-	/*t_list *lista_nuevos_entrenadores;*/
+	t_list *lista_nuevos_entrenadores;
 }t_arg_pthread;
+
+/*-----------------------------------------------EXECUTE-----------------------------------------------------------*/
+
+/*
+ * @name:
+ * @decryp:
+ */
+void ejecutar_hilo_socket(int puerto, int backlog, int longitudPaquete, char *ip, t_list *nuevos_entrenadores);
+
+/*------------------------------------------------CREATES----------------------------------------------------------*/
 
 /*
  * @name: server_pthread_create(int puerto, int backlog)
@@ -38,6 +60,32 @@ typedef struct arg
  */
 t_server_pthread* server_pthread_create(int puerto, int backlog, int longitudPaquetes, char *ip);
 
+t_cliente_servidor* conexion_create(t_server_pthread *server);
+
+t_arg_pthread* pthread_arg_create(t_cliente_servidor *conexion, t_list *lista_nuevos_entrenadores);
+
+void pthread_conexion_create(t_cliente_servidor *conexion, t_list *lista_nuevos_entrenadores);
+
+/*--------------------------------------------PINCIPALES-----------------------------------------------------------*/
+/*
+ * @name: int server_pthread_acepta_conexion_cliente(int socketServer)
+ * @decryp: El socket recibido por parámetro acepta conexiones de clientes que intentan conectarse
+ */
+int server_pthread_acepta_conexion_cliente(t_server_pthread *server);
+
+/*
+ * @name: void *server_pthread_atender_cliente(void *argumento)
+ * @decryp: funcón con la que comienza la ejecución del thread (HILO).
+ * 			Contiene toda la lógica para dialogar con un cliente.
+ */
+void* server_pthread_atender_cliente(void* argumento);
+
+/*-------------------------------------ENVIO Y RECEPCION DE MENSAJES-----------------------------------------------*/
+
+
+/*--------------------------------------DECODIFICACION DE MENSAJES-------------------------------------------------*/
+
+/*--------------------------------------------SECUNDARIOS-----------------------------------------------------------*/
 /*
  * @name: configurar_address(int puerto)
  * @decryp: Dado un numero de puerto, crea un struct sockaddr_in con la siguiente info:
@@ -67,18 +115,8 @@ int server_pthread_asociate_a_puerto(int server, address_config_in *address);
  */
 void server_pthread_escucha(t_server_pthread *server);
 
-/*
- * @name: int server_pthread_acepta_conexion_cliente(int socketServer)
- * @decryp: El socket recibido por parámetro acepta conexiones de clientes que intentan conectarse
- */
-int server_pthread_acepta_conexion_cliente(t_server_pthread *server);
 
-/*
- * @name: void *server_pthread_atender_cliente(void *argumento)
- * @decryp: funcón con la que comienza la ejecución del thread (HILO).
- * 			Contiene toda la lógica para dialogar con un cliente.
- */
-void* server_pthread_atender_cliente(void* argumento);
+
 
 /*
  * @name:
@@ -86,12 +124,7 @@ void* server_pthread_atender_cliente(void* argumento);
  */
 int enviar_a_cliente(int socketCliente, char* buffer, int bytesAenviar);
 
-/*
- * @name:
- * @decryp:
- */
 
-/*void ejecutar_hilo_socket(int puerto, int backlog, int longitudPaquete, char *ip, t_list *nuevos_entrenadores);*/
 
 /*
  * @name:
@@ -115,6 +148,7 @@ void server_pthread_saluda_cliente(int cliente);
 
 void server_pthread_recibi_datos(t_cliente_servidor *cliente_server);
 
-t_cliente_servidor* conexion_create(t_server_pthread *server);
-/*t_arg_pthread* pthread_arg_create(t_cliente_servidor *conexion, t_list *lista_nuevos_entrenadores);*/
-#endif /* SERVER_PTHREAD_H_ */
+
+void server_pthread_agrega_proceso_a_lista(t_list *lista_procesos);
+
+#endif /* SERVIDOR_H_ */

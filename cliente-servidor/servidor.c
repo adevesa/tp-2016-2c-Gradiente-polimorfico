@@ -1,23 +1,34 @@
 /*
- * server-pthread.c
+ * servidor.c
  *
- *  Created on: 2/9/2016
+ *  Created on: 6/9/2016
  *      Author: utnso
  */
-#include <arpa/inet.h>
-#include <sys/socket.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <netinet/in.h>
-#include "server-pthread.h"
-#include <commons/collections/list.h>
-#include "string.h"
-#include <pthread.h>
-#include <commons/process.h>
 
+#include "servidor.h"
 
-/*--------------------------------------------PINCIPALES-----------------------------------------------------*/
+/*--------------------------------------------EXECUTE-----------------------------------------------------*/
+
+void ejecutar_hilo_socket(int puerto, int backlog, int longitudPaquete, char *ip, t_list *nuevos_entrenadores)
+{
+	t_server_pthread *server_pthread = server_pthread_create(puerto,backlog, longitudPaquete, ip);
+	server_pthread_escucha(server_pthread);
+
+	int se_puede_ejecutar = 1;
+	while(se_puede_ejecutar)
+	{
+		t_cliente_servidor *conexion = conexion_create(server_pthread);
+
+		//CREACION DE UN HILO POR CADA CLIENTE CONECTADO//
+		pthread_conexion_create(conexion, nuevos_entrenadores);
+		pthread_t thread;
+		int result =pthread_create(&thread,NULL,server_pthread_atender_cliente,(void*)&conexion);
+		if( result <0)
+			{perror("could not create thread");}
+	}
+}
+
+/*--------------------------------------------CREATES-----------------------------------------------------*/
 
 t_server_pthread* server_pthread_create(int puerto, int backlog, int longitudPaquetes, char *ip)
 {
@@ -53,6 +64,27 @@ t_cliente_servidor* conexion_create(t_server_pthread *server)
 	return new_conexion;
 }
 
+void pthread_conexion_create(t_cliente_servidor *conexion, t_list *lista_nuevos_entrenadores)
+{
+	t_arg_pthread *arg = pthread_arg_create(conexion,lista_nuevos_entrenadores);
+
+	pthread_t thread;
+	int result =pthread_create(&thread,NULL,server_pthread_atender_cliente,(void*)arg);
+			if( result <0)
+				{perror("could not create thread");}
+}
+
+t_arg_pthread* pthread_arg_create(t_cliente_servidor *conexion, t_list *lista_nuevos_entrenadores)
+{
+	t_arg_pthread *new_arg = malloc(sizeof(t_arg_pthread));
+	new_arg->conexion = conexion;
+	new_arg->lista_nuevos_entrenadores = lista_nuevos_entrenadores;
+	return new_arg;
+}
+
+
+/*--------------------------------------------PINCIPALES-----------------------------------------------------*/
+
 int server_pthread_acepta_conexion_cliente(t_server_pthread *server)
 {
 	address_config_in direccionCliente;
@@ -72,7 +104,7 @@ void* server_pthread_atender_cliente(void* argumento)
 {
 	t_arg_pthread *arg_pthread = (t_arg_pthread*) argumento;
 
-	/*server_pthread_agrega_proceso_a_lista(arg_pthread->lista_nuevos_entrenadores);*/
+	server_pthread_agrega_proceso_a_lista(arg_pthread->lista_nuevos_entrenadores);
 
 	server_pthread_saluda_cliente(arg_pthread->conexion->cliente); //<-- No necesita estar si o si
 
@@ -81,59 +113,46 @@ void* server_pthread_atender_cliente(void* argumento)
 	pthread_exit(NULL);
 }
 
-void ejecutar_hilo_socket(int puerto, int backlog, int longitudPaquete, char *ip, t_list *nuevos_entrenadores)
+
+
+/*-------------------------------------ENVIO Y RECEPCION DE MENSAJES--------------------------------------------*/
+int enviar_a_cliente(int socketCliente, char* buffer, int bytesAenviar)
 {
-	//CREACION E INICIALIZACION DEL SERVIDOR//
-	t_server_pthread *server_pthread = server_pthread_create(puerto,backlog, longitudPaquete, ip);
+	int result = send(socketCliente, buffer, bytesAenviar,0);
+	return result;
+}
 
-	//SERVER SE PONE A ESCUCHAR//
-	server_pthread_escucha(server_pthread);
-
-	int se_puede_ejecutar = 1;
-	while(se_puede_ejecutar)
+void server_pthread_recibi_datos(t_cliente_servidor *cliente_server)
+{
+	int bytes;
+	int longitudPaquetes = cliente_server->server->longitud_paquetes;
+	char* buffer = malloc(longitudPaquetes);
+	int cliente_esta_ON = 1;
+	while(cliente_esta_ON)
 	{
-		t_cliente_servidor *conexion = conexion_create(server_pthread);
+		bytes= recv(cliente_server->cliente, buffer, longitudPaquetes ,0);
+		server_pthread_evalua_resultado_cliente(bytes, buffer, cliente_server, &cliente_esta_ON);
+	}
+	free(buffer);
+}
 
-		printf("Conexión de %d\n", conexion->cliente); fflush(stdout);//<--No necesita estar
+/*--------------------------------------DECODIFICACION DE MENSAJES-----------------------------------------------*/
 
-		//CREACION DE UN HILO POR CADA CLIENTE CONECTADO//
-
-		pthread_t thread;
-		int result =pthread_create(&thread,NULL,server_pthread_atender_cliente,(void*)&conexion);
-		if( result <0)
-			{perror("could not create thread");}
-		else
-		{
-			printf("Cliente aceptado y conversando con él\n");//<--No necesita estar
-			fflush(stdout);
-		}
-		printf("Sigo esperando clientes\n"); fflush(stdout); //<--No necesita estar
+void server_pthread_evalua_resultado_cliente(int bytes,char *buffer, t_cliente_servidor *cliente_server, int *cliente_on)
+{
+	switch (bytes)
+	{
+		case 0 : {
+					server_pthread_cerra_cliente(cliente_server, cliente_on);
+					break;
+				}
+		case -1 : {break;}
+		default: server_pthread_mostra_resultados_por_pantalla(buffer); //<--ACA DEBE IR EL ALGORITMO QUE TRATE LA RESPUESTA
 
 	}
-
 }
-
-void pthread_conexion_create(t_cliente_servidor *conexion, t_list *lista_nuevos_entrenadores)
-{
-	t_arg_pthread *arg = pthread_arg_create(conexion,lista_nuevos_entrenadores);
-
-	pthread_t thread;
-	int result =pthread_create(&thread,NULL,server_pthread_atender_cliente,(void*)arg);
-			if( result <0)
-				{perror("could not create thread");}
-}
-
-/*t_arg_pthread* pthread_arg_create(t_cliente_servidor *conexion, t_list *lista_nuevos_entrenadores)
-{
-	t_arg_pthread *new_arg = malloc(sizeof(t_arg_pthread));
-	new_arg->conexion = conexion;
-	new_arg->lista_nuevos_entrenadores = lista_nuevos_entrenadores;
-	return new_arg;
-}*/
 
 /*--------------------------------------------SECUNDARIOS-----------------------------------------------------*/
-
-
 
 address_config_in* configurar_address(int puerto, char *ip)
 {
@@ -171,20 +190,6 @@ void server_pthread_escucha(t_server_pthread *server)
 	listen(server->socket_asociado,server->backlog);
 }
 
-void server_pthread_evalua_resultado_cliente(int bytes,char *buffer, t_cliente_servidor *cliente_server, int *cliente_on)
-{
-	switch (bytes)
-	{
-		case 0 : {
-					server_pthread_cerra_cliente(cliente_server, cliente_on);
-					break;
-				}
-		case -1 : {break;}
-		default: server_pthread_mostra_resultados_por_pantalla(buffer); //<--ACA DEBE IR EL ALGORITMO QUE TRATE LA RESPUESTA
-
-	}
-}
-
 void server_pthread_mostra_resultados_por_pantalla(char *buffer)
 {
 	printf("%s", buffer);
@@ -197,12 +202,6 @@ void server_pthread_cerra_cliente(t_cliente_servidor *cliente_server, int *clien
 	*cliente_on = 0;
 }
 
-int enviar_a_cliente(int socketCliente, char* buffer, int bytesAenviar)
-{
-	int result = send(socketCliente, buffer, bytesAenviar,0);
-	return result;
-}
-
 void server_pthread_saluda_cliente(int cliente)
 {
 	char* msg = "Bienvenido\n";
@@ -210,23 +209,11 @@ void server_pthread_saluda_cliente(int cliente)
 	//enviar_a_cliente(cliente, ":)",3 );
 }
 
-void server_pthread_recibi_datos(t_cliente_servidor *cliente_server)
-{
-	int bytes;
-	int longitudPaquetes = cliente_server->server->longitud_paquetes;
-	char* buffer = malloc(longitudPaquetes);
-	int cliente_esta_ON = 1;
-	while(cliente_esta_ON)
-	{
-		bytes= recv(cliente_server->cliente, buffer, longitudPaquetes ,0);
-		server_pthread_evalua_resultado_cliente(bytes, buffer, cliente_server, &cliente_esta_ON);
-	}
-	free(buffer);
-}
-
 void server_pthread_agrega_proceso_a_lista(t_list *lista_procesos)
 {
 	//DEBE USARSE SEMAFORO
 	list_add(lista_procesos,(int*)process_get_thread_id());
 }
+
+
 

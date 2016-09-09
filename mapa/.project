@@ -5,6 +5,7 @@
 	<projects>
 		<project>commons</project>
 		<project>sockets-commons</project>
+		<project>directorios-commons</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
