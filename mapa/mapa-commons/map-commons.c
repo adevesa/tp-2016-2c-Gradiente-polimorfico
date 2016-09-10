@@ -18,9 +18,8 @@ void ejecutar_mapa(char *nombre, char *rutaPokedex)
 	 * t_planificador *planificador = planificador_create(mapa);
 	 */
 
-	/*
-	 * nivel_gui_inicializar();
-	 */
+
+	nivel_gui_inicializar();
 
 	mapa_hacete_visible_para_entrenadores(mapa);
 
@@ -131,7 +130,6 @@ t_posicion* mapa_dame_ubicacion_pokenest(t_list *pokenest,char *nombrePokemon)
 	return posicion;
 }
 
-
 t_pokemon* mapa_atrapa_pokemon(char *nombrePokemon) //DEBO SABER QUIEN QUIERE EL POKEMON
 {
 	//ACA VA TODA LA LOGICA DE ATRAPAR UN POKEMON//
@@ -147,9 +145,8 @@ void mapa_registra_movimiento_de_entrenador(t_mapa *mapa,int id_entrenador)
 
 /*--------------------------------------------SECUNDARIAS----------------------------------------------------------*/
 
-/*
- * FUNCIONES PARA OBTENER DATOS BASICOS DE UN MAPA
- */
+
+/*---------------------------- FUNCIONES PARA OBTENER DATOS BASICOS DE UN MAPA--------------------------------------*/
 
 t_info_socket* obtener_info_mapa_socket(t_config *configuracion)
 {
@@ -194,7 +191,6 @@ t_list* obtener_info_mapa_pokenest(char *nombreMapa, char *rutaPokedex)
 	return new_list_pokenest;
 }
 
-
 char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_archivo, char *sub_directorio_o_nombre_archivo)
 {
 	char* ruta = string_new();
@@ -213,9 +209,8 @@ char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_arch
 
 
 
-/*
- * FUNCIONES PARA MANIPULACION DEL PLANIFICADOR
- */
+/*------------------------------ FUNCIONES PARA MANIPULACION DEL PLANIFICADOR--------------------------------------------*/
+
 void planificador_libera_pokemons_de(t_entrenador *entrenador, t_list *lista_pokemones)
 {
 	list_add_all(lista_pokemones, entrenador->pokemones_capturados);
@@ -253,20 +248,18 @@ void planificador_crea_nuevo_entrenador_en_mapa_si_es_necesario(t_controllers *l
 	}
 }
 
-void planificador_modela_nuevo_entrenador_y_encolalo(int id_proceso,t_queue *cola_listos)
+void planificador_modela_nuevo_entrenador_y_encolalo(void *id_proceso,void*cola_listos)
 {
-	t_entrenador *new_entrenador = entrenador_create(id_proceso);
-	queue_push(cola_listos,new_entrenador);
+	int id = (int ) id_proceso;
+	t_queue *cola = (t_queue*) cola_listos;
+	t_entrenador *new_entrenador = entrenador_create(id);
+	queue_push(cola,new_entrenador);
 }
 
 
 
+/*----------------------- FUNCIONES PARA MANIPULACION DE ENTRENADORES (MEDIANTE SOCKETS)-------------------------------*/
 
-
-
-/*
- * FUNCIONES PARA MANIPULACION DE ENTRENADORES (MEDIANTE SOCKETS)
- */
 void mapa_hacete_visible_para_entrenadores(t_mapa *mapa)
 {
 	ejecutar_hilo_socket(mapa->info_socket->puerto, mapa->info_socket->ip, mapa->entrenadores->lista_entrenadores_a_planificar);

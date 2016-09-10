@@ -18,6 +18,8 @@
 #include "string.h"
 #include "pokenest-commons.h"
 #include <servidor.h>
+#include <nivel.h>
+
 /* ----------------------------------------STRUCTS----------------------------------------------------------------*/
 
 typedef struct controllers
@@ -121,7 +123,7 @@ void mapa_hacete_visible_para_entrenadores(t_mapa *mapa);
 /*
  * FUNCIONES PARA MANIPULACION DEL PLANIFICADOR
  */
-void planificador_modela_nuevo_entrenador_y_encolalo(int id_proceso,t_queue *cola_listos);
+void planificador_modela_nuevo_entrenador_y_encolalo(void *id_proceso,void*cola_listos);
 void planificador_libera_pokemons_de(t_entrenador *entrenador, t_list *lista_pokemones);
 void planificador_elimina_entrenador_de_tus_listas(t_entrenador *entrenador, t_controllers *entrenadores);
 void planificador_crea_nuevo_entrenador_en_mapa_si_es_necesario(t_controllers *listas_y_colas);
