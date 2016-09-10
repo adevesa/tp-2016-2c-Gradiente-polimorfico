@@ -17,6 +17,7 @@
 #include <commons/string.h>
 #include "string.h"
 #include "pokenest-commons.h"
+#include <servidor.h>
 /* ----------------------------------------STRUCTS----------------------------------------------------------------*/
 
 typedef struct controllers
@@ -113,7 +114,7 @@ char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_arch
 /*
  * FUNCIONES PARA MANIPULACION DE ENTRENADORES (MEDIANTE SOCKETS)
  */
-void ejecutar_hilo_conexiones_entrenadores(t_mapa *mapa);
+void mapa_hacete_visible_para_entrenadores(t_mapa *mapa);
 
 
 

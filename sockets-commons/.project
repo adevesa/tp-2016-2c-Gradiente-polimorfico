@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>mapa-prueba</name>
+	<name>sockets-commons</name>
 	<comment></comment>
 	<projects>
-		<project>cliente-servidor</project>
 		<project>commons</project>
-		<project>directorios-commons</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -ldirectorios-commons -lcommons -lsockets-commons
+LIBS := -lcliente-servidor -ldirectorios-commons -lcommons
 

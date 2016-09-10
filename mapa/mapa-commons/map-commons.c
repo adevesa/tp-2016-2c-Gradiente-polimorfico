@@ -22,7 +22,7 @@ void ejecutar_mapa(char *nombre, char *rutaPokedex)
 	 * nivel_gui_inicializar();
 	 */
 
-	ejecutar_hilo_conexiones_entrenadores(mapa);
+	mapa_hacete_visible_para_entrenadores(mapa);
 
 
 }
@@ -267,10 +267,8 @@ void planificador_modela_nuevo_entrenador_y_encolalo(int id_proceso,t_queue *col
 /*
  * FUNCIONES PARA MANIPULACION DE ENTRENADORES (MEDIANTE SOCKETS)
  */
-void ejecutar_hilo_conexiones_entrenadores(t_mapa *mapa)
+void mapa_hacete_visible_para_entrenadores(t_mapa *mapa)
 {
-	int backlog = 100;
-	int longpaquete = 1024;
-	//ejecutar_hilo_socket(mapa->info_socket->puerto, backlog, longpaquete, mapa->info_socket->ip, mapa->entrenadores->lista_entrenadores_a_planificar);
+	ejecutar_hilo_socket(mapa->info_socket->puerto, mapa->info_socket->ip, mapa->entrenadores->lista_entrenadores_a_planificar);
 }
 

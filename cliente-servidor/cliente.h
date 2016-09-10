@@ -28,6 +28,8 @@ int esperar_turno(int server); //<-- si contesta 1, entonces turno concedido.
 char* esperar_coordenadas_pokenest(int server);
 char* esperar_por_pokemon(int server);
 char* esperar_por_medalla(int server);
+int esperar_por_desbloqueo(int server);
+char* esperar_respuesta_captura_pokemon(int server);
 
 /*---------------------------------------MENSAJES QUE ENVIA EL ENTRENADOR----------------------------------------*/
 void solicitar_ubicacion_pokenest(int server,char *pokemonBuscado);

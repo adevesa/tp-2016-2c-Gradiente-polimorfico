@@ -9,9 +9,9 @@
 
 /*--------------------------------------------EXECUTE-----------------------------------------------------*/
 
-void ejecutar_hilo_socket(int puerto, int backlog, int longitudPaquete, char *ip, t_list *nuevos_entrenadores)
+void ejecutar_hilo_socket(int puerto, char *ip, t_list *nuevos_entrenadores)
 {
-	t_server_pthread *server_pthread = server_pthread_create(puerto,backlog, longitudPaquete, ip);
+	t_server_pthread *server_pthread = server_pthread_create(puerto,ip);
 	server_pthread_escucha(server_pthread);
 
 	int se_puede_ejecutar = 1;
@@ -20,17 +20,18 @@ void ejecutar_hilo_socket(int puerto, int backlog, int longitudPaquete, char *ip
 		t_cliente_servidor *conexion = conexion_create(server_pthread);
 
 		//CREACION DE UN HILO POR CADA CLIENTE CONECTADO//
-		pthread_conexion_create(conexion, nuevos_entrenadores);
+		/*pthread_conexion_create(conexion, nuevos_entrenadores);
 		pthread_t thread;
 		int result =pthread_create(&thread,NULL,server_pthread_atender_cliente,(void*)&conexion);
 		if( result <0)
-			{perror("could not create thread");}
+			{perror("could not create thread");}*/
+		pthread_arg_create(conexion, nuevos_entrenadores);
 	}
 }
 
 /*--------------------------------------------CREATES-----------------------------------------------------*/
 
-t_server_pthread* server_pthread_create(int puerto, int backlog, int longitudPaquetes, char *ip)
+t_server_pthread* server_pthread_create(int puerto, char *ip)
 {
 		t_server_pthread *new_server = malloc(sizeof(t_server_pthread));
 
@@ -49,8 +50,7 @@ t_server_pthread* server_pthread_create(int puerto, int backlog, int longitudPaq
 		//Modelo al nuevo servidor//
 		new_server->socket_asociado = server_socket;
 		new_server->numero_clientes_conectados = 0;
-		new_server->backlog = backlog;
-		new_server->longitud_paquetes=longitudPaquetes;
+		new_server->backlog = 1500;
 		return new_server;
 
 }
@@ -106,53 +106,96 @@ void* server_pthread_atender_cliente(void* argumento)
 
 	server_pthread_agrega_proceso_a_lista(arg_pthread->lista_nuevos_entrenadores);
 
-	server_pthread_saluda_cliente(arg_pthread->conexion->cliente); //<-- No necesita estar si o si
-
-	server_pthread_recibi_datos(arg_pthread->conexion);
 
 	pthread_exit(NULL);
 }
 
+/*-------------------------------------ENVIO DE MENSAJES A ENTRENADORES--------------------------------------------*/
 
-
-/*-------------------------------------ENVIO Y RECEPCION DE MENSAJES--------------------------------------------*/
-int enviar_a_cliente(int socketCliente, char* buffer, int bytesAenviar)
+void otorgar_turno_a_entrenador(int entrenador)
 {
-	int result = send(socketCliente, buffer, bytesAenviar,0);
-	return result;
+		char *mensaje = armar_mensajee("tr", "");
+		send(entrenador, mensaje, strlen(mensaje)+1,0);
+		free(mensaje);
 }
 
-void server_pthread_recibi_datos(t_cliente_servidor *cliente_server)
+void otorgar_posicion_pokenest_a_entrenador(int entrenador, int x, int y)
 {
-	int bytes;
-	int longitudPaquetes = cliente_server->server->longitud_paquetes;
-	char* buffer = malloc(longitudPaquetes);
-	int cliente_esta_ON = 1;
-	while(cliente_esta_ON)
-	{
-		bytes= recv(cliente_server->cliente, buffer, longitudPaquetes ,0);
-		server_pthread_evalua_resultado_cliente(bytes, buffer, cliente_server, &cliente_esta_ON);
-	}
-	free(buffer);
+	char *posx = string_itoa(x);
+	char *posy =string_itoa(y);
+	char *posicion = armar_mensajee(posx, posy);
+	char *mensaje = armar_mensajee("ur", posicion);
+	send(entrenador, mensaje, strlen(mensaje)+1,0);
+	free(mensaje);
+	free(posx);
+	free(posy);
+	free(posicion);
 }
 
-/*--------------------------------------DECODIFICACION DE MENSAJES-----------------------------------------------*/
-
-void server_pthread_evalua_resultado_cliente(int bytes,char *buffer, t_cliente_servidor *cliente_server, int *cliente_on)
+void otorgar_pokemon_a_entrenador(int entrenador, int nivelPokemon)
 {
-	switch (bytes)
-	{
-		case 0 : {
-					server_pthread_cerra_cliente(cliente_server, cliente_on);
-					break;
-				}
-		case -1 : {break;}
-		default: server_pthread_mostra_resultados_por_pantalla(buffer); //<--ACA DEBE IR EL ALGORITMO QUE TRATE LA RESPUESTA
-
-	}
+	char *nivel = string_itoa(nivelPokemon);
+	char *mensaje = armar_mensajee("sr", nivel);
+	send(entrenador, mensaje, strlen(mensaje)+1,0);
+	free(mensaje);
+	free(nivel);
 }
 
-/*--------------------------------------------SECUNDARIOS-----------------------------------------------------*/
+void otorgar_ruta_medalla_a_entrenador(int entrenador, char *rutaMedalla)
+{
+	char *mensaje = armar_mensajee("mr", rutaMedalla);
+	send(entrenador, mensaje, strlen(mensaje)+1,0);
+	free(mensaje);
+}
+
+void avisar_bloqueo_a_entrenador(int entrenador)
+{
+	char *mensaje = armar_mensajee("bq", "");
+	send(entrenador, mensaje, strlen(mensaje)+1,0);
+	free(mensaje);
+}
+
+void avisar_desbloqueo_a_entrenador(int entrenador, int tiempo_bloqueado)
+{
+	char *tiempo_bloq = string_itoa(tiempo_bloqueado);
+	char *mensaje = armar_mensajee("fb", tiempo_bloq);
+	send(entrenador, mensaje, strlen(mensaje)+1,0);
+	free(mensaje);
+	free(tiempo_bloq);
+}
+
+/*-------------------------------------RECEPCION DE MENSAJES DE ENTRENADORES--------------------------------------------*/
+
+char* escuchar_al_entrenador(int entrenador)
+{
+	char *header = malloc(3);
+	recv(entrenador, header, 2,0);
+	header[2]= '\0';
+	return header;
+}
+
+//IF(STRCMP(RECIBIDO, "UP) ESPERAR CONOCER QUE POKEMON QUIERE ETC...
+
+char* escuchar_que_pokemon_busca(int entrenador)
+{
+	char *payload = malloc(15);
+	recv(entrenador, payload, 2,0);
+	payload[14]= '\0';
+	return payload;
+}
+
+void esuchar_a_que_direccion_se_mueve(int entrenador, int *x, int *y)
+{
+	char *payload = malloc(15);
+	recv(entrenador, payload, 2,0);
+	payload[14]= '\0';
+
+}
+
+
+
+/*-------------------------------------------------------FUNCIONES SECUNDARIAS----------------------------------------------*/
+
 
 address_config_in* configurar_address(int puerto, char *ip)
 {
@@ -165,17 +208,18 @@ address_config_in* configurar_address(int puerto, char *ip)
 
 }
 
+
 void reutilizar_direccion(int valorVerdaderoso, int socket)
 {
 	setsockopt(socket,SOL_SOCKET,SO_REUSEADDR, &valorVerdaderoso, sizeof(valorVerdaderoso));
 }
+
 
 int server_pthread_asociate_a_puerto(int server, address_config_in *address)
 {
 	int resultBind;
 	resultBind = bind(server,(void*) address,sizeof(*address));
 
-	//Verificamos que no haya errores al asociar puerto//
 	if(resultBind !=0)
 	{	perror("Falló el bind");
 		return 1;
@@ -183,17 +227,13 @@ int server_pthread_asociate_a_puerto(int server, address_config_in *address)
 	return resultBind;
 }
 
+
 void server_pthread_escucha(t_server_pthread *server)
 {
-	printf("Escuchando...\n");
-	fflush(stdout);
 	listen(server->socket_asociado,server->backlog);
 }
 
-void server_pthread_mostra_resultados_por_pantalla(char *buffer)
-{
-	printf("%s", buffer);
-}
+
 
 void server_pthread_cerra_cliente(t_cliente_servidor *cliente_server, int *cliente_on)
 {
@@ -202,12 +242,7 @@ void server_pthread_cerra_cliente(t_cliente_servidor *cliente_server, int *clien
 	*cliente_on = 0;
 }
 
-void server_pthread_saluda_cliente(int cliente)
-{
-	char* msg = "Bienvenido\n";
-	enviar_a_cliente(cliente, msg, strlen(msg));
-	//enviar_a_cliente(cliente, ":)",3 );
-}
+
 
 void server_pthread_agrega_proceso_a_lista(t_list *lista_procesos)
 {
@@ -217,3 +252,12 @@ void server_pthread_agrega_proceso_a_lista(t_list *lista_procesos)
 
 
 
+
+char* armar_mensajee(char *header, char *payload)
+{
+	char *mensaje =string_new();
+	string_append(&mensaje,header);
+	string_append(&mensaje,";");
+	string_append(&mensaje,payload);
+	return mensaje;
+}

@@ -9,7 +9,9 @@ mapa-commons/map-commons.d: ../mapa-commons/map-commons.c \
  /home/utnso/workspace/commons/commons/txt.h \
  /home/utnso/workspace/commons/commons/string.h \
  ../mapa-commons/pokenest-commons.h \
- /home/utnso/workspace/directorios-commons/recorrer-directorios.h
+ /home/utnso/workspace/directorios-commons/recorrer-directorios.h \
+ /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/cliente-servidor/servidor.h \
+ /home/utnso/workspace/commons/commons/process.h
 
 ../mapa-commons/map-commons.h:
 
@@ -32,3 +34,7 @@ mapa-commons/map-commons.d: ../mapa-commons/map-commons.c \
 ../mapa-commons/pokenest-commons.h:
 
 /home/utnso/workspace/directorios-commons/recorrer-directorios.h:
+
+/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/cliente-servidor/servidor.h:
+
+/home/utnso/workspace/commons/commons/process.h:

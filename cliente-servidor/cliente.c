@@ -100,8 +100,37 @@ char* esperar_por_medalla(int server)
 		//DESPUES DE DECOFIFICAR LA RUTA DEBE LIBERARSE EL PUNTERO
 }
 
+char* esperar_respuesta_captura_pokemon(int server)
+{
+	char *header = malloc(3);
+	recv(server, header, 2,0);
+	header[2]= '\0';
+	if(strcmp(header,"bq"))
+	{
+		return "bloqueado";
+	}
+	return "no bloqueado";
+}
 
-/*---------------------------------------MENSAJES QUE ENVIA EL ENTRENADOR----------------------------------------*/
+int esperar_por_desbloqueo(int server)
+{
+	char *header = malloc(3);
+	recv(server, header, 2,0);
+	header[2]= '\0';
+
+	int payloadsize;
+	if(strcmp(header,"fb")) payloadsize = 20;
+
+	char *payload = malloc(payloadsize);
+	recv(server, payload, payloadsize,0);
+	string_trim_right(&payload);
+	int retardo_bloqeado =  atoi(payload);
+	return retardo_bloqeado;
+	free(payload);
+	free(header);
+}
+
+/*---------------------------------------MENSAJES QUE ENVIA EL ENTRENADOR AL MAPA----------------------------------------*/
 void solicitar_ubicacion_pokenest(int server,char *pokemonBuscado)
 {
 	char *mensaje = armar_mensaje("up", pokemonBuscado);
@@ -131,7 +160,7 @@ void notificar_fin_objetivos(int server)
 
 
 
-/*-------------------------------------------------------FUNCIONES SECUNDARIAS-------------------------------*/
+/*-------------------------------------------------------FUNCIONES SECUNDARIAS----------------------------------------------*/
 address_config_in configurar_address_in(int puerto, char *ip)
 {
 	address_config_in direccionServidor;

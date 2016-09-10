@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include <netinet/in.h>
 #include <commons/collections/list.h>
+#include <commons/string.h>
 #include "string.h"
 #include <pthread.h>
 #include <commons/process.h>
@@ -27,7 +28,6 @@ typedef struct server
 	int socket_asociado;
 	int backlog;
 	int numero_clientes_conectados;
-	int longitud_paquetes;
 } t_server_pthread;
 
 typedef struct cliente_servidor
@@ -44,11 +44,7 @@ typedef struct arg
 
 /*-----------------------------------------------EXECUTE-----------------------------------------------------------*/
 
-/*
- * @name:
- * @decryp:
- */
-void ejecutar_hilo_socket(int puerto, int backlog, int longitudPaquete, char *ip, t_list *nuevos_entrenadores);
+void ejecutar_hilo_socket(int puerto,char *ip, t_list *nuevos_entrenadores);
 
 /*------------------------------------------------CREATES----------------------------------------------------------*/
 
@@ -58,7 +54,7 @@ void ejecutar_hilo_socket(int puerto, int backlog, int longitudPaquete, char *ip
  * 			se pueden conectar (backlog), devuelve un puntero inicializado a
  * 			un struct de tipo t_server_pthread
  */
-t_server_pthread* server_pthread_create(int puerto, int backlog, int longitudPaquetes, char *ip);
+t_server_pthread* server_pthread_create(int puerto,char *ip);
 
 t_cliente_servidor* conexion_create(t_server_pthread *server);
 
@@ -80,10 +76,17 @@ int server_pthread_acepta_conexion_cliente(t_server_pthread *server);
  */
 void* server_pthread_atender_cliente(void* argumento);
 
-/*-------------------------------------ENVIO Y RECEPCION DE MENSAJES-----------------------------------------------*/
+/*-------------------------------------ENVIO DE MENSAJES A ENTRENADORES----------------------------------------------*/
+void otorgar_turno_a_entrenador(int entrenador);
+void otorgar_posicion_pokenest_a_entrenador(int entrenador, int x, int y);
+void otorgar_pokemon_a_entrenador(int entrenador, int nivelPokemon);
+void otorgar_ruta_medalla_a_entrenador(int entrenador, char *rutaMedalla);
 
 
-/*--------------------------------------DECODIFICACION DE MENSAJES-------------------------------------------------*/
+/*--------------------------------------RECEPCION DE MENSAJES -------------------------------------------------*/
+char* escuchar_al_entrenador(int entrenador);
+char* escuchar_que_pokemon_busca(int entrenador);
+void esuchar_a_que_direccion_se_mueve(int entrenador, int *x, int *y);
 
 /*--------------------------------------------SECUNDARIOS-----------------------------------------------------------*/
 /*
@@ -115,40 +118,10 @@ int server_pthread_asociate_a_puerto(int server, address_config_in *address);
  */
 void server_pthread_escucha(t_server_pthread *server);
 
-
-
-
-/*
- * @name:
- * @decryp:
- */
-int enviar_a_cliente(int socketCliente, char* buffer, int bytesAenviar);
-
-
-
-/*
- * @name:
- * @decryp:
- */
 void server_pthread_cerra_cliente(t_cliente_servidor *cliente_server, int *cliente_on);
 
-/*
- * @name:
- * @decryp:
- */
-void server_pthread_mostra_resultados_por_pantalla(char *buffer);
-
-/*
- * @name:
- * @decryp:
- */
-void server_pthread_evalua_resultado_cliente(int bytes,char *buffer, t_cliente_servidor *cliente_server, int *cliente_on);
-
-void server_pthread_saluda_cliente(int cliente);
-
-void server_pthread_recibi_datos(t_cliente_servidor *cliente_server);
-
-
 void server_pthread_agrega_proceso_a_lista(t_list *lista_procesos);
+
+char* armar_mensajee(char *header, char *payload);
 
 #endif /* SERVIDOR_H_ */
