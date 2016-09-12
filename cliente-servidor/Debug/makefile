@@ -24,8 +24,11 @@ endif
 # All Target
 all: libcliente-servidor.so
 
+dependents:
+	-cd /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/mapa/Debug && $(MAKE) all
+
 # Tool invocations
-libcliente-servidor.so: $(OBJS) $(USER_OBJS)
+libcliente-servidor.so: $(OBJS) $(USER_OBJS) /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/mapa/Debug/libmapa-prueba.so
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C Linker'
 	gcc -shared -o "libcliente-servidor.so" $(OBJS) $(USER_OBJS) $(LIBS)
@@ -39,5 +42,6 @@ clean:
 
 .PHONY: all clean dependents
 .SECONDARY:
+/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/mapa/Debug/libmapa-prueba.so:
 
 -include ../makefile.targets

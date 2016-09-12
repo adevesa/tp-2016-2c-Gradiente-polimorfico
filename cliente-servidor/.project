@@ -3,6 +3,7 @@
 	<name>cliente-servidor</name>
 	<comment></comment>
 	<projects>
+		<project>mapa-prueba</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

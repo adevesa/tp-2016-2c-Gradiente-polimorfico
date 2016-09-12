@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -lcliente-servidor -lnivel-gui -ldirectorios-commons -lcommons
+LIBS := -lcommons -lcliente-servidor -ldirectorios-commons
 

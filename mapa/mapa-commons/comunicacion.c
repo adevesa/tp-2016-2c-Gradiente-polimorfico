@@ -55,12 +55,10 @@ char* escuchar_al_entrenador(t_entrenador *entrenador)
 void entrenador_busca_coordenadas_pokenest(t_entrenador *entrenador)
 {
 	char *pokemon_buscado = string_new();
-	escuchar_que_pokemon_busca(entrenador);
+	pokemon_buscado=escuchar_que_pokemon_busca(entrenador);
 	t_posicion *posicion = buscar_coordenadas(pokemon_buscado);
 	otorgar_posicion_pokenest_a_entrenador(entrenador->socket_etrenador, posicion->x, posicion->y);
 }
-
-//CREAR BUSCAR_COORDENADAS
 
 char* escuchar_que_pokemon_busca(t_entrenador *entrenador)
 {

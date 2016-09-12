@@ -10,6 +10,7 @@
 #include "servidor.h"
 #include "string.h"
 #include <commons/string.h>
+#include "basic-structs.h"
 #include "map-commons.h"
 
 /*-------------------------------------------DECODIFICACION DE RESPUESTAS------------------------------------------------*/

@@ -20,6 +20,7 @@
 #include <commons/process.h>
 #include "stdbool.h"
 
+
 /* ----------------------------------------STRUCTS---------------------------------------------*/
 typedef struct sockaddr_in address_config_in;
 

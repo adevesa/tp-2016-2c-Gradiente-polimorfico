@@ -5,14 +5,14 @@
  *      Author: utnso
  */
 
-#ifndef PLANIFICADOR_H_
-#define PLANIFICADOR_H_
+#ifndef MAPA_COMMONS_PLANIFICADOR_H_
+#define MAPA_COMMONS_PLANIFICADOR_H_
 #include <commons/collections/queue.h>
 #include <commons/collections/list.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-
+#include "map-commons.h"
+#include "comunicacion.h"
 /* ----------------------------------------STRUCTS----------------------------------------------------------------*/
 typedef struct planificador
 {
@@ -36,7 +36,8 @@ typedef struct srdf
 }t_planificador_srdf;
 
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
-t_planificador* planificador_create(t_queue *cola_listos, t_queue *cola_bloqueados, t_list *lista_nuevos, t_list *lista_finalizados);
-t_planificador_rr* planificador_rr_create(int quantum, int retardo,t_queue *cola_listos, t_queue *cola_bloqueados, t_list *lista_nuevos, t_list *lista_finalizados);
+t_planificador* planificador_create();
+t_planificador_rr* planificador_rr_create(void *arg);
+t_planificador_srdf* planificador_srdf_create(void *arg);
 
-#endif /* PLANIFICADOR_H_ */
+#endif /* MAPA_COMMONS_PLANIFICADOR_H_ */

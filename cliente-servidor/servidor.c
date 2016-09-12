@@ -11,6 +11,7 @@
 
 void ejecutar_hilo_socket(int puerto, char *ip, t_list *nuevos_entrenadores)
 {
+
 	t_server_pthread *server_pthread = server_pthread_create(puerto,ip);
 	server_pthread_escucha(server_pthread);
 
