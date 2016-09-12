@@ -1,6 +1,5 @@
 mapa-commons/comunicacion.d: ../mapa-commons/comunicacion.c \
- ../mapa-commons/comunicacion.h \
- /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/cliente-servidor/servidor.h \
+ ../mapa-commons/comunicacion.h ../mapa-commons/comunication-point.h \
  /home/utnso/workspace/commons/commons/collections/list.h \
  /home/utnso/workspace/commons/commons/collections/node.h \
  /home/utnso/workspace/commons/commons/string.h \
@@ -16,7 +15,7 @@ mapa-commons/comunicacion.d: ../mapa-commons/comunicacion.c \
 
 ../mapa-commons/comunicacion.h:
 
-/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/cliente-servidor/servidor.h:
+../mapa-commons/comunication-point.h:
 
 /home/utnso/workspace/commons/commons/collections/list.h:
 

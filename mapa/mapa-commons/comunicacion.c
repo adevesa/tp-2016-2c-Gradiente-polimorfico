@@ -150,11 +150,13 @@ void avisar_desbloqueo_a_entrenador(int entrenador, int tiempo_bloqueado)
 
 
 /*--------------------FIN DE OBJETIVOS DE ENTRENADOR-------------------------------------------------------------------------*/
-//COMPLETAR LA BUSQUEDA DE MEDALLA DEL MAPA!
+
 void entrenador_quiere_finalizar_objetivos(t_entrenador *entrenador)
 {
 	char *ruta_medalla_del_mapa = buscar_medalla_del_mapa();
 	otorgar_ruta_medalla_a_entrenador(entrenador->socket_etrenador, ruta_medalla_del_mapa);
+	server_pthread_cerra_cliente(entrenador->socket_etrenador);
+	//planificador_move_a_cola_finalizados(entrenador);
 }
 
 void otorgar_ruta_medalla_a_entrenador(int entrenador, char *rutaMedalla)

@@ -1,15 +1,15 @@
 /*
- * servidor.c
+ * comunication-point.c
  *
- *  Created on: 6/9/2016
+ *  Created on: 12/9/2016
  *      Author: utnso
  */
 
-#include "servidor.h"
+#include "comunication-point.h"
 
 /*--------------------------------------------EXECUTE-----------------------------------------------------*/
 
-void ejecutar_hilo_socket(int puerto, char *ip, t_list *nuevos_entrenadores)
+void ejecutar_hilo_socket(int puerto, char *ip)
 {
 
 	t_server_pthread *server_pthread = server_pthread_create(puerto,ip);
@@ -19,7 +19,7 @@ void ejecutar_hilo_socket(int puerto, char *ip, t_list *nuevos_entrenadores)
 	while(se_puede_ejecutar)
 	{
 		int conexion = conexion_create(server_pthread);
-		pthread_conexion_create(&conexion, nuevos_entrenadores);
+		pthread_conexion_create(&conexion);
 	}
 }
 
@@ -55,11 +55,10 @@ int conexion_create(t_server_pthread *server)
 }
 
 
-void pthread_conexion_create(int *conexion, t_list *lista_nuevos_entrenadores)
+void pthread_conexion_create(int *conexion)
 {
-	t_arg_pthread *arg = pthread_arg_create(conexion,lista_nuevos_entrenadores);
 	pthread_t thread;
-	pthread_create(&thread,NULL,server_pthread_atender_cliente,(void*)arg);
+	pthread_create(&thread,NULL,server_pthread_atender_cliente,(void*)conexion);
 
 }
 
@@ -91,9 +90,9 @@ int server_pthread_acepta_conexion_cliente(t_server_pthread *server)
 
 void* server_pthread_atender_cliente(void* argumento)
 {
-	t_arg_pthread *arg_pthread = (t_arg_pthread*) argumento;
+	int *conexion = (int*) argumento;
 
-	server_pthread_agrega_proceso_a_lista(arg_pthread->lista_nuevos_entrenadores, arg_pthread->conexion);
+	server_pthread_agrega_proceso_a_lista(conexion);
 
 	return NULL;
 }
@@ -163,12 +162,14 @@ void server_pthread_cerra_cliente(int cliente)
 }
 
 
-void server_pthread_agrega_proceso_a_lista(t_list *lista_procesos, int *socket_cliente)
+void server_pthread_agrega_proceso_a_lista(int *socket_cliente)
 {
+	extern t_mapa *mapa;
 	//DEBE USARSE SEMAFORO
 	t_entrenador_nuevo *entrenador = malloc(sizeof(t_entrenador_nuevo));
 	entrenador->id_proceso = (int)process_get_thread_id();
 	entrenador->socket_entrenador = *socket_cliente;
-	list_add(lista_procesos,entrenador);
+	list_add(mapa->entrenadores->lista_entrenadores_a_planificar,entrenador);
 }
+
 

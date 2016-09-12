@@ -36,6 +36,12 @@ bool pokenest_tipo(void *arg)
 }
 
 
+char* buscar_medalla_del_mapa()
+{
+	extern t_mapa *mapa;
+	return obtener_ruta_especifica(mapa->ruta_pokedex, "Mapas",mapa->nombre);
+}
+
 /*--------------------------------------------SECUNDARIAS----------------------------------------------------------*/
 
 
@@ -46,58 +52,10 @@ void planificador_create_segun_cual_seas()
 	pthread_t thread;
 	if(string_equals_ignore_case(mapa->info_algoritmo->algoritmo, "RR"))
 	{
-		pthread_create(&thread,NULL,planificador_rr_create,(void*) NULL);
+		pthread_create(&thread,NULL,ejecutar_planificador_rr, NULL);
 	}
-		pthread_create(&thread,NULL,planificador_srdf_create,(void*) NULL);
+		pthread_create(&thread,NULL,ejecutar_planificador_srdf,NULL);
 }
-
-
-void planificador_libera_pokemons_de(t_entrenador *entrenador, t_list *lista_pokemones)
-{
-	list_add_all(lista_pokemones, entrenador->pokemones_capturados);
-	list_destroy(entrenador->pokemones_capturados); //<-- debe usarse destroy&destroyElements
-}
-
-void planificador_elimina_entrenador_de_tus_listas(t_entrenador *entrenador, t_controllers *entrenadores)
-{
-
-}
-
-void foreach(void *lista,void *cola,void(*funcion_de_lista)(void*, void*))
-{
-	t_list *lista_a_planificar = (t_list*)lista;
-	t_queue *cola_listos = (t_queue*)cola;
-	int tamanio = list_size(lista);
-	int i;
-	for(i=0; i<tamanio;i++)
-	{
-		funcion_de_lista(list_get(lista_a_planificar, i),cola_listos);
-	}
-}
-
-void mapa_encola_nuevos_entrenadores(t_controllers *listas_y_colas)
-{
-	/*
-	 * OJO! DEBE USARSE SEMAFORO PARA QUE NO OCURRA ERROR.
-	 * UN NUEVO ENTRENADOR PORDRIA QUERER ACCEDER MIENTRAS MOVEMOS A LOS QUE YA ESTABAN
-	 */
-
-	if(!list_is_empty(listas_y_colas->lista_entrenadores_a_planificar))
-	{
-		foreach(listas_y_colas->lista_entrenadores_a_planificar, listas_y_colas->cola_entrenadores_listos,mapa_modela_nuevo_entrenador_y_encolalo);
-		list_clean(listas_y_colas->lista_entrenadores_a_planificar);
-	}
-}
-
-void mapa_modela_nuevo_entrenador_y_encolalo(void *entrenador,void*cola_listos)
-{
-	t_entrenador *entrenador_a_modelar = (t_entrenador *) entrenador;
-	t_queue *cola = (t_queue*) cola_listos;
-	t_entrenador *new_entrenador = entrenador_create(entrenador_a_modelar->id_proceso, entrenador_a_modelar->socket_etrenador);
-	queue_push(cola,new_entrenador);
-}
-
-
 
 
 /*----------------------- FUNCIONES PARA MANIPULACION DE ENTRENADORES (MEDIANTE SOCKETS)-------------------------------*/
@@ -105,6 +63,6 @@ void mapa_modela_nuevo_entrenador_y_encolalo(void *entrenador,void*cola_listos)
 void mapa_hacete_visible_para_entrenadores()
 {
 	extern t_mapa *mapa;
-	ejecutar_hilo_socket(mapa->info_socket->puerto, mapa->info_socket->ip, mapa->entrenadores->lista_entrenadores_a_planificar);
+	ejecutar_hilo_socket(mapa->info_socket->puerto, mapa->info_socket->ip);
 }
 

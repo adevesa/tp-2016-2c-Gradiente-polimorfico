@@ -1,12 +1,12 @@
 /*
- * servidor.h
+ * comunication-point.h
  *
- *  Created on: 6/9/2016
+ *  Created on: 12/9/2016
  *      Author: utnso
  */
 
-#ifndef SERVIDOR_H_
-#define SERVIDOR_H_
+#ifndef MAPA_COMMONS_COMUNICATION_POINT_H_
+#define MAPA_COMMONS_COMUNICATION_POINT_H_
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <stdio.h>
@@ -19,6 +19,7 @@
 #include <pthread.h>
 #include <commons/process.h>
 #include "stdbool.h"
+#include "basic-structs.h"
 
 
 /* ----------------------------------------STRUCTS---------------------------------------------*/
@@ -42,15 +43,10 @@ typedef struct arg
 	t_list *lista_nuevos_entrenadores;
 }t_arg_pthread;
 
-typedef struct entrenador_nuevo
-{
-	int id_proceso;
-	int socket_entrenador;
-}t_entrenador_nuevo;
 
 /*-----------------------------------------------EXECUTE-----------------------------------------------------------*/
 
-void ejecutar_hilo_socket(int puerto,char *ip, t_list *nuevos_entrenadores);
+void ejecutar_hilo_socket(int puerto,char *ip);
 
 /*------------------------------------------------CREATES----------------------------------------------------------*/
 
@@ -65,7 +61,7 @@ int conexion_create(t_server_pthread *server);
 
 t_arg_pthread* pthread_arg_create(int *conexion, t_list *lista_nuevos_entrenadores);
 
-void pthread_conexion_create(int *conexion, t_list *lista_nuevos_entrenadores);
+void pthread_conexion_create(int *conexion);
 
 /*--------------------------------------------PINCIPALES-----------------------------------------------------------*/
 /*
@@ -120,7 +116,8 @@ void server_pthread_escucha(t_server_pthread *server);
 
 void server_pthread_cerra_cliente(int cliente);
 
-void server_pthread_agrega_proceso_a_lista(t_list *lista_procesos, int *socket_cliente);
+void server_pthread_agrega_proceso_a_lista(int *socket_cliente);
 
 
-#endif /* SERVIDOR_H_ */
+
+#endif /* MAPA_COMMONS_COMUNICATION_POINT_H_ */

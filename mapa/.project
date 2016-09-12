@@ -3,7 +3,6 @@
 	<name>mapa-prueba</name>
 	<comment></comment>
 	<projects>
-		<project>cliente-servidor</project>
 		<project>commons</project>
 		<project>directorios-commons</project>
 	</projects>

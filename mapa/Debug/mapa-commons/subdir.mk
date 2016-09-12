@@ -6,18 +6,21 @@
 C_SRCS += \
 ../mapa-commons/basic-structs.c \
 ../mapa-commons/comunicacion.c \
+../mapa-commons/comunication-point.c \
 ../mapa-commons/map-commons.c \
 ../mapa-commons/planificador.c 
 
 OBJS += \
 ./mapa-commons/basic-structs.o \
 ./mapa-commons/comunicacion.o \
+./mapa-commons/comunication-point.o \
 ./mapa-commons/map-commons.o \
 ./mapa-commons/planificador.o 
 
 C_DEPS += \
 ./mapa-commons/basic-structs.d \
 ./mapa-commons/comunicacion.d \
+./mapa-commons/comunication-point.d \
 ./mapa-commons/map-commons.d \
 ./mapa-commons/planificador.d 
 

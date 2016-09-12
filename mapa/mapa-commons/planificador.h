@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include "map-commons.h"
 #include "comunicacion.h"
+#include "basic-structs.h"
 /* ----------------------------------------STRUCTS----------------------------------------------------------------*/
 typedef struct planificador
 {
@@ -37,7 +38,21 @@ typedef struct srdf
 
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
 t_planificador* planificador_create();
-t_planificador_rr* planificador_rr_create(void *arg);
-t_planificador_srdf* planificador_srdf_create(void *arg);
+t_planificador_rr* planificador_rr_create();
+t_planificador_srdf* planificador_srdf_create();
+
+/*-----------------------------------EXECUTE PLANIFICADOR RR---------------------------------------------------------*/
+void* ejecutar_planificador_rr(void* arg);
+
+/*-----------------------------------EXECUTE PLANIFICADOR SRDF--------------------------------------------------------*/
+void* ejecutar_planificador_srdf(void* arg);
+
+
+/*--------------------------------------------PRINCIPALES----------------------------------------------------------*/
+void mapa_modela_nuevo_entrenador_y_encolalo(void *id_proceso,void*cola_listos);
+void planificador_libera_pokemons_de(t_entrenador *entrenador, t_list *lista_pokemones);
+void planificador_elimina_entrenador_de_tus_listas(t_entrenador *entrenador, t_controllers *entrenadores);
+void mapa_encola_nuevos_entrenadores(t_controllers *listas_y_colas);
+void foreach(void *lista,void *cola,void(*funcion_de_lista)(void*, void*));
 
 #endif /* MAPA_COMMONS_PLANIFICADOR_H_ */

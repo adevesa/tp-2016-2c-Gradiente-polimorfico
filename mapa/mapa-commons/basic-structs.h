@@ -35,6 +35,12 @@ typedef struct entrenador
 	t_list *pokemones_capturados;
 }t_entrenador;
 
+typedef struct entrenador_nuevo
+{
+	int id_proceso;
+	int socket_entrenador;
+}t_entrenador_nuevo;
+
 typedef struct pokemon
 {
 	int nivel;
@@ -110,7 +116,6 @@ char* obtener_info_pokenest_tipo(t_config *configuracion);
 t_posicion* obtener_info_pokenest_posicion(t_config *configuracion);
 char* obtener_info_pokenest_id(t_config *configuracion);
 t_list* obtener_info_pokenest_pokemones(char *nombrePokenest, char *ruta);
-char* obtener_ruta_determinada(char *ruta_inicial, char *directorio_o_nombre_archivo, char *sub_directorio_o_nombre_archivo);
 void foreach_pokenest(void *lista_origen,void *lista_destino, void *ruta);
 bool es_metadata(void *argumento);
 

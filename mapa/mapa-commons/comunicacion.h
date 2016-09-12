@@ -7,7 +7,7 @@
 
 #ifndef MAPA_COMMONS_COMUNICACION_H_
 #define MAPA_COMMONS_COMUNICACION_H_
-#include "servidor.h"
+#include "comunication-point.h"
 #include "string.h"
 #include <commons/string.h>
 #include "basic-structs.h"
