@@ -132,19 +132,31 @@ int obtener_info_mapa_tiempo_deadlock(t_config *configuracion)
 t_list* obtener_info_mapa_pokenest(char *nombreMapa, char *rutaPokedex)
 {
 	t_list *new_list_pokenest = list_create();
-	char *ruta_final = string_new();
-	ruta_final = obtener_ruta_especifica(rutaPokedex, "Mapas", nombreMapa);
+	char *ruta_final = obtener_ruta_especifica(rutaPokedex, "Mapas", nombreMapa);
 	ruta_final = obtener_ruta_especifica(ruta_final, "PokeNest", NULL);
+	t_list *lista_directorios = nombre_de_archivos_del_directorio(ruta_final);
+	foreach_pokenest_modelate(lista_directorios, new_list_pokenest, ruta_final);
 
-
-	//ACA VA LA LOGICA DE RECORRER CADA POKENEST Y CREAR LOS POKENEST//
-
-	//A  MODO EJEMPLO//
-	t_pokeNest *new_pokenest =pokenest_create("pikachu", ruta_final);
-	list_add(new_list_pokenest, new_pokenest);
-	//FIN EJEMPLO//
 
 	return new_list_pokenest;
+}
+
+void foreach_pokenest_modelate(void *lista_origen,void *lista_destino, void *ruta)
+{
+	t_list *lista_pokemones_a_modelar = (t_list*)lista_origen;
+	t_list *lista_pokemons_a_devolver = (t_list*)lista_destino;
+
+	int tamanio = list_size(lista_pokemones_a_modelar);
+	int i;
+	for(i=0; i<tamanio;i++)
+	{
+		char *ruta_final = (char*) ruta;
+		char *elemento =list_get(lista_pokemones_a_modelar, i);
+		ruta_final = obtener_ruta_especifica(ruta_final, elemento, NULL);
+		t_pokeNest *pokenest = pokenest_create(elemento,ruta_final);
+		list_add(lista_pokemons_a_devolver, pokenest);
+	}
+
 }
 
 
@@ -171,16 +183,13 @@ char* obtener_info_pokenest_id(t_config *configuracion)
 	return id;
 }
 
-
 t_list* obtener_info_pokenest_pokemones(char *nombrePokenest, char *ruta)
 {
 	t_list *new_list_pokemones = list_create();
-	char *ruta_final = string_new();
-	ruta_final = obtener_ruta_especifica(ruta, nombrePokenest, nombrePokenest);
+	char *ruta_final = obtener_ruta_especifica(ruta, nombrePokenest, nombrePokenest);
 	t_list *lista_directorios = nombre_de_archivos_del_directorio(ruta_final);
-	list_remove_by_condition(lista_directorios,es_metadata);
 	foreach_pokenest(lista_directorios, new_list_pokemones, ruta_final);
-
+	list_clean(lista_directorios);
 	return new_list_pokemones;
 	free(ruta_final);
 }
@@ -201,12 +210,6 @@ void foreach_pokenest(void *lista_origen,void *lista_destino, void *ruta)
 		list_add(lista_pokemons_a_devolver, pokemon_new);
 	}
 
-}
-
-bool es_metadata(void *argumento)
-{
-	char *palabra = (char*) argumento;
-	return string_equals_ignore_case(palabra, "metadata" );
 }
 
 

@@ -14,7 +14,6 @@
 #include <unistd.h>
 
 
-
 void mapa_reconoce_nombre();
 void mapa_reconoce_rutaPokedex();
 void mapa_reconoce_tiempo_deadlock();

@@ -53,6 +53,8 @@ void* ejecutar_planificador_srdf(void* arg)
 
 
 /*--------------------------------------------PRINCIPALES----------------------------------------------------------*/
+
+
 void planificador_libera_pokemons_de(t_entrenador *entrenador, t_list *lista_pokemones)
 {
 	list_add_all(lista_pokemones, entrenador->pokemones_capturados);
@@ -62,6 +64,31 @@ void planificador_libera_pokemons_de(t_entrenador *entrenador, t_list *lista_pok
 void planificador_elimina_entrenador_de_tus_listas(t_entrenador *entrenador, t_controllers *entrenadores)
 {
 
+}
+
+
+
+/*---------------------------------------NUEVO->LISTO---------------------------------------------------------*/
+void planificador_encola_nuevos_entrenadores()
+{
+	/*
+	 * OJO! DEBE USARSE SEMAFORO PARA QUE NO OCURRA ERROR.
+	 * UN NUEVO ENTRENADOR PORDRIA QUERER ACCEDER MIENTRAS MOVEMOS A LOS QUE YA ESTABAN
+	 */
+	extern t_mapa *mapa;
+	if(!list_is_empty(mapa->entrenadores->lista_entrenadores_a_planificar))
+	{
+		foreach(mapa->entrenadores->lista_entrenadores_a_planificar, mapa->entrenadores->cola_entrenadores_listos,planificador_modela_nuevo_entrenador_y_encolalo);
+		list_clean(mapa->entrenadores->lista_entrenadores_a_planificar);
+	}
+}
+
+void planificador_modela_nuevo_entrenador_y_encolalo(void *entrenador,void*cola_listos)
+{
+	t_entrenador_nuevo *entrenador_a_modelar = (t_entrenador_nuevo *) entrenador;
+	t_queue *cola = (t_queue*) cola_listos;
+	t_entrenador *new_entrenador = entrenador_create(entrenador_a_modelar->id_proceso, entrenador_a_modelar->socket_entrenador);
+	queue_push(cola,new_entrenador);
 }
 
 void foreach(void *lista,void *cola,void(*funcion_de_lista)(void*, void*))
@@ -75,26 +102,3 @@ void foreach(void *lista,void *cola,void(*funcion_de_lista)(void*, void*))
 		funcion_de_lista(list_get(lista_a_planificar, i),cola_listos);
 	}
 }
-
-void mapa_encola_nuevos_entrenadores(t_controllers *listas_y_colas)
-{
-	/*
-	 * OJO! DEBE USARSE SEMAFORO PARA QUE NO OCURRA ERROR.
-	 * UN NUEVO ENTRENADOR PORDRIA QUERER ACCEDER MIENTRAS MOVEMOS A LOS QUE YA ESTABAN
-	 */
-
-	if(!list_is_empty(listas_y_colas->lista_entrenadores_a_planificar))
-	{
-		foreach(listas_y_colas->lista_entrenadores_a_planificar, listas_y_colas->cola_entrenadores_listos,mapa_modela_nuevo_entrenador_y_encolalo);
-		list_clean(listas_y_colas->lista_entrenadores_a_planificar);
-	}
-}
-
-void mapa_modela_nuevo_entrenador_y_encolalo(void *entrenador,void*cola_listos)
-{
-	t_entrenador *entrenador_a_modelar = (t_entrenador *) entrenador;
-	t_queue *cola = (t_queue*) cola_listos;
-	t_entrenador *new_entrenador = entrenador_create(entrenador_a_modelar->id_proceso, entrenador_a_modelar->socket_etrenador);
-	queue_push(cola,new_entrenador);
-}
-

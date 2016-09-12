@@ -28,7 +28,7 @@ t_posicion* buscar_coordenadas(char* pokemon_buscado)
 	return pokenest->posicion;
 }
 
-bool pokenest_tipo(void *arg)
+bool pokenest_tipoo(void *arg)
 {
 	t_pokeNest *pokenest = (t_pokeNest*) arg;
 	extern char* pokemon_buscado;

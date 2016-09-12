@@ -26,14 +26,13 @@
 void planificador_create_segun_cual_seas();
 /*--------------------------------------------PRINCIPALES----------------------------------------------------------*/
 t_posicion* buscar_coordenadas(char* pokemon_buscado);
-bool pokenest_tipo(void *arg);
+bool pokenest_tipoo(void *arg);
 /*--------------------------------------------SECUNDARIAS----------------------------------------------------------*/
 
 /*
  * FUNCIONES PARA MANIPULACION DE ENTRENADORES (MEDIANTE SOCKETS)
  */
 void mapa_hacete_visible_para_entrenadores();
-bool pokenest_tipo(void *arg);
 char* buscar_medalla_del_mapa();
 
 /*

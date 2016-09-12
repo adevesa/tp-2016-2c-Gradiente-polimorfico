@@ -10,7 +10,7 @@ mapa-commons/comunication-point.d: ../mapa-commons/comunication-point.c \
  /home/utnso/workspace/commons/commons/config.h \
  /home/utnso/workspace/commons/commons/collections/dictionary.h \
  /home/utnso/workspace/commons/commons/txt.h \
- /home/utnso/workspace/directorios-commons/recorrer-directorios.h
+ /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/commons_leer_archivos/commons_leer_archivos.h
 
 ../mapa-commons/comunication-point.h:
 
@@ -34,4 +34,4 @@ mapa-commons/comunication-point.d: ../mapa-commons/comunication-point.c \
 
 /home/utnso/workspace/commons/commons/txt.h:
 
-/home/utnso/workspace/directorios-commons/recorrer-directorios.h:
+/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/commons_leer_archivos/commons_leer_archivos.h:

@@ -33,6 +33,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.1589906526" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug">
 								<option id="gnu.c.link.option.paths.2014742172" name="Library search path (-L)" superClass="gnu.c.link.option.paths" valueType="libPaths"/>
 								<option id="gnu.c.link.option.libs.1761731611" name="Libraries (-l)" superClass="gnu.c.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" value="mapa-commos"/>
 									<listOptionValue builtIn="false" value="cunit"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.1200538761" superClass="cdt.managedbuild.tool.gnu.c.linker.input">

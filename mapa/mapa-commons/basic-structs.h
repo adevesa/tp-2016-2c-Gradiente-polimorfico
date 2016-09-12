@@ -15,8 +15,7 @@
 #include <stdlib.h>
 #include <commons/string.h>
 #include "string.h"
-#include <recorrer-directorios.h>
-
+#include "commons_leer_archivos.h"
 /* ----------------------------------------STRUCTS----------------------------------------------------------------*/
 typedef struct posicion
 {
@@ -109,6 +108,7 @@ t_info_algoritmo* obtener_info_mapa_algoritmo(t_config *configuracion);
 int obtener_info_mapa_batalla(t_config *configuracion);
 int obtener_info_mapa_tiempo_deadlock(t_config *configuracion);
 t_list* obtener_info_mapa_pokenest(char *nombreMapa, char *rutaPokedex);
+void foreach_pokenest_modelate(void *lista_origen,void *lista_destino, void *ruta);
 char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_archivo, char *sub_directorio_o_nombre_archivo);
 
 /* ---------------------------------FUNCIONES PARA OBTENER DATOS DE UN POKENEST------------------------------------------*/
@@ -117,6 +117,5 @@ t_posicion* obtener_info_pokenest_posicion(t_config *configuracion);
 char* obtener_info_pokenest_id(t_config *configuracion);
 t_list* obtener_info_pokenest_pokemones(char *nombrePokenest, char *ruta);
 void foreach_pokenest(void *lista_origen,void *lista_destino, void *ruta);
-bool es_metadata(void *argumento);
 
 #endif /* MAPA_COMMONS_BASIC_STRUCTS_H_ */

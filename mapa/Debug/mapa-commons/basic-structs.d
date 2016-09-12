@@ -8,7 +8,7 @@ mapa-commons/basic-structs.d: ../mapa-commons/basic-structs.c \
  /home/utnso/workspace/commons/commons/collections/dictionary.h \
  /home/utnso/workspace/commons/commons/txt.h \
  /home/utnso/workspace/commons/commons/string.h \
- /home/utnso/workspace/directorios-commons/recorrer-directorios.h
+ /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/commons_leer_archivos/commons_leer_archivos.h
 
 ../mapa-commons/basic-structs.h:
 
@@ -28,4 +28,4 @@ mapa-commons/basic-structs.d: ../mapa-commons/basic-structs.c \
 
 /home/utnso/workspace/commons/commons/string.h:
 
-/home/utnso/workspace/directorios-commons/recorrer-directorios.h:
+/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/commons_leer_archivos/commons_leer_archivos.h:

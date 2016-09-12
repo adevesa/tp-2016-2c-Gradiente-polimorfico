@@ -49,10 +49,14 @@ void* ejecutar_planificador_srdf(void* arg);
 
 
 /*--------------------------------------------PRINCIPALES----------------------------------------------------------*/
-void mapa_modela_nuevo_entrenador_y_encolalo(void *id_proceso,void*cola_listos);
+
 void planificador_libera_pokemons_de(t_entrenador *entrenador, t_list *lista_pokemones);
 void planificador_elimina_entrenador_de_tus_listas(t_entrenador *entrenador, t_controllers *entrenadores);
-void mapa_encola_nuevos_entrenadores(t_controllers *listas_y_colas);
+
+
+/*---------------------------------------NUEVO->LISTO---------------------------------------------------------*/
+void planificador_encola_nuevos_entrenadores();
+void planificador_modela_nuevo_entrenador_y_encolalo(void *id_proceso,void*cola_listos);
 void foreach(void *lista,void *cola,void(*funcion_de_lista)(void*, void*));
 
 #endif /* MAPA_COMMONS_PLANIFICADOR_H_ */

@@ -4,7 +4,8 @@
 	<comment></comment>
 	<projects>
 		<project>commons</project>
-		<project>directorios-commons</project>
+		<project>commons_leer_archivos</project>
+		<project>cliente-servidor</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
