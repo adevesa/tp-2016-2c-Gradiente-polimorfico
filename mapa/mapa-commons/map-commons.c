@@ -71,40 +71,12 @@ t_info_algoritmo* info_algoritmo_create(char *algoritmo, int quamtum, int retard
 	return new_info_algoritmo;
 }
 
-/*
 
-//MUDADO A POKENEST-COMMONS DESDE ACA
-t_pokeNest* pokenest_create(char *nombreDelMapa, char *rutaPokedex)
-{
-	t_pokeNest *new_pokenest = malloc(sizeof(t_pokeNest));
-	new_pokenest->tipo = obtener_info_pokenest_tipo(nombreDelMapa,rutaPokedex);
-	new_pokenest->posicion = obtener_info_pokenest_posicion(nombreDelMapa,rutaPokedex);
-	new_pokenest->identificador = obtener_info_pokenest_id(nombreDelMapa,rutaPokedex);
-	new_pokenest->pokemones = obtener_info_pokenest_pokemones(nombreDelMapa,rutaPokedex);
-	return new_pokenest;
-}
-
-t_posicion* posicion_create(int x, int y)
-{
-	t_posicion *new_posicion = malloc(sizeof(t_posicion));
-	new_posicion->x = x;
-	new_posicion->y = y;
-	return new_posicion;
-}
-
-t_pokemon* pokemon_create(int nivel)
-{
-	t_pokemon *new_pokemon = malloc(sizeof(t_pokemon));
-	new_pokemon->nivel = nivel;
-	return new_pokemon;
-}
-//HASTA ACA
-*/
-
-t_entrenador* entrenador_create(int id_proceso)
+t_entrenador* entrenador_create(int id_proceso, int socket_entrenador)
 {
 	t_entrenador *new_entrenador = malloc(sizeof(t_entrenador));
 	new_entrenador->id_proceso = id_proceso;
+	new_entrenador->socket_etrenador =socket_entrenador;
 	new_entrenador->estado = 1;
 	new_entrenador->objetivo_cumplido = 0;
 	new_entrenador->pokemones_capturados = list_create();
@@ -211,6 +183,30 @@ char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_arch
 
 /*------------------------------ FUNCIONES PARA MANIPULACION DEL PLANIFICADOR--------------------------------------------*/
 
+void planificador_atende_a_(t_entrenador *entrenador)
+{
+	otorgar_turno_a_entrenador(entrenador->socket_etrenador);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void planificador_libera_pokemons_de(t_entrenador *entrenador, t_list *lista_pokemones)
 {
 	list_add_all(lista_pokemones, entrenador->pokemones_capturados);
@@ -234,7 +230,7 @@ void foreach(void *lista,void *cola,void(*funcion_de_lista)(void*, void*))
 	}
 }
 
-void planificador_crea_nuevo_entrenador_en_mapa_si_es_necesario(t_controllers *listas_y_colas)
+void mapa_encola_nuevos_entrenadores(t_controllers *listas_y_colas)
 {
 	/*
 	 * OJO! DEBE USARSE SEMAFORO PARA QUE NO OCURRA ERROR.
@@ -243,18 +239,19 @@ void planificador_crea_nuevo_entrenador_en_mapa_si_es_necesario(t_controllers *l
 
 	if(!list_is_empty(listas_y_colas->lista_entrenadores_a_planificar))
 	{
-		foreach(listas_y_colas->lista_entrenadores_a_planificar, listas_y_colas->cola_entrenadores_listos,planificador_modela_nuevo_entrenador_y_encolalo);
+		foreach(listas_y_colas->lista_entrenadores_a_planificar, listas_y_colas->cola_entrenadores_listos,mapa_modela_nuevo_entrenador_y_encolalo);
 		list_clean(listas_y_colas->lista_entrenadores_a_planificar);
 	}
 }
 
-void planificador_modela_nuevo_entrenador_y_encolalo(void *id_proceso,void*cola_listos)
+void mapa_modela_nuevo_entrenador_y_encolalo(void *entrenador,void*cola_listos)
 {
-	int id = (int ) id_proceso;
+	t_entrenador *entrenador_a_modelar = (t_entrenador *) entrenador;
 	t_queue *cola = (t_queue*) cola_listos;
-	t_entrenador *new_entrenador = entrenador_create(id);
+	t_entrenador *new_entrenador = entrenador_create(entrenador_a_modelar->id_proceso, entrenador_a_modelar->socket_etrenador);
 	queue_push(cola,new_entrenador);
 }
+
 
 
 

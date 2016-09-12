@@ -18,7 +18,7 @@
 #include "string.h"
 #include <pthread.h>
 #include <commons/process.h>
-
+#include "stdbool.h"
 
 /* ----------------------------------------STRUCTS---------------------------------------------*/
 typedef struct sockaddr_in address_config_in;
@@ -41,6 +41,12 @@ typedef struct arg
 	t_cliente_servidor *conexion;
 	t_list *lista_nuevos_entrenadores;
 }t_arg_pthread;
+
+typedef struct entrenador_nuevo
+{
+	int id_proceso;
+	int socket_entrenador;
+}t_entrenador_nuevo;
 
 /*-----------------------------------------------EXECUTE-----------------------------------------------------------*/
 
@@ -77,16 +83,11 @@ int server_pthread_acepta_conexion_cliente(t_server_pthread *server);
 void* server_pthread_atender_cliente(void* argumento);
 
 /*-------------------------------------ENVIO DE MENSAJES A ENTRENADORES----------------------------------------------*/
-void otorgar_turno_a_entrenador(int entrenador);
-void otorgar_posicion_pokenest_a_entrenador(int entrenador, int x, int y);
-void otorgar_pokemon_a_entrenador(int entrenador, int nivelPokemon);
-void otorgar_ruta_medalla_a_entrenador(int entrenador, char *rutaMedalla);
+void enviar_mensaje(int socket, char *mensaje);
 
 
 /*--------------------------------------RECEPCION DE MENSAJES -------------------------------------------------*/
-char* escuchar_al_entrenador(int entrenador);
-char* escuchar_que_pokemon_busca(int entrenador);
-void esuchar_a_que_direccion_se_mueve(int entrenador, int *x, int *y);
+char* recibir_mensaje(int socket,int payloadSize);
 
 /*--------------------------------------------SECUNDARIOS-----------------------------------------------------------*/
 /*
@@ -120,8 +121,7 @@ void server_pthread_escucha(t_server_pthread *server);
 
 void server_pthread_cerra_cliente(t_cliente_servidor *cliente_server, int *cliente_on);
 
-void server_pthread_agrega_proceso_a_lista(t_list *lista_procesos);
+void server_pthread_agrega_proceso_a_lista(t_list *lista_procesos, int socket_cliente);
 
-char* armar_mensajee(char *header, char *payload);
 
 #endif /* SERVIDOR_H_ */

@@ -13,5 +13,6 @@ LIBRARIES :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+planificador-commons \
 mapa-commons \
 

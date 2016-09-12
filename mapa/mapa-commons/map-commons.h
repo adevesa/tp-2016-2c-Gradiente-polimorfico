@@ -48,12 +48,15 @@ typedef struct info_algoritmo
 typedef struct entrenador
 {
 	int id_proceso; //<--- Es el dato más importante que nos interesa del entrenador;
+	int socket_etrenador;
 	t_posicion *posicion_actual;
 	int objetivo_cumplido; //<-- será 1 si ya se cumplió el objetivo, 0 caso default;
 	int estado; //<-- será 1 = listo, 0 = bloquedo, -1 = muerto;
 	int tiempo_consumido;
 	t_list *pokemones_capturados;
 }t_entrenador;
+
+typedef struct entrenador_nuevo t_entrenador_new;
 
 typedef struct mapa
 {
@@ -79,14 +82,7 @@ t_mapa* mapa_create(char *nombre, char *rutaPokedex);
 t_controllers* controllers_create();
 t_info_algoritmo* info_algoritmo_create(char *algoritmo, int quamtum, int retardo);
 t_info_socket* info_socket_create(int puerto, char *ip);
-
-/*
-t_pokemon* pokemon_create(int nivel);
-t_posicion* posicion_create(int x, int y);
-t_pokeNest* pokenest_create(char *nombreDelMapa, char *rutaPokedex);
-*/
-
-t_entrenador* entrenador_create(int id_proceso);
+t_entrenador* entrenador_create(int id_proceso, int socket_entrenador);
 t_config* configuracion_metadata_create(char *nombre, char *ruta);
 /*--------------------------------------------PRINCIPALES----------------------------------------------------------*/
 t_posicion* mapa_dame_ubicacion_pokenest(t_list *pokenest,char *nombrePokemon);
@@ -123,10 +119,10 @@ void mapa_hacete_visible_para_entrenadores(t_mapa *mapa);
 /*
  * FUNCIONES PARA MANIPULACION DEL PLANIFICADOR
  */
-void planificador_modela_nuevo_entrenador_y_encolalo(void *id_proceso,void*cola_listos);
+void mapa_modela_nuevo_entrenador_y_encolalo(void *id_proceso,void*cola_listos);
 void planificador_libera_pokemons_de(t_entrenador *entrenador, t_list *lista_pokemones);
 void planificador_elimina_entrenador_de_tus_listas(t_entrenador *entrenador, t_controllers *entrenadores);
-void planificador_crea_nuevo_entrenador_en_mapa_si_es_necesario(t_controllers *listas_y_colas);
+void mapa_encola_nuevos_entrenadores(t_controllers *listas_y_colas);
 void foreach(void *lista,void *cola,void(*funcion_de_lista)(void*, void*));
 
 
