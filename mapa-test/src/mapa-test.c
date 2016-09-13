@@ -16,6 +16,7 @@
 int main(void) {
 	CU_initialize_registry();
 
+	//t_mapa *mapa = mapa_create("mapa1","/home/utnso/Directorio/Pokedex");
 	  agregarTests();
 
 	  CU_basic_set_mode(CU_BRM_VERBOSE);

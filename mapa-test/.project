@@ -3,7 +3,7 @@
 	<name>mapa-test</name>
 	<comment></comment>
 	<projects>
-		<project>mapa-prueba</project>
+		<project>mapa-library</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -6,39 +6,40 @@
  */
 #include "map-commons.h"
 
+/*------------------------------------------VARIABLES GLOBALES----------------------------------------------------*/
+t_mapa *mapa;
 
 
 /*------------------------------------------EXECUTE----------------------------------------------------------------*/
 void ejecutar_mapa(char *nombre, char *rutaPokedex)
 {
-	t_mapa *mapa = mapa_create(nombre, rutaPokedex);
+	mapa = mapa_create(nombre, rutaPokedex);
 	planificador_create_segun_cual_seas();
-	nivel_gui_inicializar();
+	//nivel_gui_inicializar();
 	mapa_hacete_visible_para_entrenadores();
-
 
 }
 
 
 /*--------------------------------------------PRINCIPALES----------------------------------------------------------*/
-t_posicion* buscar_coordenadas(char* pokemon_buscado)
+t_posicion* buscar_coordenadas(char* identificador_pokemon)
 {
-	extern t_mapa *mapa;
-	t_pokeNest *pokenest = list_find(mapa->pokeNests, pokenest_tipo);
-	return pokenest->posicion;
+	t_pokeNest *pokeNest_buscado = dictionary_get(mapa->pokeNests, identificador_pokemon);
+	//t_pokeNest *pokenest = list_find(mapa->pokeNests, pokenest_tipoo);
+	return pokeNest_buscado->posicion;
 }
 
-bool pokenest_tipoo(void *arg)
+//NO VAAAAA
+/*bool pokenest_tipoo(void *arg)
 {
 	t_pokeNest *pokenest = (t_pokeNest*) arg;
 	extern char* pokemon_buscado;
 	return string_equals_ignore_case(pokenest->identificador, pokemon_buscado);
-}
+}*/
 
 
 char* buscar_medalla_del_mapa()
 {
-	extern t_mapa *mapa;
 	return obtener_ruta_especifica(mapa->ruta_pokedex, "Mapas",mapa->nombre);
 }
 
@@ -48,7 +49,6 @@ char* buscar_medalla_del_mapa()
 /*------------------------------ FUNCIONES PARA MANIPULACION DEL PLANIFICADOR--------------------------------------------*/
 void planificador_create_segun_cual_seas()
 {
-	extern t_mapa *mapa;
 	pthread_t thread;
 	if(string_equals_ignore_case(mapa->info_algoritmo->algoritmo, "RR"))
 	{
@@ -62,7 +62,6 @@ void planificador_create_segun_cual_seas()
 
 void mapa_hacete_visible_para_entrenadores()
 {
-	extern t_mapa *mapa;
 	ejecutar_hilo_socket(mapa->info_socket->puerto, mapa->info_socket->ip);
 }
 

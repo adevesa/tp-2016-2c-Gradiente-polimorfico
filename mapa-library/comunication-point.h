@@ -5,8 +5,8 @@
  *      Author: utnso
  */
 
-#ifndef MAPA_COMMONS_COMUNICATION_POINT_H_
-#define MAPA_COMMONS_COMUNICATION_POINT_H_
+#ifndef MAPA_MAPA_COMMONS_COMUNICATION_POINT_H_
+#define MAPA_MAPA_COMMONS_COMUNICATION_POINT_H_
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <stdio.h>
@@ -120,4 +120,4 @@ void server_pthread_agrega_proceso_a_lista(int *socket_cliente);
 
 
 
-#endif /* MAPA_COMMONS_COMUNICATION_POINT_H_ */
+#endif /* MAPA_MAPA_COMMONS_COMUNICATION_POINT_H_ */

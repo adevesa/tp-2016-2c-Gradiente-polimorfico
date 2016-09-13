@@ -5,8 +5,8 @@
  *      Author: utnso
  */
 
-#ifndef CUNITDECLARATIONS_H_
-#define CUNITDECLARATIONS_H_
+#ifndef TEST_MAPA_SRC_CUNITDECLARATIONS_H_
+#define TEST_MAPA_SRC_CUNITDECLARATIONS_H_
 #include <stdio.h>
 #include <stdlib.h>
 #include "CUnit/Basic.h"
@@ -21,4 +21,4 @@ int clean_suite();
 void agregarTests();
 
 
-#endif /* CUNITDECLARATIONS_H_ */
+#endif /* TEST_MAPA_SRC_CUNITDECLARATIONS_H_ */

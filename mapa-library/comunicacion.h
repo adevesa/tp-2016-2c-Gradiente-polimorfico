@@ -5,8 +5,8 @@
  *      Author: utnso
  */
 
-#ifndef MAPA_COMMONS_COMUNICACION_H_
-#define MAPA_COMMONS_COMUNICACION_H_
+#ifndef MAPA_MAPA_COMMONS_COMUNICACION_H_
+#define MAPA_MAPA_COMMONS_COMUNICACION_H_
 #include "comunication-point.h"
 #include "string.h"
 #include <commons/string.h>
@@ -50,4 +50,4 @@ void entrenador_quiere_finalizar_objetivos(t_entrenador *entrenador);
 void otorgar_ruta_medalla_a_entrenador(int entrenador, char *rutaMedalla);
 
 
-#endif /* MAPA_COMMONS_COMUNICACION_H_ */
+#endif /* MAPA_MAPA_COMMONS_COMUNICACION_H_ */

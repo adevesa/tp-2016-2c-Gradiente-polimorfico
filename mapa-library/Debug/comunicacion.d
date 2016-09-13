@@ -1,24 +1,36 @@
-mapa-commons/basic-structs.d: ../mapa-commons/basic-structs.c \
- ../mapa-commons/basic-structs.h \
+comunicacion.d: ../comunicacion.c ../comunicacion.h \
+ ../comunication-point.h \
  /home/utnso/workspace/commons/commons/collections/list.h \
  /home/utnso/workspace/commons/commons/collections/node.h \
+ /home/utnso/workspace/commons/commons/string.h \
+ /home/utnso/workspace/commons/commons/process.h ../basic-structs.h \
  /home/utnso/workspace/commons/commons/collections/queue.h \
  /home/utnso/workspace/commons/commons/collections/list.h \
+ /home/utnso/workspace/commons/commons/collections/dictionary.h \
  /home/utnso/workspace/commons/commons/config.h \
  /home/utnso/workspace/commons/commons/collections/dictionary.h \
- /home/utnso/workspace/commons/commons/txt.h \
- /home/utnso/workspace/commons/commons/string.h \
- /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/commons_leer_archivos/commons_leer_archivos.h
+ /home/utnso/workspace/commons/commons/txt.h ../map-commons.h \
+ ../planificador.h
 
-../mapa-commons/basic-structs.h:
+../comunicacion.h:
+
+../comunication-point.h:
 
 /home/utnso/workspace/commons/commons/collections/list.h:
 
 /home/utnso/workspace/commons/commons/collections/node.h:
 
+/home/utnso/workspace/commons/commons/string.h:
+
+/home/utnso/workspace/commons/commons/process.h:
+
+../basic-structs.h:
+
 /home/utnso/workspace/commons/commons/collections/queue.h:
 
 /home/utnso/workspace/commons/commons/collections/list.h:
+
+/home/utnso/workspace/commons/commons/collections/dictionary.h:
 
 /home/utnso/workspace/commons/commons/config.h:
 
@@ -26,6 +38,6 @@ mapa-commons/basic-structs.d: ../mapa-commons/basic-structs.c \
 
 /home/utnso/workspace/commons/commons/txt.h:
 
-/home/utnso/workspace/commons/commons/string.h:
+../map-commons.h:
 
-/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/commons_leer_archivos/commons_leer_archivos.h:
+../planificador.h:

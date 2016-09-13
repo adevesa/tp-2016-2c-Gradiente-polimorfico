@@ -5,8 +5,8 @@
  *      Author: utnso
  */
 
-#ifndef MAPA_COMMONS_MAP_COMMONS_H_
-#define MAPA_COMMONS_MAP_COMMONS_H_
+#ifndef MAPA_MAPA_COMMONS_MAP_COMMONS_H_
+#define MAPA_MAPA_COMMONS_MAP_COMMONS_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,6 +19,7 @@
 #include "basic-structs.h"
 #include "comunication-point.h"
 
+void ejecutar_mapa(char *nombre, char *rutaPokedex);
 /* ----------------	HEADERS FUNCIONES----------------------*/
 
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
@@ -40,4 +41,4 @@ char* buscar_medalla_del_mapa();
  */
 
 
-#endif /* MAPA_COMMONS_MAP_COMMONS_H_ */
+#endif /* MAPA_MAPA_COMMONS_MAP_COMMONS_H_ */

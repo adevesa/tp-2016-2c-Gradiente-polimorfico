@@ -4,26 +4,32 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../arboles-directorios.c \
+../basic-structs.c \
+../comunicacion.c \
+../comunication-point.c \
 ../map-commons.c \
-../pokenest-commons.c 
+../planificador.c 
 
 OBJS += \
-./arboles-directorios.o \
+./basic-structs.o \
+./comunicacion.o \
+./comunication-point.o \
 ./map-commons.o \
-./pokenest-commons.o 
+./planificador.o 
 
 C_DEPS += \
-./arboles-directorios.d \
+./basic-structs.d \
+./comunicacion.d \
+./comunication-point.d \
 ./map-commons.d \
-./pokenest-commons.d 
+./planificador.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
 %.o: ../%.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C Compiler'
-	gcc -O3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
+	gcc -I"/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/commons_leer_archivos" -I"/home/utnso/workspace/commons" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

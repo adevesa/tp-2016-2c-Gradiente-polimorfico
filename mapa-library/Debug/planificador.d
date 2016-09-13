@@ -1,21 +1,17 @@
-mapa-commons/planificador.d: ../mapa-commons/planificador.c \
- ../mapa-commons/planificador.h \
+planificador.d: ../planificador.c ../planificador.h \
  /home/utnso/workspace/commons/commons/collections/queue.h \
  /home/utnso/workspace/commons/commons/collections/list.h \
  /home/utnso/workspace/commons/commons/collections/node.h \
  /home/utnso/workspace/commons/commons/collections/list.h \
- ../mapa-commons/map-commons.h \
- /home/utnso/workspace/commons/commons/string.h \
- ../mapa-commons/basic-structs.h \
+ ../map-commons.h /home/utnso/workspace/commons/commons/string.h \
+ ../basic-structs.h \
+ /home/utnso/workspace/commons/commons/collections/dictionary.h \
  /home/utnso/workspace/commons/commons/config.h \
  /home/utnso/workspace/commons/commons/collections/dictionary.h \
- /home/utnso/workspace/commons/commons/txt.h \
- /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/commons_leer_archivos/commons_leer_archivos.h \
- ../mapa-commons/comunication-point.h \
- /home/utnso/workspace/commons/commons/process.h \
- ../mapa-commons/comunicacion.h
+ /home/utnso/workspace/commons/commons/txt.h ../comunication-point.h \
+ /home/utnso/workspace/commons/commons/process.h ../comunicacion.h
 
-../mapa-commons/planificador.h:
+../planificador.h:
 
 /home/utnso/workspace/commons/commons/collections/queue.h:
 
@@ -25,11 +21,13 @@ mapa-commons/planificador.d: ../mapa-commons/planificador.c \
 
 /home/utnso/workspace/commons/commons/collections/list.h:
 
-../mapa-commons/map-commons.h:
+../map-commons.h:
 
 /home/utnso/workspace/commons/commons/string.h:
 
-../mapa-commons/basic-structs.h:
+../basic-structs.h:
+
+/home/utnso/workspace/commons/commons/collections/dictionary.h:
 
 /home/utnso/workspace/commons/commons/config.h:
 
@@ -37,10 +35,8 @@ mapa-commons/planificador.d: ../mapa-commons/planificador.c \
 
 /home/utnso/workspace/commons/commons/txt.h:
 
-/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/commons_leer_archivos/commons_leer_archivos.h:
-
-../mapa-commons/comunication-point.h:
+../comunication-point.h:
 
 /home/utnso/workspace/commons/commons/process.h:
 
-../mapa-commons/comunicacion.h:
+../comunicacion.h:

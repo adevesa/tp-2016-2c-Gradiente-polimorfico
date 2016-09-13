@@ -5,13 +5,16 @@
  *      Author: utnso
  */
 
-#ifndef MAPA_TESTING_H_
-#define MAPA_TESTING_H_
-#include <mapa-commons/map-commons.h>
+#ifndef TEST_MAPA_SRC_MAPA_TESTING_H_
+#define TEST_MAPA_SRC_MAPA_TESTING_H_
 #include<stdio.h>
 #include <stdlib.h>
 #include "CUnit/Basic.h"
 #include <unistd.h>
+//#include "../mapa/mapa-commons/basic-structs.h"
+#include "basic-structs.h"
+
+
 
 
 void mapa_reconoce_nombre();
@@ -23,4 +26,4 @@ void mapa_reconoce_ip();
 void mapa_reconoce_algoritmo_completo();
 void mapa_reconoce_algoritmo_completo();
 
-#endif /* MAPA_TESTING_H_ */
+#endif /* TEST_MAPA_SRC_MAPA_TESTING_H_ */

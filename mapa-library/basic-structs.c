@@ -23,7 +23,7 @@ t_entrenador* entrenador_create(int id_proceso, int socket_entrenador)
 t_pokeNest* pokenest_create(char* nombre,char *ruta)
 {
 	t_pokeNest *new_pokenest = malloc(sizeof(t_pokeNest));
-	new_pokenest->configuracion = config_create(obtener_ruta_especifica(ruta, nombre, "metadata"));
+	new_pokenest->configuracion = config_create(obtener_ruta_especifica(ruta,"metadata", NULL));
 	new_pokenest->tipo = obtener_info_pokenest_tipo(new_pokenest->configuracion);
 	new_pokenest->posicion = obtener_info_pokenest_posicion(new_pokenest->configuracion);
 	new_pokenest->identificador = obtener_info_pokenest_id(new_pokenest->configuracion);
@@ -129,22 +129,25 @@ int obtener_info_mapa_tiempo_deadlock(t_config *configuracion)
 	return tiempo;
 }
 
-t_list* obtener_info_mapa_pokenest(char *nombreMapa, char *rutaPokedex)
+t_dictionary* obtener_info_mapa_pokenest(char *nombreMapa, char *rutaPokedex)
 {
-	t_list *new_list_pokenest = list_create();
+	//t_list *new_list_pokenest = list_create();
+
+	t_dictionary *new_diccionary_pokenest = dictionary_create();
+
 	char *ruta_final = obtener_ruta_especifica(rutaPokedex, "Mapas", nombreMapa);
 	ruta_final = obtener_ruta_especifica(ruta_final, "PokeNest", NULL);
 	t_list *lista_directorios = nombre_de_archivos_del_directorio(ruta_final);
-	foreach_pokenest_modelate(lista_directorios, new_list_pokenest, ruta_final);
+	foreach_pokenest_modelate(lista_directorios, new_diccionary_pokenest, ruta_final);
 
 
-	return new_list_pokenest;
+	return new_diccionary_pokenest;
 }
 
 void foreach_pokenest_modelate(void *lista_origen,void *lista_destino, void *ruta)
 {
 	t_list *lista_pokemones_a_modelar = (t_list*)lista_origen;
-	t_list *lista_pokemons_a_devolver = (t_list*)lista_destino;
+	t_dictionary *lista_pokemons_a_devolver = (t_dictionary*)lista_destino;
 
 	int tamanio = list_size(lista_pokemones_a_modelar);
 	int i;
@@ -154,7 +157,8 @@ void foreach_pokenest_modelate(void *lista_origen,void *lista_destino, void *rut
 		char *elemento =list_get(lista_pokemones_a_modelar, i);
 		ruta_final = obtener_ruta_especifica(ruta_final, elemento, NULL);
 		t_pokeNest *pokenest = pokenest_create(elemento,ruta_final);
-		list_add(lista_pokemons_a_devolver, pokenest);
+		dictionary_put(lista_pokemons_a_devolver, pokenest->identificador, pokenest);
+		//list_add(lista_pokemons_a_devolver, pokenest);
 	}
 
 }
@@ -183,10 +187,10 @@ char* obtener_info_pokenest_id(t_config *configuracion)
 	return id;
 }
 
-t_list* obtener_info_pokenest_pokemones(char *nombrePokenest, char *ruta)
+t_list* obtener_info_pokenest_pokemones(char *nombrePokenest, char *ruta_final)
 {
 	t_list *new_list_pokemones = list_create();
-	char *ruta_final = obtener_ruta_especifica(ruta, nombrePokenest, nombrePokenest);
+	//char *ruta_final = obtener_ruta_especifica(ruta, nombrePokenest, nombrePokenest);
 	t_list *lista_directorios = nombre_de_archivos_del_directorio(ruta_final);
 	foreach_pokenest(lista_directorios, new_list_pokemones, ruta_final);
 	list_clean(lista_directorios);
@@ -227,3 +231,30 @@ char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_arch
 	else return ruta;
 }
 
+t_list* nombre_de_archivos_del_directorio(char *ruta)
+{
+
+	/* Variables */
+		DIR *dirp;
+		struct dirent *direntp;
+
+	/* Abrimos el directorio */
+		dirp = opendir(ruta);
+		if (dirp == NULL){
+			printf("Error: No se puede abrir el directorio\n");
+			exit(1);
+		}
+		t_list *lista = list_create();
+		while ((direntp = readdir(dirp)) != NULL) {
+			 if(!string_equals_ignore_case(direntp->d_name, ".")){
+				  if(!string_equals_ignore_case(direntp->d_name, "..")){
+					  if(!string_equals_ignore_case(direntp->d_name, "metadata")){
+						 list_add(lista, direntp->d_name);
+					  	 }
+				  }
+			 }
+		}
+		 	 return lista;
+		 	 /* Cerramos el directorio */
+		 	 closedir(dirp);
+	}

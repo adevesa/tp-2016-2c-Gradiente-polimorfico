@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>mapa-prueba</name>
+	<name>mapa</name>
 	<comment></comment>
 	<projects>
 		<project>commons</project>
 		<project>commons_leer_archivos</project>
-		<project>cliente-servidor</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

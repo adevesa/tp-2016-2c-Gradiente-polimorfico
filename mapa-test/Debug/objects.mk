@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -lmapa-commos -lcunit
+LIBS := -lmapa-library -lcunit
 

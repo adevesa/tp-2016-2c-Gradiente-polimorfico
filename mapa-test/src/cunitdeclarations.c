@@ -25,7 +25,7 @@ void agregarTests()
 {
 	CU_pSuite suite = CU_add_suite("Suite mapa", init_suite, clean_suite);
 
-	CU_add_test(suite, "mapa_reconoce su nombre",mapa_reconoce_nombre);
+	//CU_add_test(suite, "mapa_reconoce su nombre",mapa_reconoce_nombre);
 	CU_add_test(suite, "mapa reconoce su ruta pokedex", mapa_reconoce_rutaPokedex);
 	CU_add_test(suite, "mapa reconoce su algoritmo completo", mapa_reconoce_algoritmo_completo);
 	CU_add_test(suite, "mapa reconoce su ip", mapa_reconoce_ip);

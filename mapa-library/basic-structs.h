@@ -5,17 +5,19 @@
  *      Author: utnso
  */
 
-#ifndef MAPA_COMMONS_BASIC_STRUCTS_H_
-#define MAPA_COMMONS_BASIC_STRUCTS_H_
+#ifndef MAPA_MAPA_COMMONS_BASIC_STRUCTS_H_
+#define MAPA_MAPA_COMMONS_BASIC_STRUCTS_H_
 #include <commons/collections/list.h>
 #include <commons/collections/queue.h>
+#include <commons/collections/dictionary.h>
 #include <commons/config.h>
 #include <commons/txt.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <commons/string.h>
 #include "string.h"
-#include "commons_leer_archivos.h"
+#include <dirent.h>
+
 /* ----------------------------------------STRUCTS----------------------------------------------------------------*/
 typedef struct posicion
 {
@@ -86,7 +88,7 @@ typedef struct mapa
 	int batalla;
 	t_info_algoritmo *info_algoritmo;
 	t_info_socket *info_socket;
-	t_list *pokeNests;
+	t_dictionary *pokeNests;
 }t_mapa;
 
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
@@ -107,10 +109,10 @@ t_info_socket* obtener_info_mapa_socket(t_config *configuracion);
 t_info_algoritmo* obtener_info_mapa_algoritmo(t_config *configuracion);
 int obtener_info_mapa_batalla(t_config *configuracion);
 int obtener_info_mapa_tiempo_deadlock(t_config *configuracion);
-t_list* obtener_info_mapa_pokenest(char *nombreMapa, char *rutaPokedex);
+t_dictionary* obtener_info_mapa_pokenest(char *nombreMapa, char *rutaPokedex);
 void foreach_pokenest_modelate(void *lista_origen,void *lista_destino, void *ruta);
 char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_archivo, char *sub_directorio_o_nombre_archivo);
-
+t_list* nombre_de_archivos_del_directorio(char *ruta);
 /* ---------------------------------FUNCIONES PARA OBTENER DATOS DE UN POKENEST------------------------------------------*/
 char* obtener_info_pokenest_tipo(t_config *configuracion);
 t_posicion* obtener_info_pokenest_posicion(t_config *configuracion);
@@ -118,4 +120,4 @@ char* obtener_info_pokenest_id(t_config *configuracion);
 t_list* obtener_info_pokenest_pokemones(char *nombrePokenest, char *ruta);
 void foreach_pokenest(void *lista_origen,void *lista_destino, void *ruta);
 
-#endif /* MAPA_COMMONS_BASIC_STRUCTS_H_ */
+#endif /* MAPA_MAPA_COMMONS_BASIC_STRUCTS_H_ */

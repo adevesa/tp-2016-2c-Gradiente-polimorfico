@@ -5,8 +5,8 @@
  *      Author: utnso
  */
 
-#ifndef MAPA_COMMONS_PLANIFICADOR_H_
-#define MAPA_COMMONS_PLANIFICADOR_H_
+#ifndef MAPA_MAPA_COMMONS_PLANIFICADOR_H_
+#define MAPA_MAPA_COMMONS_PLANIFICADOR_H_
 #include <commons/collections/queue.h>
 #include <commons/collections/list.h>
 #include <stdio.h>
@@ -59,4 +59,4 @@ void planificador_encola_nuevos_entrenadores();
 void planificador_modela_nuevo_entrenador_y_encolalo(void *id_proceso,void*cola_listos);
 void foreach(void *lista,void *cola,void(*funcion_de_lista)(void*, void*));
 
-#endif /* MAPA_COMMONS_PLANIFICADOR_H_ */
+#endif /* MAPA_MAPA_COMMONS_PLANIFICADOR_H_ */
