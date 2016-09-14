@@ -67,13 +67,14 @@ char* escuchar_que_pokemon_busca(t_entrenador *entrenador)
 	return pokemon_buscado;
 }
 
-void otorgar_posicion_pokenest_a_entrenador(int entrenador, int x, int y)
+void otorgar_posicion_pokenest_a_entrenador(t_entrenador *entrenador, int x, int y)
 {
+	entrenador->destino = posicion_create(x,y);
 	char *posx = string_itoa(x);
 	char *posy =string_itoa(y);
 	char *posicion = armar_mensaje(posx, posy);
 	char *mensaje = armar_mensaje("ur", posicion);
-	enviar_mensaje(entrenador, mensaje);
+	enviar_mensaje(entrenador->socket_etrenador, mensaje);
 	free(posx);
 	free(posy);
 	free(posicion);

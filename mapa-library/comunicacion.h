@@ -28,7 +28,7 @@ char* escuchar_al_entrenador(t_entrenador *entrenador);
 /*--------------------UBICACION POKENEST---------------------------------------------------------------------------------*/
 void entrenador_busca_coordenadas_pokenest(t_entrenador *entrenador);
 char* escuchar_que_pokemon_busca(t_entrenador *entrenador);
-void otorgar_posicion_pokenest_a_entrenador(int entrenador, int x, int y);
+void otorgar_posicion_pokenest_a_entrenador(t_entrenador *entrenador, int x, int y);
 
 /*--------------------MOVIMIENTO DEL ENTRENADOR---------------------------------------------------------------------------*/
 void escuchar_a_que_direccion_se_mueve(t_entrenador *entrenador);

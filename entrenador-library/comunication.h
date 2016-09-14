@@ -45,7 +45,9 @@ void solicitar_captura_pokemon(t_mapa *mapa, char *pokemonAcapturar);
 
 void notificar_fin_objetivos(t_mapa *mapa);
 
+/*---------------------------------------SECUNDARIOS----------------------------------------*/
 char* armar_mensaje(char *header, char *payload);
-
+void copiar(char* origen, char* destino);
+void eliminar(char* elemento);
 
 #endif /* COMUNICATION_H_ */

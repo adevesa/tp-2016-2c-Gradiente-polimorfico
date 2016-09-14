@@ -7,19 +7,22 @@ C_SRCS += \
 ../basic-structs.c \
 ../comunication-point.c \
 ../comunication.c \
-../entrenador-commons.c 
+../entrenador-commons.c \
+../time.c 
 
 OBJS += \
 ./basic-structs.o \
 ./comunication-point.o \
 ./comunication.o \
-./entrenador-commons.o 
+./entrenador-commons.o \
+./time.o 
 
 C_DEPS += \
 ./basic-structs.d \
 ./comunication-point.d \
 ./comunication.d \
-./entrenador-commons.d 
+./entrenador-commons.d \
+./time.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

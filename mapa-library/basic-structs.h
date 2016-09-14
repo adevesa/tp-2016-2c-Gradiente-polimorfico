@@ -30,6 +30,7 @@ typedef struct entrenador
 	int id_proceso; //<--- Es el dato más importante que nos interesa del entrenador;
 	int socket_etrenador;
 	t_posicion *posicion_actual;
+	t_posicion *destino;
 	int objetivo_cumplido; //<-- será 1 si ya se cumplió el objetivo, 0 caso default;
 	int estado; //<-- será 1 = listo, 0 = bloquedo, -1 = muerto;
 	int tiempo_consumido;

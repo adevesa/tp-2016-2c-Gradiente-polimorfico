@@ -9,6 +9,7 @@
 #define ENTRENADOR_COMMONS_H_
 #include "comunication.h"
 #include "basic-structs.h"
+#include "time.h"
 
 void ejecutar_entrenador(char *nombre_entrenador, char *ruta_pokedex);
 void entrenador_recorre_hoja_de_viaje();
@@ -19,7 +20,7 @@ void entrenador_busca_mapa(int index);
 void entrenador_espera_turno();
 
 void entrenador_pedi_ubicacion_pokenest(int indice_objetivo);
-void entrenador_espera_desbloqueo();
+void entrenador_registra_tiempo_bloqueo(char *hora_inicio, char *hora_fin);
 
 int entrenador_llego_a_destino();
 void entrenador_camina_hacia_destino();

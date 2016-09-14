@@ -8,7 +8,7 @@
 /*--------------------------------------CONEXION CON EL SERVIDOR--------------------------------------------------*/
 int conectar_a_mapa(t_mapa *mapa)
 {
-	mapa->server= conectar_a_servidor(mapa->puerto,mapa->ip);
+	mapa->server= conectar_a_servidor(atoi(mapa->puerto),mapa->ip);
 
 	return mapa->server;
 }
@@ -74,32 +74,20 @@ void decodificar_coordenadas(char *payload, int *x, int*y)
 
 
 /*--------------------------------------MAPA ME DA POKEMON----------------------------------------*/
-//OJOOOOO REVISAR
+
 void mapa_me_da_pokemon(t_entrenador *entrenador)
 {
 	char *ruta_para_copiar_pokemon = recibir_mensaje(entrenador->mapa_actual->server, 80);
-	char *sentencia = string_new();
-	string_append(&sentencia, "cp ");
-	string_append(&sentencia, ruta_para_copiar_pokemon);
-	string_append(&sentencia, "_");
-	string_append(&sentencia, entrenador->directorio_de_bill);
-	system(sentencia);
-	free(sentencia);
+	copiar(entrenador->directorio_de_bill, ruta_para_copiar_pokemon);
 }
 
 
 /*--------------------------------------MAPA ME DA MEDALLA----------------------------------------*/
-//OJOOO REVISAR
+
 void mapa_me_da_medalla(t_entrenador *entrenador)
 {
-	char *ruta_para_copiar_pokemon = recibir_mensaje(entrenador->mapa_actual->server, 80);
-	char *sentencia = string_new();
-	string_append(&sentencia, "cp ");
-	string_append(&sentencia, ruta_para_copiar_pokemon);
-	string_append(&sentencia, "_");
-	string_append(&sentencia, entrenador->directorio_de_bill);
-	system(sentencia);
-	free(sentencia);
+	char *ruta_para_copiar_medalla = recibir_mensaje(entrenador->mapa_actual->server, 80);
+	copiar(entrenador->directorio_de_bill, ruta_para_copiar_medalla);
 }
 
 
@@ -113,7 +101,6 @@ int mapa_me_bloqueo(t_entrenador *entrenador)
 /*--------------------------------------MAPA ME DESBLOQUEO-----------------------------------------------*/
 int mapa_me_desbloqueo(t_entrenador *entrenador)
 {
-	//continuar_ejecutando(entrenador);
 	return 1;
 }
 
@@ -146,6 +133,8 @@ void notificar_fin_objetivos(t_mapa *mapa)
 }
 
 
+
+/*---------------------------------------SECUNDARIOS----------------------------------------*/
 char* armar_mensaje(char *header, char *payload)
 {
 	char *mensaje =string_new();
@@ -153,6 +142,25 @@ char* armar_mensaje(char *header, char *payload)
 	string_append(&mensaje,";");
 	string_append(&mensaje,payload);
 	return mensaje;
+}
+
+void copiar(char* origen, char* destino)
+{
+	char* mensaje = string_new();
+	string_append(&mensaje, "cp ");
+	string_append(&mensaje, origen);
+	string_append(&mensaje, " ");
+	string_append(&mensaje, destino);
+	system(mensaje);
+	free(mensaje);
+}
+
+void eliminar(char* elemento){
+		char* mensaje = string_new();
+		string_append(&mensaje, "rm ");
+		string_append(&mensaje, elemento);
+		system(mensaje);
+		free(mensaje);
 }
 
 

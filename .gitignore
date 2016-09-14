@@ -31,3 +31,4 @@
 # Debug files
 *.dSYM/
 *.su
+/commons_leer_archivos/Debug/commons_leer_archivos.d

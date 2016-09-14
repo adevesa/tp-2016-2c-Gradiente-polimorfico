@@ -15,17 +15,16 @@ void ejecutar_entrenador(char *nombre_entrenador, char *ruta_pokedex)
 	//SI ESTA ACA, ES QUE YA TERMINO DE RECORRER
 }
 
+/*--------------------------------------------LOGICA DE CUMPLIR LOS OBJETIVOS DE TODOS LOS MAPAS---------------------------------*/
 void entrenador_recorre_hoja_de_viaje()
 {
-	//OJO, REVISAR SI LA LISTA NO SE MUEVE DE LUGAR//
-	int i= 0;
-	while(!list_is_empty(entrenador->hoja_de_viaje))
+	int i;
+	int cantidad = list_size(entrenador->hoja_de_viaje);
+	for(i = 0; i<cantidad ; i++)
 	{
 		entrenador_busca_mapa(i);
 		conectar_a_mapa(entrenador->mapa_actual);
 		entrenador_cumpli_objetivos_del_mapa();
-		list_remove(entrenador->hoja_de_viaje, i);
-		i++;
 	}
 }
 
@@ -34,6 +33,7 @@ void entrenador_busca_mapa(int index)
 	entrenador->mapa_actual = mapa_create(list_get(entrenador->hoja_de_viaje, index), entrenador->ruta_pokedex);
 }
 
+/*--------------------------------------------LOGICA DE CUMPLIR LOS OBJETIVOS DE UN MAPA---------------------------------*/
 void entrenador_cumpli_objetivos_del_mapa()
 {
 	int i;
@@ -51,7 +51,7 @@ void entrenador_cumpli_objetivos_del_mapa()
 
 void entrenador_espera_turno()
 {
-	char *respuesta = esperar_respuesta(entrenador->mapa_actual);
+	esperar_respuesta(entrenador->mapa_actual);
 }
 
 void entrenador_pedi_ubicacion_pokenest(int indice_objetivo)
@@ -61,6 +61,7 @@ void entrenador_pedi_ubicacion_pokenest(int indice_objetivo)
 	tratar_respuesta(respuesta, entrenador);
 }
 
+/*--------------------------------------------LOGICA DE CAMINAR HACIA POKENEST--------------------------------*/
 void entrenador_cumpli_objetivo(int indice_obejtivo)
 {
 	while(!entrenador_llego_a_destino())
@@ -174,15 +175,26 @@ void entrenador_informa_movimiento()
 void entrenador_captura_pokemon(int indice_objetivo)
 {
 	solicitar_captura_pokemon(entrenador->mapa_actual,list_get(entrenador->mapa_actual->objetivos, indice_objetivo));
+
+	//MAPA ME BLOQUEA//
 	char *respuesta = recibir_mensaje(entrenador->mapa_actual->server,3);
+	char *hora_inicio_bloqueado = temporal_get_string_time();
 	tratar_respuesta(respuesta, entrenador);
+
+	//ESPERO QUE MAPA ME DESBLOQUEE//
+	char *espero_desbloqueo = recibir_mensaje(entrenador->mapa_actual->server,3);
+	tratar_respuesta(espero_desbloqueo, entrenador);
+	char *hora_fin_desbloqueado = temporal_get_string_time();
+
+	entrenador_registra_tiempo_bloqueo(hora_inicio_bloqueado, hora_fin_desbloqueado);
 }
 
-void entrenador_espera_desbloqueo()
+void entrenador_registra_tiempo_bloqueo(char *hora_inicio, char *hora_fin)
 {
-	char *respuesta = recibir_mensaje(entrenador->mapa_actual->server,3);
-	tratar_respuesta(respuesta, entrenador);
+	int tiempo = diferencia_de_tiempos(hora_inicio, hora_fin);
+	entrenador->tiempo_bloqueado_pokenest = entrenador->tiempo_bloqueado_pokenest + tiempo;
 }
+
 /*------------------------------------------LOGICA DE TERMINAR EN EL MAPA------------------------------------*/
 void entrenador_avisa_que_terminaste_en_este_mapa()
 {

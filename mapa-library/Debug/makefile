@@ -25,8 +25,8 @@ endif
 all: libmapa-library.so
 
 dependents:
-	-cd /home/utnso/workspace/commons/Debug && $(MAKE) all
-	-cd /home/utnso/workspace/nivel-gui/Debug && $(MAKE) all
+	-cd /home/utnso/workspace/commons/Debug && $(MAKE) clean all
+	-cd /home/utnso/workspace/nivel-gui/Debug && $(MAKE) clean all
 
 # Tool invocations
 libmapa-library.so: $(OBJS) $(USER_OBJS) /home/utnso/workspace/commons/Debug/libcommons.so /home/utnso/workspace/nivel-gui/Debug/libnivel-gui.so
