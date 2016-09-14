@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <commons/string.h>
 #include "string.h"
-#include <nivel.h>
+#include "nivel.h"
 #include <pthread.h>
 #include "stdbool.h"
 #include "planificador.h"

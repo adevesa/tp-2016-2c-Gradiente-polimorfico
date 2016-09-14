@@ -22,28 +22,22 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: libmapa-library.so
-
-dependents:
-	-cd /home/utnso/workspace/commons/Debug && $(MAKE) all
-	-cd /home/utnso/workspace/nivel-gui/Debug && $(MAKE) all
+all: libentrenador-library.so
 
 # Tool invocations
-libmapa-library.so: $(OBJS) $(USER_OBJS) /home/utnso/workspace/commons/Debug/libcommons.so /home/utnso/workspace/nivel-gui/Debug/libnivel-gui.so
+libentrenador-library.so: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C Linker'
-	gcc -L"/home/utnso/workspace/nivel-gui/Debug" -L"/home/utnso/workspace/commons/Debug" -shared -o "libmapa-library.so" $(OBJS) $(USER_OBJS) $(LIBS)
+	gcc -shared -o "libentrenador-library.so" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(C_DEPS)$(LIBRARIES) libmapa-library.so
+	-$(RM) $(OBJS)$(C_DEPS)$(LIBRARIES) libentrenador-library.so
 	-@echo ' '
 
 .PHONY: all clean dependents
 .SECONDARY:
-/home/utnso/workspace/commons/Debug/libcommons.so:
-/home/utnso/workspace/nivel-gui/Debug/libnivel-gui.so:
 
 -include ../makefile.targets

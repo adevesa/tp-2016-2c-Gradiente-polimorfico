@@ -29,14 +29,6 @@ t_posicion* buscar_coordenadas(char* identificador_pokemon)
 	return pokeNest_buscado->posicion;
 }
 
-//NO VAAAAA
-/*bool pokenest_tipoo(void *arg)
-{
-	t_pokeNest *pokenest = (t_pokeNest*) arg;
-	extern char* pokemon_buscado;
-	return string_equals_ignore_case(pokenest->identificador, pokemon_buscado);
-}*/
-
 
 char* buscar_medalla_del_mapa()
 {
@@ -54,7 +46,7 @@ void planificador_create_segun_cual_seas()
 	{
 		pthread_create(&thread,NULL,ejecutar_planificador_rr, NULL);
 	}
-		pthread_create(&thread,NULL,ejecutar_planificador_srdf,NULL);
+	else{	pthread_create(&thread,NULL,ejecutar_planificador_srdf,NULL); }
 }
 
 
@@ -62,6 +54,7 @@ void planificador_create_segun_cual_seas()
 
 void mapa_hacete_visible_para_entrenadores()
 {
-	ejecutar_hilo_socket(mapa->info_socket->puerto, mapa->info_socket->ip);
+	pthread_t hilo_servidor;
+	pthread_create(&hilo_servidor,NULL,ejecutar_servidor,(void*)mapa->info_socket);
 }
 

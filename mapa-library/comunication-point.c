@@ -8,6 +8,12 @@
 #include "comunication-point.h"
 
 /*--------------------------------------------EXECUTE-----------------------------------------------------*/
+void* ejecutar_servidor(void *argumento)
+{
+	t_info_socket *info_sock = (t_info_socket*) argumento;
+	ejecutar_hilo_socket(info_sock->puerto, info_sock->ip);
+}
+
 
 void ejecutar_hilo_socket(int puerto, char *ip)
 {

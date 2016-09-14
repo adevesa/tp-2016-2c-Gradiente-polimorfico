@@ -16,6 +16,7 @@
 #include <commons/config.h>
 #include <commons/txt.h>
 
+/* ----------------------------------------STRUCTS----------------------------------------------------------------*/
 typedef struct coordenada{
 	int x;
 	int y;
@@ -43,15 +44,18 @@ typedef struct entrenador{
 	t_ubicacion* pokenest;
 }t_entrenador;
 
-void analizar_paso_anterior(t_entrenador* entrenador_new);
+/*--------------------------------------------CREATES---------------------------------------------------------------*/
+t_ubicacion* ubicacion_create(int x, int y);
 t_config* configuracion_metadata_create(char *nombre, char *ruta);
 t_entrenador* entrenador_create(char* nombre, char* ruta);
+
+
+void analizar_paso_anterior(t_entrenador* entrenador_new);
 char* entrenador_simbolo(t_config* configuracion);
 int entrenador_vidas(t_config* configuracion);
 t_list* entrenador_mapas(t_config* configuracion);
 t_mapa* mapa_actual(t_entrenador* entrenador, char* mapa);
 void conocer_siguiente_pokenest(t_entrenador* entrenador);
-void decodificar_coordenadas(char *payload, int *x, int*y);
 int tengo_pokemons_por_atrapar(t_entrenador entrenador);
 int conozco_el_pokenest(t_entrenador entrenador);
 void mando_el_fin(t_entrenador entrenador);
@@ -62,4 +66,6 @@ void setear_a_null_pokenest(t_entrenador entrenador);
 void ejecutar_lo_que_deba_hacer(t_entrenador *entrenador);
 void ejecutar_entrenador(char *nombre_entrenador, char *rutaPokedex);
 
+
+char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_archivo, char *sub_directorio_o_nombre_archivo);
 #endif /* ENTRENADOR_COMMONS_H_ */

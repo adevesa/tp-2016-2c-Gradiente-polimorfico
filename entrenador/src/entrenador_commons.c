@@ -1,19 +1,13 @@
-#include <commons/string.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <commons/collections/list.h>
-#include <stdbool.h>
-#include <commons/config.h>
-#include <commons/txt.h>
-#include <entrenador_commons.h>
+#include "entrenador_commons.h"
 
+/*--------------------------------------------CREATES---------------------------------------------------------------*/
 t_config* configuracion_metadata_create(char *nombre, char *ruta)
 {
 	char *ruta_final = string_new();
 	ruta_final = obtener_ruta_especifica(ruta, "Entrenadores", nombre);
 	ruta_final = obtener_ruta_especifica(ruta_final, "metadata", NULL);
 	t_config *config_new = config_create(ruta_final);
-	return config_new;;
+	return config_new;
 }
 
 t_entrenador* entrenador_create(char* nombre, char* ruta)
@@ -24,26 +18,38 @@ t_entrenador* entrenador_create(char* nombre, char* ruta)
   	entrenador_new->configuracion = configuracion_metadata_create(nombre,ruta);
   	entrenador_new->simbolo= entrenador_simbolo(entrenador_new->configuracion);
   	entrenador_new->mapas= entrenador_mapas(entrenador_new->configuracion);
-  	entrenador_new->mapa_actual = list_get(entrenador_new->mapas, 0);
-  	entrenador_new->vidas= entrenador_vidas(nombre,ruta);
+  	//entrenador_new->mapa_actual = list_get(entrenador_new->mapas, 0);
+  	entrenador_new->vidas= entrenador_vidas(entrenador_new->configuracion);
   	entrenador_new->reintentos=0;
   	entrenador_new->tiempo_total_aventura=0;
   	entrenador_new->tiempo_bloqueado_pokenest=0;
   	entrenador_new->muertes=0;
-  	entrenador_new->ubicacion->x=0;
-  	entrenador_new->ubicacion->y=0;
-  	entrenador_new->ubicacion->pa=0;
-  	analizar_paso_anterior(entrenador_new);
-  	entrenador_new->pokenest->x=NULL;
-  	entrenador_new->pokenest->y=NULL;
+  	entrenador_new->ubicacion = ubicacion_create(0,0);
+  	//entrenador_new->pokenest = ubicacion_create(NULL, NULL);  NO HACE FALTAAAA
+  	//analizar_paso_anterior(entrenador_new); NO DEBERIA IR ACA
   	return(entrenador_new);
   }
 
+t_ubicacion* ubicacion_create(int x, int y)
+{
+	t_ubicacion *new_ubi = malloc(sizeof(t_ubicacion));
+	new_ubi->x=0;
+	new_ubi->y=0;
+	new_ubi->pa=0;
+	return new_ubi;
+}
+
+/*--------------------------------------------FUNCIONES--------------------------------------------------------------*/
 void analizar_paso_anterior(t_entrenador* entrenador_new){
 	(entrenador_new->ubicacion->x == entrenador_new->pokenest->x)? entrenador_new->ubicacion->pa=-2 :
 		(entrenador_new->ubicacion->y == entrenador_new->pokenest->y)? entrenador_new->ubicacion->pa=-1 :
 		(entrenador_new->ubicacion->x == entrenador_new->pokenest->x && entrenador_new->ubicacion->x == entrenador_new->pokenest->x)? (entrenador_new->ubicacion->pa=-3) : (entrenador_new->ubicacion->pa=0);
 }
+
+t_list* entrenador_mapas(t_config* configuracion){
+	return(config_get_array_value(configuracion, "hojaDeViaje"));
+}
+
 
 char* entrenador_simbolo(t_config* configuracion){
 	return(config_get_string_value(configuracion, "simbolo"));
@@ -53,18 +59,26 @@ int entrenador_vidas(t_config* configuracion){
 	return(config_get_int_value(configuracion, "vidas"));
 }
 
+//REVISAR ACA
 t_list* entrenador_mapas(t_config* configuracion){
 	return(config_get_array_value(configuracion, "hojaDeViaje"));
 }
 
-t_mapa* mapa_actual(t_entrenador* entrenador, char* mapa){
+
+
+
+
+//COMPLETAR ACA
+t_mapa* mapa_actual(t_entrenador* entrenador, char* mapa)
+{
 	t_mapa* mapa_actual = malloc(sizeof(t_mapa));
 	mapa_actual->server = preguntar_por_server(mapa);
 	mapa_actual->objetivos = entrenador_objetivos_por_mapa(entrenador, mapa, entrenador->ruta_pokedex);
 	return(mapa_actual);
 }
 
-void conocer_siguiente_pokenest(t_entrenador* entrenador){
+void conocer_siguiente_pokenest(t_entrenador* entrenador)
+{
 	char* pokemonBuscado;
 	pokemonBuscado = list_get(entrenador->mapa_actual->objetivos, 0);
 	char* mensaje = string_new();
@@ -82,15 +96,9 @@ void conocer_siguiente_pokenest(t_entrenador* entrenador){
 	free(mensaje);
 	free(mensaje_recibido);
 	free(ubiqueishon);
-	}
-
-void decodificar_coordenadas(char *payload, int *x, int*y)
-{
-	string_trim(&payload);
-	char **coordenadas= string_split(payload, ",");
-	*x = atoi(coordenadas[0]);
-	*y= atoi(coordenadas[1]);
 }
+
+
 
 int tengo_pokemons_por_atrapar(t_entrenador entrenador){
 	if( list_is_empty(entrenador->mapa_actual->objetivos)) return 0;
@@ -199,4 +207,18 @@ void ejecutar_entrenador(char *nombre_entrenador, char *rutaPokedex) // EL MAIN
 {
 	t_entrenador *entrenador_new = entrenador_create(nombre_entrenador, rutaPokedex);
 	ejecutar_lo_que_deba_hacer(entrenador_new);
+}
+
+char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_archivo, char *sub_directorio_o_nombre_archivo)
+{
+	char* ruta = string_new();
+	string_append(&ruta,ruta_inicial);
+	string_append(&ruta, "/");
+	string_append(&ruta, directorio_o_nombre_archivo);
+	if(sub_directorio_o_nombre_archivo != NULL)
+	{	string_append(&ruta, "/");
+		string_append(&ruta,sub_directorio_o_nombre_archivo);
+		return ruta;
+	}
+	else return ruta;
 }

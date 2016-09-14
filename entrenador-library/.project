@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>mapa-library</name>
+	<name>entrenador-library</name>
 	<comment></comment>
 	<projects>
 		<project>commons</project>
-		<project>nivel-gui</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -17,7 +17,7 @@ C_DEPS += \
 src/entrenador_commons.o: ../src/entrenador_commons.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C Compiler'
-	gcc -include"/home/utnso/workspace/entrenador/src/entrenador_commons.h" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"src/entrenador_commons.d" -o "$@" "$<"
+	gcc -include"/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/entrenador/src/entrenador_commons.h" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"src/entrenador_commons.d" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
