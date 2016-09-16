@@ -28,12 +28,21 @@ void planificador_create_segun_cual_seas();
 
 
 /*--------------------------------------------PRINCIPALES----------------------------------------------------------*/
-t_posicion* buscar_coordenadas(char* pokemon_buscado);
-t_pokeNest* buscar_pokenest(char *identificador_pokemon);
-int hay_pokemones_en_pokenest(t_pokeNest *pokenest);
-char* buscar_medalla_del_mapa();
+char* mapa_dame_medalla();
+t_pokeNest* mapa_buscame_pokenest(char *identificador_pokemon);
+t_posicion* mapa_dame_coordenadas_de_pokenest(char* identificador_pokemon);
+int mapa_decime_si_hay_pokemones_en_pokenest(t_pokeNest *pokenest);
+t_pokemon* mapa_dame_pokemon_de_pokenest(t_pokeNest *pokenest);
+void mapa_actualiza_pokemones_disponibles_de_pokenest(t_pokeNest *pokenest);
 
 /*--------------------------------------------SECUNDARIAS----------------------------------------------------------*/
+int mapa_decime_si_entrenador_esta_bloqueado(t_entrenador *entrenador);
+
+int mapa_decime_si_entrenador_estaba_bloqueado(t_entrenador *entrenador);
+
+int mapa_decime_si_entrenador_esta_listo_pero_estaba_bloqueado(t_entrenador *entrenador);
+
+void mapa_cambiale_estado_a_entrenador(t_entrenador *entrenador, int estado_entrante, int estado_saliente);
 
 /*
  * FUNCIONES PARA MANIPULACION DE ENTRENADORES (MEDIANTE SOCKETS)

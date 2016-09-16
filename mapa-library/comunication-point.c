@@ -29,6 +29,8 @@ void ejecutar_hilo_socket(int puerto, char *ip)
 	}
 }
 
+int se_termino_la_conexion = 0;
+
 /*--------------------------------------------CREATES-----------------------------------------------------*/
 
 t_server_pthread* server_pthread_create(int puerto, char *ip)
@@ -97,10 +99,11 @@ int server_pthread_acepta_conexion_cliente(t_server_pthread *server)
 void* server_pthread_atender_cliente(void* argumento)
 {
 	int *conexion = (int*) argumento;
-
 	server_pthread_agrega_proceso_a_lista(conexion);
-
-	return NULL;
+	while(!se_termino_la_conexion)
+	{
+	}
+	pthread_exit(NULL);
 }
 
 /*-------------------------------------ENVIO DE MENSAJES A ENTRENADORES--------------------------------------------*/
@@ -163,7 +166,7 @@ void server_pthread_escucha(t_server_pthread *server)
 void server_pthread_cerra_cliente(int cliente)
 {
 	close(cliente);
-	pthread_exit(NULL);
+	se_termino_la_conexion = 1;
 }
 
 

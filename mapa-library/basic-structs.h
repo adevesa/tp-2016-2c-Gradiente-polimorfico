@@ -52,13 +52,15 @@ typedef struct pokeNest
 
 typedef struct entrenador
 {
-	int id_proceso; //<--- Es el dato más importante que nos interesa del entrenador;
+	int id_proceso;
 	int socket_entrenador;
 	t_posicion *posicion_actual;
 	t_pokeNest *pokenest_objetivo;
+	int tiene_objetivo;
 	int distancia_hasta_objetivo;
 	int objetivo_cumplido; //<-- será 1 si ya se cumplió el objetivo, 0 caso default;
 	int estado; //<-- será 1 = listo, 0 = bloquedo, -1 = muerto;
+	int estado_anterior; //<-- será 1 = listo, 0 = bloquedo
 	int tiempo_consumido;
 	t_list *pokemones_capturados;
 }t_entrenador;

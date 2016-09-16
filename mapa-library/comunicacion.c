@@ -12,21 +12,21 @@ int tratar_respuesta(char* respuesta_del_entrenador, t_entrenador *entrenador)
 {
 	if(string_equals_ignore_case(respuesta_del_entrenador, "up"))
 	{
-		return 0;
+		return 1;
 	}
 	if(string_equals_ignore_case(respuesta_del_entrenador,"mp"))
 	{
-		return 1;
+		return 2;
 	}
 	if(string_equals_ignore_case(respuesta_del_entrenador, "cp"))
 	{
-		return 2;
+		return 3;
 	}
 	if(string_equals_ignore_case(respuesta_del_entrenador, "fp"))
 	{
-		return 3;
+		return 4;
 	}
-	else {return 9;}
+	else {return 0;}
 }
 
 /*-------------------------------------------OTORGAR TURNO-----------------------------------------------------------*/
@@ -57,7 +57,7 @@ void darle_coordenadas_pokenst_a_entrenador(t_entrenador *entrenador)
 {
 	char *pokemon_buscado = string_new();
 	pokemon_buscado=escuchar_que_pokemon_busca(entrenador);
-	t_pokeNest *pokenest_buscado = buscar_pokenest(pokemon_buscado);
+	t_pokeNest *pokenest_buscado = mapa_buscame_pokenest(pokemon_buscado);
 	otorgar_posicion_pokenest_a_entrenador(entrenador, pokenest_buscado);
 }
 
@@ -124,6 +124,7 @@ void dar_pokemon_a_entrenador(t_entrenador *entrenador, t_pokemon *pokemon)
 void otorgar_pokemon_a_entrenador(t_entrenador *entrenador,t_pokemon *pokemon)
 {
 	char *mensaje = armar_mensaje("sr", pokemon->ruta_en_pokedex);
+	list_add(entrenador->pokemones_capturados, pokemon);
 	enviar_mensaje(entrenador->socket_entrenador, mensaje);
 }
 
@@ -137,10 +138,9 @@ void avisar_desbloqueo_a_entrenador(int entrenador)
 
 void entrenador_quiere_finalizar_objetivos(t_entrenador *entrenador)
 {
-	char *ruta_medalla_del_mapa = buscar_medalla_del_mapa();
+	char *ruta_medalla_del_mapa = mapa_dame_medalla();
 	otorgar_ruta_medalla_a_entrenador(entrenador->socket_entrenador, ruta_medalla_del_mapa);
 	server_pthread_cerra_cliente(entrenador->socket_entrenador);
-	//planificador_move_a_cola_finalizados(entrenador);
 }
 
 void otorgar_ruta_medalla_a_entrenador(int entrenador, char *rutaMedalla)

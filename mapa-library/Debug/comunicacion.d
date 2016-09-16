@@ -10,7 +10,7 @@ comunicacion.d: ../comunicacion.c ../comunicacion.h \
  /home/utnso/workspace/commons/commons/config.h \
  /home/utnso/workspace/commons/commons/collections/dictionary.h \
  /home/utnso/workspace/commons/commons/txt.h ../map-commons.h \
- ../planificador.h
+ ../planificador.h ../planificador-rr.h
 
 ../comunicacion.h:
 
@@ -41,3 +41,5 @@ comunicacion.d: ../comunicacion.c ../comunicacion.h \
 ../map-commons.h:
 
 ../planificador.h:
+
+../planificador-rr.h:

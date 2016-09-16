@@ -8,6 +8,7 @@ C_SRCS += \
 ../comunicacion.c \
 ../comunication-point.c \
 ../map-commons.c \
+../planificador-rr.c \
 ../planificador.c 
 
 OBJS += \
@@ -15,6 +16,7 @@ OBJS += \
 ./comunicacion.o \
 ./comunication-point.o \
 ./map-commons.o \
+./planificador-rr.o \
 ./planificador.o 
 
 C_DEPS += \
@@ -22,6 +24,7 @@ C_DEPS += \
 ./comunicacion.d \
 ./comunication-point.d \
 ./map-commons.d \
+./planificador-rr.d \
 ./planificador.d 
 
 

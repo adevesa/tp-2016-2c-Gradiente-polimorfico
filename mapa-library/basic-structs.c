@@ -14,6 +14,7 @@ t_entrenador* entrenador_create(int id_proceso, int socket_entrenador)
 	new_entrenador->socket_entrenador =socket_entrenador;
 	new_entrenador->estado = 1;
 	new_entrenador->objetivo_cumplido = 0;
+	new_entrenador->tiene_objetivo = 0;
 	new_entrenador->pokemones_capturados = list_create();
 	new_entrenador->posicion_actual = posicion_create(0,0);
 	new_entrenador->tiempo_consumido = 0;
