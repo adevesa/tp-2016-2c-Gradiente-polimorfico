@@ -25,17 +25,6 @@ typedef struct posicion
 	int y;
 }t_posicion;
 
-typedef struct entrenador
-{
-	int id_proceso; //<--- Es el dato más importante que nos interesa del entrenador;
-	int socket_etrenador;
-	t_posicion *posicion_actual;
-	t_posicion *destino;
-	int objetivo_cumplido; //<-- será 1 si ya se cumplió el objetivo, 0 caso default;
-	int estado; //<-- será 1 = listo, 0 = bloquedo, -1 = muerto;
-	int tiempo_consumido;
-	t_list *pokemones_capturados;
-}t_entrenador;
 
 typedef struct entrenador_nuevo
 {
@@ -46,17 +35,33 @@ typedef struct entrenador_nuevo
 typedef struct pokemon
 {
 	int nivel;
+	char *ruta_en_pokedex;
 
 }t_pokemon;
 
 typedef struct pokeNest
 {
 	char *tipo;
+	char *ruta_en_pokeDex;
 	t_posicion *posicion;
 	t_config *configuracion;
 	char *identificador;
-	t_list *pokemones;
+	t_queue *pokemones;
+	int cantidad_pokemones_disponibles;
 }t_pokeNest;
+
+typedef struct entrenador
+{
+	int id_proceso; //<--- Es el dato más importante que nos interesa del entrenador;
+	int socket_entrenador;
+	t_posicion *posicion_actual;
+	t_pokeNest *pokenest_objetivo;
+	int distancia_hasta_objetivo;
+	int objetivo_cumplido; //<-- será 1 si ya se cumplió el objetivo, 0 caso default;
+	int estado; //<-- será 1 = listo, 0 = bloquedo, -1 = muerto;
+	int tiempo_consumido;
+	t_list *pokemones_capturados;
+}t_entrenador;
 
 typedef struct controllers
 {
@@ -118,7 +123,7 @@ t_list* nombre_de_archivos_del_directorio(char *ruta);
 char* obtener_info_pokenest_tipo(t_config *configuracion);
 t_posicion* obtener_info_pokenest_posicion(t_config *configuracion);
 char* obtener_info_pokenest_id(t_config *configuracion);
-t_list* obtener_info_pokenest_pokemones(char *nombrePokenest, char *ruta);
+t_queue* obtener_info_pokenest_pokemones(char *nombrePokenest, char *ruta);
 void foreach_pokenest(void *lista_origen,void *lista_destino, void *ruta);
 
 #endif /* MAPA_MAPA_COMMONS_BASIC_STRUCTS_H_ */

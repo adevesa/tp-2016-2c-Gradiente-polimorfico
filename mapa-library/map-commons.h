@@ -25,20 +25,23 @@ void ejecutar_mapa(char *nombre, char *rutaPokedex);
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
 
 void planificador_create_segun_cual_seas();
+
+
 /*--------------------------------------------PRINCIPALES----------------------------------------------------------*/
 t_posicion* buscar_coordenadas(char* pokemon_buscado);
-bool pokenest_tipoo(void *arg);
+t_pokeNest* buscar_pokenest(char *identificador_pokemon);
+int hay_pokemones_en_pokenest(t_pokeNest *pokenest);
+char* buscar_medalla_del_mapa();
+
 /*--------------------------------------------SECUNDARIAS----------------------------------------------------------*/
 
 /*
  * FUNCIONES PARA MANIPULACION DE ENTRENADORES (MEDIANTE SOCKETS)
  */
 void mapa_hacete_visible_para_entrenadores();
-char* buscar_medalla_del_mapa();
+t_pokemon* pokenest_dame_pokemon(t_pokeNest *pokenest);
+void pokenest_actualiza_tu_cantidad_pokemones_disponibles(t_pokeNest *pokenest);
 
-/*
- * FUNCIONES PARA MANIPULACION DEL PLANIFICADOR
- */
 
 
 #endif /* MAPA_MAPA_COMMONS_MAP_COMMONS_H_ */

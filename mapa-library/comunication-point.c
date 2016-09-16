@@ -123,7 +123,6 @@ char* recibir_mensaje(int socket,int payloadSize)
 
 /*-------------------------------------------------------FUNCIONES SECUNDARIAS----------------------------------------------*/
 
-
 address_config_in* configurar_address(int puerto, char *ip)
 {
 	address_config_in *direccionServidor = malloc(sizeof(address_config_in));

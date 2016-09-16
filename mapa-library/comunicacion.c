@@ -8,31 +8,32 @@
 #include "comunicacion.h"
 
 /*-------------------------------------------DECODIFICACION DE RESPUESTAS------------------------------------------------*/
-void tratar_respuesta(char* respuesta_del_entrenador, t_entrenador *entrenador)
+int tratar_respuesta(char* respuesta_del_entrenador, t_entrenador *entrenador)
 {
 	if(string_equals_ignore_case(respuesta_del_entrenador, "up"))
 	{
-		entrenador_busca_coordenadas_pokenest(entrenador);
+		return 0;
 	}
 	if(string_equals_ignore_case(respuesta_del_entrenador,"mp"))
 	{
-		entrenador_se_va_a_mover(entrenador);
+		return 1;
 	}
 	if(string_equals_ignore_case(respuesta_del_entrenador, "cp"))
 	{
-		entrenador_quiere_capturar_pokemon(entrenador);
+		return 2;
 	}
 	if(string_equals_ignore_case(respuesta_del_entrenador, "fp"))
 	{
-		entrenador_quiere_finalizar_objetivos(entrenador);
+		return 3;
 	}
+	else {return 9;}
 }
 
 /*-------------------------------------------OTORGAR TURNO-----------------------------------------------------------*/
 void otorgar_turno_a_entrenador(t_entrenador *entrenador)
 {
 		char *mensaje = armar_mensaje("tr", "");
-		enviar_mensaje(entrenador->socket_etrenador, mensaje);
+		enviar_mensaje(entrenador->socket_entrenador, mensaje);
 }
 
 char* armar_mensaje(char *header, char *payload)
@@ -47,34 +48,34 @@ char* armar_mensaje(char *header, char *payload)
 /*-------------------------------------------ESCUCHA AL ENTRENADOR-----------------------------------------------------------*/
 char* escuchar_al_entrenador(t_entrenador *entrenador)
 {
-	return recibir_mensaje(entrenador->socket_etrenador, 3);
+	return recibir_mensaje(entrenador->socket_entrenador, 3);
 }
 /*-------------------------------------------RECIBE Y RESPONDE-----------------------------------------------------------*/
 
 /*--------------------UBICACION POKENEST---------------------------------------------------------------------------------*/
-void entrenador_busca_coordenadas_pokenest(t_entrenador *entrenador)
+void darle_coordenadas_pokenst_a_entrenador(t_entrenador *entrenador)
 {
 	char *pokemon_buscado = string_new();
 	pokemon_buscado=escuchar_que_pokemon_busca(entrenador);
-	t_posicion *posicion = buscar_coordenadas(pokemon_buscado);
-	otorgar_posicion_pokenest_a_entrenador(entrenador->socket_etrenador, posicion->x, posicion->y);
+	t_pokeNest *pokenest_buscado = buscar_pokenest(pokemon_buscado);
+	otorgar_posicion_pokenest_a_entrenador(entrenador, pokenest_buscado);
 }
 
 char* escuchar_que_pokemon_busca(t_entrenador *entrenador)
 {
 	char *pokemon_buscado = string_new();
-	pokemon_buscado=recibir_mensaje(entrenador->socket_etrenador,15);
+	pokemon_buscado=recibir_mensaje(entrenador->socket_entrenador,15);
 	return pokemon_buscado;
 }
 
-void otorgar_posicion_pokenest_a_entrenador(t_entrenador *entrenador, int x, int y)
+void otorgar_posicion_pokenest_a_entrenador(t_entrenador *entrenador, t_pokeNest *pokenest_buscado)
 {
-	entrenador->destino = posicion_create(x,y);
-	char *posx = string_itoa(x);
-	char *posy =string_itoa(y);
+	entrenador->pokenest_objetivo = pokenest_buscado;
+	char *posx = string_itoa(pokenest_buscado->posicion->x);
+	char *posy =string_itoa(pokenest_buscado->posicion->y);
 	char *posicion = armar_mensaje(posx, posy);
 	char *mensaje = armar_mensaje("ur", posicion);
-	enviar_mensaje(entrenador->socket_etrenador, mensaje);
+	enviar_mensaje(entrenador->socket_entrenador, mensaje);
 	free(posx);
 	free(posy);
 	free(posicion);
@@ -82,16 +83,10 @@ void otorgar_posicion_pokenest_a_entrenador(t_entrenador *entrenador, int x, int
 
 
 /*--------------------MOVIMIENTO DEL ENTRENADOR---------------------------------------------------------------------------*/
-
-void entrenador_se_va_a_mover(t_entrenador *entrenador)
-{
-	escuchar_a_que_direccion_se_mueve(entrenador);
-}
-
-void escuchar_a_que_direccion_se_mueve(t_entrenador *entrenador)
+void escuchar_a_que_direccion_se_mueve_entrenador(t_entrenador *entrenador)
 {
 	char *coordenadas = string_new();
-	coordenadas = recibir_mensaje(entrenador->socket_etrenador, 15);
+	coordenadas = recibir_mensaje(entrenador->socket_entrenador, 15);
 	decodificar_coordenadas(coordenadas, &(entrenador->posicion_actual->x), &(entrenador->posicion_actual->y));
 }
 
@@ -101,18 +96,11 @@ void decodificar_coordenadas(char *payload, int *x, int*y)
 	char **coordenadas= string_split(payload, ",");
 	*x = atoi(coordenadas[0]);
 	*y= atoi(coordenadas[1]);
+	free(payload);
 }
 
 
 /*--------------------CAPTURA POKEMON---------------------------------------------------------------------------------------*/
-//OJO ACA, FALTA LA LOGICA DE BLOQUEO//
-void entrenador_quiere_capturar_pokemon(t_entrenador *entrenador)
-{
-	char *pokemon_que_quiere_capturar = escuchar_captura_pokemon(entrenador->socket_etrenador);
-	//planificador_bloquea_a(entrenador, pokemon_que_quiere_capturar)
-	avisar_bloqueo_a_entrenador(entrenador->socket_etrenador);
-}
-
 char* escuchar_captura_pokemon(int entrenador)
 {
 	char *payload = string_new();
@@ -127,26 +115,21 @@ void avisar_bloqueo_a_entrenador(int entrenador)
 }
 
 /*----------------OTORGANDO POKEMON------------------------------------------------------------------------------------------*/
-void dar_pokemon_a_entrenador(t_entrenador *entrenador, t_pokemon *pokemon, int tiempo_bloqueado)
+void dar_pokemon_a_entrenador(t_entrenador *entrenador, t_pokemon *pokemon)
 {
-	avisar_desbloqueo_a_entrenador(entrenador->socket_etrenador, tiempo_bloqueado);
-	otorgar_pokemon_a_entrenador(entrenador->socket_etrenador, pokemon->nivel);
+	avisar_desbloqueo_a_entrenador(entrenador->socket_entrenador);
+	otorgar_pokemon_a_entrenador(entrenador, pokemon);
 }
 
-void otorgar_pokemon_a_entrenador(int entrenador, int nivelPokemon)
+void otorgar_pokemon_a_entrenador(t_entrenador *entrenador,t_pokemon *pokemon)
 {
-	char *nivel = string_itoa(nivelPokemon);
-	char *mensaje = armar_mensaje("sr", nivel);
-	enviar_mensaje(entrenador, mensaje);
-	free(nivel);
+	char *mensaje = armar_mensaje("sr", pokemon->ruta_en_pokedex);
+	enviar_mensaje(entrenador->socket_entrenador, mensaje);
 }
 
-void avisar_desbloqueo_a_entrenador(int entrenador, int tiempo_bloqueado)
+void avisar_desbloqueo_a_entrenador(int entrenador)
 {
-	char *tiempo_bloq = string_itoa(tiempo_bloqueado);
-	char *mensaje = armar_mensaje("fb", tiempo_bloq);
-	enviar_mensaje(entrenador, mensaje);;
-	free(tiempo_bloq);
+	enviar_mensaje(entrenador, "fb");
 }
 
 
@@ -155,8 +138,8 @@ void avisar_desbloqueo_a_entrenador(int entrenador, int tiempo_bloqueado)
 void entrenador_quiere_finalizar_objetivos(t_entrenador *entrenador)
 {
 	char *ruta_medalla_del_mapa = buscar_medalla_del_mapa();
-	otorgar_ruta_medalla_a_entrenador(entrenador->socket_etrenador, ruta_medalla_del_mapa);
-	server_pthread_cerra_cliente(entrenador->socket_etrenador);
+	otorgar_ruta_medalla_a_entrenador(entrenador->socket_entrenador, ruta_medalla_del_mapa);
+	server_pthread_cerra_cliente(entrenador->socket_entrenador);
 	//planificador_move_a_cola_finalizados(entrenador);
 }
 

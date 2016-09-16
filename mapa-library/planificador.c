@@ -5,12 +5,13 @@
  *      Author: utnso
  */
 #include "planificador.h"
+
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
 
-t_planificador* planificador_create()
+t_listas_y_colas* listas_y_colas_creense()
 {
 	extern t_mapa *mapa;
-	t_planificador *planificador_new = malloc(sizeof(t_planificador));
+	t_listas_y_colas *planificador_new = malloc(sizeof(t_listas_y_colas));
 	planificador_new->cola_entrenadores_bloqueados=mapa->entrenadores->cola_entrenadores_bloqueados;
 	planificador_new->cola_entrenadores_listos=mapa->entrenadores->cola_entrenadores_listos;
 	planificador_new->lista_entrenadores_a_planificar=mapa->entrenadores->lista_entrenadores_a_planificar;
@@ -22,7 +23,7 @@ t_planificador_rr* planificador_rr_create()
 {
 	extern t_mapa *mapa;
 	t_planificador_rr *planif_new = malloc(sizeof(t_planificador_rr));
-	planif_new->planificador = planificador_create();
+	planif_new->listas_y_colas = listas_y_colas_creense();
 	planif_new->quantum = mapa->info_algoritmo->quamtum;
 	planif_new->retardo = mapa->info_algoritmo->retardo;
 	return planif_new;
@@ -31,7 +32,7 @@ t_planificador_rr* planificador_rr_create()
 t_planificador_srdf* planificador_srdf_create()
 {
 	t_planificador_srdf *planif_new = malloc(sizeof(t_planificador_srdf));
-	planif_new->planificador=planificador_create();
+	planif_new->listas_y_colas = listas_y_colas_creense();
 	return planif_new;
 }
 
@@ -39,6 +40,7 @@ t_planificador_srdf* planificador_srdf_create()
 void* ejecutar_planificador_rr(void* arg)
 {
 	t_planificador_rr *planificador = planificador_rr_create();
+	planificador_rr_ordena(planificador);
 
 	return NULL;
 }
@@ -50,6 +52,63 @@ void* ejecutar_planificador_srdf(void* arg)
 
 	return NULL;
 }
+
+
+/*--------------------------------------------ROUND ROBBIN----------------------------------------------------------*/
+void planificador_rr_ordena(t_planificador_rr *planificador)
+{
+	while(1)
+	{
+		t_entrenador *entrenador_listo = planificador_rr_pop_entrenador_listo(planificador);
+		int quamtum_restante = planificador->quantum;
+		while(!quamtum_se_termino(quamtum_restante))
+			{
+				otorgar_turno_a_entrenador(entrenador_listo);
+				char * mensaje_del_entrenador = escuchar_al_entrenador(entrenador_listo);
+				switch(tratar_respuesta(mensaje_del_entrenador,entrenador_listo))
+				{
+					case (ENTRENADOR_ESTA_BUSCANDO_COORDENADAS_POKENEST):
+						{
+							darle_coordenadas_pokenst_a_entrenador(entrenador_listo);
+							quamtum_restante--;
+						} break;
+					case(ENTRENADOR_QUIERE_MOVERSE):
+						{
+							escuchar_a_que_direccion_se_mueve_entrenador(entrenador_listo);
+							//GRAFICAR POISICON NUEVA!
+							quamtum_restante--;
+						} break;
+					case(ENTRENADOR_QUIERE_CAPTURAR_POKEMON):
+						{
+							escuchar_captura_pokemon(entrenador_listo->socket_entrenador);
+							planificador_trata_captura_pokemon(planificador,entrenador_listo);
+							quamtum_restante--;
+						} break;
+					case(ENTRENADOR_FINALIZO_OBJETIVOS):
+						{
+							planificador_finaliza_entrenador(planificador, entrenador_listo);
+							quamtum_restante = 0;
+						} break;
+					default: perror("No se puede interpretar lo que quiere el");
+				}
+			}
+	}
+}
+
+
+int quamtum_se_termino(int q)
+{
+	if(q == 0) {return 0;}
+	else {return 1;}
+
+}
+
+t_entrenador* planificador_rr_pop_entrenador_listo(t_planificador_rr *planificador)
+{
+	t_entrenador *entrenador_que_tiene_el_turno = (t_entrenador*) queue_pop(planificador->listas_y_colas->cola_entrenadores_listos);
+	return entrenador_que_tiene_el_turno;
+}
+
 
 
 /*--------------------------------------------PRINCIPALES----------------------------------------------------------*/
@@ -66,7 +125,25 @@ void planificador_elimina_entrenador_de_tus_listas(t_entrenador *entrenador, t_c
 
 }
 
+void planificador_trata_captura_pokemon(t_planificador_rr *planificador, t_entrenador *entrenador)
+{
+	planificador_bloquea_entrenador(entrenador, planificador);
+	if(hay_pokemones_en_pokenest(entrenador->pokenest_objetivo))
+	{
+		//AVISAR POR ARCHIVO LOG TODA LA HISTORIA
+		planificador_desbloquea_entrenador(planificador);
+		dar_pokemon_a_entrenador(entrenador, pokenest_dame_pokemon(entrenador->pokenest_objetivo));
+	}
+	else
+	{
+		planificador_bloquea_definitivamente_entrenador(entrenador);
+	}
+}
 
+void planificador_bloquea_definitivamente_entrenador(t_entrenador *entrenador)
+{
+	entrenador->estado = 0;
+}
 
 /*---------------------------------------NUEVO->LISTO---------------------------------------------------------*/
 void planificador_encola_nuevos_entrenadores()
@@ -101,4 +178,32 @@ void foreach(void *lista,void *cola,void(*funcion_de_lista)(void*, void*))
 	{
 		funcion_de_lista(list_get(lista_a_planificar, i),cola_listos);
 	}
+}
+
+/*---------------------------------------EXECUTE->BLOQUEADO---------------------------------------------------------*/
+void planificador_bloquea_entrenador(t_entrenador *entrenador, t_planificador_rr *planificador)
+{
+	avisar_bloqueo_a_entrenador(entrenador->socket_entrenador);
+	queue_push(planificador->listas_y_colas->cola_entrenadores_bloqueados, entrenador);
+}
+
+/*---------------------------------------BLOQUEADO -> EXECUTE---------------------------------------------------------*/
+void planificador_desbloquea_entrenador(t_planificador_rr *planificador)
+{
+	queue_pop(planificador->listas_y_colas->cola_entrenadores_bloqueados);
+
+}
+
+/*---------------------------------------EXECUTE->LISTO---------------------------------------------------------*/
+void planificador_pone_a_listo_entrenador(t_planificador_rr *planificador, t_entrenador *entrenador)
+{
+	queue_push(planificador->listas_y_colas->cola_entrenadores_listos, entrenador);
+}
+
+/*---------------------------------------EXECUTE->FINALIZADO---------------------------------------------------------*/
+void planificador_finaliza_entrenador(t_planificador_rr *planificador, t_entrenador *entrenador)
+{
+	entrenador->estado = -1;
+	entrenador->objetivo_cumplido = 1;
+	list_add(planificador->listas_y_colas->lista_entrenadores_finalizados, entrenador);
 }

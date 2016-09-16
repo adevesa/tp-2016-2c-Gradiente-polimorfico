@@ -25,14 +25,36 @@ void ejecutar_mapa(char *nombre, char *rutaPokedex)
 t_posicion* buscar_coordenadas(char* identificador_pokemon)
 {
 	t_pokeNest *pokeNest_buscado = dictionary_get(mapa->pokeNests, identificador_pokemon);
-	//t_pokeNest *pokenest = list_find(mapa->pokeNests, pokenest_tipoo);
 	return pokeNest_buscado->posicion;
 }
 
+//REVISAR//
+t_pokeNest* buscar_pokenest(char *identificador_pokemon)
+{
+	t_pokeNest *pokeNest_buscado = dictionary_get(mapa->pokeNests, identificador_pokemon);
+	return pokeNest_buscado;
+}
 
 char* buscar_medalla_del_mapa()
 {
 	return obtener_ruta_especifica(mapa->ruta_pokedex, "Mapas",mapa->nombre);
+}
+
+int hay_pokemones_en_pokenest(t_pokeNest *pokenest)
+{
+	return (pokenest->cantidad_pokemones_disponibles>0);
+}
+
+
+t_pokemon* pokenest_dame_pokemon(t_pokeNest *pokenest)
+{
+	t_pokemon *poke = queue_pop(pokenest->pokemones);
+	return poke;
+}
+
+void pokenest_actualiza_tu_cantidad_pokemones_disponibles(t_pokeNest *pokenest)
+{
+	pokenest->cantidad_pokemones_disponibles = queue_size(pokenest->pokemones);
 }
 
 /*--------------------------------------------SECUNDARIAS----------------------------------------------------------*/
