@@ -4,7 +4,9 @@ planificador.d: ../planificador.c ../planificador.h \
  /home/utnso/workspace/commons/commons/collections/node.h \
  /home/utnso/workspace/commons/commons/collections/list.h \
  ../map-commons.h /home/utnso/workspace/commons/commons/string.h \
- ../basic-structs.h \
+ /home/utnso/workspace/nivel-gui/nivel-gui/nivel.h \
+ /home/utnso/workspace/nivel-gui/nivel-gui/tad_items.h \
+ /home/utnso/workspace/nivel-gui/nivel-gui/nivel.h ../basic-structs.h \
  /home/utnso/workspace/commons/commons/collections/dictionary.h \
  /home/utnso/workspace/commons/commons/config.h \
  /home/utnso/workspace/commons/commons/collections/dictionary.h \
@@ -25,6 +27,12 @@ planificador.d: ../planificador.c ../planificador.h \
 ../map-commons.h:
 
 /home/utnso/workspace/commons/commons/string.h:
+
+/home/utnso/workspace/nivel-gui/nivel-gui/nivel.h:
+
+/home/utnso/workspace/nivel-gui/nivel-gui/tad_items.h:
+
+/home/utnso/workspace/nivel-gui/nivel-gui/nivel.h:
 
 ../basic-structs.h:
 

@@ -100,7 +100,7 @@ void* server_pthread_atender_cliente(void* argumento)
 {
 	int *conexion = (int*) argumento;
 	server_pthread_agrega_proceso_a_lista(conexion);
-	while(!se_termino_la_conexion)
+	while(!mapa_decime_si_entrenador_finalizo_su_objetivo(*conexion))
 	{
 	}
 	pthread_exit(NULL);

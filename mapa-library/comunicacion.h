@@ -45,7 +45,6 @@ void otorgar_pokemon_a_entrenador(t_entrenador *entrenador,t_pokemon *pokemon);
 
 
 /*--------------------FIN DE OBJETIVOS DE ENTRENADOR-------------------------------------------------------------------------*/
-void entrenador_quiere_finalizar_objetivos(t_entrenador *entrenador);
 void otorgar_ruta_medalla_a_entrenador(int entrenador, char *rutaMedalla);
 
 

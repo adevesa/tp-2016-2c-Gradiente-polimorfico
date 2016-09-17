@@ -29,7 +29,7 @@ t_pokeNest* pokenest_create(char* nombre,char *ruta)
 	new_pokenest->tipo = obtener_info_pokenest_tipo(new_pokenest->configuracion);
 	new_pokenest->posicion = obtener_info_pokenest_posicion(new_pokenest->configuracion);
 	new_pokenest->identificador = obtener_info_pokenest_id(new_pokenest->configuracion);
-	new_pokenest->pokemones = obtener_info_pokenest_pokemones(nombre, ruta);
+	new_pokenest->pokemones = obtener_info_pokenest_pokemones(nombre, ruta, new_pokenest->identificador);
 	new_pokenest->cantidad_pokemones_disponibles = queue_size(new_pokenest->pokemones);
 	return new_pokenest;
 }
@@ -73,7 +73,7 @@ t_controllers* controllers_create()
 	t_controllers *new_controllers = malloc(sizeof(t_controllers));
 	new_controllers->cola_entrenadores_listos = queue_create();
 	new_controllers->cola_entrenadores_bloqueados = queue_create();
-	new_controllers->lista_entrenadores_finalizados = list_create();
+	new_controllers->lista_entrenadores_finalizados = dictionary_create();
 	new_controllers->lista_entrenadores_a_planificar = list_create();
 	return new_controllers;
 }
@@ -135,7 +135,6 @@ int obtener_info_mapa_tiempo_deadlock(t_config *configuracion)
 
 t_dictionary* obtener_info_mapa_pokenest(char *nombreMapa, char *rutaPokedex)
 {
-	//t_list *new_list_pokenest = list_create();
 
 	t_dictionary *new_diccionary_pokenest = dictionary_create();
 
@@ -190,20 +189,21 @@ char* obtener_info_pokenest_id(t_config *configuracion)
 	return id;
 }
 
-t_queue* obtener_info_pokenest_pokemones(char *nombrePokenest, char *ruta_final)
+t_queue* obtener_info_pokenest_pokemones(char *nombrePokenest, char *ruta_final, char *identificador)
 {
 	t_queue *new_cola_pokemones = queue_create();
 	t_list *lista_directorios = nombre_de_archivos_del_directorio(ruta_final);
-	foreach_pokenest(lista_directorios, new_cola_pokemones, ruta_final);
+	foreach_pokenest(lista_directorios, new_cola_pokemones, ruta_final, identificador);
 	list_clean(lista_directorios);
 	return new_cola_pokemones;
 	free(ruta_final);
 }
 
-void foreach_pokenest(void *lista_origen,void *lista_destino, void *ruta)
+void foreach_pokenest(void *lista_origen,void *lista_destino, void *ruta, void *identificador)
 {
 	t_list *lista_pokemones_a_modelar = (t_list*)lista_origen;
 	t_queue *cola_pokemons_a_devolver = (t_queue*)lista_destino;
+	char *identificador_pokenest = (char*) identificador;
 
 	int tamanio = list_size(lista_pokemones_a_modelar);
 	int i;
@@ -214,6 +214,7 @@ void foreach_pokenest(void *lista_origen,void *lista_destino, void *ruta)
 		char *elemento =list_get(lista_pokemones_a_modelar, i);
 		ruta_final = obtener_ruta_especifica(ruta_final, elemento, NULL);
 		t_pokemon *pokemon_new = pokemon_create(ruta_final);
+		pokemon_new->identificador_pokenest = identificador_pokenest;
 		queue_push(cola_pokemons_a_devolver, pokemon_new);
 	}
 

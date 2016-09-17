@@ -15,14 +15,14 @@
 #include "planificador-rr.h"
 #include "basic-structs.h"
 
-
+#define DESCONECTADO 0
 
 /* ----------------------------------------STRUCTS----------------------------------------------------------------*/
 typedef struct listas_y_colas
 {
 	t_queue *cola_entrenadores_listos;
 	t_queue *cola_entrenadores_bloqueados;
-	t_list *lista_entrenadores_finalizados;
+	t_dictionary *lista_entrenadores_finalizados;
 	t_list *lista_entrenadores_a_planificar;
 }t_listas_y_colas;
 
@@ -49,15 +49,31 @@ t_planificador_srdf* planificador_srdf_create();
 void* ejecutar_planificador_srdf(void* arg);
 
 /*---------------------------------------PUSH Y POPS DE COLAS---------------------------------------------------------*/
-void planificador_rr_push_entrenador_a_bloqueado(t_entrenador *entrenador);
-void planificador_rr_push_entrenador_a_listo(t_entrenador *entrenador);
-t_entrenador* planificador_rr_pop_entrenador_bloqueado();
-t_entrenador* planificador_rr_pop_entrenador_listo();
+void planificador_push_entrenador_a_bloqueado(t_entrenador *entrenador);
+void planificador_push_entrenador_a_listo(t_entrenador *entrenador);
+t_entrenador* planificador_pop_entrenador_bloqueado();
+t_entrenador* planificador_pop_entrenador_listo();
 
 /*-------------------------------------------FUNCIONES GENERALES--------------------------------------------------------*/
 void planificador_dale_coordenadas_a_entrenador(t_entrenador *entrenador);
 void planificador_entrenador_se_mueve(t_entrenador *entrenador);
 void planificador_entrenador_quiere_capturar_pokemon(t_entrenador *entrenador);
+void planificador_trata_captura_pokemon(t_entrenador *entrenador);
 void planificador_bloquea_entrenador(t_entrenador *entrenador);
+void planificador_desbloqueame_a(t_entrenador *entrenador);
+void cola_bloqueados_quita_entrenador_especifico(t_queue *cola, int id_proceso);
+void planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
+void planificador_desbloquea_entrenador_si_es_posible(int cantidad_bloqueados);
+
+/*---------------------------------------FINALIZADO---------------------------------------------------------*/
+void planificador_finaliza_entrenador(t_entrenador *entrenador);
+void planificador_espera_que_entrenador_se_desconecte(t_entrenador *entrenador);
+void planificador_extraele_pokemones_a_entrenador(t_entrenador *entrenador);
+
+/*---------------------------------------NUEVO->LISTO---------------------------------------------------------*/
+void planificador_encola_nuevos_entrenadores();
+void planificador_modela_nuevo_entrenador_y_encolalo(void *id_proceso);
+void foreach(void *lista,void(*funcion_de_lista)(void*));
+
 
 #endif /* MAPA_MAPA_COMMONS_PLANIFICADOR_H_ */

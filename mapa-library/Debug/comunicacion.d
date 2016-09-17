@@ -10,7 +10,10 @@ comunicacion.d: ../comunicacion.c ../comunicacion.h \
  /home/utnso/workspace/commons/commons/config.h \
  /home/utnso/workspace/commons/commons/collections/dictionary.h \
  /home/utnso/workspace/commons/commons/txt.h ../map-commons.h \
- ../planificador.h ../planificador-rr.h
+ /home/utnso/workspace/nivel-gui/nivel-gui/nivel.h \
+ /home/utnso/workspace/nivel-gui/nivel-gui/tad_items.h \
+ /home/utnso/workspace/nivel-gui/nivel-gui/nivel.h ../planificador.h \
+ ../planificador-rr.h
 
 ../comunicacion.h:
 
@@ -39,6 +42,12 @@ comunicacion.d: ../comunicacion.c ../comunicacion.h \
 /home/utnso/workspace/commons/commons/txt.h:
 
 ../map-commons.h:
+
+/home/utnso/workspace/nivel-gui/nivel-gui/nivel.h:
+
+/home/utnso/workspace/nivel-gui/nivel-gui/tad_items.h:
+
+/home/utnso/workspace/nivel-gui/nivel-gui/nivel.h:
 
 ../planificador.h:
 

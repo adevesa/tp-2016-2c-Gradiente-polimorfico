@@ -133,16 +133,6 @@ void avisar_desbloqueo_a_entrenador(int entrenador)
 	enviar_mensaje(entrenador, "fb");
 }
 
-
-/*--------------------FIN DE OBJETIVOS DE ENTRENADOR-------------------------------------------------------------------------*/
-
-void entrenador_quiere_finalizar_objetivos(t_entrenador *entrenador)
-{
-	char *ruta_medalla_del_mapa = mapa_dame_medalla();
-	otorgar_ruta_medalla_a_entrenador(entrenador->socket_entrenador, ruta_medalla_del_mapa);
-	server_pthread_cerra_cliente(entrenador->socket_entrenador);
-}
-
 void otorgar_ruta_medalla_a_entrenador(int entrenador, char *rutaMedalla)
 {
 	char *mensaje = armar_mensaje("mr", rutaMedalla);
