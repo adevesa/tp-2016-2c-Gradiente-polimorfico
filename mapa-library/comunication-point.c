@@ -109,17 +109,17 @@ void* server_pthread_atender_cliente(void* argumento)
 /*-------------------------------------ENVIO DE MENSAJES A ENTRENADORES--------------------------------------------*/
 void enviar_mensaje(int socket, char *mensaje)
 {
-	send(socket, mensaje, strlen(mensaje)+1,0);
+	send(socket, mensaje, strlen(mensaje),0);
 	free(mensaje);
 }
 
 /*-------------------------------------RECEPCION DE MENSAJES DE ENTRENADORES--------------------------------------------*/
 char* recibir_mensaje(int socket,int payloadSize)
 {
-	char * payload = malloc(payloadSize);
+	char * payload = malloc(payloadSize +1);
 	recv(socket, payload, payloadSize,0);
-	payload[payloadSize-1]= '\0';
-	string_trim(&payload);
+	payload[payloadSize]= '\0';
+	string_trim(&payload); //ver esto bien
 	return payload;
 }
 
@@ -177,7 +177,10 @@ void server_pthread_agrega_proceso_a_lista(int *socket_cliente)
 	t_entrenador_nuevo *entrenador = malloc(sizeof(t_entrenador_nuevo));
 	entrenador->id_proceso = (int)process_get_thread_id();
 	entrenador->socket_entrenador = *socket_cliente;
+	entrenador->simbolo_identificador = recibir_mensaje(*socket_cliente,3);
 	list_add(mapa->entrenadores->lista_entrenadores_a_planificar,entrenador);
 }
+
+
 
 

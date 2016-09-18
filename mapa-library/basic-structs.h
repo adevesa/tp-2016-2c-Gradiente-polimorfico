@@ -30,6 +30,7 @@ typedef struct entrenador_nuevo
 {
 	int id_proceso;
 	int socket_entrenador;
+	char *simbolo_identificador;
 }t_entrenador_nuevo;
 
 typedef struct pokemon

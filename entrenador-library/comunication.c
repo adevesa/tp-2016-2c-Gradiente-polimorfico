@@ -13,6 +13,11 @@ int conectar_a_mapa(t_mapa *mapa)
 	return mapa->server;
 }
 
+void entrenador_dale_a_mapa_tu_simbolo()
+{
+	extern t_entrenador *entrenador;
+	enviar_mensaje(entrenador->mapa_actual->server, entrenador->simbolo);
+}
 /*-------------------------------------------DECODIFICACION DE RESPUESTAS------------------------------------------------*/
 void tratar_respuesta(char* respuesta_del_entrenador,t_entrenador *entrenador)
 {

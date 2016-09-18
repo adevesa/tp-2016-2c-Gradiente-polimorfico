@@ -56,8 +56,8 @@ void planificador_rr_es_el_turno_de(t_entrenador *entrenador_listo, int *quamtum
 
 void planificador_rr_dale_nuevo_turno_a_entrenador(t_entrenador *entrenador_listo, int *quamtum_restante)
 {
-	otorgar_turno_a_entrenador(entrenador_listo);
-	char * mensaje_del_entrenador = escuchar_al_entrenador(entrenador_listo);
+	enviar_mensaje_a_entrenador(entrenador_listo, OTORGAR_TURNO, NULL);
+	char * mensaje_del_entrenador = escuchar_mensaje_entrenador(entrenador_listo, SOLICITUD_DEL_ENTRENADOR);
 	switch(tratar_respuesta(mensaje_del_entrenador,entrenador_listo))
 	{
 		case (ENTRENADOR_ESTA_BUSCANDO_COORDENADAS_POKENEST):
@@ -88,8 +88,7 @@ void planificador_rr_volve_a_bloquear_a_entrenador_si_es_necesario(t_entrenador 
 {
 	if(mapa_decime_si_hay_pokemones_en_pokenest(entrenador->pokenest_objetivo))
 	{
-		avisar_desbloqueo_a_entrenador(entrenador->socket_entrenador);
-		dar_pokemon_a_entrenador(entrenador, mapa_dame_pokemon_de_pokenest(entrenador->pokenest_objetivo));
+		enviar_mensaje_a_entrenador(entrenador, OTORGAR_POKEMON,mapa_dame_pokemon_de_pokenest(entrenador->pokenest_objetivo)->ruta_en_pokedex);
 		quamtum_disminuite(quamtum);
 	}
 	else

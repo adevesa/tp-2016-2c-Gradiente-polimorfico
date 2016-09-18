@@ -17,7 +17,6 @@ void ejecutar_mapa(char *nombre, char *rutaPokedex)
 	planificador_create_segun_cual_seas();
 	mapa_mostrate_en_pantalla();
 	mapa_hacete_visible_para_entrenadores();
-
 }
 
 

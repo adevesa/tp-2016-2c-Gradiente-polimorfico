@@ -70,18 +70,22 @@ t_entrenador* planificador_pop_entrenador_bloqueado()
 /*-------------------------------------------FUNCIONES GENERALES--------------------------------------------------------*/
 void planificador_dale_coordenadas_a_entrenador(t_entrenador *entrenador)
 {
-	darle_coordenadas_pokenst_a_entrenador(entrenador);
+	char *identificador_pokenest = escuchar_mensaje_entrenador(entrenador, ENTRENADOR_ESTA_BUSCANDO_COORDENADAS_POKENEST);
+	t_pokeNest *pokenest_buscada = mapa_buscame_pokenest(identificador_pokenest);
+	entrenador->pokenest_objetivo = pokenest_buscada;
+	char *coordendas_pokenest = armar_coordenada(entrenador->pokenest_objetivo->posicion->x,entrenador->pokenest_objetivo->posicion->y);
+	enviar_mensaje_a_entrenador(entrenador, OTORGAR_COORDENADAS_POKENEST, coordendas_pokenest);
 }
 
 void planificador_entrenador_se_mueve(t_entrenador *entrenador)
 {
-	escuchar_a_que_direccion_se_mueve_entrenador(entrenador);
+	char *posicion_destino = escuchar_mensaje_entrenador(entrenador, ENTRENADOR_QUIERE_MOVERSE);
+	entrenador->posicion_actual = desarmar_coordenada(posicion_destino);
 	mapa_mostra_actualizacion_de_entrenador(entrenador);
 }
 
 void planificador_entrenador_quiere_capturar_pokemon(t_entrenador *entrenador)
 {
-	escuchar_captura_pokemon(entrenador->socket_entrenador);
 	planificador_bloquea_entrenador(entrenador);
 	planificador_trata_captura_pokemon(entrenador);
 }
@@ -94,7 +98,7 @@ void planificador_trata_captura_pokemon(t_entrenador *entrenador)
 		planificador_desbloqueame_a(entrenador);
 		mapa_cambiale_estado_a_entrenador(entrenador, LISTO, BLOQUEADO);
 		planificador_push_entrenador_a_listo(entrenador);
-		dar_pokemon_a_entrenador(entrenador, mapa_dame_pokemon_de_pokenest(entrenador->pokenest_objetivo));
+		enviar_mensaje_a_entrenador(entrenador,OTORGAR_POKEMON,mapa_dame_pokemon_de_pokenest(entrenador->pokenest_objetivo)->ruta_en_pokedex);
 		mapa_actualiza_pokemones_disponibles_de_pokenest(entrenador->pokenest_objetivo);
 	}
 	else
@@ -105,13 +109,13 @@ void planificador_trata_captura_pokemon(t_entrenador *entrenador)
 
 void planificador_bloquea_entrenador(t_entrenador *entrenador)
 {
-	avisar_bloqueo_a_entrenador(entrenador->socket_entrenador);
+	enviar_mensaje_a_entrenador(entrenador, AVISAR_BLOQUEO_A_ENTRENADOR, NULL);
 	planificador_push_entrenador_a_bloqueado(entrenador);
 }
 
 void planificador_desbloqueame_a(t_entrenador *entrenador)
 {
-	avisar_desbloqueo_a_entrenador(entrenador->socket_entrenador);
+	enviar_mensaje_a_entrenador(entrenador, AVISAR_DESBLOQUEO_A_ENTRENADOR, NULL);
 	cola_bloqueados_quita_entrenador_especifico(mapa->entrenadores->cola_entrenadores_bloqueados,entrenador->id_proceso);
 
 }
@@ -173,7 +177,7 @@ void planificador_finaliza_entrenador(t_entrenador *entrenador)
 	mapa_cambiale_estado_a_entrenador(entrenador, MUERTO, LISTO);
 	entrenador->objetivo_cumplido = 1;
 	char *ruta_medalla_del_mapa = mapa_dame_medalla();
-	otorgar_ruta_medalla_a_entrenador(entrenador->socket_entrenador, ruta_medalla_del_mapa);
+	enviar_mensaje_a_entrenador(entrenador, OTORGAR_MEDALLA_DEL_MAPA,ruta_medalla_del_mapa);
 	planificador_espera_que_entrenador_se_desconecte(entrenador);
 	mapa_borra_entrenador_de_pantalla(entrenador);
 }

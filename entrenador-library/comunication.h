@@ -16,6 +16,7 @@
 #define FALSE 0
 /*--------------------------------------CONEXION CON EL SERVIDOR--------------------------------------------------*/
 int conectar_a_mapa(t_mapa *mapa);
+void entrenador_dale_a_mapa_tu_simbolo();
 
 /*-------------------------------------------DECODIFICACION DE RESPUESTAS------------------------------------------------*/
 void tratar_respuesta(char* respuesta_del_entrenador,t_entrenador *entrenador);

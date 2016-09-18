@@ -24,6 +24,7 @@ void entrenador_recorre_hoja_de_viaje()
 	{
 		entrenador_busca_mapa(i);
 		conectar_a_mapa(entrenador->mapa_actual);
+		entrenador_dale_a_mapa_tu_simbolo();
 		entrenador_cumpli_objetivos_del_mapa();
 	}
 }
