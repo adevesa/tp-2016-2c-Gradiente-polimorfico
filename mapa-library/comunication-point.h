@@ -13,13 +13,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <netinet/in.h>
-#include <commons/collections/list.h>
-#include <commons/string.h>
-#include "string.h"
 #include <pthread.h>
 #include <commons/process.h>
-#include "stdbool.h"
-#include "basic-structs.h"
+#include "map-commons.h"
 
 
 /* ----------------------------------------STRUCTS---------------------------------------------*/

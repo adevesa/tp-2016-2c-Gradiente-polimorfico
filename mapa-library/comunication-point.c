@@ -6,6 +6,10 @@
  */
 
 #include "comunication-point.h"
+extern t_mapa *mapa;
+extern t_mapa *mapa;
+extern sem_t semaforo_entrenadores_listos;
+extern pthread_mutex_t mutex_manipular_cola_listos;
 
 /*--------------------------------------------EXECUTE-----------------------------------------------------*/
 void* ejecutar_servidor(void *argumento)
@@ -127,7 +131,7 @@ char* recibir_mensaje_especifico(int socket)
 	char * payload = malloc(5);
 	recv(socket, payload, 4,0);
 	payload[4]= '\0';
-	char **solo_tamanio = string_split(&payload, ';');
+	char **solo_tamanio = string_split(payload, ";");
 
 	string_trim_left(&solo_tamanio[0]);
 	int tamanio_del_mensaje = atoi(solo_tamanio[0]);
@@ -189,13 +193,14 @@ void server_pthread_cerra_cliente(int cliente)
 
 void server_pthread_agrega_proceso_a_lista(int *socket_cliente)
 {
-	extern t_mapa *mapa;
-	//DEBE USARSE SEMAFORO
+	pthread_mutex_lock(&mutex_manipular_cola_listos);
 	t_entrenador_nuevo *entrenador = malloc(sizeof(t_entrenador_nuevo));
 	entrenador->id_proceso = (int)process_get_thread_id();
 	entrenador->socket_entrenador = *socket_cliente;
 	entrenador->simbolo_identificador = recibir_mensaje(*socket_cliente,3);
 	list_add(mapa->entrenadores->lista_entrenadores_a_planificar,entrenador);
+	pthread_mutex_unlock(&mutex_manipular_cola_listos);
+	sem_post(&semaforo_entrenadores_listos);
 }
 
 

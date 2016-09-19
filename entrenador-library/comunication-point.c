@@ -42,7 +42,7 @@ char* recibir_mensaje_especifico(int socket)
 	char * payload = malloc(5);
 	recv(socket, payload, 4,0);
 	payload[4]= '\0';
-	char **solo_tamanio = string_split(&payload, ';');
+	char **solo_tamanio = string_split(payload, ";");
 
 	string_trim_left(&solo_tamanio[0]);
 	int tamanio_del_mensaje = atoi(solo_tamanio[0]);

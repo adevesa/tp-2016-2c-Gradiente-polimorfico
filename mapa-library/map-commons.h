@@ -10,8 +10,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <commons/string.h>
-#include "string.h"
 #include <nivel-gui/nivel.h>
 #include<nivel-gui/tad_items.h>
 #include <pthread.h>
@@ -19,8 +17,11 @@
 #include "planificador.h"
 #include "basic-structs.h"
 #include "comunication-point.h"
+#include "semaphore.h"
+
 
 void ejecutar_mapa(char *nombre, char *rutaPokedex);
+void iniciar_semaforos();
 /* ----------------	HEADERS FUNCIONES----------------------*/
 
 /*--------------------------------------------CREATES---------------------------------------------------------------*/

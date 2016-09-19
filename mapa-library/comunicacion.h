@@ -9,6 +9,7 @@
 #define MAPA_MAPA_COMMONS_COMUNICACION_H_
 #include "comunication-point.h"
 #include "map-commons.h"
+#include "basic-structs.h"
 
 enum RESPUESTA_DEL_ENTRENADOR
 {

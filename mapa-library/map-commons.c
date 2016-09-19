@@ -9,16 +9,27 @@
 /*------------------------------------------VARIABLES GLOBALES----------------------------------------------------*/
 t_mapa *mapa;
 
+sem_t semaforo_entrenadores_listos;
+sem_t semaforo_cola_bloqueados;
+pthread_mutex_t mutex_manipular_cola_listos = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t mutex_manipular_cola_bloqueados = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t mutex_manipular_cola_finalizados = PTHREAD_MUTEX_INITIALIZER;
 
 /*------------------------------------------EXECUTE----------------------------------------------------------------*/
 void ejecutar_mapa(char *nombre, char *rutaPokedex)
 {
+	iniciar_semaforos();
 	mapa = mapa_create(nombre, rutaPokedex);
 	planificador_create_segun_cual_seas();
 	mapa_mostrate_en_pantalla();
 	mapa_hacete_visible_para_entrenadores();
 }
 
+void iniciar_semaforos()
+{
+	sem_init(&semaforo_entrenadores_listos,0,1);
+	sem_init(&semaforo_cola_bloqueados,0,0);
+}
 
 /*--------------------------------------------PRINCIPALES----------------------------------------------------------*/
 t_posicion* mapa_dame_coordenadas_de_pokenest(char* identificador_pokemon)

@@ -7,6 +7,12 @@
 #include "planificador.h"
 
 extern t_mapa *mapa;
+extern sem_t semaforo_entrenadores_listos;
+extern sem_t semaforo_cola_bloqueados;
+extern pthread_mutex_t mutex_manipular_cola_listos;
+extern pthread_mutex_t mutex_manipular_cola_bloqueados;
+
+
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
 
 t_listas_y_colas* listas_y_colas_creense()
@@ -48,23 +54,32 @@ void* ejecutar_planificador_srdf(void* arg)
 /*---------------------------------------PUSH Y POPS DE COLAS---------------------------------------------------------*/
 void planificador_push_entrenador_a_bloqueado(t_entrenador *entrenador)
 {
+	pthread_mutex_lock(&mutex_manipular_cola_bloqueados);
 	queue_push(mapa->entrenadores->cola_entrenadores_bloqueados,entrenador);
+	pthread_mutex_unlock(&mutex_manipular_cola_bloqueados);
 }
 
 void planificador_push_entrenador_a_listo(t_entrenador *entrenador)
 {
+	pthread_mutex_lock(&mutex_manipular_cola_listos);
 	queue_push(mapa->entrenadores->cola_entrenadores_listos, entrenador);
+	pthread_mutex_unlock(&mutex_manipular_cola_listos);
 }
 
 t_entrenador* planificador_pop_entrenador_listo()
 {
+	pthread_mutex_lock(&mutex_manipular_cola_listos);
 	t_entrenador *entrenador_que_tiene_el_turno = (t_entrenador*) queue_pop(mapa->entrenadores->cola_entrenadores_listos);
+	pthread_mutex_unlock(&mutex_manipular_cola_listos);
 	return entrenador_que_tiene_el_turno;
 }
 
 t_entrenador* planificador_pop_entrenador_bloqueado()
 {
-	return (queue_pop(mapa->entrenadores->cola_entrenadores_bloqueados));
+	pthread_mutex_lock(&mutex_manipular_cola_bloqueados);
+	t_entrenador *entrenador = (t_entrenador *) queue_pop(mapa->entrenadores->cola_entrenadores_bloqueados);
+	pthread_mutex_unlock(&mutex_manipular_cola_bloqueados);
+	return entrenador;
 }
 
 /*-------------------------------------------FUNCIONES GENERALES--------------------------------------------------------*/
@@ -116,8 +131,9 @@ void planificador_bloquea_entrenador(t_entrenador *entrenador)
 void planificador_desbloqueame_a(t_entrenador *entrenador)
 {
 	enviar_mensaje_a_entrenador(entrenador, AVISAR_DESBLOQUEO_A_ENTRENADOR, NULL);
+	sem_wait(&semaforo_cola_bloqueados);
 	cola_bloqueados_quita_entrenador_especifico(mapa->entrenadores->cola_entrenadores_bloqueados,entrenador->id_proceso);
-
+	sem_post(&semaforo_cola_bloqueados);
 }
 
 void cola_bloqueados_quita_entrenador_especifico(t_queue *cola, int id_proceso)
@@ -148,7 +164,10 @@ void planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores()
 {
 	int cantidad_bloqueados = queue_size(mapa->entrenadores->cola_entrenadores_bloqueados);
 	if(cantidad_bloqueados != 0)
-	{	planificador_desbloquea_entrenador_si_es_posible(cantidad_bloqueados);
+	{
+		sem_wait(&semaforo_cola_bloqueados);
+		planificador_desbloquea_entrenador_si_es_posible(cantidad_bloqueados);
+		sem_post(&semaforo_cola_bloqueados);
 	}
 	else {}
 }
@@ -210,15 +229,14 @@ void planificador_extraele_pokemones_a_entrenador(t_entrenador *entrenador)
 /*---------------------------------------NUEVO->LISTO---------------------------------------------------------*/
 void planificador_encola_nuevos_entrenadores()
 {
-	/*
-	 * OJO! DEBE USARSE SEMAFORO PARA QUE NO OCURRA ERROR.
-	 * UN NUEVO ENTRENADOR PORDRIA QUERER ACCEDER MIENTRAS MOVEMOS A LOS QUE YA ESTABAN
-	 */
 	extern t_mapa *mapa;
+	sem_wait(&semaforo_entrenadores_listos);
 	if(!list_is_empty(mapa->entrenadores->lista_entrenadores_a_planificar))
 	{
+		pthread_mutex_lock(&mutex_manipular_cola_listos);
 		foreach(mapa->entrenadores->lista_entrenadores_a_planificar,planificador_modela_nuevo_entrenador_y_encolalo);
 		list_clean(mapa->entrenadores->lista_entrenadores_a_planificar);
+		pthread_mutex_unlock(&mutex_manipular_cola_listos);
 	}
 }
 
