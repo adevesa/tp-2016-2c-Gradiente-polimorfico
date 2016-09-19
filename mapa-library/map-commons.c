@@ -23,9 +23,10 @@ void ejecutar_mapa(char *nombre, char *rutaPokedex)
 {
 	iniciar_semaforos();
 	mapa = mapa_create(nombre, rutaPokedex);
-	planificador_create_segun_cual_seas();
-	mapa_mostrate_en_pantalla();
+
+	//mapa_mostrate_en_pantalla();
 	mapa_hacete_visible_para_entrenadores();
+	planificador_create_segun_cual_seas();
 	while(nadie_me_saca)
 	{
 
@@ -34,9 +35,9 @@ void ejecutar_mapa(char *nombre, char *rutaPokedex)
 
 void iniciar_semaforos()
 {
-	sem_init(&semaforo_entrenadores_listos,0,1);
-	sem_init(&semaforo_cola_bloqueados,0,0);
-	sem_init(&semaforo_hay_algun_entrenador_listo,0,0);
+	sem_init(&semaforo_entrenadores_listos,1,0);
+	sem_init(&semaforo_cola_bloqueados,1,0);
+	sem_init(&semaforo_hay_algun_entrenador_listo,1,0);
 }
 
 /*--------------------------------------------PRINCIPALES----------------------------------------------------------*/

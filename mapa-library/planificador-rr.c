@@ -8,6 +8,8 @@
 
 t_planificador_rr *planificador;
 extern sem_t semaforo_hay_algun_entrenador_listo;
+extern sem_t semaforo_entrenadores_listos;
+
 pthread_t thread;
 /*-----------------------------------EXECUTE PLANIFICADOR RR---------------------------------------------------------*/
 void* ejecutar_planificador_rr(void* arg)
@@ -25,18 +27,18 @@ void quamtum_disminuite(int *q)
 
 int quamtum_se_termino(int q)
 {
-	if(q == 0) {return 0;}
-	else {return 1;}
+	if(q == 0) {return 1;}
+	else {return 0;}
 }
 
 void planificador_rr_organiza_entrenadores()
 {
+	pthread_create(&thread,NULL, planificador_encola_nuevos_entrenadores,NULL);
 	while(mapa_decime_si_planificador_es_rr())
 	{
-		pthread_create(&thread,NULL, planificador_encola_nuevos_entrenadores,NULL);
 		if(queue_is_empty(planificador->listas_y_colas->cola_entrenadores_listos))
 		{
-			sem_wait(&semaforo_hay_algun_entrenador_listo);
+			sem_wait(&semaforo_entrenadores_listos);
 		}
 		t_entrenador *entrenador_listo = planificador_pop_entrenador_listo(planificador);
 		int quamtum_restante = planificador->quantum;

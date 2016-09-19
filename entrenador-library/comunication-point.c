@@ -25,14 +25,18 @@ int conectar_a_servidor(int puerto, char *ip)
 void enviar_mensaje(int socket, char *mensaje)
 {
 	send(socket, mensaje, strlen(mensaje),0);
-	free(mensaje);
+	//free(mensaje);
 }
 
 /*-------------------------------------RECEPCION DE MENSAJES -------------------------------------------------------*/
 char* recibir_mensaje(int socket,int payloadSize)
 {
 	char * payload = malloc(payloadSize+1);
-	recv(socket, payload, payloadSize,0);
+	int bytes_recibidos = 0;
+	while(bytes_recibidos !=payloadSize)
+	{
+		bytes_recibidos=recv(socket, payload, payloadSize,0);
+	}
 	payload[payloadSize]= '\0';
 	return payload;
 }
@@ -40,7 +44,12 @@ char* recibir_mensaje(int socket,int payloadSize)
 char* recibir_mensaje_especifico(int socket)
 {
 	char * payload = malloc(5);
-	recv(socket, payload, 4,0);
+	int bytes_recibidos = 0;
+	while(bytes_recibidos != 4)
+	{
+		bytes_recibidos=recv(socket, payload, 4,0);
+	}
+
 	payload[4]= '\0';
 	char **solo_tamanio = string_split(payload, ";");
 
@@ -49,8 +58,7 @@ char* recibir_mensaje_especifico(int socket)
 
 	char *payload_posta = malloc(tamanio_del_mensaje+1);
 
-	recv(socket, payload_posta, tamanio_del_mensaje,0);
-	payload_posta[tamanio_del_mensaje] = '\0';
+	char *mensaje_final = recibir_mensaje(socket, tamanio_del_mensaje);
 	return payload_posta;
 
 }

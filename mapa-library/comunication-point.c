@@ -9,6 +9,7 @@
 extern t_mapa *mapa;
 extern t_mapa *mapa;
 extern sem_t semaforo_entrenadores_listos;
+extern sem_t semaforo_hay_algun_entrenador_listo;
 extern pthread_mutex_t mutex_manipular_cola_nuevos;
 
 /*--------------------------------------------EXECUTE-----------------------------------------------------*/
@@ -115,14 +116,18 @@ void* server_pthread_atender_cliente(void* argumento)
 void enviar_mensaje(int socket, char *mensaje)
 {
 	send(socket, mensaje, strlen(mensaje),0);
-	free(mensaje);
+	//free(mensaje);
 }
 
 /*-------------------------------------RECEPCION DE MENSAJES DE ENTRENADORES--------------------------------------------*/
 char* recibir_mensaje(int socket,int payloadSize)
 {
-	char * payload = malloc(payloadSize +1);
-	recv(socket, payload, payloadSize,0);
+	char * payload = malloc(payloadSize+1);
+	int bytes_recibidos = 0;
+	while(bytes_recibidos !=payloadSize)
+	{
+		bytes_recibidos=recv(socket, payload, payloadSize,0);
+	}
 	payload[payloadSize]= '\0';
 	return payload;
 }
@@ -130,7 +135,12 @@ char* recibir_mensaje(int socket,int payloadSize)
 char* recibir_mensaje_especifico(int socket)
 {
 	char * payload = malloc(5);
-	recv(socket, payload, 4,0);
+	int bytes_recibidos = 0;
+	while(bytes_recibidos != 4)
+	{
+		bytes_recibidos=recv(socket, payload, 4,0);
+	}
+
 	payload[4]= '\0';
 	char **solo_tamanio = string_split(payload, ";");
 
@@ -139,12 +149,10 @@ char* recibir_mensaje_especifico(int socket)
 
 	char *payload_posta = malloc(tamanio_del_mensaje+1);
 
-	recv(socket, payload_posta, tamanio_del_mensaje,0);
-	payload_posta[tamanio_del_mensaje] = '\0';
+	char *mensaje_final = recibir_mensaje(socket, tamanio_del_mensaje);
 	return payload_posta;
 
 }
-
 
 /*-------------------------------------------------------FUNCIONES SECUNDARIAS----------------------------------------------*/
 
@@ -201,7 +209,7 @@ void server_pthread_agrega_proceso_a_lista(int *socket_cliente)
 	entrenador->simbolo_identificador = recibir_mensaje(*socket_cliente,1);
 	list_add(mapa->entrenadores->lista_entrenadores_a_planificar,entrenador);
 	pthread_mutex_unlock(&mutex_manipular_cola_nuevos);
-	sem_post(&semaforo_entrenadores_listos);
+	sem_post(&semaforo_hay_algun_entrenador_listo);
 }
 
 

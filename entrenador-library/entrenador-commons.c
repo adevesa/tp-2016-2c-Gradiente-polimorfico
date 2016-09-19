@@ -69,7 +69,8 @@ void entrenador_espera_turno()
 
 void entrenador_pedi_ubicacion_pokenest(int indice_objetivo)
 {
-	enviar_mensaje_a_mapa(entrenador->mapa_actual,SOLICITAR_COORDENADAS_POKENEST ,list_get(entrenador->mapa_actual->objetivos,indice_objetivo));
+	char *identificador_pokenest =list_get(entrenador->mapa_actual->objetivos,indice_objetivo);
+	enviar_mensaje_a_mapa(entrenador->mapa_actual,SOLICITAR_COORDENADAS_POKENEST ,identificador_pokenest);
 	t_ubicacion *ubicacion_pokenest = desarmar_coordenada(escuchar_mensaje_mapa(entrenador->mapa_actual, SOLICITAR_COORDENADAS_POKENEST));
 	entrenador->pokenest = ubicacion_pokenest;
 }

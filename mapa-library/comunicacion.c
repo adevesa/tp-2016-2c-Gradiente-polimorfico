@@ -33,7 +33,14 @@ void enviar_mensaje_a_entrenador(t_entrenador *entrenador, int header, char *pay
 {
 	switch(header)
 	{
-		case(OTORGAR_TURNO): enviar_mensaje(entrenador->socket_entrenador, "tr;"); break;
+		case(OTORGAR_TURNO):
+			{
+				//char *turno = string_new();
+				//string_append(&turno,"tr;");
+				enviar_mensaje(entrenador->socket_entrenador, "tr;");
+				//free(turno);
+
+			} break;
 		case(OTORGAR_COORDENADAS_POKENEST): enviar_mensaje(entrenador->socket_entrenador, armar_mensaje("ur;",payload)); break;
 		case(OTORGAR_MEDALLA_DEL_MAPA): otorgar_ruta_medalla_a_entrenador(entrenador->socket_entrenador, mapa_dame_medalla()); break;
 		case(OTORGAR_POKEMON): dar_pokemon_a_entrenador(entrenador, payload);break;

@@ -25,7 +25,7 @@ endif
 all: libentrenador-library.so
 
 dependents:
-	-cd /home/utnso/workspace/commons/Debug && $(MAKE) all
+	-cd /home/utnso/workspace/commons/Debug && $(MAKE) clean all
 
 # Tool invocations
 libentrenador-library.so: $(OBJS) $(USER_OBJS) /home/utnso/workspace/commons/Debug/libcommons.so

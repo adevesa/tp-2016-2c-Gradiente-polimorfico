@@ -98,7 +98,7 @@ void planificador_entrenador_se_mueve(t_entrenador *entrenador)
 {
 	char *posicion_destino = escuchar_mensaje_entrenador(entrenador, ENTRENADOR_QUIERE_MOVERSE);
 	entrenador->posicion_actual = desarmar_coordenada(posicion_destino);
-	mapa_mostra_actualizacion_de_entrenador(entrenador);
+	//mapa_mostra_actualizacion_de_entrenador(entrenador);
 }
 
 void planificador_entrenador_quiere_capturar_pokemon(t_entrenador *entrenador)
@@ -200,7 +200,7 @@ void planificador_finaliza_entrenador(t_entrenador *entrenador)
 	char *ruta_medalla_del_mapa = mapa_dame_medalla();
 	enviar_mensaje_a_entrenador(entrenador, OTORGAR_MEDALLA_DEL_MAPA,ruta_medalla_del_mapa);
 	planificador_espera_que_entrenador_se_desconecte(entrenador);
-	mapa_borra_entrenador_de_pantalla(entrenador);
+	//mapa_borra_entrenador_de_pantalla(entrenador);
 }
 
 void planificador_espera_que_entrenador_se_desconecte(t_entrenador *entrenador)
@@ -232,7 +232,7 @@ void planificador_extraele_pokemones_a_entrenador(t_entrenador *entrenador)
 void* planificador_encola_nuevos_entrenadores()
 {
 	extern t_mapa *mapa;
-	sem_wait(&semaforo_entrenadores_listos);
+	sem_wait(&semaforo_hay_algun_entrenador_listo);
 	if(!list_is_empty(mapa->entrenadores->lista_entrenadores_a_planificar))
 	{
 		pthread_mutex_lock(&mutex_manipular_cola_nuevos);
@@ -240,7 +240,7 @@ void* planificador_encola_nuevos_entrenadores()
 		list_clean(mapa->entrenadores->lista_entrenadores_a_planificar);
 		pthread_mutex_unlock(&mutex_manipular_cola_nuevos);
 	}
-	sem_post(&semaforo_hay_algun_entrenador_listo);
+	sem_post(&semaforo_entrenadores_listos);
 }
 
 void planificador_modela_nuevo_entrenador_y_encolalo(void *entrenador)
@@ -248,7 +248,7 @@ void planificador_modela_nuevo_entrenador_y_encolalo(void *entrenador)
 	t_entrenador_nuevo *entrenador_a_modelar = (t_entrenador_nuevo *) entrenador;
 	t_entrenador *new_entrenador = entrenador_create(entrenador_a_modelar->id_proceso, entrenador_a_modelar->socket_entrenador);
 	planificador_push_entrenador_a_listo(new_entrenador);
-	mapa_mostra_nuevo_entrenador_en_pantalla(new_entrenador);
+	//mapa_mostra_nuevo_entrenador_en_pantalla(new_entrenador);
 }
 
 void foreach(void *lista,void(*funcion_de_lista)(void*))
