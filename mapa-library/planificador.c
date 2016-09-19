@@ -11,6 +11,8 @@ extern sem_t semaforo_entrenadores_listos;
 extern sem_t semaforo_cola_bloqueados;
 extern pthread_mutex_t mutex_manipular_cola_listos;
 extern pthread_mutex_t mutex_manipular_cola_bloqueados;
+extern pthread_mutex_t mutex_manipular_cola_nuevos;
+extern sem_t semaforo_hay_algun_entrenador_listo;
 
 
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
@@ -227,17 +229,18 @@ void planificador_extraele_pokemones_a_entrenador(t_entrenador *entrenador)
 }
 
 /*---------------------------------------NUEVO->LISTO---------------------------------------------------------*/
-void planificador_encola_nuevos_entrenadores()
+void* planificador_encola_nuevos_entrenadores()
 {
 	extern t_mapa *mapa;
 	sem_wait(&semaforo_entrenadores_listos);
 	if(!list_is_empty(mapa->entrenadores->lista_entrenadores_a_planificar))
 	{
-		pthread_mutex_lock(&mutex_manipular_cola_listos);
+		pthread_mutex_lock(&mutex_manipular_cola_nuevos);
 		foreach(mapa->entrenadores->lista_entrenadores_a_planificar,planificador_modela_nuevo_entrenador_y_encolalo);
 		list_clean(mapa->entrenadores->lista_entrenadores_a_planificar);
-		pthread_mutex_unlock(&mutex_manipular_cola_listos);
+		pthread_mutex_unlock(&mutex_manipular_cola_nuevos);
 	}
+	sem_post(&semaforo_hay_algun_entrenador_listo);
 }
 
 void planificador_modela_nuevo_entrenador_y_encolalo(void *entrenador)

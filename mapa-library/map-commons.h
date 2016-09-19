@@ -8,12 +8,11 @@
 #ifndef MAPA_MAPA_COMMONS_MAP_COMMONS_H_
 #define MAPA_MAPA_COMMONS_MAP_COMMONS_H_
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <nivel-gui/nivel.h>
-#include<nivel-gui/tad_items.h>
+//#include <stdio.h>
+//#include <stdlib.h>
+#include <nivel.h>
+#include <tad_items.h>
 #include <pthread.h>
-#include "stdbool.h"
 #include "planificador.h"
 #include "basic-structs.h"
 #include "comunication-point.h"

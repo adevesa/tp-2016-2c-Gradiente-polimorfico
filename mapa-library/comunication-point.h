@@ -9,11 +9,8 @@
 #define MAPA_MAPA_COMMONS_COMUNICATION_POINT_H_
 #include <arpa/inet.h>
 #include <sys/socket.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
 #include <netinet/in.h>
-#include <pthread.h>
 #include <commons/process.h>
 #include "map-commons.h"
 

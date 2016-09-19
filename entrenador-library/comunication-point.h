@@ -9,6 +9,7 @@
 #define COMUNICATION_POINT_H_
 #include <stdio.h>
 #include <stdlib.h>
+#include <netinet/in.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <unistd.h>

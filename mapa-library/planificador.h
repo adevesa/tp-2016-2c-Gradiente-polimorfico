@@ -71,7 +71,7 @@ void planificador_espera_que_entrenador_se_desconecte(t_entrenador *entrenador);
 void planificador_extraele_pokemones_a_entrenador(t_entrenador *entrenador);
 
 /*---------------------------------------NUEVO->LISTO---------------------------------------------------------*/
-void planificador_encola_nuevos_entrenadores();
+void* planificador_encola_nuevos_entrenadores();
 void planificador_modela_nuevo_entrenador_y_encolalo(void *id_proceso);
 void foreach(void *lista,void(*funcion_de_lista)(void*));
 

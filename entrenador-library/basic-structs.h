@@ -61,6 +61,7 @@ t_mapa* mapa_create(char* nombre_mapa, char *ruta_pokedex);
 /*--------------------------------------------OBTENCION DE DATOS---------------------------------------------------------------*/
 char* obtener_direccion_directorio_de_bill(char* ruta_pokedex, char* nombre);
 t_list* entrenador_hoja_de_viaje(t_config* configuracion);
+char** mapas_a_Recorrer(char *mapas_con_corchetes);
 t_list* foreach_hoja_de_viaje(char **hoja_de_viaje);
 char* entrenador_simbolo(t_config* configuracion);
 int entrenador_vidas(t_config* configuracion);

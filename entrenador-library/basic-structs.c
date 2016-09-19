@@ -48,7 +48,7 @@ t_mapa* mapa_create(char* nombre_mapa, char *ruta_pokedex)
 
 	t_config *config = configuracion_metadata_mapa_create(nombre_mapa, ruta_pokedex);
 	t_mapa *mapa_new = malloc(sizeof(t_mapa));
-	mapa_new->puerto = config_get_int_value(config, "Puerto");
+	mapa_new->puerto = config_get_string_value(config, "Puerto");
 	mapa_new->ip = config_get_string_value(config, "IP");
 	return mapa_new;
 	config_destroy(config);
@@ -73,17 +73,42 @@ char* obtener_direccion_directorio_de_bill(char* ruta_pokedex, char* nombre)
 
 t_list* entrenador_hoja_de_viaje(t_config* configuracion)
 {
-	char** resultado = config_get_array_value(configuracion, "hojaDeViaje");
-	t_list *hoja_de_viaje = foreach_hoja_de_viaje(resultado);
+	char *resultado = config_get_string_value(configuracion, "hojaDeViaje");
+	char **mapas_a_recorrer = mapas_a_Recorrer(resultado);
+	t_list *hoja_de_viaje = foreach_hoja_de_viaje(mapas_a_recorrer);
 	return hoja_de_viaje;
+}
+
+char** mapas_a_Recorrer(char *mapas_con_corchetes)
+{
+	char **sin_corchete_izquierdo = string_split(mapas_con_corchetes, "[");
+	char *aux_sin_corchete_izquierdo = string_new();
+	string_append(&aux_sin_corchete_izquierdo, sin_corchete_izquierdo[0]);
+
+
+	char **sin_corchete_derecho = string_split(aux_sin_corchete_izquierdo,"]");
+	char *aux_sin_corchete_derecho = string_new();
+	string_append(&aux_sin_corchete_derecho, sin_corchete_derecho[0]);
+
+	char **por_separado = string_split(aux_sin_corchete_derecho, ",");
+
+	return (por_separado);
+	free(aux_sin_corchete_derecho);
+	free(aux_sin_corchete_izquierdo);
 }
 
 t_list* foreach_hoja_de_viaje(char **hoja_de_viaje)
 {
-	int tamanio = sizeof(hoja_de_viaje);
-	int i;
+	int cantidad_de_elementos_en_hoja =0;
+	int i = 0;
+	while(hoja_de_viaje[i] !=NULL)
+	{
+		cantidad_de_elementos_en_hoja++;
+		i++;
+	}
+
 	t_list *lista = list_create();
-	for(i=0; i<tamanio;i++)
+	for(i=0; i<cantidad_de_elementos_en_hoja;i++)
 	{
 		list_add(lista, hoja_de_viaje[i]);
 	}

@@ -1,11 +1,11 @@
 planificador-rr.d: ../planificador-rr.c ../planificador-rr.h \
- /home/utnso/workspace/commons/commons/collections/queue.h \
+ ../map-commons.h /home/utnso/workspace/nivel-gui/nivel-gui/nivel.h \
  /home/utnso/workspace/commons/commons/collections/list.h \
  /home/utnso/workspace/commons/commons/collections/node.h \
- /home/utnso/workspace/commons/commons/collections/list.h \
- ../map-commons.h /home/utnso/workspace/nivel-gui/nivel-gui/nivel.h \
  /home/utnso/workspace/nivel-gui/nivel-gui/tad_items.h \
  /home/utnso/workspace/nivel-gui/nivel-gui/nivel.h ../planificador.h \
+ /home/utnso/workspace/commons/commons/collections/queue.h \
+ /home/utnso/workspace/commons/commons/collections/list.h \
  ../basic-structs.h \
  /home/utnso/workspace/commons/commons/collections/dictionary.h \
  /home/utnso/workspace/commons/commons/config.h \
@@ -16,23 +16,23 @@ planificador-rr.d: ../planificador-rr.c ../planificador-rr.h \
 
 ../planificador-rr.h:
 
-/home/utnso/workspace/commons/commons/collections/queue.h:
+../map-commons.h:
+
+/home/utnso/workspace/nivel-gui/nivel-gui/nivel.h:
 
 /home/utnso/workspace/commons/commons/collections/list.h:
 
 /home/utnso/workspace/commons/commons/collections/node.h:
-
-/home/utnso/workspace/commons/commons/collections/list.h:
-
-../map-commons.h:
-
-/home/utnso/workspace/nivel-gui/nivel-gui/nivel.h:
 
 /home/utnso/workspace/nivel-gui/nivel-gui/tad_items.h:
 
 /home/utnso/workspace/nivel-gui/nivel-gui/nivel.h:
 
 ../planificador.h:
+
+/home/utnso/workspace/commons/commons/collections/queue.h:
+
+/home/utnso/workspace/commons/commons/collections/list.h:
 
 ../basic-structs.h:
 

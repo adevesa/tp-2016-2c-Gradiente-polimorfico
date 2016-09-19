@@ -9,7 +9,7 @@
 extern t_mapa *mapa;
 extern t_mapa *mapa;
 extern sem_t semaforo_entrenadores_listos;
-extern pthread_mutex_t mutex_manipular_cola_listos;
+extern pthread_mutex_t mutex_manipular_cola_nuevos;
 
 /*--------------------------------------------EXECUTE-----------------------------------------------------*/
 void* ejecutar_servidor(void *argumento)
@@ -104,8 +104,9 @@ void* server_pthread_atender_cliente(void* argumento)
 {
 	int *conexion = (int*) argumento;
 	server_pthread_agrega_proceso_a_lista(conexion);
-	while(!mapa_decime_si_entrenador_finalizo_su_objetivo(*conexion))
+	while(1)
 	{
+		//!mapa_decime_si_entrenador_finalizo_su_objetivo(*conexion)
 	}
 	pthread_exit(NULL);
 }
@@ -193,13 +194,13 @@ void server_pthread_cerra_cliente(int cliente)
 
 void server_pthread_agrega_proceso_a_lista(int *socket_cliente)
 {
-	pthread_mutex_lock(&mutex_manipular_cola_listos);
+	pthread_mutex_lock(&mutex_manipular_cola_nuevos);
 	t_entrenador_nuevo *entrenador = malloc(sizeof(t_entrenador_nuevo));
 	entrenador->id_proceso = (int)process_get_thread_id();
 	entrenador->socket_entrenador = *socket_cliente;
-	entrenador->simbolo_identificador = recibir_mensaje(*socket_cliente,3);
+	entrenador->simbolo_identificador = recibir_mensaje(*socket_cliente,1);
 	list_add(mapa->entrenadores->lista_entrenadores_a_planificar,entrenador);
-	pthread_mutex_unlock(&mutex_manipular_cola_listos);
+	pthread_mutex_unlock(&mutex_manipular_cola_nuevos);
 	sem_post(&semaforo_entrenadores_listos);
 }
 

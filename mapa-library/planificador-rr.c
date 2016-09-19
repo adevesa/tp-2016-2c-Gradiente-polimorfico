@@ -7,7 +7,8 @@
 #include "planificador-rr.h"
 
 t_planificador_rr *planificador;
-
+extern sem_t semaforo_hay_algun_entrenador_listo;
+pthread_t thread;
 /*-----------------------------------EXECUTE PLANIFICADOR RR---------------------------------------------------------*/
 void* ejecutar_planificador_rr(void* arg)
 {
@@ -32,6 +33,11 @@ void planificador_rr_organiza_entrenadores()
 {
 	while(mapa_decime_si_planificador_es_rr())
 	{
+		pthread_create(&thread,NULL, planificador_encola_nuevos_entrenadores,NULL);
+		if(queue_is_empty(planificador->listas_y_colas->cola_entrenadores_listos))
+		{
+			sem_wait(&semaforo_hay_algun_entrenador_listo);
+		}
 		t_entrenador *entrenador_listo = planificador_pop_entrenador_listo(planificador);
 		int quamtum_restante = planificador->quantum;
 		planificador_rr_es_el_turno_de(entrenador_listo, &quamtum_restante);

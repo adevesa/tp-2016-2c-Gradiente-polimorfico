@@ -39,7 +39,7 @@ long minutos(char* tiempo){
 }
 
 long segundos(char* tiempo){
-	char* segundos = string_new();
+	char *segundos = string_new();
 	segundos = string_substring(tiempo,6,2);
 	int segundosint = atoi(segundos);
 	return ((long) segundosint);
