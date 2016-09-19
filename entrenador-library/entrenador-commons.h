@@ -10,6 +10,8 @@
 #include "comunication.h"
 #include "basic-structs.h"
 #include "time.h"
+#include "semaphore.h"
+#include "pthread.h"
 
 void ejecutar_entrenador(char *nombre_entrenador, char *ruta_pokedex);
 void entrenador_recorre_hoja_de_viaje();
@@ -18,8 +20,11 @@ void entrenador_cumpli_objetivo(int indice_objetivo);
 void entrenador_busca_mapa(int index);
 
 void entrenador_espera_turno();
+void entrenador_espera_a_que_mapa_te_bloquee();
+void entrenador_espera_a_que_mapa_te_desbloquee();
 
 void entrenador_pedi_ubicacion_pokenest(int indice_objetivo);
+void entrenador_recibi_y_copia_pokemon();
 void entrenador_registra_tiempo_bloqueo(char *hora_inicio, char *hora_fin);
 
 int entrenador_llego_a_destino();

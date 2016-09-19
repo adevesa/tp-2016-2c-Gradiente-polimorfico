@@ -83,7 +83,7 @@ void enviar_mensaje(int socket, char *mensaje);
 
 /*--------------------------------------RECEPCION DE MENSAJES -------------------------------------------------*/
 char* recibir_mensaje(int socket,int payloadSize);
-
+char* recibir_mensaje_especifico(int socket);
 /*--------------------------------------------SECUNDARIOS-----------------------------------------------------------*/
 /*
  * @name: configurar_address(int puerto)

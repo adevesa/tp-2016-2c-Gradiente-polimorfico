@@ -22,7 +22,7 @@ int conectar_a_servidor(int puerto, char *ip);
 void enviar_mensaje(int socket, char *mensaje);
 /*-------------------------------------RECEPCION DE MENSAJES -------------------------------------------------------*/
 char* recibir_mensaje(int socket,int payloadSize);
-
+char* recibir_mensaje_especifico(int socket);
 /*-------------------------------------------------------FUNCIONES SECUNDARIAS-------------------------------*/
 typedef struct sockaddr_in address_config_in;
 address_config_in configurar_address_in(int puerto, char *ip);

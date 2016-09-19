@@ -13,68 +13,58 @@ int conectar_a_mapa(t_mapa *mapa)
 	return mapa->server;
 }
 
+int mapa_me_dice(char *mapa_dice)
+{
+	if(string_equals_ignore_case(mapa_dice, "sr;"))
+	{
+		return MAPA_ME_DA_POKEMON;
+	}
+	if(string_equals_ignore_case(mapa_dice, "mr;"))
+	{
+		return MAPA_ME_DA_MEDALLA;
+	}
+	if(string_equals_ignore_case(mapa_dice, "bq;"))
+	{
+		return MAPA_ME_BLOQUEA;
+	}
+	if(string_equals_ignore_case(mapa_dice, "fq;"))
+	{
+			return MAPA_ME_DESBLOQUEA;
+	}
+	else return 0;
+}
+
+void enviar_mensaje_a_mapa(t_mapa *mapa, int header, char *payload)
+{
+	switch(header)
+	{
+		case(OTORGAR_SIMBOLO_ENTRENADOR): enviar_mensaje(mapa->server,payload);break;
+		case(SOLICITAR_COORDENADAS_POKENEST): solicitar_ubicacion_pokenest(mapa, payload);break;
+		case(SOLICITAR_CAPTURA_POKEMON):enviar_mensaje(mapa->server, "cp;");break;
+		case(REPORTAR_MOVIMIENTO): solicitar_moverse(mapa, payload);break;
+		case(REPORTAR_FIN_OBJETIVOS):enviar_mensaje(mapa->server, "fp;");
+	}
+}
+
+char* escuchar_mensaje_mapa(t_mapa *mapa, int header)
+{
+	switch(header)
+	{
+		case(MAPA_ME_DA_TURNO): return( recibir_mensaje(mapa->server, 3)); break;
+		case(MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR): return(recibir_mensaje(mapa->server,3)); break;
+		case(MAPA_ME_DA_POKEMON): return(recibir_mensaje_especifico(mapa->server)); break;
+		case(MAPA_ME_DA_COORDENADAS_POKENEST): return(recibir_mensaje_especifico(mapa->server)); break;
+		case(MAPA_ME_DA_MEDALLA): return(recibir_mensaje_especifico(mapa->server)); break;
+		case(MAPA_ME_BLOQUEA): return(recibir_mensaje(mapa->server, 3)); break;
+		case(MAPA_ME_DESBLOQUEA): return(recibir_mensaje(mapa->server,3));break;
+		default: return("NO SE PUEDE INTERPRETAR");
+	}
+}
+
 void entrenador_dale_a_mapa_tu_simbolo()
 {
 	extern t_entrenador *entrenador;
 	enviar_mensaje(entrenador->mapa_actual->server, entrenador->simbolo);
-}
-/*-------------------------------------------DECODIFICACION DE RESPUESTAS------------------------------------------------*/
-void tratar_respuesta(char* respuesta_del_entrenador,t_entrenador *entrenador)
-{
-	if(string_equals_ignore_case(respuesta_del_entrenador, "tr"))
-	{
-		mapa_me_da_turno(entrenador);
-	}
-	if(string_equals_ignore_case(respuesta_del_entrenador,"ur"))
-	{
-		mapa_me_da_coordendas_pokenest(entrenador);
-	}
-	if(string_equals_ignore_case(respuesta_del_entrenador, "sr"))
-	{
-			mapa_me_da_pokemon(entrenador);
-	}
-	if(string_equals_ignore_case(respuesta_del_entrenador, "mr"))
-	{
-		mapa_me_da_medalla(entrenador);
-	}
-	if(string_equals_ignore_case(respuesta_del_entrenador, "bq"))
-	{
-		mapa_me_bloqueo(entrenador);
-	}
-	if(string_equals_ignore_case(respuesta_del_entrenador, "fb"))
-	{
-		mapa_me_desbloqueo(entrenador);
-	}
-}
-/*--------------------------------------ESPERAR RESPUESTA DEL MAPA----------------------------------------*/
-char* esperar_respuesta(t_mapa *mapa)
-{
-	char *resp = recibir_mensaje(mapa->server, 3);
-	return resp;
-}
-
-/*--------------------------------------MAPA NOS DA TURNO----------------------------------------*/
-
-void mapa_me_da_turno(t_entrenador *entrenador)
-{
-	//SOLO CONTINUA EJECUTANDO
-}
-
-/*--------------------------------------MAPA ME DA COORDENADA POKENEST----------------------------------------*/
-
-void mapa_me_da_coordendas_pokenest(t_entrenador *entrenador)
-{
-	char * coordendas_array = recibir_mensaje(entrenador->mapa_actual->server, 10);
-	decodificar_coordenadas(coordendas_array, &(entrenador->pokenest->x),&(entrenador->pokenest->y));
-
-}
-
-void decodificar_coordenadas(char *payload, int *x, int*y)
-{
-	string_trim(&payload);
-	char **coordenadas= string_split(payload, ",");
-	*x = atoi(coordenadas[0]);
-	*y= atoi(coordenadas[1]);
 }
 
 
@@ -88,7 +78,6 @@ void mapa_me_da_pokemon(t_entrenador *entrenador)
 
 
 /*--------------------------------------MAPA ME DA MEDALLA----------------------------------------*/
-
 void mapa_me_da_medalla(t_entrenador *entrenador)
 {
 	char *ruta_para_copiar_medalla = recibir_mensaje(entrenador->mapa_actual->server, 80);
@@ -109,9 +98,6 @@ int mapa_me_desbloqueo(t_entrenador *entrenador)
 	return 1;
 }
 
-
-
-
 /*---------------------------------------MENSAJES QUE ENVIA EL ENTRENADOR AL MAPA----------------------------------------*/
 void solicitar_ubicacion_pokenest(t_mapa *mapa,char *pokemonBuscado)
 {
@@ -125,28 +111,42 @@ void solicitar_moverse(t_mapa *mapa,char *coordenadaDestino)
 	enviar_mensaje(mapa->server, mensaje);
 }
 
-void solicitar_captura_pokemon(t_mapa *mapa, char *pokemonAcapturar)
-{
-	char *mensaje = armar_mensaje("cp", pokemonAcapturar);
-	enviar_mensaje(mapa->server, mensaje);
-}
-
-void notificar_fin_objetivos(t_mapa *mapa)
-{
-	enviar_mensaje(mapa->server, "fp");
-	close(mapa->server);
-}
-
-
-
 /*---------------------------------------SECUNDARIOS----------------------------------------*/
 char* armar_mensaje(char *header, char *payload)
 {
 	char *mensaje =string_new();
 	string_append(&mensaje,header);
 	string_append(&mensaje,";");
-	string_append(&mensaje,payload);
-	return mensaje;
+	int tamanio_payload = strlen(payload);
+	if(tamanio_payload < MAX_BYTES_TOTAL_A_ENVIAR)
+	{
+		if(tamanio_payload < 10)
+		{
+			char *tamanio_payload_a_enviar = string_repeat('0',2);
+			string_append(&tamanio_payload_a_enviar, string_itoa(tamanio_payload));
+			string_append(&mensaje, tamanio_payload_a_enviar);
+			string_append(&mensaje,";");
+			string_append(&mensaje,payload);
+			return mensaje;
+		}
+		else
+		{
+			char *tamanio_payload_a_enviar = string_repeat('0',1);
+			string_append(&tamanio_payload_a_enviar, string_itoa(tamanio_payload));
+			string_append(&mensaje, tamanio_payload_a_enviar);
+			string_append(&mensaje,";");
+			string_append(&mensaje,payload);
+			return mensaje;
+		}
+
+	}
+	else
+	{
+		string_append(&mensaje, string_itoa(MAX_BYTES_TOTAL_A_ENVIAR));
+		string_append(&mensaje,";");
+		string_append(&mensaje,payload);
+		return mensaje;
+	}
 }
 
 void copiar(char* origen, char* destino)
@@ -168,8 +168,71 @@ void eliminar(char* elemento){
 		free(mensaje);
 }
 
+char* armar_coordenada(int x, int y)
+{
+	char *coordenada_x = string_itoa(x);
+	char *coordenada_y = string_itoa(y);
+	int longitud_eje_x = strlen(coordenada_x);
+	int longitud_eje_y = strlen(coordenada_y);
+	if(longitud_eje_x < (MAX_BYTES_COORDENADA))
+	{
+		char *nueva_coordenada_x = string_repeat('0', MAX_BYTES_COORDENADA - longitud_eje_x);
+		string_append(&nueva_coordenada_x, coordenada_x);
+		if(longitud_eje_y < (MAX_BYTES_COORDENADA))
+		{
+			char *nueva_coordenada_y = string_repeat('0', (MAX_BYTES_COORDENADA - longitud_eje_y));
+			string_append(&nueva_coordenada_y, coordenada_y);
+			char *coordenada_final = string_new();
+			string_append(&coordenada_final, nueva_coordenada_x);
+			string_append(&coordenada_final, ";");
+			string_append(&coordenada_final, nueva_coordenada_y);
+			return coordenada_final;
+		}
+		else
+		{
+			string_append(&coordenada_y, coordenada_y);
+			char *coordenada_final = string_new();
+			string_append(&coordenada_final, nueva_coordenada_x);
+			string_append(&coordenada_final, ";");
+			string_append(&coordenada_final,coordenada_y);
+			return coordenada_final;
+		}
 
+	}
+	else
+	{
+		string_append(&coordenada_x, coordenada_x);
+				if(longitud_eje_y < (MAX_BYTES_COORDENADA))
+				{
+					char *nueva_coordenada_y = string_repeat('0', (MAX_BYTES_COORDENADA - longitud_eje_y));
+					string_append(&nueva_coordenada_y, coordenada_y);
+					char *coordenada_final = string_new();
+					string_append(&coordenada_final,coordenada_x);
+					string_append(&coordenada_final, ";");
+					string_append(&coordenada_final, nueva_coordenada_y);
+					return coordenada_final;
+				}
+				else
+				{
+					string_append(&coordenada_y, coordenada_y);
+					char *coordenada_final = string_new();
+					string_append(&coordenada_final,coordenada_x);
+					string_append(&coordenada_final, ";");
+					string_append(&coordenada_final,coordenada_y);
+					return coordenada_final;
+				}
+	}
 
+}
+
+t_ubicacion* desarmar_coordenada(char *coordenada)
+{
+	char **por_separado = string_split(coordenada, ";");
+	string_trim_left(&por_separado[0]);
+	string_trim_right(&por_separado[1]);
+	return (ubicacion_create(atoi(por_separado[0]),atoi(por_separado[1])));
+
+}
 
 
 

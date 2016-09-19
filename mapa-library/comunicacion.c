@@ -10,19 +10,19 @@
 /*-------------------------------------------DECODIFICACION DE RESPUESTAS------------------------------------------------*/
 int tratar_respuesta(char* respuesta_del_entrenador, t_entrenador *entrenador)
 {
-	if(string_equals_ignore_case(respuesta_del_entrenador, "up"))
+	if(string_equals_ignore_case(respuesta_del_entrenador, "up;"))
 	{
 		return ENTRENADOR_ESTA_BUSCANDO_COORDENADAS_POKENEST;
 	}
-	if(string_equals_ignore_case(respuesta_del_entrenador,"mp"))
+	if(string_equals_ignore_case(respuesta_del_entrenador,"mp;"))
 	{
 		return ENTRENADOR_QUIERE_MOVERSE;
 	}
-	if(string_equals_ignore_case(respuesta_del_entrenador, "cp"))
+	if(string_equals_ignore_case(respuesta_del_entrenador, "cp;"))
 	{
 		return ENTRENADOR_QUIERE_CAPTURAR_POKEMON;
 	}
-	if(string_equals_ignore_case(respuesta_del_entrenador, "fp"))
+	if(string_equals_ignore_case(respuesta_del_entrenador, "fp;"))
 	{
 		return ENTRENADOR_FINALIZO_OBJETIVOS;
 	}
@@ -33,13 +33,13 @@ void enviar_mensaje_a_entrenador(t_entrenador *entrenador, int header, char *pay
 {
 	switch(header)
 	{
-		case(OTORGAR_TURNO): enviar_mensaje(entrenador->socket_entrenador, "tr"); break;
-		case(OTORGAR_COORDENADAS_POKENEST): enviar_mensaje(entrenador->socket_entrenador, armar_mensaje("ur",payload)); break;
+		case(OTORGAR_TURNO): enviar_mensaje(entrenador->socket_entrenador, "tr;"); break;
+		case(OTORGAR_COORDENADAS_POKENEST): enviar_mensaje(entrenador->socket_entrenador, armar_mensaje("ur;",payload)); break;
 		case(OTORGAR_MEDALLA_DEL_MAPA): otorgar_ruta_medalla_a_entrenador(entrenador->socket_entrenador, mapa_dame_medalla()); break;
 		case(OTORGAR_POKEMON): dar_pokemon_a_entrenador(entrenador, payload);break;
-		case(AVISAR_BLOQUEO_A_ENTRENADOR): enviar_mensaje(entrenador->socket_entrenador, "bq");  break;
-		case(AVISAR_DESBLOQUEO_A_ENTRENADOR): enviar_mensaje(entrenador->socket_entrenador,"fb"); break;
-		default: enviar_mensaje(entrenador->socket_entrenador, "fb");;
+		case(AVISAR_BLOQUEO_A_ENTRENADOR): enviar_mensaje(entrenador->socket_entrenador, "bq;");  break;
+		case(AVISAR_DESBLOQUEO_A_ENTRENADOR): enviar_mensaje(entrenador->socket_entrenador,"fb;"); break;
+		default: enviar_mensaje(entrenador->socket_entrenador, "fb;");;
 	}
 }
 
@@ -47,10 +47,10 @@ char* escuchar_mensaje_entrenador(t_entrenador *entrenador, int header)
 {
 	switch(header)
 	{
-		case(SOLICITUD_DEL_ENTRENADOR): return(recibir_mensaje(entrenador->socket_entrenador,2));
-		case(ENTRENADOR_OTORGA_SU_SIMBOLO): return(recibir_mensaje(entrenador->socket_entrenador,2)); break;
-		case(ENTRENADOR_ESTA_BUSCANDO_COORDENADAS_POKENEST): return(recibir_mensaje(entrenador->socket_entrenador,2)); break;
-		case(ENTRENADOR_QUIERE_MOVERSE): return(recibir_mensaje(entrenador->socket_entrenador,11)); break;
+		case(SOLICITUD_DEL_ENTRENADOR): return(recibir_mensaje(entrenador->socket_entrenador,3));
+		case(ENTRENADOR_OTORGA_SU_SIMBOLO): return(recibir_mensaje_especifico(entrenador->socket_entrenador)); break;
+		case(ENTRENADOR_ESTA_BUSCANDO_COORDENADAS_POKENEST): return(recibir_mensaje_especifico(entrenador->socket_entrenador)); break;
+		case(ENTRENADOR_QUIERE_MOVERSE): return(recibir_mensaje_especifico(entrenador->socket_entrenador)); break;
 		default: return("0"); break;
 	}
 }
