@@ -127,7 +127,7 @@ char* direccion_a_entrenador(char *direccion_a_pokedex, char *nombre){
 char* direccion_a_mapa(char *direccion_a_pokedex ,char *nombre){
 	char *ruta = string_new();
 				string_append(&ruta, direccion_a_pokedex);
-				string_append(&ruta, "/mapas/");
+				string_append(&ruta, "/Mapas/");
 				string_append(&ruta, nombre);
 				string_append(&ruta, "/metadata");
 	return ruta;
@@ -137,7 +137,7 @@ char* direccion_a_mapa(char *direccion_a_pokedex ,char *nombre){
 char* direccion_a_pokenest(char *direccion_a_pokedex, char *nombre_mapa, char *nombre_pokenest){
 	char *ruta = string_new();
 				string_append(&ruta, direccion_a_pokedex);
-				string_append(&ruta, "/mapas/");
+				string_append(&ruta, "/Mapas/");
 				string_append(&ruta, nombre_mapa);
 				string_append(&ruta, "/PokeNests/");
 				string_append(&ruta, nombre_pokenest);
@@ -149,7 +149,7 @@ char* direccion_a_pokenest(char *direccion_a_pokedex, char *nombre_mapa, char *n
 char* direccion_a_pokemon(char *direccion_a_pokedex, char *nombre_mapa, char *nombre_pokenest, char *nombre_pokemon){
 	char *ruta = string_new();
 				string_append(&ruta, direccion_a_pokedex);
-				string_append(&ruta, "/mapas/");
+				string_append(&ruta, "/Mapas/");
 				string_append(&ruta, nombre_mapa);
 				string_append(&ruta, "/PokeNests/");
 				string_append(&ruta, nombre_pokenest);
@@ -320,7 +320,7 @@ int pokemon_nivel(char* nombre_pokemon, char *nombre_pokenest, char *nombre_mapa
 t_list* mapa_pokenest(char *nombre_mapa, char *direccion_a_pokedex ){
 	char *ruta = string_new();
 				string_append(&ruta, direccion_a_pokedex);
-				string_append(&ruta, "/mapas/");
+				string_append(&ruta, "/Mapas/");
 				string_append(&ruta, nombre_mapa);
 				string_append(&ruta, "/PokeNests");
 	return nombre_de_archivos_del_directorio(ruta);
@@ -340,7 +340,7 @@ t_list* entrenador_medallas(char* nombre_entrenador, char *direccion_a_pokedex){
 t_list* lista_de_mapas(char *direccion_a_pokedex){
 	char *ruta = string_new();
 			string_append(&ruta, direccion_a_pokedex);
-			string_append(&ruta, "/mapas");
+			string_append(&ruta, "/Mapas");
 	return nombre_de_archivos_del_directorio(ruta);
 	free(ruta);
 }
