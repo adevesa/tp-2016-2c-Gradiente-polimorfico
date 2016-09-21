@@ -1,6 +1,7 @@
 comunicacion.d: ../comunicacion.c ../comunicacion.h \
  ../comunication-point.h /home/utnso/workspace/commons/commons/process.h \
- ../map-commons.h /home/utnso/workspace/nivel-gui/nivel-gui/nivel.h \
+ /home/utnso/workspace/commons/commons/log.h ../map-commons.h \
+ /home/utnso/workspace/nivel-gui/nivel-gui/nivel.h \
  /home/utnso/workspace/commons/commons/collections/list.h \
  /home/utnso/workspace/commons/commons/collections/node.h \
  /home/utnso/workspace/nivel-gui/nivel-gui/tad_items.h \
@@ -19,6 +20,8 @@ comunicacion.d: ../comunicacion.c ../comunicacion.h \
 ../comunication-point.h:
 
 /home/utnso/workspace/commons/commons/process.h:
+
+/home/utnso/workspace/commons/commons/log.h:
 
 ../map-commons.h:
 

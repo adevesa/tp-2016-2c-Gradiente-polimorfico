@@ -27,7 +27,7 @@ int mapa_me_dice(char *mapa_dice)
 	{
 		return MAPA_ME_BLOQUEA;
 	}
-	if(string_equals_ignore_case(mapa_dice, "fq;"))
+	if(string_equals_ignore_case(mapa_dice, "fb;"))
 	{
 			return MAPA_ME_DESBLOQUEA;
 	}
@@ -122,7 +122,7 @@ char* armar_mensaje(char *header, char *payload)
 	{
 		if(tamanio_payload < 10)
 		{
-			char *tamanio_payload_a_enviar = string_repeat('0',2);
+			char *tamanio_payload_a_enviar = string_repeat(' ',2);
 			string_append(&tamanio_payload_a_enviar, string_itoa(tamanio_payload));
 			string_append(&mensaje, tamanio_payload_a_enviar);
 			string_append(&mensaje,";");
@@ -131,7 +131,7 @@ char* armar_mensaje(char *header, char *payload)
 		}
 		else
 		{
-			char *tamanio_payload_a_enviar = string_repeat('0',1);
+			char *tamanio_payload_a_enviar = string_repeat(' ',1);
 			string_append(&tamanio_payload_a_enviar, string_itoa(tamanio_payload));
 			string_append(&mensaje, tamanio_payload_a_enviar);
 			string_append(&mensaje,";");
@@ -176,11 +176,11 @@ char* armar_coordenada(int x, int y)
 	int longitud_eje_y = strlen(coordenada_y);
 	if(longitud_eje_x < (MAX_BYTES_COORDENADA))
 	{
-		char *nueva_coordenada_x = string_repeat('0', MAX_BYTES_COORDENADA - longitud_eje_x);
+		char *nueva_coordenada_x = string_repeat(' ', MAX_BYTES_COORDENADA - longitud_eje_x);
 		string_append(&nueva_coordenada_x, coordenada_x);
 		if(longitud_eje_y < (MAX_BYTES_COORDENADA))
 		{
-			char *nueva_coordenada_y = string_repeat('0', (MAX_BYTES_COORDENADA - longitud_eje_y));
+			char *nueva_coordenada_y = string_repeat(' ', (MAX_BYTES_COORDENADA - longitud_eje_y));
 			string_append(&nueva_coordenada_y, coordenada_y);
 			char *coordenada_final = string_new();
 			string_append(&coordenada_final, nueva_coordenada_x);
@@ -204,7 +204,7 @@ char* armar_coordenada(int x, int y)
 		string_append(&coordenada_x, coordenada_x);
 				if(longitud_eje_y < (MAX_BYTES_COORDENADA))
 				{
-					char *nueva_coordenada_y = string_repeat('0', (MAX_BYTES_COORDENADA - longitud_eje_y));
+					char *nueva_coordenada_y = string_repeat(' ', (MAX_BYTES_COORDENADA - longitud_eje_y));
 					string_append(&nueva_coordenada_y, coordenada_y);
 					char *coordenada_final = string_new();
 					string_append(&coordenada_final,coordenada_x);
@@ -229,8 +229,9 @@ t_ubicacion* desarmar_coordenada(char *coordenada)
 {
 	char **por_separado = string_split(coordenada, ";");
 	string_trim_left(&por_separado[0]);
-	string_trim_right(&por_separado[1]);
-	return (ubicacion_create(atoi(por_separado[0]),atoi(por_separado[1])));
+	string_trim_left(&por_separado[1]);
+	t_ubicacion *ubi = ubicacion_create(atoi(por_separado[0]),atoi(por_separado[1]));
+	return (ubi);
 
 }
 

@@ -26,6 +26,7 @@ t_pokeNest* pokenest_create(char* nombre,char *ruta)
 {
 	t_pokeNest *new_pokenest = malloc(sizeof(t_pokeNest));
 	new_pokenest->ruta_en_pokeDex = ruta;
+	new_pokenest->nombre = nombre;
 	new_pokenest->configuracion = config_create(obtener_ruta_especifica(ruta,"metadata", NULL));
 	new_pokenest->tipo = obtener_info_pokenest_tipo(new_pokenest->configuracion);
 	new_pokenest->posicion = obtener_info_pokenest_posicion(new_pokenest->configuracion);
@@ -41,16 +42,6 @@ t_posicion* posicion_create(int x, int y)
 	new_posicion->x = x;
 	new_posicion->y = y;
 	return new_posicion;
-}
-
-t_pokemon* pokemon_create(char *ruta)
-{
-	t_pokemon *new_pokemon = malloc(sizeof(t_pokemon));
-	t_config *config = config_create(ruta);
-	new_pokemon->nivel = config_get_int_value(config, "Nivel");
-	new_pokemon->ruta_en_pokedex = ruta;
-	return new_pokemon;
-	config_destroy(config);
 }
 
 t_mapa* mapa_create(char *nombre, char *rutaPokedex)
@@ -194,17 +185,15 @@ t_queue* obtener_info_pokenest_pokemones(char *nombrePokenest, char *ruta_final,
 {
 	t_queue *new_cola_pokemones = queue_create();
 	t_list *lista_directorios = nombre_de_archivos_del_directorio(ruta_final);
-	foreach_pokenest(lista_directorios, new_cola_pokemones, ruta_final, identificador);
+	foreach_pokenest(lista_directorios, new_cola_pokemones, ruta_final, nombrePokenest);
 	list_clean(lista_directorios);
 	return new_cola_pokemones;
-	free(ruta_final);
 }
 
-void foreach_pokenest(void *lista_origen,void *lista_destino, void *ruta, void *identificador)
+void foreach_pokenest(void *lista_origen,void *lista_destino, void *ruta, void *nombre_pokenest)
 {
 	t_list *lista_pokemones_a_modelar = (t_list*)lista_origen;
 	t_queue *cola_pokemons_a_devolver = (t_queue*)lista_destino;
-	char *identificador_pokenest = (char*) identificador;
 
 	int tamanio = list_size(lista_pokemones_a_modelar);
 	int i;
@@ -214,13 +203,32 @@ void foreach_pokenest(void *lista_origen,void *lista_destino, void *ruta, void *
 		string_append(&ruta_final, (char*) ruta);
 		char *elemento =list_get(lista_pokemones_a_modelar, i);
 		ruta_final = obtener_ruta_especifica(ruta_final, elemento, NULL);
-		t_pokemon *pokemon_new = pokemon_create(ruta_final);
-		pokemon_new->identificador_pokenest = identificador_pokenest;
-		queue_push(cola_pokemons_a_devolver, pokemon_new);
+		queue_push(cola_pokemons_a_devolver, ruta_final);
 	}
 
 }
 
+char* obtener_id_ponekest(char *ruta_pokemon_determinado)
+{
+	char *id_pokenest = string_new();
+	char *aux = string_new();
+	char **por_separado = string_split(ruta_pokemon_determinado, "/");
+	int cantidad_de_elementos_en_hoja =0;
+	int i = 0;
+	while(por_separado[i] !=NULL)
+		{
+			cantidad_de_elementos_en_hoja++;
+			i++;
+		}
+	string_append(&aux, por_separado[cantidad_de_elementos_en_hoja-2]);
+	char *id = string_substring(aux, 0,1);
+	string_append(&id_pokenest,id);
+	free(aux);
+	free(por_separado);
+	free(id);
+	return id_pokenest;
+}
+/*---------------------------------FUNCIONES PARA MANEJO DE RUTAS----------------------------------------------------------*/
 
 char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_archivo, char *sub_directorio_o_nombre_archivo)
 {

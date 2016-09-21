@@ -56,13 +56,14 @@ t_ubicacion* ubicacion_create(int x, int y);
 t_config* configuracion_metadata_create(char *nombre, char *ruta);
 t_config* configuracion_metadata_mapa_create(char *nombre, char *ruta);
 t_entrenador* entrenador_create(char* nombre, char* ruta);
-t_mapa* mapa_create(char* nombre_mapa, char *ruta_pokedex);
+t_mapa* mapa_create(char* nombre_mapa, char *ruta_pokedex, t_entrenador *entrenador);
 
 /*--------------------------------------------OBTENCION DE DATOS---------------------------------------------------------------*/
 char* obtener_direccion_directorio_de_bill(char* ruta_pokedex, char* nombre);
 t_list* entrenador_hoja_de_viaje(t_config* configuracion);
 char** mapas_a_Recorrer(char *mapas_con_corchetes);
 t_list* foreach_hoja_de_viaje(char **hoja_de_viaje);
+t_list* asociar_objetivos_por_mapa(char *nombre_mapa, t_entrenador *entrenador);
 char* entrenador_simbolo(t_config* configuracion);
 int entrenador_vidas(t_config* configuracion);
 

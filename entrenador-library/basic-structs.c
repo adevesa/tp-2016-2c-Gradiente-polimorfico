@@ -38,18 +38,19 @@ t_entrenador* entrenador_create(char* nombre, char* ruta)
 t_ubicacion* ubicacion_create(int x, int y)
 {
 	t_ubicacion *new_ubi = malloc(sizeof(t_ubicacion));
-	new_ubi->x=0;
-	new_ubi->y=0;
+	new_ubi->x=x;
+	new_ubi->y=y;
 	return new_ubi;
 }
 
-t_mapa* mapa_create(char* nombre_mapa, char *ruta_pokedex)
+t_mapa* mapa_create(char* nombre_mapa, char *ruta_pokedex, t_entrenador *entrenador)
 {
 
 	t_config *config = configuracion_metadata_mapa_create(nombre_mapa, ruta_pokedex);
 	t_mapa *mapa_new = malloc(sizeof(t_mapa));
 	mapa_new->puerto = config_get_string_value(config, "Puerto");
 	mapa_new->ip = config_get_string_value(config, "IP");
+	mapa_new->objetivos = asociar_objetivos_por_mapa(nombre_mapa,entrenador);
 	return mapa_new;
 	config_destroy(config);
 }
@@ -112,6 +113,18 @@ t_list* foreach_hoja_de_viaje(char **hoja_de_viaje)
 	{
 		list_add(lista, hoja_de_viaje[i]);
 	}
+	return lista;
+}
+
+t_list* asociar_objetivos_por_mapa(char *nombre_mapa, t_entrenador *entrenador)
+{
+	char *objetivo_especifico = string_new();
+	string_append(&objetivo_especifico,"obj[");
+	string_append(&objetivo_especifico,nombre_mapa);
+	string_append(&objetivo_especifico, "]");
+	char *objetivos = config_get_string_value(entrenador->configuracion, objetivo_especifico);
+	char **objetivos_por_separado = mapas_a_Recorrer(objetivos);
+	t_list *lista = foreach_hoja_de_viaje(objetivos_por_separado);
 	return lista;
 }
 

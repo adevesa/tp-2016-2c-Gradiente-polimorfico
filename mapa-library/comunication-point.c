@@ -8,33 +8,33 @@
 #include "comunication-point.h"
 extern t_mapa *mapa;
 extern t_mapa *mapa;
-extern sem_t semaforo_entrenadores_listos;
 extern sem_t semaforo_hay_algun_entrenador_listo;
 extern pthread_mutex_t mutex_manipular_cola_nuevos;
+int se_termino_la_conexion = 0;
+extern t_log *informe_cola_nuevos;
 
 /*--------------------------------------------EXECUTE-----------------------------------------------------*/
 void* ejecutar_servidor(void *argumento)
 {
 	t_info_socket *info_sock = (t_info_socket*) argumento;
-	ejecutar_hilo_socket(info_sock->puerto, info_sock->ip);
-}
+	//ejecutar_hilo_socket(info_sock->puerto, info_sock->ip);
 
-
-void ejecutar_hilo_socket(int puerto, char *ip)
-{
-
-	t_server_pthread *server_pthread = server_pthread_create(puerto,ip);
+	t_server_pthread *server_pthread = server_pthread_create(info_sock->puerto,info_sock->ip);
 	server_pthread_escucha(server_pthread);
-
 	int se_puede_ejecutar = 1;
-	while(se_puede_ejecutar)
-	{
-		int conexion = conexion_create(server_pthread);
-		pthread_conexion_create(&conexion);
-	}
-}
 
-int se_termino_la_conexion = 0;
+	while(se_puede_ejecutar > 0)
+	{
+		int conexion = server_pthread_acepta_conexion_cliente(server_pthread);
+		if(conexion == SERVER_DESCONECTADO)
+		{
+			se_puede_ejecutar = 0;
+		}
+		else {pthread_conexion_create(&conexion);}
+	}
+
+	pthread_exit(NULL);
+}
 
 /*--------------------------------------------CREATES-----------------------------------------------------*/
 
@@ -60,18 +60,17 @@ t_server_pthread* server_pthread_create(int puerto, char *ip)
 		return new_server;
 }
 
-
-int conexion_create(t_server_pthread *server)
-{
-	int cliente = server_pthread_acepta_conexion_cliente(server);
-	return cliente;
-}
-
-
 void pthread_conexion_create(int *conexion)
 {
+	pthread_attr_t attr;
 	pthread_t thread;
-	pthread_create(&thread,NULL,server_pthread_atender_cliente,(void*)conexion);
+
+	pthread_attr_init(&attr);
+	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+
+	pthread_create(&thread,&attr,server_pthread_atender_cliente,(void*)conexion);
+
+	pthread_attr_destroy(&attr);
 
 }
 
@@ -83,7 +82,6 @@ t_arg_pthread* pthread_arg_create(int *conexion, t_list *lista_nuevos_entrenador
 	return new_arg;
 }
 
-
 /*--------------------------------------------PINCIPALES-----------------------------------------------------*/
 
 int server_pthread_acepta_conexion_cliente(t_server_pthread *server)
@@ -93,8 +91,6 @@ int server_pthread_acepta_conexion_cliente(t_server_pthread *server)
 	int cliente = accept(server->socket_asociado,(void*) &direccionCliente, &tamanioDireccion);
 	if(cliente <0)
 	{
-		perror("Error al intentar aceptar cliente");
-		close(cliente);
 		return 0;
 	}
 	return cliente;
@@ -104,19 +100,47 @@ int server_pthread_acepta_conexion_cliente(t_server_pthread *server)
 void* server_pthread_atender_cliente(void* argumento)
 {
 	int *conexion = (int*) argumento;
-	server_pthread_agrega_proceso_a_lista(conexion);
-	while(1)
-	{
-		//!mapa_decime_si_entrenador_finalizo_su_objetivo(*conexion)
-	}
+	sem_t semaforo_termina_proceso;
+	sem_init(&semaforo_termina_proceso,0,0);
+	server_pthread_agrega_proceso_a_lista(conexion,&semaforo_termina_proceso);
+	sem_wait(&semaforo_termina_proceso);
 	pthread_exit(NULL);
 }
+
+
+void server_pthread_agrega_proceso_a_lista(int *socket_cliente, sem_t *semaforo_finalizacion)
+{
+	t_entrenador_nuevo *entrenador = malloc(sizeof(t_entrenador_nuevo));
+	entrenador->id_proceso = (int)process_get_thread_id();
+	entrenador->socket_entrenador = *socket_cliente;
+	entrenador->simbolo_identificador = recibir_mensaje(*socket_cliente,1);
+	entrenador->semaforo_finalizacion = semaforo_finalizacion;
+
+	pthread_mutex_lock(&mutex_manipular_cola_nuevos);
+	list_add(mapa->entrenadores->lista_entrenadores_a_planificar,entrenador);
+	pthread_mutex_unlock(&mutex_manipular_cola_nuevos);
+
+	sem_post(&semaforo_hay_algun_entrenador_listo);
+
+	char *mensaje_A_loggear = string_new();
+	string_append(&mensaje_A_loggear, "Nuevo entrenador identificador con el simbolo ");
+	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
+	string_append(&mensaje_A_loggear, " y por el socket ");
+	string_append(&mensaje_A_loggear,string_itoa(entrenador->socket_entrenador));
+	log_info(informe_cola_nuevos, mensaje_A_loggear);
+	free(mensaje_A_loggear);
+}
+
+
+
+
+
+
 
 /*-------------------------------------ENVIO DE MENSAJES A ENTRENADORES--------------------------------------------*/
 void enviar_mensaje(int socket, char *mensaje)
 {
 	send(socket, mensaje, strlen(mensaje),0);
-	//free(mensaje);
 }
 
 /*-------------------------------------RECEPCION DE MENSAJES DE ENTRENADORES--------------------------------------------*/
@@ -146,11 +170,8 @@ char* recibir_mensaje_especifico(int socket)
 
 	string_trim_left(&solo_tamanio[0]);
 	int tamanio_del_mensaje = atoi(solo_tamanio[0]);
-
-	char *payload_posta = malloc(tamanio_del_mensaje+1);
-
 	char *mensaje_final = recibir_mensaje(socket, tamanio_del_mensaje);
-	return payload_posta;
+	return mensaje_final;
 
 }
 
@@ -197,19 +218,6 @@ void server_pthread_cerra_cliente(int cliente)
 {
 	close(cliente);
 	se_termino_la_conexion = 1;
-}
-
-
-void server_pthread_agrega_proceso_a_lista(int *socket_cliente)
-{
-	pthread_mutex_lock(&mutex_manipular_cola_nuevos);
-	t_entrenador_nuevo *entrenador = malloc(sizeof(t_entrenador_nuevo));
-	entrenador->id_proceso = (int)process_get_thread_id();
-	entrenador->socket_entrenador = *socket_cliente;
-	entrenador->simbolo_identificador = recibir_mensaje(*socket_cliente,1);
-	list_add(mapa->entrenadores->lista_entrenadores_a_planificar,entrenador);
-	pthread_mutex_unlock(&mutex_manipular_cola_nuevos);
-	sem_post(&semaforo_hay_algun_entrenador_listo);
 }
 
 

@@ -17,6 +17,7 @@
 #include <commons/string.h>
 #include "string.h"
 #include <dirent.h>
+#include "semaphore.h"
 
 /* ----------------------------------------STRUCTS----------------------------------------------------------------*/
 typedef struct posicion
@@ -25,24 +26,18 @@ typedef struct posicion
 	int y;
 }t_posicion;
 
-
 typedef struct entrenador_nuevo
 {
 	int id_proceso;
 	int socket_entrenador;
 	char *simbolo_identificador;
+	sem_t *semaforo_finalizacion;
 }t_entrenador_nuevo;
-
-typedef struct pokemon
-{
-	int nivel;
-	char *ruta_en_pokedex;
-	char *identificador_pokenest;
-}t_pokemon;
 
 typedef struct pokeNest
 {
 	char *tipo;
+	char *nombre;
 	char *ruta_en_pokeDex;
 	t_posicion *posicion;
 	t_config *configuracion;
@@ -56,7 +51,7 @@ typedef struct entrenador
 	int id_proceso;
 	int socket_entrenador;
 	t_posicion *posicion_actual;
-	t_pokeNest *pokenest_objetivo;
+	char *pokenest_objetivo;
 	char *simbolo_identificador;
 	int tiene_objetivo;
 	int distancia_hasta_objetivo;
@@ -65,6 +60,7 @@ typedef struct entrenador
 	int estado_anterior; //<-- será 1 = listo, 0 = bloquedo
 	int tiempo_consumido;
 	t_list *pokemones_capturados;
+	sem_t *semaforo_finalizacon;
 }t_entrenador;
 
 typedef struct controllers
@@ -112,7 +108,6 @@ t_config* configuracion_metadata_create(char *nombre, char *ruta);
 
 t_pokeNest* pokenest_create(char *nombre, char *ruta);
 t_posicion* posicion_create(int x, int y);
-t_pokemon* pokemon_create(char *ruta);
 
 /*--------------------------------FUNCIONES PARA OBTENER DATOS BASICOS DE UN MAPA-----------------------------------*/
 
@@ -130,5 +125,6 @@ t_posicion* obtener_info_pokenest_posicion(t_config *configuracion);
 char* obtener_info_pokenest_id(t_config *configuracion);
 t_queue* obtener_info_pokenest_pokemones(char *nombrePokenest, char *ruta, char *identificador);
 void foreach_pokenest(void *lista_origen,void *lista_destino, void *ruta, void *identificador);
+char* obtener_id_ponekest(char *ruta_pokemon_determinado);
 
 #endif /* MAPA_MAPA_COMMONS_BASIC_STRUCTS_H_ */

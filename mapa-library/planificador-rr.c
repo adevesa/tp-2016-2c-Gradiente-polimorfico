@@ -7,13 +7,13 @@
 #include "planificador-rr.h"
 
 t_planificador_rr *planificador;
-extern sem_t semaforo_hay_algun_entrenador_listo;
 extern sem_t semaforo_entrenadores_listos;
+extern t_log *informe_planificador;
 
-pthread_t thread;
 /*-----------------------------------EXECUTE PLANIFICADOR RR---------------------------------------------------------*/
 void* ejecutar_planificador_rr(void* arg)
 {
+	informe_planificador = log_create("Informe proceso planificador","PLANIFICADOR RR",0,LOG_LEVEL_INFO);
 	planificador = planificador_rr_create();
 	planificador_rr_organiza_entrenadores();
 	pthread_exit(NULL);
@@ -33,7 +33,8 @@ int quamtum_se_termino(int q)
 
 void planificador_rr_organiza_entrenadores()
 {
-	pthread_create(&thread,NULL, planificador_encola_nuevos_entrenadores,NULL);
+
+	planificador_inicia_encolacion_nuevos_entrenadores();
 	while(mapa_decime_si_planificador_es_rr())
 	{
 		if(queue_is_empty(planificador->listas_y_colas->cola_entrenadores_listos))
@@ -60,6 +61,7 @@ void planificador_rr_es_el_turno_de(t_entrenador *entrenador_listo, int *quamtum
 			planificador_rr_dale_nuevo_turno_a_entrenador(entrenador_listo,quamtum);
 		}
 	}
+	planificador_volve_a_encolar_a_listo_si_es_necesario(entrenador_listo);
 }
 
 void planificador_rr_dale_nuevo_turno_a_entrenador(t_entrenador *entrenador_listo, int *quamtum_restante)
@@ -96,7 +98,7 @@ void planificador_rr_volve_a_bloquear_a_entrenador_si_es_necesario(t_entrenador 
 {
 	if(mapa_decime_si_hay_pokemones_en_pokenest(entrenador->pokenest_objetivo))
 	{
-		enviar_mensaje_a_entrenador(entrenador, OTORGAR_POKEMON,mapa_dame_pokemon_de_pokenest(entrenador->pokenest_objetivo)->ruta_en_pokedex);
+		enviar_mensaje_a_entrenador(entrenador, OTORGAR_POKEMON,mapa_dame_pokemon_de_pokenest(entrenador->pokenest_objetivo));
 		quamtum_disminuite(quamtum);
 	}
 	else

@@ -38,7 +38,7 @@ void entrenador_recorre_hoja_de_viaje()
 
 void entrenador_busca_mapa(int index)
 {
-	entrenador->mapa_actual = mapa_create(list_get(entrenador->hoja_de_viaje, index), entrenador->ruta_pokedex);
+	entrenador->mapa_actual = mapa_create(list_get(entrenador->hoja_de_viaje, index), entrenador->ruta_pokedex, entrenador);
 }
 
 /*--------------------------------------------LOGICA DE CUMPLIR LOS OBJETIVOS DE UN MAPA---------------------------------*/
@@ -71,8 +71,12 @@ void entrenador_pedi_ubicacion_pokenest(int indice_objetivo)
 {
 	char *identificador_pokenest =list_get(entrenador->mapa_actual->objetivos,indice_objetivo);
 	enviar_mensaje_a_mapa(entrenador->mapa_actual,SOLICITAR_COORDENADAS_POKENEST ,identificador_pokenest);
-	t_ubicacion *ubicacion_pokenest = desarmar_coordenada(escuchar_mensaje_mapa(entrenador->mapa_actual, SOLICITAR_COORDENADAS_POKENEST));
-	entrenador->pokenest = ubicacion_pokenest;
+	if(string_equals_ignore_case(escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_DA_TURNO), "ur;"))
+	{
+		char *coordenada = escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_DA_COORDENADAS_POKENEST);
+		t_ubicacion *ubicacion_pokenest = desarmar_coordenada(coordenada);
+		entrenador->pokenest = ubicacion_pokenest;
+	}
 }
 
 /*--------------------------------------------LOGICA DE CAMINAR HACIA POKENEST--------------------------------*/
@@ -83,6 +87,7 @@ void entrenador_cumpli_objetivo(int indice_obejtivo)
 		entrenador_espera_turno();
 		sem_wait(&turno_entrenador);
 		entrenador_camina_hacia_destino();
+		entrenador_informa_movimiento();
 	}
 	entrenador_espera_turno();
 	sem_wait(&turno_entrenador);
@@ -90,6 +95,28 @@ void entrenador_cumpli_objetivo(int indice_obejtivo)
 }
 
 /*--------------------------------------------LOGICA DEL MOVIMIENTO DEL ENTRENADOR---------------------------------*/
+void entrenador_camina_hacia_destino()
+{
+	if(entrenador_llego_a_posicion_y())
+	{
+		entrenador_movete_en_x();
+
+	}
+	else
+	{
+		if(entrenador_llego_a_posicion_x())
+		{
+			entrenador_movete_en_y();
+		}
+		else
+		{
+			entrenador_movete_alternado();
+		}
+	}
+
+}
+
+
 int entrenador_llego_a_destino()
 {
 	return ubicacion_coincide(entrenador->ubicacion, entrenador->pokenest);
@@ -122,25 +149,6 @@ int ubicacion_coincide(t_ubicacion *ubicacion1,t_ubicacion *ubicacion2)
 	else {return 0; }
 }
 
-void entrenador_camina_hacia_destino()
-{
-	if(entrenador_llego_a_posicion_y())
-	{
-		entrenador_movete_en_x();
-		entrenador_informa_movimiento();
-	}
-	if(entrenador_llego_a_posicion_x())
-	{
-		entrenador_movete_en_y();
-		entrenador_informa_movimiento();
-	}
-	else
-	{
-		entrenador_movete_alternado();
-		entrenador_informa_movimiento();
-	}
-}
-//PREGUNTAR SI LAS POKENEST SIEMPRE ESTARAN EN PRIMER CUADRANTE
 void entrenador_movete_en_x()
 {
 	entrenador->ubicacion->x++;
@@ -208,7 +216,7 @@ void entrenador_recibi_y_copia_pokemon()
 	if(MAPA_ME_DA_POKEMON == mapa_me_dice(solicitud))
 	{
 		char *pokemon = escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_DA_POKEMON);
-		copiar(entrenador->directorio_de_bill, pokemon);
+		copiar(pokemon,entrenador->directorio_de_bill);
 	}
 }
 
@@ -232,7 +240,7 @@ void entrenador_espera_a_que_mapa_te_desbloquee()
 	char *bloq =escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_BLOQUEA);
 	if(MAPA_ME_DESBLOQUEA == mapa_me_dice(bloq))
 		{
-			sem_post(&bloqueado);
+			sem_post(&desbloqueado);
 		}
 }
 /*------------------------------------------LOGICA DE TERMINAR EN EL MAPA------------------------------------*/

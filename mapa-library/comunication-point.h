@@ -12,9 +12,11 @@
 #include <unistd.h>
 #include <netinet/in.h>
 #include <commons/process.h>
+#include <commons/log.h>
 #include "map-commons.h"
+#include "semaphore.h"
 
-
+#define SERVER_DESCONECTADO -1
 /* ----------------------------------------STRUCTS---------------------------------------------*/
 typedef struct sockaddr_in address_config_in;
 
@@ -50,7 +52,6 @@ void ejecutar_hilo_socket(int puerto,char *ip);
  * 			un struct de tipo t_server_pthread
  */
 t_server_pthread* server_pthread_create(int puerto,char *ip);
-int conexion_create(t_server_pthread *server);
 
 t_arg_pthread* pthread_arg_create(int *conexion, t_list *lista_nuevos_entrenadores);
 
@@ -109,7 +110,7 @@ void server_pthread_escucha(t_server_pthread *server);
 
 void server_pthread_cerra_cliente(int cliente);
 
-void server_pthread_agrega_proceso_a_lista(int *socket_cliente);
+void server_pthread_agrega_proceso_a_lista(int *socket_cliente, sem_t *semaforo_finalizacion);
 
 
 

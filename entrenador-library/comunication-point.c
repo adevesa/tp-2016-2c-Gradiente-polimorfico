@@ -55,11 +55,8 @@ char* recibir_mensaje_especifico(int socket)
 
 	string_trim_left(&solo_tamanio[0]);
 	int tamanio_del_mensaje = atoi(solo_tamanio[0]);
-
-	char *payload_posta = malloc(tamanio_del_mensaje+1);
-
 	char *mensaje_final = recibir_mensaje(socket, tamanio_del_mensaje);
-	return payload_posta;
+	return mensaje_final;
 
 }
 

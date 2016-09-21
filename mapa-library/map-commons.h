@@ -17,11 +17,21 @@
 #include "basic-structs.h"
 #include "comunication-point.h"
 #include "semaphore.h"
+#include <pkmn/factory.h>
+#include <commons/log.h>
 
+#define BLOQUEADO 0
+#define LISTO 1
+#define MUERTO -1
+
+t_log *informe_cola_listos;
+t_log *informe_cola_bloqueados;
+t_log *informe_cola_nuevos;
+t_log *informe_mapa;
 
 void ejecutar_mapa(char *nombre, char *rutaPokedex);
 void iniciar_semaforos();
-/* ----------------	HEADERS FUNCIONES----------------------*/
+void iniciar_logs();
 
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
 
@@ -32,14 +42,14 @@ void planificador_create_segun_cual_seas();
 char* mapa_dame_medalla();
 t_pokeNest* mapa_buscame_pokenest(char *identificador_pokemon);
 t_posicion* mapa_dame_coordenadas_de_pokenest(char* identificador_pokemon);
-int mapa_decime_si_hay_pokemones_en_pokenest(t_pokeNest *pokenest);
-t_pokemon* mapa_dame_pokemon_de_pokenest(t_pokeNest *pokenest);
-void mapa_actualiza_pokemones_disponibles_de_pokenest(t_pokeNest *pokenest);
+int mapa_decime_si_hay_pokemones_en_pokenest(char *id_pokenest);
+char* mapa_dame_pokemon_de_pokenest(char *id_pokenest);
+void mapa_actualiza_pokemones_disponibles_de_pokenest(char *id_pokenest);
 int mapa_decime_si_entrenador_esta_bloqueado(t_entrenador *entrenador);
 int mapa_decime_si_entrenador_estaba_bloqueado(t_entrenador *entrenador);
 int mapa_decime_si_entrenador_esta_listo_pero_estaba_bloqueado(t_entrenador *entrenador);
 void mapa_cambiale_estado_a_entrenador(t_entrenador *entrenador, int estado_entrante, int estado_saliente);
-void mapa_devolve_pokemon_a_pokenest(t_pokemon *pokemon);
+void mapa_devolve_pokemon_a_pokenest(char *ruta_pokemon);
 int mapa_decime_si_planificador_es_rr();
 int mapa_decime_si_entrenador_finalizo_su_objetivo(int socket_entrenador);
 

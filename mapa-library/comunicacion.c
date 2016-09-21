@@ -33,20 +33,13 @@ void enviar_mensaje_a_entrenador(t_entrenador *entrenador, int header, char *pay
 {
 	switch(header)
 	{
-		case(OTORGAR_TURNO):
-			{
-				//char *turno = string_new();
-				//string_append(&turno,"tr;");
-				enviar_mensaje(entrenador->socket_entrenador, "tr;");
-				//free(turno);
-
-			} break;
-		case(OTORGAR_COORDENADAS_POKENEST): enviar_mensaje(entrenador->socket_entrenador, armar_mensaje("ur;",payload)); break;
+		case(OTORGAR_TURNO):enviar_mensaje(entrenador->socket_entrenador, "tr;"); break;
+		case(OTORGAR_COORDENADAS_POKENEST): enviar_mensaje(entrenador->socket_entrenador, armar_mensaje("ur",payload)); break;
 		case(OTORGAR_MEDALLA_DEL_MAPA): otorgar_ruta_medalla_a_entrenador(entrenador->socket_entrenador, mapa_dame_medalla()); break;
 		case(OTORGAR_POKEMON): dar_pokemon_a_entrenador(entrenador, payload);break;
 		case(AVISAR_BLOQUEO_A_ENTRENADOR): enviar_mensaje(entrenador->socket_entrenador, "bq;");  break;
 		case(AVISAR_DESBLOQUEO_A_ENTRENADOR): enviar_mensaje(entrenador->socket_entrenador,"fb;"); break;
-		default: enviar_mensaje(entrenador->socket_entrenador, "fb;");;
+		default: ;
 	}
 }
 
@@ -72,7 +65,7 @@ char* armar_mensaje(char *header, char *payload)
 	{
 		if(tamanio_payload < 10)
 		{
-			char *tamanio_payload_a_enviar = string_repeat('0',2);
+			char *tamanio_payload_a_enviar = string_repeat(' ',2);
 			string_append(&tamanio_payload_a_enviar, string_itoa(tamanio_payload));
 			string_append(&mensaje, tamanio_payload_a_enviar);
 			string_append(&mensaje,";");
@@ -81,7 +74,7 @@ char* armar_mensaje(char *header, char *payload)
 		}
 		else
 		{
-			char *tamanio_payload_a_enviar = string_repeat('0',1);
+			char *tamanio_payload_a_enviar = string_repeat(' ',1);
 			string_append(&tamanio_payload_a_enviar, string_itoa(tamanio_payload));
 			string_append(&mensaje, tamanio_payload_a_enviar);
 			string_append(&mensaje,";");
@@ -101,15 +94,16 @@ char* armar_mensaje(char *header, char *payload)
 
 void dar_pokemon_a_entrenador(t_entrenador *entrenador, char *ruta_pokemon)
 {
-	enviar_mensaje_a_entrenador(entrenador, AVISAR_DESBLOQUEO_A_ENTRENADOR, NULL);
 	char *mensaje = armar_mensaje("sr",ruta_pokemon);
 	enviar_mensaje(entrenador->socket_entrenador, mensaje);
+	free(mensaje);
 }
 
 void otorgar_ruta_medalla_a_entrenador(int entrenador, char *rutaMedalla)
 {
 	char *mensaje = armar_mensaje("mr", rutaMedalla);
 	enviar_mensaje(entrenador, mensaje);
+	free(mensaje);
 }
 
 char* armar_coordenada(int x, int y)
@@ -120,17 +114,21 @@ char* armar_coordenada(int x, int y)
 	int longitud_eje_y = strlen(coordenada_y);
 	if(longitud_eje_x < (MAX_BYTES_COORDENADA))
 	{
-		char *nueva_coordenada_x = string_repeat('0', MAX_BYTES_COORDENADA - longitud_eje_x);
+		char *nueva_coordenada_x = string_repeat(' ', MAX_BYTES_COORDENADA - longitud_eje_x);
 		string_append(&nueva_coordenada_x, coordenada_x);
 		if(longitud_eje_y < (MAX_BYTES_COORDENADA))
 		{
-			char *nueva_coordenada_y = string_repeat('0', (MAX_BYTES_COORDENADA - longitud_eje_y));
+			char *nueva_coordenada_y = string_repeat(' ', (MAX_BYTES_COORDENADA - longitud_eje_y));
 			string_append(&nueva_coordenada_y, coordenada_y);
 			char *coordenada_final = string_new();
 			string_append(&coordenada_final, nueva_coordenada_x);
 			string_append(&coordenada_final, ";");
 			string_append(&coordenada_final, nueva_coordenada_y);
 			return coordenada_final;
+			free(coordenada_x);
+			free(coordenada_y);
+			free(nueva_coordenada_x);
+			free(nueva_coordenada_y);
 		}
 		else
 		{
@@ -140,6 +138,9 @@ char* armar_coordenada(int x, int y)
 			string_append(&coordenada_final, ";");
 			string_append(&coordenada_final,coordenada_y);
 			return coordenada_final;
+			free(coordenada_x);
+			free(coordenada_y);
+			free(nueva_coordenada_x);
 		}
 
 	}
@@ -148,13 +149,16 @@ char* armar_coordenada(int x, int y)
 		string_append(&coordenada_x, coordenada_x);
 				if(longitud_eje_y < (MAX_BYTES_COORDENADA))
 				{
-					char *nueva_coordenada_y = string_repeat('0', (MAX_BYTES_COORDENADA - longitud_eje_y));
+					char *nueva_coordenada_y = string_repeat(' ', (MAX_BYTES_COORDENADA - longitud_eje_y));
 					string_append(&nueva_coordenada_y, coordenada_y);
 					char *coordenada_final = string_new();
 					string_append(&coordenada_final,coordenada_x);
 					string_append(&coordenada_final, ";");
 					string_append(&coordenada_final, nueva_coordenada_y);
 					return coordenada_final;
+					free(coordenada_x);
+					free(coordenada_y);
+					free(nueva_coordenada_y);
 				}
 				else
 				{
@@ -164,6 +168,8 @@ char* armar_coordenada(int x, int y)
 					string_append(&coordenada_final, ";");
 					string_append(&coordenada_final,coordenada_y);
 					return coordenada_final;
+					free(coordenada_x);
+					free(coordenada_y);
 				}
 	}
 
@@ -173,7 +179,7 @@ t_posicion* desarmar_coordenada(char *coordenada)
 {
 	char **por_separado = string_split(coordenada, ";");
 	string_trim_left(&por_separado[0]);
-	string_trim_right(&por_separado[1]);
+	string_trim_left(&por_separado[1]);
 	return (posicion_create(atoi(por_separado[0]),atoi(por_separado[1])));
 
 }

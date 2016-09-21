@@ -6,7 +6,7 @@ planificador-rr.d: ../planificador-rr.c ../planificador-rr.h \
  /home/utnso/workspace/nivel-gui/nivel-gui/nivel.h ../planificador.h \
  /home/utnso/workspace/commons/commons/collections/queue.h \
  /home/utnso/workspace/commons/commons/collections/list.h \
- ../basic-structs.h \
+ /home/utnso/workspace/commons/commons/log.h ../basic-structs.h \
  /home/utnso/workspace/commons/commons/collections/dictionary.h \
  /home/utnso/workspace/commons/commons/config.h \
  /home/utnso/workspace/commons/commons/collections/dictionary.h \
@@ -33,6 +33,8 @@ planificador-rr.d: ../planificador-rr.c ../planificador-rr.h \
 /home/utnso/workspace/commons/commons/collections/queue.h:
 
 /home/utnso/workspace/commons/commons/collections/list.h:
+
+/home/utnso/workspace/commons/commons/log.h:
 
 ../basic-structs.h:
 
