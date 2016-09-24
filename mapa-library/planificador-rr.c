@@ -43,7 +43,10 @@ void planificador_rr_organiza_entrenadores()
 		}
 		t_entrenador *entrenador_listo = planificador_pop_entrenador_listo(planificador);
 		int quamtum_restante = planificador->quantum;
+		int estado_anterior = entrenador_listo->estado;
+		mapa_cambiale_estado_a_entrenador(entrenador_listo, EXECUTE, estado_anterior);
 		planificador_rr_es_el_turno_de(entrenador_listo, &quamtum_restante);
+		planificador_volve_a_encolar_a_listo_si_es_necesario(entrenador_listo);
 		planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
 	}
 }
@@ -55,13 +58,14 @@ void planificador_rr_es_el_turno_de(t_entrenador *entrenador_listo, int *quamtum
 		if(mapa_decime_si_entrenador_esta_listo_pero_estaba_bloqueado(entrenador_listo))
 		{
 			planificador_rr_volve_a_bloquear_a_entrenador_si_es_necesario(entrenador_listo, quamtum);
+			planificador_rr_dale_nuevo_turno_a_entrenador(entrenador_listo,quamtum);
 		}
 		else
 		{
 			planificador_rr_dale_nuevo_turno_a_entrenador(entrenador_listo,quamtum);
 		}
 	}
-	planificador_volve_a_encolar_a_listo_si_es_necesario(entrenador_listo);
+
 }
 
 void planificador_rr_dale_nuevo_turno_a_entrenador(t_entrenador *entrenador_listo, int *quamtum_restante)
@@ -83,7 +87,11 @@ void planificador_rr_dale_nuevo_turno_a_entrenador(t_entrenador *entrenador_list
 		case(ENTRENADOR_QUIERE_CAPTURAR_POKEMON):
 			{
 				planificador_entrenador_quiere_capturar_pokemon(entrenador_listo);
-				quamtum_disminuite(quamtum_restante);
+				if(entrenador_listo->estado == BLOQUEADO)
+				{
+					quamtum_restante = 0;
+				}
+				else { quamtum_disminuite(quamtum_restante); }
 			} break;
 		case(ENTRENADOR_FINALIZO_OBJETIVOS):
 			{
@@ -105,6 +113,8 @@ void planificador_rr_volve_a_bloquear_a_entrenador_si_es_necesario(t_entrenador 
 	{
 		mapa_cambiale_estado_a_entrenador(entrenador,BLOQUEADO,LISTO);
 		planificador_push_entrenador_a_bloqueado(entrenador);
+		int cero = 0;
+		quamtum = &cero;
 	}
 
 }

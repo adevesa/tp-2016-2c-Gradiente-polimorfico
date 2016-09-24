@@ -15,7 +15,7 @@
 #include "comunicacion.h"
 #include "basic-structs.h"
 
-
+#define EXECUTE 2
 #define LISTO 1
 #define BLOQUEADO 0
 #define MUERTO -1

@@ -11,13 +11,11 @@ extern t_mapa *mapa;
 extern sem_t semaforo_hay_algun_entrenador_listo;
 extern pthread_mutex_t mutex_manipular_cola_nuevos;
 int se_termino_la_conexion = 0;
-extern t_log *informe_cola_nuevos;
 
 /*--------------------------------------------EXECUTE-----------------------------------------------------*/
 void* ejecutar_servidor(void *argumento)
 {
 	t_info_socket *info_sock = (t_info_socket*) argumento;
-	//ejecutar_hilo_socket(info_sock->puerto, info_sock->ip);
 
 	t_server_pthread *server_pthread = server_pthread_create(info_sock->puerto,info_sock->ip);
 	server_pthread_escucha(server_pthread);
@@ -103,7 +101,7 @@ void* server_pthread_atender_cliente(void* argumento)
 	sem_t semaforo_termina_proceso;
 	sem_init(&semaforo_termina_proceso,0,0);
 	server_pthread_agrega_proceso_a_lista(conexion,&semaforo_termina_proceso);
-	sem_wait(&semaforo_termina_proceso);
+	//sem_wait(&semaforo_termina_proceso);
 	pthread_exit(NULL);
 }
 
@@ -120,19 +118,20 @@ void server_pthread_agrega_proceso_a_lista(int *socket_cliente, sem_t *semaforo_
 	list_add(mapa->entrenadores->lista_entrenadores_a_planificar,entrenador);
 	pthread_mutex_unlock(&mutex_manipular_cola_nuevos);
 
+	//INICIO LOG
+		char *mensaje_A_loggear = string_new();
+		string_append(&mensaje_A_loggear, "PUSH (NUEVO) entrenador identificado con el simbolo ");
+		string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
+		string_append(&mensaje_A_loggear, " y por el socket ");
+		string_append(&mensaje_A_loggear,string_itoa(entrenador->socket_entrenador));
+		log_info(informe_planificador, mensaje_A_loggear);
+		free(mensaje_A_loggear);
+	//FIN LOG
+
 	sem_post(&semaforo_hay_algun_entrenador_listo);
 
-	char *mensaje_A_loggear = string_new();
-	string_append(&mensaje_A_loggear, "Nuevo entrenador identificador con el simbolo ");
-	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
-	string_append(&mensaje_A_loggear, " y por el socket ");
-	string_append(&mensaje_A_loggear,string_itoa(entrenador->socket_entrenador));
-	log_info(informe_cola_nuevos, mensaje_A_loggear);
-	free(mensaje_A_loggear);
+
 }
-
-
-
 
 
 
@@ -188,12 +187,10 @@ address_config_in* configurar_address(int puerto, char *ip)
 
 }
 
-
 void reutilizar_direccion(int valorVerdaderoso, int socket)
 {
 	setsockopt(socket,SOL_SOCKET,SO_REUSEADDR, &valorVerdaderoso, sizeof(valorVerdaderoso));
 }
-
 
 int server_pthread_asociate_a_puerto(int server, address_config_in *address)
 {
@@ -207,12 +204,10 @@ int server_pthread_asociate_a_puerto(int server, address_config_in *address)
 	return resultBind;
 }
 
-
 void server_pthread_escucha(t_server_pthread *server)
 {
 	listen(server->socket_asociado,server->backlog);
 }
-
 
 void server_pthread_cerra_cliente(int cliente)
 {

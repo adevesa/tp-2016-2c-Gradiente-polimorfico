@@ -8,8 +8,7 @@
 #ifndef MAPA_MAPA_COMMONS_MAP_COMMONS_H_
 #define MAPA_MAPA_COMMONS_MAP_COMMONS_H_
 
-//#include <stdio.h>
-//#include <stdlib.h>
+#include "unistd.h"
 #include <nivel.h>
 #include <tad_items.h>
 #include <pthread.h>

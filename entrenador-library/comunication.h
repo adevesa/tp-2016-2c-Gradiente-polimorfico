@@ -74,4 +74,8 @@ void eliminar(char* elemento);
 t_ubicacion* desarmar_coordenada(char *coordenada);
 char* armar_coordenada(int x, int y);
 
+int string_contais(char *palabra, char *conteiner);
+void string_replace(char *palabra, char *este_caracter,char *por_este);
+void string_path_replace_spaces(char *path, char *este_caracter, char *por_este);
+void free_string_array(char **path);
 #endif /* COMUNICATION_H_ */

@@ -151,6 +151,8 @@ char* armar_mensaje(char *header, char *payload)
 
 void copiar(char* origen, char* destino)
 {
+	string_path_replace_spaces(origen, " ", "\\");
+	string_path_replace_spaces(destino, " ","\\");
 	char* mensaje = string_new();
 	string_append(&mensaje, "cp ");
 	string_append(&mensaje, origen);
@@ -160,7 +162,8 @@ void copiar(char* origen, char* destino)
 	free(mensaje);
 }
 
-void eliminar(char* elemento){
+void eliminar(char* elemento)
+{
 		char* mensaje = string_new();
 		string_append(&mensaje, "rm ");
 		string_append(&mensaje, elemento);
@@ -232,13 +235,68 @@ t_ubicacion* desarmar_coordenada(char *coordenada)
 	string_trim_left(&por_separado[1]);
 	t_ubicacion *ubi = ubicacion_create(atoi(por_separado[0]),atoi(por_separado[1]));
 	return (ubi);
+	free_string_array(por_separado);
 
 }
 
+void string_replace(char *palabra, char *este_caracter,char *por_este)
+{
+	char **por_separado=string_split(palabra, este_caracter);
+	char *palabra_new= string_new();
+	int i = 0;
+	while(por_separado[i] !=NULL)
+	{
+		string_append(&palabra_new, por_separado[i]);
+		string_append(&palabra_new,por_este);
+		i++;
+	}
+	strcpy(palabra, palabra_new);
+	free_string_array(por_separado);
+	free(palabra_new);
+}
 
+int string_contais(char *palabra, char *conteiner)
+{
+	int i =0;
+	int esta_en_palabra =0;
+	while((palabra[i] != NULL) && !esta_en_palabra)
+	{
+		if(palabra[i] == conteiner[0])
+		{
+			esta_en_palabra = 1;
+		}
+	}
+	return esta_en_palabra;
+}
 
+void string_path_replace_spaces(char *path, char *este_caracter, char *por_este)
+{
+	char **por_separado = string_split(path,"/");
+	int i = 0;
+	char *aux = string_new();
+	while(por_separado[i] != NULL)
+	{
+		if(string_contais(por_separado[i],este_caracter))
+		{
+			string_replace(por_separado[i],este_caracter,por_este);
+		}
+		string_append(&aux, por_separado[i]);
+		i++;
+	}
+	strcpy(path, aux);
+	free(aux);
+	free_string_array(por_separado);
+}
 
-
+void free_string_array(char **path)
+{
+	int i =0;
+	while(path[i] != NULL)
+	{
+		free(path[i]);
+		i++;
+	}
+}
 
 
 
