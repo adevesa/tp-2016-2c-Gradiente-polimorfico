@@ -183,3 +183,5 @@ t_posicion* desarmar_coordenada(char *coordenada)
 	return (posicion_create(atoi(por_separado[0]),atoi(por_separado[1])));
 
 }
+
+

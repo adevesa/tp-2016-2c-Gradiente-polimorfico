@@ -239,54 +239,7 @@ t_ubicacion* desarmar_coordenada(char *coordenada)
 
 }
 
-void string_replace(char *palabra, char *este_caracter,char *por_este)
-{
-	char **por_separado=string_split(palabra, este_caracter);
-	char *palabra_new= string_new();
-	int i = 0;
-	while(por_separado[i] !=NULL)
-	{
-		string_append(&palabra_new, por_separado[i]);
-		string_append(&palabra_new,por_este);
-		i++;
-	}
-	strcpy(palabra, palabra_new);
-	free_string_array(por_separado);
-	free(palabra_new);
-}
-
-int string_contais(char *palabra, char *conteiner)
-{
-	int i =0;
-	int esta_en_palabra =0;
-	while((palabra[i] != NULL) && !esta_en_palabra)
-	{
-		if(palabra[i] == conteiner[0])
-		{
-			esta_en_palabra = 1;
-		}
-	}
-	return esta_en_palabra;
-}
-
-void string_path_replace_spaces(char *path, char *este_caracter, char *por_este)
-{
-	char **por_separado = string_split(path,"/");
-	int i = 0;
-	char *aux = string_new();
-	while(por_separado[i] != NULL)
-	{
-		if(string_contais(por_separado[i],este_caracter))
-		{
-			string_replace(por_separado[i],este_caracter,por_este);
-		}
-		string_append(&aux, por_separado[i]);
-		i++;
-	}
-	strcpy(path, aux);
-	free(aux);
-	free_string_array(por_separado);
-}
+/*---------------------------------------------MAS DE MANEJO DE STRINGS---------------------------------------------*/
 
 void free_string_array(char **path)
 {
@@ -298,5 +251,115 @@ void free_string_array(char **path)
 	}
 }
 
+int string_contains(char *palabra, char *conteiner)
+{
+	int i;
+	int esta_en_palabra =0;
+	int cantidad_letras = string_length(palabra);
+	for(i=0; i<cantidad_letras;i++)
+	{
+		if(palabra[i] == conteiner[0])
+		{
+			esta_en_palabra = 1;
+		}
+	}
+
+	return esta_en_palabra;
+}
+
+void string_replace(char *palabra, char *este_caracter,char *por_este)
+{
+	char **por_separado=string_split(palabra, este_caracter);
+	char *palabra_new= string_new();
+	int i = 0;
+	int cantidad_palabras_contenidas = 0;
+	while(por_separado[i] != NULL)
+	{
+		cantidad_palabras_contenidas++;
+		i++;
+	}
+
+	i = 0;
+	int numero_palabra = 0;
+	while(por_separado[i] !=NULL)
+	{
+
+		if(numero_palabra == (cantidad_palabras_contenidas-1) )
+		{
+			string_append(&palabra_new, por_separado[i]);
+		}
+		else
+		{
+			string_append(&palabra_new, por_separado[i]);
+			string_append(&palabra_new,por_este);
+		}
+		numero_palabra++;
+		i++;
+	}
+	strcpy(palabra, palabra_new);
+	free_string_array(por_separado);
+	free(palabra_new);
+}
+
+void string_path_replace_spaces(char *path, char *este_caracter, char *por_este)
+{
+
+		char **por_separado = string_split(path,"/");
+		int i = 0;
+		char *aux = string_new();
+		int cantidad_elementos = 0;
+		while(por_separado[i] != NULL)
+		{
+			cantidad_elementos++;
+			i++;
+		}
+		i=0;
+		while(por_separado[i] != NULL)
+		{
+			if( i == (cantidad_elementos -1))
+			{
+				if(string_ends_with(path, "/"))
+				{
+					if(string_contains(por_separado[i],este_caracter))
+					{
+						string_replace(por_separado[i],este_caracter,por_este);
+						string_append(&aux, por_separado[i]);
+						string_append(&aux,"/");
+					}
+					else
+					{
+						string_append(&aux, por_separado[i]);
+					}
+				}
+				else
+				{
+					if(string_contains(por_separado[i],este_caracter))
+					{
+						string_replace(por_separado[i],este_caracter,por_este);
+						string_append(&aux, por_separado[i]);
+					}
+					else
+					{
+						string_append(&aux, por_separado[i]);
+					}
+				}
+			}
+			else
+			{
+				if(string_contains(por_separado[i],este_caracter))
+				{
+					string_replace(por_separado[i],este_caracter,por_este);
+				}
+				string_append(&aux, por_separado[i]);
+				string_append(&aux,"/");
+
+			}
+			i++;
+		}
+		strcpy(path, aux);
+		free(aux);
+		free_string_array(por_separado);
+
+}
 
 

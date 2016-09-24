@@ -18,7 +18,6 @@
 #include "string.h"
 #include <dirent.h>
 #include "semaphore.h"
-
 /* ----------------------------------------STRUCTS----------------------------------------------------------------*/
 typedef struct posicion
 {
@@ -126,5 +125,11 @@ char* obtener_info_pokenest_id(t_config *configuracion);
 t_queue* obtener_info_pokenest_pokemones(char *nombrePokenest, char *ruta, char *identificador);
 void foreach_pokenest(void *lista_origen,void *lista_destino, void *ruta, void *identificador);
 char* obtener_id_ponekest(char *ruta_pokemon_determinado);
+
+
+void string_path_replace_spaces(char *path, char *este_caracter, char *por_este);
+void string_replace(char *palabra, char *este_caracter,char *por_este);
+int string_contains(char *palabra, char *conteiner);
+void free_string_array(char **path);
 
 #endif /* MAPA_MAPA_COMMONS_BASIC_STRUCTS_H_ */

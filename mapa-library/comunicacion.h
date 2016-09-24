@@ -52,7 +52,6 @@ t_posicion* desarmar_coordenada(char *coordenada);
 
 void dar_pokemon_a_entrenador(t_entrenador *entrenador,char *ruta_pokemon);
 
-
 void otorgar_ruta_medalla_a_entrenador(int entrenador, char *rutaMedalla);
 
 
