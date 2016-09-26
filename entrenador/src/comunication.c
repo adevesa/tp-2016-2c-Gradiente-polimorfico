@@ -77,6 +77,7 @@ void entrenador_dale_a_mapa_tu_simbolo()
 void solicitar_ubicacion_pokenest(t_mapa *mapa,char *pokemonBuscado)
 {
 	char *mensaje = armar_mensaje("up", pokemonBuscado,MAX_BYTES_TOTAL_A_ENVIAR);
+	string_trim_left(&mensaje);
 	enviar_mensaje(mapa->server, mensaje);
 }
 

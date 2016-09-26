@@ -28,28 +28,35 @@ char* recibir_mensaje_especifico(int socket)
 char* armar_mensaje(char *header, char *payload, int max_bytes)
 {
 	char *mensaje =string_new();
+	string_trim(&mensaje);
 	string_append(&mensaje,header);
 	string_append(&mensaje,";");
 	int tamanio_payload = strlen(payload);
+	char *tam_payload_char = string_itoa(tamanio_payload);
+	string_trim(&tam_payload_char);
 	if(tamanio_payload < max_bytes)
 	{
 		if(tamanio_payload < 10)
 		{
 			char *tamanio_payload_a_enviar = string_repeat(' ',2);
-			string_append(&tamanio_payload_a_enviar, string_itoa(tamanio_payload));
+			string_append(&tamanio_payload_a_enviar, tam_payload_char);
 			string_append(&mensaje, tamanio_payload_a_enviar);
 			string_append(&mensaje,";");
 			string_append(&mensaje,payload);
+			string_trim_left(&mensaje);
 			return mensaje;
+			free(tamanio_payload_a_enviar);
 		}
 		else
 		{
 			char *tamanio_payload_a_enviar = string_repeat(' ',1);
-			string_append(&tamanio_payload_a_enviar, string_itoa(tamanio_payload));
+			string_append(&tamanio_payload_a_enviar,tam_payload_char);
 			string_append(&mensaje, tamanio_payload_a_enviar);
 			string_append(&mensaje,";");
 			string_append(&mensaje,payload);
+			string_trim_left(&mensaje);
 			return mensaje;
+			free(tamanio_payload_a_enviar);
 		}
 
 	}
@@ -58,6 +65,7 @@ char* armar_mensaje(char *header, char *payload, int max_bytes)
 		string_append(&mensaje, string_itoa(max_bytes));
 		string_append(&mensaje,";");
 		string_append(&mensaje,payload);
+		string_trim_left(&mensaje);
 		return mensaje;
 	}
 }
@@ -66,6 +74,8 @@ char* armar_coordenada(int x, int y, int max_bytes)
 {
 	char *coordenada_x = string_itoa(x);
 	char *coordenada_y = string_itoa(y);
+	string_trim(&coordenada_x);
+	string_trim(&coordenada_y);
 	int longitud_eje_x = strlen(coordenada_x);
 	int longitud_eje_y = strlen(coordenada_y);
 	if(longitud_eje_x < (max_bytes))

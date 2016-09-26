@@ -94,7 +94,9 @@ void entrenador_recorre_hoja_de_viaje()
 
 void entrenador_busca_mapa(int index)
 {
-	entrenador->mapa_actual = mapa_create(list_get(entrenador->hoja_de_viaje, index), entrenador->ruta_pokedex, entrenador);
+	char *nombre_mapa = list_get(entrenador->hoja_de_viaje, index);
+	string_trim_left(&nombre_mapa);
+	entrenador->mapa_actual = mapa_create(nombre_mapa, entrenador->ruta_pokedex, entrenador);
 
 	//INICIO log
 	char *mensaje = string_new();
@@ -110,6 +112,7 @@ void entrenador_cumpli_objetivos_del_mapa()
 {
 	//INICIO log
 	char *mensaje = string_new();
+	string_trim(&mensaje);
 	string_append(&mensaje, "COMIENZO de cumplir objetivos en ");
 	string_append(&mensaje, entrenador->mapa_actual->nombre);
 	log_info(info_entrenador,mensaje);
@@ -139,6 +142,7 @@ void entrenador_espera_turno()
 	{
 		//INICIO log
 		char *mensaje = string_new();
+		string_trim(&mensaje);
 		string_append(&mensaje, entrenador->mapa_actual->nombre);
 		string_append(&mensaje, " me concede TURNO");
 		log_info(info_entrenador,mensaje);
@@ -152,6 +156,7 @@ void entrenador_espera_turno()
 void entrenador_pedi_ubicacion_pokenest(int indice_objetivo)
 {
 	char *identificador_pokenest =list_get(entrenador->mapa_actual->objetivos,indice_objetivo);
+	string_trim(&identificador_pokenest);
 	enviar_mensaje_a_mapa(entrenador->mapa_actual,SOLICITAR_COORDENADAS_POKENEST ,identificador_pokenest);
 	if(string_equals_ignore_case(escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_DA_TURNO), "ur;"))
 	{
@@ -161,6 +166,7 @@ void entrenador_pedi_ubicacion_pokenest(int indice_objetivo)
 
 		//INICIO log
 		char *mensaje = string_new();
+		string_trim(&mensaje);
 		string_append(&mensaje, entrenador->mapa_actual->nombre);
 		string_append(&mensaje, " me da COORDENADAS de pokenest ");
 		string_append(&mensaje, identificador_pokenest);
@@ -332,6 +338,7 @@ void entrenador_captura_pokemon(int indice_objetivo)
 {
 	//INICIO log
 	char *mensaje = string_new();
+	string_trim(&mensaje);
 	string_append(&mensaje, "Llegué a destino. Pediré CAPTURAR POKEMON");
 	log_info(info_entrenador,mensaje);
 	free(mensaje);
@@ -363,6 +370,7 @@ void entrenador_recibi_y_copia_pokemon()
 
 		//INICIO log
 		char *mensaje = string_new();
+		string_trim(&mensaje);
 		string_append(&mensaje, entrenador->mapa_actual->nombre);
 		string_append(&mensaje, " me dice que el pokemon está en: ");
 		string_append(&mensaje, pokemon);
@@ -374,9 +382,10 @@ void entrenador_recibi_y_copia_pokemon()
 
 		//INICIO log
 		char *mensaje_2 = string_new();
+		string_trim(&mensaje_2);
 		string_append(&mensaje_2, "Pokemon copiado a Dir de Bill");
 		log_info(info_entrenador,mensaje_2);
-		free(mensaje);
+		free(mensaje_2);
 		//FIN log
 	}
 }
@@ -394,6 +403,7 @@ void entrenador_espera_a_que_mapa_te_bloquee()
 	{
 		//INICIO log
 		char *mensaje = string_new();
+		string_trim(&mensaje);
 		string_append(&mensaje, entrenador->mapa_actual->nombre);
 		string_append(&mensaje, " me BLOQUEO");
 		log_info(info_entrenador,mensaje);
@@ -411,6 +421,7 @@ void entrenador_espera_a_que_mapa_te_desbloquee()
 		{
 			//INICIO log
 			char *mensaje = string_new();
+			string_trim(&mensaje);
 			string_append(&mensaje, entrenador->mapa_actual->nombre);
 			string_append(&mensaje, " me DESBLOQUEO");
 			log_info(info_entrenador,mensaje);

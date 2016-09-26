@@ -14,8 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "string.h"
-
+#include "../so-commons/string.h"
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>

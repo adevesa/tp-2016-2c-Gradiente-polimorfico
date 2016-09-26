@@ -12,10 +12,11 @@
 #include "nivel-gui/nivel.h"
 #include "nivel-gui/tad_items.h"
 #include <pthread.h>
+#include <so-commons/log.h>
+
 #include "planificador.h"
 #include "basic-structs.h"
 #include "semaphore.h"
-#include "commons/log.h"
 
 #define BLOQUEADO 0
 #define LISTO 1

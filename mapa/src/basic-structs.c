@@ -240,9 +240,14 @@ char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_arch
 	if(sub_directorio_o_nombre_archivo != NULL)
 	{	string_append(&ruta, "/");
 		string_append(&ruta,sub_directorio_o_nombre_archivo);
+		string_trim_left(&ruta);
 		return ruta;
 	}
-	else return ruta;
+	else
+		{
+			string_trim_left(&ruta);
+			return ruta;
+		}
 }
 
 t_list* nombre_de_archivos_del_directorio(char *ruta)

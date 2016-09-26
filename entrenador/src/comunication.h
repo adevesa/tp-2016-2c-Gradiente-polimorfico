@@ -8,10 +8,11 @@
 #ifndef COMUNICATION_H_
 #define COMUNICATION_H_
 
+#include <so-commons/log.h>
+
 #include "basic-structs.h"
 #include "socket/serializacion_mapa_entrenador.h"
 #include "socket/cliente.h"
-#include "commons/log.h"
 
 enum RESPUESTAS_DEL_MAPA
 {

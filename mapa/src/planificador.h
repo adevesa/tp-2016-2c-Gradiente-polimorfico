@@ -7,9 +7,7 @@
 
 #ifndef MAPA_MAPA_COMMONS_PLANIFICADOR_H_
 #define MAPA_MAPA_COMMONS_PLANIFICADOR_H_
-#include <commons/collections/queue.h>
-#include <commons/collections/list.h>
-#include <commons/log.h>
+#include <so-commons/log.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "map-commons.h"

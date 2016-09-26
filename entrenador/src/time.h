@@ -7,8 +7,8 @@
 
 #ifndef TIME_H_
 #define TIME_H_
-#include "commons/temporal.h"
-#include "commons/string.h"
+#include <so-commons/string.h>
+#include <so-commons/temporal.h>
 #include <stdlib.h>
 
 long de_hora_a_ms(int hora);

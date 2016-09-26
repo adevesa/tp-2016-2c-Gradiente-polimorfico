@@ -3,10 +3,10 @@ src/mapa.d: ../src/mapa.c ../src/map-commons.h ../src/nivel-gui/nivel.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/commons/collections/node.h \
  ../src/nivel-gui/tad_items.h ../src/nivel-gui/nivel.h \
  ../src/planificador.h \
- /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/commons/collections/queue.h \
- /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/commons/collections/list.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/commons/log.h \
  ../src/planificador-rr.h ../src/comunicacion.h ../src/basic-structs.h \
+ /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/commons/collections/queue.h \
+ /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/commons/collections/list.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/commons/collections/dictionary.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/commons/config.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/commons/collections/dictionary.h \
@@ -31,10 +31,6 @@ src/mapa.d: ../src/mapa.c ../src/map-commons.h ../src/nivel-gui/nivel.h \
 
 ../src/planificador.h:
 
-/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/commons/collections/queue.h:
-
-/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/commons/collections/list.h:
-
 /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/commons/log.h:
 
 ../src/planificador-rr.h:
@@ -42,6 +38,10 @@ src/mapa.d: ../src/mapa.c ../src/map-commons.h ../src/nivel-gui/nivel.h \
 ../src/comunicacion.h:
 
 ../src/basic-structs.h:
+
+/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/commons/collections/queue.h:
+
+/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/commons/collections/list.h:
 
 /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/commons/collections/dictionary.h:
 

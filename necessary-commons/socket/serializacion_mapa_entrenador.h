@@ -7,8 +7,8 @@
 
 #ifndef SERIALIZACION_MAPA_ENTRENADOR_H_
 #define SERIALIZACION_MAPA_ENTRENADOR_H_
+#include "../so-commons/string.h"
 #include "sockets-utils.h"
-#include "commons/string.h"
 
 char* recibir_mensaje_especifico(int socket);
 char* armar_mensaje(char *header, char *payload, int max_bytes);

@@ -22,7 +22,7 @@
   #include <stdint.h>
   #include <string.h>
   #include <ctype.h>
-  #include <commons/collections/dictionary.h>
+  #include <so-commons/collections/dictionary.h>
 
   //Tipos de datos
   typedef int t_level;

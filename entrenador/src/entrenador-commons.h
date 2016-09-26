@@ -7,12 +7,13 @@
 
 #ifndef ENTRENADOR_COMMONS_H_
 #define ENTRENADOR_COMMONS_H_
+#include <so-commons/log.h>
+
 #include "comunication.h"
 #include "basic-structs.h"
 #include "time.h"
 #include "semaphore.h"
 #include "pthread.h"
-#include "commons/log.h"
 
 t_log *info_entrenador;
 

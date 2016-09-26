@@ -14,6 +14,7 @@
 
 int main(int argc, char *argv[])
 {
-	ejecutar_mapa(argv[1], argv[2]);
+	ejecutar_mapa(argv[1],argv[2]);
 	return EXIT_SUCCESS;
 }
+

@@ -80,6 +80,7 @@ t_list* entrenador_hoja_de_viaje(t_config* configuracion)
 	char **mapas_a_recorrer = mapas_a_Recorrer(resultado);
 	t_list *hoja_de_viaje = foreach_hoja_de_viaje(mapas_a_recorrer);
 	return hoja_de_viaje;
+	free(resultado);
 }
 
 char** mapas_a_Recorrer(char *mapas_con_corchetes)
@@ -87,7 +88,7 @@ char** mapas_a_Recorrer(char *mapas_con_corchetes)
 	char **sin_corchete_izquierdo = string_split(mapas_con_corchetes, "[");
 	char *aux_sin_corchete_izquierdo = string_new();
 	string_append(&aux_sin_corchete_izquierdo, sin_corchete_izquierdo[0]);
-
+	string_trim_left(&aux_sin_corchete_izquierdo);
 
 	char **sin_corchete_derecho = string_split(aux_sin_corchete_izquierdo,"]");
 	char *aux_sin_corchete_derecho = string_new();
@@ -124,6 +125,7 @@ t_list* asociar_objetivos_por_mapa(char *nombre_mapa, t_entrenador *entrenador)
 	string_append(&objetivo_especifico,"obj[");
 	string_append(&objetivo_especifico,nombre_mapa);
 	string_append(&objetivo_especifico, "]");
+	string_trim_left(&objetivo_especifico);
 	char *objetivos = config_get_string_value(entrenador->configuracion, objetivo_especifico);
 	char **objetivos_por_separado = mapas_a_Recorrer(objetivos);
 	t_list *lista = foreach_hoja_de_viaje(objetivos_por_separado);
@@ -150,7 +152,12 @@ char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_arch
 	if(sub_directorio_o_nombre_archivo != NULL)
 	{	string_append(&ruta, "/");
 		string_append(&ruta,sub_directorio_o_nombre_archivo);
+		string_trim_left(&ruta);
 		return ruta;
 	}
-	else return ruta;
+	else
+		{
+			string_trim_left(&ruta);
+			return ruta;
+		}
 }

@@ -7,10 +7,7 @@
 
 #ifndef PLANIFICADOR_RR_H_
 #define PLANIFICADOR_RR_H_
-//#include <commons/collections/queue.h>
-//#include <commons/collections/list.h>
-//#include <stdio.h>
-//#include <stdlib.h>
+
 #include "map-commons.h"
 #include "comunicacion.h"
 #include "basic-structs.h"

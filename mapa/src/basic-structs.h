@@ -7,16 +7,17 @@
 
 #ifndef MAPA_MAPA_COMMONS_BASIC_STRUCTS_H_
 #define MAPA_MAPA_COMMONS_BASIC_STRUCTS_H_
-#include <commons/collections/list.h>
-#include <commons/collections/queue.h>
-#include <commons/collections/dictionary.h>
-#include <commons/config.h>
-#include <commons/txt.h>
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <commons/string.h>
 #include "string.h"
 #include <dirent.h>
+#include <so-commons/collections/dictionary.h>
+#include <so-commons/collections/list.h>
+#include <so-commons/collections/queue.h>
+#include <so-commons/config.h>
+#include <so-commons/string.h>
+#include <so-commons/txt.h>
 #include "semaphore.h"
 /* ----------------------------------------STRUCTS----------------------------------------------------------------*/
 typedef struct posicion

@@ -14,6 +14,8 @@ LIBRARIES :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 socket \
+so-commons \
+so-commons/collections \
 commons \
 commons/collections \
 

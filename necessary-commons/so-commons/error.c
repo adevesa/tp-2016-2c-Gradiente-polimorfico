@@ -13,41 +13,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "temporal.h"
-#include "error.h"
-#include "string.h"
 
+#include "../so-commons/error.h"
 #include <stdlib.h>
-#include <time.h>
+#include <stdarg.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <sys/timeb.h>
 #include <string.h>
 
-char *temporal_get_string_time() {
-	time_t log_time;
-	struct tm *log_tm;
-	struct timeb tmili;
-	char *str_time = string_duplicate("hh:mm:ss:mmmm");
+#include "../so-commons/string.h"
 
-	if ((log_time = time(NULL)) == -1) {
-		error_show("Error getting date!");
-		return 0;
-	}
 
-	log_tm = localtime(&log_time);
+void error_show(char *message, ...) {
+	va_list arguments;
+	va_start(arguments, message);
 
-	if (ftime(&tmili)) {
-		error_show("Error getting time!");
-		return 0;
-	}
+	char *error_message = string_duplicate("[[ERROR]]");
+	string_append(&error_message, message);
 
-	char *partial_time = string_duplicate("hh:mm:ss");
-	strftime(partial_time, 127, "%H:%M:%S", log_tm);
-	sprintf(str_time, "%s:%hu", partial_time, tmili.millitm);
-	free(partial_time);
+	vprintf(error_message, arguments);
 
-	//Adjust memory allocation
-	str_time = realloc(str_time, strlen(str_time) + 1);
-	return str_time;
+	free(error_message);
+	va_end(arguments);
 }

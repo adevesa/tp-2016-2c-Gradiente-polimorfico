@@ -15,8 +15,7 @@
  */
 
 
-#include "process.h"
-
+#include "../so-commons/process.h"
 #include <sys/types.h>
 #include <unistd.h>
 #include <sys/syscall.h>

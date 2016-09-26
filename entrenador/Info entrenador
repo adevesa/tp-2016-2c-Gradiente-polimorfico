@@ -1,0 +1,121 @@
+ [INFO] 12:41:01:462 Proceso entrenador/(4104:4104):   COMIENZO: 12:41:01:462
+ [INFO] 13:04:39:776 Proceso entrenador/(5853:5853):   COMIENZO: 13:04:39:776
+ [INFO] 13:05:21:426 Proceso entrenador/(5853:5853):  Entrenador creado con EXITO
+ [INFO] 13:05:24:555 Proceso entrenador/(5853:5853):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 13:07:56:409 Proceso entrenador/(5990:5990):   COMIENZO: 13:07:56:409
+ [INFO] 13:07:58:187 Proceso entrenador/(5990:5990):  Entrenador creado con EXITO
+ [INFO] 13:08:00:662 Proceso entrenador/(5990:5990):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 13:09:56:889 Proceso entrenador/(6097:6097):   COMIENZO: 13:09:56:889
+ [INFO] 13:09:59:47 Proceso entrenador/(6097:6097):  Entrenador creado con EXITO
+ [INFO] 13:10:00:420 Proceso entrenador/(6097:6097):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 13:11:18:729 Proceso entrenador/(6183:6183):   COMIENZO: 13:11:18:729
+ [INFO] 13:11:19:831 Proceso entrenador/(6183:6183):  Entrenador creado con EXITO
+ [INFO] 13:11:21:261 Proceso entrenador/(6183:6183):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 13:11:52:466 Proceso entrenador/(6263:6263):   COMIENZO: 13:11:52:466
+ [INFO] 13:11:53:580 Proceso entrenador/(6263:6263):  Entrenador creado con EXITO
+ [INFO] 13:11:55:55 Proceso entrenador/(6263:6263):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 13:14:56:422 Proceso entrenador/(6387:6387):   COMIENZO: 13:14:56:422
+ [INFO] 13:14:57:729 Proceso entrenador/(6387:6387):  Entrenador creado con EXITO
+ [INFO] 13:14:59:708 Proceso entrenador/(6387:6387):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 13:15:36:44 Proceso entrenador/(6434:6434):   COMIENZO: 13:15:36:44
+ [INFO] 13:50:51:296 Proceso entrenador/(6650:6650):   COMIENZO: 13:50:51:296
+ [INFO] 13:52:07:917 Proceso entrenador/(6650:6650):  Entrenador creado con EXITO
+ [INFO] 13:52:09:661 Proceso entrenador/(6650:6650):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 13:53:30:260 Proceso entrenador/(6790:6790):   COMIENZO: 13:53:30:260
+ [INFO] 13:53:31:295 Proceso entrenador/(6790:6790):  Entrenador creado con EXITO
+ [INFO] 13:53:32:692 Proceso entrenador/(6790:6790):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 13:53:34:884 Proceso entrenador/(6790:6790):   Mapa actual: mapa1
+ [INFO] 13:54:08:969 Proceso entrenador/(6790:6790):   CONECTADO con mapa1
+ [INFO] 13:56:23:157 Proceso entrenador/(6790:6790):   COMIENZO de cumplir objetivos en mapa1
+ [INFO] 13:56:29:242 Proceso entrenador/(6790:6790):   mapa1 me concede TURNO
+ [INFO] 14:06:50:735 Proceso entrenador/(7014:7014):   COMIENZO: 14:06:50:735
+ [INFO] 14:06:51:782 Proceso entrenador/(7014:7014):  Entrenador creado con EXITO
+ [INFO] 14:06:54:88 Proceso entrenador/(7014:7014):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 14:06:59:511 Proceso entrenador/(7014:7014):   Mapa actual: mapa1
+ [INFO] 14:07:00:704 Proceso entrenador/(7014:7014):   CONECTADO con mapa1
+ [INFO] 14:07:52:455 Proceso entrenador/(7014:7014):   COMIENZO de cumplir objetivos en mapa1
+ [INFO] 14:07:58:78 Proceso entrenador/(7014:7014):   mapa1 me concede TURNO
+ [INFO] 14:14:29:292 Proceso entrenador/(7328:7328):   COMIENZO: 14:14:29:292
+ [INFO] 14:14:30:598 Proceso entrenador/(7328:7328):  Entrenador creado con EXITO
+ [INFO] 14:14:33:84 Proceso entrenador/(7328:7328):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 14:14:37:483 Proceso entrenador/(7328:7328):   Mapa actual: mapa1
+ [INFO] 14:14:39:182 Proceso entrenador/(7328:7328):   CONECTADO con mapa1
+ [INFO] 14:14:51:333 Proceso entrenador/(7328:7328):  COMIENZO de cumplir objetivos en mapa1
+ [INFO] 14:14:58:757 Proceso entrenador/(7328:7328):  mapa1 me concede TURNO
+ [INFO] 14:17:48:885 Proceso entrenador/(7550:7550):   COMIENZO: 14:17:48:885
+ [INFO] 14:17:50:393 Proceso entrenador/(7550:7550):  Entrenador creado con EXITO
+ [INFO] 14:17:58:99 Proceso entrenador/(7550:7550):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 14:18:22:511 Proceso entrenador/(7550:7550):   Mapa actual: mapa1
+ [INFO] 14:18:24:19 Proceso entrenador/(7550:7550):   CONECTADO con mapa1
+ [INFO] 14:18:39:375 Proceso entrenador/(7550:7550):  COMIENZO de cumplir objetivos en mapa1
+ [INFO] 14:18:44:132 Proceso entrenador/(7550:7550):  mapa1 me concede TURNO
+ [INFO] 14:22:31:863 Proceso entrenador/(7908:7908):   COMIENZO: 14:22:31:863
+ [INFO] 14:22:33:45 Proceso entrenador/(7908:7908):  Entrenador creado con EXITO
+ [INFO] 14:22:34:541 Proceso entrenador/(7908:7908):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 14:22:37:173 Proceso entrenador/(7908:7908):   Mapa actual: mapa1
+ [INFO] 14:22:39:109 Proceso entrenador/(7908:7908):   CONECTADO con mapa1
+ [INFO] 14:22:55:580 Proceso entrenador/(7908:7908):  COMIENZO de cumplir objetivos en mapa1
+ [INFO] 14:22:58:412 Proceso entrenador/(7908:7908):  mapa1 me concede TURNO
+ [INFO] 14:25:02:400 Proceso entrenador/(8153:8153):   COMIENZO: 14:25:02:400
+ [INFO] 14:25:03:491 Proceso entrenador/(8153:8153):  Entrenador creado con EXITO
+ [INFO] 14:25:04:987 Proceso entrenador/(8153:8153):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 14:25:06:855 Proceso entrenador/(8153:8153):   Mapa actual: mapa1
+ [INFO] 14:25:07:451 Proceso entrenador/(8153:8153):   CONECTADO con mapa1
+ [INFO] 14:25:17:317 Proceso entrenador/(8153:8153):  COMIENZO de cumplir objetivos en mapa1
+ [INFO] 14:25:20:432 Proceso entrenador/(8153:8153):  mapa1 me concede TURNO
+ [INFO] 14:28:06:33 Proceso entrenador/(8634:8634):   COMIENZO: 14:28:06:33
+ [INFO] 14:28:07:215 Proceso entrenador/(8634:8634):  Entrenador creado con EXITO
+ [INFO] 14:28:09:285 Proceso entrenador/(8634:8634):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 14:28:11:189 Proceso entrenador/(8634:8634):   Mapa actual: mapa1
+ [INFO] 14:28:11:851 Proceso entrenador/(8634:8634):   CONECTADO con mapa1
+ [INFO] 14:28:24:23 Proceso entrenador/(8634:8634):  COMIENZO de cumplir objetivos en mapa1
+ [INFO] 14:28:32:8 Proceso entrenador/(8634:8634):  mapa1 me concede TURNO
+ [INFO] 14:38:19:448 Proceso entrenador/(8860:8860):   COMIENZO: 14:38:19:448
+ [INFO] 14:38:20:668 Proceso entrenador/(8860:8860):  Entrenador creado con EXITO
+ [INFO] 14:38:22:220 Proceso entrenador/(8860:8860):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 14:38:23:491 Proceso entrenador/(8860:8860):   Mapa actual: mapa1
+ [INFO] 14:38:25:112 Proceso entrenador/(8860:8860):   CONECTADO con mapa1
+ [INFO] 14:38:32:514 Proceso entrenador/(8860:8860):  COMIENZO de cumplir objetivos en mapa1
+ [INFO] 14:38:36:945 Proceso entrenador/(8860:8860):  mapa1 me concede TURNO
+ [INFO] 14:43:29:950 Proceso entrenador/(9440:9440):   COMIENZO: 14:43:29:950
+ [INFO] 14:43:31:87 Proceso entrenador/(9440:9440):  Entrenador creado con EXITO
+ [INFO] 14:43:32:348 Proceso entrenador/(9440:9440):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 14:43:34:214 Proceso entrenador/(9440:9440):   Mapa actual: mapa1
+ [INFO] 14:43:35:82 Proceso entrenador/(9440:9440):   CONECTADO con mapa1
+ [INFO] 14:43:39:75 Proceso entrenador/(9440:9440):  COMIENZO de cumplir objetivos en mapa1
+ [INFO] 14:43:41:931 Proceso entrenador/(9440:9440):  mapa1 me concede TURNO
+ [INFO] 14:46:11:574 Proceso entrenador/(9757:9757):   COMIENZO: 14:46:11:574
+ [INFO] 14:46:13:367 Proceso entrenador/(9757:9757):  Entrenador creado con EXITO
+ [INFO] 14:46:15:356 Proceso entrenador/(9757:9757):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 14:46:18:133 Proceso entrenador/(9757:9757):   Mapa actual: mapa1
+ [INFO] 14:46:18:730 Proceso entrenador/(9757:9757):   CONECTADO con mapa1
+ [INFO] 14:46:22:667 Proceso entrenador/(9757:9757):  COMIENZO de cumplir objetivos en mapa1
+ [INFO] 14:46:26:276 Proceso entrenador/(9757:9757):  mapa1 me concede TURNO
+ [INFO] 14:47:04:282 Proceso entrenador/(9875:9875):   COMIENZO: 14:47:04:282
+ [INFO] 14:47:08:77 Proceso entrenador/(9875:9875):  Entrenador creado con EXITO
+ [INFO] 14:47:10:53 Proceso entrenador/(9875:9875):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 14:47:12:822 Proceso entrenador/(9875:9875):   Mapa actual: mapa1
+ [INFO] 14:47:13:554 Proceso entrenador/(9875:9875):   CONECTADO con mapa1
+ [INFO] 14:47:19:527 Proceso entrenador/(9875:9875):  COMIENZO de cumplir objetivos en mapa1
+ [INFO] 14:47:22:890 Proceso entrenador/(9875:9875):  mapa1 me concede TURNO
+ [INFO] 14:55:35:827 Proceso entrenador/(10352:10352):   COMIENZO: 14:55:35:827
+ [INFO] 14:55:36:918 Proceso entrenador/(10352:10352):  Entrenador creado con EXITO
+ [INFO] 14:55:38:673 Proceso entrenador/(10352:10352):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 14:55:40:664 Proceso entrenador/(10352:10352):   Mapa actual: mapa1
+ [INFO] 14:55:41:813 Proceso entrenador/(10352:10352):   CONECTADO con mapa1
+ [INFO] 14:56:42:293 Proceso entrenador/(10352:10352):  COMIENZO de cumplir objetivos en mapa1
+ [INFO] 14:56:45:768 Proceso entrenador/(10352:10352):  mapa1 me concede TURNO
+ [INFO] 14:58:33:664 Proceso entrenador/(10494:10494):   COMIENZO: 14:58:33:664
+ [INFO] 14:58:34:835 Proceso entrenador/(10494:10494):  Entrenador creado con EXITO
+ [INFO] 14:58:36:286 Proceso entrenador/(10494:10494):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 14:58:38:108 Proceso entrenador/(10494:10494):   Mapa actual: mapa1
+ [INFO] 14:58:39:98 Proceso entrenador/(10494:10494):   CONECTADO con mapa1
+ [INFO] 14:58:49:145 Proceso entrenador/(10494:10494):  COMIENZO de cumplir objetivos en mapa1
+ [INFO] 15:00:33:386 Proceso entrenador/(10494:10494):  mapa1 me concede TURNO
+ [INFO] 15:20:42:726 Proceso entrenador/(14028:14028):   COMIENZO: 15:20:42:726
+ [INFO] 15:20:43:808 Proceso entrenador/(14028:14028):  Entrenador creado con EXITO
+ [INFO] 15:20:45:268 Proceso entrenador/(14028:14028):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 15:20:46:630 Proceso entrenador/(14028:14028):   Mapa actual: mapa1
+ [INFO] 15:20:47:249 Proceso entrenador/(14028:14028):   CONECTADO con mapa1
+ [INFO] 15:20:52:592 Proceso entrenador/(14028:14028):  COMIENZO de cumplir objetivos en mapa1
+ [INFO] 15:20:58:182 Proceso entrenador/(14028:14028):  mapa1 me concede TURNO
