@@ -159,7 +159,10 @@ int string_contains(char *palabra, char *conteiner)
 
 void string_replace(char *palabra, char *este_caracter,char *por_este)
 {
-	char **por_separado=string_split(palabra, este_caracter);
+	char *pal_aux = string_new();
+	string_trim(&pal_aux);
+	string_append(&pal_aux, palabra);
+	char **por_separado=string_split(pal_aux, este_caracter);
 	char *palabra_new= string_new();
 	int i = 0;
 	int cantidad_palabras_contenidas = 0;
@@ -186,6 +189,7 @@ void string_replace(char *palabra, char *este_caracter,char *por_este)
 		numero_palabra++;
 		i++;
 	}
+	realloc(palabra, string_length(palabra_new));
 	strcpy(palabra, palabra_new);
 	free_string_array(por_separado);
 	free(palabra_new);
@@ -236,16 +240,25 @@ void string_path_replace_spaces(char *path, char *este_caracter, char *por_este)
 			}
 			else
 			{
-				if(string_contains(por_separado[i],este_caracter))
+				if(i==0 && string_starts_with(path, "/"))
 				{
-					string_replace(por_separado[i],este_caracter,por_este);
+					string_append(&aux, "/");
+					string_append(&aux, por_separado[i]);
+					string_append(&aux,"/");
 				}
-				string_append(&aux, por_separado[i]);
-				string_append(&aux,"/");
-
+				else
+				{
+					if(string_contains(por_separado[i],este_caracter))
+					{
+						string_replace(por_separado[i],este_caracter,por_este);
+					}
+					string_append(&aux, por_separado[i]);
+					string_append(&aux,"/");
+				}
 			}
 			i++;
 		}
+		realloc(path, string_length(aux));
 		strcpy(path, aux);
 		free(aux);
 		free_string_array(por_separado);

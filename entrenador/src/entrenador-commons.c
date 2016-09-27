@@ -370,7 +370,6 @@ void entrenador_recibi_y_copia_pokemon()
 
 		//INICIO log
 		char *mensaje = string_new();
-		string_trim(&mensaje);
 		string_append(&mensaje, entrenador->mapa_actual->nombre);
 		string_append(&mensaje, " me dice que el pokemon está en: ");
 		string_append(&mensaje, pokemon);

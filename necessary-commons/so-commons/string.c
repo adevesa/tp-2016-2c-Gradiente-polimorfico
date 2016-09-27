@@ -47,7 +47,7 @@ void string_append(char** original, char* string_to_add) {
 }
 
 char* string_new() {
-	return string_duplicate(" ");
+	return string_duplicate("");
 }
 
 char* string_from_format(const char* format, ...) {

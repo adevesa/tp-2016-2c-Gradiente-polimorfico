@@ -16,6 +16,4 @@ SUBDIRS := \
 socket \
 so-commons \
 so-commons/collections \
-commons \
-commons/collections \
 

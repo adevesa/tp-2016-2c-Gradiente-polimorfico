@@ -22,9 +22,9 @@ void activar_reutilizacion_de_direcciones(int valorVerdaderoso, int socket)
 	setsockopt(socket,SOL_SOCKET,SO_REUSEADDR, &valorVerdaderoso, sizeof(valorVerdaderoso));
 }
 
-void enviar_mensaje(int socket, char *mensaje)
+void enviar_mensaje(int socket, char *msg)
 {
-	send(socket, mensaje, strlen(mensaje),0);
+	send(socket, msg, strlen(msg),0);
 }
 
 char* recibir_mensaje(int socket,int payloadSize)

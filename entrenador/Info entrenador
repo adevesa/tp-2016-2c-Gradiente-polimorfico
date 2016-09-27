@@ -119,3 +119,64 @@
  [INFO] 15:20:47:249 Proceso entrenador/(14028:14028):   CONECTADO con mapa1
  [INFO] 15:20:52:592 Proceso entrenador/(14028:14028):  COMIENZO de cumplir objetivos en mapa1
  [INFO] 15:20:58:182 Proceso entrenador/(14028:14028):  mapa1 me concede TURNO
+ [INFO] 15:31:37:1 Proceso entrenador/(3687:3687):   COMIENZO: 15:31:37:1
+ [INFO] 15:31:42:761 Proceso entrenador/(3687:3687):  Entrenador creado con EXITO
+ [INFO] 15:31:44:865 Proceso entrenador/(3687:3687):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 15:32:07:430 Proceso entrenador/(3687:3687):   Mapa actual: mapa1
+ [INFO] 15:32:12:605 Proceso entrenador/(3687:3687):   CONECTADO con mapa1
+ [INFO] 15:34:14:594 Proceso entrenador/(4043:4043):   COMIENZO: 15:34:14:593
+ [INFO] 15:34:16:810 Proceso entrenador/(4043:4043):  Entrenador creado con EXITO
+ [INFO] 15:34:18:610 Proceso entrenador/(4043:4043):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 15:34:21:502 Proceso entrenador/(4043:4043):   Mapa actual: mapa1
+ [INFO] 15:34:22:334 Proceso entrenador/(4043:4043):   CONECTADO con mapa1
+ [INFO] 15:35:00:215 Proceso entrenador/(4043:4043):  COMIENZO de cumplir objetivos en mapa1
+ [INFO] 15:40:21:360 Proceso entrenador/(4773:4773):   COMIENZO: 15:40:21:359
+ [INFO] 15:40:22:587 Proceso entrenador/(4773:4773):  Entrenador creado con EXITO
+ [INFO] 15:40:24:478 Proceso entrenador/(4773:4773):  COMIENZO del recorrido de la HOJA DE VIAJE
+ [INFO] 15:40:27:930 Proceso entrenador/(4773:4773):   Mapa actual: mapa1
+ [INFO] 15:40:29:67 Proceso entrenador/(4773:4773):   CONECTADO con mapa1
+ [INFO] 15:40:39:607 Proceso entrenador/(4773:4773):  COMIENZO de cumplir objetivos en mapa1
+ [INFO] 15:40:42:531 Proceso entrenador/(4773:4773):  mapa1 me concede TURNO
+ [INFO] 15:45:42:619 Proceso entrenador/(4773:4773):  mapa1 me da COORDENADAS de pokenest P
+ [INFO] 15:45:49:852 Proceso entrenador/(4773:4773):  mapa1 me concede TURNO
+ [INFO] 15:46:01:385 Proceso entrenador/(4773:4773):  Me moví
+ [INFO] 15:46:20:847 Proceso entrenador/(4773:4773):  mapa1 me concede TURNO
+ [INFO] 15:46:21:568 Proceso entrenador/(4773:4773):  Me moví
+ [INFO] 15:46:22:714 Proceso entrenador/(4773:4773):  mapa1 me concede TURNO
+ [INFO] 15:46:25:758 Proceso entrenador/(4773:4773):  Me moví
+ [INFO] 15:46:26:891 Proceso entrenador/(4773:4773):  mapa1 me concede TURNO
+ [INFO] 15:46:27:429 Proceso entrenador/(4773:4773):  Me moví
+ [INFO] 15:46:29:70 Proceso entrenador/(4773:4773):  mapa1 me concede TURNO
+ [INFO] 15:46:29:791 Proceso entrenador/(4773:4773):  Me moví
+ [INFO] 15:46:34:336 Proceso entrenador/(4773:4773):  mapa1 me concede TURNO
+ [INFO] 15:46:35:541 Proceso entrenador/(4773:4773):  Me moví
+ [INFO] 15:46:39:770 Proceso entrenador/(4773:4773):  mapa1 me concede TURNO
+ [INFO] 15:46:59:76 Proceso entrenador/(4773:4773):  Llegué a destino. Pediré CAPTURAR POKEMON
+ [INFO] 15:47:10:718 Proceso entrenador/(4773:4773):  mapa1 me BLOQUEO
+ [INFO] 15:47:17:310 Proceso entrenador/(4773:4773):  mapa1 me DESBLOQUEO
+ [INFO] 15:49:28:629 Proceso entrenador/(4773:4773):  mapa1 me dice que el pokemon está en:  home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu002
+[INFO] 16:21:14:558 Proceso entrenador/(6900:6900): COMIENZO: 16:21:14:558
+[INFO] 16:21:15:954 Proceso entrenador/(6900:6900): Entrenador creado con EXITO
+[INFO] 16:21:17:56 Proceso entrenador/(6900:6900): COMIENZO del recorrido de la HOJA DE VIAJE
+[INFO] 16:21:18:722 Proceso entrenador/(6900:6900): Mapa actual: mapa1
+[INFO] 16:21:19:409 Proceso entrenador/(6900:6900): CONECTADO con mapa1
+[INFO] 16:21:24:279 Proceso entrenador/(6900:6900): COMIENZO de cumplir objetivos en mapa1
+[INFO] 16:21:27:844 Proceso entrenador/(6900:6900): mapa1 me concede TURNO
+[INFO] 16:21:29:139 Proceso entrenador/(6900:6900): mapa1 me da COORDENADAS de pokenest P
+[INFO] 16:21:32:502 Proceso entrenador/(6900:6900): mapa1 me concede TURNO
+[INFO] 16:21:38:927 Proceso entrenador/(6900:6900): Me moví
+[INFO] 16:21:40:557 Proceso entrenador/(6900:6900): mapa1 me concede TURNO
+[INFO] 16:21:41:233 Proceso entrenador/(6900:6900): Me moví
+[INFO] 16:21:42:457 Proceso entrenador/(6900:6900): mapa1 me concede TURNO
+[INFO] 16:21:43:731 Proceso entrenador/(6900:6900): Me moví
+[INFO] 16:21:45:226 Proceso entrenador/(6900:6900): mapa1 me concede TURNO
+[INFO] 16:21:46:438 Proceso entrenador/(6900:6900): Me moví
+[INFO] 16:21:47:891 Proceso entrenador/(6900:6900): mapa1 me concede TURNO
+[INFO] 16:21:49:52 Proceso entrenador/(6900:6900): Me moví
+[INFO] 16:21:50:536 Proceso entrenador/(6900:6900): mapa1 me concede TURNO
+[INFO] 16:21:51:618 Proceso entrenador/(6900:6900): Me moví
+[INFO] 16:21:54:238 Proceso entrenador/(6900:6900): mapa1 me concede TURNO
+[INFO] 16:22:07:177 Proceso entrenador/(6900:6900): Llegué a destino. Pediré CAPTURAR POKEMON
+[INFO] 16:22:11:11 Proceso entrenador/(6900:6900): mapa1 me BLOQUEO
+[INFO] 16:22:13:655 Proceso entrenador/(6900:6900): mapa1 me DESBLOQUEO
+[INFO] 16:22:55:907 Proceso entrenador/(6900:6900): mapa1 me dice que el pokemon está en: home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu002
