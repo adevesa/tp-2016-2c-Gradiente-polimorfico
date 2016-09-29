@@ -45,7 +45,7 @@ int redondear_si_es_necesario(double x, double y){
 char* abrir_archivo(char* path){
 	int fd = open ( "/home/utnso/workspace/prueba", O_RDWR);
 	int size = getpagesize (); //consigo tamaño del archivo
-	char* datos = mmap((caddr_t) 0, size, PROT_READ, MAP_SHARED, fd, 0);
+	char* datos = mmap((caddr_t) 0, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
 	return datos;
 	//munmap(fd);
 }
@@ -62,10 +62,15 @@ int numero_entre(int desde, int hasta, char* texto){
 }
 
 osada_header* header_create(char* path){
-	char* bloque = abrir_archivo(path);
+	char* archivo = abrir_archivo(path);
 	osada_header* header  = malloc(sizeof(osada_header));
-	header->magic_number[7] = texto_entre(0, 7, bloque);
-	header->version =numero_entre(8, 64, bloque);
+	header->magic_number[7]= texto_entre(0, 7, archivo);
+	printf("ejemplo 1: %s \n", texto_entre(0, 7, archivo));
+	printf("ejemplo 2: %s \n", header->magic_number);
+	header->version = numero_entre(8, 9, archivo);
+	printf("ejemplo 3: %d \n", numero_entre(8, 9, archivo));
+	printf("ejemplo 4: %d \n", header->version);
+
 //	header->fs_blocks;
 //	header->bitmap_blocks;
 //	header->allocations_table_offset;
@@ -110,20 +115,18 @@ int main(int argc, char** argv){
 	//int numero = numero_entre(8, blocksize, bloque);
 	//printf("%d", numero);
 
-	char* bloque = abrir_archivo("/home/utnso/workspace/prueba");
+	//char* bloque = abrir_archivo("/home/utnso/workspace/prueba");
 	//char* texto = texto_entre(0, 7, bloque);
-	printf("ejemplo 1: %s \n", bloque);
+	//printf("ejemplo 1: %s \n", bloque);
 
 	osada_header* header = header_create("/home/utnso/workspace/prueba");
-	printf("ejemplo 2: %s", header->magic_number[7]);
-
+	//printf("magic_number= %s \n", header->magic_number);
+	//printf("version= %d \n", header->version);
 
 	//int fd = open ( "/home/utnso/workspace/prueba", O_RDWR);
 	//int size = getpagesize (); //consigo tamaño del archivo
 	//char* datos = mmap((caddr_t) 0, size, PROT_READ, MAP_SHARED, fd, 0);
 	//printf("%s", bloque);
-
-
 
 
 	return EXIT_SUCCESS;
