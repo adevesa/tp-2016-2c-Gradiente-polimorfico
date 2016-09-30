@@ -1,0 +1,10 @@
+[INFO] 18:00:36:272 Planificador/(15280:15300): Se crea proceso para encolación de entreanadores
+[INFO] 18:01:37:389 Planificador/(15280:15348): PUSH (NUEVO) entrenador identificado con el simbolo @ y por el socket 8
+[INFO] 18:01:37:389 Planificador/(15280:15301): Iniciando la encolación de nuevos entrenadores
+[INFO] 18:01:37:389 Planificador/(15280:15301): PUSH (LISTO) entrenador identificado con el simbolo @
+[INFO] 18:01:37:389 Planificador/(15280:15301): Entrenador conectado por socket 8 modelado
+[INFO] 18:01:37:389 Planificador/(15280:15300): POP (LISTO) entrenador identificado con el simbolo @
+[INFO] 18:01:37:389 Planificador/(15280:15301): Cola de nuevos vaciada por proceso de encolación
+[INFO] 18:01:37:389 Planificador/(15280:15301): Finalizando la  encolación de entrenadores
+[INFO] 18:09:33:543 Planificador/(15280:15300): Entrenador identificado por @está buscando coordenadas de pokenest P (2;4)
+[INFO] 18:13:03:318 Planificador/(15280:15300): La coordenada solicitada fue entregada a entrenador identificado por @

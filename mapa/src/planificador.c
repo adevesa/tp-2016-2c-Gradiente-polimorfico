@@ -28,7 +28,6 @@ t_listas_y_colas* listas_y_colas_creense()
 
 t_planificador_rr* planificador_rr_create()
 {
-	extern t_mapa *mapa;
 	t_planificador_rr *planif_new = malloc(sizeof(t_planificador_rr));
 	planif_new->listas_y_colas = listas_y_colas_creense();
 	planif_new->quantum = mapa->info_algoritmo->quamtum;
@@ -40,9 +39,21 @@ t_planificador_srdf* planificador_srdf_create()
 {
 	t_planificador_srdf *planif_new = malloc(sizeof(t_planificador_srdf));
 	planif_new->listas_y_colas = listas_y_colas_creense();
+	planif_new->retardo=mapa->info_algoritmo->retardo;
 	return planif_new;
 }
 
+void planificador_inicia_log()
+{
+
+	char *nombre_log = string_new();
+	string_append(&nombre_log, "Log ");
+	string_append(&nombre_log, mapa->nombre);
+	string_append(&nombre_log, " planificador ");
+	string_append(&nombre_log, mapa->info_algoritmo->algoritmo);
+	informe_planificador =log_create(nombre_log, "Planificador", 0, LOG_LEVEL_INFO);
+	free(nombre_log);
+}
 
 /*-----------------------------------EXECUTE PLANIFICADOR SRDF--------------------------------------------------------*/
 void* ejecutar_planificador_srdf(void* arg)
@@ -194,7 +205,8 @@ void planificador_entrenador_quiere_capturar_pokemon(t_entrenador *entrenador)
 	free(mensaje_A_loggear);
 	//FIN LOG
 
-	planificador_bloquea_entrenador(entrenador);
+	//planificador_bloquea_entrenador(entrenador);
+	planificador_push_entrenador_a_bloqueado(entrenador);
 	planificador_trata_captura_pokemon(entrenador);
 }
 
@@ -232,13 +244,13 @@ void planificador_trata_captura_pokemon(t_entrenador *entrenador)
 
 void planificador_bloquea_entrenador(t_entrenador *entrenador)
 {
-	enviar_mensaje_a_entrenador(entrenador, AVISAR_BLOQUEO_A_ENTRENADOR, NULL);
+	//enviar_mensaje_a_entrenador(entrenador, AVISAR_BLOQUEO_A_ENTRENADOR, NULL);
 	planificador_push_entrenador_a_bloqueado(entrenador);
 }
 
 void planificador_desbloqueame_a(t_entrenador *entrenador)
 {
-	enviar_mensaje_a_entrenador(entrenador, AVISAR_DESBLOQUEO_A_ENTRENADOR, NULL);
+	//enviar_mensaje_a_entrenador(entrenador, AVISAR_DESBLOQUEO_A_ENTRENADOR, NULL);
 
 	pthread_mutex_lock(&mutex_manipular_cola_bloqueados);
 	cola_bloqueados_quita_entrenador_especifico(mapa->entrenadores->cola_entrenadores_bloqueados,entrenador->id_proceso);
@@ -315,12 +327,22 @@ void planificador_desbloquea_entrenador_si_es_posible(int cantidad_bloqueados)
 }
 
 /*---------------------------------------FINALIZADO---------------------------------------------------------*/
+void planificador_aborta_entrenador(t_entrenador *entrenador)
+{
+	mapa_cambiale_estado_a_entrenador(entrenador, MUERTO, EXECUTE);
+	entrenador->objetivo_cumplido = ABORTADO; //Ojo
+	server_cerra_cliente(entrenador->socket_entrenador);
+	char *key = string_itoa(entrenador->socket_entrenador);
+	dictionary_put(mapa->entrenadores->lista_entrenadores_finalizados,key, entrenador);
+	planificador_extraele_pokemones_a_entrenador(entrenador);
+}
+
 void planificador_finaliza_entrenador(t_entrenador *entrenador)
 {
 	mapa_cambiale_estado_a_entrenador(entrenador, MUERTO, EXECUTE);
-	entrenador->objetivo_cumplido = 1;
-	char *ruta_medalla_del_mapa = mapa_dame_medalla();
-	enviar_mensaje_a_entrenador(entrenador, OTORGAR_MEDALLA_DEL_MAPA,ruta_medalla_del_mapa);
+	entrenador->objetivo_cumplido = CUMPLIDO;
+	//char *ruta_medalla_del_mapa = mapa_dame_medalla();
+	//enviar_mensaje_a_entrenador(entrenador, OTORGAR_MEDALLA_DEL_MAPA,ruta_medalla_del_mapa);
 	planificador_espera_que_entrenador_se_desconecte(entrenador);
 	mapa_borra_entrenador_de_pantalla(entrenador);
 }
@@ -345,10 +367,13 @@ void planificador_espera_que_entrenador_se_desconecte(t_entrenador *entrenador)
 void planificador_extraele_pokemones_a_entrenador(t_entrenador *entrenador)
 {
 	int cantidad_pokemones_que_tenia = list_size(entrenador->pokemones_capturados);
-	int i;
-	for(i=0; i<cantidad_pokemones_que_tenia; i++)
+	if(cantidad_pokemones_que_tenia != 0)
 	{
-		mapa_devolve_pokemon_a_pokenest(list_get(entrenador->pokemones_capturados,i));
+		int i;
+		for(i=0; i<cantidad_pokemones_que_tenia; i++)
+		{
+			mapa_devolve_pokemon_a_pokenest(list_get(entrenador->pokemones_capturados,i));
+		}
 	}
 }
 
@@ -397,6 +422,7 @@ void planificador_modela_nuevo_entrenador_y_encolalo(void *entrenador)
 	t_entrenador *new_entrenador = entrenador_create(entrenador_a_modelar->id_proceso, entrenador_a_modelar->socket_entrenador);
 	new_entrenador->semaforo_finalizacon=entrenador_a_modelar->semaforo_finalizacion;
 	new_entrenador->simbolo_identificador = entrenador_a_modelar->simbolo_identificador;
+	free(entrenador_a_modelar);
 	mapa_mostra_nuevo_entrenador_en_pantalla(new_entrenador);
 	planificador_push_entrenador_a_listo(new_entrenador);
 
@@ -426,7 +452,7 @@ void foreach(void *lista,void(*funcion_de_lista)(void*))
 /*---------------------------------------EXECUTE->LISTO---------------------------------------------------------*/
 void planificador_volve_a_encolar_a_listo_si_es_necesario(t_entrenador *entrenador)
 {
-	if(mapa_decime_si_entrenador_esta_bloqueado(entrenador))
+	if(mapa_decime_si_entrenador_esta_bloqueado(entrenador) || mapa_decime_si_entrenador_esta_abortado(entrenador))
 	{
 
 	}

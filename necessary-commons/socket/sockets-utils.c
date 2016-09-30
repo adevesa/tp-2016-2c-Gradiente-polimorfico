@@ -30,11 +30,18 @@ void enviar_mensaje(int socket, char *msg)
 char* recibir_mensaje(int socket,int payloadSize)
 {
 	char * payload = malloc(payloadSize+1);
-	int bytes_recibidos = 0;
-	while(bytes_recibidos !=payloadSize)
+	int bytes_recibidos;
+	bytes_recibidos=recv(socket, payload, payloadSize,0);
+	if(bytes_recibidos == 0)
 	{
-		bytes_recibidos=recv(socket, payload, payloadSize,0);
+		char *desconectado = string_new();
+		string_append(&desconectado, "DESCONECTADO");
+		return desconectado;
 	}
-	payload[payloadSize]= '\0';
-	return payload;
+	else
+	{
+		payload[payloadSize]= '\0';
+		return payload;
+	}
+
 }

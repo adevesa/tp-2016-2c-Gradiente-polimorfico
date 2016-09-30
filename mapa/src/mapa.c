@@ -14,7 +14,7 @@
 
 int main(int argc, char *argv[])
 {
-	ejecutar_mapa(argv[1],argv[2]);
+	ejecutar_mapa("mapa1","/home/utnso/Pokedex");
 	return EXIT_SUCCESS;
 }
 

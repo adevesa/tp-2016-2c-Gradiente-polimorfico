@@ -6,16 +6,15 @@
  */
 #include "entrenador-commons.h"
 
-t_entrenador *entrenador;
-sem_t turno_entrenador;
-sem_t bloqueado;
-sem_t desbloqueado;
+
+//sem_t turno_entrenador;
+//sem_t bloqueado;
+//sem_t desbloqueado;
 
 
 void ejecutar_entrenador(char *nombre_entrenador, char *ruta_pokedex)
 {
-	iniciar_semaforos();
-	iniciar_log();
+	iniciar_log(nombre_entrenador);
 	entrenador_registra_hora(INICIO);
 	entrenador = entrenador_create(nombre_entrenador, ruta_pokedex);
 	log_info(info_entrenador, "Entrenador creado con EXITO");
@@ -24,16 +23,15 @@ void ejecutar_entrenador(char *nombre_entrenador, char *ruta_pokedex)
 	//SI ESTA ACA, ES QUE YA TERMINO DE RECORRER
 }
 
-void iniciar_semaforos()
-{
-	sem_init(&turno_entrenador,0,0);
-	sem_init(&bloqueado,0,0);
-	sem_init(&desbloqueado,0,0);
-}
 
-void iniciar_log()
+void iniciar_log(char *nombre_del_entrenador)
 {
-	info_entrenador =log_create("Info entrenador", "Proceso entrenador", 0, LOG_LEVEL_INFO);
+	char *nombre_log = string_new();
+	string_append(&nombre_log, "Log ");
+	string_append(&nombre_log, nombre_del_entrenador);
+	info_entrenador =log_create(nombre_log, "Proceso entrenador", 0, LOG_LEVEL_INFO);
+
+	free(nombre_log);
 }
 
 void entrenador_registra_hora(int rango)
@@ -113,7 +111,7 @@ void entrenador_cumpli_objetivos_del_mapa()
 	//INICIO log
 	char *mensaje = string_new();
 	string_trim(&mensaje);
-	string_append(&mensaje, "COMIENZO de cumplir objetivos en ");
+	string_append(&mensaje, "COMIENZO AVENTURA en ");
 	string_append(&mensaje, entrenador->mapa_actual->nombre);
 	log_info(info_entrenador,mensaje);
 	free(mensaje);
@@ -123,16 +121,28 @@ void entrenador_cumpli_objetivos_del_mapa()
 	int cantidad_objetivos = list_size(entrenador->mapa_actual->objetivos);
 	for(i=0; i<cantidad_objetivos; i++)
 	{
-		entrenador_espera_turno();
-		sem_wait(&turno_entrenador);
+		//entrenador_espera_turno();
+		//em_wait(&turno_entrenador);
 		entrenador_pedi_ubicacion_pokenest(i);
 		entrenador_cumpli_objetivo(i);
 	}
-	entrenador_espera_turno();
-	sem_wait(&turno_entrenador);
-	entrenador_avisa_que_terminaste_en_este_mapa();
+	//entrenador_espera_turno();
+	//sem_wait(&turno_entrenador);
+	//entrenador_avisa_que_terminaste_en_este_mapa();
+
+	entrenador_copia_medalla_del_mapa();
 	close(entrenador->mapa_actual->server);
-	list_destroy_and_destroy_elements(entrenador->mapa_actual->objetivos, free);
+
+	//INICIO log
+	char *mensaje_fin = string_new();
+	string_trim(&mensaje_fin);
+	string_append(&mensaje_fin, "FIN AVENTURA EN ");
+	string_append(&mensaje_fin, entrenador->mapa_actual->nombre);
+	log_info(info_entrenador,mensaje_fin);
+	free(mensaje_fin);
+	//FIN log
+
+	mapa_destruite(entrenador->mapa_actual);
 }
 
 void entrenador_espera_turno()
@@ -149,20 +159,26 @@ void entrenador_espera_turno()
 		free(mensaje);
 		//FIN log
 
-		sem_post(&turno_entrenador);
+		//sem_post(&turno_entrenador);
 	}
 }
 
 void entrenador_pedi_ubicacion_pokenest(int indice_objetivo)
 {
 	char *identificador_pokenest =list_get(entrenador->mapa_actual->objetivos,indice_objetivo);
-	string_trim(&identificador_pokenest);
 	enviar_mensaje_a_mapa(entrenador->mapa_actual,SOLICITAR_COORDENADAS_POKENEST ,identificador_pokenest);
-	if(string_equals_ignore_case(escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_DA_TURNO), "ur;"))
+	char *mapa_me_dice_que_me_envia = escuchar_mensaje_mapa(entrenador->mapa_actual,MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR);
+	int lo_que_me_da_mapa =  mapa_me_dice(mapa_me_dice_que_me_envia);
+	switch(lo_que_me_da_mapa)
 	{
-		char *coordenada = escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_DA_COORDENADAS_POKENEST);
-		t_ubicacion *ubicacion_pokenest = desarmar_coordenada(coordenada);
-		entrenador->pokenest = ubicacion_pokenest;
+		case(MAPA_ME_DA_COORDENADAS_POKENEST):
+			{
+				char *coordenada = escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_DA_COORDENADAS_POKENEST);
+				t_ubicacion *ubicacion_pokenest = desarmar_coordenada(coordenada);
+				entrenador->pokenest = ubicacion_pokenest;
+			};break;
+	}
+
 
 		//INICIO log
 		char *mensaje = string_new();
@@ -173,7 +189,7 @@ void entrenador_pedi_ubicacion_pokenest(int indice_objetivo)
 		log_info(info_entrenador,mensaje);
 		free(mensaje);
 		//FIN log
-	}
+
 }
 
 /*--------------------------------------------LOGICA DE CAMINAR HACIA POKENEST--------------------------------*/
@@ -181,150 +197,15 @@ void entrenador_cumpli_objetivo(int indice_obejtivo)
 {
 	while(!entrenador_llego_a_destino())
 	{
-		entrenador_espera_turno();
-		sem_wait(&turno_entrenador);
+		//entrenador_espera_turno();
+		//sem_wait(&turno_entrenador);
 		entrenador_ubicate_para_donde_caminar();
 		log_info(info_entrenador, "Me moví");
 		entrenador_informa_movimiento();
 	}
-	entrenador_espera_turno();
-	sem_wait(&turno_entrenador);
+	//entrenador_espera_turno();
+	//sem_wait(&turno_entrenador);
 	entrenador_captura_pokemon(indice_obejtivo);
-}
-
-/*--------------------------------------------LOGICA DEL MOVIMIENTO DEL ENTRENADOR---------------------------------*/
-
-void entrenador_ubicate_para_donde_caminar()
-{
-	switch(diferencia_de_posiciones(entrenador->ubicacion, entrenador->pokenest))
-	{
-		case(AUMENTAx_AUMENTAy): entrenador_camina_hacia_destino(AUMENTAR,AUMENTAR) ;break;
-		case(AUMENTAx_DISMINUIy): entrenador_camina_hacia_destino(AUMENTAR,DISMINUIR);break;
-		case(DISMINUIx_AUMENTAy): entrenador_camina_hacia_destino(DISMINUIR,AUMENTAR);break;
-		case(DISMINUIx_DISMINUIy): entrenador_camina_hacia_destino(DISMINUIR,DISMINUIR);break;
-	}
-}
-
-int diferencia_de_posiciones(t_ubicacion *posicion_actual, t_ubicacion *posicion_final)
-{
-	if((posicion_final->x - posicion_actual->x )>0)
-	{
-		if((posicion_final->y - posicion_actual->y) >0)
-		{
-			return AUMENTAx_AUMENTAy;
-		}
-		return AUMENTAx_DISMINUIy;
-	}
-	else
-	{
-		if((posicion_final->y - posicion_actual->y) >0)
-		{
-			return DISMINUIx_AUMENTAy;
-		}
-		return DISMINUIx_DISMINUIy;
-	}
-}
-
-void entrenador_camina_hacia_destino(int orientacion_x, int orientacion_y)
-{
-	if(entrenador_llego_a_posicion_y())
-	{
-		entrenador_movete_en_eje(EJE_X,orientacion_x);
-
-	}
-	else
-	{
-		if(entrenador_llego_a_posicion_x())
-		{
-			entrenador_movete_en_eje(EJE_Y,orientacion_y);
-		}
-		else
-		{
-			entrenador_movete_alternado(orientacion_x,orientacion_y);
-		}
-	}
-
-}
-
-int entrenador_llego_a_destino()
-{
-	return ubicacion_coincide(entrenador->ubicacion, entrenador->pokenest);
-}
-
-int entrenador_llego_a_posicion_y()
-{
-	if(entrenador->pokenest->y == entrenador->ubicacion->y)
-	{
-		return 1;
-	}
-	else { return 0; }
-}
-
-int entrenador_llego_a_posicion_x()
-{
-	if(entrenador->pokenest->x == entrenador->ubicacion->x)
-		{
-			return 1;
-		}
-		else { return 0; }
-}
-
-int ubicacion_coincide(t_ubicacion *ubicacion1,t_ubicacion *ubicacion2)
-{
-	if((ubicacion1->x == ubicacion2->x) && (ubicacion1->y == ubicacion2->y))
-	{
-		return 1;
-	}
-	else {return 0; }
-}
-
-void entrenador_movete_en_eje(int eje, int orientacion)
-{
-	switch(eje)
-	{
-		case(EJE_X):
-		{
-			if(orientacion == AUMENTAR)
-			{
-				entrenador->ubicacion->x++;
-			}
-			else { entrenador->ubicacion->x--; }
-		} break;
-		case(EJE_Y):
-		{
-			if(orientacion == AUMENTAR)
-			{
-				entrenador->ubicacion->y++;
-			}
-			else { entrenador->ubicacion->y--; }
-		}
-	}
-
-}
-
-int paso_anterior_fue_en_x()
-{
-	if(entrenador->paso_anterior->x == 1)
-	{
-		return 1;
-	}
-	else { return 0; }
-}
-
-void entrenador_movete_alternado(int orientacion_x, int orientacion_y)
-{
-	if(paso_anterior_fue_en_x())
-	{
-		entrenador_movete_en_eje(EJE_Y,orientacion_y);
-		entrenador->paso_anterior->x = 0;
-		entrenador->paso_anterior->y = 1;
-	}
-	else
-	{
-		entrenador_movete_en_eje(EJE_X, orientacion_x);
-		entrenador->paso_anterior->x = 1;
-		entrenador->paso_anterior->y = 0;
-	}
 }
 
 void entrenador_informa_movimiento()
@@ -345,25 +226,27 @@ void entrenador_captura_pokemon(int indice_objetivo)
 	//FIN log
 
 	enviar_mensaje_a_mapa(entrenador->mapa_actual,SOLICITAR_CAPTURA_POKEMON,NULL);
+	char *hora_inicio_bloqueado = temporal_get_string_time();
+	char *solicitud = escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR);
+	entrenador_recibi_y_copia_pokemon(solicitud);
+	char *hora_fin_desbloqueado = temporal_get_string_time();
+	entrenador_registra_tiempo_bloqueo(hora_inicio_bloqueado, hora_fin_desbloqueado);
+
 
 	//MAPA ME BLOQUEA//
-	entrenador_espera_a_que_mapa_te_bloquee();
-	sem_wait(&bloqueado);
-	entrenador->cantidad_de_veces_bloqueado++;
-	char *hora_inicio_bloqueado = temporal_get_string_time();
+	//entrenador_espera_a_que_mapa_te_bloquee();
+	//sem_wait(&bloqueado);
+	//entrenador->cantidad_de_veces_bloqueado++;
+
 
 	//ESPERO QUE MAPA ME DESBLOQUEE//
-	entrenador_espera_a_que_mapa_te_desbloquee();
-	sem_wait(&desbloqueado);
-	char *hora_fin_desbloqueado = temporal_get_string_time();
-
-	entrenador_recibi_y_copia_pokemon();
-	entrenador_registra_tiempo_bloqueo(hora_inicio_bloqueado, hora_fin_desbloqueado);
+	//entrenador_espera_a_que_mapa_te_desbloquee();
+	//sem_wait(&desbloqueado);
 }
 
-void entrenador_recibi_y_copia_pokemon()
+void entrenador_recibi_y_copia_pokemon(char *solicitud)
 {
-	char *solicitud = escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR);
+
 	if(MAPA_ME_DA_POKEMON == mapa_me_dice(solicitud))
 	{
 		char *pokemon = escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_DA_POKEMON);
@@ -409,7 +292,7 @@ void entrenador_espera_a_que_mapa_te_bloquee()
 		free(mensaje);
 		//FIN log
 
-		sem_post(&bloqueado);
+		//sem_post(&bloqueado);
 	}
 }
 
@@ -427,7 +310,7 @@ void entrenador_espera_a_que_mapa_te_desbloquee()
 			free(mensaje);
 			//FIN log
 
-			sem_post(&desbloqueado);
+			//sem_post(&desbloqueado);
 		}
 }
 /*------------------------------------------LOGICA DE TERMINAR EN EL MAPA------------------------------------*/
@@ -446,3 +329,30 @@ void entrenador_avisa_que_terminaste_en_este_mapa()
 	else { perror("No se puede interpretar mensaje"); }
 }
 
+void entrenador_copia_medalla_del_mapa()
+{
+	char *ruta_medalla_origen = obtener_ruta_especifica(entrenador->ruta_pokedex, "Mapas", entrenador->mapa_actual->nombre);
+	char *aux = string_new();
+	string_append(&aux,"medalla-");
+	string_append(&aux,entrenador->mapa_actual->nombre);
+	string_append(&aux,".jpg");
+	ruta_medalla_origen = obtener_ruta_especifica(ruta_medalla_origen,aux,NULL);
+	string_path_replace_spaces(ruta_medalla_origen," ", "\\");
+
+	char *ruta_medallas_destino = obtener_ruta_especifica(entrenador->directorio_de_bill, "medallas", NULL);
+	string_append(&ruta_medallas_destino,"/");
+	copiar(ruta_medalla_origen,ruta_medallas_destino);
+
+	free(aux);
+	free(ruta_medalla_origen);
+	free(ruta_medallas_destino);
+
+	//INICIO log
+	char *mensaje = string_new();
+	string_trim(&mensaje);
+	string_append(&mensaje, "TERMINE objetivos en ");
+	string_append(&mensaje, entrenador->mapa_actual->nombre);
+	log_info(info_entrenador,mensaje);
+	free(mensaje);
+	//FIN log
+}

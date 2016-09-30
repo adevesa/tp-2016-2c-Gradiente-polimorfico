@@ -1,12 +1,12 @@
 /*
- * bloques_filesystem.h
+ * pokedex_servidor.h
  *
- *  Created on: 4/9/2016
+ *  Created on: 28/9/2016
  *      Author: utnso
  */
 
-#ifndef BLOQUES_FILESYSTEM_H_
-#define BLOQUES_FILESYSTEM_H_
+#ifndef POKEDEX_SERVIDOR_H_
+#define POKEDEX_SERVIDOR_H_
 
 //Divide dos numeros, si el resto es distinto de 0 lo redondea hacia arriba.
 int redondear_si_es_necesario(double x, double y);
@@ -37,4 +37,4 @@ int proximo_bloque(int bloque_actual, int* array);
 //No estoy seguro si el filesystem ya te lo genera a partir de un tamaño en disco pero por si acaso lo cree
 //osada_header* header_create(double tamanio_en_bytes);
 
-#endif /* BLOQUES_FILESYSTEM_H_ */
+#endif /* POKEDEX_SERVIDOR_H_ */

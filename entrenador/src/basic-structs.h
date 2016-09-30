@@ -58,6 +58,7 @@ t_config* configuracion_metadata_mapa_create(char *nombre, char *ruta);
 t_entrenador* entrenador_create(char* nombre, char* ruta);
 t_mapa* mapa_create(char* nombre_mapa, char *ruta_pokedex, t_entrenador *entrenador);
 
+void mapa_destruite(t_mapa *mapa);
 /*--------------------------------------------OBTENCION DE DATOS---------------------------------------------------------------*/
 char* obtener_direccion_directorio_de_bill(char* ruta_pokedex, char* nombre);
 t_list* entrenador_hoja_de_viaje(t_config* configuracion);

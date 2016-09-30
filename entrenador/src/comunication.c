@@ -37,6 +37,10 @@ int mapa_me_dice(char *mapa_dice)
 	{
 			return MAPA_ME_DESBLOQUEA;
 	}
+	if(string_equals_ignore_case(mapa_dice, "ur;"))
+	{
+		return MAPA_ME_DA_COORDENADAS_POKENEST;
+	}
 	else return 0;
 }
 
@@ -77,7 +81,6 @@ void entrenador_dale_a_mapa_tu_simbolo()
 void solicitar_ubicacion_pokenest(t_mapa *mapa,char *pokemonBuscado)
 {
 	char *mensaje = armar_mensaje("up", pokemonBuscado,MAX_BYTES_TOTAL_A_ENVIAR);
-	string_trim_left(&mensaje);
 	enviar_mensaje(mapa->server, mensaje);
 }
 

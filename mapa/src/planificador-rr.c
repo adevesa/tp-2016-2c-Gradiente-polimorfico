@@ -13,7 +13,7 @@ extern t_log *informe_planificador;
 /*-----------------------------------EXECUTE PLANIFICADOR RR---------------------------------------------------------*/
 void* ejecutar_planificador_rr(void* arg)
 {
-	informe_planificador = log_create("Informe proceso planificador","PLANIFICADOR RR",0,LOG_LEVEL_INFO);
+	planificador_inicia_log();
 	planificador = planificador_rr_create();
 	planificador_rr_organiza_entrenadores();
 	pthread_exit(NULL);
@@ -70,10 +70,15 @@ void planificador_rr_es_el_turno_de(t_entrenador *entrenador_listo, int *quamtum
 
 void planificador_rr_dale_nuevo_turno_a_entrenador(t_entrenador *entrenador_listo, int *quamtum_restante)
 {
-	enviar_mensaje_a_entrenador(entrenador_listo, OTORGAR_TURNO, NULL);
-	char * mensaje_del_entrenador = escuchar_mensaje_entrenador(entrenador_listo, SOLICITUD_DEL_ENTRENADOR);
+	//enviar_mensaje_a_entrenador(entrenador_listo, OTORGAR_TURNO, NULL);
+	char *mensaje_del_entrenador = escuchar_mensaje_entrenador(entrenador_listo, SOLICITUD_DEL_ENTRENADOR);
 	switch(tratar_respuesta(mensaje_del_entrenador,entrenador_listo))
 	{
+		case(ENTRENADOR_DESCONECTADO):
+			{
+				planificador_aborta_entrenador(entrenador_listo);
+				quamtum_restante = 0;
+			};break;
 		case (ENTRENADOR_ESTA_BUSCANDO_COORDENADAS_POKENEST):
 			{
 				planificador_dale_coordenadas_a_entrenador(entrenador_listo);
@@ -92,11 +97,6 @@ void planificador_rr_dale_nuevo_turno_a_entrenador(t_entrenador *entrenador_list
 					quamtum_restante = 0;
 				}
 				else { quamtum_disminuite(quamtum_restante); }
-			} break;
-		case(ENTRENADOR_FINALIZO_OBJETIVOS):
-			{
-				planificador_finaliza_entrenador(entrenador_listo);
-				quamtum_restante = 0;
 			} break;
 		default: perror("No se puede interpretar lo que quiere el entrnador");
 	}

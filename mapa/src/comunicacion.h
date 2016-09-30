@@ -43,10 +43,21 @@ extern t_mapa *mapa;
 extern sem_t semaforo_hay_algun_entrenador_listo;
 extern pthread_mutex_t mutex_manipular_cola_nuevos;
 
+typedef struct
+{
+	int socket_cliente;
+	int recibir_mensaje_especifico;
+	sem_t *semaforo_solicitudes;
+	sem_t *semaforo_especificos;
+}t_control_entrenador;
+
+
 void* ejecutar_servidor(void *argumento);
 void conexion_create(int *conexion);
 void* atender_cliente(void* argumento);
 void agregar_proceso_a_lista(int *socket_cliente, sem_t *semaforo_finalizacion);
+
+
 /*-------------------------------------------DECODIFICACION DE RESPUESTAS------------------------------------------------*/
 int tratar_respuesta(char* respuesta_del_entrenador, t_entrenador *entrenador);
 

@@ -22,7 +22,7 @@ extern t_log *informe_cola_listos;
 extern t_log *informe_cola_bloqueados;
 extern t_log *informe_cola_nuevos;
 
-
+void planificador_inicia_log();
 /* ----------------------------------------STRUCTS----------------------------------------------------------------*/
 typedef struct listas_y_colas
 {
@@ -42,7 +42,7 @@ typedef struct round_robbin
 typedef struct srdf
 {
 	t_listas_y_colas *listas_y_colas;
-
+	int retardo;
 }t_planificador_srdf;
 
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
@@ -72,6 +72,7 @@ void planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
 void planificador_desbloquea_entrenador_si_es_posible(int cantidad_bloqueados);
 
 /*---------------------------------------FINALIZADO---------------------------------------------------------*/
+void planificador_aborta_entrenador(t_entrenador *entrenador);
 void planificador_finaliza_entrenador(t_entrenador *entrenador);
 void planificador_espera_que_entrenador_se_desconecte(t_entrenador *entrenador);
 void planificador_extraele_pokemones_a_entrenador(t_entrenador *entrenador);

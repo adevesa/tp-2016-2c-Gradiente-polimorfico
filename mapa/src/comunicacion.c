@@ -45,8 +45,21 @@ void conexion_create(int *conexion)
 void* atender_cliente(void* argumento)
 {
 	int *conexion = (int*) argumento;
+	//sem_t semaforo_solicitudes;
+	//sem_t semaforo_mensajes_especificos;
 	sem_t semaforo_termina_proceso;
 	sem_init(&semaforo_termina_proceso,0,0);
+	//sem_init(&semaforo_solicitudes,0,0);
+	//sem_init(&semaforo_mensajes_especificos,0,0);
+
+	/*pthread_t thread1;
+	t_control_entrenador *control = malloc(sizeof(t_control_entrenador));
+	control->semaforo_solicitudes = &semaforo_solicitudes;
+	control->semaforo_especificos = &semaforo_mensajes_especificos;
+	control->recibir_mensaje_especifico = 0;
+	control->socket_cliente= *conexion;
+	pthread_create(&thread1,NULL,estar_atento_a_entrenador,(void*)control);*/
+
 	agregar_proceso_a_lista(conexion,&semaforo_termina_proceso);
 	pthread_exit(NULL);
 }
@@ -64,19 +77,18 @@ void agregar_proceso_a_lista(int *socket_cliente, sem_t *semaforo_finalizacion)
 	pthread_mutex_unlock(&mutex_manipular_cola_nuevos);
 
 	//INICIO LOG
-		char *mensaje_A_loggear = string_new();
-		string_append(&mensaje_A_loggear, "PUSH (NUEVO) entrenador identificado con el simbolo ");
-		string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
-		string_append(&mensaje_A_loggear, " y por el socket ");
-		string_append(&mensaje_A_loggear,string_itoa(entrenador->socket_entrenador));
-		log_info(informe_planificador, mensaje_A_loggear);
-		free(mensaje_A_loggear);
+	char *mensaje_A_loggear = string_new();
+	string_append(&mensaje_A_loggear, "PUSH (NUEVO) entrenador identificado con el simbolo ");
+	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
+	string_append(&mensaje_A_loggear, " y por el socket ");
+	string_append(&mensaje_A_loggear,string_itoa(entrenador->socket_entrenador));
+	log_info(informe_planificador, mensaje_A_loggear);
+	free(mensaje_A_loggear);
 	//FIN LOG
 
 	sem_post(&semaforo_hay_algun_entrenador_listo);
-
-
 }
+
 /*-------------------------------------------DECODIFICACION DE RESPUESTAS------------------------------------------------*/
 int tratar_respuesta(char* respuesta_del_entrenador, t_entrenador *entrenador)
 {
@@ -95,6 +107,10 @@ int tratar_respuesta(char* respuesta_del_entrenador, t_entrenador *entrenador)
 	if(string_equals_ignore_case(respuesta_del_entrenador, "fp;"))
 	{
 		return ENTRENADOR_FINALIZO_OBJETIVOS;
+	}
+	if(string_equals_ignore_case(respuesta_del_entrenador,"DESCONECTADO"))
+	{
+		return ENTRENADOR_DESCONECTADO;
 	}
 	else {return 0;}
 }

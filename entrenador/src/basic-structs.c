@@ -64,6 +64,16 @@ t_config* configuracion_metadata_mapa_create(char *nombre, char *ruta)
 	t_config *config_new = config_create(ruta_final);
 	return config_new;;
 }
+
+/*------------------------------------------------DESTROYERS---------------------------------------------------------------*/
+void mapa_destruite(t_mapa *mapa)
+{
+	free(mapa->ip);
+	free(mapa->server);
+	free(mapa->nombre);
+	free(mapa->puerto);
+	list_destroy_and_destroy_elements(mapa->objetivos, free);
+}
 /*--------------------------------------------OBTENCION DE DATOS DEL ENTRENADOR----------------------------------------------------------*/
 char* obtener_direccion_directorio_de_bill(char* ruta_pokedex, char* nombre)
 {

@@ -8,7 +8,8 @@ src/entrenador-commons.d: ../src/entrenador-commons.c \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/cliente.h \
  ../src/time.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/string.h \
- /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/temporal.h
+ /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/temporal.h \
+ ../src/movimiento.h
 
 ../src/entrenador-commons.h:
 
@@ -31,3 +32,5 @@ src/entrenador-commons.d: ../src/entrenador-commons.c \
 /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/string.h:
 
 /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/temporal.h:
+
+../src/movimiento.h:

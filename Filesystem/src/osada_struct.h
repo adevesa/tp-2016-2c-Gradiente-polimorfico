@@ -45,6 +45,14 @@ typedef struct {
 	osada_block_pointer first_block;
 } osada_file;
 
+typedef struct {
+	uint32_t bloque_inicial;
+	uint32_t bloque_final;
+	char datos;
+} t_bitmap;
+
+
+
 _Static_assert( sizeof(osada_file) == (sizeof(osada_block) / 2.0), "osada_file size does not half osada_block size");
 
 #pragma pack(pop)

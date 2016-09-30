@@ -28,7 +28,6 @@ char* recibir_mensaje_especifico(int socket)
 char* armar_mensaje(char *header, char *payload, int max_bytes)
 {
 	char *mensaje =string_new();
-	string_trim(&mensaje);
 	string_append(&mensaje,header);
 	string_append(&mensaje,";");
 	int tamanio_payload = strlen(payload);
@@ -74,8 +73,6 @@ char* armar_coordenada(int x, int y, int max_bytes)
 {
 	char *coordenada_x = string_itoa(x);
 	char *coordenada_y = string_itoa(y);
-	string_trim(&coordenada_x);
-	string_trim(&coordenada_y);
 	int longitud_eje_x = strlen(coordenada_x);
 	int longitud_eje_y = strlen(coordenada_y);
 	if(longitud_eje_x < (max_bytes))

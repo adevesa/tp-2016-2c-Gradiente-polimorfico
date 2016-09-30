@@ -19,6 +19,13 @@
 #include <so-commons/string.h>
 #include <so-commons/txt.h>
 #include "semaphore.h"
+enum
+{
+	CUMPLIDO = 1,
+	NO_CUMPLIDO= 0,
+	ABORTADO = -1
+}estado_objetivo;
+
 /* ----------------------------------------STRUCTS----------------------------------------------------------------*/
 typedef struct posicion
 {

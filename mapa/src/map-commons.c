@@ -24,12 +24,12 @@ int servidor_debe_terminar = 0;
 void ejecutar_mapa(char *nombre, char *rutaPokedex)
 {
 	iniciar_semaforos();
-	iniciar_logs();
+	iniciar_logs(nombre);
 
 	mapa = mapa_create(nombre, rutaPokedex);
 	log_info(informe_mapa, "Mapa creado correctamente");
 
-	mapa_mostrate_en_pantalla();
+	//mapa_mostrate_en_pantalla();
 	mapa_hacete_visible_para_entrenadores();
 	planificador_create_segun_cual_seas();
 	sem_wait(&semaforo_terminacion);
@@ -44,9 +44,13 @@ void iniciar_semaforos()
 	sem_init(&semaforo_terminacion,0,0);
 }
 
-void iniciar_logs()
+void iniciar_logs(char *nombre)
 {
-	informe_mapa = log_create("Informe mapa", "Proceso mapa", 0,LOG_LEVEL_INFO);
+	char *nombre_log = string_new();
+	string_append(&nombre_log, "Log ");
+	string_append(&nombre_log,nombre);
+	informe_mapa =log_create(nombre_log, "Proceso mapa", 0, LOG_LEVEL_INFO);
+	free(nombre_log);
 }
 
 /*--------------------------------------------PRINCIPALES----------------------------------------------------------*/
@@ -87,6 +91,15 @@ char* mapa_dame_pokemon_de_pokenest(char *id_pokenest)
 int mapa_decime_si_entrenador_esta_bloqueado(t_entrenador *entrenador)
 {
 	if(entrenador->estado == BLOQUEADO)
+	{
+		return 1;
+	}
+	else {return 0;}
+}
+
+int mapa_decime_si_entrenador_esta_abortado(t_entrenador *entrenador)
+{
+	if(entrenador->objetivo_cumplido==ABORTADO)
 	{
 		return 1;
 	}
@@ -155,16 +168,16 @@ int mapa_decime_si_entrenador_finalizo_su_objetivo(int socket_entrenador)
 void mapa_actualiza_pokemones_disponibles_de_pokenest(char *id_pokenest)
  {
 
- 	t_pokeNest *pokenest = mapa_buscame_pokenest(id_pokenest);
- 	char id = (char)(pokenest->identificador[0]);
- 	restarRecurso(mapa->items_para_mostrar_en_pantalla, id);
+ 	//t_pokeNest *pokenest = mapa_buscame_pokenest(id_pokenest);
+ 	//char id = (char)(pokenest->identificador[0]);
+ 	//restarRecurso(mapa->items_para_mostrar_en_pantalla, id);
 
  }
 
 void mapa_agrega_pokenest_a_items_para_pantalla()
 {
-	dictionary_iterator(mapa->pokeNests, closure);
-	log_info(informe_mapa, "Se agregan pokenest a interfaz gráfica");
+	//dictionary_iterator(mapa->pokeNests, closure);
+	//log_info(informe_mapa, "Se agregan pokenest a interfaz gráfica");
 
 }
 
@@ -181,15 +194,15 @@ void mapa_mostra_nuevo_entrenador_en_pantalla(t_entrenador *entrenador)
 	char id = (char)entrenador->simbolo_identificador[0];
 	int x = entrenador->posicion_actual->x;
 	int y= entrenador->posicion_actual->y;
-	CrearPersonaje(mapa->items_para_mostrar_en_pantalla, id,x,y);
-	nivel_gui_dibujar(mapa->items_para_mostrar_en_pantalla, mapa->nombre);
+	//CrearPersonaje(mapa->items_para_mostrar_en_pantalla, id,x,y);
+	//nivel_gui_dibujar(mapa->items_para_mostrar_en_pantalla, mapa->nombre);
 
 	//INICIO LOG
-	char *mensaje_A_loggear = string_new();
-	string_append(&mensaje_A_loggear, "Se grafica a nuevo entrenador identificado con el simbolo ");
-	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
-	log_info(informe_mapa, mensaje_A_loggear);
-	free(mensaje_A_loggear);
+	//char *mensaje_A_loggear = string_new();
+	//string_append(&mensaje_A_loggear, "Se grafica a nuevo entrenador identificado con el simbolo ");
+	//string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
+	//log_info(informe_mapa, mensaje_A_loggear);
+	//free(mensaje_A_loggear);
 	//FIN LOG
 
 
@@ -201,15 +214,15 @@ void mapa_mostra_actualizacion_de_entrenador(t_entrenador *entrenador)
 	char id = (char)entrenador->simbolo_identificador[0];
 	int x = entrenador->posicion_actual->x;
 	int y= entrenador->posicion_actual->y;
-	MoverPersonaje(mapa->items_para_mostrar_en_pantalla, id,x,y);
-	nivel_gui_dibujar(mapa->items_para_mostrar_en_pantalla, mapa->nombre);
+	//MoverPersonaje(mapa->items_para_mostrar_en_pantalla, id,x,y);
+	//nivel_gui_dibujar(mapa->items_para_mostrar_en_pantalla, mapa->nombre);
 
 	//INICIO LOG
-	char *mensaje_A_loggear = string_new();
-	string_append(&mensaje_A_loggear, "Se grafica movimiento de entrenador identificado con el simbolo ");
-	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
-	log_info(informe_mapa, mensaje_A_loggear);
-	free(mensaje_A_loggear);
+	//char *mensaje_A_loggear = string_new();
+	//string_append(&mensaje_A_loggear, "Se grafica movimiento de entrenador identificado con el simbolo ");
+	//string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
+	//log_info(informe_mapa, mensaje_A_loggear);
+	//free(mensaje_A_loggear);
 	//FIN LOG
 
 
@@ -219,8 +232,8 @@ void mapa_borra_entrenador_de_pantalla(t_entrenador *entrenador)
 {
 
 	char id = *(entrenador->simbolo_identificador);
-	BorrarItem(mapa->items_para_mostrar_en_pantalla, id);
-	nivel_gui_dibujar(mapa->items_para_mostrar_en_pantalla, mapa->nombre);
+	//BorrarItem(mapa->items_para_mostrar_en_pantalla, id);
+	//nivel_gui_dibujar(mapa->items_para_mostrar_en_pantalla, mapa->nombre);
 
 	//INICIO LOG
 	char *mensaje_A_loggear = string_new();
@@ -236,13 +249,18 @@ void mapa_borra_entrenador_de_pantalla(t_entrenador *entrenador)
 void planificador_create_segun_cual_seas()
 {
 	pthread_t thread;
+	pthread_attr_t attr;
+	pthread_attr_init(&attr);
+	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
 	if(string_equals_ignore_case(mapa->info_algoritmo->algoritmo, "RR"))
 	{
 		pthread_create(&thread,NULL,ejecutar_planificador_rr, NULL);
+		pthread_attr_destroy(&attr);
 		log_info(informe_mapa, "Se crea hilo de planificador RR");
 	}
 	else{
 		pthread_create(&thread,NULL,ejecutar_planificador_srdf,NULL);
+		pthread_attr_destroy(&attr);
 		log_info(informe_mapa, "Se crea hilo de planificador SRDF");
 	}
 }
