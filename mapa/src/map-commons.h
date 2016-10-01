@@ -18,10 +18,13 @@
 #include "basic-structs.h"
 #include "semaphore.h"
 
-#define BLOQUEADO 0
-#define LISTO 1
-#define MUERTO -1
+
 #define BACKLOG 1500
+enum
+{
+	PLANIFICADOR_RR,
+	PLANIFICADOR_SRDF
+};
 
 t_log *informe_cola_listos;
 t_log *informe_cola_bloqueados;
@@ -52,9 +55,10 @@ int mapa_decime_si_entrenador_esta_abortado(t_entrenador *entrenador);
 void mapa_cambiale_estado_a_entrenador(t_entrenador *entrenador, int estado_entrante, int estado_saliente);
 
 void mapa_devolve_pokemon_a_pokenest(char *ruta_pokemon);
-int mapa_decime_si_planificador_es_rr();
+int mapa_decime_si_planificador_es(int planificador);
 int mapa_decime_si_entrenador_finalizo_su_objetivo(int socket_entrenador);
 
+void mapa_actualiza_distancia_del_entrenador(t_entrenador *entrenador);
 /*--------------------------------------------------- FUNCIONES PARA GRAFICAR--------------------------------------------*/
 void mapa_mostrate_en_pantalla();
 void mapa_mostra_actualizacion_de_entrenador(t_entrenador *entrenador);

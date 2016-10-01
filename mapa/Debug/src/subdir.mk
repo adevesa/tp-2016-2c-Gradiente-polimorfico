@@ -9,7 +9,8 @@ C_SRCS += \
 ../src/map-commons.c \
 ../src/mapa.c \
 ../src/planificador-rr.c \
-../src/planificador.c 
+../src/planificador.c \
+../src/planificadorSRDF.c 
 
 OBJS += \
 ./src/basic-structs.o \
@@ -17,7 +18,8 @@ OBJS += \
 ./src/map-commons.o \
 ./src/mapa.o \
 ./src/planificador-rr.o \
-./src/planificador.o 
+./src/planificador.o \
+./src/planificadorSRDF.o 
 
 C_DEPS += \
 ./src/basic-structs.d \
@@ -25,7 +27,8 @@ C_DEPS += \
 ./src/map-commons.d \
 ./src/mapa.d \
 ./src/planificador-rr.d \
-./src/planificador.d 
+./src/planificador.d \
+./src/planificadorSRDF.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

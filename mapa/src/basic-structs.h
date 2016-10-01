@@ -26,6 +26,15 @@ enum
 	ABORTADO = -1
 }estado_objetivo;
 
+enum
+{
+	EXECUTE = 2,
+	LISTO = 1,
+	BLOQUEADO = 0,
+	SIN_OBJETIVO = 3,
+	NONE = 4,
+	MUERTO = -1
+}estados_del_entrenador;
 /* ----------------------------------------STRUCTS----------------------------------------------------------------*/
 typedef struct posicion
 {

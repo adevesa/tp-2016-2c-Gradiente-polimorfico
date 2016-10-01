@@ -8,7 +8,6 @@
 
 t_planificador_rr *planificador;
 extern sem_t semaforo_entrenadores_listos;
-extern t_log *informe_planificador;
 
 /*-----------------------------------EXECUTE PLANIFICADOR RR---------------------------------------------------------*/
 void* ejecutar_planificador_rr(void* arg)
@@ -34,8 +33,11 @@ int quamtum_se_termino(int q)
 void planificador_rr_organiza_entrenadores()
 {
 
-	planificador_inicia_encolacion_nuevos_entrenadores();
-	while(mapa_decime_si_planificador_es_rr())
+	if(encolacion_entrenadores_iniciada == NO_INICIADO)
+	{
+		planificador_inicia_encolacion_nuevos_entrenadores();
+	}
+	while(mapa_decime_si_planificador_es(PLANIFICADOR_RR))
 	{
 		if(queue_is_empty(planificador->listas_y_colas->cola_entrenadores_listos))
 		{
@@ -55,6 +57,7 @@ void planificador_rr_es_el_turno_de(t_entrenador *entrenador_listo, int *quamtum
 {
 	while(!quamtum_se_termino(*quamtum))
 	{
+		usleep(planificador->retardo*1000);
 		if(mapa_decime_si_entrenador_esta_listo_pero_estaba_bloqueado(entrenador_listo))
 		{
 			planificador_rr_volve_a_bloquear_a_entrenador_si_es_necesario(entrenador_listo, quamtum);
@@ -70,7 +73,6 @@ void planificador_rr_es_el_turno_de(t_entrenador *entrenador_listo, int *quamtum
 
 void planificador_rr_dale_nuevo_turno_a_entrenador(t_entrenador *entrenador_listo, int *quamtum_restante)
 {
-	//enviar_mensaje_a_entrenador(entrenador_listo, OTORGAR_TURNO, NULL);
 	char *mensaje_del_entrenador = escuchar_mensaje_entrenador(entrenador_listo, SOLICITUD_DEL_ENTRENADOR);
 	switch(tratar_respuesta(mensaje_del_entrenador,entrenador_listo))
 	{
@@ -91,14 +93,18 @@ void planificador_rr_dale_nuevo_turno_a_entrenador(t_entrenador *entrenador_list
 			} break;
 		case(ENTRENADOR_QUIERE_CAPTURAR_POKEMON):
 			{
-				planificador_entrenador_quiere_capturar_pokemon(entrenador_listo);
+				planificador_entrenador_quiere_capturar_pokemon(entrenador_listo, PERMITIR_SI_ES_POSIBLE);
 				if(entrenador_listo->estado == BLOQUEADO)
 				{
 					quamtum_restante = 0;
 				}
 				else { quamtum_disminuite(quamtum_restante); }
 			} break;
-		default: perror("No se puede interpretar lo que quiere el entrnador");
+		default:
+			{
+				planificador_aborta_entrenador(entrenador_listo);
+				quamtum_restante = 0;
+			}
 	}
 }
 
@@ -106,7 +112,7 @@ void planificador_rr_volve_a_bloquear_a_entrenador_si_es_necesario(t_entrenador 
 {
 	if(mapa_decime_si_hay_pokemones_en_pokenest(entrenador->pokenest_objetivo))
 	{
-		enviar_mensaje_a_entrenador(entrenador, OTORGAR_POKEMON,mapa_dame_pokemon_de_pokenest(entrenador->pokenest_objetivo));
+		planificador_entrega_pokemon_a(entrenador);
 		quamtum_disminuite(quamtum);
 	}
 	else

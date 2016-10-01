@@ -11,12 +11,7 @@
 #include "map-commons.h"
 #include "comunicacion.h"
 #include "basic-structs.h"
-
-#define EXECUTE 2
-#define LISTO 1
-#define BLOQUEADO 0
-#define MUERTO -1
-
+#include "unistd.h"
 
 /*-----------------------------------EXECUTE PLANIFICADOR RR---------------------------------------------------------*/
 void* ejecutar_planificador_rr(void* arg);

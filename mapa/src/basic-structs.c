@@ -12,8 +12,8 @@ t_entrenador* entrenador_create(int id_proceso, int socket_entrenador)
 	t_entrenador *new_entrenador = malloc(sizeof(t_entrenador));
 	new_entrenador->id_proceso = id_proceso;
 	new_entrenador->socket_entrenador =socket_entrenador;
-	new_entrenador->estado = 1;
-	new_entrenador->estado_anterior = -1;
+	new_entrenador->estado = NONE;
+	new_entrenador->estado_anterior = NONE;
 	new_entrenador->objetivo_cumplido = 0;
 	new_entrenador->tiene_objetivo = 0;
 	new_entrenador->pokemones_capturados = list_create();

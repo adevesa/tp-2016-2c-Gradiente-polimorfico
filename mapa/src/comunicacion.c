@@ -7,6 +7,9 @@
 
 #include "comunicacion.h"
 
+pthread_mutex_t  mutex_escuchar_al_entrenador = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t  mutex_enviar_al_entrenador = PTHREAD_MUTEX_INITIALIZER;
+
 void* ejecutar_servidor(void *argumento)
 {
 	t_info_socket *info_sock = (t_info_socket*) argumento;
@@ -45,20 +48,8 @@ void conexion_create(int *conexion)
 void* atender_cliente(void* argumento)
 {
 	int *conexion = (int*) argumento;
-	//sem_t semaforo_solicitudes;
-	//sem_t semaforo_mensajes_especificos;
 	sem_t semaforo_termina_proceso;
 	sem_init(&semaforo_termina_proceso,0,0);
-	//sem_init(&semaforo_solicitudes,0,0);
-	//sem_init(&semaforo_mensajes_especificos,0,0);
-
-	/*pthread_t thread1;
-	t_control_entrenador *control = malloc(sizeof(t_control_entrenador));
-	control->semaforo_solicitudes = &semaforo_solicitudes;
-	control->semaforo_especificos = &semaforo_mensajes_especificos;
-	control->recibir_mensaje_especifico = 0;
-	control->socket_cliente= *conexion;
-	pthread_create(&thread1,NULL,estar_atento_a_entrenador,(void*)control);*/
 
 	agregar_proceso_a_lista(conexion,&semaforo_termina_proceso);
 	pthread_exit(NULL);
@@ -117,6 +108,7 @@ int tratar_respuesta(char* respuesta_del_entrenador, t_entrenador *entrenador)
 
 void enviar_mensaje_a_entrenador(t_entrenador *entrenador, int header, char *payload)
 {
+	//pthread_mutex_lock(&mutex_enviar_al_entrenador);
 	switch(header)
 	{
 		case(OTORGAR_TURNO):enviar_mensaje(entrenador->socket_entrenador, "tr;"); break;
@@ -127,10 +119,12 @@ void enviar_mensaje_a_entrenador(t_entrenador *entrenador, int header, char *pay
 		case(AVISAR_DESBLOQUEO_A_ENTRENADOR): enviar_mensaje(entrenador->socket_entrenador,"fb;"); break;
 		default: ;
 	}
+	//pthread_mutex_unlock(&mutex_enviar_al_entrenador);
 }
 
 char* escuchar_mensaje_entrenador(t_entrenador *entrenador, int header)
 {
+	//pthread_mutex_lock(&mutex_escuchar_al_entrenador);
 	switch(header)
 	{
 		case(SOLICITUD_DEL_ENTRENADOR): return(recibir_mensaje(entrenador->socket_entrenador,3));
@@ -139,6 +133,7 @@ char* escuchar_mensaje_entrenador(t_entrenador *entrenador, int header)
 		case(ENTRENADOR_QUIERE_MOVERSE): return(recibir_mensaje_especifico(entrenador->socket_entrenador)); break;
 		default: return("0"); break;
 	}
+	//pthread_mutex_unlock(&mutex_escuchar_al_entrenador);
 }
 
 void otorgar_ruta_medalla_a_entrenador(int entrenador, char *rutaMedalla)

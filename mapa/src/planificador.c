@@ -13,6 +13,8 @@ extern pthread_mutex_t mutex_manipular_cola_listos;
 extern pthread_mutex_t mutex_manipular_cola_bloqueados;
 extern pthread_mutex_t mutex_manipular_cola_nuevos;
 extern sem_t semaforo_hay_algun_entrenador_listo;
+extern sem_t semaforo_cola_entrenadores_sin_objetivos;
+
 
 
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
@@ -39,6 +41,8 @@ t_planificador_srdf* planificador_srdf_create()
 {
 	t_planificador_srdf *planif_new = malloc(sizeof(t_planificador_srdf));
 	planif_new->listas_y_colas = listas_y_colas_creense();
+	planif_new->cola_entrenadores_sin_objetivo=queue_create();
+	planif_new->listos_y_ordenados = list_create();
 	planif_new->retardo=mapa->info_algoritmo->retardo;
 	return planif_new;
 }
@@ -53,14 +57,6 @@ void planificador_inicia_log()
 	string_append(&nombre_log, mapa->info_algoritmo->algoritmo);
 	informe_planificador =log_create(nombre_log, "Planificador", 0, LOG_LEVEL_INFO);
 	free(nombre_log);
-}
-
-/*-----------------------------------EXECUTE PLANIFICADOR SRDF--------------------------------------------------------*/
-void* ejecutar_planificador_srdf(void* arg)
-{
-	t_planificador_srdf *planificador = planificador_srdf_create();
-
-	return NULL;
 }
 
 /*---------------------------------------PUSH Y POPS DE COLAS---------------------------------------------------------*/
@@ -131,7 +127,6 @@ void planificador_dale_coordenadas_a_entrenador(t_entrenador *entrenador)
 {
 	char *identificador_pokenest = escuchar_mensaje_entrenador(entrenador, ENTRENADOR_ESTA_BUSCANDO_COORDENADAS_POKENEST);
 
-
 	t_pokeNest *pokenest_buscada = mapa_buscame_pokenest(identificador_pokenest);
 	entrenador->pokenest_objetivo = identificador_pokenest;
 	char *coordendas_pokenest = armar_coordenada(pokenest_buscada->posicion->x,pokenest_buscada->posicion->y, MAX_BYTES_COORDENADA);
@@ -190,11 +185,12 @@ void planificador_entrenador_se_mueve(t_entrenador *entrenador)
 	free(y);
 	//FIN LOG
 
+	mapa_actualiza_distancia_del_entrenador(entrenador);
 	mapa_mostra_actualizacion_de_entrenador(entrenador);
-	sleep(1);
+	//sleep(1);
 }
 
-void planificador_entrenador_quiere_capturar_pokemon(t_entrenador *entrenador)
+void planificador_entrenador_quiere_capturar_pokemon(t_entrenador *entrenador, int permiso)
 {
 	//INICIO LOG
 	char *mensaje_A_loggear = string_new();
@@ -205,9 +201,13 @@ void planificador_entrenador_quiere_capturar_pokemon(t_entrenador *entrenador)
 	free(mensaje_A_loggear);
 	//FIN LOG
 
-	//planificador_bloquea_entrenador(entrenador);
 	planificador_push_entrenador_a_bloqueado(entrenador);
-	planificador_trata_captura_pokemon(entrenador);
+
+	if(permiso == PERMITIR_SI_ES_POSIBLE)
+	{
+		planificador_trata_captura_pokemon(entrenador);
+	}
+	else{};
 }
 
 void planificador_trata_captura_pokemon(t_entrenador *entrenador)
@@ -215,18 +215,7 @@ void planificador_trata_captura_pokemon(t_entrenador *entrenador)
 	if(mapa_decime_si_hay_pokemones_en_pokenest(entrenador->pokenest_objetivo))
 	{
 		planificador_desbloqueame_a(entrenador);
-		enviar_mensaje_a_entrenador(entrenador,OTORGAR_POKEMON,mapa_dame_pokemon_de_pokenest(entrenador->pokenest_objetivo));
-
-		//INICIO LOG
-		char *mensaje_A_loggear = string_new();
-		string_append(&mensaje_A_loggear, "Entrenador identificado por ");
-		string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
-		string_append(&mensaje_A_loggear, " recibio RUTA POKEMON");
-		log_info(informe_planificador, mensaje_A_loggear);
-		free(mensaje_A_loggear);
-		//FIN LOG
-
-		mapa_actualiza_pokemones_disponibles_de_pokenest(entrenador->pokenest_objetivo);
+		planificador_entrega_pokemon_a(entrenador);
 	}
 	else
 	{
@@ -242,6 +231,22 @@ void planificador_trata_captura_pokemon(t_entrenador *entrenador)
 	}
 }
 
+void planificador_entrega_pokemon_a(t_entrenador *entrenador)
+{
+	enviar_mensaje_a_entrenador(entrenador,OTORGAR_POKEMON,mapa_dame_pokemon_de_pokenest(entrenador->pokenest_objetivo));
+
+	//INICIO LOG
+	char *mensaje_A_loggear = string_new();
+	string_append(&mensaje_A_loggear, "Entrenador identificado por ");
+	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
+	string_append(&mensaje_A_loggear, " recibio RUTA POKEMON");
+	log_info(informe_planificador, mensaje_A_loggear);
+	free(mensaje_A_loggear);
+	//FIN LOG
+
+	mapa_actualiza_pokemones_disponibles_de_pokenest(entrenador->pokenest_objetivo);
+}
+
 void planificador_bloquea_entrenador(t_entrenador *entrenador)
 {
 	//enviar_mensaje_a_entrenador(entrenador, AVISAR_BLOQUEO_A_ENTRENADOR, NULL);
@@ -250,8 +255,6 @@ void planificador_bloquea_entrenador(t_entrenador *entrenador)
 
 void planificador_desbloqueame_a(t_entrenador *entrenador)
 {
-	//enviar_mensaje_a_entrenador(entrenador, AVISAR_DESBLOQUEO_A_ENTRENADOR, NULL);
-
 	pthread_mutex_lock(&mutex_manipular_cola_bloqueados);
 	cola_bloqueados_quita_entrenador_especifico(mapa->entrenadores->cola_entrenadores_bloqueados,entrenador->id_proceso);
 	pthread_mutex_unlock(&mutex_manipular_cola_bloqueados);
@@ -380,6 +383,7 @@ void planificador_extraele_pokemones_a_entrenador(t_entrenador *entrenador)
 /*---------------------------------------NUEVO->LISTO---------------------------------------------------------*/
 void planificador_inicia_encolacion_nuevos_entrenadores()
 {
+	encolacion_entrenadores_iniciada = INICIADO;
 	log_info(informe_planificador, "Se crea proceso para encolación de entreanadores");
 	pthread_attr_t attr;
 	pthread_t thread;
@@ -398,25 +402,39 @@ void* planificador_encola_nuevos_entrenadores()
 	while(1)
 	{
 		sem_wait(&semaforo_hay_algun_entrenador_listo);
-		pthread_mutex_lock(&mutex_manipular_cola_nuevos);
+		if(mapa_decime_si_planificador_es(PLANIFICADOR_RR))
+		{
+			pthread_mutex_lock(&mutex_manipular_cola_nuevos);
 
-		log_info(informe_planificador, "Iniciando la encolación de nuevos entrenadores");
-		foreach(mapa->entrenadores->lista_entrenadores_a_planificar,planificador_modela_nuevo_entrenador_y_encolalo);
-		sem_post(&semaforo_entrenadores_listos);
+			log_info(informe_planificador, "Iniciando la encolación de nuevos entrenadores");
+			foreach(COLA_LISTOS,mapa->entrenadores->lista_entrenadores_a_planificar,planificador_modela_nuevo_entrenador_y_encolalo);
+			sem_post(&semaforo_entrenadores_listos);
 
-		list_clean(mapa->entrenadores->lista_entrenadores_a_planificar);
-		pthread_mutex_unlock(&mutex_manipular_cola_nuevos);
+			list_clean(mapa->entrenadores->lista_entrenadores_a_planificar);
+			pthread_mutex_unlock(&mutex_manipular_cola_nuevos);
 
-		log_info(informe_planificador, "Cola de nuevos vaciada por proceso de encolación");
-		log_info(informe_planificador, "Finalizando la  encolación de entrenadores");
+			log_info(informe_planificador, "Cola de nuevos vaciada por proceso de encolación");
+			log_info(informe_planificador, "Finalizando la  encolación de entrenadores");
+		}
+		else
+		{
+			pthread_mutex_lock(&mutex_manipular_cola_nuevos);
 
+			log_info(informe_planificador, "Iniciando la encolación de nuevos entrenadores");
+			foreach(COLA_SIN_OBJETIVOS,mapa->entrenadores->lista_entrenadores_a_planificar,planificador_modela_nuevo_entrenador_y_encolalo);
+			sem_post(&semaforo_cola_entrenadores_sin_objetivos);
 
+			list_clean(mapa->entrenadores->lista_entrenadores_a_planificar);
+			pthread_mutex_unlock(&mutex_manipular_cola_nuevos);
 
+			log_info(informe_planificador, "Cola de nuevos vaciada por proceso de encolación");
+			log_info(informe_planificador, "Finalizando la  encolación de entrenadores");
+		}
 	}
 
 }
 
-void planificador_modela_nuevo_entrenador_y_encolalo(void *entrenador)
+void planificador_modela_nuevo_entrenador_y_encolalo(int cola, void *entrenador)
 {
 	t_entrenador_nuevo *entrenador_a_modelar = (t_entrenador_nuevo *) entrenador;
 	t_entrenador *new_entrenador = entrenador_create(entrenador_a_modelar->id_proceso, entrenador_a_modelar->socket_entrenador);
@@ -424,35 +442,51 @@ void planificador_modela_nuevo_entrenador_y_encolalo(void *entrenador)
 	new_entrenador->simbolo_identificador = entrenador_a_modelar->simbolo_identificador;
 	free(entrenador_a_modelar);
 	mapa_mostra_nuevo_entrenador_en_pantalla(new_entrenador);
-	planificador_push_entrenador_a_listo(new_entrenador);
 
-	//INICIO LOG
-	char *mensaje_A_loggear = string_new();
-	string_append(&mensaje_A_loggear, "Entrenador conectado por socket ");
-	string_append(&mensaje_A_loggear, string_itoa(new_entrenador->socket_entrenador));
-	string_append(&mensaje_A_loggear, " modelado");
-	log_info(informe_planificador, mensaje_A_loggear);
-	free(mensaje_A_loggear);
-	//FIN LOG
+	if(cola==COLA_LISTOS)
+	{
+		planificador_push_entrenador_a_listo(new_entrenador);
 
+		//INICIO LOG
+		char *mensaje_A_loggear = string_new();
+		string_append(&mensaje_A_loggear, "Entrenador conectado por socket ");
+		string_append(&mensaje_A_loggear, string_itoa(new_entrenador->socket_entrenador));
+		string_append(&mensaje_A_loggear, " modelado");
+		log_info(informe_planificador, mensaje_A_loggear);
+		free(mensaje_A_loggear);
+		//FIN LOG
+	}
+	else
+	{
+		planificador_push_entrenador_en_cola_sin_objetivos(new_entrenador);
+
+		//INICIO LOG
+		char *mensaje_A_loggear = string_new();
+		string_append(&mensaje_A_loggear, "Entrenador conectado por socket ");
+		string_append(&mensaje_A_loggear, string_itoa(new_entrenador->socket_entrenador));
+		string_append(&mensaje_A_loggear, " modelado");
+		log_info(informe_planificador, mensaje_A_loggear);
+		free(mensaje_A_loggear);
+		//FIN LOG
+	}
 
 }
 
-void foreach(void *lista,void(*funcion_de_lista)(void*))
+void foreach(int cola,void *lista,void(*funcion_de_lista)(int,void*))
 {
 	t_list *lista_a_planificar = (t_list*)lista;
 	int tamanio = list_size(lista);
 	int i;
 	for(i=0; i<tamanio;i++)
 	{
-		funcion_de_lista(list_get(lista_a_planificar, i));
+		funcion_de_lista(cola,list_get(lista_a_planificar, i));
 	}
 }
 
 /*---------------------------------------EXECUTE->LISTO---------------------------------------------------------*/
 void planificador_volve_a_encolar_a_listo_si_es_necesario(t_entrenador *entrenador)
 {
-	if(mapa_decime_si_entrenador_esta_bloqueado(entrenador) || mapa_decime_si_entrenador_esta_abortado(entrenador))
+	if(mapa_decime_si_entrenador_esta_bloqueado(entrenador) || mapa_decime_si_entrenador_esta_abortado(entrenador)|| entrenador->estado==MUERTO)
 	{
 
 	}

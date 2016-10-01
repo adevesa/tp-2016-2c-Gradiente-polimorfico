@@ -14,12 +14,14 @@ sem_t semaforo_cola_bloqueados;
 sem_t semaforo_hay_algun_entrenador_listo;
 sem_t semaforo_servidor;
 sem_t semaforo_terminacion;
+sem_t semaforo_cola_entrenadores_sin_objetivos;
 pthread_mutex_t mutex_manipular_cola_listos = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_manipular_cola_nuevos = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_manipular_cola_bloqueados = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_manipular_cola_finalizados = PTHREAD_MUTEX_INITIALIZER;
-int servidor_debe_terminar = 0;
+pthread_mutex_t mutex_cola_entrenadores_sin_objetivos = PTHREAD_MUTEX_INITIALIZER;
 
+int servidor_debe_terminar = 0;
 /*------------------------------------------EXECUTE----------------------------------------------------------------*/
 void ejecutar_mapa(char *nombre, char *rutaPokedex)
 {
@@ -40,6 +42,7 @@ void iniciar_semaforos()
 	sem_init(&semaforo_entrenadores_listos,1,0);
 	sem_init(&semaforo_cola_bloqueados,1,0);
 	sem_init(&semaforo_hay_algun_entrenador_listo,1,0);
+	sem_init(&semaforo_cola_entrenadores_sin_objetivos,1,0);
 	sem_init(&semaforo_servidor,1,0);
 	sem_init(&semaforo_terminacion,0,0);
 }
@@ -136,11 +139,6 @@ void mapa_devolve_pokemon_a_pokenest(char *ruta_pokemon)
 	CrearCaja(mapa->items_para_mostrar_en_pantalla,id,pokenest->posicion->x,pokenest->posicion->y,pokenest->cantidad_pokemones_disponibles);
 }
 
-int mapa_decime_si_planificador_es_rr()
-{
-	return(string_equals_ignore_case(mapa->info_algoritmo->algoritmo,"RR"));
-}
-
 int mapa_decime_si_entrenador_finalizo_su_objetivo(int socket_entrenador)
 {
 	char *key = string_itoa(socket_entrenador);
@@ -148,6 +146,29 @@ int mapa_decime_si_entrenador_finalizo_su_objetivo(int socket_entrenador)
 	free(key);
 }
 
+void mapa_actualiza_distancia_del_entrenador(t_entrenador *entrenador)
+{
+	t_posicion *posicion_final = mapa_dame_coordenadas_de_pokenest(entrenador->pokenest_objetivo);
+	int distancia_en_x;
+	int distancia_en_y;
+	if((posicion_final->x) - (entrenador->posicion_actual->x) > 0)
+	{
+		distancia_en_x = (posicion_final->x) - (entrenador->posicion_actual->x);
+	}
+	else
+	{
+		distancia_en_x = (entrenador->posicion_actual->x) - (posicion_final->x);
+	}
+	if((posicion_final->y) - (entrenador->posicion_actual->y) > 0)
+	{
+		distancia_en_y = (posicion_final->y) - (entrenador->posicion_actual->y);
+	}
+	else
+	{
+		distancia_en_y = (entrenador->posicion_actual->y)-(posicion_final->y);
+	}
+	entrenador->distancia_hasta_objetivo = distancia_en_x+distancia_en_y;
+}
 
 /*--------------------------------------------------- FUNCIONES PARA GRAFICAR--------------------------------------------*/
  void mapa_mostrate_en_pantalla()
@@ -248,6 +269,7 @@ void mapa_borra_entrenador_de_pantalla(t_entrenador *entrenador)
 /*------------------------------ FUNCIONES PARA MANIPULACION DEL PLANIFICADOR--------------------------------------------*/
 void planificador_create_segun_cual_seas()
 {
+	encolacion_entrenadores_iniciada = NO_INICIADO;
 	pthread_t thread;
 	pthread_attr_t attr;
 	pthread_attr_init(&attr);
@@ -265,6 +287,14 @@ void planificador_create_segun_cual_seas()
 	}
 }
 
+int mapa_decime_si_planificador_es(int planificador)
+{
+	switch(planificador)
+	{
+		case(PLANIFICADOR_RR):return(string_equals_ignore_case(mapa->info_algoritmo->algoritmo,"RR"));break;
+		case(PLANIFICADOR_SRDF):return(string_equals_ignore_case(mapa->info_algoritmo->algoritmo,"SRDF"));break;
+	}
+}
 
 /*----------------------- FUNCIONES PARA MANIPULACION DE ENTRENADORES (MEDIANTE SOCKETS)-------------------------------*/
 

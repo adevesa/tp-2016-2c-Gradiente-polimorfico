@@ -36,7 +36,7 @@ enum ENVIOS_AL_ENTRENADOR
 
 #define MAX_BYTES_COORDENADA 5
 #define MAX_BYTES_TOTAL_A_ENVIAR 100
-#define SERVER_DESCONECTADO -1
+#define SERVER_DESCONECTADO 0
 
 extern t_mapa *mapa;
 extern t_mapa *mapa;

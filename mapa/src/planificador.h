@@ -12,15 +12,36 @@
 #include <stdlib.h>
 #include "map-commons.h"
 #include "planificador-rr.h"
+#include "planificadorSRDF.h"
 #include "basic-structs.h"
 #include "socket/serializacion_mapa_entrenador.h"
-
 #define DESCONECTADO 0
+
+
+enum
+{
+	INICIADO,
+	NO_INICIADO
+}estado_de_encolacion;
+
+enum
+{
+	COLA_LISTOS,
+	COLA_SIN_OBJETIVOS
+}t_cola;
+
+enum
+{
+	BLOQUEAR_DE_TODOS_MODOS,
+	PERMITIR_SI_ES_POSIBLE
+}t_trato_captura_pokemon;
 
 t_log *informe_planificador;
 extern t_log *informe_cola_listos;
 extern t_log *informe_cola_bloqueados;
 extern t_log *informe_cola_nuevos;
+int encolacion_entrenadores_iniciada;
+
 
 void planificador_inicia_log();
 /* ----------------------------------------STRUCTS----------------------------------------------------------------*/
@@ -42,6 +63,8 @@ typedef struct round_robbin
 typedef struct srdf
 {
 	t_listas_y_colas *listas_y_colas;
+	t_queue *cola_entrenadores_sin_objetivo;
+	t_list *listos_y_ordenados;
 	int retardo;
 }t_planificador_srdf;
 
@@ -63,8 +86,9 @@ t_entrenador* planificador_pop_entrenador_listo();
 /*-------------------------------------------FUNCIONES GENERALES--------------------------------------------------------*/
 void planificador_dale_coordenadas_a_entrenador(t_entrenador *entrenador);
 void planificador_entrenador_se_mueve(t_entrenador *entrenador);
-void planificador_entrenador_quiere_capturar_pokemon(t_entrenador *entrenador);
+void planificador_entrenador_quiere_capturar_pokemon(t_entrenador *entrenador, int permiso);
 void planificador_trata_captura_pokemon(t_entrenador *entrenador);
+void planificador_entrega_pokemon_a(t_entrenador *entrenador);
 void planificador_bloquea_entrenador(t_entrenador *entrenador);
 void planificador_desbloqueame_a(t_entrenador *entrenador);
 void cola_bloqueados_quita_entrenador_especifico(t_queue *cola, int id_proceso);
@@ -80,8 +104,8 @@ void planificador_extraele_pokemones_a_entrenador(t_entrenador *entrenador);
 /*---------------------------------------NUEVO->LISTO---------------------------------------------------------*/
 void planificador_inicia_encolacion_nuevos_entrenadores();
 void* planificador_encola_nuevos_entrenadores();
-void planificador_modela_nuevo_entrenador_y_encolalo(void *id_proceso);
-void foreach(void *lista,void(*funcion_de_lista)(void*));
+void planificador_modela_nuevo_entrenador_y_encolalo(int cola, void *entrenador);
+void foreach(int cola,void *lista,void(*funcion_de_lista)(int,void*));
 
 /*---------------------------------------EXECUTE->LISTO---------------------------------------------------------*/
 void planificador_volve_a_encolar_a_listo_si_es_necesario(t_entrenador *entrenador);

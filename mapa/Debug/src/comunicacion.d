@@ -12,6 +12,7 @@ src/comunicacion.d: ../src/comunicacion.c ../src/comunicacion.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/../so-commons/collections/dictionary.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/string.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/txt.h \
+ ../src/planificadorSRDF.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/serializacion_mapa_entrenador.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/../so-commons/string.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/sockets-utils.h \
@@ -52,6 +53,8 @@ src/comunicacion.d: ../src/comunicacion.c ../src/comunicacion.h \
 /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/string.h:
 
 /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/txt.h:
+
+../src/planificadorSRDF.h:
 
 /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/serializacion_mapa_entrenador.h:
 
