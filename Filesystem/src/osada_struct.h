@@ -1,5 +1,5 @@
 #include <stdint.h>
-
+#include <commons/bitarray.h>
 
 
 #ifndef __OSADA_H__
@@ -48,9 +48,23 @@ typedef struct {
 typedef struct {
 	uint32_t bloque_inicial;
 	uint32_t bloque_final;
-	char datos;
+	uint32_t size;
+	t_bitarray *datos;
 } t_bitmap;
 
+typedef struct {
+	uint32_t bloque_inicial;
+	uint32_t bloque_final;
+	uint32_t size;
+	int *datos;
+} t_asignaciones;
+
+typedef struct {
+	uint32_t bloque_inicial;
+	uint32_t bloque_final;
+	uint32_t size;
+	int *datos;
+} t_bloques_de_datos;
 
 
 _Static_assert( sizeof(osada_file) == (sizeof(osada_block) / 2.0), "osada_file size does not half osada_block size");

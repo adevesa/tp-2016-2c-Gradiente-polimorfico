@@ -16,18 +16,24 @@
 #include <math.h>
 #include <stdint.h>
 #include <commons/string.h>
+#include <commons/bitarray.h>
 #include <sys/mman.h>
 #include <fcntl.h>
 #include <unistd.h>
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 7f564c9175319a0f1d208b672321315b04b31e14
 #define blocksize 64
+#define path "/home/utnso/workspace/prueba"
+#define archivo_osada abrir_archivo()
+#define header header_create()
+#define bitmap bitmap_create()
+#define tabla_de_asignaciones tabla_de_asignaciones_create()
+#define bloques_osada_file 1024
+#define file_tamanio 32
+//osada_header* header = header_create("/home/utnso/workspace/prueba");
 //double blocksize = 64;
 
-//-----------------CALCULAR TAMAÑO DE BLOQUES-----------------------//
+//-----------------FUNCIONES TRONCALES-----------------------//
 
 
 int redondear_si_es_necesario(double x, double y){
@@ -44,20 +50,15 @@ int redondear_si_es_necesario(double x, double y){
 }
 
 
-//----------------------------------------------------------------------//
-
-char* abrir_archivo(char* path){
-	int fd = open ( "/home/utnso/workspace/prueba", O_RDWR);
+char* abrir_archivo(){
+	int fd = open (path, O_RDWR);
 	int size = getpagesize (); //consigo tamaño del archivo
 	char* datos = mmap((caddr_t) 0, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
 	return datos;
 	//munmap(fd);
 }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 7f564c9175319a0f1d208b672321315b04b31e14
 char* texto_entre(int desde, int hasta, char* texto){
 	char* texto_cortado = string_substring_until(texto, hasta);
 	return string_substring_from(texto_cortado, desde);
@@ -69,141 +70,167 @@ int numero_entre(int desde, int hasta, char* texto){
 	return numero;
 }
 
-<<<<<<< HEAD
-osada_header* header_create(char* path){
-	char* archivo = abrir_archivo(path);
-	osada_header* header  = malloc(sizeof(osada_header));
-	header->magic_number= texto_entre(0, 6, archivo);
-	printf("ejemplo 1: %s \n", texto_entre(0, 7, archivo));
-	printf("ejemplo 2: %s \n", header->magic_number);
-	header->version = numero_entre(8, 9, archivo);
-	printf("ejemplo 3: %d \n", numero_entre(8, 9, archivo));
-	printf("ejemplo 4: %d \n", header->version);
-
-//	header->fs_blocks;
-//	header->bitmap_blocks;
-//	header->allocations_table_offset;
-//	header->data_blocks;
-=======
-void generar_magic_number(osada_header *header,char * texto_devuelto_por_funcion)
+void generar_magic_number(char * texto_devuelto_por_funcion)
 {
 	int cantidad_palabras = string_length(texto_devuelto_por_funcion);
 	int i = 0;
 
 	while(i < cantidad_palabras)
 	{
-		header->magic_number[i] = texto_devuelto_por_funcion[i];
+		//header->magic_number[i] = texto_devuelto_por_funcion[i];
 		i++;
 	}
 }
 
 
+//------------------Header-----------------//
 
-osada_header* header_create(char* path){
-	char* archivo = abrir_archivo(path);
-	osada_header* header  = malloc(sizeof(osada_header));
-	char *devuelve = texto_entre(0,7, archivo);
-	generar_magic_number(header, devuelve);
-	header->version = numero_entre(7, 8, archivo);
-	//printf("version: %d \n", header->version);
-	header->fs_blocks = numero_entre(9, 13, archivo);
-	//printf("fs blocks: %d \n", header->fs_blocks);
-	header->bitmap_blocks = numero_entre(13, 17, archivo);
-	//printf("bitmap_blocks: %d \n", header->bitmap_blocks);
-	header->allocations_table_offset = numero_entre(17, 21, archivo);
-	//printf("llocations_table_offset: %d \n", header->allocations_table_offset);
-	header->data_blocks = numero_entre(21, 25, archivo);
-	//printf("data_blocks: %d \n", header->data_blocks);
->>>>>>> 7f564c9175319a0f1d208b672321315b04b31e14
-	return(header);
-
+osada_header* header_create(){
+	osada_header* header_osada  = malloc(sizeof(osada_header));
+	memcpy(header_osada,archivo_osada,blocksize);
+	return(header_osada);
 }
+
+
 
 //-----------------------BITMAP------------------------//
 
 
-int primer_bloque_libre(int* array){
-	int posicion = 0;
-	while( array[posicion] != 0){
-		posicion++;
-	  }
-		return posicion;
+t_bitmap* bitmap_create(){
+	t_bitmap* bitmap_osada  = malloc(sizeof(t_bitmap));
+	bitmap_osada->bloque_inicial = 1;
+	bitmap_osada->bloque_final = header->bitmap_blocks +1;
+	bitmap_osada->size = header->bitmap_blocks;
+	int tamanio_en_bytes = header->bitmap_blocks * blocksize;
+	memccpy (bitmap_osada->datos, archivo_osada, blocksize + 1, tamanio_en_bytes);
+	return bitmap_osada;
+}
+
+//t_bitmap* bitmap_create()
+//{
+//	t_bitmap *bitmap_new = malloc(sizeof(t_bitmap));
+//	bitmap_new->bloque_inicial=1;
+//	bitmap_new->bloque_final = header->bitmap_blocks +1;
+//	bitmap_new->size = header->bitmap_blocks;
+//	int byte_final_bloque = bitmap_new->bloque_final *blocksize;
+//	bitmap_new->datos = bitarray_create(texto_entre(blocksize, byte_final_bloque, path), bitmap_new->size );
+//	return bitmap_new;
+//}
+
+int primer_bloque_libre()
+{
+	size_t tamanio_del_bitArray = bitarray_get_max_bit(bitmap->datos);
+	off_t i = 0;
+	int encontre_byte_free = 0;
+	do
+	{
+		encontre_byte_free = bitarray_test_bit(bitmap->datos,i);
+		i++;
+	}
+	while(!encontre_byte_free);
+
+	return (i-1);
+
 }
 
 
-void cambiar_estado_bloque(int posicion, int* array){
-	if (array[posicion] == 0){
-		array[posicion] = 1;
+
+
+//int primer_bloque_libre(){
+//	int posicion = 0;
+//	while( (bitmap->datos)[posicion] != 0){
+//		posicion++;
+//	  }
+//		return posicion;
+//}
+
+
+//void cambiar_estado_bloque(int posicion){
+//	if ((bitmap->datos)[posicion] == 0){
+//		(bitmap->datos)[posicion] = 1;
+//	}
+//	else {
+//		(bitmap->datos)[posicion] = 0;
+//	}
+//}
+
+//-------------Tabla de Archivos--------------------------//
+
+//SIN TESTEAR
+osada_file* osada_file_create(int posicion){
+	osada_file* osada_file  = malloc(sizeof(osada_file));
+	float cantidad_de_posiciones = redondear_si_es_necesario((bloques_osada_file * blocksize),  file_tamanio);
+	if(posicion>cantidad_de_posiciones){
+		printf("ERROR: posicion inexistente");
 	}
-	else {
-		array[posicion] = 0;
+	else{
+		int posicion_file = blocksize + (header->bitmap_blocks * blocksize) + (posicion * blocksize);
+		memccpy (osada_file, archivo_osada, posicion_file, file_tamanio);
+		return osada_file;
 	}
 }
+
+
 
 //-----------------Tabla de Asignaciones--------------------//
 
-
-int proximo_bloque(int bloque_actual, int* array){
-	return array[bloque_actual];
+int bloques_tabla_de_asignacion(){
+	int bitmap_tamanio = header->bitmap_blocks;
+	int archivo_tamanio = getpagesize ();
+	int resultado = (archivo_tamanio - bitmap_tamanio - 1 - bloques_osada_file) * 4;
+	return redondear_si_es_necesario (resultado , blocksize);
 }
 
 
+t_asignaciones* tabla_de_asignaciones_create(){
+	t_asignaciones* tabla = malloc(sizeof(t_asignaciones));
+	tabla->bloque_inicial = header->allocations_table_offset;
+	tabla->size = bloques_tabla_de_asignacion();
+	tabla->bloque_final = tabla->size + tabla->bloque_inicial;
+	memccpy (tabla->datos, archivo_osada, tabla->bloque_inicial * blocksize, tabla->size * blocksize);
+	return tabla;
+}
+
+
+//int proximo_bloque(int posicion_actual){
+//	int tamanio = tabla_de_asignaciones->size;
+// 	int datos[tamanio] = tabla_de_asignaciones->datos;
+//	return datos[posicion_actual];
+//}
+
+
+//-------------------Bloque de Datos-----------------------//
+
+t_bloques_de_datos* bloque_de_datos_create(){
+	t_bloques_de_datos* datos = malloc(sizeof(t_bloques_de_datos));
+	datos->size = header->data_blocks;
+	datos->bloque_inicial = header->magic_number + header->bitmap_blocks + header->fs_blocks + header->allocations_table_offset;
+	datos->bloque_final = datos->bloque_inicial + datos->size;
+	memccpy (datos->datos, archivo_osada, datos->bloque_inicial * blocksize, datos->size * blocksize);
+	return datos;
+}
 
 
 int main(int argc, char** argv){
 
-	//int numero = numero_entre(8, blocksize, bloque);
-	//printf("%d", numero);
-
-	//char* bloque = abrir_archivo("/home/utnso/workspace/prueba");
-	//char* texto = texto_entre(0, 7, bloque);
-	//printf("ejemplo 1: %s \n", bloque);
-
-<<<<<<< HEAD
-	osada_header* header = header_create("/home/utnso/workspace/prueba");
-=======
-	//osada_header* header = header_create("/home/utnso/workspace/prueba");
->>>>>>> 7f564c9175319a0f1d208b672321315b04b31e14
-	//printf("magic_number= %s \n", header->magic_number);
-	//printf("version= %d \n", header->version);
-
-	//int fd = open ( "/home/utnso/workspace/prueba", O_RDWR);
-	//int size = getpagesize (); //consigo tamaño del archivo
-<<<<<<< HEAD
-	//char* datos = mmap((caddr_t) 0, size, PROT_READ, MAP_SHARED, fd, 0);
-	//printf("%s", bloque);
-
-=======
-	//int datos = mmap((caddr_t) 0, size, PROT_READ, MAP_SHARED, fd, 0);
-	//printf("%d", datos);
-
-	//int datos = abrir_archivo("/home/utnso/workspace/prueba");
-	//printf("ejemplo 0: %d \n", datos);
-
-	char* archivo = abrir_archivo("/home/utnso/workspace/prueba");
-	printf("ejemplo 1: %s \n", archivo);
-	printf("ejemplo 2: %d \n", atoi(archivo));
 
 
-	FILE *archivo2;
-		archivo2 = fopen("/home/utnso/workspace/prueba", "r");
+	//printf("magic_number: %s \n", header->magic_number);
+	//printf("version: %d \n", header->version);
+	//printf("fs blocks: %d \n", header->fs_blocks);
+	//printf("bitmap_blocks: %d \n", header->bitmap_blocks);
+	//printf("llocations_table_offset: %d \n", header->allocations_table_offset);
+	//printf("data_blocks: %d \n", header->data_blocks);
 
-				if ( archivo2==NULL ){
-						printf("Error al abrir el fichero\n");
-				}
 
-					else
-					{
-						int i = 0;
-						printf("ejemplo con fopen: ");
-							while( !feof(archivo2) ){
-								printf("%d",getc(archivo2));
+	printf("bitmap inicio: %d \n", bitmap->bloque_inicial);
+	printf("bitmap tamanio: %d \n", bitmap->size);
 
-								}
-
-						}
-				fclose(archivo2);
->>>>>>> 7f564c9175319a0f1d208b672321315b04b31e14
+	int tamanio_en_bytes = header->bitmap_blocks * blocksize;
+	int prueba;
+	memccpy (prueba, archivo_osada, blocksize + 1, tamanio_en_bytes);
+	printf("bitmap datos: %s \n", prueba);
+	printf("bitmap datos: %d \n", prueba);
 
 	return EXIT_SUCCESS;
 }
