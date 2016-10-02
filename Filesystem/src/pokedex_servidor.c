@@ -8,8 +8,9 @@
  ============================================================================
  */
 
-
+//#include "pokedex_servidor.h" ME TIRA ERROR AL DESMARCAR ESTO :S
 #include "osada_struct.h"
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -24,8 +25,6 @@
 
 
 
-//osada_header* header = header_create("/home/utnso/workspace/prueba");
-//double blocksize = 64;
 
 //-----------------FUNCIONES TRONCALES-----------------------//
 
