@@ -1,6 +1,6 @@
 #include <stdint.h>
 #include <commons/bitarray.h>
-
+#include <commons/collections/list.h>
 
 #ifndef __OSADA_H__
 #define __OSADA_H__
@@ -8,12 +8,27 @@
 #define OSADA_BLOCK_SIZE 64
 #define OSADA_FILENAME_LENGTH 17
 
+#define blocksize 64
+#define path "/home/utnso/workspace/prueba"
+#define archivo_osada abrir_archivo()
+#define bloques_osada_file 1024
+#define file_tamanio 32
+
+//#define header header_create()
+//#define bitmap bitmap_create()
+//#define tabla_de_asignaciones tabla_de_asignaciones_create()
+
+
 typedef unsigned char osada_block[OSADA_BLOCK_SIZE];
 typedef uint32_t osada_block_pointer;
 
 // set __attribute__((packed)) for this whole section
 // See http://stackoverflow.com/a/11772340/641451
 #pragma pack(push, 1)
+
+
+//-------------------STRUCTS DE LA CATEDRA---------------//
+
 
 typedef struct {
 	unsigned char magic_number[7]; // OSADAFS
@@ -45,29 +60,40 @@ typedef struct {
 	osada_block_pointer first_block;
 } osada_file;
 
+_Static_assert( sizeof(osada_file) == (sizeof(osada_block) / 2.0), "osada_file size does not half osada_block size");
+
+//--------------------STRUCTS NUESTRAS-------------//
+
 typedef struct {
 	uint32_t bloque_inicial;
 	uint32_t bloque_final;
 	uint32_t size;
-	t_bitarray *datos;
+	t_bitarray* datos;
 } t_bitmap;
 
 typedef struct {
 	uint32_t bloque_inicial;
 	uint32_t bloque_final;
 	uint32_t size;
-	int *datos;
+	t_bitarray* datos;
 } t_asignaciones;
 
 typedef struct {
 	uint32_t bloque_inicial;
 	uint32_t bloque_final;
 	uint32_t size;
-	int *datos;
+	t_bitarray* datos;
 } t_bloques_de_datos;
 
 
-_Static_assert( sizeof(osada_file) == (sizeof(osada_block) / 2.0), "osada_file size does not half osada_block size");
+typedef struct {
+	osada_header* header;
+	t_bitmap* bitmap;
+	t_list* osada_files;
+	t_asignaciones* tabla_de_asignaciones;
+	t_bloques_de_datos* bloques_de_datos;
+}t_osada;
+
 
 #pragma pack(pop)
 
