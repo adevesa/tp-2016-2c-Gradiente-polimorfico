@@ -5,7 +5,6 @@
  *      Author: utnso
  */
 #include "osada.h"
-
 t_disco_osada* osada_disco_abrite(char *ruta)
 {
 	t_disco_osada *disco_new = malloc(sizeof(t_disco_osada));
@@ -50,13 +49,16 @@ osada_header* osada_header_create(void *map)
 
 t_bitarray* osada_bitmap_create(t_disco_osada *disco)
 {
-	char *estructura_bitmap = malloc(disco->header->bitmap_blocks *OSADA_BLOCK_SIZE);
-	int i;
-	for(i=1; i<=disco->header->bitmap_blocks; i++)
-	{
-		estructura_bitmap = (char*) osada_get_block_relative(BITMAP,i,disco);
-	}
-	t_bitarray *bitArray_new = bitarray_create(estructura_bitmap, disco->header->bitmap_blocks*OSADA_BLOCK_SIZE);
+	//char *estructura_bitmap = malloc(disco->header->bitmap_blocks * OSADA_BLOCK_SIZE);
+	//int i;
+	//memcpy(estructura_bitmap, disco->map +64,OSADA_BLOCK_SIZE * disco->header->data_blocks);
+	//for(i=1; i<=disco->header->bitmap_blocks; i++)
+	//{
+		//string_append(&estructura_bitmap, osada_get_block_relative(BITMAP,i,disco));
+	//}
+	//disco->map + OSADA_BLOCK_SIZE
+	char *estructura_bitmap = (char*) osada_get_blocks_relative_since(BITMAP,1,disco->header->bitmap_blocks,disco);
+	t_bitarray *bitArray_new = bitarray_create_with_mode(estructura_bitmap,disco->header->bitmap_blocks*OSADA_BLOCK_SIZE,LSB_FIRST);
 	return bitArray_new;
 }
 
@@ -71,7 +73,7 @@ void impactar_en_disco(int byte_inicial,void *bloque, void *map)
 {
 	int i;
 	int byte = 0;
-	int byte_final = byte_inicial + OSADA_BLOCK_SIZE;
+	int byte_final = byte_inicial + OSADA_BLOCK_SIZE-1;
 	char *block = (char*) bloque;
 	char *mapping = (char*) map;
 	for(i=byte_inicial; i<=byte_final;i++)
@@ -80,52 +82,57 @@ void impactar_en_disco(int byte_inicial,void *bloque, void *map)
 		byte++;
 	}
 }
-/*----------------------------------------------OBTENCION DE BLOQUES-------------------------------------------------*/
 
-void* osada_get_block_relative(int campo, int num_block, t_disco_osada *disco)
+/*----------------------------------------------OBTENCION DE BLOQUES-------------------------------------------------*/
+void* osada_get_blocks_relative_since(int campo, int num_block_init, int num_blocks,t_disco_osada *disco)
 {
 	switch(campo)
 	{
 		case(HEADER):
 			{
-				int byte_inicial = calcular_byte_inicial_relative(HEADER, num_block,disco->header);
-				return osada_get_block_start_in(byte_inicial,disco->map);
+				int byte_inicial = calcular_byte_inicial_relative(HEADER, num_block_init,disco->header);
+				return osada_get_block_start_in(byte_inicial,num_blocks,disco->map);
 			};break;
 		case(BITMAP):
 			{
-				int byte_inicial = calcular_byte_inicial_relative(BITMAP, num_block,disco->header);
-				return osada_get_block_start_in(byte_inicial,disco->map);
+				int byte_inicial = calcular_byte_inicial_relative(BITMAP, num_block_init,disco->header);
+				void* valor_Retorno = osada_get_block_start_in(byte_inicial,num_blocks,disco->map);
+				return valor_Retorno;
 			};break;
 		case(TABLA_DE_ARCHIVOS):
 			{
-				int byte_inicial = calcular_byte_inicial_relative(TABLA_DE_ARCHIVOS, num_block,disco->header);
-				return osada_get_block_start_in(byte_inicial,disco->map);
+				int byte_inicial = calcular_byte_inicial_relative(TABLA_DE_ARCHIVOS, num_block_init,disco->header);
+				return osada_get_block_start_in(byte_inicial,num_blocks,disco->map);
 			};break;
 		case(TABLA_DE_ASIGNACIONES):
 			{
-				int byte_inicial = calcular_byte_inicial_relative(TABLA_DE_ASIGNACIONES, num_block,disco->header);
-				return osada_get_block_start_in(byte_inicial,disco->map);
+				int byte_inicial = calcular_byte_inicial_relative(TABLA_DE_ASIGNACIONES, num_block_init,disco->header);
+				return osada_get_block_start_in(byte_inicial,num_blocks,disco->map);
 			};break;
 		case(BLOQUE_DE_DATOS):
 			{
-				int byte_inicial = calcular_byte_inicial_relative(BLOQUE_DE_DATOS, num_block,disco->header);
-				return osada_get_block_start_in(byte_inicial,disco->map);
+				int byte_inicial = calcular_byte_inicial_relative(BLOQUE_DE_DATOS, num_block_init,disco->header);
+				return osada_get_block_start_in(byte_inicial,num_blocks,disco->map);
 			};break;
 	}
 }
 
-void* osada_get_block_start_in(int byte_inicial, void *map)
+void* osada_get_block_start_in(int byte_inicial, int num_blocks, void *map)
 {
-	char *mapping = (char*) map;
-	char *bloc = malloc(OSADA_BLOCK_SIZE);
-	int i;
-	for(i=0; i<OSADA_BLOCK_SIZE; i++)
-	{
-		bloc[i] = mapping[byte_inicial];
-	}
+	void *bloc = malloc(OSADA_BLOCK_SIZE * num_blocks);
+	memcpy(bloc,map + byte_inicial ,OSADA_BLOCK_SIZE * num_blocks);
 	return bloc;
 }
 
+void limpiar(char *array)
+{
+	int i;
+	for(i=0;i<OSADA_BLOCK_SIZE-1;i++)
+	{
+		array[i] = '\0';
+	}
+
+}
 
 osada_block_pointer calcular_byte_inicial_relative(int campo, int numero_bloque,osada_header *header)
 {
@@ -134,33 +141,34 @@ osada_block_pointer calcular_byte_inicial_relative(int campo, int numero_bloque,
 	{
 		case(BITMAP):
 			{
-				return (OSADA_BLOCK_SIZE*numero_bloque + (numero_bloque -1));
+					return (OSADA_BLOCK_SIZE*numero_bloque);
+
+
 			};break;
 		case(TABLA_DE_ARCHIVOS):
 			{
-				int primer_byte_bloque = (header->bitmap_blocks + 1)*OSADA_BLOCK_SIZE + OSADA_BLOCK_SIZE*(numero_bloque-1) + (numero_bloque+1);
-				return(primer_byte_bloque);
+				int ultimo_byte_bitmap = OSADA_BLOCK_SIZE * header->bitmap_blocks;
+				int primer_byte = ultimo_byte_bitmap + OSADA_BLOCK_SIZE*numero_bloque;
+				return(primer_byte);
 			};break;
 		case(TABLA_DE_ASIGNACIONES):
 			{
-				if(numero_bloque == 1)
+				if(numero_bloque==1)
 				{
-					int primer_byte_bloque = ((header->allocations_table_offset)-1)*OSADA_BLOCK_SIZE + header->allocations_table_offset -2;
-					return primer_byte_bloque;
+					return calcular_byte_inicial_absolut(header->allocations_table_offset);
 				}
 				else
 				{
-					int primer_byte_bloque = ((header->allocations_table_offset + numero_bloque -1)-1)*OSADA_BLOCK_SIZE + (header->allocations_table_offset +numero_bloque -1) -2;
-					return primer_byte_bloque;
+					int primer_byte = calcular_byte_inicial_absolut(header->allocations_table_offset) + OSADA_BLOCK_SIZE*numero_bloque;
+					return primer_byte;
 				}
-
 			};break;
 		case(BLOQUE_DE_DATOS):
 			{
 				int tamanio_tabla_asignaciones = calcular_tamanio_tabla_de_asignaciones(header);
 				int byte_inicial_del_ultimo_bloque_tabla_de_asignaciones = calcular_byte_inicial_relative(TABLA_DE_ASIGNACIONES,tamanio_tabla_asignaciones,header);
 
-				int primer_byte_del_bloque_pedido = (byte_inicial_del_ultimo_bloque_tabla_de_asignaciones + OSADA_BLOCK_SIZE +1) +65*(numero_bloque-1);
+				int primer_byte_del_bloque_pedido = (byte_inicial_del_ultimo_bloque_tabla_de_asignaciones) +(OSADA_BLOCK_SIZE*numero_bloque);
 				return primer_byte_del_bloque_pedido;
 			};break;
 	}
@@ -169,13 +177,13 @@ osada_block_pointer calcular_byte_inicial_relative(int campo, int numero_bloque,
 
 osada_block_pointer calcular_byte_inicial_absolut(int numero_bloque_absoluto)
 {
-	if(numero_bloque_absoluto == 1)
+	if(numero_bloque_absoluto == 0)
 	{
 		return 0;
 	}
 	else
 	{
-		int byte_inicial = (numero_bloque_absoluto -1)*OSADA_BLOCK_SIZE + (numero_bloque_absoluto-2);
+		int byte_inicial = numero_bloque_absoluto*64;
 		return (byte_inicial);
 	}
 }
@@ -184,4 +192,17 @@ int calcular_tamanio_tabla_de_asignaciones(osada_header *header)
 {
 	int tamanio_tabla_de_asignaciones = header->fs_blocks - HEADER - TABLA_DE_ARCHIVOS - header->bitmap_blocks - header->data_blocks;
 	return tamanio_tabla_de_asignaciones;
+}
+
+/*----------------------------------------------MANIPULACION BITARRAY-------------------------------------------------*/
+int osada_ocupa_bit_libre(t_disco_osada *disco)
+{
+	int cantidad_bits = (int) bitarray_get_max_bit(disco->bitmap);
+	int i =0;
+	while(bitarray_test_bit(disco->bitmap,i) && i<cantidad_bits)
+	{
+		i++;
+	}
+	bitarray_set_bit(disco->bitmap,i);
+	return i;
 }

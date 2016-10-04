@@ -6,12 +6,14 @@
 
 #include <stdint.h>
 #include "so-commons/bitarray.h"
+#include "so-commons/string.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include <sys/mman.h>
 
+#define LSB_FIRST 5
 enum
 {
 	HEADER = 1,
@@ -63,7 +65,7 @@ typedef struct
 	t_bitarray *bitmap;
 }t_disco_osada;
 
-
+void limpiar(char *array);
 /*-------------------------------------------------------CREATES Y RECUPEROS-----------------------------------------------*/
 
 /*
@@ -121,8 +123,8 @@ void* disco_dame_mapping(int size, int file_descriptor);
  * WARNING: AL MODIFICAR ALGUN BYTE DEL BLOQUE QUE FUE DEVUELTO, LOS CAMBIOS NO SE IMPACTARÁN HASTA QUE SE LLAME A LA FUNCIÓN
  * 			"OSADA_PUSH_BLOCK()" CON SUS RESPECTIVOS PARAMETROS.
  */
-void* osada_get_block_relative(int campo, int num_block, t_disco_osada *disco);
-void* osada_get_block_start_in(int byte_inicial, void *map); // <--- FUNCION QUE ES USADA DENTRO DE "OSADA_GET_BLOCK_RELATIVE"
+void* osada_get_blocks_relative_since(int campo, int num_block_init, int num_blocks,t_disco_osada *disco);
+void* osada_get_block_start_in(int byte_inicial, int num_blocks, void *map); // <--- FUNCION QUE ES USADA DENTRO DE "OSADA_GET_BLOCK_RELATIVE"
 int calcular_tamanio_tabla_de_asignaciones(osada_header *header); // <--- FUNCION QUE ES USADA DENTRO DE "OSADA_GET_BLOCK_RELATIVE"
 
 
@@ -154,6 +156,9 @@ osada_block_pointer calcular_byte_inicial_absolut(int numero_bloque_absoluto);
  */
 void osada_push_block(int campo, int numero_block_relative, void *bloque,t_disco_osada *disco);
 void impactar_en_disco(int byte_inicial,void *bloque, void *map); //<---  FUNCION QUE ES USADA POR "OSADA_PUSH_BLOCK"
+
+/*----------------------------------------------MANIPULACION BITARRAY-------------------------------------------------*/
+int osada_ocupa_bit_libre(t_disco_osada *disco);
 
 //#pragma pack(pop)
 
