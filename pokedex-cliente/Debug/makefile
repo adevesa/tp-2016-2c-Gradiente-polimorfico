@@ -8,8 +8,6 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include src/pkmn/subdir.mk
--include src/nivel-gui/subdir.mk
 -include src/subdir.mk
 -include subdir.mk
 -include objects.mk
@@ -25,22 +23,22 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: mapa
+all: podekex-cliente
 
 dependents:
-	-cd /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug && $(MAKE) clean all
+	-cd /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug && $(MAKE) all
 
 # Tool invocations
-mapa: $(OBJS) $(USER_OBJS) /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug/libnecessary-commons.so
+podekex-cliente: $(OBJS) $(USER_OBJS) /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug/libnecessary-commons.so
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C Linker'
-	gcc -L"/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug" -o "mapa" $(OBJS) $(USER_OBJS) $(LIBS)
+	gcc -L"/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug" -DFUSE_USE_VERSION=27 D_FILE_OFFSET_BITS=64 -o "podekex-cliente" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(C_DEPS)$(EXECUTABLES) mapa
+	-$(RM) $(OBJS)$(C_DEPS)$(EXECUTABLES) podekex-cliente
 	-@echo ' '
 
 .PHONY: all clean dependents

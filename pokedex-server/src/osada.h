@@ -7,6 +7,8 @@
 #include <stdint.h>
 #include "so-commons/bitarray.h"
 #include "so-commons/string.h"
+#include "so-commons/collections/list.h"
+#include "math.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,6 +16,7 @@
 #include <sys/mman.h>
 
 #define LSB_FIRST 5
+#define FEOF -1
 enum
 {
 	HEADER = 1,
@@ -65,7 +68,6 @@ typedef struct
 	t_bitarray *bitmap;
 }t_disco_osada;
 
-void limpiar(char *array);
 /*-------------------------------------------------------CREATES Y RECUPEROS-----------------------------------------------*/
 
 /*
@@ -125,6 +127,8 @@ void* disco_dame_mapping(int size, int file_descriptor);
  */
 void* osada_get_blocks_relative_since(int campo, int num_block_init, int num_blocks,t_disco_osada *disco);
 void* osada_get_block_start_in(int byte_inicial, int num_blocks, void *map); // <--- FUNCION QUE ES USADA DENTRO DE "OSADA_GET_BLOCK_RELATIVE"
+void* osada_get_bytes_start_in(int byte_inicial, int num_bytes_total, void *map);
+
 int calcular_tamanio_tabla_de_asignaciones(osada_header *header); // <--- FUNCION QUE ES USADA DENTRO DE "OSADA_GET_BLOCK_RELATIVE"
 
 
@@ -159,6 +163,18 @@ void impactar_en_disco(int byte_inicial,void *bloque, void *map); //<---  FUNCIO
 
 /*----------------------------------------------MANIPULACION BITARRAY-------------------------------------------------*/
 int osada_ocupa_bit_libre(t_disco_osada *disco);
+
+/*----------------------------------------------OBTENCION DE NUM BLOQUE ARCHIVO-----------------------------------------*/
+t_list* osada_get_blocks_nums_of_this_file(osada_file *file, t_disco_osada *disco);
+
+/*----------------------------------------------OBTENCION DE DATOS DE UN ARCHIVO---------------------------------------*/
+void* osada_get_data_of_this_file(osada_file *file, t_disco_osada *disco);
+int calcular_byte_final_a_recuperar_de_file(int file_size);
+void nada (void *nada);
+
+/*----------------------------------------------OBTENCION DE UN ARCHIVO ESPECIFICO---------------------------------------*/
+osada_file* osada_get_file_called(char *file_name, t_disco_osada *disco);
+int verificar_si_es_archivo_buscado(char *file_name, osada_file *file);
 
 //#pragma pack(pop)
 

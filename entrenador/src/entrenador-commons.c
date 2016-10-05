@@ -93,7 +93,7 @@ void entrenador_recorre_hoja_de_viaje()
 void entrenador_busca_mapa(int index)
 {
 	char *nombre_mapa = list_get(entrenador->hoja_de_viaje, index);
-	string_trim_left(&nombre_mapa);
+	//string_trim_left(&nombre_mapa);
 	entrenador->mapa_actual = mapa_create(nombre_mapa, entrenador->ruta_pokedex, entrenador);
 
 	//INICIO log

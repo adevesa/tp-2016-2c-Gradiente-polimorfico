@@ -7,7 +7,6 @@
 
 #ifndef OPERACIONES_H_
 #define OPERACIONES_H_
-
-
+#include "osada.h"
 
 #endif /* OPERACIONES_H_ */
