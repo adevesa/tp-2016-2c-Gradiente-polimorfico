@@ -86,7 +86,6 @@ char* build_msg(int header, char *path_original, char *path_new_or_text, int siz
 				char *num_bytes_first_path = armar_numero_de_bytes(string_length(path_original));
 				string_append(&msg, num_bytes_first_path);
 				string_append(&msg, path_original);
-				//string_append(&msg, ";");
 				char *num_bytes_second_path = armar_numero_de_bytes(string_length(path_new_or_text));
 				string_append(&msg,num_bytes_second_path);
 				string_append(&msg, path_new_or_text);
@@ -157,11 +156,11 @@ char* armar_header(int header)
 {
 	if(header < 10)
 	{
-		char *header = string_repeat(' ',1);
+		char *heaader = string_repeat(' ',1);
 		char *itoa = string_itoa(header);
-		string_append(&header,itoa);
+		string_append(&heaader,itoa);
 		free(itoa);
-		return header;
+		return heaader;
 	}
 	else
 	{
@@ -177,7 +176,6 @@ char* armar_lectura_o_escritura(int tipo,char *path, char *text, int size, int o
 		{
 			char *msg = armar_numero_de_bytes(string_length(path));
 			string_append(&msg,path);
-			//string_append(&msg,";");
 			char *size_a_leer = armar_numero_de_bytes(size);
 			string_append(&msg, size_a_leer);
 			char *a_partir_de = armar_numero_de_bytes(offset);
@@ -190,7 +188,6 @@ char* armar_lectura_o_escritura(int tipo,char *path, char *text, int size, int o
 		{
 			char *msg = armar_numero_de_bytes(string_length(path));
 			string_append(&msg,path);
-			//string_append(&msg,";");
 			char *size_a_leer = armar_numero_de_bytes(size);
 			string_append(&msg, size_a_leer);
 			char *a_partir_de = armar_numero_de_bytes(offset);

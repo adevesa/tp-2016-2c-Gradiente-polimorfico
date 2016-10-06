@@ -61,3 +61,23 @@ char* escuchar_mensaje_operaciones_basicas(int socket)
 	char *path = recibir_mensaje(socket, bytes_path);
 	return path;
 }
+
+char* escuchar_mensaje_read(int socket)
+{
+	t_to_be_read to_read = malloc(sizeof(t_to_be_read));
+
+	char *bytes_of_path = recibir_mensaje(socket,BYTES_TO_RCV);
+	int bytes_path = atoi(bytes_of_path);
+	free(bytes_of_path);
+	char *path = recibir_mensaje(socket, bytes_path);
+	to_read->path = path;
+
+	char *size_to_be_read = recibir_mensaje(socket, BYTES_TO_RCV);
+	int size_to_read = atoi(size_to_be_read);
+	free(size_to_be_read);
+	to_read->size = size_to_read;
+
+	char *offset_string = recibir_mensaje(socket, BYTES_TO_RCV);
+
+
+}
