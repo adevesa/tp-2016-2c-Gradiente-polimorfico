@@ -14,9 +14,21 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <sys/mman.h>
+#include "global-vars.h"
 
 #define LSB_FIRST 5
 #define FEOF -1
+
+
+enum
+{
+	EXITO = 1,
+	NO_EXISTE = 2,
+	EXISTE = 3,
+	NO_HAY_ESPACIO = 4,
+	ARGUMENTO_INVALIDO = 5
+}t_results;
+
 enum
 {
 	HEADER = 1,
@@ -68,6 +80,7 @@ typedef struct
 	t_bitarray *bitmap;
 }t_disco_osada;
 
+t_disco_osada* disco;
 /*-------------------------------------------------------CREATES Y RECUPEROS-----------------------------------------------*/
 
 /*
@@ -159,10 +172,8 @@ osada_block_pointer calcular_byte_inicial_absolut(int numero_bloque_absoluto);
  * 			SOBRE EL BLOQUE.
  */
 void osada_push_block(int campo, int numero_block_relative, void *bloque,t_disco_osada *disco);
+void osada_push_part_of_block(int campo, int numero_block_relative, int offset, void *bloque, t_disco_osada *disco);
 void impactar_en_disco(int byte_inicial,void *bloque, void *map); //<---  FUNCION QUE ES USADA POR "OSADA_PUSH_BLOCK"
-
-/*----------------------------------------------MANIPULACION BITARRAY-------------------------------------------------*/
-int osada_ocupa_bit_libre(t_disco_osada *disco);
 
 /*----------------------------------------------OBTENCION DE NUM BLOQUE ARCHIVO-----------------------------------------*/
 t_list* osada_get_blocks_nums_of_this_file(osada_file *file, t_disco_osada *disco);
@@ -172,9 +183,37 @@ void* osada_get_data_of_this_file(osada_file *file, t_disco_osada *disco);
 int calcular_byte_final_a_recuperar_de_file(int file_size);
 void nada (void *nada);
 
+/*---------------------------------------------BUSUQEDA DE TABLA DE ARCHIVOS DISPONIBLE---------------------------------*/
+typedef struct
+{
+	osada_file *file;
+	int block_relative;
+	int position_in_block;
+}t_osada_file_free;
+
+t_osada_file_free* osada_file_table_get_space_free(t_disco_osada *disco);
+int verificar_si_file_esta_libre(osada_file *file);
+
 /*----------------------------------------------OBTENCION DE UN ARCHIVO ESPECIFICO---------------------------------------*/
-osada_file* osada_get_file_called(char *file_name, t_disco_osada *disco);
+typedef t_osada_file_free t_file_osada;
+
+void* osada_get_file_called(char *file_name, t_disco_osada *disco);
 int verificar_si_es_archivo_buscado(char *file_name, osada_file *file);
+
+/*----------------------------------------------MANIPULACION BITARRAY-------------------------------------------------*/
+int osada_ocupa_bit_libre_de(t_disco_osada *disco);
+osada_block_pointer osada_get_start_block_absolut_of(int campo, t_disco_osada *disco);
+
+
+/*---------------------------------------------VERIFICACION EXISTENCIA DE UN PATH-----------------------------------------*/
+int osada_check_exist(char *path);
+int verificar_existencia(char *file_or_directory, uint16_t dad_block);
+int revisar_resultado(int result);
+int calcular_posicion_en_tabla_de_archivos(int num_block, int position);
+
+/*---------------------------------------------AUXILIARES----------------------------------------------------------------*/
+int array_size(char **array);
+void array_free_all(char **array);
 
 //#pragma pack(pop)
 

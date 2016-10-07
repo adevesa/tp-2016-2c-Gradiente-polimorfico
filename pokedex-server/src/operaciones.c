@@ -5,33 +5,57 @@
  *      Author: utnso
  */
 #include "operaciones.h"
-
-void* osada_read_file(char *path)
+/*-------------------------------------------ATRIBUTOS------------------------------------------------------------------*/
+void* osada_get_attributes(char *path)
 {
 
 }
 
-void* osada_create_file()
+void* osada_get_list_dir(char *path)
 {
 
 }
 
-void* osada_delete_file(char *ruta)
+/*-------------------------------------------CREACION-------------------------------------------------------------------*/
+void* osada_create_file(char *path)
 {
 
 }
 
-void* osada_delete_dir()
+void* osada_create_dir(char *path)
 {
 
 }
 
-void* osada_create_dir()
+/*-------------------------------------------ELMINACION-----------------------------------------------------------------*/
+void* osada_delete_file(char *path)
 {
 
 }
 
-void* osada_rename_file()
+void* osada_delete_dir(char *path)
+{
+
+}
+
+/*-------------------------------------------WRITE & READ---------------------------------------------------------------*/
+void* osada_read_file(t_to_be_read *to_read)
+{
+
+}
+
+void* osada_write_file(t_to_be_write *to_write)
+{
+
+}
+
+/*-------------------------------------------RENAME---------------------------------------------------------------------*/
+void* osada_rename_file(t_to_be_rename *to_rename)
+{
+
+}
+/*-------------------------------------------OPENS & CLOSER-------------------------------------------------------------*/
+void* osada_open_file(char *path)
 {
 
 }
