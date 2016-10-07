@@ -6,6 +6,7 @@
  */
 #include "serializacion_pokedex_cliente_servidor.h"
 
+/*-----------------------------------------PETICIONES--------------------------------------------*/
 char* build_msg(int header, char *path_original, char *path_new_or_text, int size, int offset)
 {
 	switch(header)
@@ -188,15 +189,20 @@ char* armar_lectura_o_escritura(int tipo,char *path, char *text, int size, int o
 		{
 			char *msg = armar_numero_de_bytes(string_length(path));
 			string_append(&msg,path);
-			char *size_a_leer = armar_numero_de_bytes(size);
-			string_append(&msg, size_a_leer);
+
+
+			char *size_a_escribir = armar_numero_de_bytes(size);
+			string_append(&msg, size_a_escribir);
+
 			char *a_partir_de = armar_numero_de_bytes(offset);
 			string_append(&msg,a_partir_de);
+
 			string_append(&msg, text);
-			free(size_a_leer);
+			free(size_a_escribir);
 			free(a_partir_de);
 			return msg;
 		};break;
 	}
 }
 
+/*-----------------------------------------RESPUESTAS-------------------------------------------------*/

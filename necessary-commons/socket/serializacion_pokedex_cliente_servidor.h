@@ -25,8 +25,11 @@ enum
 	OPEN_FILE=10
 };
 
+/*-----------------------------------------PETICIONES----------------------------------------------------*/
 char* build_msg(int header, char *path_original, char *path_new_or_text, int size, int offset);
 char* armar_numero_de_bytes(int size_payload);
 char* armar_header(int header);
 char* armar_lectura_o_escritura(int tipo,char *path, char *text, int size, int offset);
+
+/*-----------------------------------------SOBRE ERRORES-------------------------------------------------*/
 #endif /* SOCKET_SERIALIZACION_POKEDEX_CLIENTE_SERVIDOR_H_ */

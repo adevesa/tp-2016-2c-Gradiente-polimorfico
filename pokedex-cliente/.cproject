@@ -30,6 +30,11 @@
 								<option id="gnu.c.compiler.option.include.paths.1152375189" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/necessary-commons}&quot;"/>
 								</option>
+								<option id="gnu.c.compiler.option.dialect.std.714579438" name="Language standard" superClass="gnu.c.compiler.option.dialect.std" value="gnu.c.compiler.dialect.default" valueType="enumerated"/>
+								<option id="gnu.c.compiler.option.preprocessor.def.symbols.267930214" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="_FILE_OFFSET_BITS=64"/>
+									<listOptionValue builtIn="false" value="FUSE_USE_VERSION=27"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.782152264" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.1652582589" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug">
@@ -41,7 +46,7 @@
 									<listOptionValue builtIn="false" value="pthread"/>
 									<listOptionValue builtIn="false" value="fuse"/>
 								</option>
-								<option id="gnu.c.link.option.ldflags.100045861" name="Linker flags" superClass="gnu.c.link.option.ldflags" value="-DFUSE_USE_VERSION=27 D_FILE_OFFSET_BITS=64" valueType="string"/>
+								<option id="gnu.c.link.option.ldflags.100045861" name="Linker flags" superClass="gnu.c.link.option.ldflags" value="" valueType="string"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.47711588" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>

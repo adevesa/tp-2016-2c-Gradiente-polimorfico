@@ -8,12 +8,20 @@
 #ifndef COMUNICATION_WITH_SERVER_H_
 #define COMUNICATION_WITH_SERVER_H_
 
-#include "fuse-basic.h"
+//#include "fuse-basic.h"
+#include "global-vars.h"
+#include <fuse.h>
+#include "socket/serializacion_pokedex_cliente_servidor.h"
+
+#define PUERTO 2955
+#define IP "127.0.0.1"
+
 enum
 {
 	ARCHIVO,
 	DIRECTORIO
 };
+
 /*-------------------------------------------CREACION-----------------------------------------------------------------*/
 int cliente_pedi_crear_directorio(const char *path, mode_t modo_de_creacion);
 int cliente_pedi_crear_archivo(const char *path, mode_t modo, dev_t permisos);
