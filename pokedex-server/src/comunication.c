@@ -6,6 +6,128 @@
  */
 #include "comunication.h"
 
+/*--------------------------------------CONEXION--------------------------------------------------------------*/
+void pokedex_server_conectate()
+{
+	char *ip = getenv("IP");
+	char *puerto_string = getenv("PUERTO");
+	int puerto = atoi(puerto_string);
+	servidor_pokedex = server_create(puerto, ip, MAX_CONECCTIONS);
+	server_escucha(servidor_pokedex);
+}
+
+void pokedex_server_acepta_clientes()
+{
+	pthread_attr_t attr;
+	pthread_t thread;
+
+	pthread_attr_init(&attr);
+	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+
+	pthread_create(&thread,&attr,servidor_acepta_clientes,NULL);
+
+	pthread_attr_destroy(&attr);
+}
+
+void servidor_acepta_clientes(void *arg)
+{
+	while(1)
+	{
+		int cliente = server_acepta_conexion_cliente(servidor_pokedex);
+
+		//COMO ACCEPT ES BLOQUEANTE --> SI ESTÁ EN ESTE PUNTO ES QUE YA HAY UN CLIENTE ONLINE
+		pthread_attr_t attr;
+		pthread_t thread;
+
+		pthread_attr_init(&attr);
+		pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+
+		pthread_create(&thread,&attr,server_pokedex_atende_cliente,(void*)&cliente);
+
+		pthread_attr_destroy(&attr);
+
+	}
+}
+
+void server_pokedex_atende_cliente(void* socket_cliente)
+{
+	int *cliente = (int*) socket_cliente;
+	int cliente_esta_conectado = 1;
+
+	while(cliente_esta_conectado)
+	{
+		char *peticion = server_escucha_peticion(*cliente);
+		if(string_equals_ignore_case(peticion, "DESCONECTADO"))
+		{
+			cliente_esta_conectado = 0;
+		}
+		else
+		{
+			tratar_peticion_de(*cliente, peticion);
+		}
+	}
+	server_cerra_cliente(*cliente);
+	pthread_exit(NULL);
+}
+
+char* server_escucha_peticion(int cliente)
+{
+	char *peticion = recibir_mensaje(cliente,HEADER);
+	return peticion;
+}
+
+void tratar_peticion_de(int cliente,char *peticion)
+{
+	int peticion_header = atoi(peticion);
+
+	switch (peticion_header)
+	{
+		case(LISTAR):
+		{
+			char *path = recibir_mensaje_especifico(cliente, LISTAR);
+		};break;
+		case(GET_ATRIBUTES):
+		{
+			char *path = recibir_mensaje_especifico(cliente, GET_ATRIBUTES);
+		};break;
+		case(CREATE_FILE):
+		{
+			char *path = recibir_mensaje_especifico(cliente, CREATE_FILE);
+		};break;
+		case(CREATE_DIRECTORY):
+		{
+			char *path = recibir_mensaje_especifico(cliente, CREATE_DIRECTORY);
+		};break;
+		case(DELETE_FILE):
+		{
+			char *path = recibir_mensaje_especifico(cliente, DELETE_FILE);
+		};break;
+		case(DELETE_DIRECTTORY):
+		{
+			char *path = recibir_mensaje_especifico(cliente, DELETE_DIRECTTORY);
+		};break;
+		case(READ_FILE):
+		{
+			t_to_be_read *file_to_read = recibir_mensaje_especifico(cliente, READ_FILE);
+		};break;
+		case(WRITE_FILE):
+		{
+			t_to_be_write *file_to_write = recibir_mensaje_especifico(cliente,WRITE_FILE);
+		};break;
+		case(RENAME_FILE):
+		{
+			t_to_be_rename *file_to_rename= recibir_mensaje_especifico(cliente, RENAME_FILE);
+		};break;
+		case(OPEN_FILE):
+		{
+			char *path = recibir_mensaje_especifico(cliente, OPEN_FILE);
+		};break;
+	}
+
+
+}
+
+/*--------------------------------------MENSAJES CON CLIENTES-----------------------------------------------------*/
 void* recibir_mensaje_especifico(int socket, int header)
 {
 	switch(header)

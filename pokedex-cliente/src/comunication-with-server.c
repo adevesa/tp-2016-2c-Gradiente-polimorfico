@@ -7,6 +7,24 @@
 #include "comunication-with-server.h"
 extern t_cliente_osada* cliente_osada;
 
+/*-------------------------------------------CREACION Y CONEXION CON SERVER----------------------------------------------*/
+void cliente_osada_create()
+{
+	cliente_osada =malloc(sizeof(t_cliente_osada));
+	cliente_osada->ip = getenv("IP");
+
+	char *puerto = getenv("PUERTO");
+	cliente_osada->puerto = atoi(puerto);
+
+	free(puerto);
+
+}
+
+void cliente_osada_conectate()
+{
+	cliente_osada->socket_pokedex_servidor = cliente_create(cliente_osada->puerto, cliente_osada->ip);
+}
+
 /*-------------------------------------------ATRIBUTOS-----------------------------------------------------------------*/
 int cliente_pedi_atributos(const char *path, struct stat *buffer)
 {

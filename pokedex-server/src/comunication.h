@@ -9,9 +9,23 @@
 #define COMUNICATION_H_
 
 #include "socket/serializacion_pokedex_cliente_servidor.h"
+#include "socket/server.h"
+#include "pthread.h"
 
 #define BYTES_TO_RCV 5
 #define HEADER 2
+#define MAX_CONECCTIONS 1500
+
+/*---------------------------------CONEXION------------------------------------------*/
+t_server* servidor_pokedex;
+void pokedex_server_conectate();
+void pokedex_server_acepta_clientes();
+void servidor_acepta_clientes(void *arg);
+void server_pokedex_atende_cliente(void* socket_cliente);
+char* server_escucha_peticion(int cliente);
+void tratar_peticion_de(int cliente,char *peticion);
+
+
 
 typedef struct
 {

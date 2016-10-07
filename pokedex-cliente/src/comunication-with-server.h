@@ -13,14 +13,15 @@
 #include <fuse.h>
 #include "socket/serializacion_pokedex_cliente_servidor.h"
 
-#define PUERTO 2955
-#define IP "127.0.0.1"
-
 enum
 {
 	ARCHIVO,
 	DIRECTORIO
 };
+
+/*-------------------------------------------CREACION Y CONEXION CON SERVER----------------------------------------------*/
+void cliente_osada_create();
+void cliente_osada_conectate();
 
 /*-------------------------------------------CREACION-----------------------------------------------------------------*/
 int cliente_pedi_crear_directorio(const char *path, mode_t modo_de_creacion);
