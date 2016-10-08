@@ -277,7 +277,7 @@ typedef t_osada_file_free t_file_osada;
  * @DESC: Dado un POSIBLE nombre de archivo,y un disco osada, devuelve "NO_EXISTE" (string) si el nombre de archivo dado
  * 		no se corresponde con ninguno del disco, o el archivo en caso de que lo encuentre.
  *
- * 	WARNING: NOTESE QUE ESTA FUNCION SOLO COMPARA SI EXISTE EL NOMBRE DEL ARCHIVO EN LA TABLA DE ASIGNACIONES,
+ * 	WARNING: NOTESE QUE ESTA FUNCION SOLO COMPARA SI EXISTE EL NOMBRE DEL ARCHIVO EN LA TABLA DE ARCHIVOS,
  * 			POR LO QUE NO COMPRUEBA SI EL ARCHIVO ESTÁ BORRADO.
  * 			PARA COMPROBAR ESTO ULTIMO, DEBE USARSE OSADA_CHECH_EXIST (VEASE MÁS ABAJO)
  */
