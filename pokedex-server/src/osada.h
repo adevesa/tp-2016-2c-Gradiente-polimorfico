@@ -80,7 +80,8 @@ typedef struct
 	t_bitarray *bitmap;
 }t_disco_osada;
 
-t_disco_osada* disco;
+t_disco_osada* disco; // <-- ES LA VARIABLE GLOBAL DEL DISCO
+
 /*-------------------------------------------------------CREATES Y RECUPEROS-----------------------------------------------*/
 
 /*
@@ -173,7 +174,9 @@ osada_block_pointer calcular_byte_inicial_absolut(int numero_bloque_absoluto);
  */
 void osada_push_block(int campo, int numero_block_relative, void *bloque,t_disco_osada *disco);
 void osada_push_part_of_block(int campo, int numero_block_relative, int offset, void *bloque, t_disco_osada *disco);
-void impactar_en_disco(int byte_inicial,void *bloque, void *map); //<---  FUNCION QUE ES USADA POR "OSADA_PUSH_BLOCK"
+void impactar_en_disco_bloque_completo(int byte_inicial,void *bloque, void *map); //<---  FUNCION QUE ES USADA POR "OSADA_PUSH_BLOCK"
+void impactar_en_disco_medio_bloque(int byte_inicial,void *bytes, void *map);
+void impactar_en_disco_n_bloques(int byte_inicial, int cantidad_bloques,void *bloques, void *map);
 
 /*----------------------------------------------OBTENCION DE NUM BLOQUE ARCHIVO-----------------------------------------*/
 t_list* osada_get_blocks_nums_of_this_file(osada_file *file, t_disco_osada *disco);
@@ -202,8 +205,9 @@ int verificar_si_es_archivo_buscado(char *file_name, osada_file *file);
 
 /*----------------------------------------------MANIPULACION BITARRAY-------------------------------------------------*/
 int osada_ocupa_bit_libre_de(t_disco_osada *disco);
-osada_block_pointer osada_get_start_block_absolut_of(int campo, t_disco_osada *disco);
+void osada_desocupa_bit(t_disco_osada *disco, int num_block);
 
+osada_block_pointer osada_get_start_block_absolut_of(int campo, t_disco_osada *disco);
 
 /*---------------------------------------------VERIFICACION EXISTENCIA DE UN PATH-----------------------------------------*/
 int osada_check_exist(char *path);
@@ -211,6 +215,14 @@ int verificar_existencia(char *file_or_directory, uint16_t dad_block);
 int revisar_resultado(int result);
 int calcular_posicion_en_tabla_de_archivos(int num_block, int position);
 
+/*---------------------------------------------BORRADO DE ARCHIVOS---------------------------------------------------------*/
+void osada_delete_this_file(char *path);
+void delete_file(char *archivo);
+int calcular_desplazamiento_tabla_de_archivos(int posicion_relativa);
+
+void osada_change_file_state(osada_file *file, osada_file_state new_state);
+
+int calcular_cantidad_bloques_admin();
 /*---------------------------------------------AUXILIARES----------------------------------------------------------------*/
 int array_size(char **array);
 void array_free_all(char **array);
