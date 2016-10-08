@@ -19,9 +19,9 @@ int main(int argc, char* argv[])
 {
 	disco = osada_disco_abrite("/home/utnso/workspace/basic.bin");
 
-	//osada_delete_this_file("archivo.txt");
+	osada_delete_this_file("large.txt");
 
-	int verifica = osada_check_exist("archivo.txt");
+	int verifica = osada_check_exist("large.txt");
 	printf("%d\n", verifica);
 	//pokedex_server_conectate();
 	//pokedex_server_acepta_clientes();

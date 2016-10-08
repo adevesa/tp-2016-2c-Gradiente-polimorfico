@@ -56,8 +56,8 @@ t_bitarray* osada_bitmap_create(t_disco_osada *disco)
 	return bitArray_new;
 }
 
-/*----------------------------------------------IMPACTAR CAMBIOS EN UN BLOQUE-------------------------------------------------*/
-void osada_push_part_of_block(int campo, int numero_block_relative, int offset, void *bloque, t_disco_osada *disco)
+/*----------------------------------------------IMPACTAR CAMBIOS EN DISCO-------------------------------------------------*/
+void osada_push_middle_block(int campo, int numero_block_relative, int offset, void *bloque, t_disco_osada *disco)
 {
 	int byte_inicial = calcular_byte_inicial_relative(campo,numero_block_relative,disco->header);
 	impactar_en_disco_medio_bloque(byte_inicial + offset,bloque,disco->map);
@@ -390,30 +390,6 @@ int verificar_si_es_archivo_buscado(char *file_name, osada_file *file)
 	return(string_equals_ignore_case(file_name, (char*)file->fname));
 }
 
-/*----------------------------------------------MANIPULACION BITARRAY-------------------------------------------------*/
-int osada_ocupa_bit_libre_de(t_disco_osada *disco)
-{
-	int bloque_incial = osada_get_start_block_absolut_of(BLOQUE_DE_DATOS,disco);
-	int i =bloque_incial;
-	while(bitarray_test_bit(disco->bitmap,i) && i<(bloque_incial + disco->header->data_blocks))
-	{
-		i++;
-	}
-	bitarray_set_bit(disco->bitmap,i);
-	return i;
-}
-
-void osada_desocupa_bit(t_disco_osada *disco, int num_block)
-{
-	bitarray_clean_bit(disco->bitmap,num_block);
-	//disco->map[calcular_cantidad_bloques_admin + num_block] = 0;
-}
-
-int calcular_cantidad_bloques_admin()
-{
-	return disco->header->bitmap_blocks + 1 +1024 + calcular_tamanio_tabla_de_asignaciones(disco->header);
-}
-
 /*---------------------------------------------BUSUQEDA DE TABLA DE ARCHIVOS DISPONIBLE---------------------------------*/
 t_osada_file_free* osada_file_table_get_space_free(t_disco_osada *disco)
 {
@@ -432,7 +408,7 @@ t_osada_file_free* osada_file_table_get_space_free(t_disco_osada *disco)
 		memcpy(file_1,two_files, sizeof(osada_file));
 		memcpy(file_2,two_files + sizeof(osada_file), sizeof(osada_file));
 
-		if(verificar_si_file_esta_libre(file_1))
+		if(verify_file_state(DELETED,file_1))
 		{
 				file_free = 1;
 				free(two_files);
@@ -443,7 +419,7 @@ t_osada_file_free* osada_file_table_get_space_free(t_disco_osada *disco)
 		}
 		else
 		{
-			if(verificar_si_file_esta_libre(file_2))
+			if(verify_file_state(DELETED,file_2))
 			{
 				file_free = 1;
 				free(two_files);
@@ -458,9 +434,9 @@ t_osada_file_free* osada_file_table_get_space_free(t_disco_osada *disco)
 	return a_file_free;
 }
 
-int verificar_si_file_esta_libre(osada_file *file)
+int verify_file_state(int state,osada_file *file)
 {
-	if(file->state == DELETED)
+	if(file->state == state)
 	{
 		return 1;
 	}
@@ -504,7 +480,7 @@ int verificar_existencia(char *file_or_directory, uint16_t dad_block)
 
 	t_file_osada *file = (t_file_osada *) result;
 
-	if(string_equals_ignore_case((char*) result, "NO_EXISTE") || file->file->state == DELETED)
+	if(string_equals_ignore_case((char*) result, "NO_EXISTE") || verify_file_state(DELETED,file->file))
 	{
 		return -1;
 	}
@@ -592,23 +568,12 @@ void delete_file(char *archivo)
 	t_file_osada *a_file = osada_get_file_called(archivo, disco);
 	t_list *bloques_a_liberar = osada_get_blocks_nums_of_this_file(a_file->file,disco);
 
-	int size = list_size(bloques_a_liberar);
-	int i;
-	for(i=0; i<size; i++)
-	{
-		int *bloque=list_remove(bloques_a_liberar,i);
-		int bit_a_desocupar = calcular_cantidad_bloques_admin() + *bloque;
-		osada_desocupa_bit(disco,bit_a_desocupar);
-		//free(bloque);
-	}
-
+	osada_desocupa_n_bits(bloques_a_liberar);
 	list_destroy(bloques_a_liberar);
-
-	impactar_en_disco_n_bloques(OSADA_BLOCK_SIZE,disco->header->bitmap_blocks,disco->bitmap,disco->map);
 
 	osada_change_file_state(a_file->file,DELETED);
 	int offset = calcular_desplazamiento_tabla_de_archivos(a_file->position_in_block);
-	osada_push_part_of_block(TABLA_DE_ARCHIVOS,a_file->block_relative,offset,a_file->file,disco);
+	osada_push_middle_block(TABLA_DE_ARCHIVOS,a_file->block_relative,offset,a_file->file,disco);
 
 	free(a_file->file);
 	free(a_file);
@@ -643,6 +608,43 @@ void osada_change_file_state(osada_file *file, osada_file_state new_state)
 			file->state = DIRECTORY;
 		};break;
 	}
+}
+
+/*----------------------------------------------MANIPULACION BITARRAY-------------------------------------------------*/
+int osada_ocupa_bit_libre_de(t_disco_osada *disco)
+{
+	int bloque_incial = osada_get_start_block_absolut_of(BLOQUE_DE_DATOS,disco);
+	int i =bloque_incial;
+	while(bitarray_test_bit(disco->bitmap,i) && i<(bloque_incial + disco->header->data_blocks))
+	{
+		i++;
+	}
+	bitarray_set_bit(disco->bitmap,i);
+	//impactar_en_disco_n_bloques(OSADA_BLOCK_SIZE,disco->header->bitmap_blocks,disco->bitmap->bitarray,disco->map);
+	return i;
+}
+
+void osada_desocupa_bit(t_disco_osada *disco, int num_block)
+{
+	bitarray_clean_bit(disco->bitmap,num_block);
+}
+
+void osada_desocupa_n_bits(t_list *bloques_a_liberar)
+{
+	int size = list_size(bloques_a_liberar);
+	int i;
+	for(i=0; i<size; i++)
+	{
+		int *bloque=list_get(bloques_a_liberar,i);
+		int bit_a_desocupar = calcular_cantidad_bloques_admin() + *bloque;
+		osada_desocupa_bit(disco,bit_a_desocupar);
+	}
+	impactar_en_disco_n_bloques(OSADA_BLOCK_SIZE,disco->header->bitmap_blocks,disco->bitmap->bitarray,disco->map);
+}
+
+int calcular_cantidad_bloques_admin()
+{
+	return disco->header->bitmap_blocks + 1 +1024 + calcular_tamanio_tabla_de_asignaciones(disco->header);
 }
 
 /*---------------------------------------------AUXILIARES----------------------------------------------------------------*/
