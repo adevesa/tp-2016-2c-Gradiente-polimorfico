@@ -674,12 +674,12 @@ void array_free_all(char **array)
 
 
 
-void borrar_archivo(char* path, char*nombre_archivo)
+void borrar_archivo(char* path_padre, char*nombre_archivo_hijo)
 {
 	char* path_nuevo = string_new();
-	string_append(&path_nuevo, path);
+	string_append(&path_nuevo, path_padre);
 	string_append(&path_nuevo,"/");
-	string_append(&path_nuevo, nombre_archivo);
+	string_append(&path_nuevo, nombre_archivo_hijo);
 	osada_delete_this_file(path_nuevo);
 	free(path_nuevo);
 }
@@ -772,7 +772,7 @@ void osada_delete_dir_void(char* path)
 
 void nuevo_tamanio_padre(int posicion, char* path)
 {
-	int tamanio_del_hijo = tamanio_del_dir(path);
+	int tamanio_del_hijo = tamanio_del_file(path);
 	char* nombre_hijo = string_new();
 	nombre_hijo = nombre_en_el_path(path);
 	osada_file *file_1 = malloc(sizeof(osada_file));
@@ -908,7 +908,7 @@ int tamanio_del_dir(char* path)
 }
 */
 
-int tamanio_del_dir(char* path)
+int tamanio_del_file(char* path)
 {
 	char* nombre = string_new();
 	nombre = nombre_en_el_path(path);
@@ -970,5 +970,46 @@ void osada_delete_this_dir(char* path)
 		}
 }
 
+//-------------------DEVOLVER LISTADO------------------//
 
 
+t_list* filtrar_hijos(char* path_padre){
+	t_list* lista = list_create();
+	int index = 1;
+
+	osada_file *file_1 = malloc(sizeof(osada_file));
+	osada_file *file_2 = malloc(sizeof(osada_file));
+
+	while(index<=1024){
+		t_file_show* dato_en_lista = malloc(sizeof(t_file_show));
+		void *two_files = osada_get_blocks_relative_since(TABLA_DE_ARCHIVOS,index,1,disco);
+		memcpy(file_1,two_files, sizeof(osada_file));
+		memcpy(file_2,two_files + sizeof(osada_file), sizeof(osada_file));
+	 	if(es_el_padre(file_1,path_padre) && file_1->state != DELETED){
+	 		dato_en_lista->name = (char*) file_1->fname;
+	 		dato_en_lista->state = file_1->state;
+	 		list_add(lista, dato_en_lista);
+	 		free(dato_en_lista);
+
+	 	}
+	 	if(es_el_padre(file_2,path_padre) && file_2->state != DELETED){
+	 		dato_en_lista->name = (char*) file_2->fname;
+	 		dato_en_lista->state = file_2->state;
+	 		list_add(lista, dato_en_lista);
+	 		free(dato_en_lista);
+	 	}
+	}
+	return lista;
+	free(lista);
+}
+
+
+t_list* osada_devolve_listado(char* path_dir){
+	if(!osada_check_exist(path_dir)){
+			//logearerror();
+		}
+		else{
+			return filtrar_hijos(path_dir);
+			}
+
+}

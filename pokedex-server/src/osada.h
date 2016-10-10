@@ -376,20 +376,20 @@ void array_free_all(char **array);//<-- Se entiende solo con leer el nombre
 
 /*
  * @NAME: osada_delete_this_dir(char* path);
- * @DESC: Dado un path, chequea la existencia de ese directorio, borra a todos sus hijos, y se borra a si mismo, y cambia el tamaño de
- * 		  su archivo
+ * @DESC: Dado un path, chequea la existencia de ese directorio, borra a todos sus hijos, y se borra a si mismo,
+ * 		  y cambia el tamaño del dir padre
  */
 void osada_delete_this_dir(char* path);
 
 /*
  * @NAME: borrar_archivo(char* path, char* nombre_archivo);
- * @DESC: Dado un path, y el nombre de archivo, borra el archivo.
+ * @DESC: Dado un nombre de archivo, y el path del padre, borra el archivo que esta dentro del dir padre.
  */
-void borrar_archivo(char* path, char* nombre_archivo);
+void borrar_archivo(char* path_padre, char*nombre_archivo_hijo);
 
 /*
  * @NAME: borrar_directorio(char* path, char* nombre_archivo);
- * @DESC: Dado un path, y el nombre de directorio, borra el directorio(funcion recursiva con osada_delete_this_dir)
+ * @DESC: Dado un directorio hijo, y la ruta del directorio padre  borra el directorio hijo(funcion recursiva con osada_delete_this_dir)
  */
 void borrar_directorio(char* path, char* nombre_directorio);
 
@@ -402,7 +402,7 @@ void osada_borrar_hijos(char* path);
 
 /*
  * @NAME: osada_delete_dir_void(char* path);
- * @DESC: Dado un path de un directorio vacio, setea en su tabla de archivos como borrado.
+ * @DESC: Dado un path de un directorio VACIO, setea en su tabla de archivos como borrado.
  */
 void osada_delete_dir_void(char* path);
 
@@ -419,37 +419,63 @@ char* nombre_en_el_path(char* path);
  * @DESC: Dado un path a borrar, recalcula el size del padre.
  */
 void recalcular_tamanio_del_padre(char* path);
+
+/*
+ * @NAME: nuevo_tamanio_padre(int posicion, char* path)
+ * @DESC: Dado la posicion del array de archivos del padre, y el path del hijo, hace la resta entre
+ * su hijo(directorio) y el padre y lo pushea.
+ */
+void nuevo_tamanio_padre(int posicion, char* path);
+
 /*
  * @NAME: tamanio_del_dir(char* path);
- * @DESC: Dado un path calcula su size.
+ * @DESC: Dado un path a un dir/archivo calcula su size y al usar nuevo_tamanio_padre queda pusheado.
  */
-int tamanio_del_dir(char* path);
+
+int tamanio_del_file(char* path);
 /*
  * @NAME: posicion_del_padre(char* path)
  * @DESC: Dado un path devuelve la posicion en el array del padre.
  */
 uint16_t posicion_del_padre(char* path);
-/*
- * @NAME: nuevo_tamanio_padre(int posicion, char* path)
- * @DESC: Dado la posicion del array de archivos del padre, y el path, hace la resta entre su hijo(directorio) y el padre.
- */
-void nuevo_tamanio_padre(int posicion, char* path);
-
 
 /*
  * @NAME: es_el_padre(osada_file file,char* path);
  * @DESC: Dado un file y un path del supuesto padre, devuelve 1 si es el padre, 0 si no lo es.
  */
-int es_el_padre(osada_file* file,char* path);
+int es_el_padre(osada_file* file_hijo,char* path_padre);
 
 /*
  * @NAME: es_el_hijo(osada_file* file_padre, char* path_hijo);
- * @Dado un file del padre y un path del hijo, determina si es el hijo, devuelve 1 si es el hijo , 0 sino lo es.
+ * @DESC: Dado un file del padre y un path del hijo, determina si es el hijo, devuelve 1 si es el hijo , 0 sino lo es.
  *
  */
 
 int es_el_hijo(osada_file* file_padre, char* path_hijo);
 
 //#pragma pack(pop)
+
+
+//----------------------------------------DEVOLVER LISTADO------------------------------//
+typedef struct{
+	char* name;
+	osada_file_state state;
+}t_file_show;
+
+/*
+ * @NAME:osada_devolve_listado(char* path_dir);
+ * @DESC: Dado una ruta a un directorio, checkea su existencia y luego devuelve una lista de
+ * t_file_show con todos los archivos y dir que tiene de hijos.
+ */
+t_list* osada_devolve_listado(char* path_dir);
+
+
+/*
+ * @NAME:filtrar_hijos(char* path_padre);
+ * @DESC: Lo mismo que "osada_devolve_listado" pero sin checkear existencia.
+ */
+t_list* filtrar_hijos(char* path_padre);
+
+
 
 #endif __OSADA_H__
