@@ -8,6 +8,7 @@
 #include "so-commons/bitarray.h"
 #include "so-commons/string.h"
 #include "so-commons/collections/list.h"
+#include "so-commons/string.h"
 #include "math.h"
 #include <string.h>
 #include <stdio.h>
@@ -370,6 +371,84 @@ void osada_desocupa_n_bits(t_list *bloques_a_liberar);
 /*---------------------------------------------AUXILIARES----------------------------------------------------------------*/
 int array_size(char **array); //<-- Se entiende solo con leer el nombre
 void array_free_all(char **array);//<-- Se entiende solo con leer el nombre
+
+/*--------------------------------------DELETE DIR---------------------------------------*/
+
+/*
+ * @NAME: osada_delete_this_dir(char* path);
+ * @DESC: Dado un path, chequea la existencia de ese directorio, borra a todos sus hijos, y se borra a si mismo, y cambia el tamaño de
+ * 		  su archivo
+ */
+void osada_delete_this_dir(char* path);
+
+/*
+ * @NAME: borrar_archivo(char* path, char* nombre_archivo);
+ * @DESC: Dado un path, y el nombre de archivo, borra el archivo.
+ */
+void borrar_archivo(char* path, char* nombre_archivo);
+
+/*
+ * @NAME: borrar_directorio(char* path, char* nombre_archivo);
+ * @DESC: Dado un path, y el nombre de directorio, borra el directorio(funcion recursiva con osada_delete_this_dir)
+ */
+void borrar_directorio(char* path, char* nombre_directorio);
+
+
+/*
+ * @NAME: osada_borrar_hijos(char* path);
+ * @DESC: Dado un path, borra todos sus hijos, sean directorios o archivos.
+ */
+void osada_borrar_hijos(char* path);
+
+/*
+ * @NAME: osada_delete_dir_void(char* path);
+ * @DESC: Dado un path de un directorio vacio, setea en su tabla de archivos como borrado.
+ */
+void osada_delete_dir_void(char* path);
+
+/*
+ * @NAME: nombre_en_el_path(char* path)
+ * @DESC: Dado un path, devuelve el string del ultimo archivo.
+ * @EJEM: nombre_en_el_path("/utn/so/grecoso");
+ * @RETN: "grecoso"
+ */
+char* nombre_en_el_path(char* path);
+
+/*
+ * @NAME: recalcular_tamanio_del_padre(char* path);
+ * @DESC: Dado un path a borrar, recalcula el size del padre.
+ */
+void recalcular_tamanio_del_padre(char* path);
+/*
+ * @NAME: tamanio_del_dir(char* path);
+ * @DESC: Dado un path calcula su size.
+ */
+int tamanio_del_dir(char* path);
+/*
+ * @NAME: posicion_del_padre(char* path)
+ * @DESC: Dado un path devuelve la posicion en el array del padre.
+ */
+uint16_t posicion_del_padre(char* path);
+/*
+ * @NAME: nuevo_tamanio_padre(int posicion, char* path)
+ * @DESC: Dado la posicion del array de archivos del padre, y el path, hace la resta entre su hijo(directorio) y el padre.
+ */
+void nuevo_tamanio_padre(int posicion, char* path);
+
+
+/*
+ * @NAME: es_el_padre(osada_file file,char* path);
+ * @DESC: Dado un file y un path del supuesto padre, devuelve 1 si es el padre, 0 si no lo es.
+ */
+int es_el_padre(osada_file* file,char* path);
+
+/*
+ * @NAME: es_el_hijo(osada_file* file_padre, char* path_hijo);
+ * @Dado un file del padre y un path del hijo, determina si es el hijo, devuelve 1 si es el hijo , 0 sino lo es.
+ *
+ */
+
+int es_el_hijo(osada_file* file_padre, char* path_hijo);
 
 //#pragma pack(pop)
 

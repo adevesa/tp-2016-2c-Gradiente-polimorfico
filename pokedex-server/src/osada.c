@@ -670,3 +670,246 @@ void array_free_all(char **array)
 	}
 }
 
+/*------------------------------------------DELETE DIR----------------------------------------------------------------*/
+
+
+
+void borrar_archivo(char* path, char*nombre_archivo)
+{
+	char* path_nuevo = string_new();
+	string_append(&path_nuevo, path);
+	string_append(&path_nuevo,"/");
+	string_append(&path_nuevo, nombre_archivo);
+	osada_delete_this_file(path_nuevo);
+	free(path_nuevo);
+}
+
+
+void borrar_directorio(char* path, char* nombre_directorio)
+{
+	char* path_nuevo = string_new();
+	string_append(&path_nuevo, path);
+	string_append(&path_nuevo,"/");
+	string_append(&path_nuevo, nombre_directorio);
+	osada_delete_this_dir(path_nuevo);
+	free(path_nuevo);
+}
+
+
+void osada_borrar_hijos(char* path)
+{
+ osada_file *file_1 = malloc(sizeof(osada_file));
+ osada_file *file_2 = malloc(sizeof(osada_file));
+ int index = 1;
+
+ while(index<=1024)
+ 	 {
+	 void *two_files = osada_get_blocks_relative_since(TABLA_DE_ARCHIVOS,index,1,disco);
+	 memcpy(file_1,two_files, sizeof(osada_file));
+	 memcpy(file_2,two_files + sizeof(osada_file), sizeof(osada_file));
+
+	 if(es_el_padre(file_1, path)){
+	  if(file_1->state == DIRECTORY){
+		  borrar_directorio(path, (char*) file_1->fname);
+	  	  }
+	  else{
+		  borrar_archivo(path ,(char*) file_1->fname);
+	  	  }
+	 }
+
+if(es_el_padre(file_2, path)){
+	if(file_2->state == DIRECTORY){
+		borrar_directorio(path, (char*)file_2->fname);
+	}
+	else{
+		borrar_archivo(path ,(char*)file_2->fname);
+		}
+	}
+}
+index++;
+osada_delete_dir_void(path);
+free(file_1);
+free(file_2);
+}
+
+void osada_delete_dir_void(char* path)
+{
+	int index = 1;
+	osada_file *file_1 = malloc(sizeof(osada_file));
+ 	osada_file *file_2 = malloc(sizeof(osada_file));
+ 	while(index<=1024)
+ 		{
+ 			void *two_files = osada_get_blocks_relative_since(TABLA_DE_ARCHIVOS,index,1,disco);
+ 			memcpy(file_1,two_files, sizeof(osada_file));
+ 			memcpy(file_2,two_files + sizeof(osada_file), sizeof(osada_file));
+ 			if(string_equals_ignore_case(nombre_en_el_path(path), (char*)file_1->fname)){
+ 				file_1->state = DELETED;
+ 				osada_push_middle_block(TABLA_DE_ARCHIVOS, index, 0, file_1, disco);
+ 				}
+ 			if(string_equals_ignore_case(nombre_en_el_path(path), (char*)file_2->fname)){
+ 				file_2->state = DELETED;
+ 				osada_push_middle_block(TABLA_DE_ARCHIVOS, index, 32, file_2, disco);
+ 				}
+ 		}
+ 	free(file_1);
+ 	free(file_2);
+}
+
+void nuevo_tamanio_padre(int posicion, char* path)
+{
+	int tamanio_del_hijo = tamanio_del_dir(path);
+	char* nombre_hijo = string_new();
+	nombre_hijo = nombre_en_el_path(path);
+	osada_file *file_1 = malloc(sizeof(osada_file));
+ 	osada_file *file_2 = malloc(sizeof(osada_file));
+ 	void* two_files = osada_get_blocks_relative_since(TABLA_DE_ARCHIVOS, posicion, 1, disco);
+ 	memcpy(file_1,two_files, sizeof(osada_file));
+ 	memcpy(file_2,two_files + sizeof(osada_file), sizeof(osada_file));
+ 	if(es_el_hijo(file_1, path)){
+	file_1->file_size =- tamanio_del_hijo;
+	osada_push_middle_block(TABLA_DE_ARCHIVOS, posicion, 0, file_1, disco);
+ 	}
+ 	else{
+ 		file_2->file_size =- tamanio_del_hijo;
+ 		osada_push_middle_block(TABLA_DE_ARCHIVOS, posicion, 32, file_2, disco);
+ 	}
+ 	free(nombre_hijo);
+ 	free(file_1);
+	free(file_2);
+}
+
+
+
+char* nombre_en_el_path(char* path)
+{
+	char **file_for_file = string_split(path, "/");
+	int size = array_size(file_for_file);
+ 	return file_for_file[size-1];
+}
+
+int es_el_padre(osada_file* file_hijo,char* path_padre)
+{
+	uint16_t posicion = file_hijo->parent_directory;
+	osada_file *file_1 = malloc(sizeof(osada_file));
+	osada_file *file_2 = malloc(sizeof(osada_file));
+	void* two_files = osada_get_blocks_relative_since(TABLA_DE_ARCHIVOS, posicion, 1, disco);
+	memcpy(file_1,two_files, sizeof(osada_file));
+	memcpy(file_2,two_files + sizeof(osada_file), sizeof(osada_file));
+	if(string_equals_ignore_case(nombre_en_el_path(path_padre),(char*) file_1->fname) || string_equals_ignore_case(nombre_en_el_path(path_padre),(char*) file_2->fname)){
+			free(file_1);
+			free(file_2);
+			return 1;
+		}
+		else{
+	free(file_1);
+	free(file_2);
+	return 0;
+		}
+}
+
+int es_el_hijo(osada_file* file_padre, char* path_hijo)
+{
+	char* nombre_padre = (char*) file_padre->fname;
+	char* path_nuevo = string_new();
+	char* nombre_hijo = string_new();
+	nombre_hijo = nombre_en_el_path(path_hijo);
+	string_append(&path_nuevo, nombre_padre);
+	string_append(&path_nuevo, "/");
+	string_append(&path_nuevo, nombre_hijo);
+		if(string_ends_with(path_hijo, path_nuevo)){
+			free(path_nuevo);
+			free(nombre_hijo);
+			return 1;
+		}
+		else{
+			free(path_nuevo);
+			free(nombre_hijo);
+			return 0;
+		}
+
+}
+
+
+/*
+int es_el_padre(osada_file* file,char* path){
+	if(string_starts_with(path, nombre_en_el_path((char*) file->fname))){
+		return 0;
+		}
+	else{
+		return 1;
+	}
+}
+*/
+void recalcular_tamanio_del_padre(char* path){
+	uint16_t posicion = posicion_del_padre(path);
+	nuevo_tamanio_padre(posicion, path);
+	}
+
+int tamanio_del_dir(char* path)
+{
+	char* nombre = string_new();
+	nombre = nombre_en_el_path(path);
+	int index = 1;
+
+	osada_file *file_1 = malloc(sizeof(osada_file));
+ 	osada_file *file_2 = malloc(sizeof(osada_file));
+
+ 	while(index<=1024){
+	 void *two_files = osada_get_blocks_relative_since(TABLA_DE_ARCHIVOS,index,1,disco);
+	 memcpy(file_1,two_files, sizeof(osada_file));
+	 memcpy(file_2,two_files + sizeof(osada_file), sizeof(osada_file));
+		if(string_equals_ignore_case(nombre_en_el_path(path), (char*) file_1->fname)){
+		return file_1->file_size;
+		}
+	  if(string_equals_ignore_case(nombre_en_el_path(path), (char*) file_2->fname)){
+		return file_2->file_size;
+	  }
+
+	  free(nombre);
+	  free(file_1);
+	  free(file_2);
+ 	}
+}
+
+uint16_t posicion_del_padre(char* path)
+{
+	char* nombre = string_new();
+	nombre = nombre_en_el_path(path);
+	int index = 1;
+	osada_file *file_1 = malloc(sizeof(osada_file));
+ 	osada_file *file_2 = malloc(sizeof(osada_file));
+
+ 	while(index<=1024)
+ 	{
+	  void *two_files = osada_get_blocks_relative_since(TABLA_DE_ARCHIVOS,index,1,disco);
+	  memcpy(file_1,two_files, sizeof(osada_file));
+	  memcpy(file_2,two_files + sizeof(osada_file), sizeof(osada_file));
+		if(string_equals_ignore_case(nombre_en_el_path(path), (char*)file_1->fname)){
+		return file_1->parent_directory;
+		}
+	  	if(string_equals_ignore_case(nombre_en_el_path(path), (char*)file_2->fname)){
+		return file_2->parent_directory;
+	  	}
+	free(nombre);
+	free(file_1);
+	free(file_2);
+ 	}
+}
+
+
+
+void osada_delete_this_dir(char* path)
+{
+	if(!osada_check_exist(path)){
+		//logearerror();
+	}
+	else{
+		osada_borrar_hijos(path);
+		recalcular_tamanio_del_padre(path);
+
+	//CHARLAR LO DE DESALOJO DE BITARRAY.
+		}
+}
+
+
+
