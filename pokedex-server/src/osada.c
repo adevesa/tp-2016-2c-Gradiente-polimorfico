@@ -389,17 +389,7 @@ int verificar_si_es_archivo_buscado(char *file_name, osada_file *file)
 {
 	return(string_equals_ignore_case(file_name, (char*)file->fname));
 }
-int calcular_posicion_array_tabla_de_archivos(t_file_osada* file)
-{
-	if(file->block_relative == 1){
-		switch(file->position_in_block){
-			case(1):
-					return 1;
-			case(0):
-					return 0;
-		}
-	}
-}
+
 /*---------------------------------------------BUSUQEDA DE TABLA DE ARCHIVOS DISPONIBLE---------------------------------*/
 t_osada_file_free* osada_file_table_get_space_free(t_disco_osada *disco)
 {
@@ -585,7 +575,6 @@ void osada_delete_this_file(char *path)
 
 }
 
-
 int calcular_desplazamiento_tabla_de_archivos(int posicion_relativa)
 {
 	if(posicion_relativa == 0)
@@ -616,6 +605,7 @@ void osada_change_file_state(osada_file *file, osada_file_state new_state)
 		};break;
 	}
 }
+
 void osada_recalculate_size_of(char* path, int tamanio_a_restar)
 {
 	t_file_osada* file = osada_get_file_called(path, disco);
@@ -625,18 +615,21 @@ void osada_recalculate_size_of(char* path, int tamanio_a_restar)
 	free(file->file);
 	free(file);
 }
+
 char* recuperar_path_padre(char* path)
 {
 	char** file_for_file = string_split(path,"/");
 	int size = array_size(file_for_file);
 	int i;
 	char* path_padre = string_new();
-	for(i=0;i<(size-1);i++){
+	for(i=0;i<(size-1);i++)
+	{
 		string_append(&path_padre,file_for_file[i]);
 		string_append(&path_padre,"/");
 	}
 	return path_padre;
 }
+
 /*----------------------------------------------MANIPULACION BITARRAY-------------------------------------------------*/
 int osada_ocupa_bit_libre_de(t_disco_osada *disco)
 {
@@ -705,18 +698,29 @@ char* array_last_element(char* path)
 	array_free_all(file_for_file);
  	return nombre;
 }
-/*------------------------------------------LISTAR HIJOS  -------------------------------------------------*/
+
+char* crear_ruta(char* hijo, char* path_padre)
+{
+	char* path_final = string_new();
+	string_append(&path_final,path_padre);
+	string_append(&path_final,"/");
+	string_append(&path_final,hijo);
+	return path_final;
+}
+/*------------------------------------------LISTAR HIJOS  ----------------------------------------------------------------*/
 void agregar_a_lista_si_es_hijo(char* path_padre, osada_file* hijo, t_list* lista)
 {
-		if(es_el_padre(hijo,path_padre) && hijo->state != DELETED){
- 		t_file_listado* dato_en_lista = malloc(sizeof(t_file_listado));
- 		char* path_hijo = crear_ruta((char*) hijo->fname,path_padre);
- 		dato_en_lista->file = osada_get_file_called(path_hijo,disco);
- 		dato_en_lista->path = path_hijo;
- 		dato_en_lista->tipo = dato_en_lista->file->file->state;
- 		list_add(lista, dato_en_lista);
- 	}
+		if(es_el_padre(hijo,path_padre) && !verify_file_state(DELETED, hijo))
+		{
+			t_file_listado* dato_en_lista = malloc(sizeof(t_file_listado));
+			char* path_hijo = crear_ruta((char*) hijo->fname,path_padre);
+			dato_en_lista->file = osada_get_file_called(path_hijo,disco);
+			dato_en_lista->path = path_hijo;
+			dato_en_lista->tipo = dato_en_lista->file->file->state;
+			list_add(lista, dato_en_lista);
+		}
 }
+
 t_list* osada_listar_hijos(char* path)
 {
 	t_list* lista = list_create();
@@ -725,7 +729,8 @@ t_list* osada_listar_hijos(char* path)
 	osada_file *file_1 = malloc(sizeof(osada_file));
 	osada_file *file_2 = malloc(sizeof(osada_file));
 
-	while(index<=1024){
+	while(index<=1024)
+	{
 
 		void *two_files = osada_get_blocks_relative_since(TABLA_DE_ARCHIVOS,index,1,disco);
 		memcpy(file_1,two_files, sizeof(osada_file));
@@ -738,8 +743,21 @@ t_list* osada_listar_hijos(char* path)
 	return lista;
 }
 
-/*------------------------------------------DELETE DIR----------------------------------------------------------------*/
-
+int es_el_padre(osada_file* file_hijo,char* path_padre)
+{
+	char* nombre_padre = string_new();
+	nombre_padre = array_last_element(path_padre);
+	if(string_equals_ignore_case((char*)file_hijo->fname,nombre_padre))
+	{
+		free(nombre_padre);
+		return 1;
+	}
+	else{
+		free(nombre_padre);
+		return 0;
+	}
+}
+/*------------------------------------------DELETE DIR---------------------------------------------------------------------*/
 void osada_delete_this_dir(char* path)
 {
 		if(es_directorio_vacio(path)){
@@ -747,10 +765,12 @@ void osada_delete_this_dir(char* path)
 		}
 		else{
 			osada_borrar_hijos(path);
-			recalcular_tamanio_del_padre(path);
+			//recalcular_tamanio_del_padre(path);
 		}
 }
-int es_directorio_vacio(char* path){
+
+int es_directorio_vacio(char* path)
+{
 	t_list* lista = osada_listar_hijos(path);
 	if(list_is_empty(lista)){
 		list_destroy_and_destroy_elements(lista,file_listado_eliminate);
@@ -761,6 +781,7 @@ int es_directorio_vacio(char* path){
 		return 0;
 	}
 }
+
 void osada_delete_dir_void(char* path)
 {
 	t_osada_file_free* directorio = osada_get_file_called(path, disco);
@@ -769,20 +790,14 @@ void osada_delete_dir_void(char* path)
 	free(directorio->file);
 	free(directorio);
 }
-char* crear_ruta(char* hijo, char* path_padre)
-{
-	char* path_final = string_new();
-	string_append(&path_final,path_padre);
-	string_append(&path_final,"/");
-	string_append(&path_final,hijo);
-	return path_final;
-}
+
 void file_listado_eliminate(t_file_listado* file)
 {
 	free(file->file->file);
 	free(file->file);
 	free(file);
 }
+
 void osada_borrar_hijos(char* path)
 {
 	t_list* lista_hijos = osada_listar_hijos(path);
@@ -802,269 +817,4 @@ void osada_borrar_hijos(char* path)
 	}
 	osada_delete_dir_void(path);
 	list_destroy_and_destroy_elements(lista_hijos,file_listado_eliminate);
-}
-
-/*
-void borrar_archivo(char* path_padre, char*nombre_archivo_hijo)
-{
-	char* path_nuevo = string_new();
-	string_append(&path_nuevo, path_padre);
-	string_append(&path_nuevo,"/");
-	string_append(&path_nuevo, nombre_archivo_hijo);
-	osada_delete_this_file(path_nuevo);
-	free(path_nuevo);
-}
-
-
-void borrar_directorio(char* path, char* nombre_directorio)
-{
-	char* path_nuevo = string_new();
-	string_append(&path_nuevo, path);
-	string_append(&path_nuevo,"/");
-	string_append(&path_nuevo, nombre_directorio);
-	osada_delete_this_dir(path_nuevo);
-	free(path_nuevo);
-}
-
-
-int es_el_padre(osada_file* file_hijo, char* path_padre)
-{
-	t_file_osada* padre = osada_get_file_called(path_padre, disco);
-	int posicion_relativa_padre = calcular_posicion_array_tabla_de_archivos(padre);
-
-	if(padre->block_relative == posicion_relativa_padre){
-		free(padre->file);
-		free(padre);
-		return 1;
-	}
-	else{
-	free(padre->file);
-	free(padre);
-	return 0;
-	}
-}
-
-
-
-char* reconstruime_path(osada_file* file_final)
-{
-	char* path_completo = string_new();
-
-}
-*/
-
-
-
-void recalcular_tamanio_del_padre(char* path)
-{
-	t_file_osada* padre = osada_get_file_called(path, disco);
-	nuevo_tamanio_padre(padre, path);
-}
-void nuevo_tamanio_padre(t_file_osada* padre, char* path)
-{
-	int tamanio_del_hijo = tamanio_del_file(path);
-	char* nombre_hijo = string_new();
-	nombre_hijo = array_last_element(path);
-	osada_file *file_1 = malloc(sizeof(osada_file));
- 	osada_file *file_2 = malloc(sizeof(osada_file));
- 	void* two_files = osada_get_blocks_relative_since(TABLA_DE_ARCHIVOS, padre->block_relative, 1, disco);
- 	memcpy(file_1,two_files, sizeof(osada_file));
- 	memcpy(file_2,two_files + sizeof(osada_file), sizeof(osada_file));
- 		if(es_el_hijo(file_1, path)){
- 			file_1->file_size = file_1->file_size - tamanio_del_hijo;
- 			osada_push_middle_block(TABLA_DE_ARCHIVOS, padre->block_relative, calcular_desplazamiento_tabla_de_archivos(padre->position_in_block), file_1, disco);
- 		}
- 		else{
- 			file_2->file_size = file_2->file_size - tamanio_del_hijo;
- 			osada_push_middle_block(TABLA_DE_ARCHIVOS, padre->block_relative, calcular_desplazamiento_tabla_de_archivos(padre->position_in_block), file_2, disco);
- 		}
- 	free(nombre_hijo);
- 	free(file_1);
-	free(file_2);
-	free(two_files);
-}
-
-
-
-
-/*
-int es_el_padre(osada_file* file_hijo,char* path_padre)
-{
-	uint16_t posicion = file_hijo->parent_directory;
-	osada_file *file_1 = malloc(sizeof(osada_file));
-	osada_file *file_2 = malloc(sizeof(osada_file));
-	void* two_files = osada_get_blocks_relative_since(TABLA_DE_ARCHIVOS, posicion, 1, disco);
-	memcpy(file_1,two_files, sizeof(osada_file));
-	memcpy(file_2,two_files + sizeof(osada_file), sizeof(osada_file));
-	if(string_equals_ignore_case(array_last_element(path_padre),(char*) file_1->fname) || string_equals_ignore_case(array_last_element(path_padre),(char*) file_2->fname)){
-			free(file_1);
-			free(file_2);
-			return 1;
-		}
-		else{
-	free(file_1);
-	free(file_2);
-	return 0;
-		}
-}
-*/
-
-int es_el_padre(osada_file* file_hijo,char* path_padre)
-{
-	char* nombre_padre = string_new();
-	nombre_padre = array_last_element(path_padre);
-	if(string_equals_ignore_case((char*)file_hijo->fname,nombre_padre)){
-		free(nombre_padre);
-		return 1;
-	}
-	else{
-		free(nombre_padre);
-		return 0;
-	}
-}
-
-int es_el_hijo(osada_file* file_padre, char* path_hijo)
-{
-	char* nombre_padre = string_new();
-	nombre_padre = (char*)file_padre->fname;
-	char* path_nuevo = string_new();
-	char* nombre_hijo = string_new();
-	nombre_hijo = array_last_element(path_hijo);
-	string_append(&path_nuevo, nombre_padre);
-	string_append(&path_nuevo, "/");
-	string_append(&path_nuevo, nombre_hijo);
-		if(string_ends_with(path_hijo, path_nuevo)){
-			free(nombre_padre);
-			free(path_nuevo);
-			free(nombre_hijo);
-			return 1;
-		}
-		else{
-			free(nombre_padre);
-			free(path_nuevo);
-			free(nombre_hijo);
-			return 0;
-		}
-
-}
-
-
-/*
-int es_el_padre(osada_file* file,char* path){
-	if(string_starts_with(path, array_last_element((char*) file->fname))){
-		return 0;
-		}
-	else{
-		return 1;
-	}
-}
-*/
-
-/*
-int tamanio_del_dir(char* path)
-{
-	char* nombre = string_new();
-	nombre = array_last_element(path);
-	int index = 1;
-
-	osada_file *file_1 = malloc(sizeof(osada_file));
- 	osada_file *file_2 = malloc(sizeof(osada_file));
-
- 	while(index<=1024){
-	 void *two_files = osada_get_blocks_relative_since(TABLA_DE_ARCHIVOS,index,1,disco);
-	 memcpy(file_1,two_files, sizeof(osada_file));
-	 memcpy(file_2,two_files + sizeof(osada_file), sizeof(osada_file));
-		if(string_equals_ignore_case(array_last_element(path), (char*) file_1->fname)){
-		return file_1->file_size;
-		}
-	  if(string_equals_ignore_case(array_last_element(path), (char*) file_2->fname)){
-		return file_2->file_size;
-	  }
-
-	  free(nombre);
-	  free(file_1);
-	  free(file_2);
- 	}
-}
-*/
-
-int tamanio_del_file(char* path)
-{
-
-	t_osada_file_free* dir = malloc(sizeof(t_osada_file_free));
-	dir = osada_get_file_called(path,disco);
-	int tamanio = dir->file->file_size;
-	free(dir->file);
-	free(dir);
-	return(tamanio);
-}
-/*
-uint16_t posicion_del_padre(char* path)
-{
-	char* nombre = string_new();
-	nombre = array_last_element(path);
-
-	int index = 1;
-	osada_file *file_1 = malloc(sizeof(osada_file));
- 	osada_file *file_2 = malloc(sizeof(osada_file));
-
- 	while(index<=1024)
- 	{
-	  void *two_files = osada_get_blocks_relative_since(TABLA_DE_ARCHIVOS,index,1,disco);
-	  memcpy(file_1,two_files, sizeof(osada_file));
-	  memcpy(file_2,two_files + sizeof(osada_file), sizeof(osada_file));
-		if(string_equals_ignore_case(array_last_element(path), (char*)file_1->fname)){
-		return file_1->parent_directory;
-		}
-	  	if(string_equals_ignore_case(array_last_element(path), (char*)file_2->fname)){
-		return file_2->parent_directory;
-	  	}
-	free(nombre);
-	free(file_1);
-	free(file_2);
- 	}
-}
-*/
-uint16_t posicion_del_padre(char* path)
-{
-
-	t_osada_file_free* padre = malloc(sizeof(t_osada_file_free));
-	padre = osada_get_file_called(path,disco);
-	uint16_t posicion = padre->file->parent_directory;
-	free(padre);
-	return(posicion);
-}
-
-
-//-------------------DEVOLVER LISTADO------------------//
-
-
-t_list* osada_devolve_listado(char* path)
-{
-	t_list* lista = list_create();
-	int index = 1;
-
-	osada_file *file_1 = malloc(sizeof(osada_file));
-	osada_file *file_2 = malloc(sizeof(osada_file));
-
-	while(index<=1024){
-		t_file_show* dato_en_lista = malloc(sizeof(t_file_show));
-		void *two_files = osada_get_blocks_relative_since(TABLA_DE_ARCHIVOS,index,1,disco);
-		memcpy(file_1,two_files, sizeof(osada_file));
-		memcpy(file_2,two_files + sizeof(osada_file), sizeof(osada_file));
-	 	if(es_el_padre(file_1,path) && file_1->state != DELETED){
-	 		dato_en_lista->name = (char*) file_1->fname;
-	 		dato_en_lista->state = file_1->state;
-	 		list_add(lista, dato_en_lista);
-	 	}
-	 	if(es_el_padre(file_2,path) && file_2->state != DELETED){
-	 		dato_en_lista->name = (char*) file_2->fname;
-	 		dato_en_lista->state = file_2->state;
-	 		list_add(lista, dato_en_lista);
-	 	}
-	}
-	free(file_1);
-	free(file_2);
-	return lista;
-
 }
