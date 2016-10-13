@@ -19,7 +19,7 @@ void* osada_a_get_list_dir(char *path)
 /*-------------------------------------------CREACION-------------------------------------------------------------------*/
 void* osada_a_create_file(char *path)
 {
-
+	//nombre -17 caracteres
 }
 
 void* osada_a_create_dir(char *path)
@@ -46,6 +46,7 @@ void* osada_a_read_file(t_to_be_read *to_read)
 
 void* osada_a_write_file(t_to_be_write *to_write)
 {
+	//verificar espacio suficiente
 
 }
 

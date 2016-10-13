@@ -11,6 +11,7 @@
 #include "socket/serializacion_pokedex_cliente_servidor.h"
 #include "socket/server.h"
 #include "pthread.h"
+#include "osada.h"
 
 #define BYTES_TO_RCV 5
 #define HEADER 2
@@ -24,29 +25,6 @@ void servidor_acepta_clientes(void *arg);
 void server_pokedex_atende_cliente(void* socket_cliente);
 char* server_escucha_peticion(int cliente);
 void tratar_peticion_de(int cliente,char *peticion);
-
-
-
-typedef struct
-{
-	int size;
-	int offset;
-	char* path;
-}t_to_be_read;
-
-typedef struct
-{
-	int size;
-	int offset;
-	char* path;
-	char* text;
-}t_to_be_write;
-
-typedef struct
-{
-	char* old_path;
-	char* new_path;
-}t_to_be_rename;
 
 
 void* recibir_mensaje_especifico(int socket, int header);
