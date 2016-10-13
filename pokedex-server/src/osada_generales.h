@@ -189,4 +189,7 @@ void array_free_all(char **array);//<-- Se entiende solo con leer el nombre
 char* array_last_element(char* path);
 char* crear_ruta(char* hijo, char* path_padre);
 
+/*---------------------------------------------DESTROYERS----------------------------------------------------------------*/
+void t_file_osada_destroy(t_file_osada *file);
+void file_listado_eliminate(t_file_listado* file);
 #endif /* OSADA_GENERALES_H_ */

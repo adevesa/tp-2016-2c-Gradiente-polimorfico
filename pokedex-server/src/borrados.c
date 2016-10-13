@@ -14,16 +14,11 @@ void osada_delete_this_file(char *path)
 	osada_desocupa_n_bits(bloques_a_liberar);
 	list_destroy(bloques_a_liberar);
 
-	//char* path_padre = recuperar_path_padre(path);
-	//osada_recalculate_size_of(path_padre, a_file->file->file_size);
-
 	osada_change_file_state(a_file->file,DELETED);
 	int offset = calcular_desplazamiento_tabla_de_archivos(a_file->position_in_block);
 	osada_push_middle_block(TABLA_DE_ARCHIVOS,a_file->block_relative,offset,a_file->file,disco);
 
-	free(a_file->file);
-	free(a_file);
-
+	t_file_osada_destroy(a_file);
 }
 
 int calcular_desplazamiento_tabla_de_archivos(int posicion_relativa)
@@ -97,7 +92,7 @@ void osada_delete_this_dir(char* path)
 
 int es_directorio_vacio(char* path)
 {
-	t_list* lista = osada_listar_hijos(path);
+	t_list* lista = osada_b_listar_hijos(path);
 	if(list_is_empty(lista)){
 		list_destroy(lista);
 		return 1;
@@ -113,20 +108,13 @@ void osada_delete_dir_void(char* path)
 	t_osada_file_free* directorio = osada_get_file_called(path, disco);
 	osada_change_file_state(directorio->file, DELETED);
 	osada_push_middle_block(TABLA_DE_ARCHIVOS, directorio->block_relative, calcular_desplazamiento_tabla_de_archivos(directorio->position_in_block),directorio->file, disco);
-	free(directorio->file);
-	free(directorio);
+	t_file_osada_destroy(directorio);
 }
 
-void file_listado_eliminate(t_file_listado* file)
-{
-	free(file->file->file);
-	free(file->file);
-	free(file);
-}
 
 void osada_borrar_hijos(char* path)
 {
-	t_list* lista_hijos = osada_listar_hijos(path);
+	t_list* lista_hijos = osada_b_listar_hijos(path);
 	int size_lista = list_size(lista_hijos);
 	int index = 0;
 	while(index < size_lista)

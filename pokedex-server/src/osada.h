@@ -119,4 +119,10 @@ typedef struct
 	char* new_path;
 }t_to_be_rename;
 
+typedef struct
+{
+	int size;
+	int tipo;
+}t_attributes_file;
+
 #endif __OSADA_H__

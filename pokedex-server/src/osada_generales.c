@@ -320,10 +320,23 @@ char* array_last_element(char* path)
 char* crear_ruta(char* hijo, char* path_padre)
 {
 	char* path_final = string_new();
-	//string_append(&path_final,"/");
 	string_append(&path_final,path_padre);
 	string_append(&path_final,"/");
 	string_append(&path_final,hijo);
 	return path_final;
 }
 
+/*---------------------------------------------DESTROYERS----------------------------------------------------------------*/
+void t_file_osada_destroy(t_file_osada *file)
+{
+	free(file->file);
+	//free(file->path);
+	free(file);
+}
+
+void file_listado_eliminate(t_file_listado* file)
+{
+	free(file->file->file);
+	free(file->file);
+	free(file);
+}

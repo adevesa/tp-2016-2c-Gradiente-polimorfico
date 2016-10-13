@@ -47,6 +47,6 @@ void osada_borrar_hijos(char* path);
 void osada_delete_dir_void(char* path);
 
 int es_directorio_vacio(char* path);
-void file_listado_eliminate(t_file_listado* file);
+
 
 #endif /* BORRADOS_H_ */

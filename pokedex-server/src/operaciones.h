@@ -8,6 +8,9 @@
 #ifndef OPERACIONES_H_
 #define OPERACIONES_H_
 #include "osada.h"
+#include "ls_and_atributes.h"
+#include "osada_generales.h"
+#include "lectura_escritura.h"
 #include "comunication.h"
 
 /*-------------------------------------------ATRIBUTOS------------------------------------------------------------------*/
