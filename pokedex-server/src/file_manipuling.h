@@ -115,5 +115,5 @@ int revisar_resultado(int result);//<-- La usa la función anterior
  */
 int calcular_posicion_en_tabla_de_archivos(int num_block, int position);
 int calcular_bloque_en_tabla_de_archivos_segun_parent_directory(int parent);
-
+void osada_A_rename(char* path, char* new_nombre);
 #endif /* FILE_MANIPULING_H_ */

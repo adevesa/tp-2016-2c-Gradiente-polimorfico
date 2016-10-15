@@ -28,6 +28,7 @@ void setear_nombre(char* nombre, osada_file* archivo)
 		archivo->fname[i] = nombre[i];
 		i++;
 	}
+	archivo->fname[size_name] = '\0';
 }
 
 /*----------------------------------------------OBTENCION DE NUM BLOQUES ARCHIVO-------------------------------------------*/
@@ -361,10 +362,17 @@ int osada_b_check_parents(char *path, osada_file *file)
 			memcpy(file_1,two_files, sizeof(osada_file));
 			memcpy(file_2,two_files + sizeof(osada_file), sizeof(osada_file));
 
-			if(verificar_si_nombre_coincide(file_for_file[i],(char*)file_1->fname))
-				{
-					parent = file_1->parent_directory;
-				}
+			if(es_par(parent))
+			{
+				if(verificar_si_nombre_coincide(file_for_file[i],(char*)file_1->fname))
+					{
+						parent = file_1->parent_directory;
+					}
+					else
+					{
+					comprueba = 0;
+					}
+			}
 			else
 				{
 					if(verificar_si_nombre_coincide(file_for_file[i],(char*)file_2->fname))
@@ -376,6 +384,10 @@ int osada_b_check_parents(char *path, osada_file *file)
 
 			i--;
 		}
+	else
+	{
+		comprueba =0;
+	}
 
 	}
 
@@ -454,4 +466,28 @@ char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_arch
 			string_trim_left(&ruta);
 			return ruta;
 		}
+}
+
+
+
+/*----------------------------------------------RENAME----------------------------------------------------------------------*/
+void osada_A_rename(char* path, char* new_nombre)
+{
+	t_file_osada* arch = osada_get_file_called(path,disco);
+	setear_nombre(new_nombre,arch->file);
+	int offset = calcular_desplazamiento_tabla_de_archivos(arch->position_in_block);
+	osada_push_middle_block(TABLA_DE_ARCHIVOS,arch->block_relative,offset,arch->file,disco);
+	t_file_osada_destroy(arch);
+}
+
+int mas_de_17(char* path)
+{
+	int size = string_length(path);
+	if(size >=16){
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
 }

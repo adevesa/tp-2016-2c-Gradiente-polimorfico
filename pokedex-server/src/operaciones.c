@@ -96,10 +96,30 @@ void* osada_a_write_file(t_to_be_write *to_write)
 }
 
 /*-------------------------------------------RENAME---------------------------------------------------------------------*/
-void* osada_a_rename_file(t_to_be_rename *to_rename)
+/*void* osada_a_rename_file(t_to_be_rename *to_rename)
 {
-
-}
+	if(osada_check_exist(to_rename->old_path))
+		{
+			if(!mas_de_17(to_rename->new_path))
+			{
+				if(no_existe_otro_del_mismo_nombre(to_rename->new_path))
+				{
+					osada_A_rename(to_rename->old_path, to_rename->new_path);
+				}
+				else{
+					return ARGUMENTO_INVALIDO;
+				}
+			}
+			else
+			{
+				return ARGUMENTO_INVALIDO;
+			}
+		}
+		else
+		{
+			return NO_EXISTE;
+		}
+}/*
 /*-------------------------------------------OPENS & CLOSER-------------------------------------------------------------*/
 void* osada_a_open_file(char *path)
 {
