@@ -247,6 +247,21 @@ osada_block_pointer osada_get_start_block_absolut_of(int campo, t_disco_osada *d
 }
 
 /*----------------------------------------------MANIPULACION BITARRAY------------------------------------------------------*/
+int osada_b_check_is_bitarray_full(t_disco_osada *disco)
+{
+
+	int bloque_incial = osada_get_start_block_absolut_of(BLOQUE_DE_DATOS,disco);
+	int i =bloque_incial;
+	int hay_un_bit_libre = 1;
+	while( hay_un_bit_libre && i<(bloque_incial + disco->header->data_blocks))
+	{
+		hay_un_bit_libre=bitarray_test_bit(disco->bitmap,i);
+		i++;
+	}
+
+	return hay_un_bit_libre;
+}
+
 int osada_ocupa_bit_libre_de(t_disco_osada *disco)
 {
 	int bloque_incial = osada_get_start_block_absolut_of(BLOQUE_DE_DATOS,disco);
@@ -256,8 +271,14 @@ int osada_ocupa_bit_libre_de(t_disco_osada *disco)
 		i++;
 	}
 	bitarray_set_bit(disco->bitmap,i);
-	//impactar_en_disco_n_bloques(OSADA_BLOCK_SIZE,disco->header->bitmap_blocks,disco->bitmap->bitarray,disco->map);
+	impactar_en_disco_n_bloques(OSADA_BLOCK_SIZE,disco->header->bitmap_blocks,disco->bitmap->bitarray,disco->map);
 	return i;
+}
+
+int calcular_posicion_relativa_en_bloque_de_datos(int posicion_absoluta)
+{
+	int bloque_incial = osada_get_start_block_absolut_of(BLOQUE_DE_DATOS,disco);
+	return (posicion_absoluta- bloque_incial);
 }
 
 void osada_desocupa_bit(t_disco_osada *disco, int num_block)
@@ -340,3 +361,5 @@ void file_listado_eliminate(t_file_listado* file)
 	free(file->file);
 	free(file);
 }
+
+

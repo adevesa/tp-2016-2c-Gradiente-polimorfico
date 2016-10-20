@@ -13,7 +13,7 @@
 
 /*----------------------------------------------ESCRITURA----------------------------------------------------------*/
 void osada_write_file(t_to_be_write* file);
-void osada_B_write_file_void(t_to_be_write* archivo);
+void osada_b_write_file_void(t_to_be_write* archivo);
 int archivo_vacio(t_file_osada* arch);
 void asignar_nuevo_bloque_datos(osada_file* archivo);
 

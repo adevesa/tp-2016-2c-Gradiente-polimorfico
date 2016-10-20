@@ -7,16 +7,28 @@
 #include "file_manipuling.h"
 
 /*------------------------------------------CREAR ARCHIVO------------------------------------------------------------------*/
-t_osada_file_free* osada_file_create(int tipo, int bloque_padre, char* path)
+t_osada_file_free* osada_b_file_create(int tipo,char* path)
 {
 	t_osada_file_free* archivo = osada_file_table_get_space_free(disco);
 	char* nombre = array_last_element(path);
 	setear_nombre(nombre,archivo->file);
 	archivo->file->state = tipo;
-	archivo->file->parent_directory = bloque_padre;
+	setear_bloque_padre(archivo->file,path);
 	archivo->file->file_size = 0;
-	archivo->file->first_block = FEOF;
+	asignar_bloque_inicial_si_es_necesario(archivo->file, tipo);
 	return archivo;
+}
+void asignar_bloque_inicial_si_es_necesario(osada_file *file, int tipo)
+{
+	if(tipo == DIRECTORY)
+	{
+		file->first_block = FEOF;
+
+	}
+	else
+	{
+		file->first_block = osada_b_get_a_new_block_init();
+	}
 }
 
 void setear_nombre(char* nombre, osada_file* archivo)
@@ -28,8 +40,61 @@ void setear_nombre(char* nombre, osada_file* archivo)
 		archivo->fname[i] = nombre[i];
 		i++;
 	}
+	archivo->fname[size_name] = '\0';
 }
 
+void setear_bloque_padre(osada_file *file, char *path)
+{
+	char *path_padre = obtener_ruta_padre(path);
+	t_file_osada *file_padre = osada_get_file_called(path_padre,disco);
+	int bloque_padre = calcular_posicion_en_tabla_de_archivos(file_padre->block_relative,file_padre->position_in_block);
+	file->parent_directory = bloque_padre;
+	t_file_osada_destroy(file_padre);
+}
+
+int osada_b_get_a_new_block_init()
+{
+	int primer_bloque_absoluto = osada_ocupa_bit_libre_de(disco);
+	int primer_bloque_relativo = calcular_posicion_relativa_en_bloque_de_datos(primer_bloque_absoluto);
+	return primer_bloque_relativo;
+}
+
+int osada_b_check_repeat_name(int tipo,char* path)
+{
+	char *path_padre = obtener_ruta_padre(path);
+	char *new_hijo = array_last_element(path);
+	t_list *hijos = osada_b_listar_hijos(path_padre);
+
+	int size = list_size(hijos);
+	int i=0;
+	int esta_repetido=0;
+
+	while(!esta_repetido && i<size)
+	{
+		t_file_listado *file = list_get(hijos,i);
+		if(string_equals_ignore_case((char*)file->file->file->fname, new_hijo))
+		{
+			if(verify_file_state(tipo, file->file->file))
+			{
+				esta_repetido = 1;
+			}
+		}
+		i++;
+	}
+
+	list_destroy_and_destroy_elements(hijos,file_listado_eliminate);
+	free(new_hijo);
+	free(path_padre);
+	return esta_repetido;
+}
+
+char* obtener_nuevo_path(char* old_path, char* new_name)
+{
+	char *path_padre = obtener_ruta_padre(old_path);
+	string_append(&path_padre, "/");
+	string_append(&path_padre, new_name);
+	return path_padre;
+}
 /*----------------------------------------------OBTENCION DE NUM BLOQUES ARCHIVO-------------------------------------------*/
 t_list* osada_get_blocks_nums_of_this_file(osada_file *file, t_disco_osada *disco)
 {
@@ -361,10 +426,17 @@ int osada_b_check_parents(char *path, osada_file *file)
 			memcpy(file_1,two_files, sizeof(osada_file));
 			memcpy(file_2,two_files + sizeof(osada_file), sizeof(osada_file));
 
-			if(verificar_si_nombre_coincide(file_for_file[i],(char*)file_1->fname))
-				{
-					parent = file_1->parent_directory;
-				}
+			if(es_par(parent))
+			{
+				if(verificar_si_nombre_coincide(file_for_file[i],(char*)file_1->fname))
+					{
+						parent = file_1->parent_directory;
+					}
+					else
+					{
+					comprueba = 0;
+					}
+			}
 			else
 				{
 					if(verificar_si_nombre_coincide(file_for_file[i],(char*)file_2->fname))
@@ -376,6 +448,10 @@ int osada_b_check_parents(char *path, osada_file *file)
 
 			i--;
 		}
+	else
+	{
+		comprueba =0;
+	}
 
 	}
 
@@ -437,6 +513,23 @@ int verificar_si_es_raiz(char *path)
 	}
 }
 
+char* obtener_ruta_padre(char* path)
+{
+	char** por_separado = string_split(path, "/");
+	int size = array_size(por_separado);
+
+	int i;
+	char *path_padre = string_new();
+
+	for(i=0;i<size-1;i++)
+	{
+		string_append(&path_padre,"/");
+		string_append(&path_padre, por_separado[i]);
+	}
+	array_free_all(por_separado);
+	return path_padre;
+}
+
 char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_archivo, char *sub_directorio_o_nombre_archivo)
 {
 	char* ruta = string_new();
@@ -454,4 +547,29 @@ char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_arch
 			string_trim_left(&ruta);
 			return ruta;
 		}
+}
+
+
+
+/*----------------------------------------------RENAME----------------------------------------------------------------------*/
+
+void osada_b_rename(t_file_osada *file, char* new_nombre)
+{
+	setear_nombre(new_nombre,file->file);
+	int offset = calcular_desplazamiento_tabla_de_archivos(file->position_in_block);
+	osada_push_middle_block(TABLA_DE_ARCHIVOS,file->block_relative,offset,file->file,disco);
+}
+
+int osada_b_check_name(char* path)
+{
+	char *name = array_last_element(path);
+	int size = string_length(name);
+	free(name);
+	if(size >=OSADA_FILENAME_LENGTH -1){
+		return 0;
+	}
+	else
+	{
+		return 1;
+	}
 }

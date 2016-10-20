@@ -93,18 +93,26 @@ void tratar_peticion_de(int cliente,char *peticion)
 		case(CREATE_FILE):
 		{
 			char *path = recibir_mensaje_especifico(cliente, CREATE_FILE);
+			int resultado_operacion = osada_a_create_file(path);
+			responder_solo_resultado(cliente,resultado_operacion);
 		};break;
 		case(CREATE_DIRECTORY):
 		{
 			char *path = recibir_mensaje_especifico(cliente, CREATE_DIRECTORY);
+			int resultado_operacion = osada_a_create_dir(path);
+			responder_solo_resultado(cliente,resultado_operacion);
 		};break;
 		case(DELETE_FILE):
 		{
 			char *path = recibir_mensaje_especifico(cliente, DELETE_FILE);
+			int resultado_operacion = osada_a_delete_file(path);
+			responder_solo_resultado(cliente,resultado_operacion);
 		};break;
 		case(DELETE_DIRECTTORY):
 		{
 			char *path = recibir_mensaje_especifico(cliente, DELETE_DIRECTTORY);
+			int resultado_operacion = osada_a_delete_dir(path);
+			responder_solo_resultado(cliente,resultado_operacion);
 		};break;
 		case(READ_FILE):
 		{
@@ -117,17 +125,21 @@ void tratar_peticion_de(int cliente,char *peticion)
 		case(RENAME_FILE):
 		{
 			t_to_be_rename *file_to_rename= recibir_mensaje_especifico(cliente, RENAME_FILE);
+			int resultado_operacion = osada_a_rename(file_to_rename);
+			responder_solo_resultado(cliente,resultado_operacion);
 		};break;
 		case(OPEN_FILE):
 		{
 			char *path = recibir_mensaje_especifico(cliente, OPEN_FILE);
+			int resultado_operacion = osada_a_open_file(path);
+			responder_solo_resultado(cliente,resultado_operacion);
 		};break;
 	}
 
 
 }
 
-/*--------------------------------------MENSAJES CON CLIENTES-----------------------------------------------------*/
+/*--------------------------------------PETICIONES DEL CLIENTE-----------------------------------------------------*/
 void* recibir_mensaje_especifico(int socket, int header)
 {
 	switch(header)
@@ -251,4 +263,12 @@ t_to_be_rename* escuchar_mensaje_rename(int socket)
 	to_rename->new_path =new_path;
 
 	return to_rename;
+}
+
+/*--------------------------------------RESPUESTAS AL CLIENTE----------------------------------------------------*/
+void responder_solo_resultado(int cliente, int resultado)
+{
+	char *resultado_a_enviar = string_itoa(resultado);
+	enviar_mensaje(cliente, resultado_a_enviar);
+	free(resultado_a_enviar);
 }

@@ -35,12 +35,53 @@ void* osada_a_get_list_dir(char *path)
 /*-------------------------------------------CREACION-------------------------------------------------------------------*/
 void* osada_a_create_file(char *path)
 {
-	//nombre -17 caracteres
+	if(osada_b_check_name(path))
+	{
+		if(!osada_b_check_repeat_name(REGULAR,path))
+		{
+			if(!osada_b_check_is_bitarray_full(disco))
+			{
+				t_osada_file_free *new_file=osada_b_file_create(REGULAR,path);
+				int offset = calcular_desplazamiento_tabla_de_archivos(new_file->position_in_block);
+				osada_push_middle_block(TABLA_DE_ARCHIVOS,new_file->block_relative,offset,new_file->file,disco);
+				t_file_osada_destroy((t_file_osada*) new_file);
+			}
+			else
+			{
+				return NO_HAY_ESPACIO;
+			}
+		}
+		else
+		{
+			return EXISTE;
+		}
+	}
+	else
+	{
+		return ARGUMENTO_INVALIDO;
+	}
 }
 
 void* osada_a_create_dir(char *path)
 {
-
+	if(osada_b_check_name(path))
+	{
+		if(!osada_b_check_repeat_name(DIRECTORY,path))
+		{
+			t_osada_file_free *new_file=osada_b_file_create(DIRECTORY,path);
+			int offset = calcular_desplazamiento_tabla_de_archivos(new_file->position_in_block);
+			osada_push_middle_block(TABLA_DE_ARCHIVOS,new_file->block_relative,offset,new_file->file,disco);
+			t_file_osada_destroy((t_file_osada*) new_file);
+		}
+		else
+		{
+			return EXISTE;
+		}
+	}
+	else
+	{
+		return ARGUMENTO_INVALIDO;
+	}
 }
 
 /*-------------------------------------------ELMINACION-----------------------------------------------------------------*/
@@ -49,6 +90,7 @@ void* osada_a_delete_file(char *path)
 	if(osada_check_exist(path))
 	{
 		osada_delete_this_file(path);
+		return EXITO;
 	}
 	else
 	{
@@ -61,6 +103,7 @@ void* osada_a_delete_dir(char *path)
 	if(osada_check_exist(path))
 	{
 		osada_delete_this_dir(path);
+		return EXITO;
 	}
 	else
 	{
@@ -91,17 +134,55 @@ void* osada_a_read_file(t_to_be_read *to_read)
 
 void* osada_a_write_file(t_to_be_write *to_write)
 {
-	//verificar espacio suficiente
+
 
 }
 
 /*-------------------------------------------RENAME---------------------------------------------------------------------*/
-void* osada_a_rename_file(t_to_be_rename *to_rename)
-{
 
+void* osada_a_rename(t_to_be_rename *to_rename)
+{
+	if(osada_check_exist(to_rename->old_path))
+		{
+
+			if(osada_b_check_name(to_rename->new_path))
+			{
+				t_file_osada *file = osada_get_file_called(to_rename->old_path,disco);
+				char* new_path = obtener_nuevo_path(to_rename->old_path, to_rename->new_path);
+				if(!osada_b_check_repeat_name(file->file->state, new_path))
+				{
+					free(new_path);
+					osada_b_rename(file, to_rename->new_path);
+					t_file_osada_destroy(file);
+					return EXITO;
+				}
+				else
+				{
+					t_file_osada_destroy(file);
+					free(new_path);
+					return ARGUMENTO_INVALIDO;
+				}
+				}
+				else
+				{
+					return ARGUMENTO_INVALIDO;
+				}
+			}
+			else
+			{
+				return NO_EXISTE;
+			}
 }
+
 /*-------------------------------------------OPENS & CLOSER-------------------------------------------------------------*/
 void* osada_a_open_file(char *path)
 {
-
+	if(osada_check_exist(path))
+		{
+			return EXITO;
+		}
+	else
+	{
+		return NO_EXISTE;
+	}
 }

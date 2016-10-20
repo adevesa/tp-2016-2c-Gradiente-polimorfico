@@ -9,10 +9,15 @@
 #define FILE_MANIPULING_H_
 #include "osada.h"
 #include "osada_generales.h"
+#include "ls_and_atributes.h"
 /*------------------------------------------CREAR ARCHIVO---------------------------------------------------------------------*/
-t_osada_file_free* osada_file_create(int tipo, int bloque_padre, char* path);
+t_osada_file_free* osada_b_file_create(int tipo, char* path);
 void setear_nombre(char* nombre, osada_file* archivo);
 
+void asignar_bloque_inicial_si_es_necesario(osada_file *file, int tipo);
+int osada_b_get_a_new_block_init();
+void setear_bloque_padre(osada_file *file, char *path);
+int osada_b_check_repeat_name(int tipo,char* path);
 
 /*----------------------------------------------OBTENCION DE NUM BLOQUE ARCHIVO-----------------------------------------*/
 /*
@@ -85,6 +90,7 @@ int osada_b_check_parents(char *path, osada_file *file);
 
 int es_par(int numero);
 char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_archivo, char *sub_directorio_o_nombre_archivo);
+char* obtener_ruta_padre(char* path);
 char* path_delete_last_reference(char *path_init);
 char* path_first_reference(char *path);
 /*---------------------------------------------VERIFICACION EXISTENCIA DE UN PATH-----------------------------------------*/
@@ -115,5 +121,11 @@ int revisar_resultado(int result);//<-- La usa la función anterior
  */
 int calcular_posicion_en_tabla_de_archivos(int num_block, int position);
 int calcular_bloque_en_tabla_de_archivos_segun_parent_directory(int parent);
+
+
+
+void osada_b_rename(t_file_osada *file, char* new_nombre);
+int osada_b_check_name(char* name);
+char* obtener_nuevo_path(char* old_path, char* new_name);
 
 #endif /* FILE_MANIPULING_H_ */

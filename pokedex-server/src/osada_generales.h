@@ -159,6 +159,14 @@ t_list* osada_get_blocks_nums_of_this_file(osada_file *file, t_disco_osada *disc
  */
 int osada_ocupa_bit_libre_de(t_disco_osada *disco);
 
+/*
+ * @NAME:int osada_b_check_is_bitarray_full(t_disco_osada *disco);
+ * @DESC: Verifa si el disco está completo o todavia hay algún espacio libre. Devuelve:
+ * 		- 0 --> HAY ESPACIO LIBRE
+ * 		- 1 --> NO HAY MÁS ESPACIO LIBRE
+ */
+int osada_b_check_is_bitarray_full(t_disco_osada *disco);
+int calcular_posicion_relativa_en_bloque_de_datos(int posicion_absoluta);
 
 /*
  * @NAME:osada_desocupa_bit(t_disco_osada *disco, int num_block);

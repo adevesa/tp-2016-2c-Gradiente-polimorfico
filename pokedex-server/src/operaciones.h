@@ -27,7 +27,7 @@ void* osada_a_read_file(t_to_be_read *to_read);
 void* osada_a_write_file(t_to_be_write *to_write);
 
 /*-------------------------------------------RENAME---------------------------------------------------------------------*/
-void* osada_a_rename_file(t_to_be_rename *to_rename);
+void* osada_a_rename(t_to_be_rename *to_rename);
 
 /*-------------------------------------------OPENS & CLOSER-------------------------------------------------------------*/
 void* osada_a_open_file(char *path);

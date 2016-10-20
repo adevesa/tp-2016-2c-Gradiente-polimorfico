@@ -115,7 +115,7 @@ void agregar_a_lista_si_es_hijo(t_file_osada *path_padre, osada_file* hijo, t_li
 {
 	if(!verificar_si_son_mismo_files(path_padre->file,hijo))
 	{
-		if(es_el_padre(hijo,path_padre) && !verify_file_state(DELETED, hijo))
+		if(es_el_padre(hijo, path_padre) && !verify_file_state(DELETED, hijo))
 		{
 			t_file_listado* dato_en_lista = malloc(sizeof(t_file_listado));
 			char* path_hijo = crear_ruta((char*) hijo->fname,(char*)path_padre->path);
