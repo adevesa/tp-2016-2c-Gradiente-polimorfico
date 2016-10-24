@@ -8,13 +8,20 @@
 /*---------------------------------------------TAMAÑO DE UN DIRECTORIO---------------------------------------------------*/
 int osada_b_calculate_size_of_directory(char *path_directory)
 {
-	if(es_directorio_vacio(path_directory))
+	if(string_equals_ignore_case(path_directory, "/"))
 	{
-		return 0;
+		return realizar_sumatoria_size_hijos(path_directory);
 	}
 	else
 	{
-		return realizar_sumatoria_size_hijos(path_directory);
+		if(es_directorio_vacio(path_directory))
+		{
+			return 0;
+		}
+		else
+		{
+			return realizar_sumatoria_size_hijos(path_directory);
+		}
 	}
 }
 
@@ -158,13 +165,27 @@ int verificar_si_son_mismo_files(osada_file *file_actual, osada_file *file_expec
 }
 
 /*------------------------------------------ATRIBUTOS----------------------------------------------------------------------*/
+enum
+{
+	ARCHIVO =1,
+	DIRECTORIO =2
+};
+
 t_attributes_file* osada_b_get_attributes_of_this_file(char *path_file)
 {
 	t_file_osada *file_find = osada_get_file_called(path_file, disco);
 	t_attributes_file *atributos = malloc(sizeof(t_attributes_file));
 
-	atributos->size = osada_b_calculate_size_of_directory(file_find->path);
-	atributos->tipo = file_find->file->state;
+	if(file_find->file->state == DIRECTORY)
+	{
+		atributos->size = osada_b_calculate_size_of_directory(file_find->path);
+		atributos->tipo=DIRECTORIO;
+	}
+	else
+	{
+		atributos->size = file_find->file->file_size;
+		atributos->tipo =ARCHIVO;
+	}
 
 	t_file_osada_destroy(file_find);
 	return atributos;

@@ -8,28 +8,47 @@
 /*-------------------------------------------ATRIBUTOS------------------------------------------------------------------*/
 void* osada_a_get_attributes(char *path)
 {
-	if(osada_check_exist(path))
+	if(string_equals_ignore_case(path,"/"))
 	{
-		t_attributes_file *atributos = osada_b_get_attributes_of_this_file(path);
+		t_attributes_file *atributos = malloc(sizeof(t_attributes_file));
+		atributos->tipo=2;
+		atributos->size = osada_b_calculate_size_of_directory(path);
 		return atributos;
 	}
 	else
 	{
-		return NO_EXISTE;
+		if(osada_check_exist(path))
+		{
+			t_attributes_file *atributos = osada_b_get_attributes_of_this_file(path);
+			return atributos;
+		}
+		else
+		{
+			return NO_EXISTE;
+		}
 	}
 }
 
 void* osada_a_get_list_dir(char *path)
 {
-	if(osada_check_exist(path))
+	if(string_equals_ignore_case(path,"/"))
 	{
 		t_list *listado = osada_b_listar_hijos(path);
 		return listado;
 	}
 	else
 	{
-		return NO_EXISTE;
+		if(osada_check_exist(path))
+			{
+				t_list *listado = osada_b_listar_hijos(path);
+				return listado;
+			}
+		else
+		{
+			return NO_EXISTE;
+		}
 	}
+
 }
 
 /*-------------------------------------------CREACION-------------------------------------------------------------------*/
@@ -45,6 +64,7 @@ void* osada_a_create_file(char *path)
 				int offset = calcular_desplazamiento_tabla_de_archivos(new_file->position_in_block);
 				osada_push_middle_block(TABLA_DE_ARCHIVOS,new_file->block_relative,offset,new_file->file,disco);
 				t_file_osada_destroy((t_file_osada*) new_file);
+				return EXITO;
 			}
 			else
 			{
@@ -72,6 +92,7 @@ void* osada_a_create_dir(char *path)
 			int offset = calcular_desplazamiento_tabla_de_archivos(new_file->position_in_block);
 			osada_push_middle_block(TABLA_DE_ARCHIVOS,new_file->block_relative,offset,new_file->file,disco);
 			t_file_osada_destroy((t_file_osada*) new_file);
+			return EXITO;
 		}
 		else
 		{
@@ -148,10 +169,8 @@ void* osada_a_rename(t_to_be_rename *to_rename)
 			if(osada_b_check_name(to_rename->new_path))
 			{
 				t_file_osada *file = osada_get_file_called(to_rename->old_path,disco);
-				char* new_path = obtener_nuevo_path(to_rename->old_path, to_rename->new_path);
-				if(!osada_b_check_repeat_name(file->file->state, new_path))
+				if(!osada_b_check_repeat_name(file->file->state, to_rename->new_path))
 				{
-					free(new_path);
 					osada_b_rename(file, to_rename->new_path);
 					t_file_osada_destroy(file);
 					return EXITO;
@@ -159,7 +178,6 @@ void* osada_a_rename(t_to_be_rename *to_rename)
 				else
 				{
 					t_file_osada_destroy(file);
-					free(new_path);
 					return ARGUMENTO_INVALIDO;
 				}
 				}

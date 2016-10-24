@@ -8,16 +8,13 @@
 #ifndef COMUNICATION_WITH_SERVER_H_
 #define COMUNICATION_WITH_SERVER_H_
 
-//#include "fuse-basic.h"
-#include "global-vars.h"
+
+#include "vars.h"
 #include <fuse.h>
 #include "socket/serializacion_pokedex_cliente_servidor.h"
+#define MAX_BYTES_TO_ADVISES 1
 
-enum
-{
-	ARCHIVO,
-	DIRECTORIO
-};
+
 
 /*-------------------------------------------CREACION Y CONEXION CON SERVER----------------------------------------------*/
 void cliente_osada_create();
@@ -39,4 +36,12 @@ int cliente_pedi_renombra_archivo(const char *old_path, const char *new_path);
 /*-------------------------------------------OPENS & CLOSER--------------------------------------------------------*/
 int cliente_pedi_abrir(int tipo,const char *path, struct fuse_file_info *fi);
 
+
+
+int escuchar_respuesta_comun(int socket_server);
+int escuchar_y_modelar_atributos(struct stat *buffer);
+void modelar_stat_buff(struct stat *buffer, int tipo, int size);
+
+int escuchar_listado (void *buffer, fuse_fill_dir_t filler);
+void modelar_listado(void *buffer, fuse_fill_dir_t filler);
 #endif /* COMUNICATION_WITH_SERVER_H_ */

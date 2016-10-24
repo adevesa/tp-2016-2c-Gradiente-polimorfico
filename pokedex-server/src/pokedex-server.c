@@ -15,13 +15,16 @@
 #include "ls_and_atributes.h"
 #include "osada_generales.h"
 #include "borrados.h"
+#include "comunication.h"
 
 extern t_disco_osada* disco;
 
 int main(int argc, char* argv[])
 {
-	disco = osada_disco_abrite("/home/utnso/workspace/challenge.bin");
-
+	disco = osada_disco_abrite("/home/utnso/workspace/basic.bin");
+	pokedex_server_conectate();
+	//pokedex_server_acepta_clientes();
+	servidor_acepta_clientes();
 
 
 	return EXIT_SUCCESS;
