@@ -10,25 +10,20 @@
 #include <stdio.h>
 #include <fuse.h>
 #include <sys/mman.h>
-#include <errno.h>
+//#include <errno.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
 #include <signal.h>
 #include <stddef.h>
 #include <fcntl.h>
+
 #include "so-commons/string.h"
 #include "comunication-with-server.h"
+#include "vars.h"
 
-/*
- * REDEFINIMOS FLAGS DE RETORNO
- */
 
-#define NO_EXISTE ENOENT
-#define EXISTE EEXIST
-#define NO_HAY_ESPACIO ENOSPC
-#define ARGUMENTO_INVALIDO EINVAL
-#define OPERACION_EXITOSA 0
+
 
 
 /*-------------------------------------------ATRIBUTOS-----------------------------------------------------------------*/

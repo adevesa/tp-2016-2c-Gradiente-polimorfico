@@ -46,10 +46,18 @@ void setear_nombre(char* nombre, osada_file* archivo)
 void setear_bloque_padre(osada_file *file, char *path)
 {
 	char *path_padre = obtener_ruta_padre(path);
-	t_file_osada *file_padre = osada_get_file_called(path_padre,disco);
-	int bloque_padre = calcular_posicion_en_tabla_de_archivos(file_padre->block_relative,file_padre->position_in_block);
-	file->parent_directory = bloque_padre;
-	t_file_osada_destroy(file_padre);
+	if(string_equals_ignore_case(path_padre,"/"))
+	{
+		file->parent_directory = RAIZ;
+	}
+	else
+	{
+		t_file_osada *file_padre = osada_get_file_called(path_padre,disco);
+		int bloque_padre = calcular_posicion_en_tabla_de_archivos(file_padre->block_relative,file_padre->position_in_block);
+		file->parent_directory = bloque_padre;
+		t_file_osada_destroy(file_padre);
+	}
+
 }
 
 int osada_b_get_a_new_block_init()
@@ -65,27 +73,38 @@ int osada_b_check_repeat_name(int tipo,char* path)
 	char *new_hijo = array_last_element(path);
 	t_list *hijos = osada_b_listar_hijos(path_padre);
 
-	int size = list_size(hijos);
-	int i=0;
-	int esta_repetido=0;
-
-	while(!esta_repetido && i<size)
+	if(list_is_empty(hijos))
 	{
-		t_file_listado *file = list_get(hijos,i);
-		if(string_equals_ignore_case((char*)file->file->file->fname, new_hijo))
-		{
-			if(verify_file_state(tipo, file->file->file))
+		list_destroy_and_destroy_elements(hijos,file_listado_eliminate);
+		free(new_hijo);
+		free(path_padre);
+		return 0;
+	}
+	else
+	{
+		int size = list_size(hijos);
+			int i=0;
+			int esta_repetido=0;
+
+			while(!esta_repetido && i<size)
 			{
-				esta_repetido = 1;
+				t_file_listado *file = list_get(hijos,i);
+				if(string_equals_ignore_case((char*)file->file->file->fname, new_hijo))
+				{
+					if(verify_file_state(tipo, file->file->file))
+					{
+						esta_repetido = 1;
+					}
+				}
+				i++;
 			}
-		}
-		i++;
+
+			list_destroy_and_destroy_elements(hijos,file_listado_eliminate);
+			free(new_hijo);
+			free(path_padre);
+			return esta_repetido;
 	}
 
-	list_destroy_and_destroy_elements(hijos,file_listado_eliminate);
-	free(new_hijo);
-	free(path_padre);
-	return esta_repetido;
 }
 
 char* obtener_nuevo_path(char* old_path, char* new_name)
@@ -183,7 +202,7 @@ int osada_check_exist(char *path)
 	char **file_for_file = string_split(path,"/");
 	int size = array_size(file_for_file);
 
-	char * path_file = string_new();
+	char *path_file = string_new();
 	string_append(&path_file, "/");
 	string_append(&path_file, file_for_file[0]);
 
@@ -517,17 +536,26 @@ char* obtener_ruta_padre(char* path)
 {
 	char** por_separado = string_split(path, "/");
 	int size = array_size(por_separado);
-
-	int i;
-	char *path_padre = string_new();
-
-	for(i=0;i<size-1;i++)
+	if(size == 1)
 	{
-		string_append(&path_padre,"/");
-		string_append(&path_padre, por_separado[i]);
+		array_free_all(por_separado);
+		char *raiz = string_new();
+		string_append(&raiz,"/");
+		return raiz;
 	}
-	array_free_all(por_separado);
-	return path_padre;
+	else
+	{
+		int i;
+		char *path_padre = string_new();
+
+		for(i=0;i<size-1;i++)
+			{
+				string_append(&path_padre,"/");
+				string_append(&path_padre, por_separado[i]);
+			}
+		array_free_all(por_separado);
+		return path_padre;
+	}
 }
 
 char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_archivo, char *sub_directorio_o_nombre_archivo)
@@ -553,11 +581,13 @@ char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_arch
 
 /*----------------------------------------------RENAME----------------------------------------------------------------------*/
 
-void osada_b_rename(t_file_osada *file, char* new_nombre)
+void osada_b_rename(t_file_osada *file, char* new_path)
 {
+	char *new_nombre = array_last_element(new_path);
 	setear_nombre(new_nombre,file->file);
 	int offset = calcular_desplazamiento_tabla_de_archivos(file->position_in_block);
 	osada_push_middle_block(TABLA_DE_ARCHIVOS,file->block_relative,offset,file->file,disco);
+	free(new_nombre);
 }
 
 int osada_b_check_name(char* path)
@@ -565,7 +595,7 @@ int osada_b_check_name(char* path)
 	char *name = array_last_element(path);
 	int size = string_length(name);
 	free(name);
-	if(size >=OSADA_FILENAME_LENGTH -1){
+	if(size >OSADA_FILENAME_LENGTH){
 		return 0;
 	}
 	else

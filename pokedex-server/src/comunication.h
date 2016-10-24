@@ -13,6 +13,7 @@
 #include "pthread.h"
 #include "osada.h"
 #include "operaciones.h"
+#include "so-commons/string.h"
 
 #define BYTES_TO_RCV 5
 #define HEADER 2
@@ -20,10 +21,13 @@
 
 /*---------------------------------CONEXION------------------------------------------*/
 t_server* servidor_pokedex;
+
 void pokedex_server_conectate();
-void pokedex_server_acepta_clientes();
-void servidor_acepta_clientes(void *arg);
-void server_pokedex_atende_cliente(void* socket_cliente);
+//void pokedex_server_acepta_clientes();
+
+void servidor_acepta_clientes();
+void* server_pokedex_atende_cliente(void* socket_cliente);
+
 char* server_escucha_peticion(int cliente);
 void tratar_peticion_de(int cliente,char *peticion);
 
@@ -36,5 +40,11 @@ t_to_be_rename* escuchar_mensaje_rename(int socket);
 
 /*--------------------------------------RESPUESTAS AL CLIENTE----------------------------------------------------*/
 void responder_solo_resultado(int cliente, int resultado);
+char* armar_attributes(t_attributes_file *attributes);
+char* armar_listado(t_list *listado);
+void modelar_cantidad_elementos_listado(char* buffer, int size);
+char* modelar_elementos_en_listado(t_list *listado, int size);
+char* modelar_tamanio_nombre(int size);
+void agregar_barra_si_es_necesario(char *path);
 
 #endif /* COMUNICATION_H_ */

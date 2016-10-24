@@ -113,8 +113,9 @@ char* armar_numero_de_bytes(int size_payload)
 		if((size_payload < 10))
 		{
 			char *size=string_repeat(' ',4);
-			string_append(&size, string_itoa(size_payload));
-			//string_append(&size, ";");
+			char *size_string = string_itoa(size_payload);
+			string_append(&size,size_string);
+			free(size_string);
 			return size;
 		}
 		else
@@ -122,8 +123,9 @@ char* armar_numero_de_bytes(int size_payload)
 			if(size_payload < 100)
 			{
 				char *size=string_repeat(' ',3);
-				string_append(&size, string_itoa(size_payload));
-				//string_append(&size, ";");
+				char *size_string = string_itoa(size_payload);
+				string_append(&size,size_string);
+				free(size_string);
 				return size;
 			}
 			else
@@ -131,15 +133,17 @@ char* armar_numero_de_bytes(int size_payload)
 				if(size_payload < 1000)
 				{
 					char *size=string_repeat(' ',2);
-					string_append(&size, string_itoa(size_payload));
-					//string_append(&size, ";");
+					char *size_string = string_itoa(size_payload);
+					string_append(&size,size_string);
+					free(size_string);
 					return size;
 				}
 				else
 				{
 					char *size=string_repeat(' ',1);
-					string_append(&size, string_itoa(size_payload));
-					string_append(&size, ";");
+					char *size_string = string_itoa(size_payload);
+					string_append(&size,size_string);
+					free(size_string);
 					return size;
 				}
 			}
@@ -148,7 +152,6 @@ char* armar_numero_de_bytes(int size_payload)
 	else
 	{
 		char *size =string_itoa(size_payload);
-		//string_append(&size, ";");
 		return size;
 	}
 }

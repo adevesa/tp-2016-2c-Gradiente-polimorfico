@@ -9,27 +9,18 @@
 /*--------------------------------------CONEXION--------------------------------------------------------------*/
 void pokedex_server_conectate()
 {
-	char *ip = getenv("IP");
-	char *puerto_string = getenv("PUERTO");
-	int puerto = atoi(puerto_string);
-	servidor_pokedex = server_create(puerto, ip, MAX_CONECCTIONS);
+	//char *ip = getenv("IP");
+	//char *puerto_string = getenv("PUERTO");
+	//int puerto = atoi(puerto_string)
+
+	char *ip = string_new();
+	string_append(&ip,"127.0.0.1");
+	servidor_pokedex = server_create(5001, ip, 1500);
 	server_escucha(servidor_pokedex);
 }
 
-void pokedex_server_acepta_clientes()
-{
-	pthread_attr_t attr;
-	pthread_t thread;
 
-	pthread_attr_init(&attr);
-	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
-
-	pthread_create(&thread,&attr,servidor_acepta_clientes,NULL);
-
-	pthread_attr_destroy(&attr);
-}
-
-void servidor_acepta_clientes(void *arg)
+void servidor_acepta_clientes()
 {
 	while(1)
 	{
@@ -49,7 +40,7 @@ void servidor_acepta_clientes(void *arg)
 	}
 }
 
-void server_pokedex_atende_cliente(void* socket_cliente)
+void* server_pokedex_atende_cliente(void* socket_cliente)
 {
 	int *cliente = (int*) socket_cliente;
 	int cliente_esta_conectado = 1;
@@ -85,38 +76,83 @@ void tratar_peticion_de(int cliente,char *peticion)
 		case(LISTAR):
 		{
 			char *path = recibir_mensaje_especifico(cliente, LISTAR);
+			void* resultado = osada_a_get_list_dir(path);
+			if((int) resultado == NO_EXISTE)
+			{
+				enviar_mensaje(cliente,"FFFF");
+			}
+			else
+			{
+				char *listado_string = armar_listado((t_list*) resultado);
+				enviar_mensaje(cliente,listado_string);
+			}
+			free(path);
+			list_destroy_and_destroy_elements(resultado,file_listado_eliminate);
+
 		};break;
 		case(GET_ATRIBUTES):
 		{
 			char *path = recibir_mensaje_especifico(cliente, GET_ATRIBUTES);
+			void* respuesta = osada_a_get_attributes(path);
+			if((int) respuesta == NO_EXISTE)
+			{
+				enviar_mensaje(cliente,"F");
+				free(path);
+			}
+			else
+			{
+				t_attributes_file *file = (t_attributes_file*) respuesta;
+				char *mensj = armar_attributes(file);
+				enviar_mensaje(cliente, mensj);
+				free(file);
+				free(path);
+			}
 		};break;
 		case(CREATE_FILE):
 		{
 			char *path = recibir_mensaje_especifico(cliente, CREATE_FILE);
 			int resultado_operacion = osada_a_create_file(path);
 			responder_solo_resultado(cliente,resultado_operacion);
+			free(path);
 		};break;
 		case(CREATE_DIRECTORY):
 		{
 			char *path = recibir_mensaje_especifico(cliente, CREATE_DIRECTORY);
 			int resultado_operacion = osada_a_create_dir(path);
 			responder_solo_resultado(cliente,resultado_operacion);
+			free(path);
 		};break;
 		case(DELETE_FILE):
 		{
 			char *path = recibir_mensaje_especifico(cliente, DELETE_FILE);
 			int resultado_operacion = osada_a_delete_file(path);
 			responder_solo_resultado(cliente,resultado_operacion);
+			free(path);
 		};break;
 		case(DELETE_DIRECTTORY):
 		{
 			char *path = recibir_mensaje_especifico(cliente, DELETE_DIRECTTORY);
 			int resultado_operacion = osada_a_delete_dir(path);
 			responder_solo_resultado(cliente,resultado_operacion);
+			free(path);
 		};break;
 		case(READ_FILE):
 		{
 			t_to_be_read *file_to_read = recibir_mensaje_especifico(cliente, READ_FILE);
+			void *resultado = osada_a_read_file(file_to_read);
+			free(file_to_read->path);
+			free(file_to_read);
+
+			if((int)resultado == NO_EXISTE || (int) resultado == ARGUMENTO_INVALIDO)
+			{
+				responder_solo_resultado(cliente, (int)resultado);
+
+			}
+			else
+			{
+				enviar_mensaje(cliente,(char*)resultado);
+				free(resultado);
+			}
 		};break;
 		case(WRITE_FILE):
 		{
@@ -127,12 +163,16 @@ void tratar_peticion_de(int cliente,char *peticion)
 			t_to_be_rename *file_to_rename= recibir_mensaje_especifico(cliente, RENAME_FILE);
 			int resultado_operacion = osada_a_rename(file_to_rename);
 			responder_solo_resultado(cliente,resultado_operacion);
+			free(file_to_rename->new_path);
+			free(file_to_rename->old_path);
+			free(file_to_rename);
 		};break;
 		case(OPEN_FILE):
 		{
 			char *path = recibir_mensaje_especifico(cliente, OPEN_FILE);
 			int resultado_operacion = osada_a_open_file(path);
 			responder_solo_resultado(cliente,resultado_operacion);
+			free(path);
 		};break;
 	}
 
@@ -259,7 +299,7 @@ t_to_be_rename* escuchar_mensaje_rename(int socket)
 	char *bytes_of_path_2= recibir_mensaje(socket,BYTES_TO_RCV);
 	int bytes_path_2 = atoi(bytes_of_path_2);
 	free(bytes_of_path_2);
-	char *new_path = recibir_mensaje(socket, bytes_path);
+	char *new_path = recibir_mensaje(socket, bytes_path_2);
 	to_rename->new_path =new_path;
 
 	return to_rename;
@@ -271,4 +311,124 @@ void responder_solo_resultado(int cliente, int resultado)
 	char *resultado_a_enviar = string_itoa(resultado);
 	enviar_mensaje(cliente, resultado_a_enviar);
 	free(resultado_a_enviar);
+}
+
+char* armar_attributes(t_attributes_file *attributes)
+{
+	char *size = string_itoa(attributes->size);
+	char *tipo = string_itoa(attributes->tipo);
+	int tamanio = string_length(size);
+
+	char *msg = string_repeat(' ', 10-tamanio);
+	string_append(&msg,size);
+	string_append(&msg,tipo);
+	return msg;
+}
+
+char* armar_listado(t_list *listado)
+{
+	char* listado_string = string_new();
+	if(list_is_empty(listado))
+	{
+		string_append(&listado_string, "0");
+		return listado_string;
+	}
+	else
+	{
+		int size = list_size(listado);
+		modelar_cantidad_elementos_listado(listado_string,size);
+		char *list=modelar_elementos_en_listado(listado,size);
+		string_append(&listado_string,list);
+		free(list);
+		return listado_string;
+	}
+
+}
+
+void modelar_cantidad_elementos_listado(char* buffer, int size)
+{
+	char *size_string = string_itoa(size);
+	if(size < 10)
+	{
+		char* repeat = string_repeat(' ',3);
+		string_append(&buffer,repeat);
+		string_append(&buffer,size_string);
+		free(repeat);
+		free(size_string);
+	}
+	else
+	{
+		if(size<100)
+		{
+			char* repeat = string_repeat(' ',2);
+			string_append(&buffer,repeat);
+			string_append(&buffer,size_string);
+			free(repeat);
+			free(size_string);
+		}
+		else
+		{
+			if(size<1000)
+			{
+				char* repeat = string_repeat(' ',1);
+				string_append(&buffer,repeat);
+				string_append(&buffer,size_string);
+				free(repeat);
+				free(size_string);
+			}
+			else
+			{
+				string_append(&buffer,size_string);
+				free(size_string);
+			}
+		}
+	}
+}
+
+char* modelar_elementos_en_listado(t_list *listado, int size)
+{
+	char *resultado = string_new();
+	int i=0;
+	while(i<size)
+	{
+		t_file_listado *file = list_get(listado,i);
+		int tamanio_nombre = string_length((char*)file->file->file->fname);
+		char *size_name=modelar_tamanio_nombre(tamanio_nombre);
+		string_append(&resultado,size_name);
+		free(size_name);
+		string_append(&resultado, (char*) file->file->file->fname);
+		i++;
+	}
+	return resultado;
+}
+
+char* modelar_tamanio_nombre(int size)
+{
+
+	if(size < 10)
+	{
+		char* repeat=string_repeat(' ',1);
+		char *size_string = string_itoa(size);
+		string_append(&repeat, size_string);
+		free(size_string);
+		return repeat;
+	}
+	else
+	{
+		char *size_string = string_itoa(size);
+		return size_string;
+	}
+}
+
+void agregar_barra_si_es_necesario(char *path)
+{
+	if(!string_starts_with(path,"/"))
+	{
+		char *aux = string_new();
+		string_append(&aux,"/");
+		string_append(&aux, path);
+		path=realloc(path,string_length(path) + 2);
+		path = aux;
+		free(aux);
+	}
 }

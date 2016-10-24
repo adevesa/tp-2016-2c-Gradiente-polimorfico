@@ -46,3 +46,7 @@
 [INFO] 14:45:59:58 Proceso mapa/(25445:25445): Mapa creado correctamente
 [INFO] 14:45:59:651 Proceso mapa/(25445:25445): Se comienza a ejecutar hilo de escucha
 [INFO] 14:46:00:319 Proceso mapa/(25445:25445): Se crea hilo de planificador SRDF
+[INFO] 12:19:08:572 Proceso mapa/(3083:3083): Mapa creado correctamente
+[INFO] 12:20:05:729 Proceso mapa/(3140:3140): Mapa creado correctamente
+[INFO] 12:20:25:661 Proceso mapa/(3140:3140): Se comienza a ejecutar hilo de escucha
+[INFO] 12:20:46:29 Proceso mapa/(3140:3140): Se crea hilo de planificador SRDF
