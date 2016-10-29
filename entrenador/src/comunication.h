@@ -73,5 +73,6 @@ void notificar_fin_objetivos(t_mapa *mapa);
 t_ubicacion* desarmar_coordenada(char *coordenada);
 void copiar(char* origen, char* destino);
 void eliminar(char* elemento);
+void borrar_todos_los_archivos_del_directorio(char* ruta); // SUPER PELIGROSA.
 
 #endif /* COMUNICATION_H_ */

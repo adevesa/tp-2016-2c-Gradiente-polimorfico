@@ -44,7 +44,17 @@ void entrenador_espera_turno();
 void entrenador_espera_a_que_mapa_te_bloquee();
 void entrenador_espera_a_que_mapa_te_desbloquee();
 
+void entrenador_iniciar_seniales();
+void subirvida();
+void bajarvida();
 
+void entrenador_finalizo_muriendo();
+void tratar_respuesta();
+
+void entrenador_reinicia_hoja_de_viaje();
+void entrenador_borra_medallas();
+void entrenador_borra_pokemons();
+void entrenador_morite();
 
 void entrenador_pedi_ubicacion_pokenest(int indice_objetivo);
 void entrenador_recibi_y_copia_pokemon(char *solicitud);

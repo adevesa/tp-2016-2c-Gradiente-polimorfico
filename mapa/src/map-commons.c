@@ -27,6 +27,7 @@ void ejecutar_mapa(char *nombre, char *rutaPokedex)
 {
 	iniciar_semaforos();
 	iniciar_logs(nombre);
+	iniciar_seniales_mapa();
 
 	mapa = mapa_create(nombre, rutaPokedex);
 	log_info(informe_mapa, "Mapa creado correctamente");
@@ -35,6 +36,25 @@ void ejecutar_mapa(char *nombre, char *rutaPokedex)
 	mapa_hacete_visible_para_entrenadores();
 	planificador_create_segun_cual_seas();
 	sem_wait(&semaforo_terminacion);
+}
+
+void iniciar_seniales_mapa()
+{
+	signal(SIGUSR2, releer_data);
+}
+
+void releer_data()
+{
+	//semaforo on
+	char* algor_viejo = string_new();
+	algor_viejo = mapa->info_algoritmo->algoritmo;
+	mapa->info_algoritmo= obtener_info_mapa_algoritmo(mapa->configuracion);
+	mapa->tiempo_chequeo_deadlock= obtener_info_mapa_tiempo_deadlock(mapa->configuracion);
+	if(!string_equals_ignore_case(algor_viejo,mapa->info_algoritmo->algoritmo))
+		{
+		cambiar_algoritmo();
+		}
+	//semaforo off
 }
 
 void iniciar_semaforos()

@@ -105,8 +105,8 @@ t_ubicacion* desarmar_coordenada(char *coordenada)
 
 void copiar(char* origen, char* destino)
 {
-	string_path_replace_spaces(origen, " ", "\\");
-	string_path_replace_spaces(destino, " ","\\");
+	string_path_replace_spaces(origen, " ", "\ ");
+	string_path_replace_spaces(destino, " ","\ ");
 	char* mensaje = string_new();
 	string_append(&mensaje, "cp ");
 	string_append(&mensaje, origen);
@@ -118,9 +118,22 @@ void copiar(char* origen, char* destino)
 
 void eliminar(char* elemento)
 {
+		string_path_replace_spaces(elemento, " ", "\ ");
 		char* mensaje = string_new();
 		string_append(&mensaje, "rm ");
 		string_append(&mensaje, elemento);
 		system(mensaje);
 		free(mensaje);
+}
+
+void borrar_todos_los_archivos_del_directorio(char* ruta) // SUPER PELIGROSISIMA.
+{
+	string_path_replace_spaces(ruta," ","\ ");
+	char* mensaje = string_new();
+	string_append(&mensaje,"find ");
+	string_append(&mensaje,ruta);
+	string_append(&mensaje," -type f -exec rm -f \"{}\" \+");
+	system(mensaje);
+	free(mensaje);
+
 }

@@ -34,6 +34,7 @@ t_log *informe_mapa;
 void ejecutar_mapa(char *nombre, char *rutaPokedex);
 void iniciar_semaforos();
 void iniciar_logs(char *nombre);
+void iniciar_seniales_mapa();
 
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
 
@@ -41,6 +42,8 @@ void planificador_create_segun_cual_seas();
 
 
 /*--------------------------------------------PRINCIPALES----------------------------------------------------------*/
+void releer_data();
+
 char* mapa_dame_medalla();
 t_pokeNest* mapa_buscame_pokenest(char *identificador_pokemon);
 t_posicion* mapa_dame_coordenadas_de_pokenest(char* identificador_pokemon);
