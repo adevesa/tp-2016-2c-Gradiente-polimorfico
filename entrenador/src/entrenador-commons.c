@@ -11,18 +11,99 @@
 //sem_t bloqueado;
 //sem_t desbloqueado;
 
-
 void ejecutar_entrenador(char *nombre_entrenador, char *ruta_pokedex)
 {
 	iniciar_log(nombre_entrenador);
 	entrenador_registra_hora(INICIO);
 	entrenador = entrenador_create(nombre_entrenador, ruta_pokedex);
+	entrenador_iniciar_seniales();
 	log_info(info_entrenador, "Entrenador creado con EXITO");
 	entrenador_recorre_hoja_de_viaje();
 	entrenador_registra_hora(FIN);
 	//SI ESTA ACA, ES QUE YA TERMINO DE RECORRER
 }
 
+
+/* WORKING ON... */
+
+void entrenador_iniciar_seniales(){
+	signal(SIGUSR1, subirvida);
+	signal(SIGTERM, bajarvida);
+}
+
+void subirvida()
+{
+	entrenador->vidas++;
+}
+
+void bajarvida()
+{
+	entrenador->vidas--;
+	if(entrenador->vidas == 0) entrenador_finalizo_muriendo();
+}
+
+void entrenador_finalizo_muriendo()
+{
+	//cerrar hilo de hoja de viaje
+	//cerrar hilo de objetivos
+	printf("Intentos totales: %d", entrenador->reintentos);
+	printf("GAME OVER. ¿Desea reintentar? Y/N \n");
+	tratar_respuesta();
+}
+
+void tratar_respuesta(){
+	char resp;
+	scanf("%c", &resp);
+	if(resp == 'Y'){
+		entrenador->reintentos++;
+		entrenador_borra_medallas();
+		entrenador_borra_pokemons();
+		entrenador_recorre_hoja_de_viaje();
+	}
+	else if(resp == 'N'){
+		entrenador_desconectate();
+	}
+	else{
+		printf("Respuesta invalida\n");
+		tratar_respuesta();
+	}
+}
+
+void entrenador_borra_pokemons()
+{
+	char* directorio_de_pokemons = string_new();
+	string_append(&directorio_de_pokemons, entrenador->ruta_pokedex);
+	string_append(&directorio_de_pokemons, entrenador->nombre);
+	string_append(&directorio_de_pokemons, "/Dir de Bill");
+	borrar_todos_los_archivos_del_directorio(directorio_de_pokemons);
+	free(directorio_de_pokemons);
+}
+
+void entrenador_borra_medallas()
+{
+	char* directorio_de_medallas = string_new();
+	string_append(&directorio_de_medallas, entrenador->ruta_pokedex);
+	string_append(&directorio_de_medallas, entrenador->nombre);
+	string_append(&directorio_de_medallas, "/medallas");
+	borrar_todos_los_archivos_del_directorio(directorio_de_medallas);
+	free(directorio_de_medallas);
+}
+
+void entrenador_desconectate()
+{
+	exit(1);
+}
+
+void entrenador_morite()
+{
+	// matar hilo de objetivos
+	close(entrenador->mapa_actual->server);
+	entrenador_borra_pokemons();
+	bajarvida();
+	if(entrenador->vidas > 0); //empezar nuevo hilo de objetivos;
+}
+
+/* Working OFF... */
 
 void iniciar_log(char *nombre_del_entrenador)
 {
@@ -33,6 +114,8 @@ void iniciar_log(char *nombre_del_entrenador)
 
 	free(nombre_log);
 }
+
+
 
 void entrenador_registra_hora(int rango)
 {
@@ -76,7 +159,6 @@ void entrenador_registra_hora(int rango)
 void entrenador_recorre_hoja_de_viaje()
 {
 	log_info(info_entrenador, "COMIENZO del recorrido de la HOJA DE VIAJE");
-
 	int i;
 	int cantidad = list_size(entrenador->hoja_de_viaje);
 	for(i = 0; i<cantidad ; i++)
@@ -132,6 +214,7 @@ void entrenador_cumpli_objetivos_del_mapa()
 
 	entrenador_copia_medalla_del_mapa();
 	close(entrenador->mapa_actual->server);
+	entrenador_borra_pokemons();
 
 	//INICIO log
 	char *mensaje_fin = string_new();
@@ -337,9 +420,9 @@ void entrenador_copia_medalla_del_mapa()
 	string_append(&aux,entrenador->mapa_actual->nombre);
 	string_append(&aux,".jpg");
 	ruta_medalla_origen = obtener_ruta_especifica(ruta_medalla_origen,aux,NULL);
-	string_path_replace_spaces(ruta_medalla_origen," ", "\\");
 
-	char *ruta_medallas_destino = obtener_ruta_especifica(entrenador->directorio_de_bill, "medallas", NULL);
+	char *ruta_medallas_destino = obtener_ruta_especifica(entrenador->ruta_pokedex, "Entrenadores", entrenador->nombre);
+	ruta_medallas_destino = obtener_ruta_especifica(ruta_medallas_destino,"medallas",NULL);
 	string_append(&ruta_medallas_destino,"/");
 	copiar(ruta_medalla_origen,ruta_medallas_destino);
 
