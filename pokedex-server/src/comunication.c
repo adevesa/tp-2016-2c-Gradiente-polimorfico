@@ -19,7 +19,6 @@ void pokedex_server_conectate()
 	server_escucha(servidor_pokedex);
 }
 
-
 void servidor_acepta_clientes()
 {
 	while(1)
@@ -47,6 +46,7 @@ void* server_pokedex_atende_cliente(void* socket_cliente)
 
 	while(cliente_esta_conectado)
 	{
+		printf("Espero peticion de cliente\n");
 		char *peticion = server_escucha_peticion(*cliente);
 		if(string_equals_ignore_case(peticion, "DESCONECTADO"))
 		{
@@ -76,6 +76,7 @@ void tratar_peticion_de(int cliente,char *peticion)
 		case(LISTAR):
 		{
 			char *path = recibir_mensaje_especifico(cliente, LISTAR);
+			printf("LISTAR: %s\n",path);
 			void* resultado = osada_a_get_list_dir(path);
 			if((int) resultado == NO_EXISTE)
 			{
@@ -85,6 +86,7 @@ void tratar_peticion_de(int cliente,char *peticion)
 			{
 				char *listado_string = armar_listado((t_list*) resultado);
 				enviar_mensaje(cliente,listado_string);
+				free(listado_string);
 			}
 			free(path);
 			list_destroy_and_destroy_elements(resultado,file_listado_eliminate);
@@ -93,6 +95,7 @@ void tratar_peticion_de(int cliente,char *peticion)
 		case(GET_ATRIBUTES):
 		{
 			char *path = recibir_mensaje_especifico(cliente, GET_ATRIBUTES);
+			printf("ATRIBUTOS: %s\n",path);
 			void* respuesta = osada_a_get_attributes(path);
 			if((int) respuesta == NO_EXISTE)
 			{
@@ -111,6 +114,7 @@ void tratar_peticion_de(int cliente,char *peticion)
 		case(CREATE_FILE):
 		{
 			char *path = recibir_mensaje_especifico(cliente, CREATE_FILE);
+			printf("CREAR: %s\n",path);
 			int resultado_operacion = osada_a_create_file(path);
 			responder_solo_resultado(cliente,resultado_operacion);
 			free(path);
@@ -118,6 +122,7 @@ void tratar_peticion_de(int cliente,char *peticion)
 		case(CREATE_DIRECTORY):
 		{
 			char *path = recibir_mensaje_especifico(cliente, CREATE_DIRECTORY);
+			printf("CREAR: %s\n",path);
 			int resultado_operacion = osada_a_create_dir(path);
 			responder_solo_resultado(cliente,resultado_operacion);
 			free(path);
@@ -125,6 +130,7 @@ void tratar_peticion_de(int cliente,char *peticion)
 		case(DELETE_FILE):
 		{
 			char *path = recibir_mensaje_especifico(cliente, DELETE_FILE);
+			printf("DELETE: %s\n",path);
 			int resultado_operacion = osada_a_delete_file(path);
 			responder_solo_resultado(cliente,resultado_operacion);
 			free(path);
@@ -132,6 +138,7 @@ void tratar_peticion_de(int cliente,char *peticion)
 		case(DELETE_DIRECTTORY):
 		{
 			char *path = recibir_mensaje_especifico(cliente, DELETE_DIRECTTORY);
+			printf("DELETE: %s\n",path);
 			int resultado_operacion = osada_a_delete_dir(path);
 			responder_solo_resultado(cliente,resultado_operacion);
 			free(path);
@@ -139,20 +146,34 @@ void tratar_peticion_de(int cliente,char *peticion)
 		case(READ_FILE):
 		{
 			t_to_be_read *file_to_read = recibir_mensaje_especifico(cliente, READ_FILE);
-			void *resultado = osada_a_read_file(file_to_read);
-			free(file_to_read->path);
-			free(file_to_read);
-
-			if((int)resultado == NO_EXISTE || (int) resultado == ARGUMENTO_INVALIDO)
+			printf("LEER: %d BYTES OFFSET: %d DE: %s\n", file_to_read->size,file_to_read->offset,file_to_read->path);
+			void *result = osada_a_read_file(file_to_read);
+			if((int)result == NO_EXISTE || (int) result == ARGUMENTO_INVALIDO)
 			{
-				responder_solo_resultado(cliente, (int)resultado);
+				enviar_mensaje(cliente,"F");
+				//responder_solo_resultado(cliente, (int)resultado);
 
 			}
 			else
 			{
-				enviar_mensaje(cliente,(char*)resultado);
+				read_content *resultado = (read_content*) result;
+				printf("LECTURA COMPLETADA: %d BYTES DE: %s\n",resultado->tamanio ,file_to_read->path);
+				void *buffer = malloc(resultado->tamanio + 10);
+				char *tam = string_itoa(resultado->tamanio);
+				int tamanio_del_archivo = string_length(tam);
+				//printf("BYTES OCUPADOS POR TAMANIO: %d\n", tamanio_del_archivo);
+				char *mensaje = string_repeat(' ', 10 -tamanio_del_archivo);
+				string_append(&mensaje,tam);
+				free(tam);
+				memcpy(buffer,mensaje,10);
+				memcpy(buffer+10,resultado->contenido,resultado->tamanio);
+				enviar_mensaje_cantidad_especifica(cliente,buffer,resultado->tamanio +10);
+				free(mensaje);
+				free(resultado->contenido);
 				free(resultado);
 			}
+			free(file_to_read->path);
+			free(file_to_read);
 		};break;
 		case(WRITE_FILE):
 		{
@@ -170,6 +191,7 @@ void tratar_peticion_de(int cliente,char *peticion)
 		case(OPEN_FILE):
 		{
 			char *path = recibir_mensaje_especifico(cliente, OPEN_FILE);
+			printf("ABRIR: %s\n",path);
 			int resultado_operacion = osada_a_open_file(path);
 			responder_solo_resultado(cliente,resultado_operacion);
 			free(path);
@@ -322,6 +344,9 @@ char* armar_attributes(t_attributes_file *attributes)
 	char *msg = string_repeat(' ', 10-tamanio);
 	string_append(&msg,size);
 	string_append(&msg,tipo);
+
+	free(size);
+	free(tipo);
 	return msg;
 }
 
@@ -330,7 +355,7 @@ char* armar_listado(t_list *listado)
 	char* listado_string = string_new();
 	if(list_is_empty(listado))
 	{
-		string_append(&listado_string, "0");
+		string_append(&listado_string, "0000");
 		return listado_string;
 	}
 	else
@@ -407,7 +432,7 @@ char* modelar_tamanio_nombre(int size)
 
 	if(size < 10)
 	{
-		char* repeat=string_repeat(' ',1);
+		char *repeat=string_repeat(' ',1);
 		char *size_string = string_itoa(size);
 		string_append(&repeat, size_string);
 		free(size_string);

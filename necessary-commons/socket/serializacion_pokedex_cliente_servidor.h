@@ -10,7 +10,8 @@
 #include "../so-commons/string.h"
 #include "sockets-utils.h"
 
-#define MAX_BYTES_SIZE 10000
+#define MAX_BYTES_SIZE 1000000
+#define MAX_BYTES_TO_SEND 10
 enum
 {
 	LISTAR = 1,

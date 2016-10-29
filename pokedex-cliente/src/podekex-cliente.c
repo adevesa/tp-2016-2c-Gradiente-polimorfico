@@ -18,6 +18,6 @@ int main(int argc, char *argv[])
 
 	cliente_osada_create();
 	cliente_osada_conectate();
-
+	iniciar_log();
 	return fuse_main(argc, argv, &osada_operations, NULL);
 }

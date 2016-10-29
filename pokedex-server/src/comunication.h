@@ -15,7 +15,7 @@
 #include "operaciones.h"
 #include "so-commons/string.h"
 
-#define BYTES_TO_RCV 5
+#define BYTES_TO_RCV 10
 #define HEADER 2
 #define MAX_CONECCTIONS 1500
 

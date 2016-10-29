@@ -12,11 +12,15 @@
 #include "vars.h"
 #include <fuse.h>
 #include "socket/serializacion_pokedex_cliente_servidor.h"
+#include "so-commons/log.h"
 #define MAX_BYTES_TO_ADVISES 1
+#include <pthread.h>
 
 
+t_log *log;
 
 /*-------------------------------------------CREACION Y CONEXION CON SERVER----------------------------------------------*/
+void iniciar_log();
 void cliente_osada_create();
 void cliente_osada_conectate();
 

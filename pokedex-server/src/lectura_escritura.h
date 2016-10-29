@@ -26,4 +26,6 @@ void asignar_nuevo_bloque_datos(osada_file* archivo);
 void* osada_get_data_of_this_file(osada_file *file, t_disco_osada *disco);
 int calcular_byte_final_a_recuperar_de_file(int file_size); //<-- La usa la función anteriror
 
+void* osada_b_read_file(osada_file *file, t_disco_osada *disco, t_to_be_read *to_read);
+int calcular_bloque_final_por_leer(int bloque_inicial,t_to_be_read *to_read);
 #endif /* LECTURA_ESCRITURA_H_ */

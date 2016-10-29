@@ -22,6 +22,11 @@ void activar_reutilizacion_de_direcciones(int valorVerdaderoso, int socket)
 	setsockopt(socket,SOL_SOCKET,SO_REUSEADDR, &valorVerdaderoso, sizeof(valorVerdaderoso));
 }
 
+void enviar_mensaje_cantidad_especifica(int socket, void *buffer, int size)
+{
+	send(socket,buffer,size,0);
+}
+
 void enviar_mensaje(int socket, char *msg)
 {
 	send(socket, msg, strlen(msg),0);
@@ -29,7 +34,7 @@ void enviar_mensaje(int socket, char *msg)
 
 char* recibir_mensaje(int socket,int payloadSize)
 {
-	char * payload = malloc(payloadSize+1);
+	char *payload = malloc(payloadSize+1);
 	int bytes_recibidos;
 	bytes_recibidos=recv(socket, payload, payloadSize,0);
 	if(bytes_recibidos == 0)
@@ -44,4 +49,21 @@ char* recibir_mensaje(int socket,int payloadSize)
 		return payload;
 	}
 
+}
+
+void* recibir_mensaje_tipo_indistinto(int socket,int payloadsize)
+{
+	void *payload = malloc(payloadsize+1);
+	int bytes_recibidos;
+	bytes_recibidos = recv(socket,payload,payloadsize,0);
+	if(bytes_recibidos == 0)
+		{
+			char *desconectado = string_new();
+			string_append(&desconectado, "DESCONECTADO");
+			return desconectado;
+		}
+		else
+		{
+			return payload;
+		}
 }

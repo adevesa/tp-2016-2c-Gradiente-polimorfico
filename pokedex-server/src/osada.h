@@ -125,4 +125,10 @@ typedef struct
 	int tipo;
 }t_attributes_file;
 
+typedef struct
+{
+	void *contenido;
+	int tamanio;
+}read_content;
+
 #endif __OSADA_H__

@@ -108,7 +108,14 @@ char* build_msg(int header, char *path_original, char *path_new_or_text, int siz
 
 char* armar_numero_de_bytes(int size_payload)
 {
-	if(size_payload < MAX_BYTES_SIZE)
+	char *size_String = string_itoa(size_payload);
+	int length = string_length(size_String);
+
+	char *result = string_repeat(' ',MAX_BYTES_TO_SEND-length);
+	string_append(&result,size_String);
+	free(size_String);
+	return result;
+	/*if(size_payload < MAX_BYTES_SIZE)
 	{
 		if((size_payload < 10))
 		{
@@ -153,7 +160,7 @@ char* armar_numero_de_bytes(int size_payload)
 	{
 		char *size =string_itoa(size_payload);
 		return size;
-	}
+	}*/
 }
 
 char* armar_header(int header)

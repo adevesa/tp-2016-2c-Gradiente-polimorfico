@@ -138,21 +138,49 @@ void* osada_a_read_file(t_to_be_read *to_read)
 	if(osada_check_exist(to_read->path))
 	{
 		t_file_osada *file_a_leer = osada_get_file_called(to_read->path,disco);
-		if(file_a_leer->file->file_size == 0)
+		int size = file_a_leer->file->file_size;
+		if(size == 0)
 		{
+			t_file_osada_destroy(file_a_leer);
 			return ARGUMENTO_INVALIDO;
 		}
 		else
 		{
-			char *contenido = osada_get_data_of_this_file(file_a_leer->file,disco);
+			read_content *read = malloc(sizeof(read_content));
+			if(size< to_read->size)
+			{
+				void *contenido = osada_get_data_of_this_file(file_a_leer->file,disco);
+				void *contenido_a_enviar = malloc(size+1);
+				memcpy(contenido_a_enviar,contenido + to_read->offset,size);
+				free(contenido);
+				t_file_osada_destroy(file_a_leer);
+				read->contenido = contenido_a_enviar;
+				read->tamanio = size;
+				return read;
+			}
+			else
+			{
+				/*void *contenido = osada_b_read_file(file_a_leer->file,disco,to_read);
+				t_file_osada_destroy(file_a_leer);
+				read->contenido = contenido;
+				read->tamanio = to_read->size +1;
+				return read;*/
+				void *contenido = osada_get_data_of_this_file(file_a_leer->file,disco);
+								void *contenido_a_enviar = malloc(size+1);
+								memcpy(contenido_a_enviar,contenido + to_read->offset,size);
+								free(contenido);
+								t_file_osada_destroy(file_a_leer);
+								read->contenido = contenido_a_enviar;
+								read->tamanio = to_read->size;
+								return read;
+			}
 
-			char *contenido_a_enviar = malloc(to_read->size);
-			memcpy(contenido_a_enviar,contenido + to_read->offset,to_read->size);
-
-			free(contenido);
-			t_file_osada_destroy(file_a_leer);
-			return contenido_a_enviar;
 		}
+		/*else
+		{
+			char *contenido = osada_b_read_file(file_a_leer->file,disco,to_read);
+			return contenido;
+		}*/
 	}
 	else
 	{
@@ -202,12 +230,20 @@ void* osada_a_rename(t_to_be_rename *to_rename)
 /*-------------------------------------------OPENS & CLOSER-------------------------------------------------------------*/
 void* osada_a_open_file(char *path)
 {
-	if(osada_check_exist(path))
-		{
-			return EXITO;
-		}
+	if(string_equals_ignore_case(path,"/"))
+	{
+		return EXITO;
+	}
 	else
 	{
-		return NO_EXISTE;
+		if(osada_check_exist(path))
+				{
+					return EXITO;
+				}
+			else
+			{
+				return NO_EXISTE;
+			}
 	}
+
 }

@@ -103,6 +103,11 @@ static int osada_trucate_file(const char* path, off_t size)
 
 };
 
+static int osada_acces(const char* path, int mask)
+{
+	int resultado = cliente_pedi_abrir(DIRECTORIO,path, NULL);
+	return resultado;
+}
 /*-------------------------------------------STRUCTS-----------------------------------------------------------------*/
 static struct fuse_operations osada_operations =
 {
@@ -116,7 +121,8 @@ static struct fuse_operations osada_operations =
 		.write = osada_escribi_archivo,
 		.rename = osada_renombra_archivo,
 		.open = osada_abri_archivo,
-		.truncate = osada_trucate_file
+		.truncate = osada_trucate_file,
+		.access= osada_acces
 };
 
 
