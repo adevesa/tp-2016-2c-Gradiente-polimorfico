@@ -20,6 +20,7 @@ typedef struct sockaddr_in address_config_in;
 address_config_in configurar_address_in(int puerto, char *ip);
 void activar_reutilizacion_de_direcciones(int valorVerdaderoso, int socket);
 
+int seguir_enviado(int socket, void *buffer, int size);
 void enviar_mensaje(int socket, char *mensaje);
 void enviar_mensaje_cantidad_especifica(int socket, void *buffer, int size);
 char* recibir_mensaje(int socket,int payloadSize);

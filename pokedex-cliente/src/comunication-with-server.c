@@ -141,28 +141,37 @@ int cliente_pedi_eliminar(int tipo,const char *path)
 /*-------------------------------------------WRITE & READ---------------------------------------------------------------*/
 int cliente_pedi_leer_archivo(const char *path, char *buf, size_t size, off_t offset)
 {
+	pthread_mutex_lock(&mutex_operaciones);
+
 	char *mensaje_A_log = string_new();
-		string_append(&mensaje_A_log,"LEER: ");
+		string_append(&mensaje_A_log,"LEER ");
+		char *size_string = string_itoa(size);
+		char *offset_string = string_itoa(offset);
+		string_append(&mensaje_A_log, size_string);
+		string_append(&mensaje_A_log, " BYTES, OFFSET: ");
+		string_append(&mensaje_A_log, offset_string);
+		string_append(&mensaje_A_log, " DEL PATH: ");
 		string_append(&mensaje_A_log,path);
 		log_info(log,mensaje_A_log);
 		free(mensaje_A_log);
+		free(size_string);
+		free(offset_string);
 
-	pthread_mutex_lock(&mutex_operaciones);
+
 	char *msg = build_msg(READ_FILE,path,NULL,size,offset);
 	enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
-	//char *datos = string_new();
-	char *primer_byte = recibir_mensaje(cliente_osada->socket_pokedex_servidor,1);
+	char *primer_byte = recibir_mensaje(cliente_osada->socket_pokedex_servidor,10);
 	if(string_equals_ignore_case(primer_byte,"F"))
 	{
 		return 0;
 	}
 	else
 	{
-		char *lectura = recibir_mensaje(cliente_osada->socket_pokedex_servidor,9);
-		string_append(&primer_byte,lectura);
+		//char *lectura = recibir_mensaje(cliente_osada->socket_pokedex_servidor,9);
+		//string_append(&primer_byte,lectura);
 		int tamanio = atoi(primer_byte);
-		free(lectura);
-		free(primer_byte);
+		//free(lectura);
+
 		//char *lectura_final = recibir_mensaje(cliente_osada->socket_pokedex_servidor,tamanio);
 		void *lectura_final = recibir_mensaje_tipo_indistinto(cliente_osada->socket_pokedex_servidor,tamanio);
 
@@ -173,8 +182,18 @@ int cliente_pedi_leer_archivo(const char *path, char *buf, size_t size, off_t of
 				contenido=(char*) lectura_final;
 				contenido[tamanio-1] = '\0';*/
 		//memcpy(buf,lectura_final,string_length(lectura_final)); //OJO ACA
-		memcpy(buf,lectura_final,tamanio+1);
+		memcpy(buf,lectura_final,tamanio);
 		free(lectura_final);
+
+
+		char *mensaje_A_log_2 = string_new();
+		string_append(&mensaje_A_log_2,"LECTURA COMPLETADA CON: ");
+		string_append(&mensaje_A_log_2,primer_byte);
+		string_append(&mensaje_A_log_2, " LEIDOS");
+		log_info(log,mensaje_A_log_2);
+		free(mensaje_A_log_2);
+		free(primer_byte);
+
 		pthread_mutex_unlock(&mutex_operaciones);
 		return tamanio;
 	}
@@ -279,7 +298,7 @@ int lectura_sin_errores(char* data)
 
 int escuchar_respuesta_comun(int socket_server)
 {
-	char* msj = recibir_mensaje(socket_server, MAX_BYTES_TO_ADVISES);
+	char *msj = recibir_mensaje(socket_server, MAX_BYTES_TO_ADVISES);
 	int respuesta = atoi(msj);
 	switch(respuesta)
 	{

@@ -109,6 +109,7 @@ void tratar_peticion_de(int cliente,char *peticion)
 				enviar_mensaje(cliente, mensj);
 				free(file);
 				free(path);
+				free(mensj);
 			}
 		};break;
 		case(CREATE_FILE):
@@ -151,7 +152,6 @@ void tratar_peticion_de(int cliente,char *peticion)
 			if((int)result == NO_EXISTE || (int) result == ARGUMENTO_INVALIDO)
 			{
 				enviar_mensaje(cliente,"F");
-				//responder_solo_resultado(cliente, (int)resultado);
 
 			}
 			else
@@ -161,7 +161,6 @@ void tratar_peticion_de(int cliente,char *peticion)
 				void *buffer = malloc(resultado->tamanio + 10);
 				char *tam = string_itoa(resultado->tamanio);
 				int tamanio_del_archivo = string_length(tam);
-				//printf("BYTES OCUPADOS POR TAMANIO: %d\n", tamanio_del_archivo);
 				char *mensaje = string_repeat(' ', 10 -tamanio_del_archivo);
 				string_append(&mensaje,tam);
 				free(tam);

@@ -150,7 +150,7 @@ void* osada_a_read_file(t_to_be_read *to_read)
 			if(size< to_read->size)
 			{
 				void *contenido = osada_get_data_of_this_file(file_a_leer->file,disco);
-				void *contenido_a_enviar = malloc(size+1);
+				void *contenido_a_enviar = malloc(size); //size +1
 				memcpy(contenido_a_enviar,contenido + to_read->offset,size);
 				free(contenido);
 				t_file_osada_destroy(file_a_leer);
@@ -163,24 +163,22 @@ void* osada_a_read_file(t_to_be_read *to_read)
 				/*void *contenido = osada_b_read_file(file_a_leer->file,disco,to_read);
 				t_file_osada_destroy(file_a_leer);
 				read->contenido = contenido;
-				read->tamanio = to_read->size +1;
+				read->tamanio = to_read->size;
 				return read;*/
+
 				void *contenido = osada_get_data_of_this_file(file_a_leer->file,disco);
-								void *contenido_a_enviar = malloc(size+1);
-								memcpy(contenido_a_enviar,contenido + to_read->offset,size);
-								free(contenido);
-								t_file_osada_destroy(file_a_leer);
-								read->contenido = contenido_a_enviar;
-								read->tamanio = to_read->size;
-								return read;
+				void *contenido_a_enviar = malloc(to_read->size);
+				memcpy(contenido_a_enviar,contenido + to_read->offset,to_read->size);
+				//void *contenido_a_enviar = malloc(size+1);
+				//memcpy(contenido_a_enviar,contenido + to_read->offset,size);
+				free(contenido);
+				t_file_osada_destroy(file_a_leer);
+				read->contenido = contenido_a_enviar;
+				read->tamanio = to_read->size;
+				return read;
 			}
 
 		}
-		/*else
-		{
-			char *contenido = osada_b_read_file(file_a_leer->file,disco,to_read);
-			return contenido;
-		}*/
 	}
 	else
 	{

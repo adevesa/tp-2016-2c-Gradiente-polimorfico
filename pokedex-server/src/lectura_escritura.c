@@ -52,7 +52,7 @@ void* osada_b_read_file(osada_file *file, t_disco_osada *disco, t_to_be_read *to
 
 	int bloque_final = calcular_bloque_final_por_leer(bloque_inicial,to_read);
 
-	void *data = malloc(to_read->size +1);
+	void *data = malloc(to_read->size);
 	if(bloque_inicial == bloque_final)
 	{
 		int *block_num = list_get(bloques_por_recuperar,bloque_inicial);
@@ -119,7 +119,7 @@ void* osada_get_data_of_this_file(osada_file *file, t_disco_osada *disco)
 	int size = list_size(bloques_por_recuperar);
 
 	int last_block = size -1;
-	char *data = malloc(file->file_size+1);
+	void *data = malloc(file->file_size); //char *data = malloc(file->file_size +1);
 	int i;
 	for(i=0; i<(size); i++)
 	{
