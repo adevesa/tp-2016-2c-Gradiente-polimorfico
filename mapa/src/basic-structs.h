@@ -19,6 +19,7 @@
 #include <so-commons/string.h>
 #include <so-commons/txt.h>
 #include "semaphore.h"
+#include <signal.h>
 enum
 {
 	CUMPLIDO = 1,
