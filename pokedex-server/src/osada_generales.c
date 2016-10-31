@@ -247,6 +247,30 @@ osada_block_pointer osada_get_start_block_absolut_of(int campo, t_disco_osada *d
 }
 
 /*----------------------------------------------MANIPULACION BITARRAY------------------------------------------------------*/
+int osada_b_check_is_bitarray_have_n_blocks_free(int n, t_disco_osada *disco)
+{
+	int bloque_incial = osada_get_start_block_absolut_of(BLOQUE_DE_DATOS,disco);
+	int i =bloque_incial;
+	int contador = 0;
+	int hay_n_bit_libre = 1;
+	while( contador!=n && i<(bloque_incial + disco->header->data_blocks))
+	{
+		if(!bitarray_test_bit(disco->bitmap,i))
+		{
+			contador++;
+		}
+		i++;
+	}
+	if(contador < n)
+	{
+		return 0;
+	}
+	else
+	{
+		return hay_n_bit_libre;
+	}
+}
+
 int osada_b_check_is_bitarray_full(t_disco_osada *disco)
 {
 

@@ -11,11 +11,22 @@
 #include "file_manipuling.h"
 #include "osada_generales.h"
 
+enum
+{
+	HAY_ESPACIO_SUFICIENTE = 1,
+	NO_HAY_ESPACIO_SUFICIENTE = 0
+};
 /*----------------------------------------------ESCRITURA----------------------------------------------------------*/
+int osada_check_space_to_write(t_to_be_write *to_write);
+int calcular_espacio_disponible_ultimo_bloque(osada_file *file);
+void impactar_en_tabla_de_asignaciones(int posicion, int valor);
+
+
 void osada_write_file(t_to_be_write* file);
-void osada_b_write_file_void(t_to_be_write* archivo);
-int archivo_vacio(t_file_osada* arch);
-void asignar_nuevo_bloque_datos(osada_file* archivo);
+
+void asignar_nuevo_bloque_datos(t_file_osada *archivo);
+
+int calcular_bloque_relativo_datos_dado_absoluto(int numero_bloque_absoluto);
 
 /*----------------------------------------------LECTURA-----------------------------------------------------------*/
 

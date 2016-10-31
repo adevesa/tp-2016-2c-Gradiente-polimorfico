@@ -36,20 +36,6 @@ void enviar_mensaje_cantidad_especifica(int socket, void *buffer, int size)
 			free(data);
 		}
 	}
-
-	/*int cantidad_enviada = 0;
-	void *data = malloc(size);
-	memcpy(data,buffer,size);
-	while(cantidad_enviada != size)
-	{
-		cantidad_enviada=send(socket,data,size,0) + cantidad_enviada;
-		if(cantidad_enviada < size)
-		{
-			memcpy(data,buffer+cantidad_enviada,(size-cantidad_enviada));
-		}
-	}
-	free(data);*/
-
 }
 
 int seguir_enviado(int socket, void *buffer, int size)
@@ -104,21 +90,4 @@ void* recibir_mensaje_tipo_indistinto(int socket,int payloadsize)
 		}
 	}
 	return payload;
-
-	/*void *payload = malloc(payloadsize);//+1
-	int bytes_recibidos = 0;
-	while(bytes_recibidos<=payloadsize)
-	{
-		bytes_recibidos = recv(socket,payload,payloadsize,0) + bytes_recibidos;
-	}
-	if(bytes_recibidos == 0)
-		{
-			char *desconectado = string_new();
-			string_append(&desconectado, "DESCONECTADO");
-			return desconectado;
-		}
-		else
-		{
-			return payload;
-		}*/
 }

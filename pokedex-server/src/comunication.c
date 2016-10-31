@@ -151,7 +151,7 @@ void tratar_peticion_de(int cliente,char *peticion)
 			void *result = osada_a_read_file(file_to_read);
 			if((int)result == NO_EXISTE || (int) result == ARGUMENTO_INVALIDO)
 			{
-				enviar_mensaje(cliente,"F");
+				enviar_mensaje(cliente,"FFFFFFFFFF");
 
 			}
 			else

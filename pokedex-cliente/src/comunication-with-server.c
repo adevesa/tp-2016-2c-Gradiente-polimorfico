@@ -161,27 +161,15 @@ int cliente_pedi_leer_archivo(const char *path, char *buf, size_t size, off_t of
 	char *msg = build_msg(READ_FILE,path,NULL,size,offset);
 	enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
 	char *primer_byte = recibir_mensaje(cliente_osada->socket_pokedex_servidor,10);
-	if(string_equals_ignore_case(primer_byte,"F"))
+	if(string_equals_ignore_case(primer_byte,"FFFFFFFFFF"))
 	{
+		pthread_mutex_unlock(&mutex_operaciones);
 		return 0;
 	}
 	else
 	{
-		//char *lectura = recibir_mensaje(cliente_osada->socket_pokedex_servidor,9);
-		//string_append(&primer_byte,lectura);
 		int tamanio = atoi(primer_byte);
-		//free(lectura);
-
-		//char *lectura_final = recibir_mensaje(cliente_osada->socket_pokedex_servidor,tamanio);
 		void *lectura_final = recibir_mensaje_tipo_indistinto(cliente_osada->socket_pokedex_servidor,tamanio);
-
-				//string_append(&datos,lectura_final);
-				//int leido=string_length(datos);
-
-				/*char* contenido = string_new();
-				contenido=(char*) lectura_final;
-				contenido[tamanio-1] = '\0';*/
-		//memcpy(buf,lectura_final,string_length(lectura_final)); //OJO ACA
 		memcpy(buf,lectura_final,tamanio);
 		free(lectura_final);
 

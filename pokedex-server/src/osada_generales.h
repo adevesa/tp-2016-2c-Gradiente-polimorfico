@@ -166,6 +166,7 @@ int osada_ocupa_bit_libre_de(t_disco_osada *disco);
  * 		- 1 --> NO HAY MÁS ESPACIO LIBRE
  */
 int osada_b_check_is_bitarray_full(t_disco_osada *disco);
+int osada_b_check_is_bitarray_have_n_blocks_free(int n, t_disco_osada *disco);
 int calcular_posicion_relativa_en_bloque_de_datos(int posicion_absoluta);
 
 /*
