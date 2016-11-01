@@ -111,6 +111,7 @@ typedef struct
 	int offset;
 	char* path;
 	char* text;
+	t_file_osada *file;
 }t_to_be_write;
 
 typedef struct
@@ -131,4 +132,10 @@ typedef struct
 	int tamanio;
 }read_content;
 
+typedef struct
+{
+	t_file_osada *file;
+	char *path;
+	int new_size;
+}t_to_be_truncate;
 #endif __OSADA_H__

@@ -188,7 +188,29 @@ void* osada_a_read_file(t_to_be_read *to_read)
 
 void* osada_a_write_file(t_to_be_write *to_write)
 {
-
+	if(osada_check_exist(to_write->path))
+	{
+		if(osada_check_space_to_write(to_write))
+		{
+			t_file_osada *file = osada_get_file_called(to_write->path,disco);
+			t_to_be_truncate *truncate = malloc(sizeof(t_to_be_truncate));
+			truncate->file = file;
+			truncate->new_size =to_write->size;
+			osada_b_truncate_file(truncate);
+			to_write->file = file;
+			osada_write_file(to_write);
+			t_file_osada_destroy(to_write->file);
+			return EXITO;
+		}
+		else
+		{
+			return NO_HAY_ESPACIO;
+		}
+	}
+	else
+	{
+		return NO_EXISTE;
+	}
 
 }
 

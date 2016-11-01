@@ -42,8 +42,6 @@ int cliente_pedi_abrir(int tipo,const char *path, struct fuse_file_info *fi);
 
 
 
-int lectura_sin_errores(char* data);
-
 int escuchar_respuesta_comun(int socket_server);
 int escuchar_y_modelar_atributos(struct stat *buffer);
 void modelar_stat_buff(struct stat *buffer, int tipo, int size);

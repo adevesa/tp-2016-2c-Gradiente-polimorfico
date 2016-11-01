@@ -177,6 +177,12 @@ void tratar_peticion_de(int cliente,char *peticion)
 		case(WRITE_FILE):
 		{
 			t_to_be_write *file_to_write = recibir_mensaje_especifico(cliente,WRITE_FILE);
+			printf("ESCRIBIR: %s CON: %s  ,SIZE: %d OFFSET: %d\n", file_to_write->path,file_to_write->text,file_to_write->size,file_to_write->offset);
+			int resultado = osada_a_write_file(file_to_write);
+			responder_solo_resultado(cliente,resultado);
+			free(file_to_write->path);
+			free(file_to_write->text);
+			free(file_to_write);
 		};break;
 		case(RENAME_FILE):
 		{
@@ -300,7 +306,7 @@ t_to_be_write* escuchar_mensaje_write(int socket)
 	free(offset_string);
 	to_write->offset = offset;
 
-	char *text = recibir_mensaje(socket, size_to_write);
+	char *text = recibir_mensaje_tipo_indistinto(socket,size_to_write);
 	to_write->text = text;
 
 	return to_write;

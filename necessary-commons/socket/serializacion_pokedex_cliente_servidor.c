@@ -75,11 +75,30 @@ char* build_msg(int header, char *path_original, char *path_new_or_text, int siz
 			};break;
 		case(WRITE_FILE):
 			{
-				char *msg = armar_header(WRITE_FILE);
-				char *resto = armar_lectura_o_escritura(READ_FILE,path_original,path_new_or_text,size,offset);
-				string_append(&msg,resto);
-				free(resto);
-				return msg;
+				char *header = armar_header(WRITE_FILE);
+				char *mensaje = malloc(string_length(path_original) + 30 + size +2);
+				memcpy(mensaje,header,2);
+
+				char *msg_model = armar_numero_de_bytes(string_length(path_original));
+				string_append(&msg_model,path_original);
+
+				//int tamanio_texto = string_length(path_new_or_text);
+				char *size_a_escribir = armar_numero_de_bytes(size); //OJO ACA
+				string_append(&msg_model, size_a_escribir);
+				free(size_a_escribir);
+
+				char *a_partir_de = armar_numero_de_bytes(offset);
+				string_append(&msg_model,a_partir_de);
+				free(a_partir_de);
+
+				int offset_interno = 30 + string_length(path_original);
+
+
+				memcpy(mensaje+2,msg_model,offset_interno);
+				free(msg_model);
+
+				memcpy(mensaje +offset_interno+2,path_new_or_text,size);
+				return mensaje;
 			};break;
 		case(RENAME_FILE):
 			{
@@ -115,52 +134,6 @@ char* armar_numero_de_bytes(int size_payload)
 	string_append(&result,size_String);
 	free(size_String);
 	return result;
-	/*if(size_payload < MAX_BYTES_SIZE)
-	{
-		if((size_payload < 10))
-		{
-			char *size=string_repeat(' ',4);
-			char *size_string = string_itoa(size_payload);
-			string_append(&size,size_string);
-			free(size_string);
-			return size;
-		}
-		else
-		{
-			if(size_payload < 100)
-			{
-				char *size=string_repeat(' ',3);
-				char *size_string = string_itoa(size_payload);
-				string_append(&size,size_string);
-				free(size_string);
-				return size;
-			}
-			else
-			{
-				if(size_payload < 1000)
-				{
-					char *size=string_repeat(' ',2);
-					char *size_string = string_itoa(size_payload);
-					string_append(&size,size_string);
-					free(size_string);
-					return size;
-				}
-				else
-				{
-					char *size=string_repeat(' ',1);
-					char *size_string = string_itoa(size_payload);
-					string_append(&size,size_string);
-					free(size_string);
-					return size;
-				}
-			}
-		}
-	}
-	else
-	{
-		char *size =string_itoa(size_payload);
-		return size;
-	}*/
 }
 
 char* armar_header(int header)
@@ -197,20 +170,27 @@ char* armar_lectura_o_escritura(int tipo,char *path, char *text, int size, int o
 		};break;
 		case(WRITE_FILE):
 		{
-			char *msg = armar_numero_de_bytes(string_length(path));
-			string_append(&msg,path);
+			char *msg_model = armar_numero_de_bytes(string_length(path));
+			string_append(&msg_model,path);
 
 
-			char *size_a_escribir = armar_numero_de_bytes(size);
-			string_append(&msg, size_a_escribir);
+			int tamanio_texto = string_length(text);
+			char *size_a_escribir = armar_numero_de_bytes(tamanio_texto); //OJO ACA
+			string_append(&msg_model, size_a_escribir);
+			free(size_a_escribir);
 
 			char *a_partir_de = armar_numero_de_bytes(offset);
-			string_append(&msg,a_partir_de);
-
-			string_append(&msg, text);
-			free(size_a_escribir);
+			string_append(&msg_model,a_partir_de);
 			free(a_partir_de);
-			return msg;
+
+			int offset_interno = 30 + string_length(path);
+
+			char *mensaje = malloc(string_length(text) + 30 + size);
+			memcpy(mensaje,msg_model,offset_interno);
+			free(msg_model);
+
+			memcpy(mensaje +offset_interno,text,size);
+			return mensaje;
 		};break;
 	}
 }
