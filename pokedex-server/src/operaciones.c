@@ -200,6 +200,7 @@ void* osada_a_write_file(t_to_be_write *to_write)
 			to_write->file = file;
 			osada_write_file(to_write);
 			t_file_osada_destroy(to_write->file);
+			free(truncate);
 			return EXITO;
 		}
 		else

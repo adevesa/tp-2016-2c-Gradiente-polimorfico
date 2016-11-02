@@ -66,11 +66,6 @@ void asignar_un_unico_bloque_si_es_necesario(t_file_osada *file, int tamanio_a_a
 	else {}
 }
 
-void osada_b_disminuir_tamanio(t_file_osada *file, int new_size)
-{
-
-}
-
 void asignar_nuevo_bloque_datos(t_file_osada *archivo)
 {
 	int num_bloque_absoluto = osada_ocupa_bit_libre_de(disco);
@@ -80,13 +75,11 @@ void asignar_nuevo_bloque_datos(t_file_osada *archivo)
 	if(list_size(bloques) == 0)
 	{
 		impactar_en_tabla_de_asignaciones(archivo->file->first_block,bloque_Asignado);
-		//osada_push_middle_block(TABLA_DE_ARCHIVOS,archivo->block_relative,archivo->position_in_block,archivo->file,disco);
 	}
 	else
 	{
 		int *ultimo_elemento = list_get(bloques,(list_size(bloques)-1));
 		impactar_en_tabla_de_asignaciones(*ultimo_elemento,bloque_Asignado);
-		//osada_push_middle_block(TABLA_DE_ARCHIVOS,archivo->block_relative,archivo->position_in_block,archivo->file,disco);
 	}
 }
 
@@ -113,61 +106,134 @@ int calcular_bloque_relativo_datos_dado_absoluto(int numero_bloque_absoluto)
 	return bloque_relativo;
 }
 
+void osada_b_disminuir_tamanio(t_file_osada *file, int new_size)
+{
+	int bloques_a_liberar = cantidad_de_bloques_a_desasignar(file->file->file_size,new_size);
+	liberar_n_bloques(file,bloques_a_liberar);
+}
+
+void liberar_n_bloques(t_file_osada *file, int bloques_a_liberar)
+{
+	t_list *bloques_actuales = osada_get_blocks_nums_of_this_file(file->file,disco);
+	int cantidad_bloques_actuales = list_size(bloques_actuales);
+
+	int i = cantidad_bloques_actuales -1;
+	int stop = cantidad_bloques_actuales - bloques_a_liberar;
+	int cantidad_bloques_admin = calcular_cantidad_bloques_admin();
+	while(i>=stop)
+	{
+		int *num_block = list_get(bloques_actuales,i);
+		bitarray_clean_bit(disco->bitmap,cantidad_bloques_admin + (*num_block));
+		i--;
+	}
+	impactar_en_disco_n_bloques(OSADA_BLOCK_SIZE,disco->header->bitmap_blocks,disco->bitmap->bitarray,disco->map);
+	int *last_new_block = list_get(bloques_actuales,i);
+	establecer_nuevo_feof_en_tabla_de_asignaciones(*last_new_block);
+	list_destroy(bloques_actuales);
+}
+
+void establecer_nuevo_feof_en_tabla_de_asignaciones(int posicion)
+{
+	osada_block_pointer byte_inicial_tabla_asignaciones = calcular_byte_inicial_absolut(disco->header->allocations_table_offset);
+	int desplazamiento = byte_inicial_tabla_asignaciones + 4*posicion;
+	int *value = malloc(4);
+	*value = FEOF;
+	memcpy(disco->map + desplazamiento,value,4);
+	free(value);
+}
+
+int cantidad_de_bloques_a_desasignar(uint32_t tamanio_actual, int new_size)
+{
+		int bloques_actuales = tamanio_actual / OSADA_BLOCK_SIZE;
+		if(tamanio_actual>bloques_actuales*OSADA_BLOCK_SIZE)
+		{
+			bloques_actuales =bloques_actuales + 1;
+		}
+
+		int nuevos_bloques_requeridos;
+		if(new_size<OSADA_BLOCK_SIZE)
+		{
+			nuevos_bloques_requeridos = 1;
+		}
+		else
+		{
+			int cantidad_entera_requerida = new_size / OSADA_BLOCK_SIZE;
+			if(new_size>cantidad_entera_requerida*OSADA_BLOCK_SIZE)
+			{
+				nuevos_bloques_requeridos = cantidad_entera_requerida +1;
+			}
+			else
+			{
+				nuevos_bloques_requeridos = cantidad_entera_requerida;
+			}
+		}
+
+	return (bloques_actuales - nuevos_bloques_requeridos);
+}
+
 /*----------------------------------------------ESCRITURA----------------------------------------------------------*/
 int osada_check_space_to_write(t_to_be_write *to_write)
 {
 	t_file_osada *file = osada_get_file_called(to_write->path,disco);
-	int blOques_necesarios_para_satisfacer = (to_write->size - file->file->file_size) / OSADA_BLOCK_SIZE;
-
-	if(blOques_necesarios_para_satisfacer == 0)
+	if(to_write->size < file->file->file_size)
 	{
-		int espacio_disponible = calcular_espacio_disponible_ultimo_bloque(file->file);
-		int capacidad_satisfaccion = espacio_disponible - (to_write->size - file->file->file_size);
-		if(capacidad_satisfaccion<0)
-		{
-			int disponibilidad_de_bloques = osada_b_check_is_bitarray_have_n_blocks_free(1,disco);
-			t_file_osada_destroy(file);
-			return disponibilidad_de_bloques;
-		}
-		else
-		{
-			t_file_osada_destroy(file);
-			return HAY_ESPACIO_SUFICIENTE;
-		}
+		return 1;
 	}
 	else
 	{
-		int disponibilidad_de_bloques = osada_b_check_is_bitarray_have_n_blocks_free(blOques_necesarios_para_satisfacer,disco);
-		if(disponibilidad_de_bloques == NO_HAY_ESPACIO_SUFICIENTE)
-		{
-			return NO_HAY_ESPACIO_SUFICIENTE;
-		}
-		else
-		{
-			if(to_write->size > (OSADA_BLOCK_SIZE*blOques_necesarios_para_satisfacer))
+		int blOques_necesarios_para_satisfacer = (to_write->size - file->file->file_size) / OSADA_BLOCK_SIZE;
+
+			if(blOques_necesarios_para_satisfacer == 0)
 			{
 				int espacio_disponible = calcular_espacio_disponible_ultimo_bloque(file->file);
-				int a_escribir_en_bloque_incompleto = espacio_disponible - (to_write->size - file->file->file_size -(OSADA_BLOCK_SIZE*blOques_necesarios_para_satisfacer));
-				if(a_escribir_en_bloque_incompleto <= espacio_disponible && a_escribir_en_bloque_incompleto >0)
+				int capacidad_satisfaccion = espacio_disponible - (to_write->size - file->file->file_size);
+				if(capacidad_satisfaccion<0)
 				{
-							return HAY_ESPACIO_SUFICIENTE;
+					int disponibilidad_de_bloques = osada_b_check_is_bitarray_have_n_blocks_free(1,disco);
+					t_file_osada_destroy(file);
+					return disponibilidad_de_bloques;
 				}
 				else
 				{
-					int disponibilidad_de_bloques = osada_b_check_is_bitarray_have_n_blocks_free(blOques_necesarios_para_satisfacer+1,disco);
 					t_file_osada_destroy(file);
-					return disponibilidad_de_bloques;
+					return HAY_ESPACIO_SUFICIENTE;
 				}
 			}
 			else
 			{
 				int disponibilidad_de_bloques = osada_b_check_is_bitarray_have_n_blocks_free(blOques_necesarios_para_satisfacer,disco);
-				t_file_osada_destroy(file);
-				return disponibilidad_de_bloques;
-			}
-		}
+				if(disponibilidad_de_bloques == NO_HAY_ESPACIO_SUFICIENTE)
+				{
+					return NO_HAY_ESPACIO_SUFICIENTE;
+				}
+				else
+				{
+					if(to_write->size > (OSADA_BLOCK_SIZE*blOques_necesarios_para_satisfacer))
+					{
+						int espacio_disponible = calcular_espacio_disponible_ultimo_bloque(file->file);
+						int a_escribir_en_bloque_incompleto = espacio_disponible - (to_write->size - file->file->file_size -(OSADA_BLOCK_SIZE*blOques_necesarios_para_satisfacer));
+						if(a_escribir_en_bloque_incompleto <= espacio_disponible && a_escribir_en_bloque_incompleto >0)
+						{
+									return HAY_ESPACIO_SUFICIENTE;
+						}
+						else
+						{
+							int disponibilidad_de_bloques = osada_b_check_is_bitarray_have_n_blocks_free(blOques_necesarios_para_satisfacer+1,disco);
+							t_file_osada_destroy(file);
+							return disponibilidad_de_bloques;
+						}
+					}
+					else
+					{
+						int disponibilidad_de_bloques = osada_b_check_is_bitarray_have_n_blocks_free(blOques_necesarios_para_satisfacer,disco);
+						t_file_osada_destroy(file);
+						return disponibilidad_de_bloques;
+					}
+				}
 
+			}
 	}
+
 }
 
 int calcular_espacio_disponible_ultimo_bloque(osada_file *file)
@@ -331,7 +397,6 @@ void* osada_get_data_of_this_file(osada_file *file, t_disco_osada *disco)
 
 	int last_block = size -1;
 	void *data = malloc(size*OSADA_BLOCK_SIZE);
-	//void *data = malloc(file->file_size); //char *data = malloc(file->file_size +1);
 	int i;
 	for(i=0; i<(size); i++)
 	{

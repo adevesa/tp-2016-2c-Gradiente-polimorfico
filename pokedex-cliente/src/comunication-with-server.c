@@ -217,11 +217,11 @@ int cliente_pedi_escribir_archivo(const char *path, const char *text, size_t siz
 	char *msg = build_msg(WRITE_FILE,(char*)path,text,size,offset);
 	//free(to_write);
 
-	log_info(log,msg);
+	/*log_info(log,msg);
 	int tamanio_mensaje_final = string_length(msg);
 	char *tamanio_mensaje_final_string = string_itoa(tamanio_mensaje_final);
 	log_info(log, tamanio_mensaje_final_string);
-	free(tamanio_mensaje_final_string);
+	free(tamanio_mensaje_final_string);*/
 
 	int tamanio_a_enviar = size+30+2+string_length(path);
 	enviar_mensaje_cantidad_especifica(cliente_osada->socket_pokedex_servidor,msg, tamanio_a_enviar);
@@ -288,7 +288,6 @@ int cliente_pedi_abrir(int tipo,const char *path, struct fuse_file_info *fi)
 
 			char *msg = build_msg(OPEN_FILE,path,NULL,NULL,NULL);
 			enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
-			//fi->flags = FUSE_BUF_FORCE_SPLICE;
 			int respuesta=escuchar_respuesta_comun(cliente_osada->socket_pokedex_servidor);
 			pthread_mutex_unlock(&mutex_operaciones);
 			return respuesta;
