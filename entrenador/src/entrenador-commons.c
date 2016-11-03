@@ -18,7 +18,7 @@ void ejecutar_entrenador(char *nombre_entrenador, char *ruta_pokedex)
 	entrenador = entrenador_create(nombre_entrenador, ruta_pokedex);
 	entrenador_iniciar_seniales();
 	log_info(info_entrenador, "Entrenador creado con EXITO");
-	entrenador_recorre_hoja_de_viaje();
+	entrenador_comenza_aventura();
 	entrenador_registra_hora(FIN);
 	//SI ESTA ACA, ES QUE YA TERMINO DE RECORRER
 }
@@ -26,9 +26,21 @@ void ejecutar_entrenador(char *nombre_entrenador, char *ruta_pokedex)
 
 /* WORKING ON... */
 
+void entrenador_comenza_aventura()
+{
+	pthread_attr_t attr;
+	pthread_attr_init(&attr);
+	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+	pthread_t hilo_hoja_viaje;
+	pthread_create(&hilo_hoja_viaje,&attr,entrenador_recorre_hoja_de_viaje,NULL);
+
+	pthread_attr_destroy(&attr);
+}
+
 void entrenador_iniciar_seniales(){
 	signal(SIGUSR1, subirvida);
 	signal(SIGTERM, bajarvida);
+	signal(SIGKILL, matar_entrenador);
 }
 
 void subirvida()
@@ -58,7 +70,7 @@ void tratar_respuesta(){
 		entrenador->reintentos++;
 		entrenador_borra_medallas();
 		entrenador_borra_pokemons();
-		entrenador_recorre_hoja_de_viaje();
+		entrenador_recorre_hoja_de_viaje(NULL);
 	}
 	else if(resp == 'N'){
 		entrenador_desconectate();
@@ -67,6 +79,15 @@ void tratar_respuesta(){
 		printf("Respuesta invalida\n");
 		tratar_respuesta();
 	}
+}
+
+void matar_entrenador()
+{
+//cerrar hilotes.
+	close(entrenador->mapa_actual->server);
+	entrenador_borra_medallas();
+	entrenador_borra_pokemons();
+	exit(1);
 }
 
 void entrenador_borra_pokemons()
@@ -156,7 +177,7 @@ void entrenador_registra_hora(int rango)
 }
 
 /*--------------------------------------------LOGICA DE CUMPLIR LOS OBJETIVOS DE TODOS LOS MAPAS---------------------------------*/
-void entrenador_recorre_hoja_de_viaje()
+void entrenador_recorre_hoja_de_viaje(void* arg)
 {
 	log_info(info_entrenador, "COMIENZO del recorrido de la HOJA DE VIAJE");
 	int i;
@@ -166,10 +187,21 @@ void entrenador_recorre_hoja_de_viaje()
 		entrenador_busca_mapa(i);
 		conectar_a_mapa(entrenador->mapa_actual);
 		enviar_mensaje_a_mapa(entrenador->mapa_actual,OTORGAR_SIMBOLO_ENTRENADOR, entrenador->simbolo);
-		entrenador_cumpli_objetivos_del_mapa();
+		entrenador_recorre_este_mapa();
 	}
 
 	log_info(info_entrenador, "FIN del recorrido de la HOJA DE VIAJE");
+	pthread_exit(NULL);
+}
+
+void entrenador_recorre_este_mapa()
+{
+	pthread_attr_t attr;
+	pthread_attr_init(&attr);
+	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+	pthread_t hilo_objetivos;
+	pthread_create(&hilo_objetivos,&attr,entrenador_cumpli_objetivos_del_mapa,NULL);
+	pthread_attr_destroy(&attr);
 }
 
 void entrenador_busca_mapa(int index)
@@ -188,7 +220,7 @@ void entrenador_busca_mapa(int index)
 }
 
 /*--------------------------------------------LOGICA DE CUMPLIR LOS OBJETIVOS DE UN MAPA---------------------------------*/
-void entrenador_cumpli_objetivos_del_mapa()
+void entrenador_cumpli_objetivos_del_mapa(void* arg)
 {
 	//INICIO log
 	char *mensaje = string_new();
@@ -199,8 +231,9 @@ void entrenador_cumpli_objetivos_del_mapa()
 	free(mensaje);
 	//FIN log
 
-	int i;
+	int i=0;
 	int cantidad_objetivos = list_size(entrenador->mapa_actual->objetivos);
+	while(i<cantidad_objetivos )
 	for(i=0; i<cantidad_objetivos; i++)
 	{
 		//entrenador_espera_turno();
@@ -311,6 +344,7 @@ void entrenador_captura_pokemon(int indice_objetivo)
 	enviar_mensaje_a_mapa(entrenador->mapa_actual,SOLICITAR_CAPTURA_POKEMON,NULL);
 	char *hora_inicio_bloqueado = temporal_get_string_time();
 	char *solicitud = escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR);
+//TRATAR DEADLOCK.
 	entrenador_recibi_y_copia_pokemon(solicitud);
 	char *hora_fin_desbloqueado = temporal_get_string_time();
 	entrenador_registra_tiempo_bloqueo(hora_inicio_bloqueado, hora_fin_desbloqueado);

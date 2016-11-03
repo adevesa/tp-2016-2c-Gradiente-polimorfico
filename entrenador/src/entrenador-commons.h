@@ -31,10 +31,13 @@ char *hora_de_fin;
 //void iniciar_semaforos();
 void iniciar_log(char *nombre_del_entrenador);
 void entrenador_registra_hora(int rango);
+void entrenador_comenza_aventura();
+void entrenador_recorre_este_mapa();
+void matar_entrenador();
 
 void ejecutar_entrenador(char *nombre_entrenador, char *ruta_pokedex);
-void entrenador_recorre_hoja_de_viaje();
-void entrenador_cumpli_objetivos_del_mapa();
+void entrenador_recorre_hoja_de_viaje(void* arg);
+void entrenador_cumpli_objetivos_del_mapa(void* arg);
 void entrenador_cumpli_objetivo(int indice_objetivo);
 void entrenador_busca_mapa(int index);
 void entrenador_copia_medalla_del_mapa();

@@ -76,6 +76,20 @@ void iniciar_logs(char *nombre)
 	free(nombre_log);
 }
 
+void cambiar_algoritmo_si_es_necesario(char *nuevo_algoritmo, char *viejo_algoritmo)
+{
+
+	if(!string_equals_ignore_case(mapa->info_algoritmo->algoritmo, "RR"))
+	{
+
+	}
+
+	if(!string_equals_ignore_case(mapa->info_algoritmo->algoritmo, "SRDF"))
+	{
+
+	}
+
+}
 /*--------------------------------------------PRINCIPALES----------------------------------------------------------*/
 t_posicion* mapa_dame_coordenadas_de_pokenest(char* identificador_pokemon)
 {

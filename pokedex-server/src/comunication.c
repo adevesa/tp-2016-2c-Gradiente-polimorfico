@@ -50,6 +50,7 @@ void* server_pokedex_atende_cliente(void* socket_cliente)
 		char *peticion = server_escucha_peticion(*cliente);
 		if(string_equals_ignore_case(peticion, "DESCONECTADO"))
 		{
+			printf("Cliente número %d desconectado\n", *cliente);
 			cliente_esta_conectado = 0;
 		}
 		else
@@ -202,8 +203,6 @@ void tratar_peticion_de(int cliente,char *peticion)
 			free(path);
 		};break;
 	}
-
-
 }
 
 /*--------------------------------------PETICIONES DEL CLIENTE-----------------------------------------------------*/

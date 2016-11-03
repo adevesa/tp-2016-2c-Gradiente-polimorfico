@@ -43,6 +43,7 @@ void planificador_create_segun_cual_seas();
 
 /*--------------------------------------------PRINCIPALES----------------------------------------------------------*/
 void releer_data();
+void cambiar_algoritmo_si_es_necesario(char *nuevo_algoritmo, char *viejo_algoritmo);
 
 char* mapa_dame_medalla();
 t_pokeNest* mapa_buscame_pokenest(char *identificador_pokemon);
