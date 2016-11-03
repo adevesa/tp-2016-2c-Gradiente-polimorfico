@@ -13,6 +13,7 @@
 #include "nivel-gui/tad_items.h"
 #include <pthread.h>
 #include <so-commons/log.h>
+#include <so-commons/collections/list.h>
 
 #include "planificador.h"
 #include "basic-structs.h"

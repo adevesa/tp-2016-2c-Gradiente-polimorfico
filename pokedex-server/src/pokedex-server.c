@@ -22,6 +22,7 @@ extern t_disco_osada* disco;
 int main(int argc, char* argv[])
 {
 	disco = osada_disco_abrite("/home/utnso/workspace/basic.bin");
+	disco = osada_disco_abrite("/home/utnso/workspace/prueba.bin");
 	pokedex_server_conectate();
 	servidor_acepta_clientes();
 
