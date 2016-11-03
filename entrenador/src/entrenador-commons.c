@@ -26,6 +26,8 @@ void ejecutar_entrenador(char *nombre_entrenador, char *ruta_pokedex)
 
 /* WORKING ON... */
 
+
+
 void entrenador_comenza_aventura()
 {
 	pthread_attr_t attr;
@@ -473,3 +475,4 @@ void entrenador_copia_medalla_del_mapa()
 	free(mensaje);
 	//FIN log
 }
+

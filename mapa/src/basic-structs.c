@@ -203,7 +203,6 @@ void foreach_pokenest(void *lista_origen,void *lista_destino, void *ruta, void *
 		string_append(&ruta_final, (char*) ruta);
 		char *elemento =list_get(lista_pokemones_a_modelar, i);
 		ruta_final = obtener_ruta_especifica(ruta_final, elemento, NULL);
-		string_path_replace_spaces(ruta_final," ","\\");
 		queue_push(cola_pokemons_a_devolver, ruta_final);
 	}
 
