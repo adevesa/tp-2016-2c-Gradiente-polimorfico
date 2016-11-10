@@ -56,11 +56,14 @@ void entrenador_iniciar_seniales(){
 void subirvida()
 {
 	entrenador->vidas++;
+	log_info(info_entrenador,"RECIBI MAS VIDA POR SEÑAL EXTERNA");
+
 }
 
 void bajarvida()
 {
 	entrenador->vidas--;
+	log_info(info_entrenador,"PIERDO VIDA POR SEÑAL EXTERNA");
 	//if(entrenador->vidas == 0) entrenador_finalizo_muriendo();
 }
 
@@ -75,7 +78,9 @@ void tratar_respuesta()
 {
 	char resp;
 	scanf("%c", &resp);
-	if(resp == 'Y'){
+	if(resp == 'Y')
+	{
+		log_info(info_entrenador,"Se reintentara jugar");
 		entrenador->reintentos = entrenador->reintentos +1;
 		entrenador_borra_medallas();
 		entrenador_borra_pokemons();
@@ -83,6 +88,7 @@ void tratar_respuesta()
 	}
 	else if(resp == 'N')
 	{
+		log_info(info_entrenador,"Se decidio no jugar mas.");
 		//entrenador_desconectate();
 	}
 	else{

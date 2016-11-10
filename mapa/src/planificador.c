@@ -86,8 +86,7 @@ void planificador_push_entrenador_a_listo(t_entrenador *entrenador)
 
 	pthread_mutex_lock(&mutex_manipular_cola_listos);
 	queue_push(mapa->entrenadores->cola_entrenadores_listos, entrenador);
-	//int estado_anterior = entrenador->estado;
-	//mapa_cambiale_estado_a_entrenador(entrenador, LISTO, estado_anterior);
+
 	pthread_mutex_unlock(&mutex_manipular_cola_listos);
 
 }

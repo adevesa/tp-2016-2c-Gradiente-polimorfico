@@ -17,6 +17,7 @@ extern sem_t semaforo_esperar_ordenamieto;
 int se_agrego_nuevo_entrenador = 0;
 int cantidad_entrenadores_nuevos = 0;
 int hay_jugadores;
+int se_ordeno_algo = 0;
 
 extern t_log *informe_planificador;
 
@@ -133,7 +134,7 @@ void planificador_srdf_organiza_entrenadores()
 	{
 		if(queue_is_empty(mapa->entrenadores->cola_entrenadores_listos))
 		{
-			//hay_jugadores=0;
+			hay_jugadores=0;
 			log_info(informe_planificador, "ESPERO A QUE HAYA ALGUN JUGADOR");
 			sem_wait(&semaforo_esperar_por_entrenador_listo);
 			log_info(informe_planificador, "HAY ALGUIEN PARA JUGAR!");
@@ -230,7 +231,11 @@ void* planificador_srdf_atende_a_entrenadores_sin_coordenadas()
 		}
 		else
 		{
-			sem_post(&semaforo_esperar_ordenamieto);
+			if(se_ordeno_algo != 0)
+			{
+				sem_post(&semaforo_esperar_ordenamieto);
+				se_ordeno_algo = 0;
+			}
 		}
 	}
 	pthread_exit(NULL);
@@ -239,6 +244,7 @@ void* planificador_srdf_atende_a_entrenadores_sin_coordenadas()
 void planificador_srdf_dale_coordenadas_a_todos()
 {
 	int cantidad = queue_size(planificador->cola_entrenadores_sin_objetivo);
+	se_ordeno_algo = cantidad;
 	int i;
 	int es_nuevo = 0;
 	for(i=0; i<cantidad; i++)
