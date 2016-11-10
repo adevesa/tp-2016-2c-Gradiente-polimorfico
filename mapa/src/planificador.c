@@ -233,8 +233,12 @@ void planificador_trata_captura_pokemon(t_entrenador *entrenador)
 
 void planificador_entrega_pokemon_a(t_entrenador *entrenador)
 {
-	enviar_mensaje_a_entrenador(entrenador,OTORGAR_POKEMON,mapa_dame_pokemon_de_pokenest(entrenador->pokenest_objetivo));
+	char* pokemon_a_entregar = mapa_dame_pokemon_de_pokenest(entrenador->pokenest_objetivo);
+	enviar_mensaje_a_entrenador(entrenador,OTORGAR_POKEMON, pokemon_a_entregar);
 
+	char* pokemon_aux = string_new();
+	string_append(&pokemon_aux,pokemon_a_entregar);
+	list_add(entrenador->pokemones_capturados, pokemon_aux);
 	//INICIO LOG
 	char *mensaje_A_loggear = string_new();
 	string_append(&mensaje_A_loggear, "Entrenador identificado por ");
@@ -338,14 +342,13 @@ void planificador_aborta_entrenador(t_entrenador *entrenador)
 	char *key = string_itoa(entrenador->socket_entrenador);
 	dictionary_put(mapa->entrenadores->lista_entrenadores_finalizados,key, entrenador);
 	planificador_extraele_pokemones_a_entrenador(entrenador);
+	mapa_elimina_entrenador_de_pantalla(entrenador);
 }
 
 void planificador_finaliza_entrenador(t_entrenador *entrenador)
 {
 	mapa_cambiale_estado_a_entrenador(entrenador, MUERTO, EXECUTE);
 	entrenador->objetivo_cumplido = CUMPLIDO;
-	//char *ruta_medalla_del_mapa = mapa_dame_medalla();
-	//enviar_mensaje_a_entrenador(entrenador, OTORGAR_MEDALLA_DEL_MAPA,ruta_medalla_del_mapa);
 	planificador_espera_que_entrenador_se_desconecte(entrenador);
 	mapa_borra_entrenador_de_pantalla(entrenador);
 }
@@ -375,7 +378,8 @@ void planificador_extraele_pokemones_a_entrenador(t_entrenador *entrenador)
 		int i;
 		for(i=0; i<cantidad_pokemones_que_tenia; i++)
 		{
-			mapa_devolve_pokemon_a_pokenest(list_get(entrenador->pokemones_capturados,i));
+			char* pokemon_a_devolver = list_get(entrenador->pokemones_capturados,i);
+			mapa_devolve_pokemon_a_pokenest(pokemon_a_devolver);
 		}
 	}
 }

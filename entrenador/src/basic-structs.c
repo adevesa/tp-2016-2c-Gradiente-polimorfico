@@ -55,6 +55,7 @@ t_mapa* mapa_create(char* nombre_mapa, char *ruta_pokedex, t_entrenador *entrena
 	mapa_new->ip =string_new();
 	string_append(&mapa_new->ip,config_get_string_value(config, "IP"));
 	mapa_new->objetivos = asociar_objetivos_por_mapa(nombre_mapa,entrenador);
+	mapa_new->pokemons_capturados = list_create();
 	config_destroy(config);
 	return mapa_new;
 }
@@ -72,12 +73,19 @@ t_config* configuracion_metadata_mapa_create(char *nombre, char *ruta)
 void mapa_destruite(t_mapa *mapa)
 {
 	free(mapa->ip);
-	free(mapa->server);
 	free(mapa->nombre);
 	free(mapa->puerto);
-	list_destroy(mapa->objetivos);
+	list_destroy_and_destroy_elements(mapa->objetivos,mapa_element_destroyer);
+	list_destroy_and_destroy_elements(mapa->pokemons_capturados,mapa_element_destroyer);
+	//list_destroy(mapa->objetivos);
+	//list_destroy(mapa->pokemons_capturados);
 	free(mapa);
-	//list_destroy_and_destroy_elements(mapa->objetivos, free);
+}
+
+void mapa_element_destroyer(void* arg)
+{
+	char *elemento = (char*) arg;
+	free(elemento);
 }
 /*--------------------------------------------OBTENCION DE DATOS DEL ENTRENADOR----------------------------------------------------------*/
 char* obtener_direccion_directorio_de_bill(char* ruta_pokedex, char* nombre)

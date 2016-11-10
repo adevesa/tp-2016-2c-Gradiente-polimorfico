@@ -28,6 +28,7 @@ typedef struct mapa
 	char* puerto;
 	char* ip;
 	t_list* objetivos;
+	t_list* pokemons_capturados;
 } t_mapa;
 
 
@@ -61,6 +62,7 @@ t_entrenador* entrenador_create(char* nombre, char* ruta);
 t_mapa* mapa_create(char* nombre_mapa, char *ruta_pokedex, t_entrenador *entrenador);
 
 void mapa_destruite(t_mapa *mapa);
+void mapa_element_destroyer(void* arg);
 /*--------------------------------------------OBTENCION DE DATOS---------------------------------------------------------------*/
 char* obtener_direccion_directorio_de_bill(char* ruta_pokedex, char* nombre);
 t_list* entrenador_hoja_de_viaje(t_config* configuracion);

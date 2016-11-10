@@ -174,12 +174,15 @@ void copiar(char* origen, char* destino)
 
 void eliminar(char* elemento)
 {
-		string_path_replace_spaces(elemento, " ", "\\ ");
-		char* mensaje = string_new();
-		string_append(&mensaje, "rm ");
-		string_append(&mensaje, elemento);
-		system(mensaje);
-		free(mensaje);
+	char* aux = string_new();
+	aux=string_path_replace_spaces(&elemento, " ", "\\ ");
+
+	char* mensaje = string_new();
+	string_append(&mensaje, "rm ");
+	string_append(&mensaje, aux);
+	system(mensaje);
+	free(mensaje);
+	free(aux);
 }
 
 void borrar_todos_los_archivos_del_directorio(char* ruta)
@@ -189,22 +192,47 @@ void borrar_todos_los_archivos_del_directorio(char* ruta)
 
 	char* path_aux = string_path_replace_spaces(&ruta, " ", "\\ ");
 	string_append(&comando, path_aux);
-	free(path_aux);
+
 	system(comando);
 	free(comando);
 
 	char* comando_2 = string_new();
 	string_append(&comando_2, "mkdir -p ");
-	string_append(&comando_2,ruta);
+	string_append(&comando_2,path_aux);
 	system(comando_2);
 	free(comando_2);
 
-	/*string_path_replace_spaces(ruta," ","\\ ");
-	char* mensaje = string_new();
-	string_append(&mensaje,"find ");
-	string_append(&mensaje,ruta);
-	string_append(&mensaje," -type f -exec rm -f \"{}\" \+");
-	system(mensaje);
-	free(mensaje);*/
+	free(path_aux);
+}
 
+char* array_last_element(char* path)
+{
+	char **file_for_file = string_split(path, "/");
+	int size = array_size(file_for_file);
+	char *nombre = string_new();
+	string_append(&nombre,file_for_file[size - 1]);
+	array_free_all(file_for_file);
+ 	return nombre;
+}
+
+int array_size(char **array)
+{
+	int cantidad_de_elementos = 0;
+	int i = 0;
+	while(array[i] !=NULL)
+	{
+		cantidad_de_elementos++;
+		i++;
+	}
+	return cantidad_de_elementos;
+}
+
+void array_free_all(char **array)
+{
+	int i =0;
+	while(array[i] != NULL)
+	{
+		free(array[i]);
+		i++;
+	}
 }

@@ -55,7 +55,7 @@ void planificador_rr_organiza_entrenadores()
 
 void planificador_rr_es_el_turno_de(t_entrenador *entrenador_listo, int *quamtum)
 {
-	while(!quamtum_se_termino(*quamtum))
+	while(!quamtum_se_termino(*quamtum) && (entrenador_listo->objetivo_cumplido != ABORTADO) )
 	{
 		usleep(planificador->retardo*1000);
 		if(mapa_decime_si_entrenador_esta_listo_pero_estaba_bloqueado(entrenador_listo))

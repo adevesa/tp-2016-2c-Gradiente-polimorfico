@@ -160,13 +160,3 @@ t_posicion* desarmar_coordenada(char *coordenada)
 	return posicion;
 
 }
-
-void array_free_all(char **array)
-{
-	int i =0;
-	while(array[i] != NULL)
-	{
-		free(array[i]);
-		i++;
-	}
-}

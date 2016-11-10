@@ -23,7 +23,7 @@ void ejecutar_entrenador(char *nombre_entrenador, char *ruta_pokedex)
 	entrenador_comenza_a_explorar();
 	entrenador_registra_hora(FIN);
 	mostrar_por_pantalla_resultados();
-	exit(1);
+
 	//SI ESTA ACA, ES QUE YA TERMINO DE RECORRER
 }
 
@@ -104,6 +104,8 @@ void entrenador_borra_pokemons()
 {
 	char* directorio_de_pokemons = string_new();
 	string_append(&directorio_de_pokemons, entrenador->ruta_pokedex);
+	string_append(&directorio_de_pokemons,"/");
+	string_append(&directorio_de_pokemons, "Entrenadores/");
 	string_append(&directorio_de_pokemons, entrenador->nombre);
 	string_append(&directorio_de_pokemons, "/Dir de Bill");
 	borrar_todos_los_archivos_del_directorio(directorio_de_pokemons);
@@ -114,6 +116,8 @@ void entrenador_borra_medallas()
 {
 	char* directorio_de_medallas = string_new();
 	string_append(&directorio_de_medallas, entrenador->ruta_pokedex);
+	string_append(&directorio_de_medallas,"/");
+	string_append(&directorio_de_medallas, "Entrenadores/");
 	string_append(&directorio_de_medallas, entrenador->nombre);
 	string_append(&directorio_de_medallas, "/medallas");
 	borrar_todos_los_archivos_del_directorio(directorio_de_medallas);
@@ -223,7 +227,7 @@ void entrenador_recorre_hoja_de_viaje(void* arg)
 			log_info(info_entrenador, "FIN del recorrido de la HOJA DE VIAJE");
 			//entrenador_borra_medallas();
 			//entrenador_borra_pokemons();
-			mapa_destruite(entrenador->mapa_actual);
+			//mapa_destruite(entrenador->mapa_actual);
 		};break;
 	}
 }
@@ -297,11 +301,29 @@ int entrenador_cumpli_objetivos_del_mapa(int index)
 
 int entrenador_volve_a_empezar_en_este_mapa(int index)
 {
-	borrar_todos_los_archivos_del_directorio(entrenador->directorio_de_bill);
+	borrar_todos_los_archivos_del_directorio(entrenador->directorio_de_bill); // <- solo debo borrar los pokemons de este mapa
 	mapa_destruite(entrenador->mapa_actual);
 	entrenador_busca_mapa(index);
 	conectar_a_mapa(entrenador->mapa_actual);
 	return entrenador_cumpli_objetivos_del_mapa(index);
+}
+
+void entrenador_borra_pokemos_del_mapa()
+{
+	int cantidad_pokemons = list_size(entrenador->mapa_actual->pokemons_capturados);
+	int i=0;
+	while(i<cantidad_pokemons)
+	{
+		char *element = list_get(entrenador->mapa_actual->pokemons_capturados,i);
+		char *last_element = array_last_element(element);
+		char *path = obtener_ruta_especifica(entrenador->directorio_de_bill,last_element,NULL);
+
+		eliminar(path);
+		free(last_element);
+		free(path);
+		i++;
+	}
+	list_clean(entrenador->mapa_actual->pokemons_capturados);
 }
 
 int me_quedan_vidas()
@@ -450,6 +472,7 @@ void entrenador_recibi_y_copia_pokemon()
 		//FIN log
 
 		copiar(pokemon,entrenador->directorio_de_bill);
+		list_add(entrenador->mapa_actual->pokemons_capturados, pokemon);
 
 		//INICIO log
 		char *mensaje_2 = string_new();

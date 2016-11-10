@@ -214,23 +214,15 @@ void foreach_pokenest(void *lista_origen,void *lista_destino, void *ruta, void *
 
 char* obtener_id_ponekest(char *ruta_pokemon_determinado)
 {
-	char *id_pokenest = string_new();
-	char *aux = string_new();
-	char **por_separado = string_split(ruta_pokemon_determinado, "/");
-	int cantidad_de_elementos_en_hoja =0;
-	int i = 0;
-	while(por_separado[i] !=NULL)
-		{
-			cantidad_de_elementos_en_hoja++;
-			i++;
-		}
-	string_append(&aux, por_separado[cantidad_de_elementos_en_hoja-2]);
-	char *id = string_substring(aux, 0,1);
-	string_append(&id_pokenest,id);
-	free(aux);
-	free(por_separado);
-	free(id);
-	return id_pokenest;
+	char **por_separado_aux = string_split(ruta_pokemon_determinado,"/");
+	int cantidad_elementos = array_size(por_separado_aux);
+
+	array_free_all(por_separado_aux);
+
+	char* elemento_buscado = array_get_element(ruta_pokemon_determinado,cantidad_elementos-2);
+	char* aux = string_substring_until(elemento_buscado,1);
+	string_to_upper(aux);
+	return aux;
 }
 /*---------------------------------FUNCIONES PARA MANEJO DE RUTAS----------------------------------------------------------*/
 
@@ -281,3 +273,45 @@ t_list* nombre_de_archivos_del_directorio(char *ruta)
 		 	 closedir(dirp);
 	}
 
+
+/*---------------------------------------------AUXILIARES----------------------------------------------------------------*/
+ int array_size(char **array)
+{
+	int cantidad_de_elementos = 0;
+	int i = 0;
+	while(array[i] !=NULL)
+	{
+		cantidad_de_elementos++;
+		i++;
+	}
+	return cantidad_de_elementos;
+}
+
+void array_free_all(char **array)
+{
+	int i =0;
+	while(array[i] != NULL)
+	{
+		free(array[i]);
+		i++;
+	}
+}
+
+char* array_last_element(char* path)
+{
+	char **file_for_file = string_split(path, "/");
+	int size = array_size(file_for_file);
+	char *nombre = string_new();
+	string_append(&nombre,file_for_file[size - 1]);
+	array_free_all(file_for_file);
+ 	return nombre;
+}
+
+char* array_get_element(char* path, int element)
+{
+	char **file_for_file = string_split(path, "/");
+	char *nombre = string_new();
+	string_append(&nombre,file_for_file[element]);
+	array_free_all(file_for_file);
+	 return nombre;
+}

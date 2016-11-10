@@ -71,6 +71,5 @@ void dar_pokemon_a_entrenador(t_entrenador *entrenador,char *ruta_pokemon);
 
 void otorgar_ruta_medalla_a_entrenador(int entrenador, char *rutaMedalla);
 
-void array_free_all(char **array);
 
 #endif /* MAPA_MAPA_COMMONS_COMUNICACION_H_ */

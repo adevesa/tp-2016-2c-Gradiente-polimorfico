@@ -72,6 +72,7 @@ void mapa_agrega_pokenest_a_items_para_pantalla();
 void closure(char *identificador, void *data );
 void mapa_mostra_nuevo_entrenador_en_pantalla(t_entrenador *entrenador);
 void mapa_borra_entrenador_de_pantalla(t_entrenador *entrenador);
+void mapa_elimina_entrenador_de_pantalla(t_entrenador *entrenador);
 
 /*
  * FUNCIONES PARA MANIPULACION DE ENTRENADORES (MEDIANTE SOCKETS)

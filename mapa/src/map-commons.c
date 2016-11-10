@@ -169,12 +169,20 @@ void mapa_cambiale_estado_a_entrenador(t_entrenador *entrenador, int estado_entr
 
 void mapa_devolve_pokemon_a_pokenest(char *ruta_pokemon)
 {
-	t_pokeNest *pokenest = dictionary_get(mapa->pokeNests, obtener_id_ponekest(ruta_pokemon));
+	char* id_pokenest = obtener_id_ponekest(ruta_pokemon);
+	t_pokeNest *pokenest = mapa_buscame_pokenest(id_pokenest);
 	queue_push(pokenest->pokemones, ruta_pokemon);
 	pokenest->cantidad_pokemones_disponibles++;
-	char id = (char)(pokenest->identificador[0]);
-	BorrarItem(mapa->items_para_mostrar_en_pantalla, id);
-	CrearCaja(mapa->items_para_mostrar_en_pantalla,id,pokenest->posicion->x,pokenest->posicion->y,pokenest->cantidad_pokemones_disponibles);
+
+	free(id_pokenest);
+
+	if(PANTALLA_ESTA_ACTIVADA)
+	{
+		char id = (char)(pokenest->identificador[0]);
+		BorrarItem(mapa->items_para_mostrar_en_pantalla, id);
+		CrearCaja(mapa->items_para_mostrar_en_pantalla,id,pokenest->posicion->x,pokenest->posicion->y,pokenest->cantidad_pokemones_disponibles);
+		nivel_gui_dibujar(mapa->items_para_mostrar_en_pantalla,mapa->nombre);
+	}
 }
 
 int mapa_decime_si_entrenador_finalizo_su_objetivo(int socket_entrenador)
@@ -222,6 +230,24 @@ void mapa_actualiza_distancia_del_entrenador(t_entrenador *entrenador)
 
 	log_info(informe_mapa, "Mapa comienza a mostrar interfaz gráfica");
 
+}
+
+void mapa_elimina_entrenador_de_pantalla(t_entrenador *entrenador)
+{
+	if(PANTALLA_ESTA_ACTIVADA)
+	{
+		char id = (char)entrenador->simbolo_identificador[0];
+		BorrarItem(mapa->items_para_mostrar_en_pantalla, id);
+		nivel_gui_dibujar(mapa->items_para_mostrar_en_pantalla, mapa->nombre);
+
+		//INICIO LOG
+		char *mensaje_A_loggear = string_new();
+		string_append(&mensaje_A_loggear, "Se borra de pantalla a entrenador identificado por ");
+		string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
+		log_info(informe_mapa, mensaje_A_loggear);
+		free(mensaje_A_loggear);
+		//FIN LOG
+	}
 }
 
 void mapa_actualiza_pokemones_disponibles_de_pokenest(char *id_pokenest)

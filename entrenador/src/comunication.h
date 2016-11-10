@@ -81,4 +81,8 @@ void copiar(char* origen, char* destino);
 void eliminar(char* elemento);
 void borrar_todos_los_archivos_del_directorio(char* ruta); // SUPER PELIGROSA.
 
+char* array_last_element(char* path);
+int array_size(char **array);
+void array_free_all(char **array);
+
 #endif /* COMUNICATION_H_ */

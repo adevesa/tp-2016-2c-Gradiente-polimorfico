@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include "string.h"
 #include <dirent.h>
+#include <ctype.h>
 #include <so-commons/collections/dictionary.h>
 #include <so-commons/collections/list.h>
 #include <so-commons/collections/queue.h>
@@ -147,9 +148,14 @@ void foreach_pokenest(void *lista_origen,void *lista_destino, void *ruta, void *
 char* obtener_id_ponekest(char *ruta_pokemon_determinado);
 
 
-void string_path_replace_spaces(char *path, char *este_caracter, char *por_este);
+/*void string_path_replace_spaces(char *path, char *este_caracter, char *por_este);
 void string_replace(char *palabra, char *este_caracter,char *por_este);
-int string_contains(char *palabra, char *conteiner);
+int string_contains(char *palabra, char *conteiner);*/
 void free_string_array(char **path);
 
+/*---------------------------------------------AUXILIARES----------------------------------------------------------------*/
+int array_size(char **array);
+void array_free_all(char **array);
+char* array_last_element(char* path);
+char* array_get_element(char* path, int element);
 #endif /* MAPA_MAPA_COMMONS_BASIC_STRUCTS_H_ */
