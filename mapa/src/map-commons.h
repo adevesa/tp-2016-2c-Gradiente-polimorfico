@@ -59,6 +59,7 @@ int mapa_decime_si_entrenador_estaba_bloqueado(t_entrenador *entrenador);
 int mapa_decime_si_entrenador_esta_listo_pero_estaba_bloqueado(t_entrenador *entrenador);
 int mapa_decime_si_entrenador_esta_abortado(t_entrenador *entrenador);
 void mapa_cambiale_estado_a_entrenador(t_entrenador *entrenador, int estado_entrante, int estado_saliente);
+int mapa_decime_si_entrenador_esta_ejecutando_pero_estaba_bloqueado(t_entrenador *entrenador);
 
 void mapa_devolve_pokemon_a_pokenest(char *ruta_pokemon);
 int mapa_decime_si_planificador_es(int planificador);

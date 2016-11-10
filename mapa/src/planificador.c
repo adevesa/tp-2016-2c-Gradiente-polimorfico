@@ -86,8 +86,8 @@ void planificador_push_entrenador_a_listo(t_entrenador *entrenador)
 
 	pthread_mutex_lock(&mutex_manipular_cola_listos);
 	queue_push(mapa->entrenadores->cola_entrenadores_listos, entrenador);
-	int estado_anterior = entrenador->estado;
-	mapa_cambiale_estado_a_entrenador(entrenador, LISTO, estado_anterior);
+	//int estado_anterior = entrenador->estado;
+	//mapa_cambiale_estado_a_entrenador(entrenador, LISTO, estado_anterior);
 	pthread_mutex_unlock(&mutex_manipular_cola_listos);
 
 }
@@ -129,6 +129,7 @@ void planificador_dale_coordenadas_a_entrenador(t_entrenador *entrenador)
 
 	t_pokeNest *pokenest_buscada = mapa_buscame_pokenest(identificador_pokenest);
 	entrenador->pokenest_objetivo = identificador_pokenest;
+	mapa_actualiza_distancia_del_entrenador(entrenador);
 	char *coordendas_pokenest = armar_coordenada(pokenest_buscada->posicion->x,pokenest_buscada->posicion->y, MAX_BYTES_COORDENADA);
 
 	//INICIO LOG
@@ -309,9 +310,9 @@ void planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores()
 		free(mensaje_A_loggear);
 		//FIN LOG
 
-		sem_wait(&semaforo_cola_bloqueados);
+		//sem_wait(&semaforo_cola_bloqueados);
 		planificador_desbloquea_entrenador_si_es_posible(cantidad_bloqueados);
-		sem_post(&semaforo_cola_bloqueados);
+		//sem_post(&semaforo_cola_bloqueados);
 	}
 	else {}
 }
@@ -426,7 +427,7 @@ void* planificador_encola_nuevos_entrenadores()
 
 			log_info(informe_planificador, "Iniciando la encolación de nuevos entrenadores");
 			foreach(COLA_SIN_OBJETIVOS,mapa->entrenadores->lista_entrenadores_a_planificar,planificador_modela_nuevo_entrenador_y_encolalo);
-			sem_post(&semaforo_cola_entrenadores_sin_objetivos);
+			//sem_post(&semaforo_cola_entrenadores_sin_objetivos);
 
 			list_clean(mapa->entrenadores->lista_entrenadores_a_planificar);
 			pthread_mutex_unlock(&mutex_manipular_cola_nuevos);

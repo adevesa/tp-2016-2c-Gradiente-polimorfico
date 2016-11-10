@@ -15,6 +15,8 @@ sem_t semaforo_hay_algun_entrenador_listo;
 sem_t semaforo_servidor;
 sem_t semaforo_terminacion;
 sem_t semaforo_cola_entrenadores_sin_objetivos;
+sem_t semaforo_esperar_ordenamieto;
+sem_t semaforo_esperar_por_entrenador_listo;
 pthread_mutex_t mutex_manipular_cola_listos = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_manipular_cola_nuevos = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_manipular_cola_bloqueados = PTHREAD_MUTEX_INITIALIZER;
@@ -68,6 +70,8 @@ void iniciar_semaforos()
 	sem_init(&semaforo_cola_entrenadores_sin_objetivos,1,0);
 	sem_init(&semaforo_servidor,1,0);
 	sem_init(&semaforo_terminacion,0,0);
+	sem_init(&semaforo_esperar_por_entrenador_listo,1,0);
+	sem_init(&semaforo_esperar_ordenamieto,4,0);
 }
 
 void iniciar_logs(char *nombre)
@@ -159,6 +163,11 @@ int mapa_decime_si_entrenador_estaba_bloqueado(t_entrenador *entrenador)
 int mapa_decime_si_entrenador_esta_listo_pero_estaba_bloqueado(t_entrenador *entrenador)
 {
 	return (entrenador->estado==LISTO && mapa_decime_si_entrenador_estaba_bloqueado(entrenador));
+}
+
+int mapa_decime_si_entrenador_esta_ejecutando_pero_estaba_bloqueado(t_entrenador *entrenador)
+{
+	return (entrenador->estado == EXECUTE && entrenador->estado_anterior == BLOQUEADO);
 }
 
 void mapa_cambiale_estado_a_entrenador(t_entrenador *entrenador, int estado_entrante, int estado_saliente)
