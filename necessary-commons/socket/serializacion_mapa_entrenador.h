@@ -17,6 +17,6 @@ char* armar_coordenada(int x, int y, int max_bytes);
 /*-------------------------------------------MORE STRINGS FUNCTIONS------------------------------------------------------*/
 void free_string_array(char **path);
 int string_contains(char *palabra, char *conteiner);
-void string_replace(char *palabra, char *este_caracter,char *por_este);
-void string_path_replace_spaces(char *path, char *este_caracter, char *por_este);
+char* string_replace(char **palabra, char *este_caracter,char *por_este);
+char* string_path_replace_spaces(char **path, char *este_caracter, char *por_este);
 #endif /* SERIALIZACION_MAPA_ENTRENADOR_H_ */

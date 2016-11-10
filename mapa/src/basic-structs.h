@@ -126,6 +126,8 @@ t_config* configuracion_metadata_create(char *nombre, char *ruta);
 t_pokeNest* pokenest_create(char *nombre, char *ruta);
 t_posicion* posicion_create(int x, int y);
 
+/*-----------------------------------------------------DESTROYERS----------------------------------------------------*/
+void destroy_info_algoritmo(t_info_algoritmo *info);
 /*--------------------------------FUNCIONES PARA OBTENER DATOS BASICOS DE UN MAPA-----------------------------------*/
 
 t_info_socket* obtener_info_mapa_socket(t_config *configuracion);

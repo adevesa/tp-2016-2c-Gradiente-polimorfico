@@ -8,6 +8,7 @@ C_SRCS += \
 ../src/comunication.c \
 ../src/entrenador-commons.c \
 ../src/entrenador.c \
+../src/factory.c \
 ../src/movimiento.c \
 ../src/time.c 
 
@@ -16,6 +17,7 @@ OBJS += \
 ./src/comunication.o \
 ./src/entrenador-commons.o \
 ./src/entrenador.o \
+./src/factory.o \
 ./src/movimiento.o \
 ./src/time.o 
 
@@ -24,6 +26,7 @@ C_DEPS += \
 ./src/comunication.d \
 ./src/entrenador-commons.d \
 ./src/entrenador.d \
+./src/factory.d \
 ./src/movimiento.d \
 ./src/time.d 
 

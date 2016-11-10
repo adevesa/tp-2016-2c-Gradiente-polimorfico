@@ -41,6 +41,22 @@ int mapa_me_dice(char *mapa_dice)
 	{
 		return MAPA_ME_DA_COORDENADAS_POKENEST;
 	}
+	if(string_equals_ignore_case(mapa_dice, "mpk"))
+	{
+		return MAPA_ME_AVISA_DEADLOCK;
+	}
+	if(string_equals_ignore_case(mapa_dice, "gnr"))
+	{
+		return MAPA_ME_DICE_QUE_GANE;
+	}
+	if(string_equals_ignore_case(mapa_dice, "prd"))
+	{
+		return MAPA_ME_DICE_QUE_PERDI;
+	}
+	if(string_equals_ignore_case(mapa_dice,"tr;"))
+	{
+		return MAPA_ME_DA_TURNO;
+	}
 	else return 0;
 }
 
@@ -52,7 +68,8 @@ void enviar_mensaje_a_mapa(t_mapa *mapa, int header, char *payload)
 		case(SOLICITAR_COORDENADAS_POKENEST): solicitar_ubicacion_pokenest(mapa, payload);break;
 		case(SOLICITAR_CAPTURA_POKEMON):enviar_mensaje(mapa->server, "cp;");break;
 		case(REPORTAR_MOVIMIENTO): solicitar_moverse(mapa, payload);break;
-		case(REPORTAR_FIN_OBJETIVOS):enviar_mensaje(mapa->server, "fp;");
+		case(REPORTAR_FIN_OBJETIVOS):enviar_mensaje(mapa->server, "fp;");break;
+		case(ENTREGAR_MEJOR_POKEMON): enviar_mensaje(mapa->server,payload);break;
 	}
 }
 
@@ -90,7 +107,35 @@ void solicitar_moverse(t_mapa *mapa,char *coordenadaDestino)
 	enviar_mensaje(mapa->server, mensaje);
 }
 
+char* armar_mejor_pokemon_string(t_pokemon *pokemon)
+{
+	char *msg = string_new();
+	int size_name_pokemon = string_length(pokemon->species);
+	char *name_pokemon_Aux = string_repeat(' ',14-size_name_pokemon);
+	char *namber_aux = string_itoa(size_name_pokemon);
+	string_append(&name_pokemon_Aux,namber_aux);
+	free(namber_aux);
+	string_append(&name_pokemon_Aux, pokemon->species);
 
+	string_append(&msg,name_pokemon_Aux);
+	free(name_pokemon_Aux);
+
+	char* level_String = string_itoa(pokemon->level);
+	int size_level = string_length(level_String);
+
+	char* level_aux = string_repeat(' ',6-size_level);
+	string_append(&level_aux, level_String);
+
+	string_append(&msg, level_aux);
+	free(level_aux);
+	free(level_String);
+
+	/* 14 bytes para saber size nombre del pokemon, N bytes del nombre del pokemon, 6 bytes para el level */
+
+	return msg;
+
+
+}
 /*---------------------------------------SECUNDARIOS----------------------------------------*/
 t_ubicacion* desarmar_coordenada(char *coordenada)
 {
@@ -105,20 +150,31 @@ t_ubicacion* desarmar_coordenada(char *coordenada)
 
 void copiar(char* origen, char* destino)
 {
-	string_path_replace_spaces(origen, " ", "\ ");
-	string_path_replace_spaces(destino, " ","\ ");
+	char *origen_aux = string_new();
+	string_append(&origen_aux, origen);
+	char * origen_aux_2=string_path_replace_spaces(&origen_aux, " ", "\\ ");
+
+	char *destino_aux = string_new();
+	string_append(&destino_aux,destino);
+	char* destino_aux_2=string_path_replace_spaces(&destino_aux, " ","\\ ");
+
 	char* mensaje = string_new();
 	string_append(&mensaje, "cp ");
-	string_append(&mensaje, origen);
+	string_append(&mensaje, origen_aux_2);
 	string_append(&mensaje, " ");
-	string_append(&mensaje, destino);
+	string_append(&mensaje, destino_aux_2);
+
 	system(mensaje);
 	free(mensaje);
+	free(destino_aux);
+	free(origen_aux);
+	free(origen_aux_2);
+	free(destino_aux_2);
 }
 
 void eliminar(char* elemento)
 {
-		string_path_replace_spaces(elemento, " ", "\ ");
+		string_path_replace_spaces(elemento, " ", "\\ ");
 		char* mensaje = string_new();
 		string_append(&mensaje, "rm ");
 		string_append(&mensaje, elemento);
@@ -126,14 +182,29 @@ void eliminar(char* elemento)
 		free(mensaje);
 }
 
-void borrar_todos_los_archivos_del_directorio(char* ruta) // SUPER PELIGROSISIMA.
+void borrar_todos_los_archivos_del_directorio(char* ruta)
 {
-	string_path_replace_spaces(ruta," ","\ ");
+	char* comando = string_new();
+	string_append(&comando, "rm -rf ");
+
+	char* path_aux = string_path_replace_spaces(&ruta, " ", "\\ ");
+	string_append(&comando, path_aux);
+	free(path_aux);
+	system(comando);
+	free(comando);
+
+	char* comando_2 = string_new();
+	string_append(&comando_2, "mkdir -p ");
+	string_append(&comando_2,ruta);
+	system(comando_2);
+	free(comando_2);
+
+	/*string_path_replace_spaces(ruta," ","\\ ");
 	char* mensaje = string_new();
 	string_append(&mensaje,"find ");
 	string_append(&mensaje,ruta);
 	string_append(&mensaje," -type f -exec rm -f \"{}\" \+");
 	system(mensaje);
-	free(mensaje);
+	free(mensaje);*/
 
 }

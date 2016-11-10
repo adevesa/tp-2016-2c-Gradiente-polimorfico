@@ -73,6 +73,7 @@ void planificador_rr_es_el_turno_de(t_entrenador *entrenador_listo, int *quamtum
 
 void planificador_rr_dale_nuevo_turno_a_entrenador(t_entrenador *entrenador_listo, int *quamtum_restante)
 {
+	enviar_mensaje_a_entrenador(entrenador_listo,OTORGAR_TURNO,NULL);
 	char *mensaje_del_entrenador = escuchar_mensaje_entrenador(entrenador_listo, SOLICITUD_DEL_ENTRENADOR);
 	switch(tratar_respuesta(mensaje_del_entrenador,entrenador_listo))
 	{

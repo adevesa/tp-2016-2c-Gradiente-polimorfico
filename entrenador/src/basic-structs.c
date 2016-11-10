@@ -30,6 +30,7 @@ t_entrenador* entrenador_create(char* nombre, char* ruta)
   	entrenador_new->tiempo_total_aventura=0;
   	entrenador_new->tiempo_bloqueado_pokenest=0;
   	entrenador_new->muertes=0;
+  	entrenador_new->cantidad_deadlocks = 0;
   	entrenador_new->ubicacion = ubicacion_create(0,0);
   	entrenador_new->paso_anterior = ubicacion_create(0,0);
   	entrenador_new->cantidad_de_veces_bloqueado = 0;
@@ -49,11 +50,13 @@ t_mapa* mapa_create(char* nombre_mapa, char *ruta_pokedex, t_entrenador *entrena
 	t_config *config = configuracion_metadata_mapa_create(nombre_mapa, ruta_pokedex);
 	t_mapa *mapa_new = malloc(sizeof(t_mapa));
 	mapa_new->nombre = nombre_mapa;
-	mapa_new->puerto = config_get_string_value(config, "Puerto");
-	mapa_new->ip = config_get_string_value(config, "IP");
+	mapa_new->puerto =string_new();
+	string_append(&mapa_new->puerto,config_get_string_value(config, "Puerto"));
+	mapa_new->ip =string_new();
+	string_append(&mapa_new->ip,config_get_string_value(config, "IP"));
 	mapa_new->objetivos = asociar_objetivos_por_mapa(nombre_mapa,entrenador);
-	return mapa_new;
 	config_destroy(config);
+	return mapa_new;
 }
 
 t_config* configuracion_metadata_mapa_create(char *nombre, char *ruta)
@@ -72,7 +75,9 @@ void mapa_destruite(t_mapa *mapa)
 	free(mapa->server);
 	free(mapa->nombre);
 	free(mapa->puerto);
-	list_destroy_and_destroy_elements(mapa->objetivos, free);
+	list_destroy(mapa->objetivos);
+	free(mapa);
+	//list_destroy_and_destroy_elements(mapa->objetivos, free);
 }
 /*--------------------------------------------OBTENCION DE DATOS DEL ENTRENADOR----------------------------------------------------------*/
 char* obtener_direccion_directorio_de_bill(char* ruta_pokedex, char* nombre)

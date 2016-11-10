@@ -155,8 +155,18 @@ t_posicion* desarmar_coordenada(char *coordenada)
 	char **por_separado = string_split(coordenada, ";");
 	string_trim_left(&por_separado[0]);
 	string_trim_left(&por_separado[1]);
-	return (posicion_create(atoi(por_separado[0]),atoi(por_separado[1])));
+	t_posicion  *posicion = posicion_create(atoi(por_separado[0]),atoi(por_separado[1]));
+	array_free_all(por_separado);
+	return posicion;
 
 }
 
-
+void array_free_all(char **array)
+{
+	int i =0;
+	while(array[i] != NULL)
+	{
+		free(array[i]);
+		i++;
+	}
+}

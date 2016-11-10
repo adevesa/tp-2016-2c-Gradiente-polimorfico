@@ -97,7 +97,11 @@ t_config* configuracion_metadata_create(char *nombre, char *ruta)
 }
 
 /*-----------------------------------------------------DESTROYERS----------------------------------------------------*/
-
+void destroy_info_algoritmo(t_info_algoritmo *info)
+{
+	free(info->algoritmo);
+	free(info);
+}
 /*---------------------------- FUNCIONES PARA OBTENER DATOS BASICOS DE UN MAPA--------------------------------------*/
 
 t_info_socket* obtener_info_mapa_socket(t_config *configuracion)

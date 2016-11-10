@@ -32,3 +32,43 @@
 [INFO] 12:17:50:627 Proceso entrenador/(3016:3016): Entrenador creado con EXITO
 [INFO] 12:17:52:561 Proceso entrenador/(3016:3016): COMIENZO del recorrido de la HOJA DE VIAJE
 [INFO] 12:18:02:639 Proceso entrenador/(3016:3016): Mapa actual: mapa1
+[INFO] 22:18:35:225 Proceso entrenador/(8038:8038): COMIENZO: 22:18:35:225
+[INFO] 22:18:44:781 Proceso entrenador/(8038:8038): Entrenador creado con EXITO
+[INFO] 22:19:10:418 Proceso entrenador/(8038:8038): COMIENZO del recorrido de la HOJA DE VIAJE
+[INFO] 22:20:43:239 Proceso entrenador/(8038:8038): Mapa actual: mapa1
+[INFO] 22:24:30:844 Proceso entrenador/(8323:8323): COMIENZO: 22:24:30:844
+[INFO] 22:24:33:668 Proceso entrenador/(8323:8323): Entrenador creado con EXITO
+[INFO] 22:24:40:880 Proceso entrenador/(8323:8323): COMIENZO del recorrido de la HOJA DE VIAJE
+[INFO] 22:24:44:557 Proceso entrenador/(8323:8323): Mapa actual: mapa1
+[INFO] 22:24:48:321 Proceso entrenador/(8323:8323): CONECTADO con mapa1
+[INFO] 22:25:29:319 Proceso entrenador/(8323:8323): COMIENZO AVENTURA en mapa1
+[INFO] 22:45:27:936 Proceso entrenador/(8957:8957): COMIENZO: 22:45:27:936
+[INFO] 22:45:29:928 Proceso entrenador/(8957:8957): Entrenador creado con EXITO
+[INFO] 22:45:36:623 Proceso entrenador/(8957:8957): COMIENZO del recorrido de la HOJA DE VIAJE
+[INFO] 22:45:41:190 Proceso entrenador/(8957:8957): Mapa actual: mapa1
+[INFO] 22:45:43:572 Proceso entrenador/(8957:8957): CONECTADO con mapa1
+[INFO] 22:45:51:877 Proceso entrenador/(8957:8957): COMIENZO AVENTURA en mapa1
+[INFO] 22:45:58:391 Proceso entrenador/(8957:8957): mapa1 me da COORDENADAS de pokenest P
+[INFO] 22:46:22:83 Proceso entrenador/(8957:8957): Me moví
+[INFO] 22:46:29:248 Proceso entrenador/(8957:8957): Me moví
+[INFO] 22:46:30:453 Proceso entrenador/(8957:8957): Me moví
+[INFO] 22:46:31:521 Proceso entrenador/(8957:8957): Me moví
+[INFO] 22:46:32:725 Proceso entrenador/(8957:8957): Me moví
+[INFO] 22:46:37:742 Proceso entrenador/(8957:8957): Me moví
+[INFO] 22:46:55:123 Proceso entrenador/(8957:8957): Llegué a destino. Pediré CAPTURAR POKEMON
+[INFO] 22:47:38:377 Proceso entrenador/(8957:8957): mapa1 me dice que el pokemon está en: /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu002
+[INFO] 22:59:11:588 Proceso entrenador/(9572:9572): COMIENZO: 22:59:11:588
+[INFO] 22:59:13:906 Proceso entrenador/(9572:9572): Entrenador creado con EXITO
+[INFO] 22:59:17:855 Proceso entrenador/(9572:9572): COMIENZO del recorrido de la HOJA DE VIAJE
+[INFO] 22:59:18:911 Proceso entrenador/(9572:9572): Mapa actual: mapa1
+[INFO] 22:59:20:525 Proceso entrenador/(9572:9572): CONECTADO con mapa1
+[INFO] 22:59:24:75 Proceso entrenador/(9572:9572): COMIENZO AVENTURA en mapa1
+[INFO] 22:59:29:959 Proceso entrenador/(9572:9572): mapa1 me da COORDENADAS de pokenest P
+[INFO] 22:59:32:794 Proceso entrenador/(9572:9572): Me moví
+[INFO] 22:59:34:13 Proceso entrenador/(9572:9572): Me moví
+[INFO] 22:59:35:123 Proceso entrenador/(9572:9572): Me moví
+[INFO] 22:59:48:847 Proceso entrenador/(9572:9572): Me moví
+[INFO] 22:59:51:232 Proceso entrenador/(9572:9572): Me moví
+[INFO] 23:00:00:502 Proceso entrenador/(9572:9572): Me moví
+[INFO] 23:00:41:499 Proceso entrenador/(9572:9572): Llegué a destino. Pediré CAPTURAR POKEMON
+[INFO] 23:00:57:532 Proceso entrenador/(9572:9572): mapa1 me dice que el pokemon está en: /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu002

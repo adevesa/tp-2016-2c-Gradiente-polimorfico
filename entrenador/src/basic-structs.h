@@ -46,6 +46,7 @@ typedef struct entrenador
 	int tiempo_bloqueado_pokenest;
 	int cantidad_de_veces_bloqueado;
 	int muertes;
+	int cantidad_deadlocks;
 	t_ubicacion* ubicacion;
 	t_ubicacion* paso_anterior;
 	t_ubicacion* pokenest;

@@ -5,6 +5,8 @@ src/entrenador.d: ../src/entrenador.c ../src/entrenador-commons.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/../so-commons/string.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/sockets-utils.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/cliente.h \
+ ../src/factory.h \
+ /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/collections/dictionary.h \
  ../src/time.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/string.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/temporal.h \
@@ -25,6 +27,10 @@ src/entrenador.d: ../src/entrenador.c ../src/entrenador-commons.h \
 /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/sockets-utils.h:
 
 /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/cliente.h:
+
+../src/factory.h:
+
+/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/collections/dictionary.h:
 
 ../src/time.h:
 

@@ -21,6 +21,7 @@
 
 
 #define BACKLOG 1500
+#define PANTALLA_ESTA_ACTIVADA 1
 enum
 {
 	PLANIFICADOR_RR,
@@ -44,7 +45,7 @@ void planificador_create_segun_cual_seas();
 
 /*--------------------------------------------PRINCIPALES----------------------------------------------------------*/
 void releer_data();
-void cambiar_algoritmo_si_es_necesario(char *nuevo_algoritmo, char *viejo_algoritmo);
+void cambiar_algoritmo_si_es_necesario(t_info_algoritmo *viejo, t_info_algoritmo *nuevo);
 
 char* mapa_dame_medalla();
 t_pokeNest* mapa_buscame_pokenest(char *identificador_pokemon);

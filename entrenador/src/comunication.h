@@ -13,6 +13,7 @@
 #include "basic-structs.h"
 #include "socket/serializacion_mapa_entrenador.h"
 #include "socket/cliente.h"
+#include "factory.h"
 
 enum RESPUESTAS_DEL_MAPA
 {
@@ -22,7 +23,10 @@ enum RESPUESTAS_DEL_MAPA
 	MAPA_ME_BLOQUEA = 4,
 	MAPA_ME_DESBLOQUEA = 5,
 	MAPA_ME_DA_POKEMON = 6,
-	MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR = 7
+	MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR = 7,
+	MAPA_ME_AVISA_DEADLOCK = 8,
+	MAPA_ME_DICE_QUE_PERDI = 9,
+	MAPA_ME_DICE_QUE_GANE = 10
 };
 
 enum ENVIOS_AL_MAPA
@@ -31,7 +35,8 @@ enum ENVIOS_AL_MAPA
 	SOLICITAR_COORDENADAS_POKENEST = 11,
 	SOLICITAR_CAPTURA_POKEMON = 12,
 	REPORTAR_MOVIMIENTO = 13,
-	REPORTAR_FIN_OBJETIVOS = 14
+	REPORTAR_FIN_OBJETIVOS = 14,
+	ENTREGAR_MEJOR_POKEMON = 15
 };
 
 #define MAX_BYTES_COORDENADA 5
@@ -69,6 +74,7 @@ void solicitar_captura_pokemon(t_mapa *mapa, char *pokemonAcapturar);
 
 void notificar_fin_objetivos(t_mapa *mapa);
 
+char* armar_mejor_pokemon_string(t_pokemon *pokemon);
 /*---------------------------------------SECUNDARIOS----------------------------------------*/;
 t_ubicacion* desarmar_coordenada(char *coordenada);
 void copiar(char* origen, char* destino);
