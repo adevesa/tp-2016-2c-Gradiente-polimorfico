@@ -21,6 +21,10 @@
 #include <so-commons/txt.h>
 #include "semaphore.h"
 #include <signal.h>
+
+#define SI 1
+#define NO 0
+
 enum
 {
 	CUMPLIDO = 1,
@@ -76,6 +80,7 @@ typedef struct entrenador
 	int objetivo_cumplido; //<-- será 1 si ya se cumplió el objetivo, 0 caso default;
 	int estado; //<-- será 1 = listo, 0 = bloquedo, -1 = muerto;
 	int estado_anterior; //<-- será 1 = listo, 0 = bloquedo
+	int esperando_pokemon;
 	int tiempo_consumido;
 	t_list *pokemones_capturados;
 	sem_t *semaforo_finalizacon;

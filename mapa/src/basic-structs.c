@@ -14,6 +14,7 @@ t_entrenador* entrenador_create(int id_proceso, int socket_entrenador)
 	new_entrenador->socket_entrenador =socket_entrenador;
 	new_entrenador->estado = NONE;
 	new_entrenador->estado_anterior = NONE;
+	new_entrenador->esperando_pokemon=NONE;
 	new_entrenador->objetivo_cumplido = 0;
 	new_entrenador->tiene_objetivo = 0;
 	new_entrenador->pokemones_capturados = list_create();

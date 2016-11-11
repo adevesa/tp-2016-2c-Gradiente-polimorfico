@@ -23,8 +23,6 @@ void ejecutar_entrenador(char *nombre_entrenador, char *ruta_pokedex)
 	entrenador_comenza_a_explorar();
 	entrenador_registra_hora(FIN);
 	mostrar_por_pantalla_resultados();
-
-	//SI ESTA ACA, ES QUE YA TERMINO DE RECORRER
 }
 
 void mostrar_por_pantalla_resultados()
@@ -47,20 +45,21 @@ void mostrar_por_pantalla_resultados()
 	pthread_attr_destroy(&attr);
 }*/
 
-void entrenador_iniciar_seniales(){
+void entrenador_iniciar_seniales()
+{
 	signal(SIGUSR1, subirvida);
 	signal(SIGTERM, bajarvida);
 	signal(SIGKILL, matar_entrenador);
 }
 
-void subirvida()
+void subirvida(int n)
 {
 	entrenador->vidas++;
 	log_info(info_entrenador,"RECIBI MAS VIDA POR SEÑAL EXTERNA");
 
 }
 
-void bajarvida()
+void bajarvida(int n)
 {
 	entrenador->vidas--;
 	log_info(info_entrenador,"PIERDO VIDA POR SEÑAL EXTERNA");
@@ -89,7 +88,6 @@ void tratar_respuesta()
 	else if(resp == 'N')
 	{
 		log_info(info_entrenador,"Se decidio no jugar mas.");
-		//entrenador_desconectate();
 	}
 	else{
 		printf("Respuesta invalida\n");
@@ -97,7 +95,7 @@ void tratar_respuesta()
 	}
 }
 
-void matar_entrenador()
+void matar_entrenador(int n)
 {
 	matan_al_entrenador = 1;
 	close(entrenador->mapa_actual->server);
@@ -129,22 +127,6 @@ void entrenador_borra_medallas()
 	borrar_todos_los_archivos_del_directorio(directorio_de_medallas);
 	free(directorio_de_medallas);
 }
-
-/*void entrenador_desconectate()
-{
-	exit(1);
-}*/
-
-/*void entrenador_morite()
-{
-	// matar hilo de objetivos
-	close(entrenador->mapa_actual->server);
-	entrenador_borra_pokemons();
-	//bajarvida();
-	if(entrenador->vidas > 0); //empezar nuevo hilo de objetivos;
-}*/
-
-/* Working OFF... */
 
 void iniciar_log(char *nombre_del_entrenador)
 {
@@ -294,7 +276,7 @@ int entrenador_cumpli_objetivos_del_mapa(int index)
 	{
 		if(me_quedan_vidas())
 		{
-			bajarvida();
+			bajarvida(NULL);
 			return entrenador_volve_a_empezar_en_este_mapa(index);
 		}
 		else

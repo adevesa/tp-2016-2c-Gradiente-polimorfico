@@ -22,8 +22,10 @@ pthread_mutex_t mutex_manipular_cola_nuevos = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_manipular_cola_bloqueados = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_manipular_cola_finalizados = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_cola_entrenadores_sin_objetivos = PTHREAD_MUTEX_INITIALIZER;
-
+extern int encolacion_entrenadores_iniciada;
 int servidor_debe_terminar = 0;
+int algoritmo_cambio = 0;
+t_info_algoritmo *nuevo_algoritmo;
 
 /*------------------------------------------EXECUTE----------------------------------------------------------------*/
 void ejecutar_mapa(char *nombre, char *rutaPokedex)
@@ -50,7 +52,7 @@ void iniciar_seniales_mapa()
 	signal(SIGUSR2, releer_data);
 }
 
-void releer_data()
+void releer_data(int n)
 {
 	t_info_algoritmo *algotirmo_viejo = mapa->info_algoritmo;
 	config_destroy(mapa->configuracion);
@@ -88,9 +90,8 @@ void cambiar_algoritmo_si_es_necesario(t_info_algoritmo *viejo, t_info_algoritmo
 	if(!string_equals_ignore_case(viejo->algoritmo, nuevo->algoritmo))
 	{
 		log_info(informe_mapa, "Se cambia el algoritmo de planificacion");
-		mapa->info_algoritmo = nuevo;
-		destroy_info_algoritmo(viejo);
-		planificador_create_segun_cual_seas();
+		algoritmo_cambio = 1;
+		nuevo_algoritmo = nuevo;
 	}
 	else
 	{
@@ -98,6 +99,14 @@ void cambiar_algoritmo_si_es_necesario(t_info_algoritmo *viejo, t_info_algoritmo
 		mapa->info_algoritmo->retardo = nuevo->retardo;
 		destroy_info_algoritmo(nuevo);
 	}
+}
+
+void cambiar_algoritmo()
+{
+	destroy_info_algoritmo(mapa->info_algoritmo);
+	mapa->info_algoritmo = nuevo_algoritmo;
+	planificador_create_segun_cual_seas();
+	algoritmo_cambio=0;
 }
 
 /*--------------------------------------------PRINCIPALES----------------------------------------------------------*/
@@ -348,7 +357,6 @@ void mapa_borra_entrenador_de_pantalla(t_entrenador *entrenador)
 /*------------------------------ FUNCIONES PARA MANIPULACION DEL PLANIFICADOR--------------------------------------------*/
 void planificador_create_segun_cual_seas()
 {
-	encolacion_entrenadores_iniciada = NO_INICIADO;
 	pthread_t thread;
 	pthread_attr_t attr;
 	pthread_attr_init(&attr);

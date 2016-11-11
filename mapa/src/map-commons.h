@@ -38,13 +38,15 @@ void iniciar_semaforos();
 void iniciar_logs(char *nombre);
 void iniciar_seniales_mapa();
 
+void cambiar_algoritmo();
+
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
 
 void planificador_create_segun_cual_seas();
 
 
 /*--------------------------------------------PRINCIPALES----------------------------------------------------------*/
-void releer_data();
+void releer_data(int n);
 void cambiar_algoritmo_si_es_necesario(t_info_algoritmo *viejo, t_info_algoritmo *nuevo);
 
 char* mapa_dame_medalla();

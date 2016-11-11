@@ -16,7 +16,7 @@ extern sem_t semaforo_hay_algun_entrenador_listo;
 extern sem_t semaforo_cola_entrenadores_sin_objetivos;
 
 int hay_jugadores_online = 0;
-
+int encolacion_entrenadores_iniciada = NO_INICIADO;
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
 t_listas_y_colas* listas_y_colas_creense()
 {

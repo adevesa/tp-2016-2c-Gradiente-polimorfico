@@ -40,7 +40,6 @@ t_log *informe_planificador;
 extern t_log *informe_cola_listos;
 extern t_log *informe_cola_bloqueados;
 extern t_log *informe_cola_nuevos;
-int encolacion_entrenadores_iniciada;
 
 
 void planificador_inicia_log();

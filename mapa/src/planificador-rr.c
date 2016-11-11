@@ -9,6 +9,8 @@
 t_planificador_rr *planificador;
 extern sem_t semaforo_entrenadores_listos;
 extern int hay_jugadores_online;
+extern int encolacion_entrenadores_iniciada;
+extern int algoritmo_cambio;
 /*-----------------------------------EXECUTE PLANIFICADOR RR---------------------------------------------------------*/
 void* ejecutar_planificador_rr(void* arg)
 {
@@ -36,8 +38,9 @@ void planificador_rr_organiza_entrenadores()
 	if(encolacion_entrenadores_iniciada == NO_INICIADO)
 	{
 		planificador_inicia_encolacion_nuevos_entrenadores();
+		encolacion_entrenadores_iniciada=INICIADO;
 	}
-	while(mapa_decime_si_planificador_es(PLANIFICADOR_RR))
+	while(mapa_decime_si_planificador_es(PLANIFICADOR_RR) && !algoritmo_cambio)
 	{
 		if(queue_is_empty(planificador->listas_y_colas->cola_entrenadores_listos))
 		{
@@ -52,6 +55,10 @@ void planificador_rr_organiza_entrenadores()
 		planificador_volve_a_encolar_a_listo_si_es_necesario(entrenador_listo);
 		planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
 	}
+	cambiar_algoritmo();
+	/*
+	 * DEBO SABER SI EL ENTRENADOR ESTABA BLOQUEADO JUSTO ANTES DE CAMBIAR EL ALGORITMO
+	 */
 }
 
 void planificador_rr_es_el_turno_de(t_entrenador *entrenador_listo, int *quamtum)
@@ -59,7 +66,7 @@ void planificador_rr_es_el_turno_de(t_entrenador *entrenador_listo, int *quamtum
 	while(!quamtum_se_termino(*quamtum) && (entrenador_listo->objetivo_cumplido != ABORTADO) )
 	{
 		usleep(planificador->retardo*1000);
-		if(mapa_decime_si_entrenador_esta_listo_pero_estaba_bloqueado(entrenador_listo))
+		if(mapa_decime_si_entrenador_esta_listo_pero_estaba_bloqueado(entrenador_listo) || entrenador_listo->esperando_pokemon == SI)
 		{
 			planificador_rr_volve_a_bloquear_a_entrenador_si_es_necesario(entrenador_listo, quamtum);
 			planificador_rr_dale_nuevo_turno_a_entrenador(entrenador_listo,quamtum);
@@ -99,6 +106,7 @@ void planificador_rr_dale_nuevo_turno_a_entrenador(t_entrenador *entrenador_list
 				if(entrenador_listo->estado == BLOQUEADO)
 				{
 					quamtum_restante = 0;
+					entrenador_listo->esperando_pokemon = SI;
 				}
 				else { quamtum_disminuite(quamtum_restante); }
 			} break;
@@ -116,6 +124,7 @@ void planificador_rr_volve_a_bloquear_a_entrenador_si_es_necesario(t_entrenador 
 	{
 		planificador_entrega_pokemon_a(entrenador);
 		quamtum_disminuite(quamtum);
+		entrenador->esperando_pokemon = NO;
 	}
 	else
 	{

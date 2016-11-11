@@ -63,11 +63,13 @@ void entrenador_espera_a_que_mapa_te_bloquee();
 void entrenador_espera_a_que_mapa_te_desbloquee();
 
 void entrenador_iniciar_seniales();
-void subirvida();
-void bajarvida();
+void subirvida(int n);
+void bajarvida(int n);
+void matar_entrenador(int n);
 
 void entrenador_finalizo_muriendo();
 void tratar_respuesta();
+
 
 void entrenador_reinicia_hoja_de_viaje();
 void entrenador_borra_medallas();

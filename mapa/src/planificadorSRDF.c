@@ -20,6 +20,9 @@ int hay_jugadores;
 int se_ordeno_algo = 0;
 
 extern t_log *informe_planificador;
+extern int encolacion_entrenadores_iniciada;
+extern int algoritmo_cambio;
+
 
 void planificador_push_entrenador_en_cola_sin_objetivos(t_entrenador *entrenador)
 {
@@ -122,6 +125,7 @@ void* ejecutar_planificador_srdf(void* arg)
 	if(encolacion_entrenadores_iniciada == NO_INICIADO)
 	{
 		planificador_inicia_encolacion_nuevos_entrenadores();
+		encolacion_entrenadores_iniciada=INICIADO;
 	}
 	planificador_srdf_organiza_entrenadores_sin_coordenadas();
 	planificador_srdf_organiza_entrenadores();
@@ -130,7 +134,7 @@ void* ejecutar_planificador_srdf(void* arg)
 
 void planificador_srdf_organiza_entrenadores()
 {
-	while(mapa_decime_si_planificador_es(PLANIFICADOR_SRDF))
+	while(mapa_decime_si_planificador_es(PLANIFICADOR_SRDF) && !algoritmo_cambio)
 	{
 		if(queue_is_empty(mapa->entrenadores->cola_entrenadores_listos))
 		{
@@ -147,11 +151,12 @@ void planificador_srdf_organiza_entrenadores()
 		planificador_srdf_reordena_entrenadores_si_es_necesario();
 
 	}
+	cambiar_algoritmo();
 }
 
 void planificador_srdf_es_el_turno_de(t_entrenador *entrenador)
 {
-	if(mapa_decime_si_entrenador_esta_ejecutando_pero_estaba_bloqueado(entrenador))
+	if(mapa_decime_si_entrenador_esta_ejecutando_pero_estaba_bloqueado(entrenador) || entrenador->esperando_pokemon == SI)
 	{
 		planificador_srdf_dale_pokemon_si_es_posible(entrenador);
 	}
@@ -166,6 +171,7 @@ void planificador_srdf_dale_pokemon_si_es_posible(t_entrenador *entrenador)
 	if(mapa_decime_si_hay_pokemones_en_pokenest(entrenador->pokenest_objetivo))
 	{
 		planificador_entrega_pokemon_a(entrenador);
+		entrenador->esperando_pokemon = NO;
 		planificador_push_entrenador_en_cola_sin_objetivos(entrenador);
 		sem_wait(&semaforo_esperar_ordenamieto);
 		log_info(informe_planificador, "YA ESTA, YA SE ORDENO");
@@ -193,6 +199,7 @@ void planificador_srdf_dale_nuevo_turno_hasta_que_se_bloquee(t_entrenador *entre
 			case(ENTRENADOR_QUIERE_CAPTURAR_POKEMON):
 			{
 				planificador_entrenador_quiere_capturar_pokemon(entrenador, BLOQUEAR_DE_TODOS_MODOS);
+				entrenador->esperando_pokemon =SI ;
 			}break;
 			case(ENTRENADOR_DESCONECTADO): planificador_aborta_entrenador(entrenador);break;
 		};
