@@ -1,0 +1,2438 @@
+[INFO] 19:37:16:817 Cliente/(5751:5758): ATRIBUTOS: /.Trash
+[INFO] 19:37:16:820 Cliente/(5751:5758): ATRIBUTOS: /.Trash-1000
+[INFO] 19:37:16:823 Cliente/(5751:5759): ATRIBUTOS: /.xdg-volume-info
+[INFO] 19:37:16:826 Cliente/(5751:5758): ATRIBUTOS: /autorun.inf
+[INFO] 19:37:16:838 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:16:843 Cliente/(5751:5759): ATRIBUTOS: /Pokemons
+[INFO] 19:37:16:895 Cliente/(5751:5758): ATRIBUTOS: /Celadon City
+[INFO] 19:37:16:896 Cliente/(5751:5759): ATRIBUTOS: /pruebilla.txt
+[INFO] 19:37:16:897 Cliente/(5751:5758): ATRIBUTOS: /Cerulean City
+[INFO] 19:37:16:914 Cliente/(5751:5759): ATRIBUTOS: /Fuchsia City
+[INFO] 19:37:16:915 Cliente/(5751:5758): ATRIBUTOS: /Lavender Town
+[INFO] 19:37:16:923 Cliente/(5751:5759): ATRIBUTOS: /Pallet Town
+[INFO] 19:37:16:930 Cliente/(5751:5758): ATRIBUTOS: /Pewter City
+[INFO] 19:37:16:932 Cliente/(5751:5759): ATRIBUTOS: /Saffron City
+[INFO] 19:37:16:946 Cliente/(5751:5758): ATRIBUTOS: /Vermilion City
+[INFO] 19:37:16:962 Cliente/(5751:5759): ATRIBUTOS: /Viridian City
+[INFO] 19:37:16:973 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:16:979 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:16:983 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:16:987 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:16:991 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:17:6 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:17:10 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:17:14 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:17:17 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:17:20 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:17:26 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:17:36 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:17:44 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:17:47 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:17:51 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:17:57 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:17:68 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:17:72 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:17:76 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:17:79 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:17:87 Cliente/(5751:5759): LISTAR: /
+[INFO] 19:37:17:99 Cliente/(5751:5758): ATRIBUTOS: /
+[INFO] 19:37:17:188 Cliente/(5751:5762): ATRIBUTOS: /
+[INFO] 19:37:17:274 Cliente/(5751:5759): ATRIBUTOS: /autorun.inf
+[INFO] 19:37:17:277 Cliente/(5751:5763): ABRIR DIRECTORIO: /
+[INFO] 19:37:17:279 Cliente/(5751:5758): ABRIR DIRECTORIO: /
+[INFO] 19:37:17:279 Cliente/(5751:5762): LISTAR: /
+[INFO] 19:37:17:282 Cliente/(5751:5758): ABRIR DIRECTORIO: /Pokemons
+[INFO] 19:37:17:283 Cliente/(5751:5763): ABRIR DIRECTORIO: /Celadon City
+[INFO] 19:37:17:284 Cliente/(5751:5758): ABRIR DIRECTORIO: /pruebilla.txt
+[INFO] 19:37:17:285 Cliente/(5751:5759): ABRIR DIRECTORIO: /Cerulean City
+[INFO] 19:37:17:293 Cliente/(5751:5762): ABRIR DIRECTORIO: /Fuchsia City
+[INFO] 19:37:17:293 Cliente/(5751:5759): ABRIR DIRECTORIO: /Lavender Town
+[INFO] 19:37:17:294 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pallet Town
+[INFO] 19:37:17:295 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pewter City
+[INFO] 19:37:17:295 Cliente/(5751:5762): ABRIR DIRECTORIO: /Saffron City
+[INFO] 19:37:17:296 Cliente/(5751:5759): ABRIR DIRECTORIO: /Vermilion City
+[INFO] 19:37:17:297 Cliente/(5751:5762): ABRIR DIRECTORIO: /Viridian City
+[INFO] 19:37:18:926 Cliente/(5751:5762): ATRIBUTOS: /.directory
+[INFO] 19:37:19:918 Cliente/(5751:5758): ATRIBUTOS: /pruebilla.txt
+[INFO] 19:37:20:60 Cliente/(5751:5759): ABRIR ARCHIVO: /pruebilla.txt
+[INFO] 19:37:20:62 Cliente/(5751:5763): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /pruebilla.txt
+[INFO] 19:37:20:63 Cliente/(5751:5763): LECTURA COMPLETADA CON:       4096 LEIDOS
+[INFO] 19:37:20:64 Cliente/(5751:5759): ABRIR DIRECTORIO: /pruebilla.txt
+[INFO] 19:37:20:67 Cliente/(5751:5763): ABRIR ARCHIVO: /pruebilla.txt
+[INFO] 19:37:20:70 Cliente/(5751:5762): ATRIBUTOS: /pruebilla.txt
+[INFO] 19:37:20:995 Cliente/(5751:5759): ATRIBUTOS: /pruebilla.txt
+[INFO] 19:37:20:995 Cliente/(5751:5763): ABRIR DIRECTORIO: /pruebilla.txt
+[INFO] 19:37:24:291 Cliente/(5751:5762): ATRIBUTOS: /pruebilla.txt
+[INFO] 19:37:24:294 Cliente/(5751:5758): ABRIR DIRECTORIO: /pruebilla.txt
+[INFO] 19:37:24:295 Cliente/(5751:5759): ABRIR ARCHIVO: /pruebilla.txt
+[INFO] 19:37:24:297 Cliente/(5751:5762): ABRIR DIRECTORIO: /pruebilla.txt
+[INFO] 19:37:25:318 Cliente/(5751:5758): ATRIBUTOS: /pruebilla.txt
+[INFO] 19:37:25:325 Cliente/(5751:5759): ABRIR DIRECTORIO: /pruebilla.txt
+[INFO] 19:37:29:859 Cliente/(5751:5763): ATRIBUTOS: /pruebilla.txt
+[INFO] 19:37:29:860 Cliente/(5751:5762): ABRIR ARCHIVO: /pruebilla.txt
+[INFO] 19:37:29:861 Cliente/(5751:5759): ABRIR ARCHIVO: /pruebilla.txt
+[INFO] 19:37:29:861 Cliente/(5751:5763): TRUNCATE: /pruebilla.txt SIZE: 0
+[INFO] 19:37:29:861 Cliente/(5751:5763): ATRIBUTOS: /pruebilla.txt
+[INFO] 19:37:29:862 Cliente/(5751:5759):  8        14/pruebilla.txt      4096         0 /*
+    2   FUSE: Filesystem in Userspace
+    3   Copyright (C) 2001-2007  Miklos Szeredi <miklos@szeredi.hu>
+    4 
+    5   This program can be distributed under the terms of the GNU LGPLv2.
+    6   See the file COPYING.LIB.
+    7 */
+    8 
+   11 #if !defined(_FUSE_H_) && !defined(_FUSE_LOWLEVEL_H_)
+   12 #error "Never include <fuse_common.h> directly; use <fuse.h> or <fuse_lowlevel.h> instead."
+   13 #endif
+   14 
+   15 #ifndef _FUSE_COMMON_H_
+   16 #define _FUSE_COMMON_H_
+   17 
+   18 #include "fuse_opt.h"
+   19 #include <stdint.h>
+   20 #include <sys/types.h>
+   21 
+   23 #define FUSE_MAJOR_VERSION 2
+   24 
+   26 #define FUSE_MINOR_VERSION 9
+   27 
+   28 #define FUSE_MAKE_VERSION(maj, min)  ((maj) * 10 + (min))
+   29 #define FUSE_VERSION FUSE_MAKE_VERSION(FUSE_MAJOR_VERSION, FUSE_MINOR_VERSION)
+   30 
+   31 /* This interface uses 64 bit off_t */
+   32 #if _FILE_OFFSET_BITS != 64
+   33 #error Please add -D_FILE_OFFSET_BITS=64 to your compile flags!
+   34 #endif
+   35 
+   36 #ifdef __cplusplus
+   37 extern "C" {
+   38 #endif
+   39 
+   45 struct fuse_file_info {
+   47     int flags;
+   48 
+   50     unsigned long fh_old;
+   51 
+   54     int writepage;
+   55 
+   58     unsigned int direct_io : 1;
+   59 
+   62     unsigned int keep_cache : 1;
+   63 
+   67     unsigned int flush : 1;
+   68 
+   71     unsigned int nonseekable : 1;
+   72 
+   73     /* Indicates that flock locks for this file should be
+   74        released.  If set, lock_owner shall contain a valid value.
+   75        May only be set in ->release().  Introduced in version
+   76        2.9 */
+   77     unsigned int flock_release : 1;
+   78 
+   80     unsigned int padding : 27;
+   81 
+   84     uint64_t fh;
+   85 
+   87     uint64_t lock_owner;
+   88 };
+   89 
+  104 #define FUSE_CAP_ASYNC_READ (1 << 0)
+  105 #define FUSE_CAP_POSIX_LOCKS    (1 << 1)
+  106 #define FUSE_CAP_ATOMIC_O_TRUNC (1 << 3)
+  107 #define FUSE_CAP_EXPORT_SUPPORT (1 << 4)
+  108 #define FUSE_CAP_BIG_WRITES (1 << 5)
+  109 #define FUSE_CAP_DONT_MASK  (1 << 6)
+  110 #define FUSE_CAP_SPLICE_WRITE   (1 << 7)
+  111 #define FUSE_CAP_SPLICE_MOVE    (1 << 8)
+  112 #define FUSE_CAP_SPLICE_READ    (1 << 9)
+  113 #define FUSE_CAP_FLOCK_LOCKS    (1 << 10)
+  114 #define FUSE_CAP_IOCTL_DIR  (1 << 11)
+  115 
+  126 #define FUSE_IOCTL_COMPAT   (1 << 0)
+  127 #define FUSE_IOCTL_UNRESTRICTED (1 << 1)
+  128 #define FUSE_IOCTL_RETRY    (1 << 2)
+  129 #define FUSE_IOCTL_DIR      (1 << 4)
+  130 
+  131 #define FUSE_IOCTL_MAX_IOV  256
+  132 
+  140 struct fuse_conn_info {
+  144     unsigned proto_major;
+  145 
+  149     unsigned proto_minor;
+  150 
+  154     unsigned async_read;
+  155 
+  159     unsigned max_write;
+  160 
+  164     unsigned max_readahead;
+  165 
+  169     unsigned capable;
+  170 
+  174     unsigned want;
+  175 
+  179     unsigned max_background;
+  180 
+  184     unsigned congestion_threshold;
+  185 
+  189     unsigned reserved[23];
+  190 };
+  191 
+  192 struct fuse_session;
+  193 struct fuse_chan;
+  194 struct fuse_pollhandle;
+  195 
+  206 struct fuse_chan *fuse_mount(const char *mountpoint, struct fuse_args *args);
+  207 
+  214 void fuse_unmount(const char *mountpoint, struct fuse_chan *ch);
+  215 
+  237 int fuse_parse_cmdline(struct fuse_args *args, char **mountpoint,
+  238                int *multithreaded, int *foreground);
+  239 
+  246 int fuse_daemonize(int foreground);
+  247 
+  253 int fuse_version(void);
+  254 
+  260 void fuse_pollhandle_destroy(struct fuse_pollhandle *ph);
+  261 
+  262 /* ----------------------------------------------------------- *
+  263  * Data buffer                             *
+  264  * ----------------------------------------------------------- */
+  265 
+  269 enum fuse_buf_flags {
+  276     FUSE_BUF_IS_FD      = (1 << 1),
+  277 
+  285     FUSE_BUF_FD_SEEK    = (1 << 2),
+  286 
+  294     FUSE_BUF_FD_RETRY   = (1 << 3),
+  295 };
+  296 
+  300 enum fuse_buf_copy_flags {
+  310     FUSE_BUF_NO_SPLICE  = (1 << 1),
+  311 
+  318     FUSE_BUF_FORCE_SPLICE   = (1 << 2),
+  319 
+  327     FUSE_BUF_SPLICE_MOVE    = (1 << 3),
+  328 
+  336     FUSE_BUF_SPLICE_NONBLOCK= (1 << 4),
+  337ace
+  E
+[INFO] 19:37:29:862 Cliente/(5751:5759): 4151
+[INFO] 19:37:29:863 Cliente/(5751:5759): 0 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 19:37:30:883 Cliente/(5751:5763): ATRIBUTOS: /pruebilla.txt
+[INFO] 19:37:30:885 Cliente/(5751:5762): ABRIR DIRECTORIO: /pruebilla.txt
+[INFO] 19:37:32:886 Cliente/(5751:5758): ATRIBUTOS: /pruebilla.txt
+[INFO] 19:37:32:888 Cliente/(5751:5759): ABRIR DIRECTORIO: /pruebilla.txt
+[INFO] 19:39:33:711 Cliente/(5751:5763): ATRIBUTOS: /pruebilla.txt
+[INFO] 19:39:33:712 Cliente/(5751:5762): ABRIR DIRECTORIO: /pruebilla.txt
+[INFO] 19:39:35:983 Cliente/(5751:5758): ATRIBUTOS: /pruebilla.txt
+[INFO] 19:39:35:984 Cliente/(5751:5759): ABRIR ARCHIVO: /pruebilla.txt
+[INFO] 19:39:35:985 Cliente/(5751:5762): ABRIR ARCHIVO: /pruebilla.txt
+[INFO] 19:39:35:985 Cliente/(5751:5758): TRUNCATE: /pruebilla.txt SIZE: 0
+[INFO] 19:39:35:985 Cliente/(5751:5758): ATRIBUTOS: /pruebilla.txt
+[INFO] 19:39:35:986 Cliente/(5751:5759):  8        14/pruebilla.txt      4096         0 /*
+    2   FUSE: Filesystem in Userspace
+    3   Copyright (C) 2001-2007  Miklos Szeredi <miklos@szeredi.hu>
+    4 
+    5   This program can be distributed under the terms of the GNU LGPLv2.
+    6   See the file COPYING.LIB.
+    7 */
+    8 
+   11 #if !defined(_FUSE_H_) && !defined(_FUSE_LOWLEVEL_H_)
+   12 #error "Never include <fuse_common.h> directly; use <fuse.h> or <fuse_lowlevel.h> instead."
+   13 #endif
+   14 
+   15 #ifndef _FUSE_COMMON_H_
+   16 #define _FUSE_COMMON_H_
+   17 
+   18 #include "fuse_opt.h"
+   19 #include <stdint.h>
+   20 #include <sys/types.h>
+   21 
+   23 #define FUSE_MAJOR_VERSION 2
+   24 
+   26 #define FUSE_MINOR_VERSION 9
+   27 
+   28 #define FUSE_MAKE_VERSION(maj, min)  ((maj) * 10 + (min))
+   29 #define FUSE_VERSION FUSE_MAKE_VERSION(FUSE_MAJOR_VERSION, FUSE_MINOR_VERSION)
+   30 
+   31 /* This interface uses 64 bit off_t */
+   32 #if _FILE_OFFSET_BITS != 64
+   33 #error Please add -D_FILE_OFFSET_BITS=64 to your compile flags!
+   34 #endif
+   35 
+   36 #ifdef __cplusplus
+   37 extern "C" {
+   38 #endif
+   39 
+   45 struct fuse_file_info {
+   47     int flags;
+   48 
+   50     unsigned long fh_old;
+   51 
+   54     int writepage;
+   55 
+   58     unsigned int direct_io : 1;
+   59 
+   62     unsigned int keep_cache : 1;
+   63 
+   67     unsigned int flush : 1;
+   68 
+   71     unsigned int nonseekable : 1;
+   72 
+   73     /* Indicates that flock locks for this file should be
+   74        released.  If set, lock_owner shall contain a valid value.
+   75        May only be set in ->release().  Introduced in version
+   76        2.9 */
+   77     unsigned int flock_release : 1;
+   78 
+   80     unsigned int padding : 27;
+   81 
+   84     uint64_t fh;
+   85 
+   87     uint64_t lock_owner;
+   88 };
+   89 
+  104 #define FUSE_CAP_ASYNC_READ (1 << 0)
+  105 #define FUSE_CAP_POSIX_LOCKS    (1 << 1)
+  106 #define FUSE_CAP_ATOMIC_O_TRUNC (1 << 3)
+  107 #define FUSE_CAP_EXPORT_SUPPORT (1 << 4)
+  108 #define FUSE_CAP_BIG_WRITES (1 << 5)
+  109 #define FUSE_CAP_DONT_MASK  (1 << 6)
+  110 #define FUSE_CAP_SPLICE_WRITE   (1 << 7)
+  111 #define FUSE_CAP_SPLICE_MOVE    (1 << 8)
+  112 #define FUSE_CAP_SPLICE_READ    (1 << 9)
+  113 #define FUSE_CAP_FLOCK_LOCKS    (1 << 10)
+  114 #define FUSE_CAP_IOCTL_DIR  (1 << 11)
+  115 
+  126 #define FUSE_IOCTL_COMPAT   (1 << 0)
+  127 #define FUSE_IOCTL_UNRESTRICTED (1 << 1)
+  128 #define FUSE_IOCTL_RETRY    (1 << 2)
+  129 #define FUSE_IOCTL_DIR      (1 << 4)
+  130 
+  131 #define FUSE_IOCTL_MAX_IOV  256
+  132 
+  140 struct fuse_conn_info {
+  144     unsigned proto_major;
+  145 
+  149     unsigned proto_minor;
+  150 
+  154     unsigned async_read;
+  155 
+  159     unsigned max_write;
+  160 
+  164     unsigned max_readahead;
+  165 
+  169     unsigned capable;
+  170 
+  174     unsigned want;
+  175 
+  179     unsigned max_background;
+  180 
+  184     unsigned congestion_threshold;
+  185 
+  189     unsigned reserved[23];
+  190 };
+  191 
+  192 struct fuse_session;
+  193 struct fuse_chan;
+  194 struct fuse_pollhandle;
+  195 
+  206 struct fuse_chan *fuse_mount(const char *mountpoint, struct fuse_args *args);
+  207 
+  214 void fuse_unmount(const char *mountpoint, struct fuse_chan *ch);
+  215 
+  237 int fuse_parse_cmdline(struct fuse_args *args, char **mountpoint,
+  238                int *multithreaded, int *foreground);
+  239 
+  246 int fuse_daemonize(int foreground);
+  247 
+  253 int fuse_version(void);
+  254 
+  260 void fuse_pollhandle_destroy(struct fuse_pollhandle *ph);
+  261 
+  262 /* ----------------------------------------------------------- *
+  263  * Data buffer                             *
+  264  * ----------------------------------------------------------- */
+  265 
+  269 enum fuse_buf_flags {
+  276     FUSE_BUF_IS_FD      = (1 << 1),
+  277 
+  285     FUSE_BUF_FD_SEEK    = (1 << 2),
+  286 
+  294     FUSE_BUF_FD_RETRY   = (1 << 3),
+  295 };
+  296 
+  300 enum fuse_buf_copy_flags {
+  310     FUSE_BUF_NO_SPLICE  = (1 << 1),
+  311 
+  318     FUSE_BUF_FORCE_SPLICE   = (1 << 2),
+  319 
+  327     FUSE_BUF_SPLICE_MOVE    = (1 << 3),
+  328 
+  336     FUSE_BUF_SPLICE_NONBLOCK= (1 << 4),
+  337L_H_)
+E
+[INFO] 19:39:35:986 Cliente/(5751:5759): 4151
+[INFO] 19:39:35:987 Cliente/(5751:5759): 0 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 19:39:37:7 Cliente/(5751:5763): ATRIBUTOS: /pruebilla.txt
+[INFO] 19:39:37:9 Cliente/(5751:5762): ABRIR DIRECTORIO: /pruebilla.txt
+[INFO] 19:39:39:8 Cliente/(5751:5758): ATRIBUTOS: /pruebilla.txt
+[INFO] 19:39:39:9 Cliente/(5751:5759): ABRIR DIRECTORIO: /pruebilla.txt
+[INFO] 19:39:42:115 Cliente/(5751:5763): ATRIBUTOS: /pruebilla.txt
+[INFO] 19:39:42:116 Cliente/(5751:5762): ABRIR DIRECTORIO: /pruebilla.txt
+[INFO] 19:39:43:126 Cliente/(5751:5763): ATRIBUTOS: /pruebilla.txt
+[INFO] 19:39:43:127 Cliente/(5751:5762): ABRIR DIRECTORIO: /pruebilla.txt
+[INFO] 19:39:44:762 Cliente/(5751:5758): ATRIBUTOS: /.directory
+[INFO] 19:39:45:562 Cliente/(5751:5759): ATRIBUTOS: /pruebilla.txt
+[INFO] 19:39:45:725 Cliente/(5751:5763): ABRIR ARCHIVO: /pruebilla.txt
+[INFO] 19:39:45:728 Cliente/(5751:5762): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /pruebilla.txt
+[INFO] 19:39:45:728 Cliente/(5751:5762): LECTURA COMPLETADA CON:       4096 LEIDOS
+[INFO] 19:39:45:729 Cliente/(5751:5759): ABRIR DIRECTORIO: /pruebilla.txt
+[INFO] 19:39:45:732 Cliente/(5751:5763): ABRIR ARCHIVO: /pruebilla.txt
+[INFO] 19:39:45:734 Cliente/(5751:5762): ATRIBUTOS: /pruebilla.txt
+[INFO] 19:39:45:781 Cliente/(5751:5759): ABRIR DIRECTORIO: /pruebilla.txt
+[INFO] 19:39:51:194 Cliente/(5751:5763): ATRIBUTOS: /Pokemons
+[INFO] 19:39:51:241 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons
+[INFO] 19:39:51:241 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/.directory
+[INFO] 19:39:51:249 Cliente/(5751:5759): LISTAR: /Pokemons
+[INFO] 19:39:51:302 Cliente/(5751:5762): LISTAR: /
+[INFO] 19:39:51:309 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/001.txt
+[INFO] 19:39:51:310 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/001.txt
+[INFO] 19:39:51:311 Cliente/(5751:5762): ATRIBUTOS: /Pokemons
+[INFO] 19:39:51:385 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/002.txt
+[INFO] 19:39:51:386 Cliente/(5751:5763): ATRIBUTOS: /Celadon City
+[INFO] 19:39:51:388 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/002.txt
+[INFO] 19:39:51:389 Cliente/(5751:5762): ATRIBUTOS: /pruebilla.txt
+[INFO] 19:39:51:390 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/003.txt
+[INFO] 19:39:51:390 Cliente/(5751:5763): ATRIBUTOS: /Cerulean City
+[INFO] 19:39:51:396 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/003.txt
+[INFO] 19:39:51:404 Cliente/(5751:5762): ATRIBUTOS: /Fuchsia City
+[INFO] 19:39:51:405 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/004.txt
+[INFO] 19:39:51:407 Cliente/(5751:5763): ATRIBUTOS: /Lavender Town
+[INFO] 19:39:51:426 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/004.txt
+[INFO] 19:39:51:427 Cliente/(5751:5762): ATRIBUTOS: /Pallet Town
+[INFO] 19:39:51:435 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/005.txt
+[INFO] 19:39:51:436 Cliente/(5751:5763): ATRIBUTOS: /Pewter City
+[INFO] 19:39:51:438 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/005.txt
+[INFO] 19:39:51:439 Cliente/(5751:5762): ATRIBUTOS: /Saffron City
+[INFO] 19:39:51:440 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/006.txt
+[INFO] 19:39:51:440 Cliente/(5751:5763): ATRIBUTOS: /Vermilion City
+[INFO] 19:39:51:465 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/006.txt
+[INFO] 19:39:51:467 Cliente/(5751:5762): ATRIBUTOS: /Viridian City
+[INFO] 19:39:51:469 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/007.txt
+[INFO] 19:39:51:470 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/007.txt
+[INFO] 19:39:51:470 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/008.txt
+[INFO] 19:39:51:471 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/008.txt
+[INFO] 19:39:51:471 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/009.txt
+[INFO] 19:39:51:471 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/009.txt
+[INFO] 19:39:51:472 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/010.txt
+[INFO] 19:39:51:472 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/010.txt
+[INFO] 19:39:51:472 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/011.txt
+[INFO] 19:39:51:473 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/011.txt
+[INFO] 19:39:51:474 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/012.txt
+[INFO] 19:39:51:474 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/012.txt
+[INFO] 19:39:51:474 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/013.txt
+[INFO] 19:39:51:475 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/013.txt
+[INFO] 19:39:51:475 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/014.txt
+[INFO] 19:39:51:475 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/014.txt
+[INFO] 19:39:51:476 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/015.txt
+[INFO] 19:39:51:476 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/015.txt
+[INFO] 19:39:51:477 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/016.txt
+[INFO] 19:39:51:477 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/016.txt
+[INFO] 19:39:51:477 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/017.txt
+[INFO] 19:39:51:478 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/017.txt
+[INFO] 19:39:51:478 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/018.txt
+[INFO] 19:39:51:478 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/018.txt
+[INFO] 19:39:51:479 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/019.txt
+[INFO] 19:39:51:479 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/019.txt
+[INFO] 19:39:51:479 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/020.txt
+[INFO] 19:39:51:480 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/020.txt
+[INFO] 19:39:51:480 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/021.txt
+[INFO] 19:39:51:481 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/021.txt
+[INFO] 19:39:51:481 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/022.txt
+[INFO] 19:39:51:481 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/022.txt
+[INFO] 19:39:51:482 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/023.txt
+[INFO] 19:39:51:483 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/023.txt
+[INFO] 19:39:51:488 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/024.txt
+[INFO] 19:39:51:488 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/024.txt
+[INFO] 19:39:51:488 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/025.txt
+[INFO] 19:39:51:488 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/025.txt
+[INFO] 19:39:51:489 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/026.txt
+[INFO] 19:39:51:489 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/026.txt
+[INFO] 19:39:51:489 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/027.txt
+[INFO] 19:39:51:489 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/027.txt
+[INFO] 19:39:51:490 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/028.txt
+[INFO] 19:39:51:490 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/028.txt
+[INFO] 19:39:51:490 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/029.txt
+[INFO] 19:39:51:490 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/029.txt
+[INFO] 19:39:51:491 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/030.txt
+[INFO] 19:39:51:491 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/030.txt
+[INFO] 19:39:51:492 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/031.txt
+[INFO] 19:39:51:493 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/031.txt
+[INFO] 19:39:51:493 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/032.txt
+[INFO] 19:39:51:494 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/032.txt
+[INFO] 19:39:51:494 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/033.txt
+[INFO] 19:39:51:494 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/033.txt
+[INFO] 19:39:51:499 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/034.txt
+[INFO] 19:39:51:499 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/034.txt
+[INFO] 19:39:51:499 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/035.txt
+[INFO] 19:39:51:500 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/035.txt
+[INFO] 19:39:51:500 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/036.txt
+[INFO] 19:39:51:500 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/036.txt
+[INFO] 19:39:51:501 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/037.txt
+[INFO] 19:39:51:502 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/037.txt
+[INFO] 19:39:51:502 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/038.txt
+[INFO] 19:39:51:503 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/038.txt
+[INFO] 19:39:51:503 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/039.txt
+[INFO] 19:39:51:504 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/039.txt
+[INFO] 19:39:51:504 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/040.txt
+[INFO] 19:39:51:504 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/040.txt
+[INFO] 19:39:51:506 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/041.txt
+[INFO] 19:39:51:507 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/041.txt
+[INFO] 19:39:51:507 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/042.txt
+[INFO] 19:39:51:507 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/042.txt
+[INFO] 19:39:51:508 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/043.txt
+[INFO] 19:39:51:508 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/043.txt
+[INFO] 19:39:51:508 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/044.txt
+[INFO] 19:39:51:509 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/044.txt
+[INFO] 19:39:51:509 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/045.txt
+[INFO] 19:39:51:509 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/045.txt
+[INFO] 19:39:51:510 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/046.txt
+[INFO] 19:39:51:510 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/046.txt
+[INFO] 19:39:51:511 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/047.txt
+[INFO] 19:39:51:511 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/047.txt
+[INFO] 19:39:51:512 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/048.txt
+[INFO] 19:39:51:514 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/048.txt
+[INFO] 19:39:51:520 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/049.txt
+[INFO] 19:39:51:521 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/049.txt
+[INFO] 19:39:51:521 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/050.txt
+[INFO] 19:39:51:522 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/050.txt
+[INFO] 19:39:51:522 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/051.txt
+[INFO] 19:39:51:522 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/051.txt
+[INFO] 19:39:51:522 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/052.txt
+[INFO] 19:39:51:523 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/052.txt
+[INFO] 19:39:51:523 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/053.txt
+[INFO] 19:39:51:523 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/053.txt
+[INFO] 19:39:51:524 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/054.txt
+[INFO] 19:39:51:524 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/054.txt
+[INFO] 19:39:51:525 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/055.txt
+[INFO] 19:39:51:526 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/055.txt
+[INFO] 19:39:51:532 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/056.txt
+[INFO] 19:39:51:532 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/056.txt
+[INFO] 19:39:51:533 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/057.txt
+[INFO] 19:39:51:533 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/057.txt
+[INFO] 19:39:51:534 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/058.txt
+[INFO] 19:39:51:534 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/058.txt
+[INFO] 19:39:51:535 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/059.txt
+[INFO] 19:39:51:535 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/059.txt
+[INFO] 19:39:51:537 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/060.txt
+[INFO] 19:39:51:538 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/060.txt
+[INFO] 19:39:51:538 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/061.txt
+[INFO] 19:39:51:538 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/061.txt
+[INFO] 19:39:51:539 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/062.txt
+[INFO] 19:39:51:539 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/062.txt
+[INFO] 19:39:51:541 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/063.txt
+[INFO] 19:39:51:542 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/063.txt
+[INFO] 19:39:51:543 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/064.txt
+[INFO] 19:39:51:543 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/064.txt
+[INFO] 19:39:51:544 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/065.txt
+[INFO] 19:39:51:544 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/065.txt
+[INFO] 19:39:51:545 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/066.txt
+[INFO] 19:39:51:546 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/066.txt
+[INFO] 19:39:51:547 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/067.txt
+[INFO] 19:39:51:551 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/067.txt
+[INFO] 19:39:51:552 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/068.txt
+[INFO] 19:39:51:553 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/068.txt
+[INFO] 19:39:51:554 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/069.txt
+[INFO] 19:39:51:555 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/069.txt
+[INFO] 19:39:51:555 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/070.txt
+[INFO] 19:39:51:556 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/070.txt
+[INFO] 19:39:51:557 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/071.txt
+[INFO] 19:39:51:562 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/071.txt
+[INFO] 19:39:51:563 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/072.txt
+[INFO] 19:39:51:564 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/072.txt
+[INFO] 19:39:51:564 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/073.txt
+[INFO] 19:39:51:565 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/073.txt
+[INFO] 19:39:51:567 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/074.txt
+[INFO] 19:39:51:568 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/074.txt
+[INFO] 19:39:51:568 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/075.txt
+[INFO] 19:39:51:569 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/075.txt
+[INFO] 19:39:51:569 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/076.txt
+[INFO] 19:39:51:571 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/076.txt
+[INFO] 19:39:51:571 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/077.txt
+[INFO] 19:39:51:571 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/077.txt
+[INFO] 19:39:51:572 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/078.txt
+[INFO] 19:39:51:574 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/078.txt
+[INFO] 19:39:51:575 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/079.txt
+[INFO] 19:39:51:576 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/079.txt
+[INFO] 19:39:51:577 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/080.txt
+[INFO] 19:39:51:582 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/080.txt
+[INFO] 19:39:51:582 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/081.txt
+[INFO] 19:39:51:583 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/081.txt
+[INFO] 19:39:51:584 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/082.txt
+[INFO] 19:39:51:586 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/082.txt
+[INFO] 19:39:51:587 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/083.txt
+[INFO] 19:39:51:588 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/083.txt
+[INFO] 19:39:51:592 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/084.txt
+[INFO] 19:39:51:593 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/084.txt
+[INFO] 19:39:51:596 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/085.txt
+[INFO] 19:39:51:597 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/085.txt
+[INFO] 19:39:51:598 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/086.txt
+[INFO] 19:39:51:598 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/086.txt
+[INFO] 19:39:51:599 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/087.txt
+[INFO] 19:39:51:599 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/087.txt
+[INFO] 19:39:51:600 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/088.txt
+[INFO] 19:39:51:601 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/088.txt
+[INFO] 19:39:51:601 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/089.txt
+[INFO] 19:39:51:602 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/089.txt
+[INFO] 19:39:51:603 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/090.txt
+[INFO] 19:39:51:604 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/090.txt
+[INFO] 19:39:51:606 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/091.txt
+[INFO] 19:39:51:607 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/091.txt
+[INFO] 19:39:51:608 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/092.txt
+[INFO] 19:39:51:609 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/092.txt
+[INFO] 19:39:51:612 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/093.txt
+[INFO] 19:39:51:613 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/093.txt
+[INFO] 19:39:51:615 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/094.txt
+[INFO] 19:39:51:621 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/094.txt
+[INFO] 19:39:51:622 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/095.txt
+[INFO] 19:39:51:622 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/095.txt
+[INFO] 19:39:51:623 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/096.txt
+[INFO] 19:39:51:623 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/096.txt
+[INFO] 19:39:51:626 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/097.txt
+[INFO] 19:39:51:627 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/097.txt
+[INFO] 19:39:51:627 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/098.txt
+[INFO] 19:39:51:628 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/098.txt
+[INFO] 19:39:51:628 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/099.txt
+[INFO] 19:39:51:629 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/099.txt
+[INFO] 19:39:51:629 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/100.txt
+[INFO] 19:39:51:630 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/100.txt
+[INFO] 19:39:51:630 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/101.txt
+[INFO] 19:39:51:631 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/101.txt
+[INFO] 19:39:51:631 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/102.txt
+[INFO] 19:39:51:632 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/102.txt
+[INFO] 19:39:51:633 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/103.txt
+[INFO] 19:39:51:634 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/103.txt
+[INFO] 19:39:51:637 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/104.txt
+[INFO] 19:39:51:640 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/104.txt
+[INFO] 19:39:51:641 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/105.txt
+[INFO] 19:39:51:642 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/105.txt
+[INFO] 19:39:51:644 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/106.txt
+[INFO] 19:39:51:648 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/106.txt
+[INFO] 19:39:51:649 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/107.txt
+[INFO] 19:39:51:650 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/107.txt
+[INFO] 19:39:51:651 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/108.txt
+[INFO] 19:39:51:652 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/108.txt
+[INFO] 19:39:51:654 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/109.txt
+[INFO] 19:39:51:655 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/109.txt
+[INFO] 19:39:51:656 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/110.txt
+[INFO] 19:39:51:657 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/110.txt
+[INFO] 19:39:51:657 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/111.txt
+[INFO] 19:39:51:658 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/111.txt
+[INFO] 19:39:51:659 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/112.txt
+[INFO] 19:39:51:659 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/112.txt
+[INFO] 19:39:51:660 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/113.txt
+[INFO] 19:39:51:661 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/113.txt
+[INFO] 19:39:51:661 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/114.txt
+[INFO] 19:39:51:662 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/114.txt
+[INFO] 19:39:51:663 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/115.txt
+[INFO] 19:39:51:664 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/115.txt
+[INFO] 19:39:51:665 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/116.txt
+[INFO] 19:39:51:676 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/116.txt
+[INFO] 19:39:51:677 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/117.txt
+[INFO] 19:39:51:678 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/117.txt
+[INFO] 19:39:51:679 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/118.txt
+[INFO] 19:39:51:679 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/118.txt
+[INFO] 19:39:51:680 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/119.txt
+[INFO] 19:39:51:680 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/119.txt
+[INFO] 19:39:51:681 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/120.txt
+[INFO] 19:39:51:683 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/120.txt
+[INFO] 19:39:51:683 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/121.txt
+[INFO] 19:39:51:684 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/121.txt
+[INFO] 19:39:51:685 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/122.txt
+[INFO] 19:39:51:687 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/122.txt
+[INFO] 19:39:51:688 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/123.txt
+[INFO] 19:39:51:689 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/123.txt
+[INFO] 19:39:51:690 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/124.txt
+[INFO] 19:39:51:691 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/124.txt
+[INFO] 19:39:51:691 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/125.txt
+[INFO] 19:39:51:692 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/125.txt
+[INFO] 19:39:51:693 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/126.txt
+[INFO] 19:39:51:694 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/126.txt
+[INFO] 19:39:51:695 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/127.txt
+[INFO] 19:39:51:701 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/127.txt
+[INFO] 19:39:51:705 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/128.txt
+[INFO] 19:39:51:707 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/128.txt
+[INFO] 19:39:51:708 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/129.txt
+[INFO] 19:39:51:709 Cliente/(5751:5763): ABRIR DIRECTORIO: /Pokemons/129.txt
+[INFO] 19:39:51:709 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/130.txt
+[INFO] 19:39:51:710 Cliente/(5751:5758): ABRIR DIRECTORIO: /Pokemons/130.txt
+[INFO] 19:39:51:712 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/131.txt
+[INFO] 19:39:51:714 Cliente/(5751:5763): ABRIR DIRECTORIO: /Pokemons/131.txt
+[INFO] 19:39:51:715 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/132.txt
+[INFO] 19:39:51:716 Cliente/(5751:5758): ABRIR DIRECTORIO: /Pokemons/132.txt
+[INFO] 19:39:51:716 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/133.txt
+[INFO] 19:39:51:717 Cliente/(5751:5763): ABRIR DIRECTORIO: /Pokemons/133.txt
+[INFO] 19:39:51:718 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/134.txt
+[INFO] 19:39:51:720 Cliente/(5751:5758): ABRIR DIRECTORIO: /Pokemons/134.txt
+[INFO] 19:39:51:721 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/special.txt
+[INFO] 19:39:51:722 Cliente/(5751:5763): ABRIR DIRECTORIO: /Pokemons/special.txt
+[INFO] 19:39:52:381 Cliente/(5751:5762): ATRIBUTOS: /Pokemons
+[INFO] 19:39:52:600 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/007.txt
+[INFO] 19:39:52:602 Cliente/(5751:5759): ABRIR ARCHIVO: /Pokemons/007.txt
+[INFO] 19:39:52:602 Cliente/(5751:5758): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /Pokemons/007.txt
+[INFO] 19:39:52:603 Cliente/(5751:5758): LECTURA COMPLETADA CON:       1694 LEIDOS
+[INFO] 19:39:52:604 Cliente/(5751:5763): ABRIR DIRECTORIO: /Pokemons/007.txt
+[INFO] 19:39:52:605 Cliente/(5751:5759): ABRIR ARCHIVO: /Pokemons/007.txt
+[INFO] 19:39:52:608 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/007.txt
+[INFO] 19:39:53:398 Cliente/(5751:5763): ABRIR DIRECTORIO: /Pokemons/007.txt
+[INFO] 19:39:54:889 Cliente/(5751:5759): ATRIBUTOS: /Pokemons
+[INFO] 19:39:54:959 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/007.txt
+[INFO] 19:39:54:959 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/007.txt
+[INFO] 19:39:54:960 Cliente/(5751:5763): ABRIR ARCHIVO: /Pokemons/007.txt
+[INFO] 19:39:54:960 Cliente/(5751:5758): ABRIR DIRECTORIO: /Pokemons/007.txt
+[INFO] 19:39:55:906 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/007.txt
+[INFO] 19:39:58:854 Cliente/(5751:5762): ATRIBUTOS: /Pokemons
+[INFO] 19:39:58:901 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/007.txt
+[INFO] 19:39:58:901 Cliente/(5751:5758): ABRIR ARCHIVO: /Pokemons/007.txt
+[INFO] 19:39:58:902 Cliente/(5751:5762): ABRIR ARCHIVO: /Pokemons/007.txt
+[INFO] 19:39:58:902 Cliente/(5751:5759): TRUNCATE: /Pokemons/007.txt SIZE: 0
+[INFO] 19:39:58:902 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/007.txt
+[INFO] 19:39:58:903 Cliente/(5751:5763): ABRIR DIRECTORIO: /Pokemons/007.txt
+[INFO] 19:39:58:903 Cliente/(5751:5758): ABRIR ARCHIVO: /Pokemons/007.txt
+[INFO] 19:39:58:903 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/007.txt
+[INFO] 19:39:58:904 Cliente/(5751:5759):  8        17/Pokemons/007.txt         4         0hola
+[INFO] 19:39:58:904 Cliente/(5751:5759): 53
+[INFO] 19:39:58:904 Cliente/(5751:5759): 0 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 19:39:58:904 Cliente/(5751:5758): ABRIR DIRECTORIO: /Pokemons/007.txt
+[INFO] 19:39:58:905 Cliente/(5751:5763): ABRIR ARCHIVO: /Pokemons/007.txt
+[INFO] 19:39:58:905 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/007.txt
+[INFO] 19:39:58:906 Cliente/(5751:5758): ABRIR DIRECTORIO: /Pokemons/007.txt
+[INFO] 19:39:59:874 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/007.txt
+[INFO] 19:40:01:184 Cliente/(5751:5763): ATRIBUTOS: /Pokemons
+[INFO] 19:40:01:235 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/006.txt
+[INFO] 19:40:01:382 Cliente/(5751:5758): ABRIR ARCHIVO: /Pokemons/006.txt
+[INFO] 19:40:01:385 Cliente/(5751:5759): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /Pokemons/006.txt
+[INFO] 19:40:01:385 Cliente/(5751:5759): LECTURA COMPLETADA CON:       2143 LEIDOS
+[INFO] 19:40:01:386 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/006.txt
+[INFO] 19:40:01:387 Cliente/(5751:5758): ABRIR ARCHIVO: /Pokemons/006.txt
+[INFO] 19:40:01:390 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/006.txt
+[INFO] 19:40:02:202 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/006.txt
+[INFO] 19:40:03:115 Cliente/(5751:5758): ATRIBUTOS: /Pokemons
+[INFO] 19:40:03:185 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/007.txt
+[INFO] 19:40:03:334 Cliente/(5751:5763): ABRIR ARCHIVO: /Pokemons/007.txt
+[INFO] 19:40:03:336 Cliente/(5751:5762): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /Pokemons/007.txt
+[INFO] 19:40:03:337 Cliente/(5751:5762): LECTURA COMPLETADA CON:          4 LEIDOS
+[INFO] 19:40:03:337 Cliente/(5751:5759): ABRIR DIRECTORIO: /Pokemons/007.txt
+[INFO] 19:40:03:339 Cliente/(5751:5763): ABRIR ARCHIVO: /Pokemons/007.txt
+[INFO] 19:40:03:339 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/007.txt
+[INFO] 19:40:04:276 Cliente/(5751:5759): ATRIBUTOS: /Pokemons
+[INFO] 19:40:04:358 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/007.txt
+[INFO] 19:40:04:358 Cliente/(5751:5762): ABRIR DIRECTORIO: /Pokemons/007.txt
+[INFO] 20:17:28:94 Cliente/(5751:5758): ATRIBUTOS: /
+[INFO] 20:17:28:317 Cliente/(5751:5763): LISTAR: /
+[INFO] 20:17:28:326 Cliente/(5751:5759): ATRIBUTOS: /Pokemons
+[INFO] 20:17:28:431 Cliente/(5751:5763): ATRIBUTOS: /Celadon City
+[INFO] 20:17:28:434 Cliente/(5751:5762): ATRIBUTOS: /pruebilla.txt
+[INFO] 20:17:28:436 Cliente/(5751:5758): ATRIBUTOS: /Cerulean City
+[INFO] 20:17:28:451 Cliente/(5751:5759): ATRIBUTOS: /Fuchsia City
+[INFO] 20:17:28:454 Cliente/(5751:5763): ATRIBUTOS: /Lavender Town
+[INFO] 20:17:28:473 Cliente/(5751:5762): ATRIBUTOS: /Pallet Town
+[INFO] 20:17:28:487 Cliente/(5751:5758): ATRIBUTOS: /Pewter City
+[INFO] 20:17:28:493 Cliente/(5751:5759): ATRIBUTOS: /Saffron City
+[INFO] 20:17:28:496 Cliente/(5751:5763): ATRIBUTOS: /Vermilion City
+[INFO] 20:17:28:538 Cliente/(5751:5762): ATRIBUTOS: /Viridian City
+[INFO] 20:17:28:615 Cliente/(5751:5759): LISTAR: /Celadon City
+[INFO] 20:17:28:616 Cliente/(5751:5758): LISTAR: /Cerulean City
+[INFO] 20:17:28:617 Cliente/(5751:5762): ATRIBUTOS: /Cerulean City/Pokemons
+[INFO] 20:17:28:624 Cliente/(5751:5759): LISTAR: /Cerulean City/Pokemons
+[INFO] 20:17:28:634 Cliente/(5751:5758): ATRIBUTOS: /Cerulean City/Pokemons/025.txt
+[INFO] 20:17:28:637 Cliente/(5751:5759): ATRIBUTOS: /Cerulean City/Pokemons/082.txt
+[INFO] 20:17:28:638 Cliente/(5751:5763): ATRIBUTOS: /Cerulean City/Pokemons/105.txt
+[INFO] 20:17:28:646 Cliente/(5751:5758): LISTAR: /Fuchsia City
+[INFO] 20:17:28:648 Cliente/(5751:5762): LISTAR: /Lavender Town
+[INFO] 20:17:28:649 Cliente/(5751:5763): ATRIBUTOS: /Lavender Town/Pokemons
+[INFO] 20:17:28:662 Cliente/(5751:5758): LISTAR: /Lavender Town/Pokemons
+[INFO] 20:17:28:666 Cliente/(5751:5762): ATRIBUTOS: /Lavender Town/Pokemons/028.txt
+[INFO] 20:17:28:674 Cliente/(5751:5758): ATRIBUTOS: /Lavender Town/Pokemons/052.txt
+[INFO] 20:17:28:676 Cliente/(5751:5759): ATRIBUTOS: /Lavender Town/Pokemons/056.txt
+[INFO] 20:17:28:681 Cliente/(5751:5762): LISTAR: /Pallet Town
+[INFO] 20:17:28:683 Cliente/(5751:5763): ATRIBUTOS: /Pallet Town/Pokemons
+[INFO] 20:17:28:700 Cliente/(5751:5758): LISTAR: /Pallet Town/Pokemons
+[INFO] 20:17:28:704 Cliente/(5751:5762): ATRIBUTOS: /Pallet Town/Pokemons/Desafios
+[INFO] 20:17:28:713 Cliente/(5751:5759): LISTAR: /Pallet Town/Pokemons/Desafios
+[INFO] 20:17:28:716 Cliente/(5751:5758): ATRIBUTOS: /Pallet Town/Pokemons/Desafios/special.mp4
+[INFO] 20:17:28:723 Cliente/(5751:5763): LISTAR: /Pewter City
+[INFO] 20:17:28:727 Cliente/(5751:5759): LISTAR: /Pokemons
+[INFO] 20:17:28:788 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/001.txt
+[INFO] 20:17:28:789 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/002.txt
+[INFO] 20:17:28:789 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/003.txt
+[INFO] 20:17:28:790 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/004.txt
+[INFO] 20:17:28:790 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/005.txt
+[INFO] 20:17:28:790 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/006.txt
+[INFO] 20:17:28:791 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/007.txt
+[INFO] 20:17:28:791 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/008.txt
+[INFO] 20:17:28:791 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/009.txt
+[INFO] 20:17:28:792 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/010.txt
+[INFO] 20:17:28:792 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/011.txt
+[INFO] 20:17:28:792 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/012.txt
+[INFO] 20:17:28:792 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/013.txt
+[INFO] 20:17:28:793 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/014.txt
+[INFO] 20:17:28:793 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/015.txt
+[INFO] 20:17:28:793 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/016.txt
+[INFO] 20:17:28:794 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/017.txt
+[INFO] 20:17:28:794 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/018.txt
+[INFO] 20:17:28:795 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/019.txt
+[INFO] 20:17:28:796 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/020.txt
+[INFO] 20:17:28:796 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/021.txt
+[INFO] 20:17:28:797 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/022.txt
+[INFO] 20:17:28:797 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/023.txt
+[INFO] 20:17:28:797 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/024.txt
+[INFO] 20:17:28:798 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/025.txt
+[INFO] 20:17:28:798 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/026.txt
+[INFO] 20:17:28:799 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/027.txt
+[INFO] 20:17:28:799 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/028.txt
+[INFO] 20:17:28:799 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/029.txt
+[INFO] 20:17:28:800 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/030.txt
+[INFO] 20:17:28:801 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/031.txt
+[INFO] 20:17:28:801 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/032.txt
+[INFO] 20:17:28:802 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/033.txt
+[INFO] 20:17:28:802 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/034.txt
+[INFO] 20:17:28:803 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/035.txt
+[INFO] 20:17:28:804 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/036.txt
+[INFO] 20:17:28:805 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/037.txt
+[INFO] 20:17:28:805 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/038.txt
+[INFO] 20:17:28:806 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/039.txt
+[INFO] 20:17:28:807 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/040.txt
+[INFO] 20:17:28:808 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/041.txt
+[INFO] 20:17:28:809 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/042.txt
+[INFO] 20:17:28:809 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/043.txt
+[INFO] 20:17:28:810 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/044.txt
+[INFO] 20:17:28:810 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/045.txt
+[INFO] 20:17:28:811 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/046.txt
+[INFO] 20:17:28:813 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/047.txt
+[INFO] 20:17:28:813 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/048.txt
+[INFO] 20:17:28:813 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/049.txt
+[INFO] 20:17:28:816 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/050.txt
+[INFO] 20:17:28:817 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/051.txt
+[INFO] 20:17:28:818 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/052.txt
+[INFO] 20:17:28:818 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/053.txt
+[INFO] 20:17:28:818 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/054.txt
+[INFO] 20:17:28:819 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/055.txt
+[INFO] 20:17:28:819 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/056.txt
+[INFO] 20:17:28:819 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/057.txt
+[INFO] 20:17:28:820 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/058.txt
+[INFO] 20:17:28:820 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/059.txt
+[INFO] 20:17:28:823 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/060.txt
+[INFO] 20:17:28:824 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/061.txt
+[INFO] 20:17:28:825 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/062.txt
+[INFO] 20:17:28:825 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/063.txt
+[INFO] 20:17:28:826 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/064.txt
+[INFO] 20:17:28:827 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/065.txt
+[INFO] 20:17:28:832 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/066.txt
+[INFO] 20:17:28:832 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/067.txt
+[INFO] 20:17:28:833 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/068.txt
+[INFO] 20:17:28:833 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/069.txt
+[INFO] 20:17:28:834 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/070.txt
+[INFO] 20:17:28:835 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/071.txt
+[INFO] 20:17:28:837 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/072.txt
+[INFO] 20:17:28:837 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/073.txt
+[INFO] 20:17:28:838 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/074.txt
+[INFO] 20:17:28:838 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/075.txt
+[INFO] 20:17:28:841 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/076.txt
+[INFO] 20:17:28:842 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/077.txt
+[INFO] 20:17:28:842 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/078.txt
+[INFO] 20:17:28:843 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/079.txt
+[INFO] 20:17:28:844 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/080.txt
+[INFO] 20:17:28:845 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/081.txt
+[INFO] 20:17:28:890 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/082.txt
+[INFO] 20:17:28:891 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/083.txt
+[INFO] 20:17:28:893 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/084.txt
+[INFO] 20:17:28:893 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/085.txt
+[INFO] 20:17:28:894 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/086.txt
+[INFO] 20:17:28:899 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/087.txt
+[INFO] 20:17:28:899 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/088.txt
+[INFO] 20:17:28:901 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/089.txt
+[INFO] 20:17:28:901 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/090.txt
+[INFO] 20:17:28:902 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/091.txt
+[INFO] 20:17:28:907 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/092.txt
+[INFO] 20:17:28:910 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/093.txt
+[INFO] 20:17:28:910 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/094.txt
+[INFO] 20:17:28:911 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/095.txt
+[INFO] 20:17:28:912 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/096.txt
+[INFO] 20:17:28:913 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/097.txt
+[INFO] 20:17:28:914 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/098.txt
+[INFO] 20:17:28:915 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/099.txt
+[INFO] 20:17:28:917 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/100.txt
+[INFO] 20:17:28:918 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/101.txt
+[INFO] 20:17:28:919 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/102.txt
+[INFO] 20:17:28:920 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/103.txt
+[INFO] 20:17:28:922 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/104.txt
+[INFO] 20:17:28:923 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/105.txt
+[INFO] 20:17:28:924 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/106.txt
+[INFO] 20:17:28:926 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/107.txt
+[INFO] 20:17:28:928 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/108.txt
+[INFO] 20:17:28:932 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/109.txt
+[INFO] 20:17:28:933 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/110.txt
+[INFO] 20:17:28:934 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/111.txt
+[INFO] 20:17:28:939 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/112.txt
+[INFO] 20:17:28:939 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/113.txt
+[INFO] 20:17:28:941 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/114.txt
+[INFO] 20:17:28:942 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/115.txt
+[INFO] 20:17:28:943 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/116.txt
+[INFO] 20:17:28:945 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/117.txt
+[INFO] 20:17:28:948 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/118.txt
+[INFO] 20:17:28:949 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/119.txt
+[INFO] 20:17:28:951 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/120.txt
+[INFO] 20:17:28:951 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/121.txt
+[INFO] 20:17:28:953 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/122.txt
+[INFO] 20:17:28:954 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/123.txt
+[INFO] 20:17:28:956 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/124.txt
+[INFO] 20:17:28:957 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/125.txt
+[INFO] 20:17:28:959 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/126.txt
+[INFO] 20:17:28:960 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/127.txt
+[INFO] 20:17:28:961 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/128.txt
+[INFO] 20:17:28:963 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/129.txt
+[INFO] 20:17:28:965 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/130.txt
+[INFO] 20:17:28:966 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/131.txt
+[INFO] 20:17:28:967 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/132.txt
+[INFO] 20:17:28:970 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/133.txt
+[INFO] 20:17:28:972 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/134.txt
+[INFO] 20:17:28:976 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/special.txt
+[INFO] 20:17:28:0 Cliente/(5751:5759): LISTAR: /Saffron City
+[INFO] 20:17:28:3 Cliente/(5751:5758): LISTAR: /Vermilion City
+[INFO] 20:17:29:5 Cliente/(5751:5762): ATRIBUTOS: /Vermilion City/Pokemons
+[INFO] 20:17:29:47 Cliente/(5751:5759): LISTAR: /Vermilion City/Pokemons
+[INFO] 20:17:29:66 Cliente/(5751:5758): ATRIBUTOS: /Vermilion City/Pokemons/001.txt
+[INFO] 20:17:29:70 Cliente/(5751:5759): ATRIBUTOS: /Vermilion City/Pokemons/002.txt
+[INFO] 20:17:29:76 Cliente/(5751:5763): ATRIBUTOS: /Vermilion City/Pokemons/003.txt
+[INFO] 20:17:29:83 Cliente/(5751:5762): ATRIBUTOS: /Vermilion City/Pokemons/004.txt
+[INFO] 20:17:29:85 Cliente/(5751:5758): ATRIBUTOS: /Vermilion City/Pokemons/005.txt
+[INFO] 20:17:29:89 Cliente/(5751:5759): ATRIBUTOS: /Vermilion City/Pokemons/006.txt
+[INFO] 20:17:29:95 Cliente/(5751:5763): ATRIBUTOS: /Vermilion City/Pokemons/007.txt
+[INFO] 20:17:29:98 Cliente/(5751:5762): ATRIBUTOS: /Vermilion City/Pokemons/008.txt
+[INFO] 20:17:29:107 Cliente/(5751:5758): ATRIBUTOS: /Vermilion City/Pokemons/009.txt
+[INFO] 20:17:29:111 Cliente/(5751:5759): ATRIBUTOS: /Vermilion City/Pokemons/082.txt
+[INFO] 20:17:29:114 Cliente/(5751:5763): ATRIBUTOS: /Vermilion City/Pokemons/083.txt
+[INFO] 20:17:29:118 Cliente/(5751:5762): ATRIBUTOS: /Vermilion City/Pokemons/086.txt
+[INFO] 20:17:29:122 Cliente/(5751:5758): ATRIBUTOS: /Vermilion City/Pokemons/109.txt
+[INFO] 20:17:29:129 Cliente/(5751:5759): ATRIBUTOS: /Vermilion City/Pokemons/114.txt
+[INFO] 20:17:29:132 Cliente/(5751:5762): LISTAR: /Viridian City
+[INFO] 20:17:29:249 Cliente/(5751:5759): ATRIBUTOS: /Viridian City
+[INFO] 20:17:29:251 Cliente/(5751:5762): LISTAR: /Viridian City
+[INFO] 20:17:29:252 Cliente/(5751:5759): ATRIBUTOS: /Vermilion City
+[INFO] 20:17:29:291 Cliente/(5751:5762): LISTAR: /Vermilion City
+[INFO] 20:17:29:300 Cliente/(5751:5763): ATRIBUTOS: /Vermilion City/Pokemons
+[INFO] 20:17:29:342 Cliente/(5751:5758): LISTAR: /Vermilion City/Pokemons
+[INFO] 20:17:29:369 Cliente/(5751:5762): ATRIBUTOS: /Saffron City
+[INFO] 20:17:29:372 Cliente/(5751:5759): LISTAR: /Saffron City
+[INFO] 20:17:29:373 Cliente/(5751:5762): ATRIBUTOS: /Pokemons
+[INFO] 20:17:29:466 Cliente/(5751:5758): ATRIBUTOS: /Pokemons
+[INFO] 20:17:29:563 Cliente/(5751:5763): LISTAR: /Pokemons
+[INFO] 20:17:29:622 Cliente/(5751:5763): ATRIBUTOS: /Pewter City
+[INFO] 20:17:29:624 Cliente/(5751:5758): LISTAR: /Pewter City
+[INFO] 20:17:29:625 Cliente/(5751:5763): ATRIBUTOS: /Pallet Town
+[INFO] 20:17:29:642 Cliente/(5751:5758): LISTAR: /Pallet Town
+[INFO] 20:17:29:647 Cliente/(5751:5762): ATRIBUTOS: /Pallet Town/Pokemons
+[INFO] 20:17:29:657 Cliente/(5751:5759): LISTAR: /Pallet Town/Pokemons
+[INFO] 20:17:29:664 Cliente/(5751:5758): ATRIBUTOS: /Pallet Town/Pokemons/Desafios
+[INFO] 20:17:29:678 Cliente/(5751:5759): ATRIBUTOS: /Lavender Town
+[INFO] 20:17:29:692 Cliente/(5751:5762): LISTAR: /Lavender Town
+[INFO] 20:17:29:699 Cliente/(5751:5763): ATRIBUTOS: /Lavender Town/Pokemons
+[INFO] 20:17:29:709 Cliente/(5751:5758): LISTAR: /Lavender Town/Pokemons
+[INFO] 20:17:29:720 Cliente/(5751:5762): ATRIBUTOS: /Lavender Town/Pokemons/028.txt
+[INFO] 20:17:29:728 Cliente/(5751:5758): ATRIBUTOS: /Lavender Town/Pokemons/052.txt
+[INFO] 20:17:29:736 Cliente/(5751:5759): ATRIBUTOS: /Lavender Town/Pokemons/056.txt
+[INFO] 20:17:29:742 Cliente/(5751:5763): ATRIBUTOS: /Fuchsia City
+[INFO] 20:17:29:744 Cliente/(5751:5758): LISTAR: /Fuchsia City
+[INFO] 20:17:29:745 Cliente/(5751:5763): ATRIBUTOS: /Cerulean City
+[INFO] 20:17:29:755 Cliente/(5751:5758): LISTAR: /Cerulean City
+[INFO] 20:17:29:766 Cliente/(5751:5762): ATRIBUTOS: /Cerulean City/Pokemons
+[INFO] 20:17:29:778 Cliente/(5751:5759): LISTAR: /Cerulean City/Pokemons
+[INFO] 20:17:29:782 Cliente/(5751:5758): ATRIBUTOS: /Cerulean City/Pokemons/025.txt
+[INFO] 20:17:29:786 Cliente/(5751:5759): ATRIBUTOS: /Cerulean City/Pokemons/082.txt
+[INFO] 20:17:29:792 Cliente/(5751:5763): ATRIBUTOS: /Cerulean City/Pokemons/105.txt
+[INFO] 20:17:29:798 Cliente/(5751:5762): ATRIBUTOS: /Celadon City
+[INFO] 20:17:29:802 Cliente/(5751:5759): LISTAR: /Celadon City
+[INFO] 20:17:29:805 Cliente/(5751:5762): ATRIBUTOS: /Pallet Town/Pokemons
+[INFO] 20:17:29:817 Cliente/(5751:5758): ATRIBUTOS: /Pallet Town/Pokemons/Desafios
+[INFO] 20:17:29:834 Cliente/(5751:5763): LISTAR: /Pallet Town/Pokemons/Desafios
+[INFO] 20:17:29:836 Cliente/(5751:5759): ATRIBUTOS: /Pallet Town/Pokemons/Desafios/special.mp4
+[INFO] 20:17:29:885 Cliente/(5751:5763): ABRIR ARCHIVO: /Pallet Town/Pokemons/Desafios/special.mp4
+[INFO] 20:17:29:887 Cliente/(5751:5762): LEER 16384 BYTES, OFFSET: 0 DEL PATH: /Pallet Town/Pokemons/Desafios/special.mp4
+[INFO] 20:17:31:960 Cliente/(5751:5762): LECTURA COMPLETADA CON:      16384 LEIDOS
+[INFO] 20:17:31:961 Cliente/(5751:5758): ABRIR ARCHIVO: /Pallet Town/Pokemons/Desafios/special.mp4
+[INFO] 20:17:31:965 Cliente/(5751:5763): ATRIBUTOS: /Pallet Town/Pokemons/Desafios/special.mp4
+[INFO] 20:17:31:968 Cliente/(5751:5762): LEER 16384 BYTES, OFFSET: 0 DEL PATH: /Pallet Town/Pokemons/Desafios/special.mp4
+[INFO] 20:17:34:238 Cliente/(5751:5762): LECTURA COMPLETADA CON:      16384 LEIDOS
+[INFO] 20:17:39:239 Cliente/(5751:5758): ATRIBUTOS: /
+[INFO] 20:17:39:446 Cliente/(5751:5762): LISTAR: /
+[INFO] 20:17:39:453 Cliente/(5751:5763): ATRIBUTOS: /Pokemons
+[INFO] 20:17:39:558 Cliente/(5751:5762): ATRIBUTOS: /Celadon City
+[INFO] 20:17:39:561 Cliente/(5751:5759): ATRIBUTOS: /pruebilla.txt
+[INFO] 20:17:39:563 Cliente/(5751:5758): ATRIBUTOS: /Cerulean City
+[INFO] 20:17:39:577 Cliente/(5751:5763): ATRIBUTOS: /Fuchsia City
+[INFO] 20:17:39:579 Cliente/(5751:5762): ATRIBUTOS: /Lavender Town
+[INFO] 20:17:39:597 Cliente/(5751:5759): ATRIBUTOS: /Pallet Town
+[INFO] 20:17:39:615 Cliente/(5751:5758): ATRIBUTOS: /Pewter City
+[INFO] 20:17:39:617 Cliente/(5751:5763): ATRIBUTOS: /Saffron City
+[INFO] 20:17:39:620 Cliente/(5751:5762): ATRIBUTOS: /Vermilion City
+[INFO] 20:17:39:665 Cliente/(5751:5759): ATRIBUTOS: /Viridian City
+[INFO] 20:17:39:668 Cliente/(5751:5763): LISTAR: /Celadon City
+[INFO] 20:17:39:669 Cliente/(5751:5758): LISTAR: /Cerulean City
+[INFO] 20:17:39:673 Cliente/(5751:5759): ATRIBUTOS: /Cerulean City/Pokemons
+[INFO] 20:17:39:678 Cliente/(5751:5763): LISTAR: /Cerulean City/Pokemons
+[INFO] 20:17:39:689 Cliente/(5751:5758): ATRIBUTOS: /Cerulean City/Pokemons/025.txt
+[INFO] 20:17:39:692 Cliente/(5751:5763): ATRIBUTOS: /Cerulean City/Pokemons/082.txt
+[INFO] 20:17:39:693 Cliente/(5751:5762): ATRIBUTOS: /Cerulean City/Pokemons/105.txt
+[INFO] 20:17:39:699 Cliente/(5751:5758): LISTAR: /Fuchsia City
+[INFO] 20:17:39:708 Cliente/(5751:5759): LISTAR: /Lavender Town
+[INFO] 20:17:39:711 Cliente/(5751:5762): ATRIBUTOS: /Lavender Town/Pokemons
+[INFO] 20:17:39:722 Cliente/(5751:5758): LISTAR: /Lavender Town/Pokemons
+[INFO] 20:17:39:725 Cliente/(5751:5759): ATRIBUTOS: /Lavender Town/Pokemons/028.txt
+[INFO] 20:17:39:729 Cliente/(5751:5758): ATRIBUTOS: /Lavender Town/Pokemons/052.txt
+[INFO] 20:17:39:736 Cliente/(5751:5763): ATRIBUTOS: /Lavender Town/Pokemons/056.txt
+[INFO] 20:17:39:738 Cliente/(5751:5759): LISTAR: /Pallet Town
+[INFO] 20:17:39:740 Cliente/(5751:5762): ATRIBUTOS: /Pallet Town/Pokemons
+[INFO] 20:17:39:755 Cliente/(5751:5758): LISTAR: /Pallet Town/Pokemons
+[INFO] 20:17:39:761 Cliente/(5751:5759): ATRIBUTOS: /Pallet Town/Pokemons/Desafios
+[INFO] 20:17:39:776 Cliente/(5751:5763): LISTAR: /Pallet Town/Pokemons/Desafios
+[INFO] 20:17:39:778 Cliente/(5751:5758): ATRIBUTOS: /Pallet Town/Pokemons/Desafios/special.mp4
+[INFO] 20:17:39:787 Cliente/(5751:5762): LISTAR: /Pewter City
+[INFO] 20:17:39:790 Cliente/(5751:5763): LISTAR: /Pokemons
+[INFO] 20:17:39:842 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/001.txt
+[INFO] 20:17:39:843 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/002.txt
+[INFO] 20:17:39:844 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/003.txt
+[INFO] 20:17:39:845 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/004.txt
+[INFO] 20:17:39:846 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/005.txt
+[INFO] 20:17:39:847 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/006.txt
+[INFO] 20:17:39:886 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/007.txt
+[INFO] 20:17:39:887 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/008.txt
+[INFO] 20:17:39:892 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/009.txt
+[INFO] 20:17:39:892 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/010.txt
+[INFO] 20:17:39:892 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/011.txt
+[INFO] 20:17:39:893 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/012.txt
+[INFO] 20:17:39:893 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/013.txt
+[INFO] 20:17:39:893 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/014.txt
+[INFO] 20:17:39:893 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/015.txt
+[INFO] 20:17:39:894 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/016.txt
+[INFO] 20:17:39:894 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/017.txt
+[INFO] 20:17:39:894 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/018.txt
+[INFO] 20:17:39:894 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/019.txt
+[INFO] 20:17:39:895 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/020.txt
+[INFO] 20:17:39:895 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/021.txt
+[INFO] 20:17:39:895 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/022.txt
+[INFO] 20:17:39:895 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/023.txt
+[INFO] 20:17:39:896 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/024.txt
+[INFO] 20:17:39:896 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/025.txt
+[INFO] 20:17:39:896 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/026.txt
+[INFO] 20:17:39:897 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/027.txt
+[INFO] 20:17:39:897 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/028.txt
+[INFO] 20:17:39:897 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/029.txt
+[INFO] 20:17:39:898 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/030.txt
+[INFO] 20:17:39:898 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/031.txt
+[INFO] 20:17:39:898 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/032.txt
+[INFO] 20:17:39:899 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/033.txt
+[INFO] 20:17:39:899 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/034.txt
+[INFO] 20:17:39:899 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/035.txt
+[INFO] 20:17:39:900 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/036.txt
+[INFO] 20:17:39:900 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/037.txt
+[INFO] 20:17:39:900 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/038.txt
+[INFO] 20:17:39:901 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/039.txt
+[INFO] 20:17:39:902 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/040.txt
+[INFO] 20:17:39:902 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/041.txt
+[INFO] 20:17:39:903 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/042.txt
+[INFO] 20:17:39:903 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/043.txt
+[INFO] 20:17:39:903 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/044.txt
+[INFO] 20:17:39:906 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/045.txt
+[INFO] 20:17:39:906 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/046.txt
+[INFO] 20:17:39:906 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/047.txt
+[INFO] 20:17:39:907 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/048.txt
+[INFO] 20:17:39:907 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/049.txt
+[INFO] 20:17:39:908 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/050.txt
+[INFO] 20:17:39:909 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/051.txt
+[INFO] 20:17:39:911 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/052.txt
+[INFO] 20:17:39:911 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/053.txt
+[INFO] 20:17:39:912 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/054.txt
+[INFO] 20:17:39:912 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/055.txt
+[INFO] 20:17:39:913 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/056.txt
+[INFO] 20:17:39:913 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/057.txt
+[INFO] 20:17:39:914 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/058.txt
+[INFO] 20:17:39:915 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/059.txt
+[INFO] 20:17:39:915 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/060.txt
+[INFO] 20:17:39:921 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/061.txt
+[INFO] 20:17:39:922 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/062.txt
+[INFO] 20:17:39:922 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/063.txt
+[INFO] 20:17:39:923 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/064.txt
+[INFO] 20:17:39:923 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/065.txt
+[INFO] 20:17:39:923 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/066.txt
+[INFO] 20:17:39:924 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/067.txt
+[INFO] 20:17:39:924 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/068.txt
+[INFO] 20:17:39:925 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/069.txt
+[INFO] 20:17:39:925 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/070.txt
+[INFO] 20:17:39:927 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/071.txt
+[INFO] 20:17:39:928 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/072.txt
+[INFO] 20:17:39:928 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/073.txt
+[INFO] 20:17:39:929 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/074.txt
+[INFO] 20:17:39:930 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/075.txt
+[INFO] 20:17:39:935 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/076.txt
+[INFO] 20:17:39:935 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/077.txt
+[INFO] 20:17:39:936 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/078.txt
+[INFO] 20:17:39:938 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/079.txt
+[INFO] 20:17:39:939 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/080.txt
+[INFO] 20:17:39:939 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/081.txt
+[INFO] 20:17:39:941 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/082.txt
+[INFO] 20:17:39:943 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/083.txt
+[INFO] 20:17:39:943 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/084.txt
+[INFO] 20:17:39:944 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/085.txt
+[INFO] 20:17:39:945 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/086.txt
+[INFO] 20:17:39:946 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/087.txt
+[INFO] 20:17:39:947 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/088.txt
+[INFO] 20:17:39:948 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/089.txt
+[INFO] 20:17:39:948 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/090.txt
+[INFO] 20:17:39:949 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/091.txt
+[INFO] 20:17:39:952 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/092.txt
+[INFO] 20:17:39:952 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/093.txt
+[INFO] 20:17:39:953 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/094.txt
+[INFO] 20:17:39:953 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/095.txt
+[INFO] 20:17:39:954 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/096.txt
+[INFO] 20:17:39:956 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/097.txt
+[INFO] 20:17:39:958 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/098.txt
+[INFO] 20:17:39:959 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/099.txt
+[INFO] 20:17:39:963 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/100.txt
+[INFO] 20:17:39:963 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/101.txt
+[INFO] 20:17:39:964 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/102.txt
+[INFO] 20:17:39:965 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/103.txt
+[INFO] 20:17:39:968 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/104.txt
+[INFO] 20:17:39:968 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/105.txt
+[INFO] 20:17:39:969 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/106.txt
+[INFO] 20:17:39:970 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/107.txt
+[INFO] 20:17:39:975 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/108.txt
+[INFO] 20:17:39:976 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/109.txt
+[INFO] 20:17:39:976 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/110.txt
+[INFO] 20:17:39:977 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/111.txt
+[INFO] 20:17:39:978 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/112.txt
+[INFO] 20:17:39:980 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/113.txt
+[INFO] 20:17:39:982 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/114.txt
+[INFO] 20:17:39:985 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/115.txt
+[INFO] 20:17:39:985 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/116.txt
+[INFO] 20:17:39:991 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/117.txt
+[INFO] 20:17:39:993 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/118.txt
+[INFO] 20:17:39:995 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/119.txt
+[INFO] 20:17:39:996 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/120.txt
+[INFO] 20:17:39:998 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/121.txt
+[INFO] 20:17:39:0 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/122.txt
+[INFO] 20:17:39:2 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/123.txt
+[INFO] 20:17:40:7 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/124.txt
+[INFO] 20:17:40:8 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/125.txt
+[INFO] 20:17:40:8 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/126.txt
+[INFO] 20:17:40:10 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/127.txt
+[INFO] 20:17:40:11 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/128.txt
+[INFO] 20:17:40:13 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/129.txt
+[INFO] 20:17:40:14 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/130.txt
+[INFO] 20:17:40:15 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/131.txt
+[INFO] 20:17:40:18 Cliente/(5751:5758): ATRIBUTOS: /Pokemons/132.txt
+[INFO] 20:17:40:23 Cliente/(5751:5763): ATRIBUTOS: /Pokemons/133.txt
+[INFO] 20:17:40:26 Cliente/(5751:5762): ATRIBUTOS: /Pokemons/134.txt
+[INFO] 20:17:40:27 Cliente/(5751:5759): ATRIBUTOS: /Pokemons/special.txt
+[INFO] 20:17:40:73 Cliente/(5751:5763): LISTAR: /Saffron City
+[INFO] 20:17:40:79 Cliente/(5751:5758): LISTAR: /Vermilion City
+[INFO] 20:17:40:80 Cliente/(5751:5759): ATRIBUTOS: /Vermilion City/Pokemons
+[INFO] 20:17:40:112 Cliente/(5751:5763): LISTAR: /Vermilion City/Pokemons
+[INFO] 20:17:40:133 Cliente/(5751:5758): ATRIBUTOS: /Vermilion City/Pokemons/001.txt
+[INFO] 20:17:40:140 Cliente/(5751:5763): ATRIBUTOS: /Vermilion City/Pokemons/002.txt
+[INFO] 20:17:40:147 Cliente/(5751:5762): ATRIBUTOS: /Vermilion City/Pokemons/003.txt
+[INFO] 20:17:40:151 Cliente/(5751:5759): ATRIBUTOS: /Vermilion City/Pokemons/004.txt
+[INFO] 20:17:40:154 Cliente/(5751:5758): ATRIBUTOS: /Vermilion City/Pokemons/005.txt
+[INFO] 20:17:40:158 Cliente/(5751:5763): ATRIBUTOS: /Vermilion City/Pokemons/006.txt
+[INFO] 20:17:40:164 Cliente/(5751:5762): ATRIBUTOS: /Vermilion City/Pokemons/007.txt
+[INFO] 20:17:40:166 Cliente/(5751:5759): ATRIBUTOS: /Vermilion City/Pokemons/008.txt
+[INFO] 20:17:40:172 Cliente/(5751:5758): ATRIBUTOS: /Vermilion City/Pokemons/009.txt
+[INFO] 20:17:40:179 Cliente/(5751:5763): ATRIBUTOS: /Vermilion City/Pokemons/082.txt
+[INFO] 20:17:40:186 Cliente/(5751:5762): ATRIBUTOS: /Vermilion City/Pokemons/083.txt
+[INFO] 20:17:40:189 Cliente/(5751:5759): ATRIBUTOS: /Vermilion City/Pokemons/086.txt
+[INFO] 20:17:40:194 Cliente/(5751:5758): ATRIBUTOS: /Vermilion City/Pokemons/109.txt
+[INFO] 20:17:40:197 Cliente/(5751:5763): ATRIBUTOS: /Vermilion City/Pokemons/114.txt
+[INFO] 20:17:40:204 Cliente/(5751:5759): LISTAR: /Viridian City
+[INFO] 20:17:40:366 Cliente/(5751:5763): ABRIR ARCHIVO: /Pallet Town/Pokemons/Desafios/special.mp4
+[INFO] 20:17:40:374 Cliente/(5751:5762): LEER 16384 BYTES, OFFSET: 0 DEL PATH: /Pallet Town/Pokemons/Desafios/special.mp4
+[INFO] 20:17:42:904 Cliente/(5751:5762): LECTURA COMPLETADA CON:      16384 LEIDOS
+[INFO] 20:59:32:871 Cliente/(6232:6239): ATRIBUTOS: /.Trash
+[INFO] 20:59:32:880 Cliente/(6232:6239): ATRIBUTOS: /.Trash-1000
+[INFO] 20:59:32:884 Cliente/(6232:6239): ATRIBUTOS: /.xdg-volume-info
+[INFO] 20:59:32:887 Cliente/(6232:6240): ATRIBUTOS: /autorun.inf
+[INFO] 20:59:32:899 Cliente/(6232:6239): LISTAR: /
+[INFO] 20:59:32:902 Cliente/(6232:6239): ATRIBUTOS: /Pokemons
+[INFO] 20:59:32:950 Cliente/(6232:6240): ATRIBUTOS: /Celadon City
+[INFO] 20:59:32:952 Cliente/(6232:6239): ATRIBUTOS: /pruebilla.txt
+[INFO] 20:59:32:953 Cliente/(6232:6240): ATRIBUTOS: /Cerulean City
+[INFO] 20:59:32:959 Cliente/(6232:6239): ATRIBUTOS: /Fuchsia City
+[INFO] 20:59:32:970 Cliente/(6232:6240): ATRIBUTOS: /Lavender Town
+[INFO] 20:59:32:982 Cliente/(6232:6239): ATRIBUTOS: /Pallet Town
+[INFO] 20:59:32:988 Cliente/(6232:6240): ATRIBUTOS: /Pewter City
+[INFO] 20:59:32:989 Cliente/(6232:6239): ATRIBUTOS: /Saffron City
+[INFO] 20:59:33:4 Cliente/(6232:6240): ATRIBUTOS: /Vermilion City
+[INFO] 20:59:33:32 Cliente/(6232:6239): ATRIBUTOS: /Viridian City
+[INFO] 20:59:33:34 Cliente/(6232:6240): LISTAR: /
+[INFO] 20:59:33:37 Cliente/(6232:6240): LISTAR: /
+[INFO] 20:59:33:42 Cliente/(6232:6240): LISTAR: /
+[INFO] 20:59:33:45 Cliente/(6232:6240): LISTAR: /
+[INFO] 20:59:33:49 Cliente/(6232:6240): LISTAR: /
+[INFO] 20:59:33:64 Cliente/(6232:6240): LISTAR: /
+[INFO] 20:59:33:67 Cliente/(6232:6240): LISTAR: /
+[INFO] 20:59:33:72 Cliente/(6232:6240): LISTAR: /
+[INFO] 20:59:33:76 Cliente/(6232:6240): LISTAR: /
+[INFO] 20:59:33:80 Cliente/(6232:6240): LISTAR: /
+[INFO] 20:59:33:97 Cliente/(6232:6240): LISTAR: /
+[INFO] 20:59:33:100 Cliente/(6232:6240): LISTAR: /
+[INFO] 20:59:33:103 Cliente/(6232:6240): LISTAR: /
+[INFO] 20:59:33:106 Cliente/(6232:6240): LISTAR: /
+[INFO] 20:59:33:109 Cliente/(6232:6240): LISTAR: /
+[INFO] 20:59:33:123 Cliente/(6232:6240): LISTAR: /
+[INFO] 20:59:33:126 Cliente/(6232:6240): LISTAR: /
+[INFO] 20:59:33:129 Cliente/(6232:6240): LISTAR: /
+[INFO] 20:59:33:133 Cliente/(6232:6240): LISTAR: /
+[INFO] 20:59:33:136 Cliente/(6232:6240): LISTAR: /
+[INFO] 20:59:33:140 Cliente/(6232:6239): ATRIBUTOS: /
+[INFO] 20:59:33:224 Cliente/(6232:6240): ATRIBUTOS: /
+[INFO] 20:59:33:311 Cliente/(6232:6243): LISTAR: /
+[INFO] 20:59:33:314 Cliente/(6232:6244): ABRIR DIRECTORIO: /
+[INFO] 20:59:33:315 Cliente/(6232:6239): ABRIR DIRECTORIO: /
+[INFO] 20:59:33:315 Cliente/(6232:6240): ATRIBUTOS: /autorun.inf
+[INFO] 20:59:33:318 Cliente/(6232:6244): ATRIBUTOS: /
+[INFO] 20:59:33:403 Cliente/(6232:6239): ATRIBUTOS: /
+[INFO] 20:59:33:492 Cliente/(6232:6240): LISTAR: /
+[INFO] 20:59:33:495 Cliente/(6232:6244): ABRIR DIRECTORIO: /Pokemons
+[INFO] 20:59:33:495 Cliente/(6232:6243): ABRIR DIRECTORIO: /Celadon City
+[INFO] 20:59:33:496 Cliente/(6232:6244): ABRIR DIRECTORIO: /pruebilla.txt
+[INFO] 20:59:33:497 Cliente/(6232:6239): ABRIR DIRECTORIO: /Cerulean City
+[INFO] 20:59:33:497 Cliente/(6232:6240): ABRIR DIRECTORIO: /Fuchsia City
+[INFO] 20:59:33:498 Cliente/(6232:6239): ABRIR DIRECTORIO: /Lavender Town
+[INFO] 20:59:33:498 Cliente/(6232:6240): ABRIR DIRECTORIO: /Pallet Town
+[INFO] 20:59:33:499 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pewter City
+[INFO] 20:59:33:500 Cliente/(6232:6240): ABRIR DIRECTORIO: /Saffron City
+[INFO] 20:59:33:500 Cliente/(6232:6239): ABRIR DIRECTORIO: /Vermilion City
+[INFO] 20:59:33:501 Cliente/(6232:6240): ABRIR DIRECTORIO: /Viridian City
+[INFO] 20:59:41:373 Cliente/(6232:6240): ATRIBUTOS: /.directory
+[INFO] 20:59:43:890 Cliente/(6232:6244): ATRIBUTOS: /Pokemons
+[INFO] 20:59:43:939 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons
+[INFO] 20:59:43:939 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/.directory
+[INFO] 20:59:43:947 Cliente/(6232:6239): LISTAR: /Pokemons
+[INFO] 20:59:43:998 Cliente/(6232:6243): LISTAR: /
+[INFO] 20:59:44:3 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/001.txt
+[INFO] 20:59:44:4 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/001.txt
+[INFO] 20:59:44:5 Cliente/(6232:6243): ATRIBUTOS: /Pokemons
+[INFO] 20:59:44:74 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/002.txt
+[INFO] 20:59:44:74 Cliente/(6232:6244): ATRIBUTOS: /Celadon City
+[INFO] 20:59:44:76 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/002.txt
+[INFO] 20:59:44:76 Cliente/(6232:6243): ATRIBUTOS: /pruebilla.txt
+[INFO] 20:59:44:77 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/003.txt
+[INFO] 20:59:44:77 Cliente/(6232:6244): ATRIBUTOS: /Cerulean City
+[INFO] 20:59:44:84 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/003.txt
+[INFO] 20:59:44:90 Cliente/(6232:6243): ATRIBUTOS: /Fuchsia City
+[INFO] 20:59:44:92 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/004.txt
+[INFO] 20:59:44:93 Cliente/(6232:6244): ATRIBUTOS: /Lavender Town
+[INFO] 20:59:44:99 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/004.txt
+[INFO] 20:59:44:109 Cliente/(6232:6243): ATRIBUTOS: /Pallet Town
+[INFO] 20:59:44:117 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/005.txt
+[INFO] 20:59:44:118 Cliente/(6232:6244): ATRIBUTOS: /Pewter City
+[INFO] 20:59:44:120 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/005.txt
+[INFO] 20:59:44:120 Cliente/(6232:6243): ATRIBUTOS: /Saffron City
+[INFO] 20:59:44:122 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/006.txt
+[INFO] 20:59:44:122 Cliente/(6232:6244): ATRIBUTOS: /Vermilion City
+[INFO] 20:59:44:150 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/006.txt
+[INFO] 20:59:44:151 Cliente/(6232:6243): ATRIBUTOS: /Viridian City
+[INFO] 20:59:44:153 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/007.txt
+[INFO] 20:59:44:154 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/007.txt
+[INFO] 20:59:44:155 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/008.txt
+[INFO] 20:59:44:155 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/008.txt
+[INFO] 20:59:44:155 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/009.txt
+[INFO] 20:59:44:156 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/009.txt
+[INFO] 20:59:44:156 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/010.txt
+[INFO] 20:59:44:156 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/010.txt
+[INFO] 20:59:44:157 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/011.txt
+[INFO] 20:59:44:157 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/011.txt
+[INFO] 20:59:44:158 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/012.txt
+[INFO] 20:59:44:159 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/012.txt
+[INFO] 20:59:44:159 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/013.txt
+[INFO] 20:59:44:159 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/013.txt
+[INFO] 20:59:44:160 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/014.txt
+[INFO] 20:59:44:160 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/014.txt
+[INFO] 20:59:44:160 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/015.txt
+[INFO] 20:59:44:161 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/015.txt
+[INFO] 20:59:44:161 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/016.txt
+[INFO] 20:59:44:162 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/016.txt
+[INFO] 20:59:44:162 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/017.txt
+[INFO] 20:59:44:162 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/017.txt
+[INFO] 20:59:44:163 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/018.txt
+[INFO] 20:59:44:164 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/018.txt
+[INFO] 20:59:44:164 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/019.txt
+[INFO] 20:59:44:165 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/019.txt
+[INFO] 20:59:44:165 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/020.txt
+[INFO] 20:59:44:165 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/020.txt
+[INFO] 20:59:44:166 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/021.txt
+[INFO] 20:59:44:167 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/021.txt
+[INFO] 20:59:44:167 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/022.txt
+[INFO] 20:59:44:168 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/022.txt
+[INFO] 20:59:44:172 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/023.txt
+[INFO] 20:59:44:172 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/023.txt
+[INFO] 20:59:44:173 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/024.txt
+[INFO] 20:59:44:173 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/024.txt
+[INFO] 20:59:44:173 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/025.txt
+[INFO] 20:59:44:173 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/025.txt
+[INFO] 20:59:44:174 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/026.txt
+[INFO] 20:59:44:174 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/026.txt
+[INFO] 20:59:44:174 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/027.txt
+[INFO] 20:59:44:174 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/027.txt
+[INFO] 20:59:44:175 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/028.txt
+[INFO] 20:59:44:175 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/028.txt
+[INFO] 20:59:44:176 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/029.txt
+[INFO] 20:59:44:176 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/029.txt
+[INFO] 20:59:44:183 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/030.txt
+[INFO] 20:59:44:183 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/030.txt
+[INFO] 20:59:44:183 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/031.txt
+[INFO] 20:59:44:184 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/031.txt
+[INFO] 20:59:44:184 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/032.txt
+[INFO] 20:59:44:184 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/032.txt
+[INFO] 20:59:44:184 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/033.txt
+[INFO] 20:59:44:185 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/033.txt
+[INFO] 20:59:44:185 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/034.txt
+[INFO] 20:59:44:185 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/034.txt
+[INFO] 20:59:44:185 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/035.txt
+[INFO] 20:59:44:186 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/035.txt
+[INFO] 20:59:44:186 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/036.txt
+[INFO] 20:59:44:186 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/036.txt
+[INFO] 20:59:44:187 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/037.txt
+[INFO] 20:59:44:187 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/037.txt
+[INFO] 20:59:44:187 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/038.txt
+[INFO] 20:59:44:189 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/038.txt
+[INFO] 20:59:44:190 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/039.txt
+[INFO] 20:59:44:190 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/039.txt
+[INFO] 20:59:44:190 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/040.txt
+[INFO] 20:59:44:191 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/040.txt
+[INFO] 20:59:44:191 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/041.txt
+[INFO] 20:59:44:192 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/041.txt
+[INFO] 20:59:44:192 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/042.txt
+[INFO] 20:59:44:192 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/042.txt
+[INFO] 20:59:44:193 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/043.txt
+[INFO] 20:59:44:193 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/043.txt
+[INFO] 20:59:44:193 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/044.txt
+[INFO] 20:59:44:194 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/044.txt
+[INFO] 20:59:44:194 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/045.txt
+[INFO] 20:59:44:195 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/045.txt
+[INFO] 20:59:44:195 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/046.txt
+[INFO] 20:59:44:195 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/046.txt
+[INFO] 20:59:44:196 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/047.txt
+[INFO] 20:59:44:198 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/047.txt
+[INFO] 20:59:44:199 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/048.txt
+[INFO] 20:59:44:200 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/048.txt
+[INFO] 20:59:44:205 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/049.txt
+[INFO] 20:59:44:205 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/049.txt
+[INFO] 20:59:44:205 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/050.txt
+[INFO] 20:59:44:206 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/050.txt
+[INFO] 20:59:44:206 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/051.txt
+[INFO] 20:59:44:206 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/051.txt
+[INFO] 20:59:44:207 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/052.txt
+[INFO] 20:59:44:207 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/052.txt
+[INFO] 20:59:44:207 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/053.txt
+[INFO] 20:59:44:208 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/053.txt
+[INFO] 20:59:44:208 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/054.txt
+[INFO] 20:59:44:209 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/054.txt
+[INFO] 20:59:44:210 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/055.txt
+[INFO] 20:59:44:211 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/055.txt
+[INFO] 20:59:44:212 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/056.txt
+[INFO] 20:59:44:212 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/056.txt
+[INFO] 20:59:44:213 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/057.txt
+[INFO] 20:59:44:213 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/057.txt
+[INFO] 20:59:44:217 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/058.txt
+[INFO] 20:59:44:218 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/058.txt
+[INFO] 20:59:44:219 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/059.txt
+[INFO] 20:59:44:220 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/059.txt
+[INFO] 20:59:44:222 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/060.txt
+[INFO] 20:59:44:222 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/060.txt
+[INFO] 20:59:44:222 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/061.txt
+[INFO] 20:59:44:223 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/061.txt
+[INFO] 20:59:44:224 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/062.txt
+[INFO] 20:59:44:224 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/062.txt
+[INFO] 20:59:44:224 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/063.txt
+[INFO] 20:59:44:225 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/063.txt
+[INFO] 20:59:44:225 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/064.txt
+[INFO] 20:59:44:226 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/064.txt
+[INFO] 20:59:44:226 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/065.txt
+[INFO] 20:59:44:227 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/065.txt
+[INFO] 20:59:44:228 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/066.txt
+[INFO] 20:59:44:229 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/066.txt
+[INFO] 20:59:44:231 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/067.txt
+[INFO] 20:59:44:232 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/067.txt
+[INFO] 20:59:44:232 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/068.txt
+[INFO] 20:59:44:232 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/068.txt
+[INFO] 20:59:44:233 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/069.txt
+[INFO] 20:59:44:236 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/069.txt
+[INFO] 20:59:44:236 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/070.txt
+[INFO] 20:59:44:237 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/070.txt
+[INFO] 20:59:44:239 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/071.txt
+[INFO] 20:59:44:240 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/071.txt
+[INFO] 20:59:44:240 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/072.txt
+[INFO] 20:59:44:241 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/072.txt
+[INFO] 20:59:44:241 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/073.txt
+[INFO] 20:59:44:245 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/073.txt
+[INFO] 20:59:44:246 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/074.txt
+[INFO] 20:59:44:248 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/074.txt
+[INFO] 20:59:44:248 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/075.txt
+[INFO] 20:59:44:249 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/075.txt
+[INFO] 20:59:44:250 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/076.txt
+[INFO] 20:59:44:251 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/076.txt
+[INFO] 20:59:44:252 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/077.txt
+[INFO] 20:59:44:252 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/077.txt
+[INFO] 20:59:44:253 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/078.txt
+[INFO] 20:59:44:253 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/078.txt
+[INFO] 20:59:44:254 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/079.txt
+[INFO] 20:59:44:254 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/079.txt
+[INFO] 20:59:44:254 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/080.txt
+[INFO] 20:59:44:255 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/080.txt
+[INFO] 20:59:44:256 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/081.txt
+[INFO] 20:59:44:256 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/081.txt
+[INFO] 20:59:44:258 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/082.txt
+[INFO] 20:59:44:259 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/082.txt
+[INFO] 20:59:44:260 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/083.txt
+[INFO] 20:59:44:265 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/083.txt
+[INFO] 20:59:44:266 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/084.txt
+[INFO] 20:59:44:267 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/084.txt
+[INFO] 20:59:44:272 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/085.txt
+[INFO] 20:59:44:272 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/085.txt
+[INFO] 20:59:44:273 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/086.txt
+[INFO] 20:59:44:273 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/086.txt
+[INFO] 20:59:44:276 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/087.txt
+[INFO] 20:59:44:276 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/087.txt
+[INFO] 20:59:44:277 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/088.txt
+[INFO] 20:59:44:277 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/088.txt
+[INFO] 20:59:44:279 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/089.txt
+[INFO] 20:59:44:280 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/089.txt
+[INFO] 20:59:44:281 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/090.txt
+[INFO] 20:59:44:282 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/090.txt
+[INFO] 20:59:44:282 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/091.txt
+[INFO] 20:59:44:283 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/091.txt
+[INFO] 20:59:44:283 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/092.txt
+[INFO] 20:59:44:284 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/092.txt
+[INFO] 20:59:44:285 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/093.txt
+[INFO] 20:59:44:285 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/093.txt
+[INFO] 20:59:44:286 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/094.txt
+[INFO] 20:59:44:286 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/094.txt
+[INFO] 20:59:44:292 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/095.txt
+[INFO] 20:59:44:293 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/095.txt
+[INFO] 20:59:44:300 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/096.txt
+[INFO] 20:59:44:303 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/096.txt
+[INFO] 20:59:44:303 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/097.txt
+[INFO] 20:59:44:304 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/097.txt
+[INFO] 20:59:44:304 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/098.txt
+[INFO] 20:59:44:305 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/098.txt
+[INFO] 20:59:44:305 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/099.txt
+[INFO] 20:59:44:306 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/099.txt
+[INFO] 20:59:44:306 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/100.txt
+[INFO] 20:59:44:307 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/100.txt
+[INFO] 20:59:44:308 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/101.txt
+[INFO] 20:59:44:309 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/101.txt
+[INFO] 20:59:44:309 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/102.txt
+[INFO] 20:59:44:310 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/102.txt
+[INFO] 20:59:44:311 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/103.txt
+[INFO] 20:59:44:311 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/103.txt
+[INFO] 20:59:44:312 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/104.txt
+[INFO] 20:59:44:313 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/104.txt
+[INFO] 20:59:44:313 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/105.txt
+[INFO] 20:59:44:314 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/105.txt
+[INFO] 20:59:44:315 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/106.txt
+[INFO] 20:59:44:316 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/106.txt
+[INFO] 20:59:44:317 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/107.txt
+[INFO] 20:59:44:323 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/107.txt
+[INFO] 20:59:44:327 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/108.txt
+[INFO] 20:59:44:331 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/108.txt
+[INFO] 20:59:44:332 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/109.txt
+[INFO] 20:59:44:332 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/109.txt
+[INFO] 20:59:44:333 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/110.txt
+[INFO] 20:59:44:334 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/110.txt
+[INFO] 20:59:44:334 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/111.txt
+[INFO] 20:59:44:335 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/111.txt
+[INFO] 20:59:44:336 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/112.txt
+[INFO] 20:59:44:337 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/112.txt
+[INFO] 20:59:44:337 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/113.txt
+[INFO] 20:59:44:339 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/113.txt
+[INFO] 20:59:44:340 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/114.txt
+[INFO] 20:59:44:340 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/114.txt
+[INFO] 20:59:44:341 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/115.txt
+[INFO] 20:59:44:342 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/115.txt
+[INFO] 20:59:44:342 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/116.txt
+[INFO] 20:59:44:343 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/116.txt
+[INFO] 20:59:44:344 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/117.txt
+[INFO] 20:59:44:345 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/117.txt
+[INFO] 20:59:44:345 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/118.txt
+[INFO] 20:59:44:346 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/118.txt
+[INFO] 20:59:44:346 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/119.txt
+[INFO] 20:59:44:356 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/119.txt
+[INFO] 20:59:44:360 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/120.txt
+[INFO] 20:59:44:361 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/120.txt
+[INFO] 20:59:44:361 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/121.txt
+[INFO] 20:59:44:362 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/121.txt
+[INFO] 20:59:44:362 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/122.txt
+[INFO] 20:59:44:363 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/122.txt
+[INFO] 20:59:44:364 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/123.txt
+[INFO] 20:59:44:365 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/123.txt
+[INFO] 20:59:44:366 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/124.txt
+[INFO] 20:59:44:367 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/124.txt
+[INFO] 20:59:44:367 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/125.txt
+[INFO] 20:59:44:368 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/125.txt
+[INFO] 20:59:44:369 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/126.txt
+[INFO] 20:59:44:370 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/126.txt
+[INFO] 20:59:44:371 Cliente/(6232:6240): ATRIBUTOS: /Pokemons/127.txt
+[INFO] 20:59:44:372 Cliente/(6232:6243): ABRIR DIRECTORIO: /Pokemons/127.txt
+[INFO] 20:59:44:372 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/128.txt
+[INFO] 20:59:44:373 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/128.txt
+[INFO] 20:59:44:374 Cliente/(6232:6243): ATRIBUTOS: /Pokemons/129.txt
+[INFO] 20:59:44:375 Cliente/(6232:6244): ABRIR DIRECTORIO: /Pokemons/129.txt
+[INFO] 20:59:44:375 Cliente/(6232:6239): ATRIBUTOS: /Pokemons/130.txt
+[INFO] 20:59:44:376 Cliente/(6232:6240): ABRIR DIRECTORIO: /Pokemons/130.txt
+[INFO] 20:59:44:377 Cliente/(6232:6243): ATRIBUTOS: /Pokemons/131.txt
+[INFO] 20:59:44:388 Cliente/(6232:6244): ABRIR DIRECTORIO: /Pokemons/131.txt
+[INFO] 20:59:44:389 Cliente/(6232:6239): ATRIBUTOS: /Pokemons/132.txt
+[INFO] 20:59:44:390 Cliente/(6232:6240): ABRIR DIRECTORIO: /Pokemons/132.txt
+[INFO] 20:59:44:393 Cliente/(6232:6243): ATRIBUTOS: /Pokemons/133.txt
+[INFO] 20:59:44:394 Cliente/(6232:6244): ABRIR DIRECTORIO: /Pokemons/133.txt
+[INFO] 20:59:44:394 Cliente/(6232:6239): ATRIBUTOS: /Pokemons/134.txt
+[INFO] 20:59:44:395 Cliente/(6232:6240): ABRIR DIRECTORIO: /Pokemons/134.txt
+[INFO] 20:59:44:396 Cliente/(6232:6243): ATRIBUTOS: /Pokemons/special.txt
+[INFO] 20:59:44:396 Cliente/(6232:6244): ABRIR DIRECTORIO: /Pokemons/special.txt
+[INFO] 20:59:46:488 Cliente/(6232:6243): ATRIBUTOS: /Pokemons
+[INFO] 20:59:46:535 Cliente/(6232:6244): ATRIBUTOS: /Pokemons/001.txt
+[INFO] 20:59:46:660 Cliente/(6232:6239): ABRIR ARCHIVO: /Pokemons/001.txt
+[INFO] 20:59:46:662 Cliente/(6232:6240): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /Pokemons/001.txt
+[INFO] 20:59:46:926 Cliente/(6232:6240): LECTURA COMPLETADA CON: DESCONECTADO LEIDOS
+[INFO] 20:59:46:927 Cliente/(6232:6239): ABRIR DIRECTORIO: /Pokemons/001.txt
+[INFO] 21:00:59:307 Cliente/(6431:6438): ATRIBUTOS: /.Trash
+[INFO] 21:00:59:317 Cliente/(6431:6438): ATRIBUTOS: /.Trash-1000
+[INFO] 21:00:59:320 Cliente/(6431:6439): ATRIBUTOS: /.xdg-volume-info
+[INFO] 21:00:59:324 Cliente/(6431:6438): ATRIBUTOS: /autorun.inf
+[INFO] 21:00:59:342 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:343 Cliente/(6431:6439): ATRIBUTOS: /directorio
+[INFO] 21:00:59:344 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:345 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:346 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:346 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:347 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:348 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:349 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:350 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:350 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:351 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:352 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:353 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:353 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:354 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:355 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:356 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:356 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:357 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:358 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:359 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:361 Cliente/(6431:6438): ATRIBUTOS: /
+[INFO] 21:00:59:364 Cliente/(6431:6439): ATRIBUTOS: /
+[INFO] 21:00:59:366 Cliente/(6431:6442): LISTAR: /
+[INFO] 21:00:59:367 Cliente/(6431:6443): ABRIR DIRECTORIO: /
+[INFO] 21:00:59:367 Cliente/(6431:6438): ABRIR DIRECTORIO: /
+[INFO] 21:00:59:372 Cliente/(6431:6439): ATRIBUTOS: /autorun.inf
+[INFO] 21:00:59:384 Cliente/(6431:6443): ATRIBUTOS: /
+[INFO] 21:00:59:387 Cliente/(6431:6438): ATRIBUTOS: /
+[INFO] 21:00:59:391 Cliente/(6431:6439): LISTAR: /
+[INFO] 21:00:59:391 Cliente/(6431:6443): ABRIR DIRECTORIO: /directorio
+[INFO] 21:01:52:686 Cliente/(6431:6443): ATRIBUTOS: /.directory
+[INFO] 21:01:53:670 Cliente/(6431:6438): ATRIBUTOS: /directorio
+[INFO] 21:01:53:672 Cliente/(6431:6442): ABRIR DIRECTORIO: /directorio
+[INFO] 21:01:53:672 Cliente/(6431:6438): LISTAR: /directorio
+[INFO] 21:01:53:672 Cliente/(6431:6442): ATRIBUTOS: /directorio/archivo.txt
+[INFO] 21:01:53:673 Cliente/(6431:6439): ABRIR DIRECTORIO: /directorio/archivo.txt
+[INFO] 21:01:53:673 Cliente/(6431:6443): ATRIBUTOS: /directorio/subdirectorio
+[INFO] 21:01:53:674 Cliente/(6431:6438): ABRIR DIRECTORIO: /directorio/subdirectorio
+[INFO] 21:01:53:674 Cliente/(6431:6438): ATRIBUTOS: /directorio/.directory
+[INFO] 21:01:53:688 Cliente/(6431:6443): LISTAR: /
+[INFO] 21:01:53:688 Cliente/(6431:6442): ATRIBUTOS: /directorio
+[INFO] 21:01:54:613 Cliente/(6431:6438): ABRIR ARCHIVO: /directorio/archivo.txt
+[INFO] 21:01:54:616 Cliente/(6431:6442): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /directorio/archivo.txt
+[INFO] 21:01:54:616 Cliente/(6431:6442): LECTURA COMPLETADA CON:         26 LEIDOS
+[INFO] 21:01:54:618 Cliente/(6431:6438): ABRIR DIRECTORIO: /directorio/archivo.txt
+[INFO] 21:01:54:621 Cliente/(6431:6442): ABRIR ARCHIVO: /directorio/archivo.txt
+[INFO] 21:01:54:621 Cliente/(6431:6439): ATRIBUTOS: /directorio/archivo.txt
+[INFO] 21:01:54:708 Cliente/(6431:6438): ATRIBUTOS: /directorio
+[INFO] 21:01:54:710 Cliente/(6431:6442): ATRIBUTOS: /directorio/archivo.txt
+[INFO] 21:01:54:710 Cliente/(6431:6439): ABRIR DIRECTORIO: /directorio/archivo.txt
+[INFO] 21:01:58:878 Cliente/(6431:6443): ATRIBUTOS: /.directory
+[INFO] 21:02:01:696 Cliente/(6431:6438): ATRIBUTOS: /directorio
+[INFO] 21:02:01:698 Cliente/(6431:6439): LISTAR: /directorio
+[INFO] 21:02:01:698 Cliente/(6431:6443): ATRIBUTOS: /directorio/archivo.txt
+[INFO] 21:02:01:699 Cliente/(6431:6438): ATRIBUTOS: /directorio/subdirectorio
+[INFO] 21:02:01:699 Cliente/(6431:6439): LISTAR: /directorio/subdirectorio
+[INFO] 21:02:01:704 Cliente/(6431:6443): ATRIBUTOS: /directorio/subdirectorio/large.txt
+[INFO] 21:03:20:534 Cliente/(6431:6438): ATRIBUTOS: /.directory
+[INFO] 21:03:21:899 Cliente/(6431:6442): ATRIBUTOS: /Pallet Town original
+[INFO] 21:03:21:902 Cliente/(6431:6439): CREAR DIRECTORIO: /Pallet Town original
+[INFO] 21:04:05:632 Cliente/(6562:6569): ATRIBUTOS: /.Trash
+[INFO] 21:04:05:636 Cliente/(6562:6569): ATRIBUTOS: /.Trash-1000
+[INFO] 21:04:05:639 Cliente/(6562:6569): ATRIBUTOS: /.xdg-volume-info
+[INFO] 21:04:05:642 Cliente/(6562:6570): ATRIBUTOS: /autorun.inf
+[INFO] 21:04:05:656 Cliente/(6562:6569): LISTAR: /
+[INFO] 21:04:05:658 Cliente/(6562:6569): ATRIBUTOS: /directorio
+[INFO] 21:04:05:660 Cliente/(6562:6570): LISTAR: /
+[INFO] 21:04:05:661 Cliente/(6562:6570): LISTAR: /
+[INFO] 21:04:05:662 Cliente/(6562:6570): LISTAR: /
+[INFO] 21:04:05:663 Cliente/(6562:6570): LISTAR: /
+[INFO] 21:04:05:663 Cliente/(6562:6570): LISTAR: /
+[INFO] 21:04:05:664 Cliente/(6562:6570): LISTAR: /
+[INFO] 21:04:05:665 Cliente/(6562:6570): LISTAR: /
+[INFO] 21:04:05:666 Cliente/(6562:6570): LISTAR: /
+[INFO] 21:04:05:666 Cliente/(6562:6570): LISTAR: /
+[INFO] 21:04:05:668 Cliente/(6562:6570): LISTAR: /
+[INFO] 21:04:05:669 Cliente/(6562:6570): LISTAR: /
+[INFO] 21:04:05:669 Cliente/(6562:6570): LISTAR: /
+[INFO] 21:04:05:670 Cliente/(6562:6570): LISTAR: /
+[INFO] 21:04:05:671 Cliente/(6562:6570): LISTAR: /
+[INFO] 21:04:05:672 Cliente/(6562:6570): LISTAR: /
+[INFO] 21:04:05:672 Cliente/(6562:6570): LISTAR: /
+[INFO] 21:04:05:673 Cliente/(6562:6570): LISTAR: /
+[INFO] 21:04:05:674 Cliente/(6562:6570): LISTAR: /
+[INFO] 21:04:05:674 Cliente/(6562:6570): LISTAR: /
+[INFO] 21:04:05:675 Cliente/(6562:6570): LISTAR: /
+[INFO] 21:04:05:678 Cliente/(6562:6569): ATRIBUTOS: /
+[INFO] 21:04:05:680 Cliente/(6562:6570): ATRIBUTOS: /
+[INFO] 21:04:05:689 Cliente/(6562:6573): LISTAR: /
+[INFO] 21:04:05:695 Cliente/(6562:6574): ABRIR DIRECTORIO: /
+[INFO] 21:04:05:696 Cliente/(6562:6569): ABRIR DIRECTORIO: /
+[INFO] 21:04:05:697 Cliente/(6562:6570): ATRIBUTOS: /autorun.inf
+[INFO] 21:04:05:701 Cliente/(6562:6569): ATRIBUTOS: /
+[INFO] 21:04:05:702 Cliente/(6562:6573): ATRIBUTOS: /
+[INFO] 21:04:05:704 Cliente/(6562:6570): LISTAR: /
+[INFO] 21:04:05:705 Cliente/(6562:6569): ABRIR DIRECTORIO: /directorio
+[INFO] 21:04:18:428 Cliente/(6562:6569): ATRIBUTOS: /.directory
+[INFO] 21:04:27:13 Cliente/(6562:6574): ATRIBUTOS: /Pallet Town
+[INFO] 21:04:27:16 Cliente/(6562:6573): CREAR DIRECTORIO: /Pallet Town
+[INFO] 21:04:27:16 Cliente/(6562:6573): ATRIBUTOS: /Pallet Town
+[INFO] 21:04:27:17 Cliente/(6562:6570): ATRIBUTOS: /Pallet Town/Pokemons
+[INFO] 21:04:27:20 Cliente/(6562:6569): CREAR DIRECTORIO: /Pallet Town/Pokemons
+[INFO] 21:04:27:21 Cliente/(6562:6569): ATRIBUTOS: /Pallet Town/Pokemons
+[INFO] 21:04:27:23 Cliente/(6562:6574): ATRIBUTOS: /Pallet Town/Pokemons/Desafios
+[INFO] 21:04:27:34 Cliente/(6562:6573): CREAR DIRECTORIO: /Pallet Town/Pokemons/Desafios
+[INFO] 21:04:27:35 Cliente/(6562:6573): ATRIBUTOS: /Pallet Town/Pokemons/Desafios
+[INFO] 21:04:27:36 Cliente/(6562:6570): ATRIBUTOS: /Pallet Town/Pokemons/Desafios/special.mp4
+[INFO] 21:04:27:45 Cliente/(6562:6574): CREAR ARCHIVO: /Pallet Town/Pokemons/Desafios/special.mp4
+[INFO] 21:04:27:53 Cliente/(6562:6574): ATRIBUTOS: /Pallet Town/Pokemons/Desafios/special.mp4
+[INFO] 21:04:27:53 Cliente/(6562:6573): ABRIR ARCHIVO: /Pallet Town/Pokemons/Desafios/special.mp4
+[INFO] 21:04:27:69 Cliente/(6562:6569):  8        42/Pallet Town/Pokemons/Desafios/special.mp4      4096         0
+[INFO] 21:04:27:69 Cliente/(6562:6569): 74
+[INFO] 21:04:27:76 Cliente/(6562:6569): 0 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:04:27:76 Cliente/(6562:6574): ATRIBUTOS: /Pallet Town/Pokemons/Desafios/special.mp4
+[INFO] 21:04:27:125 Cliente/(6562:6569): ATRIBUTOS: /Pallet Town
+[INFO] 21:04:27:128 Cliente/(6562:6574): ABRIR DIRECTORIO: /Pallet Town
+[INFO] 21:04:28:39 Cliente/(6562:6570): ATRIBUTOS: /Pallet Town
+[INFO] 21:04:28:45 Cliente/(6562:6569): ABRIR DIRECTORIO: /Pallet Town
+[INFO] 21:04:46:589 Cliente/(6562:6573): ATRIBUTOS: /Pallet Town
+[INFO] 21:04:46:596 Cliente/(6562:6570): ATRIBUTOS: /Pallet Town/.directory
+[INFO] 21:04:46:616 Cliente/(6562:6574): ABRIR DIRECTORIO: /Pallet Town
+[INFO] 21:04:46:619 Cliente/(6562:6569): LISTAR: /
+[INFO] 21:04:46:623 Cliente/(6562:6574): ATRIBUTOS: /directorio
+[INFO] 21:04:46:625 Cliente/(6562:6573): LISTAR: /Pallet Town
+[INFO] 21:04:46:625 Cliente/(6562:6569): ATRIBUTOS: /Pallet Town/Pokemons
+[INFO] 21:04:46:629 Cliente/(6562:6570): ABRIR DIRECTORIO: /Pallet Town/Pokemons
+[INFO] 21:04:47:330 Cliente/(6562:6570): ABRIR DIRECTORIO: /Pallet Town/Pokemons
+[INFO] 21:04:47:330 Cliente/(6562:6569): LISTAR: /Pallet Town/Pokemons
+[INFO] 21:04:47:331 Cliente/(6562:6570): ATRIBUTOS: /Pallet Town/Pokemons/Desafios
+[INFO] 21:04:47:332 Cliente/(6562:6574): ABRIR DIRECTORIO: /Pallet Town/Pokemons/Desafios
+[INFO] 21:04:47:332 Cliente/(6562:6574): ATRIBUTOS: /Pallet Town/Pokemons/.directory
+[INFO] 21:04:47:351 Cliente/(6562:6570): LISTAR: /Pallet Town
+[INFO] 21:04:47:352 Cliente/(6562:6574): ATRIBUTOS: /Pallet Town/Pokemons
+[INFO] 21:04:47:998 Cliente/(6562:6573): ATRIBUTOS: /Pallet Town
+[INFO] 21:04:48:7 Cliente/(6562:6574): ATRIBUTOS: /Pallet Town/Pokemons
+[INFO] 21:04:48:12 Cliente/(6562:6569): ABRIR DIRECTORIO: /Pallet Town/Pokemons/Desafios
+[INFO] 21:04:48:14 Cliente/(6562:6570): ATRIBUTOS: /Pallet Town/Pokemons/Desafios/.directory
+[INFO] 21:04:48:44 Cliente/(6562:6569): LISTAR: /Pallet Town/Pokemons/Desafios
+[INFO] 21:04:48:47 Cliente/(6562:6573): LISTAR: /Pallet Town/Pokemons
+[INFO] 21:04:48:48 Cliente/(6562:6570): ATRIBUTOS: /Pallet Town/Pokemons/Desafios/special.mp4
+[INFO] 21:04:48:51 Cliente/(6562:6569): ATRIBUTOS: /Pallet Town/Pokemons/Desafios
+[INFO] 21:04:48:52 Cliente/(6562:6573): ABRIR DIRECTORIO: /Pallet Town/Pokemons/Desafios/special.mp4
+[INFO] 21:04:49:50 Cliente/(6562:6574): ATRIBUTOS: /Pallet Town
+[INFO] 21:04:49:52 Cliente/(6562:6570): ATRIBUTOS: /Pallet Town/Pokemons
+[INFO] 21:04:49:53 Cliente/(6562:6569): ATRIBUTOS: /Pallet Town/Pokemons/.directory
+[INFO] 21:04:49:73 Cliente/(6562:6574): LISTAR: /Pallet Town
+[INFO] 21:04:49:184 Cliente/(6562:6574): ATRIBUTOS: /Pallet Town/.directory
+[INFO] 21:04:49:196 Cliente/(6562:6569): LISTAR: /
+[INFO] 21:04:49:197 Cliente/(6562:6574): ATRIBUTOS: /directorio
+[INFO] 21:04:49:198 Cliente/(6562:6570): ATRIBUTOS: /Pallet Town
+[INFO] 21:04:49:691 Cliente/(6562:6574): ATRIBUTOS: /.directory
+[INFO] 21:33:11:452 Cliente/(6972:6979): ATRIBUTOS: /.Trash
+[INFO] 21:33:11:466 Cliente/(6972:6980): ATRIBUTOS: /.Trash-1000
+[INFO] 21:33:11:469 Cliente/(6972:6981): ATRIBUTOS: /.xdg-volume-info
+[INFO] 21:33:11:472 Cliente/(6972:6979): ATRIBUTOS: /autorun.inf
+[INFO] 21:33:11:485 Cliente/(6972:6980): LISTAR: /
+[INFO] 21:33:11:486 Cliente/(6972:6981): LISTAR: /
+[INFO] 21:33:11:487 Cliente/(6972:6980): LISTAR: /
+[INFO] 21:33:11:487 Cliente/(6972:6981): LISTAR: /
+[INFO] 21:33:11:488 Cliente/(6972:6980): LISTAR: /
+[INFO] 21:33:11:488 Cliente/(6972:6981): LISTAR: /
+[INFO] 21:33:11:489 Cliente/(6972:6980): LISTAR: /
+[INFO] 21:33:11:489 Cliente/(6972:6981): LISTAR: /
+[INFO] 21:33:11:490 Cliente/(6972:6980): LISTAR: /
+[INFO] 21:33:11:490 Cliente/(6972:6981): LISTAR: /
+[INFO] 21:33:11:491 Cliente/(6972:6980): LISTAR: /
+[INFO] 21:33:11:492 Cliente/(6972:6981): LISTAR: /
+[INFO] 21:33:11:492 Cliente/(6972:6980): LISTAR: /
+[INFO] 21:33:11:493 Cliente/(6972:6981): LISTAR: /
+[INFO] 21:33:11:493 Cliente/(6972:6980): LISTAR: /
+[INFO] 21:33:11:494 Cliente/(6972:6981): LISTAR: /
+[INFO] 21:33:11:494 Cliente/(6972:6980): LISTAR: /
+[INFO] 21:33:11:494 Cliente/(6972:6981): LISTAR: /
+[INFO] 21:33:11:495 Cliente/(6972:6980): LISTAR: /
+[INFO] 21:33:11:495 Cliente/(6972:6981): LISTAR: /
+[INFO] 21:33:11:497 Cliente/(6972:6980): LISTAR: /
+[INFO] 21:33:11:498 Cliente/(6972:6979): ATRIBUTOS: /
+[INFO] 21:33:11:499 Cliente/(6972:6980): ATRIBUTOS: /
+[INFO] 21:33:11:500 Cliente/(6972:6981): LISTAR: /
+[INFO] 21:33:11:500 Cliente/(6972:6984): ABRIR DIRECTORIO: /
+[INFO] 21:33:11:500 Cliente/(6972:6979): ABRIR DIRECTORIO: /
+[INFO] 21:33:11:501 Cliente/(6972:6980): ATRIBUTOS: /autorun.inf
+[INFO] 21:33:11:504 Cliente/(6972:6984): ATRIBUTOS: /
+[INFO] 21:33:11:504 Cliente/(6972:6979): ATRIBUTOS: /
+[INFO] 21:33:11:511 Cliente/(6972:6980): LISTAR: /
+[INFO] 21:33:17:774 Cliente/(6972:6979): ATRIBUTOS: /.directory
+[INFO] 21:33:39:510 Cliente/(6972:6981): ATRIBUTOS: /para probar
+[INFO] 21:33:39:527 Cliente/(6972:6984): CREAR ARCHIVO: /para probar
+[INFO] 21:33:39:535 Cliente/(6972:6984): ATRIBUTOS: /para probar
+[INFO] 21:33:39:540 Cliente/(6972:6979): ABRIR ARCHIVO: /para probar
+[INFO] 21:33:39:540 Cliente/(6972:6984): ABRIR DIRECTORIO: /para probar
+[INFO] 21:33:40:531 Cliente/(6972:6979): ABRIR DIRECTORIO: /para probar
+[INFO] 21:33:41:598 Cliente/(6972:6981): ATRIBUTOS: /para probar
+[INFO] 21:33:41:599 Cliente/(6972:6980): ABRIR ARCHIVO: /para probar
+[INFO] 21:33:41:599 Cliente/(6972:6984): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /para probar
+[INFO] 21:33:41:737 Cliente/(6972:6981): ABRIR ARCHIVO: /para probar
+[INFO] 21:33:41:740 Cliente/(6972:6980): ATRIBUTOS: /para probar
+[INFO] 21:33:41:740 Cliente/(6972:6984): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /para probar
+[INFO] 21:33:41:742 Cliente/(6972:6981): ABRIR DIRECTORIO: /para probar
+[INFO] 21:33:41:742 Cliente/(6972:6980): ABRIR ARCHIVO: /para probar
+[INFO] 21:33:41:745 Cliente/(6972:6984): ATRIBUTOS: /para probar
+[INFO] 21:33:42:611 Cliente/(6972:6981): ATRIBUTOS: /para probar
+[INFO] 21:33:42:613 Cliente/(6972:6980): ABRIR DIRECTORIO: /para probar
+[INFO] 21:35:13:275 Cliente/(6972:6984): ATRIBUTOS: /para probar
+[INFO] 21:35:13:276 Cliente/(6972:6979): ABRIR DIRECTORIO: /para probar
+[INFO] 21:35:13:277 Cliente/(6972:6981): ABRIR ARCHIVO: /para probar
+[INFO] 21:35:13:278 Cliente/(6972:6984): ABRIR DIRECTORIO: /para probar
+[INFO] 21:35:14:299 Cliente/(6972:6979): ATRIBUTOS: /para probar
+[INFO] 21:35:14:300 Cliente/(6972:6981): ABRIR DIRECTORIO: /para probar
+[INFO] 21:35:15:91 Cliente/(6972:6980): ABRIR ARCHIVO: /para probar
+[INFO] 21:35:15:92 Cliente/(6972:6979): ABRIR ARCHIVO: /para probar
+[INFO] 21:35:15:92 Cliente/(6972:6981): TRUNCATE: /para probar SIZE: 0
+[INFO] 21:35:15:92 Cliente/(6972:6981): ATRIBUTOS: /para probar
+[INFO] 21:35:15:93 Cliente/(6972:6984): ABRIR DIRECTORIO: /para probar
+[INFO] 21:35:15:93 Cliente/(6972:6979): ABRIR ARCHIVO: /para probar
+[INFO] 21:35:15:93 Cliente/(6972:6980): ABRIR DIRECTORIO: /para probar
+[INFO] 21:35:15:94 Cliente/(6972:6979): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:35:15:94 Cliente/(6972:6981): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:35:15:94 Cliente/(6972:6980): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:35:15:94 Cliente/(6972:6984): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:35:15:95 Cliente/(6972:6979): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:35:15:344 Cliente/(6972:6981): 0 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:35:15:344 Cliente/(6972:6980): ATRIBUTOS: /para probar
+[INFO] 21:35:15:345 Cliente/(6972:6980): ATRIBUTOS: /para probar
+[INFO] 21:35:15:346 Cliente/(6972:6980): ATRIBUTOS: /para probar
+[INFO] 21:35:15:347 Cliente/(6972:6984): ATRIBUTOS: /para probar
+[INFO] 21:35:15:347 Cliente/(6972:6979): ATRIBUTOS: /para probar
+[INFO] 21:35:16:366 Cliente/(6972:6980): ATRIBUTOS: /para probar
+[INFO] 21:36:39:543 Cliente/(7083:7090): ATRIBUTOS: /.Trash
+[INFO] 21:36:39:546 Cliente/(7083:7090): ATRIBUTOS: /.Trash-1000
+[INFO] 21:36:39:549 Cliente/(7083:7091): ATRIBUTOS: /.xdg-volume-info
+[INFO] 21:36:39:552 Cliente/(7083:7090): ATRIBUTOS: /autorun.inf
+[INFO] 21:36:39:564 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:566 Cliente/(7083:7091): ATRIBUTOS: /para probar
+[INFO] 21:36:39:567 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:567 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:568 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:569 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:569 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:570 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:571 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:572 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:572 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:573 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:574 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:575 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:575 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:576 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:577 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:578 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:579 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:579 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:580 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:581 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:584 Cliente/(7083:7090): ATRIBUTOS: /
+[INFO] 21:36:39:585 Cliente/(7083:7091): ATRIBUTOS: /
+[INFO] 21:36:39:586 Cliente/(7083:7094): LISTAR: /
+[INFO] 21:36:39:586 Cliente/(7083:7095): ABRIR DIRECTORIO: /
+[INFO] 21:36:39:587 Cliente/(7083:7090): ABRIR DIRECTORIO: /
+[INFO] 21:36:39:587 Cliente/(7083:7091): ATRIBUTOS: /autorun.inf
+[INFO] 21:36:39:590 Cliente/(7083:7095): ATRIBUTOS: /
+[INFO] 21:36:39:599 Cliente/(7083:7090): ATRIBUTOS: /
+[INFO] 21:36:39:600 Cliente/(7083:7091): LISTAR: /
+[INFO] 21:36:39:601 Cliente/(7083:7095): ABRIR DIRECTORIO: /para probar
+[INFO] 21:36:44:363 Cliente/(7083:7091): ATRIBUTOS: /.directory
+[INFO] 21:36:45:196 Cliente/(7083:7095): ATRIBUTOS: /para probar
+[INFO] 21:36:45:196 Cliente/(7083:7090): ABRIR ARCHIVO: /para probar
+[INFO] 21:36:45:196 Cliente/(7083:7094): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /para probar
+[INFO] 21:36:45:338 Cliente/(7083:7090): ABRIR ARCHIVO: /para probar
+[INFO] 21:36:45:341 Cliente/(7083:7094): ATRIBUTOS: /para probar
+[INFO] 21:36:45:341 Cliente/(7083:7091): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /para probar
+[INFO] 21:36:45:342 Cliente/(7083:7090): ABRIR DIRECTORIO: /para probar
+[INFO] 21:36:45:343 Cliente/(7083:7094): ABRIR ARCHIVO: /para probar
+[INFO] 21:36:45:343 Cliente/(7083:7091): ATRIBUTOS: /para probar
+[INFO] 21:36:45:378 Cliente/(7083:7090): ABRIR DIRECTORIO: /para probar
+[INFO] 21:36:54:201 Cliente/(7083:7094): ATRIBUTOS: /para probar
+[INFO] 21:36:54:202 Cliente/(7083:7091): ABRIR DIRECTORIO: /para probar
+[INFO] 21:36:54:202 Cliente/(7083:7095): ABRIR ARCHIVO: /para probar
+[INFO] 21:36:54:203 Cliente/(7083:7094): ABRIR DIRECTORIO: /para probar
+[INFO] 21:36:55:223 Cliente/(7083:7091): ATRIBUTOS: /para probar
+[INFO] 21:36:55:224 Cliente/(7083:7095): ABRIR DIRECTORIO: /para probar
+[INFO] 21:36:56:437 Cliente/(7083:7090): ATRIBUTOS: /para probar
+[INFO] 21:36:56:437 Cliente/(7083:7094): ABRIR ARCHIVO: /para probar
+[INFO] 21:36:56:437 Cliente/(7083:7095): ABRIR ARCHIVO: /para probar
+[INFO] 21:36:56:438 Cliente/(7083:7090): TRUNCATE: /para probar SIZE: 0
+[INFO] 21:36:56:438 Cliente/(7083:7090): ATRIBUTOS: /para probar
+[INFO] 21:36:56:438 Cliente/(7083:7091): ABRIR DIRECTORIO: /para probar
+[INFO] 21:36:56:438 Cliente/(7083:7095): ABRIR ARCHIVO: /para probar
+[INFO] 21:36:56:438 Cliente/(7083:7094): ABRIR DIRECTORIO: /para probar
+[INFO] 21:36:56:439 Cliente/(7083:7095): 0 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:36:56:439 Cliente/(7083:7094): ABRIR DIRECTORIO: /para probar
+[INFO] 21:36:56:439 Cliente/(7083:7091): ABRIR ARCHIVO: /para probar
+[INFO] 21:36:56:439 Cliente/(7083:7095): ATRIBUTOS: /para probar
+[INFO] 21:36:56:440 Cliente/(7083:7094): ABRIR DIRECTORIO: /para probar
+[INFO] 21:36:57:460 Cliente/(7083:7091): ATRIBUTOS: /para probar
+[INFO] 21:36:57:461 Cliente/(7083:7095): ABRIR ARCHIVO: /para probar
+[INFO] 21:36:57:462 Cliente/(7083:7090): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /para probar
+[INFO] 21:36:57:462 Cliente/(7083:7090): LECTURA COMPLETADA CON:          4 LEIDOS
+[INFO] 21:36:57:463 Cliente/(7083:7091): ABRIR DIRECTORIO: /para probar
+[INFO] 21:36:59:456 Cliente/(7083:7095): ATRIBUTOS: /para probar
+[INFO] 21:36:59:459 Cliente/(7083:7090): ABRIR ARCHIVO: /para probar
+[INFO] 21:36:59:461 Cliente/(7083:7094): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /para probar
+[INFO] 21:36:59:461 Cliente/(7083:7094): LECTURA COMPLETADA CON:          4 LEIDOS
+[INFO] 21:36:59:608 Cliente/(7083:7095): ABRIR ARCHIVO: /para probar
+[INFO] 21:36:59:610 Cliente/(7083:7090): ATRIBUTOS: /para probar
+[INFO] 21:36:59:610 Cliente/(7083:7094): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /para probar
+[INFO] 21:36:59:610 Cliente/(7083:7094): LECTURA COMPLETADA CON:          4 LEIDOS
+[INFO] 21:36:59:611 Cliente/(7083:7095): ABRIR DIRECTORIO: /para probar
+[INFO] 21:36:59:612 Cliente/(7083:7090): ABRIR ARCHIVO: /para probar
+[INFO] 21:36:59:613 Cliente/(7083:7094): ATRIBUTOS: /para probar
+[INFO] 21:37:00:480 Cliente/(7083:7095): ATRIBUTOS: /para probar
+[INFO] 21:37:00:481 Cliente/(7083:7090): ABRIR ARCHIVO: /para probar
+[INFO] 21:37:00:481 Cliente/(7083:7094): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /para probar
+[INFO] 21:37:00:482 Cliente/(7083:7094): LECTURA COMPLETADA CON:          4 LEIDOS
+[INFO] 21:37:00:482 Cliente/(7083:7091): ABRIR DIRECTORIO: /para probar
+[INFO] 21:37:03:908 Cliente/(7083:7095): ATRIBUTOS: /para probar
+[INFO] 21:37:03:909 Cliente/(7083:7090): ABRIR ARCHIVO: /para probar
+[INFO] 21:37:03:909 Cliente/(7083:7094): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /para probar
+[INFO] 21:37:03:909 Cliente/(7083:7094): LECTURA COMPLETADA CON:          4 LEIDOS
+[INFO] 21:37:04:67 Cliente/(7083:7095): ABRIR ARCHIVO: /para probar
+[INFO] 21:37:04:70 Cliente/(7083:7090): ATRIBUTOS: /para probar
+[INFO] 21:37:04:70 Cliente/(7083:7094): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /para probar
+[INFO] 21:37:04:70 Cliente/(7083:7094): LECTURA COMPLETADA CON:          4 LEIDOS
+[INFO] 21:37:04:71 Cliente/(7083:7095): ABRIR DIRECTORIO: /para probar
+[INFO] 21:37:04:72 Cliente/(7083:7090): ABRIR ARCHIVO: /para probar
+[INFO] 21:37:04:72 Cliente/(7083:7094): ATRIBUTOS: /para probar
+[INFO] 21:37:04:923 Cliente/(7083:7095): ATRIBUTOS: /para probar
+[INFO] 21:37:04:924 Cliente/(7083:7090): ABRIR ARCHIVO: /para probar
+[INFO] 21:37:04:924 Cliente/(7083:7094): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /para probar
+[INFO] 21:37:04:925 Cliente/(7083:7094): LECTURA COMPLETADA CON:          4 LEIDOS
+[INFO] 21:37:04:925 Cliente/(7083:7095): ABRIR DIRECTORIO: /para probar
+[INFO] 21:37:05:567 Cliente/(7083:7090): ABRIR DIRECTORIO: /para probar
+[INFO] 21:37:05:568 Cliente/(7083:7094): ABRIR ARCHIVO: /para probar
+[INFO] 21:37:05:568 Cliente/(7083:7091): ATRIBUTOS: /para probar
+[INFO] 21:37:05:569 Cliente/(7083:7090): ABRIR DIRECTORIO: /para probar
+[INFO] 21:37:05:938 Cliente/(7083:7094): ATRIBUTOS: /para probar
+[INFO] 21:37:05:938 Cliente/(7083:7091): ABRIR ARCHIVO: /para probar
+[INFO] 21:37:05:938 Cliente/(7083:7095): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /para probar
+[INFO] 21:37:05:938 Cliente/(7083:7095): LECTURA COMPLETADA CON:          4 LEIDOS
+[INFO] 21:37:05:939 Cliente/(7083:7094): ABRIR DIRECTORIO: /para probar
+[INFO] 21:37:08:565 Cliente/(7083:7091): ATRIBUTOS: /para probar
+[INFO] 21:37:08:565 Cliente/(7083:7095): ABRIR ARCHIVO: /para probar
+[INFO] 21:37:08:565 Cliente/(7083:7094): ABRIR ARCHIVO: /para probar
+[INFO] 21:37:08:566 Cliente/(7083:7091): TRUNCATE: /para probar SIZE: 0
+[INFO] 21:37:08:566 Cliente/(7083:7091): ATRIBUTOS: /para probar
+[INFO] 21:37:08:566 Cliente/(7083:7095): ABRIR DIRECTORIO: /para probar
+[INFO] 21:37:08:566 Cliente/(7083:7090): ABRIR ARCHIVO: /para probar
+[INFO] 21:37:08:566 Cliente/(7083:7091): ABRIR DIRECTORIO: /para probar
+[INFO] 21:37:08:567 Cliente/(7083:7095): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:567 Cliente/(7083:7090): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:567 Cliente/(7083:7094): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:568 Cliente/(7083:7091): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:568 Cliente/(7083:7095): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:568 Cliente/(7083:7090): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:568 Cliente/(7083:7094): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:568 Cliente/(7083:7091): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:569 Cliente/(7083:7095): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:569 Cliente/(7083:7090): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:569 Cliente/(7083:7094): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:569 Cliente/(7083:7091): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:569 Cliente/(7083:7095): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:570 Cliente/(7083:7090): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:570 Cliente/(7083:7094): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:570 Cliente/(7083:7091): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:570 Cliente/(7083:7095): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:570 Cliente/(7083:7090): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:570 Cliente/(7083:7094): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:571 Cliente/(7083:7091): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:571 Cliente/(7083:7095): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:571 Cliente/(7083:7090): 0 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:37:08:571 Cliente/(7083:7091): ABRIR DIRECTORIO: /para probar
+[INFO] 21:37:08:571 Cliente/(7083:7095): ABRIR ARCHIVO: /para probar
+[INFO] 21:37:08:572 Cliente/(7083:7090): ATRIBUTOS: /para probar
+[INFO] 21:37:08:572 Cliente/(7083:7091): ABRIR DIRECTORIO: /para probar
+[INFO] 21:37:09:590 Cliente/(7083:7095): ATRIBUTOS: /para probar
+[INFO] 21:37:09:591 Cliente/(7083:7090): ABRIR ARCHIVO: /para probar
+[INFO] 21:37:09:591 Cliente/(7083:7094): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /para probar
+[INFO] 21:37:09:591 Cliente/(7083:7094): LECTURA COMPLETADA CON:         58 LEIDOS
+[INFO] 21:37:09:592 Cliente/(7083:7095): ABRIR DIRECTORIO: /para probar
+[INFO] 21:37:47:374 Cliente/(7083:7090): ATRIBUTOS: /
+[INFO] 21:37:47:376 Cliente/(7083:7094): ABRIR DIRECTORIO: /
+[INFO] 21:37:47:378 Cliente/(7083:7090): LISTAR: /
+[INFO] 21:37:47:379 Cliente/(7083:7094): ATRIBUTOS: /para probar
+[INFO] 21:37:47:379 Cliente/(7083:7091): ABRIR ARCHIVO: /para probar
+[INFO] 21:37:47:382 Cliente/(7083:7095): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /para probar
+[INFO] 21:37:47:382 Cliente/(7083:7095): LECTURA COMPLETADA CON:         58 LEIDOS
+[INFO] 21:37:47:383 Cliente/(7083:7094): ABRIR DIRECTORIO: /para probar
+[INFO] 21:37:59:321 Cliente/(7083:7090): ATRIBUTOS: /
+[INFO] 21:37:59:323 Cliente/(7083:7094): ABRIR DIRECTORIO: /
+[INFO] 21:37:59:324 Cliente/(7083:7090): LISTAR: /
+[INFO] 21:37:59:325 Cliente/(7083:7094): ATRIBUTOS: /para probar
+[INFO] 21:37:59:327 Cliente/(7083:7091): ABRIR ARCHIVO: /para probar
+[INFO] 21:37:59:327 Cliente/(7083:7095): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /para probar
+[INFO] 21:37:59:327 Cliente/(7083:7095): LECTURA COMPLETADA CON:         58 LEIDOS
+[INFO] 21:37:59:328 Cliente/(7083:7094): ABRIR DIRECTORIO: /para probar
+[INFO] 21:37:59:935 Cliente/(7083:7090): ATRIBUTOS: /
+[INFO] 21:37:59:935 Cliente/(7083:7094): ABRIR DIRECTORIO: /
+[INFO] 21:37:59:936 Cliente/(7083:7090): LISTAR: /
+[INFO] 21:37:59:936 Cliente/(7083:7094): ATRIBUTOS: /para probar
+[INFO] 21:37:59:936 Cliente/(7083:7091): ABRIR ARCHIVO: /para probar
+[INFO] 21:37:59:937 Cliente/(7083:7095): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /para probar
+[INFO] 21:37:59:937 Cliente/(7083:7095): LECTURA COMPLETADA CON:         58 LEIDOS
+[INFO] 21:37:59:937 Cliente/(7083:7094): ABRIR DIRECTORIO: /para probar
+[INFO] 21:45:27:534 Cliente/(7283:7290): ATRIBUTOS: /.Trash
+[INFO] 21:45:27:551 Cliente/(7283:7291): ATRIBUTOS: /.Trash-1000
+[INFO] 21:45:27:555 Cliente/(7283:7292): ATRIBUTOS: /.xdg-volume-info
+[INFO] 21:45:27:566 Cliente/(7283:7290): ATRIBUTOS: /autorun.inf
+[INFO] 21:45:27:569 Cliente/(7283:7291): LISTAR: /
+[INFO] 21:45:27:575 Cliente/(7283:7292): LISTAR: /
+[INFO] 21:45:27:576 Cliente/(7283:7291): LISTAR: /
+[INFO] 21:45:27:576 Cliente/(7283:7292): LISTAR: /
+[INFO] 21:45:27:577 Cliente/(7283:7291): LISTAR: /
+[INFO] 21:45:27:577 Cliente/(7283:7292): LISTAR: /
+[INFO] 21:45:27:578 Cliente/(7283:7291): LISTAR: /
+[INFO] 21:45:27:578 Cliente/(7283:7292): LISTAR: /
+[INFO] 21:45:27:580 Cliente/(7283:7291): LISTAR: /
+[INFO] 21:45:27:580 Cliente/(7283:7292): LISTAR: /
+[INFO] 21:45:27:581 Cliente/(7283:7291): LISTAR: /
+[INFO] 21:45:27:581 Cliente/(7283:7292): LISTAR: /
+[INFO] 21:45:27:581 Cliente/(7283:7291): LISTAR: /
+[INFO] 21:45:27:582 Cliente/(7283:7292): LISTAR: /
+[INFO] 21:45:27:582 Cliente/(7283:7291): LISTAR: /
+[INFO] 21:45:27:583 Cliente/(7283:7292): LISTAR: /
+[INFO] 21:45:27:584 Cliente/(7283:7291): LISTAR: /
+[INFO] 21:45:27:586 Cliente/(7283:7292): LISTAR: /
+[INFO] 21:45:27:586 Cliente/(7283:7291): LISTAR: /
+[INFO] 21:45:27:587 Cliente/(7283:7292): LISTAR: /
+[INFO] 21:45:27:587 Cliente/(7283:7291): LISTAR: /
+[INFO] 21:45:27:588 Cliente/(7283:7292): LISTAR: /
+[INFO] 21:45:27:589 Cliente/(7283:7290): ATRIBUTOS: /autorun.inf
+[INFO] 21:45:27:593 Cliente/(7283:7291): ATRIBUTOS: /
+[INFO] 21:45:27:597 Cliente/(7283:7292): ABRIR DIRECTORIO: /
+[INFO] 21:45:27:597 Cliente/(7283:7291): ABRIR DIRECTORIO: /
+[INFO] 21:45:27:598 Cliente/(7283:7291): LISTAR: /
+[INFO] 21:46:07:965 Cliente/(7283:7290): ATRIBUTOS: /.directory
+[INFO] 21:46:13:480 Cliente/(7283:7291): ATRIBUTOS: /Nuevo
+[INFO] 21:46:13:509 Cliente/(7283:7290): CREAR ARCHIVO: /Nuevo
+[INFO] 21:46:13:509 Cliente/(7283:7290): ATRIBUTOS: /Nuevo
+[INFO] 21:46:13:509 Cliente/(7283:7291): ABRIR ARCHIVO: /Nuevo
+[INFO] 21:46:13:518 Cliente/(7283:7291): ABRIR DIRECTORIO: /Nuevo
+[INFO] 21:46:14:511 Cliente/(7283:7292): ATRIBUTOS: /Nuevo
+[INFO] 21:46:14:513 Cliente/(7283:7290): ABRIR DIRECTORIO: /Nuevo
+[INFO] 21:46:16:588 Cliente/(7283:7291): ATRIBUTOS: /Nuevo
+[INFO] 21:46:16:589 Cliente/(7283:7292): ABRIR ARCHIVO: /Nuevo
+[INFO] 21:46:16:590 Cliente/(7283:7290): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /Nuevo
+[INFO] 21:46:16:737 Cliente/(7283:7292): ABRIR ARCHIVO: /Nuevo
+[INFO] 21:46:16:755 Cliente/(7283:7290): ATRIBUTOS: /Nuevo
+[INFO] 21:46:16:756 Cliente/(7283:7291): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /Nuevo
+[INFO] 21:46:16:757 Cliente/(7283:7290): ABRIR DIRECTORIO: /Nuevo
+[INFO] 21:46:16:757 Cliente/(7283:7291): ABRIR ARCHIVO: /Nuevo
+[INFO] 21:46:16:758 Cliente/(7283:7292): ATRIBUTOS: /Nuevo
+[INFO] 21:46:17:611 Cliente/(7283:7291): ATRIBUTOS: /Nuevo
+[INFO] 21:46:17:612 Cliente/(7283:7292): ABRIR DIRECTORIO: /Nuevo
+[INFO] 21:46:27:36 Cliente/(7283:7290): ATRIBUTOS: /Nuevo
+[INFO] 21:46:27:36 Cliente/(7283:7291): ABRIR DIRECTORIO: /Nuevo
+[INFO] 21:46:27:36 Cliente/(7283:7292): ABRIR ARCHIVO: /Nuevo
+[INFO] 21:46:27:37 Cliente/(7283:7291): ABRIR DIRECTORIO: /Nuevo
+[INFO] 21:46:28:63 Cliente/(7283:7292): ATRIBUTOS: /Nuevo
+[INFO] 21:46:28:64 Cliente/(7283:7290): ABRIR DIRECTORIO: /Nuevo
+[INFO] 21:46:39:5 Cliente/(7283:7291): ATRIBUTOS: /Nuevo
+[INFO] 21:46:40:6 Cliente/(7283:7292): ABRIR ARCHIVO: /Nuevo
+[INFO] 21:46:40:6 Cliente/(7283:7291): ABRIR ARCHIVO: /Nuevo
+[INFO] 21:46:40:6 Cliente/(7283:7292): TRUNCATE: /Nuevo SIZE: 0
+[INFO] 21:46:40:6 Cliente/(7283:7292): ATRIBUTOS: /Nuevo
+[INFO] 21:46:40:7 Cliente/(7283:7291): ABRIR DIRECTORIO: /Nuevo
+[INFO] 21:46:40:7 Cliente/(7283:7292): ABRIR ARCHIVO: /Nuevo
+[INFO] 21:46:40:7 Cliente/(7283:7291): ABRIR DIRECTORIO: /Nuevo
+[INFO] 21:46:42:780 Cliente/(7283:7290): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:46:42:780 Cliente/(7283:7291): ATRIBUTOS: /Nuevo
+[INFO] 21:46:42:780 Cliente/(7283:7292): ATRIBUTOS: /Nuevo
+[INFO] 21:46:42:780 Cliente/(7283:7290): ABRIR DIRECTORIO: /Nuevo
+[INFO] 21:48:12:259 Cliente/(7283:7291): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:48:12:259 Cliente/(7283:7292): ATRIBUTOS: /Nuevo
+[INFO] 21:48:12:259 Cliente/(7283:7290): ATRIBUTOS: /Nuevo
+[INFO] 21:48:12:260 Cliente/(7283:7291): ABRIR DIRECTORIO: /Nuevo
+[INFO] 21:55:57:931 Cliente/(7283:7292): 0 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:55:57:931 Cliente/(7283:7290): ATRIBUTOS: /Nuevo
+[INFO] 21:55:57:932 Cliente/(7283:7291): ATRIBUTOS: /Nuevo
+[INFO] 21:55:57:933 Cliente/(7283:7292): ATRIBUTOS: /Nuevo
+[INFO] 21:55:57:933 Cliente/(7283:7291): ATRIBUTOS: /Nuevo
+[INFO] 21:55:58:957 Cliente/(7283:7292): ATRIBUTOS: /Nuevo
+[INFO] 21:56:25:360 Cliente/(7522:7529): ATRIBUTOS: /.Trash
+[INFO] 21:56:25:371 Cliente/(7522:7530): ATRIBUTOS: /.Trash-1000
+[INFO] 21:56:25:375 Cliente/(7522:7531): ATRIBUTOS: /.xdg-volume-info
+[INFO] 21:56:25:387 Cliente/(7522:7529): ATRIBUTOS: /autorun.inf
+[INFO] 21:56:25:390 Cliente/(7522:7530): LISTAR: /
+[INFO] 21:56:25:393 Cliente/(7522:7529): ATRIBUTOS: /Nuevo
+[INFO] 21:56:25:394 Cliente/(7522:7531): LISTAR: /
+[INFO] 21:56:25:394 Cliente/(7522:7531): LISTAR: /
+[INFO] 21:56:25:395 Cliente/(7522:7531): LISTAR: /
+[INFO] 21:56:25:395 Cliente/(7522:7531): LISTAR: /
+[INFO] 21:56:25:404 Cliente/(7522:7531): LISTAR: /
+[INFO] 21:56:25:405 Cliente/(7522:7531): LISTAR: /
+[INFO] 21:56:25:405 Cliente/(7522:7531): LISTAR: /
+[INFO] 21:56:25:406 Cliente/(7522:7531): LISTAR: /
+[INFO] 21:56:25:407 Cliente/(7522:7531): LISTAR: /
+[INFO] 21:56:25:409 Cliente/(7522:7531): LISTAR: /
+[INFO] 21:56:25:409 Cliente/(7522:7531): LISTAR: /
+[INFO] 21:56:25:410 Cliente/(7522:7531): LISTAR: /
+[INFO] 21:56:25:411 Cliente/(7522:7531): LISTAR: /
+[INFO] 21:56:25:412 Cliente/(7522:7531): LISTAR: /
+[INFO] 21:56:25:412 Cliente/(7522:7531): LISTAR: /
+[INFO] 21:56:25:413 Cliente/(7522:7531): LISTAR: /
+[INFO] 21:56:25:414 Cliente/(7522:7531): LISTAR: /
+[INFO] 21:56:25:414 Cliente/(7522:7531): LISTAR: /
+[INFO] 21:56:25:416 Cliente/(7522:7531): LISTAR: /
+[INFO] 21:56:25:417 Cliente/(7522:7531): LISTAR: /
+[INFO] 21:56:25:418 Cliente/(7522:7531): LISTAR: /
+[INFO] 21:56:25:419 Cliente/(7522:7530): ATRIBUTOS: /autorun.inf
+[INFO] 21:56:25:426 Cliente/(7522:7531): ATRIBUTOS: /
+[INFO] 21:56:25:427 Cliente/(7522:7529): ATRIBUTOS: /
+[INFO] 21:56:25:427 Cliente/(7522:7530): ABRIR DIRECTORIO: /
+[INFO] 21:56:25:428 Cliente/(7522:7531): ABRIR DIRECTORIO: /
+[INFO] 21:56:25:428 Cliente/(7522:7529): LISTAR: /
+[INFO] 21:56:25:429 Cliente/(7522:7530): ABRIR DIRECTORIO: /Nuevo
+[INFO] 21:56:31:708 Cliente/(7522:7530): ATRIBUTOS: /.directory
+[INFO] 21:56:32:789 Cliente/(7522:7531): ATRIBUTOS: /Nuevo
+[INFO] 21:56:32:789 Cliente/(7522:7529): ABRIR ARCHIVO: /Nuevo
+[INFO] 21:56:32:789 Cliente/(7522:7530): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /Nuevo
+[INFO] 21:56:32:926 Cliente/(7522:7530): ABRIR ARCHIVO: /Nuevo
+[INFO] 21:56:32:944 Cliente/(7522:7531): ATRIBUTOS: /Nuevo
+[INFO] 21:56:32:946 Cliente/(7522:7529): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /Nuevo
+[INFO] 21:56:32:947 Cliente/(7522:7531): ABRIR DIRECTORIO: /Nuevo
+[INFO] 21:56:32:949 Cliente/(7522:7529): ABRIR ARCHIVO: /Nuevo
+[INFO] 21:56:32:950 Cliente/(7522:7530): ATRIBUTOS: /Nuevo
+[INFO] 21:56:33:801 Cliente/(7522:7529): ATRIBUTOS: /Nuevo
+[INFO] 21:56:33:803 Cliente/(7522:7530): ABRIR DIRECTORIO: /Nuevo
+[INFO] 21:58:10:267 Cliente/(7522:7531): ATRIBUTOS: /Nuevo
+[INFO] 21:58:10:267 Cliente/(7522:7529): ABRIR DIRECTORIO: /Nuevo
+[INFO] 21:58:10:270 Cliente/(7522:7530): ABRIR ARCHIVO: /Nuevo
+[INFO] 21:58:10:270 Cliente/(7522:7529): ABRIR DIRECTORIO: /Nuevo
+[INFO] 21:58:11:290 Cliente/(7522:7530): ATRIBUTOS: /Nuevo
+[INFO] 21:58:11:291 Cliente/(7522:7531): ABRIR DIRECTORIO: /Nuevo
+[INFO] 21:58:16:151 Cliente/(7522:7529): ATRIBUTOS: /Nuevo
+[INFO] 21:58:16:152 Cliente/(7522:7530): ABRIR ARCHIVO: /Nuevo
+[INFO] 21:58:16:152 Cliente/(7522:7529): ABRIR ARCHIVO: /Nuevo
+[INFO] 21:58:16:152 Cliente/(7522:7530): TRUNCATE: /Nuevo SIZE: 0
+[INFO] 21:58:16:152 Cliente/(7522:7530): ATRIBUTOS: /Nuevo
+[INFO] 21:58:16:152 Cliente/(7522:7529): ABRIR DIRECTORIO: /Nuevo
+[INFO] 21:58:16:153 Cliente/(7522:7530): ABRIR ARCHIVO: /Nuevo
+[INFO] 21:58:16:153 Cliente/(7522:7529): ABRIR DIRECTORIO: /Nuevo
+[INFO] 21:58:23:564 Cliente/(7522:7531): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 21:58:23:564 Cliente/(7522:7529): ATRIBUTOS: /Nuevo
+[INFO] 21:58:23:564 Cliente/(7522:7530): ATRIBUTOS: /Nuevo
+[INFO] 21:58:23:565 Cliente/(7522:7531): ABRIR DIRECTORIO: /Nuevo
+[INFO] 22:00:03:766 Cliente/(7522:7529): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 22:00:03:766 Cliente/(7522:7530): ATRIBUTOS: /Nuevo
+[INFO] 22:00:03:767 Cliente/(7522:7531): ATRIBUTOS: /Nuevo
+[INFO] 22:00:03:767 Cliente/(7522:7529): ABRIR DIRECTORIO: /Nuevo
+[INFO] 22:03:58:661 Cliente/(7522:7530): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 22:03:58:661 Cliente/(7522:7531): ATRIBUTOS: /Nuevo
+[INFO] 22:32:47:103 Cliente/(2276:2283): ATRIBUTOS: /.Trash
+[INFO] 22:32:47:124 Cliente/(2276:2284): ATRIBUTOS: /.Trash-1000
+[INFO] 22:32:47:131 Cliente/(2276:2285): ATRIBUTOS: /.xdg-volume-info
+[INFO] 22:32:47:138 Cliente/(2276:2283): ATRIBUTOS: /autorun.inf
+[INFO] 22:32:47:150 Cliente/(2276:2284): LISTAR: /
+[INFO] 22:32:47:153 Cliente/(2276:2285): LISTAR: /
+[INFO] 22:32:47:155 Cliente/(2276:2284): LISTAR: /
+[INFO] 22:32:47:157 Cliente/(2276:2285): LISTAR: /
+[INFO] 22:32:47:158 Cliente/(2276:2284): LISTAR: /
+[INFO] 22:32:47:158 Cliente/(2276:2285): LISTAR: /
+[INFO] 22:32:47:159 Cliente/(2276:2284): LISTAR: /
+[INFO] 22:32:47:159 Cliente/(2276:2285): LISTAR: /
+[INFO] 22:32:47:160 Cliente/(2276:2284): LISTAR: /
+[INFO] 22:32:47:160 Cliente/(2276:2285): LISTAR: /
+[INFO] 22:32:47:161 Cliente/(2276:2284): LISTAR: /
+[INFO] 22:32:47:162 Cliente/(2276:2285): LISTAR: /
+[INFO] 22:32:47:162 Cliente/(2276:2284): LISTAR: /
+[INFO] 22:32:47:162 Cliente/(2276:2285): LISTAR: /
+[INFO] 22:32:47:163 Cliente/(2276:2284): LISTAR: /
+[INFO] 22:32:47:168 Cliente/(2276:2285): LISTAR: /
+[INFO] 22:32:47:168 Cliente/(2276:2284): LISTAR: /
+[INFO] 22:32:47:169 Cliente/(2276:2285): LISTAR: /
+[INFO] 22:32:47:169 Cliente/(2276:2284): LISTAR: /
+[INFO] 22:32:47:170 Cliente/(2276:2285): LISTAR: /
+[INFO] 22:32:47:170 Cliente/(2276:2284): LISTAR: /
+[INFO] 22:32:47:174 Cliente/(2276:2285): LISTAR: /
+[INFO] 22:32:47:174 Cliente/(2276:2283): ATRIBUTOS: /autorun.inf
+[INFO] 22:32:47:179 Cliente/(2276:2284): ATRIBUTOS: /
+[INFO] 22:32:47:182 Cliente/(2276:2285): ABRIR DIRECTORIO: /
+[INFO] 22:32:55:543 Cliente/(2276:2284): ATRIBUTOS: /
+[INFO] 22:32:55:544 Cliente/(2276:2285): ABRIR DIRECTORIO: /
+[INFO] 22:32:55:910 Cliente/(2276:2284): ABRIR DIRECTORIO: /
+[INFO] 22:32:55:910 Cliente/(2276:2284): LISTAR: /
+[INFO] 22:32:55:911 Cliente/(2276:2284): ATRIBUTOS: /.directory
+[INFO] 22:32:59:403 Cliente/(2276:2285): ATRIBUTOS: /Nuevo
+[INFO] 22:32:59:407 Cliente/(2276:2284): CREAR ARCHIVO: /Nuevo
+[INFO] 22:32:59:408 Cliente/(2276:2284): ATRIBUTOS: /Nuevo
+[INFO] 22:32:59:415 Cliente/(2276:2285): ABRIR ARCHIVO: /Nuevo
+[INFO] 22:32:59:431 Cliente/(2276:2285): ABRIR DIRECTORIO: /Nuevo
+[INFO] 22:33:00:432 Cliente/(2276:2283): ATRIBUTOS: /Nuevo
+[INFO] 22:33:00:434 Cliente/(2276:2284): ABRIR DIRECTORIO: /Nuevo
+[INFO] 22:33:00:977 Cliente/(2276:2285): ABRIR ARCHIVO: /Nuevo
+[INFO] 22:33:00:978 Cliente/(2276:2283): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /Nuevo
+[INFO] 22:33:01:377 Cliente/(2276:2285): ABRIR ARCHIVO: /Nuevo
+[INFO] 22:33:01:381 Cliente/(2276:2283): ATRIBUTOS: /Nuevo
+[INFO] 22:33:01:382 Cliente/(2276:2284): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /Nuevo
+[INFO] 22:33:01:383 Cliente/(2276:2283): ABRIR DIRECTORIO: /Nuevo
+[INFO] 22:33:01:384 Cliente/(2276:2284): ABRIR ARCHIVO: /Nuevo
+[INFO] 22:33:01:385 Cliente/(2276:2285): ATRIBUTOS: /Nuevo
+[INFO] 22:33:01:444 Cliente/(2276:2284): ATRIBUTOS: /Nuevo
+[INFO] 22:33:01:445 Cliente/(2276:2285): ABRIR DIRECTORIO: /Nuevo
+[INFO] 22:33:06:24 Cliente/(2276:2283): ATRIBUTOS: /Nuevo
+[INFO] 22:33:06:27 Cliente/(2276:2284): ABRIR DIRECTORIO: /Nuevo
+[INFO] 22:33:06:27 Cliente/(2276:2285): ABRIR ARCHIVO: /Nuevo
+[INFO] 22:33:06:27 Cliente/(2276:2284): ABRIR DIRECTORIO: /Nuevo
+[INFO] 22:33:07:49 Cliente/(2276:2285): ATRIBUTOS: /Nuevo
+[INFO] 22:33:07:51 Cliente/(2276:2283): ABRIR DIRECTORIO: /Nuevo
+[INFO] 22:33:10:616 Cliente/(2276:2284): ATRIBUTOS: /Nuevo
+[INFO] 22:33:10:617 Cliente/(2276:2285): ABRIR ARCHIVO: /Nuevo
+[INFO] 22:33:10:617 Cliente/(2276:2284): ABRIR ARCHIVO: /Nuevo
+[INFO] 22:33:10:617 Cliente/(2276:2285): TRUNCATE: /Nuevo SIZE: 0
+[INFO] 22:33:10:617 Cliente/(2276:2285): ATRIBUTOS: /Nuevo
+[INFO] 22:33:10:617 Cliente/(2276:2284): ABRIR DIRECTORIO: /Nuevo
+[INFO] 22:33:10:618 Cliente/(2276:2285): ABRIR ARCHIVO: /Nuevo
+[INFO] 22:33:10:618 Cliente/(2276:2284): ABRIR DIRECTORIO: /Nuevo
+[INFO] 22:36:01:252 Cliente/(2276:2283): 0 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 22:36:01:252 Cliente/(2276:2284): ATRIBUTOS: /Nuevo
+[INFO] 22:36:01:253 Cliente/(2276:2285): ATRIBUTOS: /Nuevo
+[INFO] 22:36:01:253 Cliente/(2276:2284): ATRIBUTOS: /Nuevo
+[INFO] 22:36:01:253 Cliente/(2276:2285): ATRIBUTOS: /Nuevo
+[INFO] 22:36:02:275 Cliente/(2276:2284): ATRIBUTOS: /Nuevo
+[INFO] 22:45:11:593 Cliente/(2536:2543): ATRIBUTOS: /.Trash
+[INFO] 22:45:11:606 Cliente/(2536:2544): ATRIBUTOS: /.Trash-1000
+[INFO] 22:45:11:609 Cliente/(2536:2545): ATRIBUTOS: /.xdg-volume-info
+[INFO] 22:45:11:625 Cliente/(2536:2543): ATRIBUTOS: /autorun.inf
+[INFO] 22:45:11:630 Cliente/(2536:2544): LISTAR: /
+[INFO] 22:45:11:632 Cliente/(2536:2545): LISTAR: /
+[INFO] 22:45:11:633 Cliente/(2536:2544): LISTAR: /
+[INFO] 22:45:11:633 Cliente/(2536:2545): LISTAR: /
+[INFO] 22:45:11:635 Cliente/(2536:2544): LISTAR: /
+[INFO] 22:45:11:635 Cliente/(2536:2545): LISTAR: /
+[INFO] 22:45:11:636 Cliente/(2536:2544): LISTAR: /
+[INFO] 22:45:11:637 Cliente/(2536:2545): LISTAR: /
+[INFO] 22:45:11:639 Cliente/(2536:2544): LISTAR: /
+[INFO] 22:45:11:639 Cliente/(2536:2545): LISTAR: /
+[INFO] 22:45:11:640 Cliente/(2536:2544): LISTAR: /
+[INFO] 22:45:11:640 Cliente/(2536:2545): LISTAR: /
+[INFO] 22:45:11:643 Cliente/(2536:2544): LISTAR: /
+[INFO] 22:45:11:643 Cliente/(2536:2545): LISTAR: /
+[INFO] 22:45:11:643 Cliente/(2536:2544): LISTAR: /
+[INFO] 22:45:11:644 Cliente/(2536:2545): LISTAR: /
+[INFO] 22:45:11:644 Cliente/(2536:2544): LISTAR: /
+[INFO] 22:45:11:645 Cliente/(2536:2545): LISTAR: /
+[INFO] 22:45:11:647 Cliente/(2536:2544): LISTAR: /
+[INFO] 22:45:11:647 Cliente/(2536:2545): LISTAR: /
+[INFO] 22:45:11:648 Cliente/(2536:2544): LISTAR: /
+[INFO] 22:45:11:651 Cliente/(2536:2545): LISTAR: /
+[INFO] 22:45:11:652 Cliente/(2536:2543): ATRIBUTOS: /autorun.inf
+[INFO] 22:45:11:658 Cliente/(2536:2544): ATRIBUTOS: /
+[INFO] 22:45:11:658 Cliente/(2536:2545): ABRIR DIRECTORIO: /
+[INFO] 22:45:11:660 Cliente/(2536:2544): ABRIR DIRECTORIO: /
+[INFO] 22:45:11:660 Cliente/(2536:2544): LISTAR: /
+[INFO] 22:46:03:980 Cliente/(2536:2543): ATRIBUTOS: /.directory
+[INFO] 22:46:06:985 Cliente/(2536:2544): ATRIBUTOS: /Nuevo
+[INFO] 22:46:07:3 Cliente/(2536:2543): CREAR ARCHIVO: /Nuevo
+[INFO] 22:46:07:4 Cliente/(2536:2543): ATRIBUTOS: /Nuevo
+[INFO] 22:46:07:4 Cliente/(2536:2544): ABRIR ARCHIVO: /Nuevo
+[INFO] 22:46:07:11 Cliente/(2536:2544): ABRIR DIRECTORIO: /Nuevo
+[INFO] 22:46:07:1 Cliente/(2536:2545): ABRIR DIRECTORIO: /Nuevo
+[INFO] 22:49:05:851 Cliente/(2536:2543): ATRIBUTOS: /Nuevo
+[INFO] 22:49:05:852 Cliente/(2536:2544): ABRIR ARCHIVO: /Nuevo
+[INFO] 22:49:05:852 Cliente/(2536:2545): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /Nuevo
+[INFO] 22:49:05:985 Cliente/(2536:2544): ABRIR ARCHIVO: /Nuevo
+[INFO] 22:49:05:987 Cliente/(2536:2545): ATRIBUTOS: /Nuevo
+[INFO] 22:49:05:987 Cliente/(2536:2543): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /Nuevo
+[INFO] 22:49:05:988 Cliente/(2536:2545): ABRIR DIRECTORIO: /Nuevo
+[INFO] 22:49:05:989 Cliente/(2536:2543): ABRIR ARCHIVO: /Nuevo
+[INFO] 22:49:05:990 Cliente/(2536:2544): ATRIBUTOS: /Nuevo
+[INFO] 22:49:06:865 Cliente/(2536:2543): ATRIBUTOS: /Nuevo
+[INFO] 22:49:06:866 Cliente/(2536:2544): ABRIR DIRECTORIO: /Nuevo
+[INFO] 22:49:22:250 Cliente/(2536:2545): ATRIBUTOS: /Nuevo
+[INFO] 22:49:22:250 Cliente/(2536:2543): ABRIR DIRECTORIO: /Nuevo
+[INFO] 22:49:22:250 Cliente/(2536:2544): ABRIR ARCHIVO: /Nuevo
+[INFO] 22:49:22:251 Cliente/(2536:2543): ABRIR DIRECTORIO: /Nuevo
+[INFO] 22:49:23:277 Cliente/(2536:2544): ATRIBUTOS: /Nuevo
+[INFO] 22:49:23:278 Cliente/(2536:2545): ABRIR DIRECTORIO: /Nuevo
+[INFO] 22:49:23:623 Cliente/(2536:2543): ABRIR ARCHIVO: /Nuevo
+[INFO] 22:49:23:624 Cliente/(2536:2545): ABRIR ARCHIVO: /Nuevo
+[INFO] 22:49:23:624 Cliente/(2536:2543): TRUNCATE: /Nuevo SIZE: 0
+[INFO] 22:49:23:624 Cliente/(2536:2543): ATRIBUTOS: /Nuevo
+[INFO] 22:49:23:624 Cliente/(2536:2545): ABRIR DIRECTORIO: /Nuevo
+[INFO] 22:49:23:625 Cliente/(2536:2543): ABRIR ARCHIVO: /Nuevo
+[INFO] 22:49:23:625 Cliente/(2536:2545): ABRIR DIRECTORIO: /Nuevo
+[INFO] 22:49:27:782 Cliente/(2536:2544): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 22:49:27:782 Cliente/(2536:2545): ATRIBUTOS: /Nuevo
+[INFO] 22:51:54:862 Cliente/(2536:2543): 28 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 22:51:54:862 Cliente/(2536:2544): ATRIBUTOS: /Nuevo
+[INFO] 22:52:22:613 Cliente/(2536:2545): ATRIBUTOS: /Nuevo
+[INFO] 22:52:40:99 Cliente/(2536:2574): 0 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 22:52:40:99 Cliente/(2536:2543): ATRIBUTOS: /Nuevo
+[INFO] 22:52:40:99 Cliente/(2536:2653): ATRIBUTOS: /Nuevo
+[INFO] 22:52:40:99 Cliente/(2536:2544): ATRIBUTOS: /Nuevo
+[INFO] 22:52:40:100 Cliente/(2536:2545): ATRIBUTOS: /Nuevo
+[INFO] 22:52:40:100 Cliente/(2536:2543): ATRIBUTOS: /Nuevo
+[INFO] 22:52:40:100 Cliente/(2536:2544): ATRIBUTOS: /Nuevo
+[INFO] 22:52:40:102 Cliente/(2536:2653): ATRIBUTOS: /Nuevo
+[INFO] 22:52:41:123 Cliente/(2536:2543): ATRIBUTOS: /Nuevo
+[INFO] 14:39:19:580 Cliente/(3490:3497): ATRIBUTOS: /.Trash
+[INFO] 14:39:19:595 Cliente/(3490:3498): ATRIBUTOS: /.Trash-1000
+[INFO] 14:39:19:598 Cliente/(3490:3499): ATRIBUTOS: /.xdg-volume-info
+[INFO] 14:39:19:601 Cliente/(3490:3497): ATRIBUTOS: /autorun.inf
+[INFO] 14:39:19:614 Cliente/(3490:3498): LISTAR: /
+[INFO] 14:39:19:615 Cliente/(3490:3497): ATRIBUTOS: /directorio
+[INFO] 14:39:19:616 Cliente/(3490:3498): ATRIBUTOS: /Pallet Town
+[INFO] 14:39:19:619 Cliente/(3490:3498): LISTAR: /
+[INFO] 14:39:19:619 Cliente/(3490:3499): LISTAR: /
+[INFO] 14:39:19:620 Cliente/(3490:3499): LISTAR: /
+[INFO] 14:39:19:621 Cliente/(3490:3499): LISTAR: /
+[INFO] 14:39:19:622 Cliente/(3490:3499): LISTAR: /
+[INFO] 14:39:19:623 Cliente/(3490:3499): LISTAR: /
+[INFO] 14:39:19:623 Cliente/(3490:3499): LISTAR: /
+[INFO] 14:39:19:624 Cliente/(3490:3499): LISTAR: /
+[INFO] 14:39:19:625 Cliente/(3490:3499): LISTAR: /
+[INFO] 14:39:19:625 Cliente/(3490:3499): LISTAR: /
+[INFO] 14:39:19:626 Cliente/(3490:3499): LISTAR: /
+[INFO] 14:39:19:627 Cliente/(3490:3499): LISTAR: /
+[INFO] 14:39:19:627 Cliente/(3490:3499): LISTAR: /
+[INFO] 14:39:19:628 Cliente/(3490:3499): LISTAR: /
+[INFO] 14:39:19:629 Cliente/(3490:3499): LISTAR: /
+[INFO] 14:39:19:630 Cliente/(3490:3499): LISTAR: /
+[INFO] 14:39:19:630 Cliente/(3490:3499): LISTAR: /
+[INFO] 14:39:19:631 Cliente/(3490:3499): LISTAR: /
+[INFO] 14:39:19:632 Cliente/(3490:3499): LISTAR: /
+[INFO] 14:39:19:638 Cliente/(3490:3499): LISTAR: /
+[INFO] 14:39:19:639 Cliente/(3490:3499): LISTAR: /
+[INFO] 14:39:19:640 Cliente/(3490:3498): ATRIBUTOS: /autorun.inf
+[INFO] 14:39:19:644 Cliente/(3490:3499): ATRIBUTOS: /
+[INFO] 14:39:19:654 Cliente/(3490:3497): ABRIR DIRECTORIO: /
+[INFO] 14:39:32:954 Cliente/(3490:3499): ATRIBUTOS: /
+[INFO] 14:39:32:975 Cliente/(3490:3497): ABRIR DIRECTORIO: /
+[INFO] 14:39:34:769 Cliente/(3490:3499): ATRIBUTOS: /
+[INFO] 14:39:34:775 Cliente/(3490:3497): ATRIBUTOS: /.directory
+[INFO] 14:39:34:778 Cliente/(3490:3498): ABRIR DIRECTORIO: /
+[INFO] 14:39:34:784 Cliente/(3490:3497): LISTAR: /
+[INFO] 14:39:34:785 Cliente/(3490:3498): ATRIBUTOS: /directorio
+[INFO] 14:39:34:786 Cliente/(3490:3512): ABRIR DIRECTORIO: /directorio
+[INFO] 14:39:34:789 Cliente/(3490:3497): ATRIBUTOS: /Pallet Town
+[INFO] 14:39:34:793 Cliente/(3490:3498): ABRIR DIRECTORIO: /Pallet Town
+[INFO] 14:39:41:17 Cliente/(3490:3498): ATRIBUTOS: /directorio
+[INFO] 14:39:41:23 Cliente/(3490:3512): ABRIR DIRECTORIO: /directorio
+[INFO] 14:39:41:24 Cliente/(3490:3498): LISTAR: /directorio
+[INFO] 14:39:41:26 Cliente/(3490:3512): ATRIBUTOS: /directorio/archivo.txt
+[INFO] 14:39:41:26 Cliente/(3490:3499): ABRIR DIRECTORIO: /directorio/archivo.txt
+[INFO] 14:39:41:27 Cliente/(3490:3497): ATRIBUTOS: /directorio/subdirectorio
+[INFO] 14:39:41:30 Cliente/(3490:3498): ABRIR DIRECTORIO: /directorio/subdirectorio
+[INFO] 14:39:41:31 Cliente/(3490:3512): ATRIBUTOS: /directorio/.directory
+[INFO] 14:39:41:61 Cliente/(3490:3512): LISTAR: /
+[INFO] 14:39:41:62 Cliente/(3490:3498): ATRIBUTOS: /directorio
+[INFO] 14:39:41:64 Cliente/(3490:3497): ATRIBUTOS: /Pallet Town
+[INFO] 14:39:42:345 Cliente/(3490:3498): ATRIBUTOS: /directorio
+[INFO] 14:39:42:350 Cliente/(3490:3497): ATRIBUTOS: /directorio/subdirectorio
+[INFO] 14:39:42:354 Cliente/(3490:3512): ABRIR DIRECTORIO: /directorio/subdirectorio
+[INFO] 14:39:42:355 Cliente/(3490:3499): ATRIBUTOS: /directorio/subdirectorio/.directory
+[INFO] 14:39:42:382 Cliente/(3490:3512): LISTAR: /directorio/subdirectorio
+[INFO] 14:39:42:386 Cliente/(3490:3497): ATRIBUTOS: /directorio/subdirectorio/large.txt
+[INFO] 14:39:42:386 Cliente/(3490:3499): LISTAR: /directorio
+[INFO] 14:39:42:387 Cliente/(3490:3512): ABRIR DIRECTORIO: /directorio/subdirectorio/large.txt
+[INFO] 14:39:42:389 Cliente/(3490:3497): ATRIBUTOS: /directorio/archivo.txt
+[INFO] 14:39:42:389 Cliente/(3490:3512): ATRIBUTOS: /directorio/subdirectorio
+[INFO] 14:40:00:689 Cliente/(3490:3498): ATRIBUTOS: /directorio
+[INFO] 14:40:00:691 Cliente/(3490:3512): ATRIBUTOS: /directorio/subdirectorio
+[INFO] 14:40:00:692 Cliente/(3490:3497): ATRIBUTOS: /directorio/subdirectorio/lagorda
+[INFO] 14:40:00:698 Cliente/(3490:3498): CREAR ARCHIVO: /directorio/subdirectorio/lagorda
+[INFO] 14:40:00:698 Cliente/(3490:3498): ATRIBUTOS: /directorio/subdirectorio/lagorda
+[INFO] 14:40:00:699 Cliente/(3490:3512): ABRIR ARCHIVO: /directorio/subdirectorio/lagorda
+[INFO] 14:40:00:734 Cliente/(3490:3499): 0 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 14:40:00:735 Cliente/(3490:3498): ATRIBUTOS: /directorio/subdirectorio/lagorda
+[INFO] 14:40:01:711 Cliente/(3490:3499): ATRIBUTOS: /directorio
+[INFO] 14:40:01:716 Cliente/(3490:3498): ATRIBUTOS: /directorio/subdirectorio
+[INFO] 14:40:01:719 Cliente/(3490:3512): ATRIBUTOS: /directorio/subdirectorio/lagorda
+[INFO] 14:40:01:720 Cliente/(3490:3497): ABRIR ARCHIVO: /directorio/subdirectorio/lagorda
+[INFO] 14:40:01:721 Cliente/(3490:3499): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /directorio/subdirectorio/lagorda
+[INFO] 14:40:01:722 Cliente/(3490:3499): LECTURA COMPLETADA CON:         11 LEIDOS
+[INFO] 14:40:01:723 Cliente/(3490:3512): ABRIR DIRECTORIO: /directorio/subdirectorio/lagorda
+[INFO] 14:40:06:256 Cliente/(3490:3497): ATRIBUTOS: /directorio
+[INFO] 14:40:06:258 Cliente/(3490:3499): ATRIBUTOS: /directorio/subdirectorio
+[INFO] 14:40:06:259 Cliente/(3490:3498): ATRIBUTOS: /directorio/subdirectorio/lagorda
+[INFO] 14:40:06:259 Cliente/(3490:3512): ABRIR ARCHIVO: /directorio/subdirectorio/lagorda
+[INFO] 14:40:06:260 Cliente/(3490:3497): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /directorio/subdirectorio/lagorda
+[INFO] 14:40:06:260 Cliente/(3490:3497): LECTURA COMPLETADA CON:         11 LEIDOS
+[INFO] 14:40:06:410 Cliente/(3490:3498): ABRIR ARCHIVO: /directorio/subdirectorio/lagorda
+[INFO] 14:40:06:412 Cliente/(3490:3512): ATRIBUTOS: /directorio/subdirectorio/lagorda
+[INFO] 14:40:06:412 Cliente/(3490:3497): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /directorio/subdirectorio/lagorda
+[INFO] 14:40:06:412 Cliente/(3490:3497): LECTURA COMPLETADA CON:         11 LEIDOS
+[INFO] 14:40:06:413 Cliente/(3490:3498): ABRIR DIRECTORIO: /directorio/subdirectorio/lagorda
+[INFO] 14:40:06:415 Cliente/(3490:3512): ABRIR ARCHIVO: /directorio/subdirectorio/lagorda
+[INFO] 14:40:06:415 Cliente/(3490:3497): ATRIBUTOS: /directorio/subdirectorio/lagorda
+[INFO] 14:40:07:338 Cliente/(3490:3498): ATRIBUTOS: /directorio
+[INFO] 14:40:07:342 Cliente/(3490:3512): ATRIBUTOS: /directorio/subdirectorio
+[INFO] 14:40:07:347 Cliente/(3490:3497): ATRIBUTOS: /directorio/subdirectorio/lagorda
+[INFO] 14:40:07:349 Cliente/(3490:3499): ABRIR ARCHIVO: /directorio/subdirectorio/lagorda
+[INFO] 14:40:07:350 Cliente/(3490:3498): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /directorio/subdirectorio/lagorda
+[INFO] 14:40:07:354 Cliente/(3490:3498): LECTURA COMPLETADA CON:         11 LEIDOS
+[INFO] 14:40:07:354 Cliente/(3490:3497): ABRIR DIRECTORIO: /directorio/subdirectorio/lagorda
+[INFO] 14:40:21:905 Cliente/(3490:3499): ATRIBUTOS: /directorio
+[INFO] 14:40:21:906 Cliente/(3490:3498): ATRIBUTOS: /directorio/subdirectorio
+[INFO] 14:40:21:908 Cliente/(3490:3512): ATRIBUTOS: /directorio/subdirectorio/lagorda
+[INFO] 14:40:21:908 Cliente/(3490:3497): ABRIR ARCHIVO: /directorio/subdirectorio/lagorda
+[INFO] 14:40:21:909 Cliente/(3490:3499): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /directorio/subdirectorio/lagorda
+[INFO] 14:40:21:909 Cliente/(3490:3499): LECTURA COMPLETADA CON:         11 LEIDOS
+[INFO] 14:40:21:909 Cliente/(3490:3512): ABRIR DIRECTORIO: /directorio/subdirectorio/lagorda
+[INFO] 14:40:24:115 Cliente/(3490:3497): ATRIBUTOS: /directorio
+[INFO] 14:40:24:116 Cliente/(3490:3499): ATRIBUTOS: /directorio/subdirectorio
+[INFO] 14:40:24:117 Cliente/(3490:3498): ATRIBUTOS: /directorio/subdirectorio/lagorda1
+[INFO] 14:40:24:127 Cliente/(3490:3512): CREAR ARCHIVO: /directorio/subdirectorio/lagorda1
+[INFO] 14:40:24:130 Cliente/(3490:3512): ATRIBUTOS: /directorio/subdirectorio/lagorda1
+[INFO] 14:40:24:131 Cliente/(3490:3497): ABRIR ARCHIVO: /directorio/subdirectorio/lagorda1
+[INFO] 14:40:24:134 Cliente/(3490:3499): 0 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 14:40:24:134 Cliente/(3490:3498): ATRIBUTOS: /directorio/subdirectorio/lagorda1
+[INFO] 14:40:24:157 Cliente/(3490:3497): ATRIBUTOS: /directorio/subdirectorio/lagorda
+[INFO] 14:40:24:157 Cliente/(3490:3499): ABRIR ARCHIVO: /directorio/subdirectorio/lagorda
+[INFO] 14:40:24:157 Cliente/(3490:3498): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /directorio/subdirectorio/lagorda
+[INFO] 14:40:24:158 Cliente/(3490:3498): LECTURA COMPLETADA CON:         11 LEIDOS
+[INFO] 14:40:24:161 Cliente/(3490:3497): ABRIR DIRECTORIO: /directorio/subdirectorio/lagorda
+[INFO] 14:40:25:144 Cliente/(3490:3499): ATRIBUTOS: /directorio
+[INFO] 14:40:25:149 Cliente/(3490:3498): ATRIBUTOS: /directorio/subdirectorio
+[INFO] 14:40:25:154 Cliente/(3490:3512): ATRIBUTOS: /directorio/subdirectorio/lagorda1
+[INFO] 14:40:25:155 Cliente/(3490:3497): ABRIR ARCHIVO: /directorio/subdirectorio/lagorda1
+[INFO] 14:40:25:165 Cliente/(3490:3499): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /directorio/subdirectorio/lagorda1
+[INFO] 14:40:25:166 Cliente/(3490:3499): LECTURA COMPLETADA CON:         11 LEIDOS
+[INFO] 14:40:25:166 Cliente/(3490:3512): ABRIR DIRECTORIO: /directorio/subdirectorio/lagorda1
+[INFO] 14:41:18:12 Cliente/(3490:3497): ATRIBUTOS: /
+[INFO] 14:41:18:16 Cliente/(3490:3498): ATRIBUTOS: /.directory
+[INFO] 14:41:18:19 Cliente/(3490:3512): ABRIR DIRECTORIO: /
+[INFO] 14:41:18:25 Cliente/(3490:3498): LISTAR: /
+[INFO] 14:41:18:26 Cliente/(3490:3512): ATRIBUTOS: /directorio
+[INFO] 14:41:18:28 Cliente/(3490:3499): ABRIR DIRECTORIO: /directorio
+[INFO] 14:41:18:28 Cliente/(3490:3498): ATRIBUTOS: /Pallet Town
+[INFO] 14:41:18:31 Cliente/(3490:3512): ABRIR DIRECTORIO: /Pallet Town
+[INFO] 14:41:19:310 Cliente/(3490:3512): ATRIBUTOS: /Pallet Town
+[INFO] 14:41:19:317 Cliente/(3490:3499): ABRIR DIRECTORIO: /Pallet Town
+[INFO] 14:41:19:320 Cliente/(3490:3497): ATRIBUTOS: /Pallet Town/.directory
+[INFO] 14:41:19:353 Cliente/(3490:3499): LISTAR: /Pallet Town
+[INFO] 14:41:19:355 Cliente/(3490:3512): ATRIBUTOS: /Pallet Town/Pokemons
+[INFO] 14:41:19:359 Cliente/(3490:3498): ABRIR DIRECTORIO: /Pallet Town/Pokemons
+[INFO] 14:41:19:367 Cliente/(3490:3498): LISTAR: /
+[INFO] 14:41:19:368 Cliente/(3490:3512): ATRIBUTOS: /directorio
+[INFO] 14:41:19:371 Cliente/(3490:3497): ATRIBUTOS: /Pallet Town
+[INFO] 14:41:21:303 Cliente/(3490:3512): ATRIBUTOS: /Pallet Town
+[INFO] 14:41:21:307 Cliente/(3490:3497): ATRIBUTOS: /Pallet Town/eze.jpg
+[INFO] 14:41:21:313 Cliente/(3490:3498): CREAR ARCHIVO: /Pallet Town/eze.jpg
+[INFO] 14:41:21:314 Cliente/(3490:3498): ATRIBUTOS: /Pallet Town/eze.jpg
+[INFO] 14:41:21:314 Cliente/(3490:3499): ABRIR ARCHIVO: /Pallet Town/eze.jpg
+[INFO] 14:41:21:346 Cliente/(3490:3512): 0 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 14:41:21:346 Cliente/(3490:3497): ATRIBUTOS: /Pallet Town/eze.jpg
+[INFO] 14:41:22:327 Cliente/(3490:3499): ATRIBUTOS: /Pallet Town
+[INFO] 14:41:22:329 Cliente/(3490:3512): ATRIBUTOS: /Pallet Town/eze.jpg
+[INFO] 14:41:22:329 Cliente/(3490:3497): ABRIR DIRECTORIO: /Pallet Town/eze.jpg
+[INFO] 14:41:22:332 Cliente/(3490:3498): ABRIR ARCHIVO: /Pallet Town/eze.jpg
+[INFO] 14:41:22:333 Cliente/(3490:3499): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /Pallet Town/eze.jpg
+[INFO] 14:41:22:333 Cliente/(3490:3499): LECTURA COMPLETADA CON:       4096 LEIDOS
+[INFO] 14:41:22:345 Cliente/(3490:3512): ATRIBUTOS: /Pallet Town/eze.jpg
+[INFO] 14:41:22:347 Cliente/(3490:3497): LEER 4096 BYTES, OFFSET: 4096 DEL PATH: /Pallet Town/eze.jpg
+[INFO] 14:41:22:347 Cliente/(3490:3497): LECTURA COMPLETADA CON:       4096 LEIDOS
+[INFO] 14:41:22:350 Cliente/(3490:3498): ATRIBUTOS: /Pallet Town/eze.jpg
+[INFO] 14:41:24:576 Cliente/(3490:3512): ATRIBUTOS: /Pallet Town
+[INFO] 14:41:24:584 Cliente/(3490:3497): ATRIBUTOS: /Pallet Town/eze.jpg
+[INFO] 14:41:24:882 Cliente/(3490:3498): ABRIR ARCHIVO: /Pallet Town/eze.jpg
+[INFO] 14:41:24:884 Cliente/(3490:3499): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /Pallet Town/eze.jpg
+[INFO] 14:41:24:884 Cliente/(3490:3499): LECTURA COMPLETADA CON:       4096 LEIDOS
+[INFO] 14:41:24:889 Cliente/(3490:3497): ABRIR ARCHIVO: /Pallet Town/eze.jpg
+[INFO] 14:41:24:890 Cliente/(3490:3498): ATRIBUTOS: /Pallet Town/eze.jpg
+[INFO] 14:41:24:890 Cliente/(3490:3499): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /Pallet Town/eze.jpg
+[INFO] 14:41:24:890 Cliente/(3490:3499): LECTURA COMPLETADA CON:       4096 LEIDOS
+[INFO] 14:41:24:913 Cliente/(3490:3512): ATRIBUTOS: /Pallet Town/eze.jpg
+[INFO] 14:41:24:917 Cliente/(3490:3497): LEER 4096 BYTES, OFFSET: 4096 DEL PATH: /Pallet Town/eze.jpg
+[INFO] 14:41:24:918 Cliente/(3490:3497): LECTURA COMPLETADA CON:       4096 LEIDOS
+[INFO] 14:43:44:125 Cliente/(3490:3499): ATRIBUTOS: /.directory
+[INFO] 14:43:44:128 Cliente/(3490:3497): ATRIBUTOS: /
+[INFO] 14:43:44:139 Cliente/(3490:3512): ABRIR DIRECTORIO: /
+[INFO] 14:43:44:139 Cliente/(3490:3497): LISTAR: /
+[INFO] 14:43:44:142 Cliente/(3490:3512): ATRIBUTOS: /directorio
+[INFO] 14:43:44:144 Cliente/(3490:3498): ABRIR DIRECTORIO: /directorio
+[INFO] 14:43:44:146 Cliente/(3490:3497): ATRIBUTOS: /Pallet Town
+[INFO] 14:43:44:148 Cliente/(3490:3512): ABRIR DIRECTORIO: /Pallet Town
+[INFO] 14:43:45:374 Cliente/(3490:3512): ATRIBUTOS: /Pallet Town
+[INFO] 14:43:45:377 Cliente/(3490:3498): ABRIR DIRECTORIO: /Pallet Town
+[INFO] 14:43:45:377 Cliente/(3490:3512): LISTAR: /Pallet Town
+[INFO] 14:43:45:378 Cliente/(3490:3498): ATRIBUTOS: /Pallet Town/Pokemons
+[INFO] 14:43:45:380 Cliente/(3490:3499): ABRIR DIRECTORIO: /Pallet Town/Pokemons
+[INFO] 14:43:45:380 Cliente/(3490:3497): ATRIBUTOS: /Pallet Town/.directory
+[INFO] 14:43:45:384 Cliente/(3490:3512): ATRIBUTOS: /Pallet Town/eze.jpg
+[INFO] 14:43:45:389 Cliente/(3490:3499): ABRIR DIRECTORIO: /Pallet Town/eze.jpg
+[INFO] 14:43:45:394 Cliente/(3490:3499): LISTAR: /
+[INFO] 14:43:45:395 Cliente/(3490:3497): ATRIBUTOS: /directorio
+[INFO] 14:43:45:396 Cliente/(3490:3512): ATRIBUTOS: /Pallet Town
+[INFO] 14:43:45:463 Cliente/(3490:3497): ABRIR ARCHIVO: /Pallet Town/eze.jpg
+[INFO] 14:43:45:464 Cliente/(3490:3512): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /Pallet Town/eze.jpg
+[INFO] 14:43:45:464 Cliente/(3490:3512): LECTURA COMPLETADA CON:       4096 LEIDOS
+[INFO] 14:43:45:464 Cliente/(3490:3499): ATRIBUTOS: /Pallet Town/eze.jpg
+[INFO] 14:43:45:464 Cliente/(3490:3498): LEER 4096 BYTES, OFFSET: 4096 DEL PATH: /Pallet Town/eze.jpg
+[INFO] 14:43:45:465 Cliente/(3490:3498): LECTURA COMPLETADA CON:       4096 LEIDOS
+[INFO] 14:43:45:468 Cliente/(3490:3497): ATRIBUTOS: /Pallet Town/eze.jpg
+[INFO] 14:43:48:379 Cliente/(3490:3499): ATRIBUTOS: /Pallet Town
+[INFO] 14:43:48:382 Cliente/(3490:3498): ATRIBUTOS: /Pallet Town/lolol
+[INFO] 14:43:48:386 Cliente/(3490:3497): CREAR ARCHIVO: /Pallet Town/lolol
+[INFO] 14:43:48:387 Cliente/(3490:3497): ATRIBUTOS: /Pallet Town/lolol
+[INFO] 14:43:48:387 Cliente/(3490:3512): ABRIR ARCHIVO: /Pallet Town/lolol
+[INFO] 14:43:48:431 Cliente/(3490:3499): 0 FUE EL RESULTADO DE LA ESCRITURA
+[INFO] 14:43:48:431 Cliente/(3490:3498): ATRIBUTOS: /Pallet Town/lolol
+[INFO] 14:43:49:402 Cliente/(3490:3512): ATRIBUTOS: /Pallet Town
+[INFO] 14:43:49:411 Cliente/(3490:3499): ATRIBUTOS: /Pallet Town/lolol
+[INFO] 14:43:49:413 Cliente/(3490:3498): ABRIR ARCHIVO: /Pallet Town/lolol
+[INFO] 14:43:49:414 Cliente/(3490:3497): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /Pallet Town/lolol
+[INFO] 14:43:49:421 Cliente/(3490:3497): LECTURA COMPLETADA CON:       4096 LEIDOS
+[INFO] 14:43:49:422 Cliente/(3490:3499): ABRIR DIRECTORIO: /Pallet Town/lolol
+[INFO] 14:44:57:618 Cliente/(3490:3498): ATRIBUTOS: /Pallet Town
+[INFO] 14:44:57:627 Cliente/(3490:3497): ATRIBUTOS: /Pallet Town/lolol
+[INFO] 14:44:57:628 Cliente/(3490:3512): ABRIR ARCHIVO: /Pallet Town/lolol
+[INFO] 14:44:57:629 Cliente/(3490:3499): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /Pallet Town/lolol
+[INFO] 14:44:57:631 Cliente/(3490:3499): LECTURA COMPLETADA CON:       4096 LEIDOS
+[INFO] 14:44:59:169 Cliente/(3490:3497): ATRIBUTOS: /Pallet Town
+[INFO] 14:44:59:178 Cliente/(3490:3512): ATRIBUTOS: /Pallet Town/lolol
+[INFO] 14:44:59:179 Cliente/(3490:3499): ABRIR ARCHIVO: /Pallet Town/lolol
+[INFO] 14:44:59:179 Cliente/(3490:3498): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /Pallet Town/lolol
+[INFO] 14:44:59:180 Cliente/(3490:3498): LECTURA COMPLETADA CON:       4096 LEIDOS
+[INFO] 14:44:59:182 Cliente/(3490:3512): ABRIR DIRECTORIO: /Pallet Town/lolol
+[INFO] 14:44:59:184 Cliente/(3490:3499): ABRIR ARCHIVO: /Pallet Town/lolol
+[INFO] 14:44:59:198 Cliente/(3490:3498): ATRIBUTOS: /Pallet Town/lolol
+[INFO] 14:44:59:867 Cliente/(3490:3512): ABRIR ARCHIVO: /Pallet Town/lolol
+[INFO] 14:44:59:869 Cliente/(3490:3499): LEER 4096 BYTES, OFFSET: 0 DEL PATH: /Pallet Town/lolol
+[INFO] 14:44:59:870 Cliente/(3490:3499): LECTURA COMPLETADA CON:       4096 LEIDOS
+[INFO] 14:44:59:871 Cliente/(3490:3497): ABRIR DIRECTORIO: /Pallet Town/lolol
