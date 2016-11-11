@@ -8,7 +8,7 @@
 
 t_planificador_rr *planificador;
 extern sem_t semaforo_entrenadores_listos;
-
+extern int hay_jugadores_online;
 /*-----------------------------------EXECUTE PLANIFICADOR RR---------------------------------------------------------*/
 void* ejecutar_planificador_rr(void* arg)
 {
@@ -41,6 +41,7 @@ void planificador_rr_organiza_entrenadores()
 	{
 		if(queue_is_empty(planificador->listas_y_colas->cola_entrenadores_listos))
 		{
+			hay_jugadores_online =0;
 			sem_wait(&semaforo_entrenadores_listos);
 		}
 		t_entrenador *entrenador_listo = planificador_pop_entrenador_listo(planificador);
@@ -80,7 +81,7 @@ void planificador_rr_dale_nuevo_turno_a_entrenador(t_entrenador *entrenador_list
 		case(ENTRENADOR_DESCONECTADO):
 			{
 				planificador_aborta_entrenador(entrenador_listo);
-				quamtum_restante = 0;
+				*quamtum_restante = 0;
 			};break;
 		case (ENTRENADOR_ESTA_BUSCANDO_COORDENADAS_POKENEST):
 			{
@@ -104,7 +105,7 @@ void planificador_rr_dale_nuevo_turno_a_entrenador(t_entrenador *entrenador_list
 		default:
 			{
 				planificador_aborta_entrenador(entrenador_listo);
-				quamtum_restante = 0;
+				*quamtum_restante = 0;
 			}
 	}
 }

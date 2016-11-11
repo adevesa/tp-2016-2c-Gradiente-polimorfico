@@ -6,7 +6,7 @@
 #define RECURSO_ITEM_TYPE 1
 #define ENEMIGO_ITEM_TYPE 2
 
-#include <commons/collections/list.h>
+#include "so-commons/collections/list.h"
 
 typedef struct item {
 	char id;

@@ -149,3 +149,38 @@
 [INFO] 11:20:32:612 Planificador/(22538:22554): PUSH (BLOQUEADO) entrenador identificado con el simbolo @
 [INFO] 11:20:32:613 Planificador/(22538:22554): POP (BLOQUEADO) entrenador identificado con el simbolo @
 [INFO] 11:20:32:613 Planificador/(22538:22554): Entrenador identificado por @ recibio RUTA POKEMON
+[INFO] 21:05:06:833 Planificador/(12148:12167): Se crea proceso para encolación de entreanadores
+[INFO] 21:05:40:619 Planificador/(12148:12206): PUSH (NUEVO) entrenador identificado con el simbolo A y por el socket 9
+[INFO] 21:05:40:619 Planificador/(12148:12168): Iniciando la encolación de nuevos entrenadores
+[INFO] 21:05:40:619 Planificador/(12148:12168): PUSH (LISTO) entrenador identificado con el simbolo A
+[INFO] 21:05:40:619 Planificador/(12148:12168): Entrenador conectado por socket 9 modelado
+[INFO] 21:05:40:619 Planificador/(12148:12168): Cola de nuevos vaciada por proceso de encolación
+[INFO] 21:05:40:619 Planificador/(12148:12168): Finalizando la  encolación de entrenadores
+[INFO] 21:05:58:297 Planificador/(12148:12238): PUSH (NUEVO) entrenador identificado con el simbolo M y por el socket 11
+[INFO] 21:05:58:297 Planificador/(12148:12168): Iniciando la encolación de nuevos entrenadores
+[INFO] 21:05:58:297 Planificador/(12148:12168): PUSH (LISTO) entrenador identificado con el simbolo M
+[INFO] 21:05:58:297 Planificador/(12148:12168): Entrenador conectado por socket 11 modelado
+[INFO] 21:05:58:297 Planificador/(12148:12168): Cola de nuevos vaciada por proceso de encolación
+[INFO] 21:05:58:297 Planificador/(12148:12168): Finalizando la  encolación de entrenadores
+[INFO] 21:05:58:297 Planificador/(12148:12167): POP (LISTO) entrenador identificado con el simbolo A
+[INFO] 21:06:27:820 Planificador/(12148:12167): Entrenador identificado por Aestá buscando coordenadas de pokenest P (1;1)
+[INFO] 21:06:27:820 Planificador/(12148:12167): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 21:06:43:333 Planificador/(12148:12167): Entrenador identificado por A se movió a 1;0
+[INFO] 21:06:50:858 Planificador/(12148:12167): Entrenador identificado por A se movió a 1;1
+[INFO] 21:06:55:448 Planificador/(12148:12167): PUSH (LISTO) entrenador identificado con el simbolo A
+[INFO] 21:06:58:722 Planificador/(12148:12167): POP (LISTO) entrenador identificado con el simbolo M
+[INFO] 21:07:15:640 Planificador/(12148:12167): Entrenador identificado por Mestá buscando coordenadas de pokenest P (1;1)
+[INFO] 21:07:15:640 Planificador/(12148:12167): La coordenada solicitada fue entregada a entrenador identificado por M
+[INFO] 21:07:22:480 Planificador/(12148:12167): Entrenador identificado por M se movió a 1;0
+[INFO] 21:07:28:588 Planificador/(12148:12167): Entrenador identificado por M se movió a 1;1
+[INFO] 21:07:32:480 Planificador/(12148:12167): PUSH (LISTO) entrenador identificado con el simbolo M
+[INFO] 21:07:34:528 Planificador/(12148:12167): POP (LISTO) entrenador identificado con el simbolo A
+[INFO] 21:07:57:712 Planificador/(12148:12167): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 21:07:57:712 Planificador/(12148:12167): PUSH (BLOQUEADO) entrenador identificado con el simbolo A
+[INFO] 21:07:57:712 Planificador/(12148:12167): POP (BLOQUEADO) entrenador identificado con el simbolo A
+[INFO] 21:07:57:712 Planificador/(12148:12167): Entrenador identificado por A recibio RUTA POKEMON
+[INFO] 21:33:30:911 Planificador/(12148:12167): POP (LISTO) entrenador identificado con el simbolo M
+[INFO] 21:33:43:925 Planificador/(12148:12167): Entrenador identificado por M está solicitando captura pokemon
+[INFO] 21:33:43:925 Planificador/(12148:12167): PUSH (BLOQUEADO) entrenador identificado con el simbolo M
+[INFO] 21:33:43:925 Planificador/(12148:12167): POP (BLOQUEADO) entrenador identificado con el simbolo M
+[INFO] 21:33:43:925 Planificador/(12148:12167): Entrenador identificado por M recibio RUTA POKEMON

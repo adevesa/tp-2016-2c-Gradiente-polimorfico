@@ -15,7 +15,7 @@ extern pthread_mutex_t mutex_manipular_cola_nuevos;
 extern sem_t semaforo_hay_algun_entrenador_listo;
 extern sem_t semaforo_cola_entrenadores_sin_objetivos;
 
-
+int hay_jugadores_online = 0;
 
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
 t_listas_y_colas* listas_y_colas_creense()
@@ -362,7 +362,6 @@ void planificador_espera_que_entrenador_se_desconecte(t_entrenador *entrenador)
 	if(resultado == DESCONECTADO)
 	{
 		server_cerra_cliente(entrenador->socket_entrenador);
-		//sem_post(entrenador->semaforo_finalizacon);
 		char *key = string_itoa(entrenador->socket_entrenador);
 		dictionary_put(mapa->entrenadores->lista_entrenadores_finalizados,key, entrenador);
 		free(payload);
@@ -412,7 +411,11 @@ void* planificador_encola_nuevos_entrenadores()
 
 			log_info(informe_planificador, "Iniciando la encolación de nuevos entrenadores");
 			foreach(COLA_LISTOS,mapa->entrenadores->lista_entrenadores_a_planificar,planificador_modela_nuevo_entrenador_y_encolalo);
-			sem_post(&semaforo_entrenadores_listos);
+			if(!hay_jugadores_online)
+			{
+				hay_jugadores_online=1;
+				sem_post(&semaforo_entrenadores_listos);
+			}
 
 			list_clean(mapa->entrenadores->lista_entrenadores_a_planificar);
 			pthread_mutex_unlock(&mutex_manipular_cola_nuevos);

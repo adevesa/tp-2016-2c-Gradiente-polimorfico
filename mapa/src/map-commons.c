@@ -87,8 +87,10 @@ void cambiar_algoritmo_si_es_necesario(t_info_algoritmo *viejo, t_info_algoritmo
 {
 	if(!string_equals_ignore_case(viejo->algoritmo, nuevo->algoritmo))
 	{
+		log_info(informe_mapa, "Se cambia el algoritmo de planificacion");
 		mapa->info_algoritmo = nuevo;
 		destroy_info_algoritmo(viejo);
+		planificador_create_segun_cual_seas();
 	}
 	else
 	{

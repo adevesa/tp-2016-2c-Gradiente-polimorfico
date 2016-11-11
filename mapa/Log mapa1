@@ -196,3 +196,6 @@
 [INFO] 19:29:56:597 Proceso mapa/(8731:8731): Mapa creado correctamente
 [INFO] 19:29:56:764 Proceso mapa/(8731:8731): Se comienza a ejecutar hilo de escucha
 [INFO] 19:29:56:985 Proceso mapa/(8731:8731): Se crea hilo de planificador SRDF
+[INFO] 21:05:06:469 Proceso mapa/(12148:12148): Mapa creado correctamente
+[INFO] 21:05:06:623 Proceso mapa/(12148:12148): Se comienza a ejecutar hilo de escucha
+[INFO] 21:05:06:833 Proceso mapa/(12148:12148): Se crea hilo de planificador RR
