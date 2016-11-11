@@ -1,0 +1,112 @@
+cd workspace/tp-2016-2c-Gradiente-polimorfico/pokedex-server/Debug/
+
+cd workspace/tp-2016-2c-Gradiente-polimorfico/pokedex-cliente/Debug/
+
+./podekex-cliente tmp -d
+
+COMENTANDO LO QUE HICE
+PRIMER TEST:
+Touchear un archivo jejox
+Truncatearla a 1MB
+Pasarle el osada format
+Montarle Pokedex server
+Montarle Pokedex cliente
+Copiar 1000 archivos (de 1KB cada uno).
+Se tilda. 
+Volvi a entrar y tardo BASTANTE en listar todo (desconozco cuantos creo perdi el dato)
+
+SEGUNDO TEST
+Touchear un archivo jejox
+Truncatearla a 5MB
+Pasarle el osada format
+Montarle Pokedex server
+Montarle Pokedex cliente
+Crear 5 carpetas, con 5 archivos vacios. (En total 30 archivos 5 carpetas + 25 archivos)
+Borrar todos esas carpetas una por una con el comando
+rm -Rf (nombre carpeta)
+me lista 5 archivos en color rojo (Curioso) con el comando "l" con los nombre de las carpetas.
+luego mando script de crear 24 carpetas con 41 archivos dentro cada uno. (Total 1008 archivos)
+Se tilda la maquina en el momento de la foto "bug1".
+Reinicio Linux.
+Monto pokeserver
+Monto pokecliente
+Entro a revisar
+Creo hasta la carpeta carp 7 con sus 41 archivos vacios. (En total 294 archivos 287 archivos internos + 7 carpetas).
+Segun linux cuando le doy click derecho propiedades de la carpeta y aparece como n°total de archivo 337.
+Curioso...
+Creo un archivo de prueba "kaka" y se crea correctamente, escribe y lee correctamente.
+Borro el archivo kaka con el comando rm.
+Listo carpeta y aparece devuelta el archivo "kaka" rojo. (ver "bug3")
+Vuelvo a poner propiedades de la carpeta y dice que tiene 337 archivos.
+Runeo script de creacion de carpetas con archivos adentro esta vez 17 carpetas con 41 archivos dentro. Carpetas con el nombre fold.
+Se volvio a tildar. ("bug4")
+Reinicio Linux
+Monto serv y clie
+Se crearon dos carpetas fold0 y fold1, ambas con sus 41 archivos dentro.
+Peso carpeta tmp (421 archivos totales)
+Antes tenia 337 , ahora 421, 421-337 = 84, ambas carpetas tienen 41 archivos dentro + 2 carpetas. Todo OK.
+Listo con comando "l" el tmp, y de curiosidad no aparece mas el archivo rojo.
+Tercer intento de creacion de carpetas con archivos dentro. Carpetas con el nombre fd (15 carp, 41 arch)
+Una conduncta rara es que cuando termina de crear el touch pasa a una tarea ciclica de estableciendo la fecha de ... y los 40 archivos y al rato largo pasa a crear la segunda carpeta. Curioso.
+Se tildo devuelta, no tuve tiempo a sacar foto ("bug5")
+reinicio linux
+monto server y cliente
+Pasa lo mismo que en el reinicio anterior. dos carpetas 41 archivos dentro, total 505.
+Procedo a eliminar todos los archivos dentro con el comando
+rm -Rf *
+Resultado DEMASIADO curioso (ver "bug6")
+Procedo a remontar clie y serv
+Una vez remontado no pasa nada.
+Resultado osada-dump : 
+6231 used block
+75689 frees
+Igual que cuando lo creas.
+
+Tercer test
+Sigo con la siguiente prueba:
+nuevo osada format
+1024 archivos vacios en jejox.
+se tildo (resultados "bug7")
+osada dump resultados
+6697 used block
+75223 free
+montamos serv y clie
+creo hasta el arch465.
+segun propiedades de la carpeta hay 467 archivos. osea 1 mas que lo comun.
+procedo runear lo que falta pero dentro de una carpeta (carpet)
+559 archivos
+se tildo (algo curioso, mientras se van creando los archivos se va vovliendo mas lento el proceso)
+osada dump:
+6814 used block
+75106 free
+runeo devuelta el script anterior
+se tildo devuelta (ver "bug9")
+monto serv y clie
+remuevo todos los archivos dentro
+rm -Rf *
+no se que decir ("bug10")
+osada dump
+6231
+75689
+
+Cuarto test
+nuevo osada format
+1024 directorios
+se tildo :'v ("bug11")
+reinicio
+osada dump
+6231 used
+75689 frees
+se tildo al montar devuelta el jejox ("bug12")
+
+
+
+
+
+
+
+
+
+
+
+
