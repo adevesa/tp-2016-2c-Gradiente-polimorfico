@@ -8,8 +8,6 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include src/pkmn/subdir.mk
--include src/nivel-gui/subdir.mk
 -include src/subdir.mk
 -include subdir.mk
 -include objects.mk
@@ -25,28 +23,22 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: mapa
-
-dependents:
-	-cd /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug && $(MAKE) all
+all: testeandoFilesytem
 
 # Tool invocations
-mapa: $(OBJS) $(USER_OBJS) /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug/libnecessary-commons.so
+testeandoFilesytem: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C Linker'
-	gcc -L"/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug" -o "mapa" $(OBJS) $(USER_OBJS) $(LIBS)
+	gcc  -o "testeandoFilesytem" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(C_DEPS)$(EXECUTABLES) mapa
+	-$(RM) $(OBJS)$(C_DEPS)$(EXECUTABLES) testeandoFilesytem
 	-@echo ' '
 
 .PHONY: all clean dependents
 .SECONDARY:
-/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug/libnecessary-commons.so:
 
 -include ../makefile.targets
-
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug/
