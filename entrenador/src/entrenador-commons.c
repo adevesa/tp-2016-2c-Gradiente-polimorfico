@@ -61,9 +61,15 @@ void subirvida(int n)
 
 void bajarvida(int n)
 {
+	if(n != 259)
+	{
+		log_info(info_entrenador,"PIERDO VIDA POR SEÑAL EXTERNA");
+		if(entrenador->vidas == 0)
+		{
+			log_info(info_entrenador,"TENIA 0 VIDAS, POR LO QUE NO DISMINUYO");
+		}
+	}
 	entrenador->vidas--;
-	log_info(info_entrenador,"PIERDO VIDA POR SEÑAL EXTERNA");
-	//if(entrenador->vidas == 0) entrenador_finalizo_muriendo();
 }
 
 void entrenador_finalizo_muriendo()
@@ -276,7 +282,7 @@ int entrenador_cumpli_objetivos_del_mapa(int index)
 	{
 		if(me_quedan_vidas())
 		{
-			bajarvida(NULL);
+			bajarvida(259);
 			return entrenador_volve_a_empezar_en_este_mapa(index);
 		}
 		else

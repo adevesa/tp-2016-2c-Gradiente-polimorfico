@@ -4,89 +4,504 @@
  *  Created on: 3/11/2016
  *      Author: utnso
  */
+#include "deadlock.h"
+extern char** vector_auxiliar_identificadores_pokenest;
 
+//t_list* lista_auxiliar_entrenadores;
+t_dictionary* procesos;
+int cantidad_columnas_actuales = 0;
+int cantidad_columnas_ocupadas = 0;
+int indice_posicion_proceso = 0;
 
-/*t_pokemon* conseguir_mejor_pokemon(t_entrenador* entrenador)
+int* vector_procesos_sin_recursos_asignados;
+int* vector_T;
+
+/*----------------------------------------------INICIALIZACION----------------------------------------------------------*/
+t_estructuras_deteccion* deadlock_inicializate()
 {
-	t_pokemon* pokemon_a_tope = malloc (sizeof(t_pokemon*)); //Pokemon Bandera
-	pokemon_a_tope->level=-1;
+	t_estructuras_deteccion *new_deadlock = malloc(sizeof(t_estructuras_deteccion));
+	new_deadlock->vector_recursos_totales = inicializar_recursos_totales();
+	new_deadlock->vector_recursos_disponibles = inicializar_recursos_disponibles();
+	new_deadlock->matriz_asignacion=inicializar_matriz_asignacion();
+	new_deadlock->matriz_solicitud = inicializar_matriz_solicitud();
+	procesos = dictionary_create();
+
+	vector_procesos_sin_recursos_asignados = malloc(sizeof(int)+1);
+	vector_procesos_sin_recursos_asignados[0] = -1;
+
+	cantidad_columnas_actuales = 1;
+	return new_deadlock;
+}
+
+int* inicializar_recursos_totales()
+{
+	int cantidad_pokenest = dictionary_size(mapa->pokeNests);
+	int* new_vector = malloc(cantidad_pokenest * sizeof(int));
 
 	int i;
-	for(i=0;i<list_size(entrenador->pokemones_capturados);i++){
-		t_pokemon* pokemon = malloc(sizeof(t_pokemon));
-		pokemon = list_get(entrenador->pokemones_capturados,i);
+	for(i=0;i<cantidad_pokenest;i++)
+	{
+		t_pokeNest *pokenest = dictionary_get(mapa->pokeNests,vector_auxiliar_identificadores_pokenest[i]);
+		new_vector[i] = pokenest->cantidad_pokemones_disponibles;
+	}
+	return new_vector;
+}
 
-		if (pokemon->nivel > pokemon_a_tope->nivel)	pokemon_a_tope = pokemon;
-		else (free(pokemon));
+int* inicializar_recursos_disponibles()
+{
+	int cantidad_pokenest = dictionary_size(mapa->pokeNests);
+	int* new_vector = malloc(cantidad_pokenest * sizeof(int));
+
+	int i;
+	for(i=0;i<cantidad_pokenest;i++)
+	{
+		t_pokeNest *pokenest = dictionary_get(mapa->pokeNests,vector_auxiliar_identificadores_pokenest[i]);
+		new_vector[i] = pokenest->cantidad_pokemones_disponibles;
+	}
+	return new_vector;
+}
+
+int** inicializar_matriz_asignacion()
+{
+	int cantidad_pokenest = dictionary_size(mapa->pokeNests);
+	int** new_matriz = malloc(cantidad_pokenest*sizeof(int));
+
+	/* ASIGNO ESPACIO PARA UNA SOLA COLUMNA A TODAS LAS FILAS */
+	int i;
+	for(i=0;i<cantidad_pokenest;i++)
+	{
+		new_matriz[i] = malloc(sizeof(int));
+		new_matriz[i][0] = 0;
+	}
+	return new_matriz;
+}
+
+int** inicializar_matriz_solicitud()
+{
+	int cantidad_pokenest = dictionary_size(mapa->pokeNests);
+	int** new_matriz = malloc(cantidad_pokenest*sizeof(int));
+	/* ASIGNO ESPACIO PARA UNA SOLA COLUMNA A TODAS LAS FILAS */
+	int i;
+	for(i=0;i<cantidad_pokenest;i++)
+	{
+		new_matriz[i] = malloc(sizeof(int));
+		new_matriz[i][0] = 0;
+	}
+	return new_matriz;
+}
+
+void limpiar_filas(int matriz)
+{
+	switch(matriz)
+	{
+		case(MATRIZ_ASIGNACION):
+		{
+			int i;
+			int cantidad_pokenest = dictionary_size(mapa->pokeNests);
+
+			for(i=0;i<cantidad_pokenest;i++)
+			{
+				deadlock->matriz_asignacion[i][0]=0;
+			}
+
+		};break;
+		case(MATRIZ_SOLICITUD):
+		{
+			int i;
+			int cantidad_pokenest = dictionary_size(mapa->pokeNests);
+
+			for(i=0;i<cantidad_pokenest;i++)
+			{
+				deadlock->matriz_solicitud[i][0]=0;
+			}
+		};break;
+	}
+}
+
+void iniciar_vectorT()
+{
+	int cantidad_pokenest = dictionary_size(mapa->pokeNests);
+	vector_T= malloc((cantidad_pokenest +1)* sizeof(int));
+	memcpy(vector_T,deadlock->vector_recursos_disponibles,cantidad_pokenest * sizeof(int));
+	vector_T[cantidad_pokenest] = -1;
+}
+
+/*----------------------------------------------MANIPULACION ESTRUCTURAS-------------------------------------------------*/
+int identificar_numero_fila(char* id_recurso_solicitado)
+{
+	int i=0;
+	int encontrado = 0;
+	int cantidad_pokenest = dictionary_size(mapa->pokeNests);
+	while(i<cantidad_pokenest && !encontrado)
+	{
+		char* id = vector_auxiliar_identificadores_pokenest[i];
+		if(string_equals_ignore_case(id,id_recurso_solicitado))
+		{
+			encontrado=1;
 		}
+		else
+		{
+			i++;
+		}
+	}
 
-	return(pokemon_a_tope);
-	free(pokemon_a_tope);
+	return i;
 }
 
-t_pokemon* obtener_pokemon_de_entrenador(t_list* pokemones_del_entrenador, int index)
+void deadlock_agregar_nuevo_proceso_a_matrices(char* id_proceso)
 {
-	char* path_pokemon = list_get(pokemones_del_entrenador, index);
-	t_config* config_aux = config_create(path_pokemon);
-	int nivel = config_get_int_value(config_aux,"Nivel");
-	t_pokemon* new_pokemon = malloc(sizeof(t_pokemon));
-	new_pokemon->level = nivel;
-	new_pokemon->species = adaptar_nombre_pokemon(path_pokemon);
+	t_proceso *new_proceso = malloc(sizeof(t_proceso));
+	new_proceso->id = id_proceso;
+	new_proceso->posicion = indice_posicion_proceso;
+	indice_posicion_proceso++;
+
+	dictionary_put(procesos, id_proceso, new_proceso);
+
+	//list_add(lista_auxiliar_entrenadores,id_entrenador);
+
+	if(cantidad_columnas_actuales == cantidad_columnas_ocupadas)
+	{
+		cantidad_columnas_actuales++;
+		cantidad_columnas_ocupadas++;
+		asignar_nueva_columna_a_matriz(MATRIZ_ASIGNACION);
+		asignar_nueva_columna_a_matriz(MATRIZ_SOLICITUD);
+	}
+	else
+	{
+		cantidad_columnas_ocupadas++;
+		// YA HAY ESPACIO PARA LA COLUMNA Y SE CORRESPONDERÁ CON EL INDICE EN LA LISTA
+	}
 
 }
 
-char* array_get_last_element(char* path)
+void asignar_nueva_columna_a_matriz(int matriz)
 {
-	char **file_for_file = string_split(path, "/");
-	int size = array_size(file_for_file);
-	char *nombre = string_new();
-	string_append(&nombre,file_for_file[size - 1]);
-	array_free_all(file_for_file);
- 	return nombre;
+	/* ASIGNO ESPACIO PARA UNA SOLA COLUMNA A TODAS LAS FILAS A PARTIR DE LA ULTIMA COLUMNA*/
+	switch(matriz)
+	{
+		case(MATRIZ_ASIGNACION):
+		{
+			int i;
+			int cantidad_pokenest = dictionary_size(mapa->pokeNests);
+			for(i=0;i<cantidad_pokenest;i++)
+			{
+				deadlock->matriz_asignacion[i] = realloc(deadlock->matriz_asignacion[i],cantidad_columnas_actuales*sizeof(int));
+				deadlock->matriz_asignacion[i][cantidad_columnas_actuales-1] = 0;
+			}
+		};break;
+		case(MATRIZ_SOLICITUD):
+		{
+			int i;
+			int cantidad_pokenest = dictionary_size(mapa->pokeNests);
+			for(i=0;i<cantidad_pokenest;i++)
+			{
+				deadlock->matriz_solicitud[i] = realloc(deadlock->matriz_solicitud[i],cantidad_columnas_actuales*sizeof(int));
+				deadlock->matriz_solicitud[i][cantidad_columnas_actuales-1]=0;
+			}
+		};break;
+	}
 }
 
-char* adaptar_nombre_pokemon(char* nombre_sucio)
+void deadlock_actualizar_matriz(char* id_proceso, char* id_recurso, int matriz,int tipo_actualizacion)
 {
-	char* new_pokemon_adapter = malloc(string_length(nombre_sucio) -2);
-	memcpy(new_pokemon_adapter, nombre_sucio, string_length(nombre_sucio) -3);
-	toupper(new_pokemon_adapter[0]);
-	return new_pokemon_adapter;
+	int numero_fila_del_recurso = identificar_numero_fila(id_recurso);
+	t_proceso* proceso = dictionary_get(procesos,id_proceso);
+
+	switch(matriz)
+	{
+		case(MATRIZ_ASIGNACION):
+		{
+			switch(tipo_actualizacion)
+			{
+				case(OTORGAR_RECURSO):
+				{
+					deadlock->matriz_asignacion[numero_fila_del_recurso][proceso->posicion] = deadlock->matriz_asignacion[numero_fila_del_recurso][proceso->posicion] -1;
+					deadlock->vector_recursos_disponibles[numero_fila_del_recurso] = deadlock->vector_recursos_disponibles[numero_fila_del_recurso] -1;
+				};break;
+				case(QUITAR_RECURSO):
+				{
+					deadlock->matriz_asignacion[numero_fila_del_recurso][proceso->posicion] = deadlock->matriz_asignacion[numero_fila_del_recurso][proceso->posicion] +1;
+					deadlock->vector_recursos_disponibles[numero_fila_del_recurso] = deadlock->vector_recursos_disponibles[numero_fila_del_recurso] +1;
+				};break;
+			}
+		};break;
+
+		case(MATRIZ_SOLICITUD):
+		{
+			switch(tipo_actualizacion)
+			{
+				case(OTORGAR_RECURSO):
+				{
+					deadlock->matriz_solicitud[numero_fila_del_recurso][proceso->posicion] = deadlock->matriz_solicitud[numero_fila_del_recurso][proceso->posicion] +1;
+				};break;
+				case(QUITAR_RECURSO):
+				{
+					deadlock->matriz_solicitud[numero_fila_del_recurso][proceso->posicion] = deadlock->matriz_solicitud[numero_fila_del_recurso][proceso->posicion] -1;
+				};break;
+			}
+		};break;
+	}
 }
 
+void deadlock_elimina_proceso_de_matrices(char* id_proceso)
+{
+	/* POR CUESTIONES DE SIMPLICIDAD, NO SE ELIMINARA LA COLUMNA, SINO QUE SOLO SE MARCARÁ TODAS SUS CELDAS CON UN -1 */
+	t_proceso* proceso = dictionary_get(procesos, id_proceso);
 
-t_entrenador* ganador_batalla_pokemon(t_entrenador* atacante, t_entrenador* contricante){
-	t_log* informe_batalla = log_create("Informe batallas","ganador_batalla_pokemon",0,LOG_LEVEL_INFO);
+	int cantidad_pokenest = dictionary_size(mapa->pokeNests);
 
-	log_info(loger,"Se van a enfrentar %s contra %s", atacante->nombre, contricante->nombre);
+	/* SE SUMAN LOS RECURSOS QUE POSEÍA AL VECTOR DE DISPONIBLES */
+	int recorrido_recursos_asignados;
+	for(recorrido_recursos_asignados=0;recorrido_recursos_asignados<cantidad_pokenest;recorrido_recursos_asignados++)
+	{
+		deadlock->vector_recursos_disponibles[recorrido_recursos_asignados] = deadlock->matriz_solicitud[recorrido_recursos_asignados][proceso->posicion] + deadlock->vector_recursos_disponibles[recorrido_recursos_asignados];
+	}
 
+	/* SE LIMPIA LA MATRIZ DE SOLICITUD */
+	int i;
+	for(i=0;i<cantidad_pokenest;i++)
+	{
+	deadlock->matriz_solicitud[i][proceso->posicion] = -1;
+	}
 
-	t_pokemonx* el_mejorcito_del_atacante = conseguir_mejor_pokemon(atacante);
-	t_pokemonx* el_mejorcito_del_contricante = conseguir_mejor_pokemon(contrincante);
-
-	log_info(loger,"El mejor pokemon de %s es: %s", atacante->nombre, el_mejorcito_del_atacante->nombre);
-	log_info(loger,"El mejor pokemon de %s es: %s", contricante->nombre, el_mejorcito_del_contrincante->nombre);
-
-	t_pkmn_factory* pokemon_factory = create_pkmn_factory();
-
-	t_pokemon* pokemon1 = create_pokemon(pokemon_factory, el_mejorcito_del_atacante->nombre, el_mejorcito_del_atacante->nivel);
-	t_pokemon* pokemon2 = create_pokemon(pokemon_factory, el_mejorcito_del_contrincante->nombre, el_mejorcito_del_contrincante->nombre);
-
-	log_info(loger,"El Pokemon de %s tiene un nivel de %d", atacante->nombre, el_mejorcito_del_atacante->nivel);
-	log_info(loger,"Mientras que %s, su mejor pokemon es de nivel %d", contrincante->nombre, el_mejorcito_del_contrincante->nivel);
-
-	log_info(loger,"B!B!B!Que empiece la batalla!!!");
-
-	t_pokemon * loser = pkmn_battle(pokemon1, pokemon2);
-
-	t_pokemonx pokemon_ganador = (son_iguales(loser->species, el_mejorcito_del_atacante->nombre))? el_mejorcito_del_contrincante->nombre : el_mejorcito_del_atacante->nombre);
-
-	log_info(loger,"EL GANADOR ES: %s", pokemon_ganador) ;
-
-	if(strcmp(loser->species, el_mejorcito_del_atacante->nombre) == 0) return contricante;
-	else return atacante;
-
-	free(pokemon1);
-	free(pokemon2);
-	destroy_pkmn_factory(pokemon_factory);
+	/* SE LIMPIA LA MATRIZ DE ASIGNACION */
+	int i2;
+	for(i2=0;i2<cantidad_pokenest;i2++)
+	{
+		deadlock->matriz_asignacion[i2][proceso->posicion] = -1;
+	}
 }
-*/
+
+/*----------------------------------------------EJECUCION------------------------------------------------------------*/
+void ejecutar_deadlock()
+{
+	deadlock=deadlock_inicializate();
+	deadlock_revisa();
+}
+
+void deadlock_revisa()
+{
+	while(1)
+	{
+		usleep(mapa->tiempo_chequeo_deadlock);
+
+		marcar_procesos_que_no_tienen_recursos_asignados();
+		iniciar_vectorT();
+
+		int se_sigue_ejecutando = 1;
+
+		while(se_sigue_ejecutando)
+		{
+			int se_encontro_proceso = marcar_proceso_si_se_puede_satisfacer();
+			if(!se_encontro_proceso)
+			{
+				resolver_deadlock();
+				se_sigue_ejecutando = 0;
+			}
+		}
+		free(vector_T);
+	}
+}
+
+void marcar_procesos_que_no_tienen_recursos_asignados()
+{
+	int i;
+	/* SE RECORRE POR COLUMNA -> UNA COLUMNA = UN PROCESO */
+	for(i=0;i<cantidad_columnas_ocupadas;i++)
+	{
+		if(!proceso_esta_borrado(i))
+		{
+			if(!proceso_tiene_recursos_asignados(i) && !proceso_esta_marcado(i))
+			{
+				marcar_proceso(i);
+			}
+		}
+	}
+}
+
+void marcar_proceso(int proceso)
+{
+	int tamanio_del_vector = tamanio_vector(vector_procesos_sin_recursos_asignados);
+	vector_procesos_sin_recursos_asignados = realloc(vector_procesos_sin_recursos_asignados, (tamanio_del_vector+2)*sizeof(int));
+	vector_procesos_sin_recursos_asignados[tamanio_del_vector] = proceso;
+	vector_procesos_sin_recursos_asignados[tamanio_del_vector+1] = -1;
+}
+
+int marcar_proceso_si_se_puede_satisfacer()
+{
+	int i;
+	int proceso_candidato_encontrado = 0;
+
+	while(i<cantidad_columnas_ocupadas && !proceso_candidato_encontrado)
+	{
+		if(!proceso_esta_borrado(i) && !proceso_esta_marcado(i) )
+		{
+			if(proceso_puede_satisfacerce(i))
+			{
+				proceso_candidato_encontrado = 1;
+			}
+		}
+		i++;
+	}
+
+	if(proceso_candidato_encontrado)
+	{
+		marcar_proceso(i-1);
+		int *vector = recuperar_vector_proceso(i-1,MATRIZ_ASIGNACION);
+		sumar_vector_a_vectorT(vector);
+		free(vector);
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+void resolver_deadlock()
+{
+
+}
+
+/*----------------------------------------------AUXILIARES-----------------------------------------------------------*/
+int proceso_puede_satisfacerce(int numero_proceso)
+{
+	int* vector_del_proceso = recuperar_vector_proceso(numero_proceso,MATRIZ_SOLICITUD);
+
+	int resultado = vector_es_menor_igual_a_vectorT(vector_del_proceso);
+	free(vector_del_proceso);
+
+	return resultado;
+}
+
+int* recuperar_vector_proceso(int num_proceso, int matriz)
+{
+	int cantidad_elementos = dictionary_size(procesos);
+	int* aux = malloc(sizeof(int) * (cantidad_elementos+1));
+	aux[cantidad_elementos] = -1;
+
+	switch(matriz)
+	{
+		case(MATRIZ_ASIGNACION):
+		{
+			int i;
+			for(i=0;i<cantidad_elementos;i++)
+			{
+				aux[i]= deadlock->matriz_asignacion[i][num_proceso];
+			}
+		};break;
+		case(MATRIZ_SOLICITUD):
+		{
+			int i;
+			for(i=0;i<cantidad_elementos;i++)
+			{
+				aux[i]= deadlock->matriz_asignacion[i][num_proceso];
+			}
+		};break;
+	}
+
+	return aux;
+
+}
+
+int proceso_esta_borrado(int numero_proceso)
+{
+	int i=0;
+	int cantidad_elementos = dictionary_size(mapa->pokeNests);
+
+	/* SE RECORRE POR COLUMNA -> UNA COLUMNA = UN PROCESO */
+	int esta_borrado = 0;
+	while(i<cantidad_elementos && esta_borrado>=0)
+	{
+		esta_borrado = deadlock->matriz_asignacion[i][numero_proceso];
+		i++;
+	}
+	if(esta_borrado<0)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+int proceso_tiene_recursos_asignados(int numero_proceso)
+{
+	int i=0;
+	int cantidad_elementos = dictionary_size(mapa->pokeNests);
+
+	/* SE RECORRE POR COLUMNA -> UNA COLUMNA = UN PROCESO */
+	int tiene_recursos = 0;
+	while(i<cantidad_elementos && tiene_recursos<=0)
+	{
+		tiene_recursos = tiene_recursos + deadlock->matriz_asignacion[i][numero_proceso];
+		i++;
+	}
+	if(tiene_recursos > 0)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+int proceso_esta_marcado(int numero_proceso)
+{
+	int tamanio = tamanio_vector(vector_procesos_sin_recursos_asignados);
+	int i=0;
+	int encontrado = 0;
+
+	while(i<tamanio && !encontrado)
+	{
+		if(vector_procesos_sin_recursos_asignados[i] == numero_proceso)
+		{
+			encontrado = 1;
+		}
+		i++;
+	}
+	return encontrado;
+}
+
+int tamanio_vector(int* vector)
+{
+	int i=0;
+	int elementos = 0;
+	while(vector[i] != -1)
+	{
+		elementos++;
+		i++;
+	}
+	return elementos;
+}
+
+int vector_es_menor_igual_a_vectorT(int* vector)
+{
+	int tamanio_vector_t = tamanio_vector(vector_T);
+
+	int i=0;
+	int rompe_condicion = 0;
+
+	while(i<tamanio_vector_t && !rompe_condicion)
+	{
+		if(vector[i] > vector_T[i])
+		{
+			rompe_condicion = 1;
+		}
+		i++;
+	}
+	return rompe_condicion;
+}
+
+void sumar_vector_a_vectorT(int* vector)
+{
+	int size = tamanio_vector(vector_T);
+	int i;
+	for(i=0;i<size;i++)
+	{
+		vector_T[i] = vector_T[i] + vector[i];
+	}
+}
+

@@ -48,5 +48,3 @@ clean:
 /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug/libnecessary-commons.so:
 
 -include ../makefile.targets
-
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug/

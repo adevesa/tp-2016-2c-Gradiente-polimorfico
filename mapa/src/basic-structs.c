@@ -138,6 +138,9 @@ t_dictionary* obtener_info_mapa_pokenest(char *nombreMapa, char *rutaPokedex)
 	char *ruta_final = obtener_ruta_especifica(rutaPokedex, "Mapas", nombreMapa);
 	ruta_final = obtener_ruta_especifica(ruta_final, "PokeNest", NULL);
 	t_list *lista_directorios = nombre_de_archivos_del_directorio(ruta_final);
+
+	vector_auxiliar_identificadores_pokenest = malloc((list_size(lista_directorios))*sizeof(char));
+
 	foreach_pokenest_modelate(lista_directorios, new_diccionary_pokenest, ruta_final);
 
 
@@ -158,6 +161,7 @@ void foreach_pokenest_modelate(void *lista_origen,void *lista_destino, void *rut
 		ruta_final = obtener_ruta_especifica(ruta_final, elemento, NULL);
 		t_pokeNest *pokenest = pokenest_create(elemento,ruta_final);
 		dictionary_put(lista_pokemons_a_devolver, pokenest->identificador, pokenest);
+		vector_auxiliar_identificadores_pokenest[i]= pokenest->identificador;
 	}
 
 }

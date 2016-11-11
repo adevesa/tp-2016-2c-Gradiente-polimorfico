@@ -41,6 +41,9 @@ enum
 	NONE = 4,
 	MUERTO = -1
 }estados_del_entrenador;
+
+char** vector_auxiliar_identificadores_pokenest;
+
 /* ----------------------------------------STRUCTS----------------------------------------------------------------*/
 typedef struct posicion
 {
