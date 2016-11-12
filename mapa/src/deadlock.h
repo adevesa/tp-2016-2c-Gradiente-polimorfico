@@ -10,6 +10,7 @@
 
 #include "basic-structs.h"
 #include "map-commons.h"
+#include "deadlock-resolucion.h"
 #include "so-commons/collections/dictionary.h"
 
 typedef struct
@@ -79,19 +80,22 @@ void deadlock_actualizar_matriz(char* id_proceso, char* id_recurso, int matriz,i
 void asignar_nueva_columna_a_matriz(int matriz);
 void deadlock_agregar_nuevo_proceso_a_matrices(char* id_proceso);
 void deadlock_elimina_proceso_de_matrices(char* id_proceso);
-/*----------------------------------------------EJECUCION------------------------------------------------------------*/
-void ejecutar_deadlock();
+t_list* obtener_las_victimas();
+/*----------------------------------------------EJECUCION-----------------------------------------------------------------*/
+void ejecutar_deadlock(void *arg);
 void deadlock_revisa();
 void marcar_procesos_que_no_tienen_recursos_asignados();
 int marcar_proceso_si_se_puede_satisfacer();
 void marcar_proceso(int proceso);
 void resolver_deadlock();
-/*----------------------------------------------AUXILIARES-----------------------------------------------------------*/
+/*----------------------------------------------AUXILIARES--------------------------------------------------------------*/
+int proceso_tiene_solicitudes(int numero_proceso);
 int proceso_puede_satisfacerce(int numero_proceso);
 int* recuperar_vector_proceso(int num_proceso, int matriz);
 int proceso_tiene_recursos_asignados(int numero_proceso);
 int proceso_esta_borrado(int numero_proceso);
 int proceso_esta_marcado(int numero_proceso);
+int proceso_esta_en_vectorT(int numero_proceso);
 int tamanio_vector(int* vector);
 void limpiar_filas(int matriz);
 int vector_es_menor_igual_a_vectorT(int* vector);

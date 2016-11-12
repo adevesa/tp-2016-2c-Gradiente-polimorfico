@@ -12,6 +12,7 @@
 #include "socket/server.h"
 #include "pthread.h"
 #include "commons/process.h"
+#include "pkmn/factory.h"
 
 enum RESPUESTA_DEL_ENTRENADOR
 {
@@ -31,7 +32,8 @@ enum ENVIOS_AL_ENTRENADOR
 	OTORGAR_MEDALLA_DEL_MAPA = 3,
 	OTORGAR_POKEMON = 4,
 	AVISAR_BLOQUEO_A_ENTRENADOR = 5,
-	AVISAR_DESBLOQUEO_A_ENTRENADOR =6
+	AVISAR_DESBLOQUEO_A_ENTRENADOR =6,
+	AVISAR_DEADLOCK = 7
 };
 
 #define MAX_BYTES_COORDENADA 5
@@ -71,5 +73,6 @@ void dar_pokemon_a_entrenador(t_entrenador *entrenador,char *ruta_pokemon);
 
 void otorgar_ruta_medalla_a_entrenador(int entrenador, char *rutaMedalla);
 
+void* escuchar_mejor_pokemon(int socket_entrenador);
 
 #endif /* MAPA_MAPA_COMMONS_COMUNICACION_H_ */

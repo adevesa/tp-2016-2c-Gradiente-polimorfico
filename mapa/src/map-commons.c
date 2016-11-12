@@ -397,118 +397,16 @@ void mapa_hacete_visible_para_entrenadores()
 	pthread_attr_destroy(&attr);
 }
 
-/*----------------------FUNCIONES PARA DEADLOCK-----------------------------------*/
-
-/*
-typedef struct{
-	t_pokemon* pokemon;
-	t_entrenador* entrenador;
-}t_equipo;
-
-//1-Detecto los entrenadores con deadlock
-t_list* mapa_entrenadores_con_deadlock();
+/*----------------------------------------FUNCIONES PARA DEADLOCK--------------------------------------------------------*/
+void mapa_ejecuta_deadlock()
 {
-	t_list* entrenadores = list_create();
-	// algoritmo de deadlock
-	return entrenadores
-	list_destroy(entrenadores);
+	pthread_attr_t attr;
+	pthread_attr_init(&attr);
+	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+	pthread_t hilo_servidor;
+	pthread_create(&hilo_servidor,&attr,ejecutar_deadlock,NULL);
+
+	log_info(informe_mapa, "Se comienza a ejecutar hilo de deadlock");
+	pthread_attr_destroy(&attr);
 }
 
-//2- El mapa le pide el pokemon de mas alto nivel de cada entrenador en deadlock
-t_list* mapa_pedi_pokemones_a_entrenadores(t_list* entrenadores)
-{
-	t_list* equipos = list_create();
-	int tamanio = list_size(equipos);
-	int i;
-	for(i=0; tamanio>i; i++){
-		//t_equipo* equipo = llamar al entrenador para pedirle mejor pokemon
-		//list_add(equipos, equipo);
-	}
-	return equipos;
-	list_destroy(equipos);
-}
-
-
-//3- CAda entrenador en deadlock le devuelve al mapa su mejor pokemon
-t_list* entrenador_obten_rutas()
-{
-	t_list* rutas = list_create();
-	//obtiene la ruta de todas las carpetas del dir de bill
-	return rutas;
-	List_destroy(rutas);
-}
-char* obtener_especie_pkm(char* ruta)
-{
-	//retorna la especie del metadata pkm
-}
-
-t_level obtener_especie_pkm(char* ruta)
-{
-	//retorna el nivel del metadata pkm
-}
-
-
-t_pokemon* buscar_mejor_pokemon(t_list* pokemons){
-	while(list_size(pokemons) /= 1){
-		t_pokemon* pkm0 = list_get(pokemons, 0);
-		t_pokemon* pkm1 = list_get(pokemons, 1);
-		if(pkm0->level >= pkm1->level)
-		{
-		list_remove_and_destroy_element(pokemons, 1, element_destroyer());
-		}
-		else
-		{
-		list_remove_and_destroy_element(pokemons, 0, element_destroyer());
-		}
-	}
-	t_pokemon* masFuerte = list_get(pokemons, 0);
-	return masFuerte;
-}
-
-
-t_pokemon* entrenador_mejor_pokemon()
-{
-	t_list* paths =entrenador_obten_rutas();
-	int tamanio = list_size(paths);
-	int i;
-	t_list* pokemones = list_create();
-	for(i=0; tamanio>i, i++)
-	{
-		char* ruta = list_get(paths, i);
-		char* especie = obtener_especie_pkm(ruta);
-		t_level nivel = obtener_nivel_pkm(ruta);
-		t_pokemon* nuevoPkm = create_pokemon(factory, especie, nivel);
-		list_add(pokemones, nuevoPkm);
-	}
-		t_pokemon* mejorPkm = buscar_mejor_pokemon(pokemones);
-		return mejorPkm;
-		List_destroy(pokemones);
-}
-
-
-//4- el mapa aplica el algoritmo de batalla para buscar el pokemon mas debil
-t_entrenador* mapa_buscar_victima(t_list* equipos)
-{
-	while(list_size(equipos) /= 1){
-	t_equipo* equipo0 = list_get(equipos, 0);
-	t_equipo* equipo1 = list_get(equipos, 1);
-	t_pokemon* pokemonPerdedor = pkmn_battle(equipo0->pokemon,equipo1->pokemon);
-		if(son_el_mismo_pokemon(pokemonPerdedor, equipo0->pokemon))
-		{
-		 list_remove_and_destroy_element(equipos, 1, element_destroyer());
-		}
-		else{
-			list_remove_and_destroy_element(equipos, 0, element_destroyer());
-		}
-	}
-	t_equipo* victima = list_get(equipos, 0);
-	return victima->entrenador;
-}
-
-//5- Penalizar al entrenador victima
-
-
-//6- el mapa devuelve un log con el resultado de la batalla
-
-
- */

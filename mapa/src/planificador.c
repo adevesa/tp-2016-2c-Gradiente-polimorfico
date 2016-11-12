@@ -450,6 +450,8 @@ void planificador_modela_nuevo_entrenador_y_encolalo(int cola, void *entrenador)
 	free(entrenador_a_modelar);
 	mapa_mostra_nuevo_entrenador_en_pantalla(new_entrenador);
 
+	dictionary_put(mapa->diccionario_de_entrenadores,new_entrenador->simbolo_identificador,new_entrenador); // AGREGADO
+
 	if(cola==COLA_LISTOS)
 	{
 		planificador_push_entrenador_a_listo(new_entrenador);

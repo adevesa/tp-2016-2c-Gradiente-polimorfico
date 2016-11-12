@@ -18,6 +18,7 @@
 #include "planificador.h"
 #include "basic-structs.h"
 #include "semaphore.h"
+#include "deadlock.h"
 
 
 #define BACKLOG 1500
@@ -81,5 +82,8 @@ void mapa_elimina_entrenador_de_pantalla(t_entrenador *entrenador);
  * FUNCIONES PARA MANIPULACION DE ENTRENADORES (MEDIANTE SOCKETS)
  */
 void mapa_hacete_visible_para_entrenadores();
+
+/*----------------------------------------FUNCIONES PARA DEADLOCK--------------------------------------------------------*/
+void mapa_ejecuta_deadlock();
 
 #endif /* MAPA_MAPA_COMMONS_MAP_COMMONS_H_ */

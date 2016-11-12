@@ -6,6 +6,8 @@
  */
 #include "basic-structs.h"
 
+int numero_entrada_al_mapa = 0;
+
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
 t_entrenador* entrenador_create(int id_proceso, int socket_entrenador)
 {
@@ -19,7 +21,8 @@ t_entrenador* entrenador_create(int id_proceso, int socket_entrenador)
 	new_entrenador->tiene_objetivo = 0;
 	new_entrenador->pokemones_capturados = list_create();
 	new_entrenador->posicion_actual = posicion_create(0,0);
-	new_entrenador->tiempo_consumido = 0;
+	new_entrenador->numero_de_ingreso = numero_entrada_al_mapa;
+	numero_entrada_al_mapa++;
 	return new_entrenador;
 }
 
@@ -57,6 +60,7 @@ t_mapa* mapa_create(char *nombre, char *rutaPokedex)
 	new_mapa->batalla = obtener_info_mapa_batalla(new_mapa->configuracion);
 	new_mapa->tiempo_chequeo_deadlock = obtener_info_mapa_tiempo_deadlock(new_mapa->configuracion);
 	new_mapa->pokeNests = obtener_info_mapa_pokenest(nombre,rutaPokedex);
+	new_mapa->diccionario_de_entrenadores = dictionary_create();
 	return new_mapa;
 
 }

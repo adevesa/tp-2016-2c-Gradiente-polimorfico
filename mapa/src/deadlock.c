@@ -9,6 +9,7 @@ extern char** vector_auxiliar_identificadores_pokenest;
 
 //t_list* lista_auxiliar_entrenadores;
 t_dictionary* procesos;
+t_dictionary* procesos_identificados_por_indice;
 int cantidad_columnas_actuales = 0;
 int cantidad_columnas_ocupadas = 0;
 int indice_posicion_proceso = 0;
@@ -25,6 +26,7 @@ t_estructuras_deteccion* deadlock_inicializate()
 	new_deadlock->matriz_asignacion=inicializar_matriz_asignacion();
 	new_deadlock->matriz_solicitud = inicializar_matriz_solicitud();
 	procesos = dictionary_create();
+	procesos_identificados_por_indice = dictionary_create();
 
 	vector_procesos_sin_recursos_asignados = malloc(sizeof(int)+1);
 	vector_procesos_sin_recursos_asignados[0] = -1;
@@ -153,11 +155,12 @@ void deadlock_agregar_nuevo_proceso_a_matrices(char* id_proceso)
 	t_proceso *new_proceso = malloc(sizeof(t_proceso));
 	new_proceso->id = id_proceso;
 	new_proceso->posicion = indice_posicion_proceso;
-	indice_posicion_proceso++;
 
 	dictionary_put(procesos, id_proceso, new_proceso);
+	char* indice_string = string_itoa(indice_posicion_proceso);
+	dictionary_put(procesos_identificados_por_indice,indice_string,new_proceso);
 
-	//list_add(lista_auxiliar_entrenadores,id_entrenador);
+	indice_posicion_proceso++;
 
 	if(cantidad_columnas_actuales == cantidad_columnas_ocupadas)
 	{
@@ -171,7 +174,6 @@ void deadlock_agregar_nuevo_proceso_a_matrices(char* id_proceso)
 		cantidad_columnas_ocupadas++;
 		// YA HAY ESPACIO PARA LA COLUMNA Y SE CORRESPONDERÁ CON EL INDICE EN LA LISTA
 	}
-
 }
 
 void asignar_nueva_columna_a_matriz(int matriz)
@@ -270,10 +272,42 @@ void deadlock_elimina_proceso_de_matrices(char* id_proceso)
 	{
 		deadlock->matriz_asignacion[i2][proceso->posicion] = -1;
 	}
+
+
+}
+
+void quitar_proceso_de_vectores(int numero_proceso)
+{
+	if(proceso_esta_marcado(numero_proceso))
+	{
+
+	}
+	if(proceso_esta_en_vectorT(numero_proceso))
+	{
+
+	}
+}
+
+t_list* obtener_las_victimas()
+{
+	t_list *new_list = list_create();
+
+	int i;
+	for(i=0;i<cantidad_columnas_ocupadas;i++)
+	{
+		if(!proceso_esta_borrado(i) && !proceso_esta_marcado(i))
+		{
+			char* index_string = string_itoa(i);
+			t_proceso *proceso = (t_proceso*) dictionary_get(procesos_identificados_por_indice,index_string);
+			list_add(new_list,proceso->id);
+		}
+	}
+
+	return new_list;
 }
 
 /*----------------------------------------------EJECUCION------------------------------------------------------------*/
-void ejecutar_deadlock()
+void ejecutar_deadlock(void* arg)
 {
 	deadlock=deadlock_inicializate();
 	deadlock_revisa();
@@ -311,7 +345,7 @@ void marcar_procesos_que_no_tienen_recursos_asignados()
 	{
 		if(!proceso_esta_borrado(i))
 		{
-			if(!proceso_tiene_recursos_asignados(i) && !proceso_esta_marcado(i))
+			if(!proceso_tiene_recursos_asignados(i) && !proceso_esta_marcado(i) && proceso_tiene_solicitudes(i))
 			{
 				marcar_proceso(i);
 			}
@@ -360,10 +394,33 @@ int marcar_proceso_si_se_puede_satisfacer()
 
 void resolver_deadlock()
 {
-
+	t_list* victimas = obtener_las_victimas();
+	resolver_deadlock_pokemon(victimas);
 }
 
 /*----------------------------------------------AUXILIARES-----------------------------------------------------------*/
+int proceso_tiene_solicitudes(int numero_proceso)
+{
+	int i=0;
+	int cantidad_elementos = dictionary_size(mapa->pokeNests);
+
+	/* SE RECORRE POR COLUMNA -> UNA COLUMNA = UN PROCESO */
+	int tiene_recursos = 0;
+	while(i<cantidad_elementos && tiene_recursos<=0)
+	{
+		tiene_recursos = tiene_recursos + deadlock->matriz_solicitud[i][numero_proceso];
+		i++;
+	}
+	if(tiene_recursos > 0)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
 int proceso_puede_satisfacerce(int numero_proceso)
 {
 	int* vector_del_proceso = recuperar_vector_proceso(numero_proceso,MATRIZ_SOLICITUD);
@@ -459,6 +516,23 @@ int proceso_esta_marcado(int numero_proceso)
 		if(vector_procesos_sin_recursos_asignados[i] == numero_proceso)
 		{
 			encontrado = 1;
+		}
+		i++;
+	}
+	return encontrado;
+}
+
+int proceso_esta_en_vectorT(int numero_proceso)
+{
+	int tamanio = tamanio_vector(vector_T);
+	int i=0;
+	int encontrado = 0;
+
+	while(i<tamanio && !encontrado)
+	{
+		if(vector_T[i] == numero_proceso)
+		{
+				encontrado = 1;
 		}
 		i++;
 	}

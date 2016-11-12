@@ -6,6 +6,7 @@
 C_SRCS += \
 ../src/basic-structs.c \
 ../src/comunicacion.c \
+../src/deadlock-resolucion.c \
 ../src/deadlock.c \
 ../src/map-commons.c \
 ../src/mapa.c \
@@ -16,6 +17,7 @@ C_SRCS += \
 OBJS += \
 ./src/basic-structs.o \
 ./src/comunicacion.o \
+./src/deadlock-resolucion.o \
 ./src/deadlock.o \
 ./src/map-commons.o \
 ./src/mapa.o \
@@ -26,6 +28,7 @@ OBJS += \
 C_DEPS += \
 ./src/basic-structs.d \
 ./src/comunicacion.d \
+./src/deadlock-resolucion.d \
 ./src/deadlock.d \
 ./src/map-commons.d \
 ./src/mapa.d \

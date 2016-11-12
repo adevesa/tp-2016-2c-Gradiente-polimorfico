@@ -117,6 +117,7 @@ void enviar_mensaje_a_entrenador(t_entrenador *entrenador, int header, char *pay
 		case(OTORGAR_POKEMON): dar_pokemon_a_entrenador(entrenador, payload);break;
 		case(AVISAR_BLOQUEO_A_ENTRENADOR): enviar_mensaje(entrenador->socket_entrenador, "bq;");  break;
 		case(AVISAR_DESBLOQUEO_A_ENTRENADOR): enviar_mensaje(entrenador->socket_entrenador,"fb;"); break;
+		case(AVISAR_DEADLOCK): enviar_mensaje(entrenador->socket_entrenador, "mpk");break;
 		default: ;
 	}
 	//pthread_mutex_unlock(&mutex_enviar_al_entrenador);
@@ -159,4 +160,47 @@ t_posicion* desarmar_coordenada(char *coordenada)
 	array_free_all(por_separado);
 	return posicion;
 
+}
+
+void* escuchar_mejor_pokemon(int socket_entrenador)
+{
+	t_pkmn_factory *factory = create_pkmn_factory();
+
+	char* tamanio_specie = recibir_mensaje(socket_entrenador,14);
+	if(!string_equals_ignore_case(tamanio_specie, "DECONECTADO"))
+	{
+		int tamanio_specie_numero = atoi(tamanio_specie);
+		free(tamanio_specie);
+
+			char* specie = recibir_mensaje(socket_entrenador,tamanio_specie_numero);
+			if(!string_equals_ignore_case(specie,"DESCONECTADO"))
+			{
+				char* level_string = recibir_mensaje(socket_entrenador,6);
+				if(!string_equals_ignore_case(level_string, "DESCONECTADO"))
+				{
+					int level = atoi(level_string);
+					free(level_string);
+					t_pokemon *new_pokemon = create_pokemon(factory,specie,level);
+
+					destroy_pkmn_factory(factory);
+					return new_pokemon;
+				}
+				else
+				{
+					destroy_pkmn_factory(factory);
+					return "DESCONECTADO";
+				}
+
+			}
+			else
+			{
+				destroy_pkmn_factory(factory);
+				return "DESCONECTADO";
+			}
+	}
+	else
+	{
+		destroy_pkmn_factory(factory);
+		return "DESCONECTADO";
+	}
 }

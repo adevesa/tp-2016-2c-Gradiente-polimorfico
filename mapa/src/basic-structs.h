@@ -84,7 +84,7 @@ typedef struct entrenador
 	int estado; //<-- será 1 = listo, 0 = bloquedo, -1 = muerto;
 	int estado_anterior; //<-- será 1 = listo, 0 = bloquedo
 	int esperando_pokemon;
-	int tiempo_consumido;
+	int numero_de_ingreso;
 	t_list *pokemones_capturados;
 	sem_t *semaforo_finalizacon;
 }t_entrenador;
@@ -121,6 +121,7 @@ typedef struct mapa
 	t_info_algoritmo *info_algoritmo;
 	t_info_socket *info_socket;
 	t_dictionary *pokeNests;
+	t_dictionary *diccionario_de_entrenadores;
 	t_list *items_para_mostrar_en_pantalla;
 }t_mapa;
 
