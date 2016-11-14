@@ -13,6 +13,9 @@
 #include "deadlock-resolucion.h"
 #include "so-commons/collections/dictionary.h"
 
+#define FALSA_ALARMA 0
+#define EXITO 1
+
 enum
 {
 	LOG_INICIALIZACION,
@@ -89,7 +92,8 @@ void actualizar_vector_recursos_disponibles();
 void limpiar_vector_marcados();
 
 void loggear_informacion(int caso);
-
+void loggear_vector_asignacion_proceso(char* id_proceso ,int proceso);
+void loggear_vector_solicitudes_proceso(char* id_proceso ,int proceso);
 /*----------------------------------------------MANIPULACION ESTRUCTURAS-------------------------------------------------*/
 int identificar_numero_fila(char* id_recurso_solicitado);
 void deadlock_actualizar_matriz(char* id_proceso, char* id_recurso, int matriz,int tipo_actualizacion);
@@ -103,7 +107,7 @@ void deadlock_revisa();
 void marcar_procesos_que_no_tienen_recursos_asignados();
 int marcar_proceso_si_se_puede_satisfacer();
 void marcar_proceso(int proceso);
-void resolver_deadlock();
+int resolver_deadlock();
 /*----------------------------------------------AUXILIARES--------------------------------------------------------------*/
 int proceso_porId_tiene_solicitudes(char* id_proceso);
 int algun_proceso_tiene_solicitudes();

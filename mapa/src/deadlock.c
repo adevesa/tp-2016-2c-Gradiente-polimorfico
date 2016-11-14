@@ -184,6 +184,51 @@ void loggear_informacion(int caso)
 	}
 }
 
+void loggear_vector_asignacion_proceso(char* id_proceso ,int proceso)
+{
+	char* mensaje_a_log = string_new();
+	string_append(&mensaje_a_log,"VECTOR ASIGNACIÓN PROCESO ");
+	string_append(&mensaje_a_log, id_proceso);
+	string_append(&mensaje_a_log," ID ");
+	string_append(&mensaje_a_log, string_itoa(proceso));
+	string_append(&mensaje_a_log," : ");
+	int tamanio = dictionary_size(mapa->pokeNests);
+	int i;
+	for(i=0;i<tamanio;i++)
+	{
+		char* valor= string_itoa(deadlock->matriz_asignacion[i][proceso]);
+		string_append(&mensaje_a_log,valor );
+		string_append(&mensaje_a_log, " ");
+		free(valor);
+	}
+
+	log_info(logger, mensaje_a_log);
+	free(mensaje_a_log);
+}
+
+void loggear_vector_solicitudes_proceso(char* id_proceso ,int proceso)
+{
+	char* mensaje_a_log = string_new();
+		string_append(&mensaje_a_log,"VECTOR SOLICITUDES PROCESO ");
+		string_append(&mensaje_a_log, id_proceso);
+		string_append(&mensaje_a_log," ID ");
+		string_append(&mensaje_a_log, string_itoa(proceso));
+
+		string_append(&mensaje_a_log," : ");
+		int tamanio = dictionary_size(mapa->pokeNests);
+		int i;
+		for(i=0;i<tamanio;i++)
+		{
+			char* valor= string_itoa(deadlock->matriz_solicitud[i][proceso]);
+			string_append(&mensaje_a_log,valor );
+			string_append(&mensaje_a_log, " ");
+			free(valor);
+		}
+
+		log_info(logger, mensaje_a_log);
+		free(mensaje_a_log);
+}
+
 int* inicializar_recursos_totales()
 {
 	int cantidad_pokenest = dictionary_size(mapa->pokeNests);
@@ -319,6 +364,8 @@ void deadlock_agregar_nuevo_proceso_a_matrices(char* id_proceso)
 	char* mensaje_a_log = string_new();
 	string_append(&mensaje_a_log,"SE AGREGA A LAS MATRICES AL PROCESO IDENTIFICADO POR: ");
 	string_append(&mensaje_a_log, id_proceso);
+	string_append(&mensaje_a_log," Y SU NUMERO DE ID ES: ");
+	string_append(&mensaje_a_log, string_itoa(indice_posicion_proceso));
 	log_info(logger,mensaje_a_log);
 	free(mensaje_a_log);
 
@@ -330,9 +377,9 @@ void deadlock_agregar_nuevo_proceso_a_matrices(char* id_proceso)
 
 	if(cantidad_columnas_actuales == cantidad_columnas_ocupadas)
 	{
+		pthread_mutex_lock(&mutex_operaciones_deadlock);
 		cantidad_columnas_actuales++;
 		cantidad_columnas_ocupadas++;
-		pthread_mutex_lock(&mutex_operaciones_deadlock);
 		asignar_nueva_columna_a_matriz(MATRIZ_ASIGNACION);
 		asignar_nueva_columna_a_matriz(MATRIZ_SOLICITUD);
 		pthread_mutex_unlock(&mutex_operaciones_deadlock);
@@ -375,22 +422,25 @@ void asignar_nueva_columna_a_matriz(int matriz)
 
 void deadlock_actualizar_matriz(char* id_proceso, char* id_recurso, int matriz,int tipo_actualizacion)
 {
+	pthread_mutex_lock(&mutex_operaciones_deadlock);
 	int numero_fila_del_recurso = identificar_numero_fila(id_recurso);
 	t_proceso* proceso = dictionary_get(procesos,id_proceso);
 
 	if(matriz == MATRIZ_ASIGNACION)
 	{
 		char* mensaje_a_log = string_new();
-			string_append(&mensaje_a_log,"PROCESO IDENTIFICADO POR EL SIMBOLO: ");
+			string_append(&mensaje_a_log,"Proceso idedentificado por ");
 			string_append(&mensaje_a_log, id_proceso);
+			string_append(&mensaje_a_log," y por ID ");
+			string_append(&mensaje_a_log, string_itoa(proceso->posicion));
 			if(tipo_actualizacion==OTORGAR_RECURSO)
 			{
-				string_append(&mensaje_a_log," SE LE DARA EL RECURSO IDENTIFICADO POR: ");
+				string_append(&mensaje_a_log,"  se le dá recurso: ");
 				string_append(&mensaje_a_log, id_recurso);
 			}
 			else
 			{
-				string_append(&mensaje_a_log," DEVUELVE RECURSO IDENTIFICADO POR: ");
+				string_append(&mensaje_a_log," devuelve recurso: ");
 				string_append(&mensaje_a_log, id_recurso);
 			}
 			log_info(logger,mensaje_a_log);
@@ -401,16 +451,18 @@ void deadlock_actualizar_matriz(char* id_proceso, char* id_recurso, int matriz,i
 		if(tipo_actualizacion==OTORGAR_RECURSO)
 		{
 			char* mensaje_a_log = string_new();
-			string_append(&mensaje_a_log,"PROCESO IDENTIFICADO POR EL SIMBOLO: ");
+			string_append(&mensaje_a_log,"Proceso idedentificado por ");
 			string_append(&mensaje_a_log, id_proceso);
-			string_append(&mensaje_a_log," ESTA SOLICITANDO RECURSO IDENTIFICADO POR: ");
+			string_append(&mensaje_a_log," y por ID ");
+			string_append(&mensaje_a_log, string_itoa(proceso->posicion));
+			string_append(&mensaje_a_log,"  está solicitando: ");
 			string_append(&mensaje_a_log, id_recurso);
 			log_info(logger,mensaje_a_log);
 			free(mensaje_a_log);
 		}
 	}
 
-	pthread_mutex_lock(&mutex_operaciones_deadlock);
+
 	switch(matriz)
 	{
 		case(MATRIZ_ASIGNACION):
@@ -421,12 +473,14 @@ void deadlock_actualizar_matriz(char* id_proceso, char* id_recurso, int matriz,i
 				{
 					deadlock->matriz_asignacion[numero_fila_del_recurso][proceso->posicion] = deadlock->matriz_asignacion[numero_fila_del_recurso][proceso->posicion] +1;
 					deadlock->vector_recursos_disponibles[numero_fila_del_recurso] = deadlock->vector_recursos_disponibles[numero_fila_del_recurso] -1;
+					loggear_vector_asignacion_proceso(id_proceso,proceso->posicion);
 					loggear_informacion(LOG_RECURSOS_DISPONIBLES);
 				};break;
 				case(QUITAR_RECURSO):
 				{
 					deadlock->matriz_asignacion[numero_fila_del_recurso][proceso->posicion] = deadlock->matriz_asignacion[numero_fila_del_recurso][proceso->posicion] -1;
 					deadlock->vector_recursos_disponibles[numero_fila_del_recurso] = deadlock->vector_recursos_disponibles[numero_fila_del_recurso] +1;
+					loggear_vector_asignacion_proceso(id_proceso,proceso->posicion);
 					loggear_informacion(LOG_RECURSOS_DISPONIBLES);
 				};break;
 			}
@@ -440,12 +494,14 @@ void deadlock_actualizar_matriz(char* id_proceso, char* id_recurso, int matriz,i
 				{
 					deadlock->matriz_solicitud[numero_fila_del_recurso][proceso->posicion] = deadlock->matriz_solicitud[numero_fila_del_recurso][proceso->posicion] +1;
 					cantidad_solicitudes++;
+					loggear_vector_solicitudes_proceso(id_proceso,proceso->posicion);
 					log_info(logger, "SE RESERVA RECURSO DE MATRIZ DE SOLICITUD");
 				};break;
 				case(QUITAR_RECURSO):
 				{
 					deadlock->matriz_solicitud[numero_fila_del_recurso][proceso->posicion] = deadlock->matriz_solicitud[numero_fila_del_recurso][proceso->posicion] -1;
 					cantidad_solicitudes--;
+					loggear_vector_solicitudes_proceso(id_proceso,proceso->posicion);
 					log_info(logger, "SE LIBERA RECURSO DE MATRIZ DE SOLICITUD");
 				};break;
 			}
@@ -531,7 +587,12 @@ t_list* obtener_las_victimas()
 /*----------------------------------------------EJECUCION------------------------------------------------------------*/
 void ejecutar_deadlock(void* arg)
 {
-	logger = log_create("Log Deadlock", "Deadlock",0, LOG_LEVEL_INFO);
+	char* nombre_log = string_new();
+	string_append(&nombre_log,"Log deadlock ");
+	string_append(&nombre_log, mapa->nombre);
+	logger = log_create(nombre_log, "Deadlock",0, LOG_LEVEL_INFO);
+	free(nombre_log);
+
 	sem_init(&semaforo_esperar_para_revisar,0,0);
 	deadlock=deadlock_inicializate();
 	loggear_informacion(LOG_INICIALIZACION);
@@ -546,12 +607,13 @@ void deadlock_revisa()
 	while(1)
 	{
 		usleep(mapa->tiempo_chequeo_deadlock*1000);
+
 		if(cantidad_solicitudes>=2)
 		{
-
-		log_info(logger, "Nueva iteración");
-		void limpiar_vector_marcados();
 		pthread_mutex_lock(&mutex_operaciones_deadlock);
+		log_info(logger, "Nueva iteración");
+		limpiar_vector_marcados();
+
 		marcar_procesos_que_no_tienen_recursos_asignados();
 		pthread_mutex_unlock(&mutex_operaciones_deadlock);
 
@@ -583,9 +645,18 @@ void deadlock_revisa()
 					if(!se_encontro_proceso)
 					{
 						loggear_informacion(LOG_DEADLOCK);
-						resolver_deadlock();
-						log_info(logger,"Se termino de resolver DEADLOCK");
-						se_sigue_ejecutando = 0;
+						int resultado = resolver_deadlock();
+						if(resultado==FALSA_ALARMA)
+						{
+							log_info(logger,"FALSA ALAMRA.");
+							se_sigue_ejecutando = 0;
+						}
+						else
+						{
+							log_info(logger,"Se termino de resolver DEADLOCK");
+							se_sigue_ejecutando = 0;
+						}
+
 					}
 					else
 					{
@@ -612,9 +683,31 @@ void marcar_procesos_que_no_tienen_recursos_asignados()
 	{
 		if(!proceso_esta_borrado(i))
 		{
-			if(!proceso_tiene_recursos_asignados(i) && !proceso_esta_marcado(i) && proceso_tiene_solicitudes(i))
+			if(!proceso_tiene_recursos_asignados(i))
 			{
-				marcar_proceso(i);
+				char* log = string_new();
+				string_append(&log,"No tiene recursos asignados el proceso: ");
+				string_append(&log, string_itoa(i));
+				log_info(logger,log);
+				free(log);
+				if(!proceso_esta_marcado(i))
+				{
+					char* log = string_new();
+					string_append(&log,"No está marcado el proceso: ");
+					string_append(&log, string_itoa(i));
+					log_info(logger,log);
+					free(log);
+					if(proceso_tiene_solicitudes(i))
+					{
+						char* log = string_new();
+						string_append(&log,"Se marca al proceso: ");
+						string_append(&log, string_itoa(i));
+						log_info(logger,log);
+						free(log);
+						marcar_proceso(i);
+					}
+				}
+
 			}
 		}
 	}
@@ -659,10 +752,19 @@ int marcar_proceso_si_se_puede_satisfacer()
 	}
 }
 
-void resolver_deadlock()
+int resolver_deadlock()
 {
 	t_list* victimas = obtener_las_victimas();
-	resolver_deadlock_pokemon(victimas);
+	if(list_size(victimas) <=1)
+	{
+		list_destroy(victimas);
+		return FALSA_ALARMA;
+	}
+	else
+	{
+		resolver_deadlock_pokemon(victimas);
+		return EXITO;
+	}
 }
 
 /*----------------------------------------------AUXILIARES-----------------------------------------------------------*/

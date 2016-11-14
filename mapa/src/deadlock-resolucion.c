@@ -40,20 +40,32 @@ void resolver_deadlock_pokemon(t_list* involucrados)
 		t_perdedor *perdedor;
 		perdedor = efectuar_batalla_pokemon_entre(entrenador_1,entrenador_2);
 
-		char* mensaje_a_log_2 = string_new();
-		string_append(&mensaje_a_log_2,"EL PERDEDOR FUE: ");
-		string_append(&mensaje_a_log_2,perdedor->victima->simbolo_identificador);
-		log_info(logger, mensaje_a_log_2);
-		free(mensaje_a_log_2);
+
 
 		if(perdedor->caso == POR_DESCONEXION)
 		{
+
+			char* mensaje_a_log_2 = string_new();
+			string_append(&mensaje_a_log_2,"EL PERDEDOR FUE: ");
+			string_append(&mensaje_a_log_2,perdedor->victima->simbolo_identificador);
+			string_append(&mensaje_a_log_2, " POR DESCONEXION");
+			log_info(logger, mensaje_a_log_2);
+			free(mensaje_a_log_2);
+
 			planificador_desbloqueame_a(perdedor->victima);
 			planificador_aborta_entrenador(perdedor->victima);
 			cambiar_semaforos_si_es_necesario();
 		}
 		else
 		{
+			char* mensaje_a_log_2 = string_new();
+			string_append(&mensaje_a_log_2,"EL PERDEDOR FUE: ");
+			string_append(&mensaje_a_log_2,perdedor->victima->simbolo_identificador);
+			string_append(&mensaje_a_log_2, " con su pokemon ");
+			string_append(&mensaje_a_log_2, perdedor->pokemon_de_la_victima->species);
+			log_info(logger, mensaje_a_log_2);
+			free(mensaje_a_log_2);
+
 			int hay_victima_por_desconexion = 0;
 			int size = list_size(entrenadores_involucrados);
 
@@ -83,7 +95,7 @@ void resolver_deadlock_pokemon(t_list* involucrados)
 				log_info(logger, mensaje_a_log_2);
 				free(mensaje_a_log_2);
 			}
-			log_info(logger,perdedor->victima->simbolo_identificador);
+			//log_info(logger,perdedor->victima->simbolo_identificador);
 			enviar_mensaje_a_entrenador(perdedor->victima,AVISAR_QUE_PERDIO,NULL);
 			planificador_desbloqueame_a(perdedor->victima);
 			planificador_aborta_entrenador(perdedor->victima);
@@ -113,27 +125,47 @@ t_perdedor* efectuar_batalla_pokemon_con_el_anterior_perdedor(t_perdedor* anteri
 
 	t_perdedor* new_perdedor = malloc(sizeof(t_perdedor));
 
+
 	if(string_equals_ignore_case((char*) respuesta_entrenador, "DESCONECTADO"))
 	{
 		enviar_mensaje_a_entrenador(anterior_perdedor->victima,AVISAR_QUE_GANO,NULL);
 		new_perdedor->caso = POR_DESCONEXION;
 		new_perdedor->victima = anterior_perdedor->victima;
 		new_perdedor->pokemon_de_la_victima =anterior_perdedor->pokemon_de_la_victima;
-		//free(anterior_perdedor);
+		free(anterior_perdedor);
 		return new_perdedor;
 	}
 	else
 	{
+		char* mensaje_a_log = string_new();
+		string_append(&mensaje_a_log,"Recibi mejor pokemon de: ");
+		string_append(&mensaje_a_log,entrenador->simbolo_identificador);
+		log_info(logger, mensaje_a_log);
+		free(mensaje_a_log);
+
+
 		t_pokemon *pokemon_entrenador = (t_pokemon*) respuesta_entrenador;
+
+		char* mensaje_a_log_2 = string_new();
+		string_append(&mensaje_a_log_2,"COMIENZA BATALLA ENTRE: ");
+		string_append(&mensaje_a_log_2,anterior_perdedor->pokemon_de_la_victima->species);
+		string_append(&mensaje_a_log_2," Y ");
+		string_append(&mensaje_a_log_2,pokemon_entrenador->species);
+		log_info(logger, mensaje_a_log_2);
+		free(mensaje_a_log_2);
+
 		t_pokemon *pokemon_perdedor = pkmn_battle(anterior_perdedor->pokemon_de_la_victima,pokemon_entrenador);
+		log_info(logger, "TERMINÓ BATALLA!");
+
 		int resultado = retornar_perdedor(pokemon_perdedor,anterior_perdedor->pokemon_de_la_victima, pokemon_entrenador);
+
 		if(resultado == VICTIMA_ENTRENADOR_1)
 		{
 			enviar_mensaje_a_entrenador(entrenador,AVISAR_QUE_GANO,NULL);
 			new_perdedor->caso = POR_BATALLA;
 			new_perdedor->victima = anterior_perdedor->victima;
 			new_perdedor->pokemon_de_la_victima = anterior_perdedor->pokemon_de_la_victima;
-			//free(anterior_perdedor);
+			free(anterior_perdedor);
 			destroy_pokemon(pokemon_entrenador);
 			return new_perdedor;
 		}
@@ -144,7 +176,7 @@ t_perdedor* efectuar_batalla_pokemon_con_el_anterior_perdedor(t_perdedor* anteri
 			new_perdedor->caso = POR_BATALLA;
 			new_perdedor->victima= entrenador;
 			new_perdedor->pokemon_de_la_victima = pokemon_entrenador;
-			//free(anterior_perdedor);
+			free(anterior_perdedor);
 			return new_perdedor;
 		}
 	}
@@ -159,6 +191,8 @@ t_perdedor* efectuar_batalla_pokemon_entre(t_entrenador *entrenador_1, t_entrena
 	void* respuesta_entrenador_2 = escuchar_mejor_pokemon(entrenador_2->socket_entrenador);
 
 	t_perdedor* new_perdedor = malloc(sizeof(t_perdedor));
+	new_perdedor->pokemon_de_la_victima = malloc(sizeof(t_pokemon));
+
 
 	if(string_equals_ignore_case((char*) respuesta_entrenador_1, "DESCONECTADO"))
 	{
@@ -180,7 +214,15 @@ t_perdedor* efectuar_batalla_pokemon_entre(t_entrenador *entrenador_1, t_entrena
 		{
 			/* NINGNO SE DESCONECTO! HACEMOS LA BATALLA */
 			t_pokemon *pokemon_entrenador_1 = (t_pokemon*) respuesta_entrenador_1;
-			t_pokemon *pokemon_entrenador_2 = (t_pokemon*) respuesta_entrenador_1;
+			t_pokemon *pokemon_entrenador_2 = (t_pokemon*) respuesta_entrenador_2;
+
+			char* mensaje_a_log_2 = string_new();
+			string_append(&mensaje_a_log_2,"COMIENZA BATALLA ENTRE: ");
+			string_append(&mensaje_a_log_2,pokemon_entrenador_1->species);
+			string_append(&mensaje_a_log_2," Y ");
+			string_append(&mensaje_a_log_2,pokemon_entrenador_2->species);
+			log_info(logger, mensaje_a_log_2);
+			free(mensaje_a_log_2);
 
 			t_pokemon *pokemon_perdedor = pkmn_battle(pokemon_entrenador_1,pokemon_entrenador_2);
 
@@ -191,7 +233,8 @@ t_perdedor* efectuar_batalla_pokemon_entre(t_entrenador *entrenador_1, t_entrena
 				enviar_mensaje_a_entrenador(entrenador_2,AVISAR_QUE_GANO,NULL);
 				new_perdedor->caso = POR_BATALLA;
 				new_perdedor->victima = entrenador_1;
-				new_perdedor->pokemon_de_la_victima = pokemon_entrenador_1;
+				memcpy(new_perdedor->pokemon_de_la_victima,pokemon_entrenador_1,sizeof(t_pokemon));
+				//new_perdedor->pokemon_de_la_victima = pokemon_entrenador_1;
 				destroy_pokemon(pokemon_entrenador_2);
 			}
 			else
@@ -199,7 +242,8 @@ t_perdedor* efectuar_batalla_pokemon_entre(t_entrenador *entrenador_1, t_entrena
 				enviar_mensaje_a_entrenador(entrenador_1,AVISAR_QUE_GANO,NULL);
 				new_perdedor->caso = POR_BATALLA;
 				new_perdedor->victima = entrenador_2;
-				new_perdedor->pokemon_de_la_victima = pokemon_entrenador_2;
+				memcpy(new_perdedor->pokemon_de_la_victima,pokemon_entrenador_2,sizeof(t_pokemon));
+				//new_perdedor->pokemon_de_la_victima = pokemon_entrenador_2;
 				destroy_pokemon(pokemon_entrenador_1);
 			}
 			return new_perdedor;
