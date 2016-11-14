@@ -118,6 +118,8 @@ void enviar_mensaje_a_entrenador(t_entrenador *entrenador, int header, char *pay
 		case(AVISAR_BLOQUEO_A_ENTRENADOR): enviar_mensaje(entrenador->socket_entrenador, "bq;");  break;
 		case(AVISAR_DESBLOQUEO_A_ENTRENADOR): enviar_mensaje(entrenador->socket_entrenador,"fb;"); break;
 		case(AVISAR_DEADLOCK): enviar_mensaje(entrenador->socket_entrenador, "mpk");break;
+		case(AVISAR_QUE_GANO): enviar_mensaje(entrenador->socket_entrenador, "gnr");break;
+		case(AVISAR_QUE_PERDIO): enviar_mensaje(entrenador->socket_entrenador, "prd");break;
 		default: ;
 	}
 	//pthread_mutex_unlock(&mutex_enviar_al_entrenador);
@@ -167,7 +169,7 @@ void* escuchar_mejor_pokemon(int socket_entrenador)
 	t_pkmn_factory *factory = create_pkmn_factory();
 
 	char* tamanio_specie = recibir_mensaje(socket_entrenador,14);
-	if(!string_equals_ignore_case(tamanio_specie, "DECONECTADO"))
+	if(!string_equals_ignore_case(tamanio_specie, "DESCONECTADO"))
 	{
 		int tamanio_specie_numero = atoi(tamanio_specie);
 		free(tamanio_specie);

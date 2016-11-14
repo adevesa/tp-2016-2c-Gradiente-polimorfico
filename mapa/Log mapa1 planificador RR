@@ -1,186 +1,1703 @@
-[INFO] 18:00:36:272 Planificador/(15280:15300): Se crea proceso para encolación de entreanadores
-[INFO] 18:01:37:389 Planificador/(15280:15348): PUSH (NUEVO) entrenador identificado con el simbolo @ y por el socket 8
-[INFO] 18:01:37:389 Planificador/(15280:15301): Iniciando la encolación de nuevos entrenadores
-[INFO] 18:01:37:389 Planificador/(15280:15301): PUSH (LISTO) entrenador identificado con el simbolo @
-[INFO] 18:01:37:389 Planificador/(15280:15301): Entrenador conectado por socket 8 modelado
-[INFO] 18:01:37:389 Planificador/(15280:15300): POP (LISTO) entrenador identificado con el simbolo @
-[INFO] 18:01:37:389 Planificador/(15280:15301): Cola de nuevos vaciada por proceso de encolación
-[INFO] 18:01:37:389 Planificador/(15280:15301): Finalizando la  encolación de entrenadores
-[INFO] 18:09:33:543 Planificador/(15280:15300): Entrenador identificado por @está buscando coordenadas de pokenest P (2;4)
-[INFO] 18:13:03:318 Planificador/(15280:15300): La coordenada solicitada fue entregada a entrenador identificado por @
-[INFO] 10:10:41:487 Planificador/(18562:18579): Se crea proceso para encolación de entreanadores
-[INFO] 10:10:52:995 Planificador/(18562:18618): PUSH (NUEVO) entrenador identificado con el simbolo @ y por el socket 8
-[INFO] 10:10:52:995 Planificador/(18562:18581): Iniciando la encolación de nuevos entrenadores
-[INFO] 10:10:52:995 Planificador/(18562:18581): PUSH (LISTO) entrenador identificado con el simbolo @
-[INFO] 10:10:52:995 Planificador/(18562:18581): Entrenador conectado por socket 8 modelado
-[INFO] 10:10:52:995 Planificador/(18562:18579): POP (LISTO) entrenador identificado con el simbolo @
-[INFO] 10:10:52:995 Planificador/(18562:18581): Cola de nuevos vaciada por proceso de encolación
-[INFO] 10:10:52:995 Planificador/(18562:18581): Finalizando la  encolación de entrenadores
-[INFO] 10:11:11:161 Planificador/(18562:18579): Entrenador identificado por @está buscando coordenadas de pokenest P (2;4)
-[INFO] 10:11:11:161 Planificador/(18562:18579): La coordenada solicitada fue entregada a entrenador identificado por @
-[INFO] 10:11:31:760 Planificador/(18562:18579): Entrenador identificado por @ se movió a 1;0
-[INFO] 10:11:42:128 Planificador/(18562:18579): Entrenador identificado por @ se movió a 1;1
-[INFO] 10:11:47:933 Planificador/(18562:18579): PUSH (LISTO) entrenador identificado con el simbolo @
-[INFO] 10:11:55:620 Planificador/(18562:18579): POP (LISTO) entrenador identificado con el simbolo @
-[INFO] 10:12:12:271 Planificador/(18562:18579): Entrenador identificado por @ se movió a 2;1
-[INFO] 10:12:26:692 Planificador/(18562:18579): Entrenador identificado por @ se movió a 2;2
-[INFO] 10:12:37:592 Planificador/(18562:18579): Entrenador identificado por @ se movió a 2;3
-[INFO] 10:12:44:94 Planificador/(18562:18579): PUSH (LISTO) entrenador identificado con el simbolo @
-[INFO] 10:12:51:282 Planificador/(18562:18579): POP (LISTO) entrenador identificado con el simbolo @
-[INFO] 10:13:05:321 Planificador/(18562:18579): Entrenador identificado por @ se movió a 2;4
-[INFO] 10:13:25:18 Planificador/(18562:18579): Entrenador identificado por @ está solicitando captura pokemon
-[INFO] 10:13:25:18 Planificador/(18562:18579): PUSH (BLOQUEADO) entrenador identificado con el simbolo @
-[INFO] 10:13:25:18 Planificador/(18562:18579): POP (BLOQUEADO) entrenador identificado con el simbolo @
-[INFO] 10:13:25:18 Planificador/(18562:18579): Entrenador identificado por @ recibio RUTA POKEMON
-[INFO] 10:35:45:800 Planificador/(19718:19729): Se crea proceso para encolación de entreanadores
-[INFO] 10:35:58:152 Planificador/(19759:19775): Se crea proceso para encolación de entreanadores
-[INFO] 10:36:09:130 Planificador/(19759:19814): PUSH (NUEVO) entrenador identificado con el simbolo @ y por el socket 8
-[INFO] 10:36:09:130 Planificador/(19759:19776): Iniciando la encolación de nuevos entrenadores
-[INFO] 10:36:09:130 Planificador/(19759:19776): PUSH (LISTO) entrenador identificado con el simbolo @
-[INFO] 10:36:09:130 Planificador/(19759:19776): Entrenador conectado por socket 8 modelado
-[INFO] 10:36:09:130 Planificador/(19759:19775): POP (LISTO) entrenador identificado con el simbolo @
-[INFO] 10:36:09:130 Planificador/(19759:19776): Cola de nuevos vaciada por proceso de encolación
-[INFO] 10:36:09:130 Planificador/(19759:19776): Finalizando la  encolación de entrenadores
-[INFO] 10:36:18:250 Planificador/(19759:19775): Entrenador identificado por @está buscando coordenadas de pokenest P (2;4)
-[INFO] 10:36:18:250 Planificador/(19759:19775): La coordenada solicitada fue entregada a entrenador identificado por @
-[INFO] 10:36:23:134 Planificador/(19759:19775): Entrenador identificado por @ se movió a 1;0
-[INFO] 10:36:28:545 Planificador/(19759:19775): Entrenador identificado por @ se movió a 1;1
-[INFO] 10:36:33:170 Planificador/(19759:19775): PUSH (LISTO) entrenador identificado con el simbolo @
-[INFO] 10:36:36:48 Planificador/(19759:19775): POP (LISTO) entrenador identificado con el simbolo @
-[INFO] 10:36:57:781 Planificador/(19759:19775): Entrenador identificado por @ se movió a 2;1
-[INFO] 10:37:07:163 Planificador/(19759:19775): Entrenador identificado por @ se movió a 2;2
-[INFO] 10:37:12:944 Planificador/(19759:19775): Entrenador identificado por @ se movió a 2;3
-[INFO] 10:37:16:287 Planificador/(19759:19775): PUSH (LISTO) entrenador identificado con el simbolo @
-[INFO] 10:37:18:636 Planificador/(19759:19775): POP (LISTO) entrenador identificado con el simbolo @
-[INFO] 10:37:29:829 Planificador/(19759:19775): Entrenador identificado por @ se movió a 2;4
-[INFO] 10:37:39:976 Planificador/(19759:19775): Entrenador identificado por @ está solicitando captura pokemon
-[INFO] 10:37:39:976 Planificador/(19759:19775): PUSH (BLOQUEADO) entrenador identificado con el simbolo @
-[INFO] 10:37:39:976 Planificador/(19759:19775): POP (BLOQUEADO) entrenador identificado con el simbolo @
-[INFO] 10:37:39:976 Planificador/(19759:19775): Entrenador identificado por @ recibio RUTA POKEMON
-[INFO] 10:55:28:82 Planificador/(20900:20915): Se crea proceso para encolación de entreanadores
-[INFO] 10:55:36:227 Planificador/(20900:20949): PUSH (NUEVO) entrenador identificado con el simbolo @ y por el socket 8
-[INFO] 10:55:36:227 Planificador/(20900:20916): Iniciando la encolación de nuevos entrenadores
-[INFO] 10:55:36:227 Planificador/(20900:20916): PUSH (LISTO) entrenador identificado con el simbolo @
-[INFO] 10:55:36:227 Planificador/(20900:20916): Entrenador conectado por socket 8 modelado
-[INFO] 10:55:36:227 Planificador/(20900:20915): POP (LISTO) entrenador identificado con el simbolo @
-[INFO] 10:55:36:227 Planificador/(20900:20916): Cola de nuevos vaciada por proceso de encolación
-[INFO] 10:55:36:227 Planificador/(20900:20916): Finalizando la  encolación de entrenadores
-[INFO] 10:55:41:72 Planificador/(20900:20915): Entrenador identificado por @está buscando coordenadas de pokenest P (2;4)
-[INFO] 10:55:41:72 Planificador/(20900:20915): La coordenada solicitada fue entregada a entrenador identificado por @
-[INFO] 10:55:45:561 Planificador/(20900:20915): Entrenador identificado por @ se movió a 1;0
-[INFO] 10:55:50:983 Planificador/(20900:20915): Entrenador identificado por @ se movió a 1;1
-[INFO] 10:56:04:605 Planificador/(20900:20915): PUSH (LISTO) entrenador identificado con el simbolo @
-[INFO] 10:56:07:25 Planificador/(20900:20915): POP (LISTO) entrenador identificado con el simbolo @
-[INFO] 10:56:15:900 Planificador/(20900:20915): Entrenador identificado por @ se movió a 2;1
-[INFO] 10:56:22:739 Planificador/(20900:20915): Entrenador identificado por @ se movió a 2;2
-[INFO] 10:56:28:465 Planificador/(20900:20915): Entrenador identificado por @ se movió a 2;3
-[INFO] 10:56:31:997 Planificador/(20900:20915): PUSH (LISTO) entrenador identificado con el simbolo @
-[INFO] 10:56:33:751 Planificador/(20900:20915): POP (LISTO) entrenador identificado con el simbolo @
-[INFO] 10:56:42:820 Planificador/(20900:20915): Entrenador identificado por @ se movió a 2;4
-[INFO] 10:56:53:1 Planificador/(20900:20915): Entrenador identificado por @ está solicitando captura pokemon
-[INFO] 10:56:53:1 Planificador/(20900:20915): PUSH (BLOQUEADO) entrenador identificado con el simbolo @
-[INFO] 10:56:53:1 Planificador/(20900:20915): POP (BLOQUEADO) entrenador identificado con el simbolo @
-[INFO] 10:56:53:1 Planificador/(20900:20915): Entrenador identificado por @ recibio RUTA POKEMON
-[INFO] 11:03:53:538 Planificador/(21365:21382): Se crea proceso para encolación de entreanadores
-[INFO] 11:04:00:223 Planificador/(21365:21421): PUSH (NUEVO) entrenador identificado con el simbolo @ y por el socket 8
-[INFO] 11:04:00:223 Planificador/(21365:21383): Iniciando la encolación de nuevos entrenadores
-[INFO] 11:04:00:223 Planificador/(21365:21383): PUSH (LISTO) entrenador identificado con el simbolo @
-[INFO] 11:04:00:223 Planificador/(21365:21383): Entrenador conectado por socket 8 modelado
-[INFO] 11:04:00:223 Planificador/(21365:21382): POP (LISTO) entrenador identificado con el simbolo @
-[INFO] 11:04:00:223 Planificador/(21365:21383): Cola de nuevos vaciada por proceso de encolación
-[INFO] 11:04:00:223 Planificador/(21365:21383): Finalizando la  encolación de entrenadores
-[INFO] 11:04:05:466 Planificador/(21365:21382): Entrenador identificado por @está buscando coordenadas de pokenest P (2;4)
-[INFO] 11:04:05:466 Planificador/(21365:21382): La coordenada solicitada fue entregada a entrenador identificado por @
-[INFO] 11:04:13:184 Planificador/(21365:21382): Entrenador identificado por @ se movió a 1;0
-[INFO] 11:04:19:910 Planificador/(21365:21382): Entrenador identificado por @ se movió a 1;1
-[INFO] 11:04:22:352 Planificador/(21365:21382): PUSH (LISTO) entrenador identificado con el simbolo @
-[INFO] 11:04:24:39 Planificador/(21365:21382): POP (LISTO) entrenador identificado con el simbolo @
-[INFO] 11:04:30:676 Planificador/(21365:21382): Entrenador identificado por @ se movió a 2;1
-[INFO] 11:04:41:823 Planificador/(21365:21382): Entrenador identificado por @ se movió a 2;2
-[INFO] 11:04:49:686 Planificador/(21365:21382): Entrenador identificado por @ se movió a 2;3
-[INFO] 11:04:54:130 Planificador/(21365:21382): PUSH (LISTO) entrenador identificado con el simbolo @
-[INFO] 11:04:56:403 Planificador/(21365:21382): POP (LISTO) entrenador identificado con el simbolo @
-[INFO] 11:05:01:81 Planificador/(21365:21382): Entrenador identificado por @ se movió a 2;4
-[INFO] 11:05:07:988 Planificador/(21365:21382): Entrenador identificado por @ está solicitando captura pokemon
-[INFO] 11:05:07:989 Planificador/(21365:21382): PUSH (BLOQUEADO) entrenador identificado con el simbolo @
-[INFO] 11:05:07:989 Planificador/(21365:21382): POP (BLOQUEADO) entrenador identificado con el simbolo @
-[INFO] 11:05:07:989 Planificador/(21365:21382): Entrenador identificado por @ recibio RUTA POKEMON
-[INFO] 11:09:20:274 Planificador/(21901:21916): Se crea proceso para encolación de entreanadores
-[INFO] 11:09:28:302 Planificador/(21901:21956): PUSH (NUEVO) entrenador identificado con el simbolo @ y por el socket 8
-[INFO] 11:09:28:302 Planificador/(21901:21917): Iniciando la encolación de nuevos entrenadores
-[INFO] 11:09:28:302 Planificador/(21901:21917): PUSH (LISTO) entrenador identificado con el simbolo @
-[INFO] 11:09:28:302 Planificador/(21901:21917): Entrenador conectado por socket 8 modelado
-[INFO] 11:09:28:302 Planificador/(21901:21916): POP (LISTO) entrenador identificado con el simbolo @
-[INFO] 11:09:28:302 Planificador/(21901:21917): Cola de nuevos vaciada por proceso de encolación
-[INFO] 11:09:28:302 Planificador/(21901:21917): Finalizando la  encolación de entrenadores
-[INFO] 11:13:18:699 Planificador/(22071:22087): Se crea proceso para encolación de entreanadores
-[INFO] 11:13:25:311 Planificador/(22071:22126): PUSH (NUEVO) entrenador identificado con el simbolo @ y por el socket 8
-[INFO] 11:13:25:311 Planificador/(22071:22088): Iniciando la encolación de nuevos entrenadores
-[INFO] 11:13:25:311 Planificador/(22071:22088): PUSH (LISTO) entrenador identificado con el simbolo @
-[INFO] 11:13:25:311 Planificador/(22071:22088): Entrenador conectado por socket 8 modelado
-[INFO] 11:13:25:311 Planificador/(22071:22087): POP (LISTO) entrenador identificado con el simbolo @
-[INFO] 11:13:25:311 Planificador/(22071:22088): Cola de nuevos vaciada por proceso de encolación
-[INFO] 11:13:25:311 Planificador/(22071:22088): Finalizando la  encolación de entrenadores
-[INFO] 11:13:29:817 Planificador/(22071:22087): Entrenador identificado por @está buscando coordenadas de pokenest P (1;1)
-[INFO] 11:13:29:817 Planificador/(22071:22087): La coordenada solicitada fue entregada a entrenador identificado por @
-[INFO] 11:13:45:443 Planificador/(22071:22087): Entrenador identificado por @ se movió a 1;0
-[INFO] 11:13:56:793 Planificador/(22071:22087): Entrenador identificado por @ se movió a 1;1
-[INFO] 11:14:00:471 Planificador/(22071:22087): PUSH (LISTO) entrenador identificado con el simbolo @
-[INFO] 11:14:57:422 Planificador/(22071:22087): POP (LISTO) entrenador identificado con el simbolo @
-[INFO] 11:15:16:163 Planificador/(22071:22087): Entrenador identificado por @ está solicitando captura pokemon
-[INFO] 11:15:16:163 Planificador/(22071:22087): PUSH (BLOQUEADO) entrenador identificado con el simbolo @
-[INFO] 11:15:16:163 Planificador/(22071:22087): POP (BLOQUEADO) entrenador identificado con el simbolo @
-[INFO] 11:15:16:163 Planificador/(22071:22087): Entrenador identificado por @ recibio RUTA POKEMON
-[INFO] 11:19:53:232 Planificador/(22538:22554): Se crea proceso para encolación de entreanadores
-[INFO] 11:20:01:218 Planificador/(22538:22593): PUSH (NUEVO) entrenador identificado con el simbolo @ y por el socket 8
-[INFO] 11:20:01:219 Planificador/(22538:22555): Iniciando la encolación de nuevos entrenadores
-[INFO] 11:20:01:219 Planificador/(22538:22555): PUSH (LISTO) entrenador identificado con el simbolo @
-[INFO] 11:20:01:219 Planificador/(22538:22555): Entrenador conectado por socket 8 modelado
-[INFO] 11:20:01:219 Planificador/(22538:22554): POP (LISTO) entrenador identificado con el simbolo @
-[INFO] 11:20:01:219 Planificador/(22538:22555): Cola de nuevos vaciada por proceso de encolación
-[INFO] 11:20:01:219 Planificador/(22538:22555): Finalizando la  encolación de entrenadores
-[INFO] 11:20:06:604 Planificador/(22538:22554): Entrenador identificado por @está buscando coordenadas de pokenest P (1;1)
-[INFO] 11:20:06:604 Planificador/(22538:22554): La coordenada solicitada fue entregada a entrenador identificado por @
-[INFO] 11:20:12:904 Planificador/(22538:22554): Entrenador identificado por @ se movió a 1;0
-[INFO] 11:20:18:731 Planificador/(22538:22554): Entrenador identificado por @ se movió a 1;1
-[INFO] 11:20:22:477 Planificador/(22538:22554): PUSH (LISTO) entrenador identificado con el simbolo @
-[INFO] 11:20:24:187 Planificador/(22538:22554): POP (LISTO) entrenador identificado con el simbolo @
-[INFO] 11:20:32:612 Planificador/(22538:22554): Entrenador identificado por @ está solicitando captura pokemon
-[INFO] 11:20:32:612 Planificador/(22538:22554): PUSH (BLOQUEADO) entrenador identificado con el simbolo @
-[INFO] 11:20:32:613 Planificador/(22538:22554): POP (BLOQUEADO) entrenador identificado con el simbolo @
-[INFO] 11:20:32:613 Planificador/(22538:22554): Entrenador identificado por @ recibio RUTA POKEMON
-[INFO] 21:05:06:833 Planificador/(12148:12167): Se crea proceso para encolación de entreanadores
-[INFO] 21:05:40:619 Planificador/(12148:12206): PUSH (NUEVO) entrenador identificado con el simbolo A y por el socket 9
-[INFO] 21:05:40:619 Planificador/(12148:12168): Iniciando la encolación de nuevos entrenadores
-[INFO] 21:05:40:619 Planificador/(12148:12168): PUSH (LISTO) entrenador identificado con el simbolo A
-[INFO] 21:05:40:619 Planificador/(12148:12168): Entrenador conectado por socket 9 modelado
-[INFO] 21:05:40:619 Planificador/(12148:12168): Cola de nuevos vaciada por proceso de encolación
-[INFO] 21:05:40:619 Planificador/(12148:12168): Finalizando la  encolación de entrenadores
-[INFO] 21:05:58:297 Planificador/(12148:12238): PUSH (NUEVO) entrenador identificado con el simbolo M y por el socket 11
-[INFO] 21:05:58:297 Planificador/(12148:12168): Iniciando la encolación de nuevos entrenadores
-[INFO] 21:05:58:297 Planificador/(12148:12168): PUSH (LISTO) entrenador identificado con el simbolo M
-[INFO] 21:05:58:297 Planificador/(12148:12168): Entrenador conectado por socket 11 modelado
-[INFO] 21:05:58:297 Planificador/(12148:12168): Cola de nuevos vaciada por proceso de encolación
-[INFO] 21:05:58:297 Planificador/(12148:12168): Finalizando la  encolación de entrenadores
-[INFO] 21:05:58:297 Planificador/(12148:12167): POP (LISTO) entrenador identificado con el simbolo A
-[INFO] 21:06:27:820 Planificador/(12148:12167): Entrenador identificado por Aestá buscando coordenadas de pokenest P (1;1)
-[INFO] 21:06:27:820 Planificador/(12148:12167): La coordenada solicitada fue entregada a entrenador identificado por A
-[INFO] 21:06:43:333 Planificador/(12148:12167): Entrenador identificado por A se movió a 1;0
-[INFO] 21:06:50:858 Planificador/(12148:12167): Entrenador identificado por A se movió a 1;1
-[INFO] 21:06:55:448 Planificador/(12148:12167): PUSH (LISTO) entrenador identificado con el simbolo A
-[INFO] 21:06:58:722 Planificador/(12148:12167): POP (LISTO) entrenador identificado con el simbolo M
-[INFO] 21:07:15:640 Planificador/(12148:12167): Entrenador identificado por Mestá buscando coordenadas de pokenest P (1;1)
-[INFO] 21:07:15:640 Planificador/(12148:12167): La coordenada solicitada fue entregada a entrenador identificado por M
-[INFO] 21:07:22:480 Planificador/(12148:12167): Entrenador identificado por M se movió a 1;0
-[INFO] 21:07:28:588 Planificador/(12148:12167): Entrenador identificado por M se movió a 1;1
-[INFO] 21:07:32:480 Planificador/(12148:12167): PUSH (LISTO) entrenador identificado con el simbolo M
-[INFO] 21:07:34:528 Planificador/(12148:12167): POP (LISTO) entrenador identificado con el simbolo A
-[INFO] 21:07:57:712 Planificador/(12148:12167): Entrenador identificado por A está solicitando captura pokemon
-[INFO] 21:07:57:712 Planificador/(12148:12167): PUSH (BLOQUEADO) entrenador identificado con el simbolo A
-[INFO] 21:07:57:712 Planificador/(12148:12167): POP (BLOQUEADO) entrenador identificado con el simbolo A
-[INFO] 21:07:57:712 Planificador/(12148:12167): Entrenador identificado por A recibio RUTA POKEMON
-[INFO] 21:33:30:911 Planificador/(12148:12167): POP (LISTO) entrenador identificado con el simbolo M
-[INFO] 21:33:43:925 Planificador/(12148:12167): Entrenador identificado por M está solicitando captura pokemon
-[INFO] 21:33:43:925 Planificador/(12148:12167): PUSH (BLOQUEADO) entrenador identificado con el simbolo M
-[INFO] 21:33:43:925 Planificador/(12148:12167): POP (BLOQUEADO) entrenador identificado con el simbolo M
-[INFO] 21:33:43:925 Planificador/(12148:12167): Entrenador identificado por M recibio RUTA POKEMON
+[INFO] 13:17:35:235 Planificador/(4859:4876): Se crea proceso para encolación de entreanadores
+[INFO] 13:17:52:103 Planificador/(4859:4943): PUSH (NUEVO) entrenador identificado con el simbolo M y por el socket 11
+[INFO] 13:17:52:103 Planificador/(4859:4877): Iniciando la encolación de nuevos entrenadores
+[INFO] 13:17:52:103 Planificador/(4859:4877): Entrenador conectado por socket 11 modelado
+[INFO] 13:17:52:103 Planificador/(4859:4877): Cola de nuevos vaciada por proceso de encolación
+[INFO] 13:17:52:103 Planificador/(4859:4877): Finalizando la  encolación de entrenadores
+[INFO] 13:17:56:853 Planificador/(4859:4876): Entrenador identificado por Mestá buscando coordenadas de pokenest C (8;9)
+[INFO] 13:17:56:853 Planificador/(4859:4876): La coordenada solicitada fue entregada a entrenador identificado por M
+[INFO] 13:17:56:853 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:17:57:354 Planificador/(4859:4876): Entrenador identificado por M se movió a 1;0
+[INFO] 13:17:57:354 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:17:57:854 Planificador/(4859:4876): Entrenador identificado por M se movió a 1;1
+[INFO] 13:17:57:854 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:00:328 Planificador/(4859:4876): Entrenador identificado por M se movió a 2;1
+[INFO] 13:18:00:328 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:00:829 Planificador/(4859:4876): Entrenador identificado por M se movió a 2;2
+[INFO] 13:18:00:829 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:01:329 Planificador/(4859:4876): Entrenador identificado por M se movió a 3;2
+[INFO] 13:18:01:329 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:02:477 Planificador/(4859:4876): Entrenador identificado por M se movió a 3;3
+[INFO] 13:18:02:477 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:02:978 Planificador/(4859:4876): Entrenador identificado por M se movió a 4;3
+[INFO] 13:18:02:978 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:03:479 Planificador/(4859:4876): Entrenador identificado por M se movió a 4;4
+[INFO] 13:18:03:479 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:04:490 Planificador/(4859:4876): Entrenador identificado por M se movió a 5;4
+[INFO] 13:18:04:490 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:04:991 Planificador/(4859:4876): Entrenador identificado por M se movió a 5;5
+[INFO] 13:18:04:991 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:05:492 Planificador/(4859:4876): Entrenador identificado por M se movió a 6;5
+[INFO] 13:18:05:492 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:16:612 Planificador/(4859:4955): PUSH (NUEVO) entrenador identificado con el simbolo A y por el socket 12
+[INFO] 13:18:16:612 Planificador/(4859:4877): Iniciando la encolación de nuevos entrenadores
+[INFO] 13:18:16:612 Planificador/(4859:4877): Entrenador conectado por socket 12 modelado
+[INFO] 13:18:16:612 Planificador/(4859:4877): Cola de nuevos vaciada por proceso de encolación
+[INFO] 13:18:16:612 Planificador/(4859:4877): Finalizando la  encolación de entrenadores
+[INFO] 13:18:17:112 Planificador/(4859:4876): Entrenador identificado por M se movió a 6;6
+[INFO] 13:18:17:112 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:17:613 Planificador/(4859:4876): Entrenador identificado por M se movió a 7;6
+[INFO] 13:18:17:613 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:18:114 Planificador/(4859:4876): Entrenador identificado por M se movió a 7;7
+[INFO] 13:18:18:114 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:23:715 Planificador/(4859:4876): Entrenador identificado por Aestá buscando coordenadas de pokenest P (5;3)
+[INFO] 13:18:23:715 Planificador/(4859:4876): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 13:18:23:715 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:24:216 Planificador/(4859:4876): Entrenador identificado por A se movió a 1;0
+[INFO] 13:18:24:216 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:24:722 Planificador/(4859:4876): Entrenador identificado por A se movió a 1;1
+[INFO] 13:18:24:722 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:29:879 Planificador/(4859:4876): Entrenador identificado por M se movió a 8;7
+[INFO] 13:18:29:879 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:30:380 Planificador/(4859:4876): Entrenador identificado por M se movió a 8;8
+[INFO] 13:18:30:380 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:30:881 Planificador/(4859:4876): Entrenador identificado por M se movió a 8;9
+[INFO] 13:18:30:881 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:37:315 Planificador/(4859:4876): Entrenador identificado por A se movió a 2;1
+[INFO] 13:18:37:315 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:37:816 Planificador/(4859:4876): Entrenador identificado por A se movió a 2;2
+[INFO] 13:18:37:816 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:38:317 Planificador/(4859:4876): Entrenador identificado por A se movió a 3;2
+[INFO] 13:18:38:317 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:42:680 Planificador/(4859:4876): Entrenador identificado por M está solicitando captura pokemon
+[INFO] 13:18:42:680 Planificador/(4859:4876): Entrenador identificado por M recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/charmander/charmander001
+[INFO] 13:18:42:680 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:43:181 Planificador/(4859:4876): Entrenador identificado por Mestá buscando coordenadas de pokenest P (5;3)
+[INFO] 13:18:43:181 Planificador/(4859:4876): La coordenada solicitada fue entregada a entrenador identificado por M
+[INFO] 13:18:43:181 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:43:682 Planificador/(4859:4876): Entrenador identificado por M se movió a 8;8
+[INFO] 13:18:43:682 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:50:590 Planificador/(4859:4876): Entrenador identificado por A se movió a 3;3
+[INFO] 13:18:50:590 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:51:91 Planificador/(4859:4876): Entrenador identificado por A se movió a 4;3
+[INFO] 13:18:51:91 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:51:592 Planificador/(4859:4876): Entrenador identificado por A se movió a 5;3
+[INFO] 13:18:51:592 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:55:495 Planificador/(4859:4876): Entrenador identificado por M se movió a 7;8
+[INFO] 13:18:55:495 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:55:996 Planificador/(4859:4876): Entrenador identificado por M se movió a 7;7
+[INFO] 13:18:55:996 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:18:56:497 Planificador/(4859:4876): Entrenador identificado por M se movió a 6;7
+[INFO] 13:18:56:497 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:19:00:331 Planificador/(4859:4876): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 13:19:00:331 Planificador/(4859:4876): Entrenador identificado por A recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu001
+[INFO] 13:19:00:331 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:19:00:831 Planificador/(4859:4876): Entrenador identificado por Aestá buscando coordenadas de pokenest C (8;9)
+[INFO] 13:19:00:831 Planificador/(4859:4876): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 13:19:00:831 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:19:01:332 Planificador/(4859:4876): Entrenador identificado por A se movió a 6;3
+[INFO] 13:19:01:333 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:19:07:745 Planificador/(4859:4876): Entrenador identificado por M se movió a 6;6
+[INFO] 13:19:07:745 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:19:08:246 Planificador/(4859:4876): Entrenador identificado por M se movió a 5;6
+[INFO] 13:19:08:246 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:19:08:747 Planificador/(4859:4876): Entrenador identificado por M se movió a 5;5
+[INFO] 13:19:08:747 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:19:12:896 Planificador/(4859:4876): Entrenador identificado por A se movió a 6;4
+[INFO] 13:19:12:896 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:19:13:397 Planificador/(4859:4876): Entrenador identificado por A se movió a 7;4
+[INFO] 13:19:13:397 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:19:13:898 Planificador/(4859:4876): Entrenador identificado por A se movió a 7;5
+[INFO] 13:19:13:898 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:19:15:315 Planificador/(4859:4876): Entrenador identificado por M se movió a 5;4
+[INFO] 13:19:15:315 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:19:15:816 Planificador/(4859:4876): Entrenador identificado por M se movió a 5;3
+[INFO] 13:19:15:816 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:19:16:317 Planificador/(4859:4876): Entrenador identificado por M está solicitando captura pokemon
+[INFO] 13:19:16:317 Planificador/(4859:4876): Entrenador identificado por M quedó bloqueado por no haber pokemons disponibles
+[INFO] 13:19:16:317 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:19:16:317 Planificador/(4859:4876): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 13:19:20:652 Planificador/(4859:4876): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 13:19:21:153 Planificador/(4859:4876): Entrenador identificado por A se movió a 8;5
+[INFO] 13:19:21:153 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:19:21:653 Planificador/(4859:4876): Entrenador identificado por A se movió a 8;6
+[INFO] 13:19:21:654 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:19:22:155 Planificador/(4859:4876): Entrenador identificado por A se movió a 8;7
+[INFO] 13:19:22:155 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:19:22:155 Planificador/(4859:4876): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 13:19:26:648 Planificador/(4859:4876): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 13:19:27:149 Planificador/(4859:4876): Entrenador identificado por A se movió a 8;8
+[INFO] 13:19:27:149 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:19:27:650 Planificador/(4859:4876): Entrenador identificado por A se movió a 8;9
+[INFO] 13:19:27:650 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:19:28:151 Planificador/(4859:4876): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 13:19:28:151 Planificador/(4859:4876): Entrenador identificado por A quedó bloqueado por no haber pokemons disponibles
+[INFO] 13:19:28:151 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:19:28:151 Planificador/(4859:4876): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 13:19:30:659 Planificador/(4859:4879): SE ABORTA AL ENTRENADOR IDENTIFICADO POR: A
+[INFO] 13:19:38:910 Planificador/(4859:4989): PUSH (NUEVO) entrenador identificado con el simbolo A y por el socket 12
+[INFO] 13:19:38:910 Planificador/(4859:4877): Iniciando la encolación de nuevos entrenadores
+[INFO] 13:19:38:910 Planificador/(4859:4877): Entrenador conectado por socket 12 modelado
+[INFO] 13:19:38:910 Planificador/(4859:4877): Cola de nuevos vaciada por proceso de encolación
+[INFO] 13:19:38:910 Planificador/(4859:4877): Finalizando la  encolación de entrenadores
+[INFO] 13:20:02:815 Planificador/(4859:4876): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 13:20:46:866 Planificador/(4859:4876): Entrenador identificado por Aestá buscando coordenadas de pokenest P (5;3)
+[INFO] 13:20:46:866 Planificador/(4859:4876): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 13:20:46:866 Planificador/(4859:4876): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:32:41:314 Planificador/(5334:5351): Se crea proceso para encolación de entreanadores
+[INFO] 13:32:58:508 Planificador/(5334:5419): PUSH (NUEVO) entrenador identificado con el simbolo M y por el socket 11
+[INFO] 13:32:58:508 Planificador/(5334:5352): Iniciando la encolación de nuevos entrenadores
+[INFO] 13:32:58:508 Planificador/(5334:5352): Entrenador conectado por socket 11 modelado
+[INFO] 13:32:58:508 Planificador/(5334:5352): Cola de nuevos vaciada por proceso de encolación
+[INFO] 13:32:58:508 Planificador/(5334:5352): Finalizando la  encolación de entrenadores
+[INFO] 13:33:02:153 Planificador/(5334:5351): Entrenador identificado por Mestá buscando coordenadas de pokenest C (8;9)
+[INFO] 13:33:02:153 Planificador/(5334:5351): La coordenada solicitada fue entregada a entrenador identificado por M
+[INFO] 13:33:02:153 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:02:653 Planificador/(5334:5351): Entrenador identificado por M se movió a 1;0
+[INFO] 13:33:02:653 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:03:154 Planificador/(5334:5351): Entrenador identificado por M se movió a 1;1
+[INFO] 13:33:03:154 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:05:494 Planificador/(5334:5351): Entrenador identificado por M se movió a 2;1
+[INFO] 13:33:05:494 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:05:994 Planificador/(5334:5351): Entrenador identificado por M se movió a 2;2
+[INFO] 13:33:05:995 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:06:495 Planificador/(5334:5351): Entrenador identificado por M se movió a 3;2
+[INFO] 13:33:06:495 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:11:667 Planificador/(5334:5427): PUSH (NUEVO) entrenador identificado con el simbolo A y por el socket 12
+[INFO] 13:33:11:667 Planificador/(5334:5352): Iniciando la encolación de nuevos entrenadores
+[INFO] 13:33:11:667 Planificador/(5334:5352): Entrenador conectado por socket 12 modelado
+[INFO] 13:33:11:667 Planificador/(5334:5352): Cola de nuevos vaciada por proceso de encolación
+[INFO] 13:33:11:667 Planificador/(5334:5352): Finalizando la  encolación de entrenadores
+[INFO] 13:33:12:166 Planificador/(5334:5351): Entrenador identificado por M se movió a 3;3
+[INFO] 13:33:12:167 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:12:667 Planificador/(5334:5351): Entrenador identificado por M se movió a 4;3
+[INFO] 13:33:12:667 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:13:168 Planificador/(5334:5351): Entrenador identificado por M se movió a 4;4
+[INFO] 13:33:13:168 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:14:966 Planificador/(5334:5351): Entrenador identificado por Aestá buscando coordenadas de pokenest P (5;3)
+[INFO] 13:33:14:966 Planificador/(5334:5351): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 13:33:14:966 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:15:467 Planificador/(5334:5351): Entrenador identificado por A se movió a 1;0
+[INFO] 13:33:15:467 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:15:968 Planificador/(5334:5351): Entrenador identificado por A se movió a 1;1
+[INFO] 13:33:15:968 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:17:588 Planificador/(5334:5351): Entrenador identificado por M se movió a 5;4
+[INFO] 13:33:17:588 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:18:89 Planificador/(5334:5351): Entrenador identificado por M se movió a 5;5
+[INFO] 13:33:18:89 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:18:590 Planificador/(5334:5351): Entrenador identificado por M se movió a 6;5
+[INFO] 13:33:18:590 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:26:283 Planificador/(5334:5351): Entrenador identificado por A se movió a 2;1
+[INFO] 13:33:26:283 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:26:784 Planificador/(5334:5351): Entrenador identificado por A se movió a 2;2
+[INFO] 13:33:26:784 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:27:285 Planificador/(5334:5351): Entrenador identificado por A se movió a 3;2
+[INFO] 13:33:27:285 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:28:825 Planificador/(5334:5351): Entrenador identificado por M se movió a 6;6
+[INFO] 13:33:28:825 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:29:326 Planificador/(5334:5351): Entrenador identificado por M se movió a 7;6
+[INFO] 13:33:29:326 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:29:827 Planificador/(5334:5351): Entrenador identificado por M se movió a 7;7
+[INFO] 13:33:29:827 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:34:597 Planificador/(5334:5351): Entrenador identificado por A se movió a 3;3
+[INFO] 13:33:34:598 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:35:98 Planificador/(5334:5351): Entrenador identificado por A se movió a 4;3
+[INFO] 13:33:35:98 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:35:599 Planificador/(5334:5351): Entrenador identificado por A se movió a 5;3
+[INFO] 13:33:35:599 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:40:119 Planificador/(5334:5351): Entrenador identificado por M se movió a 8;7
+[INFO] 13:33:40:119 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:40:621 Planificador/(5334:5351): Entrenador identificado por M se movió a 8;8
+[INFO] 13:33:40:621 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:41:122 Planificador/(5334:5351): Entrenador identificado por M se movió a 8;9
+[INFO] 13:33:41:122 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:45:846 Planificador/(5334:5351): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 13:33:45:847 Planificador/(5334:5351): Entrenador identificado por A recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu001
+[INFO] 13:33:45:847 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:46:347 Planificador/(5334:5351): Entrenador identificado por Aestá buscando coordenadas de pokenest C (8;9)
+[INFO] 13:33:46:348 Planificador/(5334:5351): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 13:33:46:348 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:46:848 Planificador/(5334:5351): Entrenador identificado por A se movió a 6;3
+[INFO] 13:33:46:848 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:52:347 Planificador/(5334:5351): Entrenador identificado por M está solicitando captura pokemon
+[INFO] 13:33:52:347 Planificador/(5334:5351): Entrenador identificado por M recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/charmander/charmander001
+[INFO] 13:33:52:347 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:52:848 Planificador/(5334:5351): Entrenador identificado por Mestá buscando coordenadas de pokenest P (5;3)
+[INFO] 13:33:52:848 Planificador/(5334:5351): La coordenada solicitada fue entregada a entrenador identificado por M
+[INFO] 13:33:52:848 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:53:348 Planificador/(5334:5351): Entrenador identificado por M se movió a 8;8
+[INFO] 13:33:53:348 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:59:468 Planificador/(5334:5351): Entrenador identificado por A se movió a 6;4
+[INFO] 13:33:59:468 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:33:59:969 Planificador/(5334:5351): Entrenador identificado por A se movió a 7;4
+[INFO] 13:33:59:969 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:34:00:469 Planificador/(5334:5351): Entrenador identificado por A se movió a 7;5
+[INFO] 13:34:00:469 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:34:06:273 Planificador/(5334:5351): Entrenador identificado por M se movió a 7;8
+[INFO] 13:34:06:273 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:34:06:775 Planificador/(5334:5351): Entrenador identificado por M se movió a 7;7
+[INFO] 13:34:06:775 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:34:07:275 Planificador/(5334:5351): Entrenador identificado por M se movió a 6;7
+[INFO] 13:34:07:275 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:34:13:766 Planificador/(5334:5351): Entrenador identificado por A se movió a 8;5
+[INFO] 13:34:13:766 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:34:14:267 Planificador/(5334:5351): Entrenador identificado por A se movió a 8;6
+[INFO] 13:34:14:268 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:34:14:768 Planificador/(5334:5351): Entrenador identificado por A se movió a 8;7
+[INFO] 13:34:14:768 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:34:19:356 Planificador/(5334:5351): Entrenador identificado por M se movió a 6;6
+[INFO] 13:34:19:357 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:34:19:857 Planificador/(5334:5351): Entrenador identificado por M se movió a 5;6
+[INFO] 13:34:19:858 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:34:20:358 Planificador/(5334:5351): Entrenador identificado por M se movió a 5;5
+[INFO] 13:34:20:358 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:34:21:684 Planificador/(5334:5351): Entrenador identificado por A se movió a 8;8
+[INFO] 13:34:21:684 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:34:22:185 Planificador/(5334:5351): Entrenador identificado por A se movió a 8;9
+[INFO] 13:34:22:186 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:34:22:686 Planificador/(5334:5351): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 13:34:22:686 Planificador/(5334:5351): Entrenador identificado por A quedó bloqueado por no haber pokemons disponibles
+[INFO] 13:34:22:686 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:34:22:686 Planificador/(5334:5351): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 13:34:27:303 Planificador/(5334:5351): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 13:34:27:804 Planificador/(5334:5351): Entrenador identificado por M se movió a 5;4
+[INFO] 13:34:27:804 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:34:28:304 Planificador/(5334:5351): Entrenador identificado por M se movió a 5;3
+[INFO] 13:34:28:304 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:34:28:805 Planificador/(5334:5351): Entrenador identificado por M está solicitando captura pokemon
+[INFO] 13:34:28:806 Planificador/(5334:5351): Entrenador identificado por M quedó bloqueado por no haber pokemons disponibles
+[INFO] 13:34:28:806 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:34:28:806 Planificador/(5334:5351): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 13:34:28:859 Planificador/(5334:5354): SE ABORTA AL ENTRENADOR IDENTIFICADO POR: A
+[INFO] 13:34:37:668 Planificador/(5334:5351): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 13:34:37:672 Planificador/(5334:5464): PUSH (NUEVO) entrenador identificado con el simbolo A y por el socket 12
+[INFO] 13:34:37:672 Planificador/(5334:5352): Iniciando la encolación de nuevos entrenadores
+[INFO] 13:34:37:672 Planificador/(5334:5352): Entrenador conectado por socket 12 modelado
+[INFO] 13:34:37:672 Planificador/(5334:5352): Cola de nuevos vaciada por proceso de encolación
+[INFO] 13:34:37:672 Planificador/(5334:5352): Finalizando la  encolación de entrenadores
+[INFO] 13:34:38:169 Planificador/(5334:5351): Entrenador identificado por M recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu001
+[INFO] 13:34:38:169 Planificador/(5334:5351): YA DI POKEMON
+[INFO] 13:34:38:196 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:36:31:400 Planificador/(5334:5351): SE ABORTA AL ENTRENADOR IDENTIFICADO POR: M
+[INFO] 13:36:36:845 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:37:38:478 Planificador/(5334:5351): Entrenador identificado por Aestá buscando coordenadas de pokenest P (5;3)
+[INFO] 13:37:38:478 Planificador/(5334:5351): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 13:37:42:684 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:37:43:184 Planificador/(5334:5351): Entrenador identificado por A se movió a 8;8
+[INFO] 13:37:43:184 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 13:37:43:686 Planificador/(5334:5351): Entrenador identificado por A se movió a 7;8
+[INFO] 13:37:43:687 Planificador/(5334:5351): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:22:327 Planificador/(6799:6813): Se crea proceso para encolación de entreanadores
+[INFO] 14:35:39:849 Planificador/(6799:6876): PUSH (NUEVO) entrenador identificado con el simbolo M y por el socket 11
+[INFO] 14:35:39:849 Planificador/(6799:6815): Iniciando la encolación de nuevos entrenadores
+[INFO] 14:35:39:849 Planificador/(6799:6815): Entrenador conectado por socket 11 modelado
+[INFO] 14:35:39:849 Planificador/(6799:6815): Cola de nuevos vaciada por proceso de encolación
+[INFO] 14:35:39:849 Planificador/(6799:6815): Finalizando la  encolación de entrenadores
+[INFO] 14:35:40:349 Planificador/(6799:6813): Entrenador identificado por Mestá buscando coordenadas de pokenest C (8;9)
+[INFO] 14:35:40:349 Planificador/(6799:6813): La coordenada solicitada fue entregada a entrenador identificado por M
+[INFO] 14:35:40:349 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:40:850 Planificador/(6799:6813): Entrenador identificado por M se movió a 1;0
+[INFO] 14:35:40:850 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:41:351 Planificador/(6799:6813): Entrenador identificado por M se movió a 1;1
+[INFO] 14:35:41:351 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:41:351 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:35:41:351 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:35:41:851 Planificador/(6799:6813): Entrenador identificado por M se movió a 2;1
+[INFO] 14:35:41:851 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:42:31 Planificador/(6799:6878): PUSH (NUEVO) entrenador identificado con el simbolo A y por el socket 12
+[INFO] 14:35:42:31 Planificador/(6799:6815): Iniciando la encolación de nuevos entrenadores
+[INFO] 14:35:42:31 Planificador/(6799:6815): Entrenador conectado por socket 12 modelado
+[INFO] 14:35:42:31 Planificador/(6799:6815): Cola de nuevos vaciada por proceso de encolación
+[INFO] 14:35:42:31 Planificador/(6799:6815): Finalizando la  encolación de entrenadores
+[INFO] 14:35:42:352 Planificador/(6799:6813): Entrenador identificado por M se movió a 2;2
+[INFO] 14:35:42:352 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:42:853 Planificador/(6799:6813): Entrenador identificado por M se movió a 3;2
+[INFO] 14:35:42:853 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:42:853 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:35:42:853 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:35:43:355 Planificador/(6799:6813): Entrenador identificado por Aestá buscando coordenadas de pokenest P (5;3)
+[INFO] 14:35:43:355 Planificador/(6799:6813): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 14:35:43:355 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:43:856 Planificador/(6799:6813): Entrenador identificado por A se movió a 1;0
+[INFO] 14:35:43:856 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:44:357 Planificador/(6799:6813): Entrenador identificado por A se movió a 1;1
+[INFO] 14:35:44:358 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:44:358 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:35:44:358 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:35:44:859 Planificador/(6799:6813): Entrenador identificado por M se movió a 3;3
+[INFO] 14:35:44:859 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:45:360 Planificador/(6799:6813): Entrenador identificado por M se movió a 4;3
+[INFO] 14:35:45:360 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:45:861 Planificador/(6799:6813): Entrenador identificado por M se movió a 4;4
+[INFO] 14:35:45:861 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:45:861 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:35:45:861 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:35:46:362 Planificador/(6799:6813): Entrenador identificado por A se movió a 2;1
+[INFO] 14:35:46:362 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:46:863 Planificador/(6799:6813): Entrenador identificado por A se movió a 2;2
+[INFO] 14:35:46:863 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:47:364 Planificador/(6799:6813): Entrenador identificado por A se movió a 3;2
+[INFO] 14:35:47:364 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:47:364 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:35:47:364 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:35:47:865 Planificador/(6799:6813): Entrenador identificado por M se movió a 5;4
+[INFO] 14:35:47:865 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:48:365 Planificador/(6799:6813): Entrenador identificado por M se movió a 5;5
+[INFO] 14:35:48:365 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:48:866 Planificador/(6799:6813): Entrenador identificado por M se movió a 6;5
+[INFO] 14:35:48:866 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:48:866 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:35:48:866 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:35:49:367 Planificador/(6799:6813): Entrenador identificado por A se movió a 3;3
+[INFO] 14:35:49:367 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:49:868 Planificador/(6799:6813): Entrenador identificado por A se movió a 4;3
+[INFO] 14:35:49:868 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:50:369 Planificador/(6799:6813): Entrenador identificado por A se movió a 5;3
+[INFO] 14:35:50:369 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:50:369 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:35:50:369 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:35:50:869 Planificador/(6799:6813): Entrenador identificado por M se movió a 6;6
+[INFO] 14:35:50:870 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:51:370 Planificador/(6799:6813): Entrenador identificado por M se movió a 7;6
+[INFO] 14:35:51:370 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:51:871 Planificador/(6799:6813): Entrenador identificado por M se movió a 7;7
+[INFO] 14:35:51:871 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:51:871 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:35:51:871 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:35:52:372 Planificador/(6799:6813): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 14:35:52:373 Planificador/(6799:6813): Entrenador identificado por A recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu001
+[INFO] 14:35:52:373 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:52:873 Planificador/(6799:6813): Entrenador identificado por Aestá buscando coordenadas de pokenest C (8;9)
+[INFO] 14:35:52:873 Planificador/(6799:6813): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 14:35:52:873 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:53:374 Planificador/(6799:6813): Entrenador identificado por A se movió a 6;3
+[INFO] 14:35:53:374 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:53:374 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:35:53:374 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:35:53:875 Planificador/(6799:6813): Entrenador identificado por M se movió a 8;7
+[INFO] 14:35:53:875 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:54:376 Planificador/(6799:6813): Entrenador identificado por M se movió a 8;8
+[INFO] 14:35:54:376 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:54:877 Planificador/(6799:6813): Entrenador identificado por M se movió a 8;9
+[INFO] 14:35:54:877 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:54:877 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:35:54:877 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:35:55:378 Planificador/(6799:6813): Entrenador identificado por A se movió a 6;4
+[INFO] 14:35:55:378 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:55:879 Planificador/(6799:6813): Entrenador identificado por A se movió a 7;4
+[INFO] 14:35:55:879 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:56:380 Planificador/(6799:6813): Entrenador identificado por A se movió a 7;5
+[INFO] 14:35:56:380 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:56:380 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:35:56:380 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:35:56:881 Planificador/(6799:6813): Entrenador identificado por M está solicitando captura pokemon
+[INFO] 14:35:56:881 Planificador/(6799:6813): Entrenador identificado por M recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/charmander/charmander001
+[INFO] 14:35:56:881 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:57:382 Planificador/(6799:6813): Entrenador identificado por Mestá buscando coordenadas de pokenest P (5;3)
+[INFO] 14:35:57:382 Planificador/(6799:6813): La coordenada solicitada fue entregada a entrenador identificado por M
+[INFO] 14:35:57:382 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:57:883 Planificador/(6799:6813): Entrenador identificado por M se movió a 8;8
+[INFO] 14:35:57:883 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:57:883 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:35:57:883 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:35:58:384 Planificador/(6799:6813): Entrenador identificado por A se movió a 8;5
+[INFO] 14:35:58:384 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:58:885 Planificador/(6799:6813): Entrenador identificado por A se movió a 8;6
+[INFO] 14:35:58:885 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:59:385 Planificador/(6799:6813): Entrenador identificado por A se movió a 8;7
+[INFO] 14:35:59:385 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:35:59:385 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:35:59:386 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:35:59:886 Planificador/(6799:6813): Entrenador identificado por M se movió a 7;8
+[INFO] 14:35:59:887 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:36:00:388 Planificador/(6799:6813): Entrenador identificado por M se movió a 7;7
+[INFO] 14:36:00:388 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:36:00:888 Planificador/(6799:6813): Entrenador identificado por M se movió a 6;7
+[INFO] 14:36:00:888 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:36:00:888 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:36:00:888 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:36:01:389 Planificador/(6799:6813): Entrenador identificado por A se movió a 8;8
+[INFO] 14:36:01:389 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:36:01:890 Planificador/(6799:6813): Entrenador identificado por A se movió a 8;9
+[INFO] 14:36:01:890 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:36:02:391 Planificador/(6799:6813): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 14:36:02:391 Planificador/(6799:6813): Entrenador identificado por A quedó bloqueado por no haber pokemons disponibles
+[INFO] 14:36:02:391 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:36:02:391 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:36:02:391 Planificador/(6799:6813): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 14:36:02:391 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:36:02:391 Planificador/(6799:6813): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 14:36:02:892 Planificador/(6799:6813): Entrenador identificado por M se movió a 6;6
+[INFO] 14:36:02:892 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:36:03:392 Planificador/(6799:6813): Entrenador identificado por M se movió a 5;6
+[INFO] 14:36:03:393 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:36:03:893 Planificador/(6799:6813): Entrenador identificado por M se movió a 5;5
+[INFO] 14:36:03:893 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:36:03:893 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:36:03:893 Planificador/(6799:6813): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 14:36:03:893 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:36:03:893 Planificador/(6799:6813): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 14:36:04:394 Planificador/(6799:6813): Entrenador identificado por M se movió a 5;4
+[INFO] 14:36:04:394 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:36:04:895 Planificador/(6799:6813): Entrenador identificado por M se movió a 5;3
+[INFO] 14:36:04:895 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:36:05:396 Planificador/(6799:6813): Entrenador identificado por M está solicitando captura pokemon
+[INFO] 14:36:05:396 Planificador/(6799:6813): Entrenador identificado por M quedó bloqueado por no haber pokemons disponibles
+[INFO] 14:36:05:396 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:36:05:396 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:36:05:396 Planificador/(6799:6813): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 14:36:05:396 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:36:12:337 Planificador/(6799:6814): SE ABORTA AL ENTRENADOR IDENTIFICADO POR: A
+[INFO] 14:36:12:337 Planificador/(6799:6813): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 14:36:12:838 Planificador/(6799:6813): Entrenador identificado por M recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu001
+[INFO] 14:36:12:838 Planificador/(6799:6813): YA DI POKEMON
+[INFO] 14:36:12:855 Planificador/(6799:6887): PUSH (NUEVO) entrenador identificado con el simbolo A y por el socket 13
+[INFO] 14:36:12:855 Planificador/(6799:6815): Iniciando la encolación de nuevos entrenadores
+[INFO] 14:36:12:855 Planificador/(6799:6815): Entrenador conectado por socket 13 modelado
+[INFO] 14:36:12:855 Planificador/(6799:6815): Cola de nuevos vaciada por proceso de encolación
+[INFO] 14:36:12:855 Planificador/(6799:6815): Finalizando la  encolación de entrenadores
+[INFO] 14:36:12:858 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:39:18:85 Planificador/(6799:6813): SE ABORTA AL ENTRENADOR IDENTIFICADO POR: M
+[INFO] 14:40:14:745 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:40:38:62 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:40:50:848 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:41:27:67 Planificador/(6799:6813): Entrenador identificado por Aestá buscando coordenadas de pokenest P (5;3)
+[INFO] 14:41:27:67 Planificador/(6799:6813): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 14:41:27:67 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:41:27:569 Planificador/(6799:6813): Entrenador identificado por A se movió a 8;8
+[INFO] 14:41:27:569 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:41:28:70 Planificador/(6799:6813): Entrenador identificado por A se movió a 7;8
+[INFO] 14:41:28:70 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:41:29:717 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:41:30:239 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:41:50:712 Planificador/(6799:6813): Entrenador identificado por A se movió a 7;7
+[INFO] 14:41:50:712 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:41:51:213 Planificador/(6799:6813): Entrenador identificado por A se movió a 6;7
+[INFO] 14:41:51:213 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:41:51:713 Planificador/(6799:6813): Entrenador identificado por A se movió a 6;6
+[INFO] 14:41:51:714 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:41:52:537 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:41:52:881 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:41:56:146 Planificador/(6799:6813): Entrenador identificado por A se movió a 5;6
+[INFO] 14:41:56:146 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:41:56:647 Planificador/(6799:6813): Entrenador identificado por A se movió a 5;5
+[INFO] 14:41:56:647 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:41:57:148 Planificador/(6799:6813): Entrenador identificado por A se movió a 5;4
+[INFO] 14:41:57:148 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:41:58:183 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:41:58:872 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:41:59:373 Planificador/(6799:6813): Entrenador identificado por A se movió a 5;3
+[INFO] 14:41:59:373 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:41:59:874 Planificador/(6799:6813): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 14:41:59:874 Planificador/(6799:6813): Entrenador identificado por A recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu001
+[INFO] 14:41:59:874 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:42:00:374 Planificador/(6799:6813): Entrenador identificado por Aestá buscando coordenadas de pokenest C (8;9)
+[INFO] 14:42:00:374 Planificador/(6799:6813): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 14:42:00:374 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:42:00:374 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:42:00:374 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:42:00:875 Planificador/(6799:6813): Entrenador identificado por A se movió a 5;4
+[INFO] 14:42:00:875 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:42:01:376 Planificador/(6799:6813): Entrenador identificado por A se movió a 6;4
+[INFO] 14:42:01:376 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:42:01:877 Planificador/(6799:6813): Entrenador identificado por A se movió a 6;5
+[INFO] 14:42:01:877 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:42:01:877 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:42:01:877 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:42:02:378 Planificador/(6799:6813): Entrenador identificado por A se movió a 7;5
+[INFO] 14:42:02:378 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:42:02:879 Planificador/(6799:6813): Entrenador identificado por A se movió a 7;6
+[INFO] 14:42:02:879 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:42:03:379 Planificador/(6799:6813): Entrenador identificado por A se movió a 8;6
+[INFO] 14:42:03:380 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:42:03:380 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:42:03:380 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:42:03:880 Planificador/(6799:6813): Entrenador identificado por A se movió a 8;7
+[INFO] 14:42:03:880 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:42:04:382 Planificador/(6799:6813): Entrenador identificado por A se movió a 8;8
+[INFO] 14:42:04:382 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:42:04:883 Planificador/(6799:6813): Entrenador identificado por A se movió a 8;9
+[INFO] 14:42:04:883 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:42:04:883 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:42:04:883 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:42:05:384 Planificador/(6799:6813): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 14:42:05:384 Planificador/(6799:6813): Entrenador identificado por A recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/charmander/charmander001
+[INFO] 14:42:05:384 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:42:05:884 Planificador/(6799:6813): SE ABORTA AL ENTRENADOR IDENTIFICADO POR: A
+[INFO] 14:42:05:885 Planificador/(6799:6813): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:42:05:885 Planificador/(6799:6813): ENCOLO NUEVAMENTE
+[INFO] 14:42:05:885 Planificador/(6799:6813): REVISO NUEVMAENTE
+[INFO] 14:46:25:315 Planificador/(7067:7069): Se crea proceso para encolación de entreanadores
+[INFO] 14:46:53:574 Planificador/(7067:7136): PUSH (NUEVO) entrenador identificado con el simbolo M y por el socket 9
+[INFO] 14:46:53:574 Planificador/(7067:7073): Iniciando la encolación de nuevos entrenadores
+[INFO] 14:46:53:574 Planificador/(7067:7073): Entrenador conectado por socket 9 modelado
+[INFO] 14:46:53:574 Planificador/(7067:7073): Cola de nuevos vaciada por proceso de encolación
+[INFO] 14:46:53:574 Planificador/(7067:7073): Finalizando la  encolación de entrenadores
+[INFO] 14:46:54:74 Planificador/(7067:7069): Entrenador identificado por Mestá buscando coordenadas de pokenest C (8;9)
+[INFO] 14:46:54:74 Planificador/(7067:7069): La coordenada solicitada fue entregada a entrenador identificado por M
+[INFO] 14:46:54:74 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:46:54:575 Planificador/(7067:7069): Entrenador identificado por M se movió a 1;0
+[INFO] 14:46:54:575 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:46:55:76 Planificador/(7067:7069): Entrenador identificado por M se movió a 1;1
+[INFO] 14:46:55:76 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:46:55:76 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:46:55:76 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:46:55:576 Planificador/(7067:7069): Entrenador identificado por M se movió a 2;1
+[INFO] 14:46:55:577 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:46:56:77 Planificador/(7067:7069): Entrenador identificado por M se movió a 2;2
+[INFO] 14:46:56:77 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:46:56:578 Planificador/(7067:7069): Entrenador identificado por M se movió a 3;2
+[INFO] 14:46:56:578 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:46:56:578 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:46:56:578 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:46:57:78 Planificador/(7067:7069): Entrenador identificado por M se movió a 3;3
+[INFO] 14:46:57:79 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:46:57:303 Planificador/(7067:7138): PUSH (NUEVO) entrenador identificado con el simbolo A y por el socket 12
+[INFO] 14:46:57:303 Planificador/(7067:7073): Iniciando la encolación de nuevos entrenadores
+[INFO] 14:46:57:303 Planificador/(7067:7073): Entrenador conectado por socket 12 modelado
+[INFO] 14:46:57:303 Planificador/(7067:7073): Cola de nuevos vaciada por proceso de encolación
+[INFO] 14:46:57:303 Planificador/(7067:7073): Finalizando la  encolación de entrenadores
+[INFO] 14:46:57:579 Planificador/(7067:7069): Entrenador identificado por M se movió a 4;3
+[INFO] 14:46:57:579 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:46:58:81 Planificador/(7067:7069): Entrenador identificado por M se movió a 4;4
+[INFO] 14:46:58:81 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:46:58:81 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:46:58:81 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:46:58:581 Planificador/(7067:7069): Entrenador identificado por Aestá buscando coordenadas de pokenest P (5;3)
+[INFO] 14:46:58:582 Planificador/(7067:7069): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 14:46:58:582 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:46:59:82 Planificador/(7067:7069): Entrenador identificado por A se movió a 1;0
+[INFO] 14:46:59:82 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:46:59:583 Planificador/(7067:7069): Entrenador identificado por A se movió a 1;1
+[INFO] 14:46:59:583 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:46:59:583 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:46:59:583 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:00:84 Planificador/(7067:7069): Entrenador identificado por M se movió a 5;4
+[INFO] 14:47:00:84 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:00:585 Planificador/(7067:7069): Entrenador identificado por M se movió a 5;5
+[INFO] 14:47:00:585 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:01:87 Planificador/(7067:7069): Entrenador identificado por M se movió a 6;5
+[INFO] 14:47:01:87 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:01:87 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:01:87 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:01:587 Planificador/(7067:7069): Entrenador identificado por A se movió a 2;1
+[INFO] 14:47:01:587 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:02:88 Planificador/(7067:7069): Entrenador identificado por A se movió a 2;2
+[INFO] 14:47:02:88 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:02:589 Planificador/(7067:7069): Entrenador identificado por A se movió a 3;2
+[INFO] 14:47:02:590 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:02:590 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:02:590 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:03:91 Planificador/(7067:7069): Entrenador identificado por M se movió a 6;6
+[INFO] 14:47:03:91 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:03:591 Planificador/(7067:7069): Entrenador identificado por M se movió a 7;6
+[INFO] 14:47:03:591 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:04:92 Planificador/(7067:7069): Entrenador identificado por M se movió a 7;7
+[INFO] 14:47:04:92 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:04:92 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:04:92 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:04:593 Planificador/(7067:7069): Entrenador identificado por A se movió a 3;3
+[INFO] 14:47:04:593 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:05:94 Planificador/(7067:7069): Entrenador identificado por A se movió a 4;3
+[INFO] 14:47:05:94 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:05:595 Planificador/(7067:7069): Entrenador identificado por A se movió a 5;3
+[INFO] 14:47:05:595 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:05:595 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:05:595 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:06:96 Planificador/(7067:7069): Entrenador identificado por M se movió a 8;7
+[INFO] 14:47:06:96 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:06:597 Planificador/(7067:7069): Entrenador identificado por M se movió a 8;8
+[INFO] 14:47:06:597 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:07:98 Planificador/(7067:7069): Entrenador identificado por M se movió a 8;9
+[INFO] 14:47:07:98 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:07:98 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:07:98 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:07:599 Planificador/(7067:7069): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 14:47:07:603 Planificador/(7067:7069): Entrenador identificado por A recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu001
+[INFO] 14:47:07:603 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:08:103 Planificador/(7067:7069): Entrenador identificado por Aestá buscando coordenadas de pokenest C (8;9)
+[INFO] 14:47:08:104 Planificador/(7067:7069): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 14:47:08:104 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:08:605 Planificador/(7067:7069): Entrenador identificado por A se movió a 6;3
+[INFO] 14:47:08:605 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:08:605 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:08:605 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:09:106 Planificador/(7067:7069): Entrenador identificado por M está solicitando captura pokemon
+[INFO] 14:47:09:110 Planificador/(7067:7069): Entrenador identificado por M recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/charmander/charmander001
+[INFO] 14:47:09:110 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:09:610 Planificador/(7067:7069): Entrenador identificado por Mestá buscando coordenadas de pokenest P (5;3)
+[INFO] 14:47:09:610 Planificador/(7067:7069): La coordenada solicitada fue entregada a entrenador identificado por M
+[INFO] 14:47:09:610 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:10:111 Planificador/(7067:7069): Entrenador identificado por M se movió a 8;8
+[INFO] 14:47:10:111 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:10:111 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:10:111 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:10:612 Planificador/(7067:7069): Entrenador identificado por A se movió a 6;4
+[INFO] 14:47:10:612 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:11:113 Planificador/(7067:7069): Entrenador identificado por A se movió a 7;4
+[INFO] 14:47:11:113 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:11:614 Planificador/(7067:7069): Entrenador identificado por A se movió a 7;5
+[INFO] 14:47:11:614 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:11:614 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:11:614 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:12:115 Planificador/(7067:7069): Entrenador identificado por M se movió a 7;8
+[INFO] 14:47:12:115 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:12:616 Planificador/(7067:7069): Entrenador identificado por M se movió a 7;7
+[INFO] 14:47:12:616 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:13:117 Planificador/(7067:7069): Entrenador identificado por M se movió a 6;7
+[INFO] 14:47:13:117 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:13:117 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:13:117 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:13:618 Planificador/(7067:7069): Entrenador identificado por A se movió a 8;5
+[INFO] 14:47:13:618 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:14:119 Planificador/(7067:7069): Entrenador identificado por A se movió a 8;6
+[INFO] 14:47:14:119 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:14:621 Planificador/(7067:7069): Entrenador identificado por A se movió a 8;7
+[INFO] 14:47:14:621 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:14:621 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:14:621 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:15:122 Planificador/(7067:7069): Entrenador identificado por M se movió a 6;6
+[INFO] 14:47:15:122 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:15:622 Planificador/(7067:7069): Entrenador identificado por M se movió a 5;6
+[INFO] 14:47:15:622 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:16:123 Planificador/(7067:7069): Entrenador identificado por M se movió a 5;5
+[INFO] 14:47:16:123 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:16:123 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:16:123 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:16:624 Planificador/(7067:7069): Entrenador identificado por A se movió a 8;8
+[INFO] 14:47:16:624 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:17:124 Planificador/(7067:7069): Entrenador identificado por A se movió a 8;9
+[INFO] 14:47:17:124 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:17:625 Planificador/(7067:7069): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 14:47:17:626 Planificador/(7067:7069): Entrenador identificado por A quedó bloqueado por no haber pokemons disponibles
+[INFO] 14:47:17:626 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:17:626 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:17:626 Planificador/(7067:7069): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 14:47:17:626 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:17:626 Planificador/(7067:7069): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 14:47:18:127 Planificador/(7067:7069): Entrenador identificado por M se movió a 5;4
+[INFO] 14:47:18:127 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:18:628 Planificador/(7067:7069): Entrenador identificado por M se movió a 5;3
+[INFO] 14:47:18:628 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:19:129 Planificador/(7067:7069): Entrenador identificado por M está solicitando captura pokemon
+[INFO] 14:47:19:129 Planificador/(7067:7069): Entrenador identificado por M quedó bloqueado por no haber pokemons disponibles
+[INFO] 14:47:19:129 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:19:129 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:19:129 Planificador/(7067:7069): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 14:47:19:129 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:25:325 Planificador/(7067:7070): SE ABORTA AL ENTRENADOR IDENTIFICADO POR: A
+[INFO] 14:47:25:325 Planificador/(7067:7069): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 14:47:25:829 Planificador/(7067:7069): Entrenador identificado por M recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu001
+[INFO] 14:47:25:829 Planificador/(7067:7069): YA DI POKEMON
+[INFO] 14:47:25:829 Planificador/(7067:7147): PUSH (NUEVO) entrenador identificado con el simbolo A y por el socket 13
+[INFO] 14:47:25:829 Planificador/(7067:7073): Iniciando la encolación de nuevos entrenadores
+[INFO] 14:47:25:829 Planificador/(7067:7073): Entrenador conectado por socket 13 modelado
+[INFO] 14:47:25:829 Planificador/(7067:7073): Cola de nuevos vaciada por proceso de encolación
+[INFO] 14:47:25:829 Planificador/(7067:7073): Finalizando la  encolación de entrenadores
+[INFO] 14:47:25:833 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:26:334 Planificador/(7067:7069): SE ABORTA AL ENTRENADOR IDENTIFICADO POR: M
+[INFO] 14:47:26:334 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:26:334 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:26:334 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:26:835 Planificador/(7067:7069): Entrenador identificado por Aestá buscando coordenadas de pokenest P (5;3)
+[INFO] 14:47:26:835 Planificador/(7067:7069): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 14:47:26:835 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:27:336 Planificador/(7067:7069): Entrenador identificado por A se movió a 8;8
+[INFO] 14:47:27:336 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:27:836 Planificador/(7067:7069): Entrenador identificado por A se movió a 7;8
+[INFO] 14:47:27:837 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:27:837 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:27:837 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:28:337 Planificador/(7067:7069): Entrenador identificado por A se movió a 7;7
+[INFO] 14:47:28:338 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:28:838 Planificador/(7067:7069): Entrenador identificado por A se movió a 6;7
+[INFO] 14:47:28:838 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:29:339 Planificador/(7067:7069): Entrenador identificado por A se movió a 6;6
+[INFO] 14:47:29:339 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:29:339 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:29:339 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:29:840 Planificador/(7067:7069): Entrenador identificado por A se movió a 5;6
+[INFO] 14:47:29:840 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:30:341 Planificador/(7067:7069): Entrenador identificado por A se movió a 5;5
+[INFO] 14:47:30:341 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:30:842 Planificador/(7067:7069): Entrenador identificado por A se movió a 5;4
+[INFO] 14:47:30:842 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:30:842 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:30:842 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:31:343 Planificador/(7067:7069): Entrenador identificado por A se movió a 5;3
+[INFO] 14:47:31:343 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:31:844 Planificador/(7067:7069): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 14:47:31:849 Planificador/(7067:7069): Entrenador identificado por A recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu001
+[INFO] 14:47:31:849 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:32:349 Planificador/(7067:7069): Entrenador identificado por Aestá buscando coordenadas de pokenest C (8;9)
+[INFO] 14:47:32:349 Planificador/(7067:7069): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 14:47:32:350 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:32:350 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:32:350 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:32:850 Planificador/(7067:7069): Entrenador identificado por A se movió a 5;4
+[INFO] 14:47:32:851 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:33:351 Planificador/(7067:7069): Entrenador identificado por A se movió a 6;4
+[INFO] 14:47:33:351 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:33:852 Planificador/(7067:7069): Entrenador identificado por A se movió a 6;5
+[INFO] 14:47:33:852 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:33:852 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:33:852 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:34:353 Planificador/(7067:7069): Entrenador identificado por A se movió a 7;5
+[INFO] 14:47:34:354 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:34:854 Planificador/(7067:7069): Entrenador identificado por A se movió a 7;6
+[INFO] 14:47:34:854 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:35:356 Planificador/(7067:7069): Entrenador identificado por A se movió a 8;6
+[INFO] 14:47:35:356 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:35:356 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:35:356 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:35:857 Planificador/(7067:7069): Entrenador identificado por A se movió a 8;7
+[INFO] 14:47:35:857 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:36:358 Planificador/(7067:7069): Entrenador identificado por A se movió a 8;8
+[INFO] 14:47:36:358 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:36:859 Planificador/(7067:7069): Entrenador identificado por A se movió a 8;9
+[INFO] 14:47:36:859 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:36:859 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:36:859 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:47:37:359 Planificador/(7067:7069): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 14:47:37:365 Planificador/(7067:7069): Entrenador identificado por A recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/charmander/charmander001
+[INFO] 14:47:37:365 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:37:866 Planificador/(7067:7069): SE ABORTA AL ENTRENADOR IDENTIFICADO POR: A
+[INFO] 14:47:37:866 Planificador/(7067:7069): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:47:37:866 Planificador/(7067:7069): ENCOLO NUEVAMENTE
+[INFO] 14:47:37:866 Planificador/(7067:7069): REVISO NUEVMAENTE
+[INFO] 14:59:00:492 Planificador/(7344:7356): Se crea proceso para encolación de entreanadores
+[INFO] 14:59:12:5 Planificador/(7344:7421): PUSH (NUEVO) entrenador identificado con el simbolo M y por el socket 11
+[INFO] 14:59:12:5 Planificador/(7344:7358): Iniciando la encolación de nuevos entrenadores
+[INFO] 14:59:12:5 Planificador/(7344:7358): Entrenador conectado por socket 11 modelado
+[INFO] 14:59:12:5 Planificador/(7344:7358): Cola de nuevos vaciada por proceso de encolación
+[INFO] 14:59:12:5 Planificador/(7344:7358): Finalizando la  encolación de entrenadores
+[INFO] 14:59:13:506 Planificador/(7344:7356): Entrenador identificado por Mestá buscando coordenadas de pokenest C (8;9)
+[INFO] 14:59:13:506 Planificador/(7344:7356): La coordenada solicitada fue entregada a entrenador identificado por M
+[INFO] 14:59:13:506 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:14:6 Planificador/(7344:7356): Entrenador identificado por M se movió a 1;0
+[INFO] 14:59:14:6 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:14:507 Planificador/(7344:7356): Entrenador identificado por M se movió a 1;1
+[INFO] 14:59:14:507 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:14:507 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 14:59:14:507 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 14:59:15:8 Planificador/(7344:7356): Entrenador identificado por M se movió a 2;1
+[INFO] 14:59:15:8 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:15:509 Planificador/(7344:7356): Entrenador identificado por M se movió a 2;2
+[INFO] 14:59:15:509 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:15:647 Planificador/(7344:7423): PUSH (NUEVO) entrenador identificado con el simbolo A y por el socket 12
+[INFO] 14:59:15:647 Planificador/(7344:7358): Iniciando la encolación de nuevos entrenadores
+[INFO] 14:59:15:647 Planificador/(7344:7358): Entrenador conectado por socket 12 modelado
+[INFO] 14:59:15:647 Planificador/(7344:7358): Cola de nuevos vaciada por proceso de encolación
+[INFO] 14:59:15:647 Planificador/(7344:7358): Finalizando la  encolación de entrenadores
+[INFO] 14:59:16:9 Planificador/(7344:7356): Entrenador identificado por M se movió a 3;2
+[INFO] 14:59:16:9 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:16:10 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 14:59:16:10 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 14:59:16:510 Planificador/(7344:7356): Entrenador identificado por Aestá buscando coordenadas de pokenest P (5;3)
+[INFO] 14:59:16:510 Planificador/(7344:7356): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 14:59:16:510 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:17:11 Planificador/(7344:7356): Entrenador identificado por A se movió a 1;0
+[INFO] 14:59:17:11 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:17:513 Planificador/(7344:7356): Entrenador identificado por A se movió a 1;1
+[INFO] 14:59:17:513 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:17:513 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 14:59:17:513 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 14:59:18:13 Planificador/(7344:7356): Entrenador identificado por M se movió a 3;3
+[INFO] 14:59:18:13 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:18:515 Planificador/(7344:7356): Entrenador identificado por M se movió a 4;3
+[INFO] 14:59:18:515 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:19:16 Planificador/(7344:7356): Entrenador identificado por M se movió a 4;4
+[INFO] 14:59:19:16 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:19:16 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 14:59:19:16 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 14:59:19:516 Planificador/(7344:7356): Entrenador identificado por A se movió a 2;1
+[INFO] 14:59:19:516 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:20:17 Planificador/(7344:7356): Entrenador identificado por A se movió a 2;2
+[INFO] 14:59:20:17 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:20:518 Planificador/(7344:7356): Entrenador identificado por A se movió a 3;2
+[INFO] 14:59:20:518 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:20:518 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 14:59:20:518 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 14:59:21:19 Planificador/(7344:7356): Entrenador identificado por M se movió a 5;4
+[INFO] 14:59:21:20 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:21:520 Planificador/(7344:7356): Entrenador identificado por M se movió a 5;5
+[INFO] 14:59:21:520 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:22:21 Planificador/(7344:7356): Entrenador identificado por M se movió a 6;5
+[INFO] 14:59:22:22 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:22:22 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 14:59:22:22 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 14:59:22:523 Planificador/(7344:7356): Entrenador identificado por A se movió a 3;3
+[INFO] 14:59:22:523 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:23:23 Planificador/(7344:7356): Entrenador identificado por A se movió a 4;3
+[INFO] 14:59:23:23 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:23:524 Planificador/(7344:7356): Entrenador identificado por A se movió a 5;3
+[INFO] 14:59:23:524 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:23:524 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 14:59:23:524 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 14:59:24:25 Planificador/(7344:7356): Entrenador identificado por M se movió a 6;6
+[INFO] 14:59:24:25 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:24:525 Planificador/(7344:7356): Entrenador identificado por M se movió a 7;6
+[INFO] 14:59:24:525 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:25:27 Planificador/(7344:7356): Entrenador identificado por M se movió a 7;7
+[INFO] 14:59:25:27 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:25:27 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 14:59:25:27 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 14:59:25:528 Planificador/(7344:7356): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 14:59:25:528 Planificador/(7344:7356): Entrenador identificado por A recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu001
+[INFO] 14:59:25:528 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:26:28 Planificador/(7344:7356): Entrenador identificado por Aestá buscando coordenadas de pokenest C (8;9)
+[INFO] 14:59:26:28 Planificador/(7344:7356): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 14:59:26:28 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:26:529 Planificador/(7344:7356): Entrenador identificado por A se movió a 6;3
+[INFO] 14:59:26:529 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:26:529 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 14:59:26:529 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 14:59:27:30 Planificador/(7344:7356): Entrenador identificado por M se movió a 8;7
+[INFO] 14:59:27:30 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:27:531 Planificador/(7344:7356): Entrenador identificado por M se movió a 8;8
+[INFO] 14:59:27:531 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:28:32 Planificador/(7344:7356): Entrenador identificado por M se movió a 8;9
+[INFO] 14:59:28:32 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:28:32 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 14:59:28:32 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 14:59:28:533 Planificador/(7344:7356): Entrenador identificado por A se movió a 6;4
+[INFO] 14:59:28:533 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:29:34 Planificador/(7344:7356): Entrenador identificado por A se movió a 7;4
+[INFO] 14:59:29:34 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:29:534 Planificador/(7344:7356): Entrenador identificado por A se movió a 7;5
+[INFO] 14:59:29:534 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:29:534 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 14:59:29:534 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 14:59:30:35 Planificador/(7344:7356): Entrenador identificado por M está solicitando captura pokemon
+[INFO] 14:59:30:35 Planificador/(7344:7356): Entrenador identificado por M recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/charmander/charmander001
+[INFO] 14:59:30:35 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:30:537 Planificador/(7344:7356): Entrenador identificado por Mestá buscando coordenadas de pokenest P (5;3)
+[INFO] 14:59:30:537 Planificador/(7344:7356): La coordenada solicitada fue entregada a entrenador identificado por M
+[INFO] 14:59:30:537 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:31:37 Planificador/(7344:7356): Entrenador identificado por M se movió a 8;8
+[INFO] 14:59:31:37 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:31:37 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 14:59:31:38 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 14:59:31:538 Planificador/(7344:7356): Entrenador identificado por A se movió a 8;5
+[INFO] 14:59:31:539 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:32:39 Planificador/(7344:7356): Entrenador identificado por A se movió a 8;6
+[INFO] 14:59:32:39 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:32:540 Planificador/(7344:7356): Entrenador identificado por A se movió a 8;7
+[INFO] 14:59:32:540 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:32:540 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 14:59:32:540 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 14:59:33:41 Planificador/(7344:7356): Entrenador identificado por M se movió a 7;8
+[INFO] 14:59:33:41 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:33:542 Planificador/(7344:7356): Entrenador identificado por M se movió a 7;7
+[INFO] 14:59:33:542 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:34:43 Planificador/(7344:7356): Entrenador identificado por M se movió a 6;7
+[INFO] 14:59:34:43 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:34:43 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 14:59:34:43 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 14:59:34:543 Planificador/(7344:7356): Entrenador identificado por A se movió a 8;8
+[INFO] 14:59:34:543 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:35:45 Planificador/(7344:7356): Entrenador identificado por A se movió a 8;9
+[INFO] 14:59:35:45 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:35:546 Planificador/(7344:7356): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 14:59:35:546 Planificador/(7344:7356): Entrenador identificado por A quedó bloqueado por no haber pokemons disponibles
+[INFO] 14:59:35:546 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:35:546 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 14:59:35:546 Planificador/(7344:7356): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 14:59:35:546 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 14:59:35:546 Planificador/(7344:7356): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 14:59:36:46 Planificador/(7344:7356): Entrenador identificado por M se movió a 6;6
+[INFO] 14:59:36:47 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:36:548 Planificador/(7344:7356): Entrenador identificado por M se movió a 5;6
+[INFO] 14:59:36:548 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:37:49 Planificador/(7344:7356): Entrenador identificado por M se movió a 5;5
+[INFO] 14:59:37:49 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:37:49 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 14:59:37:49 Planificador/(7344:7356): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 14:59:37:49 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 14:59:37:49 Planificador/(7344:7356): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 14:59:37:550 Planificador/(7344:7356): Entrenador identificado por M se movió a 5;4
+[INFO] 14:59:37:550 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:38:50 Planificador/(7344:7356): Entrenador identificado por M se movió a 5;3
+[INFO] 14:59:38:50 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:38:551 Planificador/(7344:7356): Entrenador identificado por M está solicitando captura pokemon
+[INFO] 14:59:38:551 Planificador/(7344:7356): Entrenador identificado por M quedó bloqueado por no haber pokemons disponibles
+[INFO] 14:59:38:551 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 14:59:38:551 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 14:59:38:551 Planificador/(7344:7356): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 14:59:38:551 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 14:59:40:504 Planificador/(7344:7357): SE ABORTA AL ENTRENADOR IDENTIFICADO POR: A
+[INFO] 15:00:21:925 Planificador/(7344:7432): PUSH (NUEVO) entrenador identificado con el simbolo A y por el socket 13
+[INFO] 15:00:21:925 Planificador/(7344:7358): Iniciando la encolación de nuevos entrenadores
+[INFO] 15:00:21:925 Planificador/(7344:7358): Entrenador conectado por socket 13 modelado
+[INFO] 15:00:21:925 Planificador/(7344:7358): Cola de nuevos vaciada por proceso de encolación
+[INFO] 15:00:21:925 Planificador/(7344:7358): Finalizando la  encolación de entrenadores
+[INFO] 15:00:21:925 Planificador/(7344:7356): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 15:00:24:173 Planificador/(7344:7356): Entrenador identificado por Aestá buscando coordenadas de pokenest P (5;3)
+[INFO] 15:00:24:174 Planificador/(7344:7356): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 15:00:24:174 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:00:34:253 Planificador/(7344:7356): Entrenador identificado por A se movió a 8;8
+[INFO] 15:00:34:253 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:01:47:231 Planificador/(7344:7356): Entrenador identificado por A se movió a 7;8
+[INFO] 15:01:47:231 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:01:47:231 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 15:01:47:231 Planificador/(7344:7356): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 15:01:47:231 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 15:01:47:231 Planificador/(7344:7356): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 15:01:47:748 Planificador/(7344:7356): Entrenador identificado por A se movió a 7;7
+[INFO] 15:01:47:748 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:01:54:217 Planificador/(7344:7356): Entrenador identificado por A se movió a 6;7
+[INFO] 15:01:54:217 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:02:06:162 Planificador/(7344:7356): Entrenador identificado por A se movió a 6;6
+[INFO] 15:02:06:162 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:02:06:162 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 15:02:06:162 Planificador/(7344:7356): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 15:02:06:162 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 15:02:21:338 Planificador/(7344:7356): Entrenador identificado por A se movió a 5;6
+[INFO] 15:02:21:338 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:02:21:989 Planificador/(7344:7356): Entrenador identificado por A se movió a 5;5
+[INFO] 15:02:21:989 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:02:26:140 Planificador/(7344:7356): Entrenador identificado por A se movió a 5;4
+[INFO] 15:02:26:140 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:02:26:140 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 15:02:26:140 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 15:02:27:389 Planificador/(7344:7356): Entrenador identificado por M recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu001
+[INFO] 15:02:27:389 Planificador/(7344:7356): YA DI POKEMON
+[INFO] 15:02:27:951 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:03:55:436 Planificador/(7344:7356): SE ABORTA AL ENTRENADOR IDENTIFICADO POR: M
+[INFO] 15:04:03:556 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:04:04:411 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 15:04:04:411 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 15:04:04:912 Planificador/(7344:7356): Entrenador identificado por A se movió a 5;3
+[INFO] 15:04:04:912 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:04:05:413 Planificador/(7344:7356): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 15:04:05:413 Planificador/(7344:7356): Entrenador identificado por A recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu001
+[INFO] 15:04:05:413 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:04:05:913 Planificador/(7344:7356): Entrenador identificado por Aestá buscando coordenadas de pokenest C (8;9)
+[INFO] 15:04:05:913 Planificador/(7344:7356): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 15:04:05:913 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:04:05:913 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 15:04:05:914 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 15:04:06:414 Planificador/(7344:7356): Entrenador identificado por A se movió a 5;4
+[INFO] 15:04:06:414 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:04:06:915 Planificador/(7344:7356): Entrenador identificado por A se movió a 6;4
+[INFO] 15:04:06:915 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:04:07:416 Planificador/(7344:7356): Entrenador identificado por A se movió a 6;5
+[INFO] 15:04:07:416 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:04:07:416 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 15:04:07:416 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 15:04:07:917 Planificador/(7344:7356): Entrenador identificado por A se movió a 7;5
+[INFO] 15:04:07:917 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:04:08:417 Planificador/(7344:7356): Entrenador identificado por A se movió a 7;6
+[INFO] 15:04:08:418 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:04:08:919 Planificador/(7344:7356): Entrenador identificado por A se movió a 8;6
+[INFO] 15:04:08:920 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:04:08:920 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 15:04:08:920 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 15:04:09:425 Planificador/(7344:7356): Entrenador identificado por A se movió a 8;7
+[INFO] 15:04:09:425 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:04:09:926 Planificador/(7344:7356): Entrenador identificado por A se movió a 8;8
+[INFO] 15:04:09:926 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:04:10:427 Planificador/(7344:7356): Entrenador identificado por A se movió a 8;9
+[INFO] 15:04:10:427 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:04:10:427 Planificador/(7344:7356): ENCOLO NUEVAMENTE
+[INFO] 15:04:10:427 Planificador/(7344:7356): REVISO NUEVMAENTE
+[INFO] 15:04:10:928 Planificador/(7344:7356): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 15:04:10:928 Planificador/(7344:7356): Entrenador identificado por A recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/charmander/charmander001
+[INFO] 15:04:10:928 Planificador/(7344:7356): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:04:11:428 Planificador/(7344:7356): SE ABORTA AL ENTRENADOR IDENTIFICADO POR: A
+[INFO] 15:12:56:983 Planificador/(7836:7848): Se crea proceso para encolación de entreanadores
+[INFO] 15:13:11:963 Planificador/(7836:7912): PUSH (NUEVO) entrenador identificado con el simbolo M y por el socket 11
+[INFO] 15:13:11:963 Planificador/(7836:7850): Iniciando la encolación de nuevos entrenadores
+[INFO] 15:13:11:963 Planificador/(7836:7850): Entrenador conectado por socket 11 modelado
+[INFO] 15:13:11:963 Planificador/(7836:7850): Cola de nuevos vaciada por proceso de encolación
+[INFO] 15:13:11:963 Planificador/(7836:7850): Finalizando la  encolación de entrenadores
+[INFO] 15:13:12:463 Planificador/(7836:7848): Entrenador identificado por Mestá buscando coordenadas de pokenest C (8;9)
+[INFO] 15:13:12:464 Planificador/(7836:7848): La coordenada solicitada fue entregada a entrenador identificado por M
+[INFO] 15:13:12:464 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:12:964 Planificador/(7836:7848): Entrenador identificado por M se movió a 1;0
+[INFO] 15:13:12:964 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:13:465 Planificador/(7836:7848): Entrenador identificado por M se movió a 1;1
+[INFO] 15:13:13:465 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:13:465 Planificador/(7836:7848): ENCOLO NUEVAMENTE
+[INFO] 15:13:13:465 Planificador/(7836:7848): REVISO NUEVMAENTE
+[INFO] 15:13:13:966 Planificador/(7836:7848): Entrenador identificado por M se movió a 2;1
+[INFO] 15:13:13:966 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:14:467 Planificador/(7836:7848): Entrenador identificado por M se movió a 2;2
+[INFO] 15:13:14:467 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:14:839 Planificador/(7836:7914): PUSH (NUEVO) entrenador identificado con el simbolo A y por el socket 12
+[INFO] 15:13:14:839 Planificador/(7836:7850): Iniciando la encolación de nuevos entrenadores
+[INFO] 15:13:14:839 Planificador/(7836:7850): Entrenador conectado por socket 12 modelado
+[INFO] 15:13:14:839 Planificador/(7836:7850): Cola de nuevos vaciada por proceso de encolación
+[INFO] 15:13:14:839 Planificador/(7836:7850): Finalizando la  encolación de entrenadores
+[INFO] 15:13:14:968 Planificador/(7836:7848): Entrenador identificado por M se movió a 3;2
+[INFO] 15:13:14:968 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:14:968 Planificador/(7836:7848): ENCOLO NUEVAMENTE
+[INFO] 15:13:14:968 Planificador/(7836:7848): REVISO NUEVMAENTE
+[INFO] 15:13:15:469 Planificador/(7836:7848): Entrenador identificado por Aestá buscando coordenadas de pokenest P (5;3)
+[INFO] 15:13:15:469 Planificador/(7836:7848): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 15:13:15:469 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:15:969 Planificador/(7836:7848): Entrenador identificado por A se movió a 1;0
+[INFO] 15:13:15:969 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:16:470 Planificador/(7836:7848): Entrenador identificado por A se movió a 1;1
+[INFO] 15:13:16:470 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:16:470 Planificador/(7836:7848): ENCOLO NUEVAMENTE
+[INFO] 15:13:16:470 Planificador/(7836:7848): REVISO NUEVMAENTE
+[INFO] 15:13:16:971 Planificador/(7836:7848): Entrenador identificado por M se movió a 3;3
+[INFO] 15:13:16:972 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:17:472 Planificador/(7836:7848): Entrenador identificado por M se movió a 4;3
+[INFO] 15:13:17:472 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:17:973 Planificador/(7836:7848): Entrenador identificado por M se movió a 4;4
+[INFO] 15:13:17:973 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:17:973 Planificador/(7836:7848): ENCOLO NUEVAMENTE
+[INFO] 15:13:17:973 Planificador/(7836:7848): REVISO NUEVMAENTE
+[INFO] 15:13:18:474 Planificador/(7836:7848): Entrenador identificado por A se movió a 2;1
+[INFO] 15:13:18:474 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:18:975 Planificador/(7836:7848): Entrenador identificado por A se movió a 2;2
+[INFO] 15:13:18:975 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:19:475 Planificador/(7836:7848): Entrenador identificado por A se movió a 3;2
+[INFO] 15:13:19:475 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:19:476 Planificador/(7836:7848): ENCOLO NUEVAMENTE
+[INFO] 15:13:19:476 Planificador/(7836:7848): REVISO NUEVMAENTE
+[INFO] 15:13:19:976 Planificador/(7836:7848): Entrenador identificado por M se movió a 5;4
+[INFO] 15:13:19:976 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:20:477 Planificador/(7836:7848): Entrenador identificado por M se movió a 5;5
+[INFO] 15:13:20:477 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:20:978 Planificador/(7836:7848): Entrenador identificado por M se movió a 6;5
+[INFO] 15:13:20:978 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:20:978 Planificador/(7836:7848): ENCOLO NUEVAMENTE
+[INFO] 15:13:20:978 Planificador/(7836:7848): REVISO NUEVMAENTE
+[INFO] 15:13:21:479 Planificador/(7836:7848): Entrenador identificado por A se movió a 3;3
+[INFO] 15:13:21:479 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:21:980 Planificador/(7836:7848): Entrenador identificado por A se movió a 4;3
+[INFO] 15:13:21:981 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:22:481 Planificador/(7836:7848): Entrenador identificado por A se movió a 5;3
+[INFO] 15:13:22:481 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:22:481 Planificador/(7836:7848): ENCOLO NUEVAMENTE
+[INFO] 15:13:22:481 Planificador/(7836:7848): REVISO NUEVMAENTE
+[INFO] 15:13:22:982 Planificador/(7836:7848): Entrenador identificado por M se movió a 6;6
+[INFO] 15:13:22:982 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:23:483 Planificador/(7836:7848): Entrenador identificado por M se movió a 7;6
+[INFO] 15:13:23:483 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:23:985 Planificador/(7836:7848): Entrenador identificado por M se movió a 7;7
+[INFO] 15:13:23:985 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:23:985 Planificador/(7836:7848): ENCOLO NUEVAMENTE
+[INFO] 15:13:23:985 Planificador/(7836:7848): REVISO NUEVMAENTE
+[INFO] 15:13:24:485 Planificador/(7836:7848): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 15:13:24:486 Planificador/(7836:7848): Entrenador identificado por A recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu001
+[INFO] 15:13:24:486 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:24:986 Planificador/(7836:7848): Entrenador identificado por Aestá buscando coordenadas de pokenest C (8;9)
+[INFO] 15:13:24:986 Planificador/(7836:7848): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 15:13:24:986 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:25:487 Planificador/(7836:7848): Entrenador identificado por A se movió a 6;3
+[INFO] 15:13:25:487 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:25:487 Planificador/(7836:7848): ENCOLO NUEVAMENTE
+[INFO] 15:13:25:487 Planificador/(7836:7848): REVISO NUEVMAENTE
+[INFO] 15:13:25:988 Planificador/(7836:7848): Entrenador identificado por M se movió a 8;7
+[INFO] 15:13:25:988 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:26:488 Planificador/(7836:7848): Entrenador identificado por M se movió a 8;8
+[INFO] 15:13:26:488 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:26:989 Planificador/(7836:7848): Entrenador identificado por M se movió a 8;9
+[INFO] 15:13:26:990 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:26:990 Planificador/(7836:7848): ENCOLO NUEVAMENTE
+[INFO] 15:13:26:990 Planificador/(7836:7848): REVISO NUEVMAENTE
+[INFO] 15:13:27:491 Planificador/(7836:7848): Entrenador identificado por A se movió a 6;4
+[INFO] 15:13:27:491 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:27:992 Planificador/(7836:7848): Entrenador identificado por A se movió a 7;4
+[INFO] 15:13:27:992 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:28:493 Planificador/(7836:7848): Entrenador identificado por A se movió a 7;5
+[INFO] 15:13:28:493 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:28:493 Planificador/(7836:7848): ENCOLO NUEVAMENTE
+[INFO] 15:13:28:493 Planificador/(7836:7848): REVISO NUEVMAENTE
+[INFO] 15:13:28:994 Planificador/(7836:7848): Entrenador identificado por M está solicitando captura pokemon
+[INFO] 15:13:28:994 Planificador/(7836:7848): Entrenador identificado por M recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/charmander/charmander001
+[INFO] 15:13:28:994 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:29:495 Planificador/(7836:7848): Entrenador identificado por Mestá buscando coordenadas de pokenest P (5;3)
+[INFO] 15:13:29:495 Planificador/(7836:7848): La coordenada solicitada fue entregada a entrenador identificado por M
+[INFO] 15:13:29:495 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:29:996 Planificador/(7836:7848): Entrenador identificado por M se movió a 8;8
+[INFO] 15:13:29:996 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:29:996 Planificador/(7836:7848): ENCOLO NUEVAMENTE
+[INFO] 15:13:29:996 Planificador/(7836:7848): REVISO NUEVMAENTE
+[INFO] 15:13:30:497 Planificador/(7836:7848): Entrenador identificado por A se movió a 8;5
+[INFO] 15:13:30:497 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:30:997 Planificador/(7836:7848): Entrenador identificado por A se movió a 8;6
+[INFO] 15:13:30:997 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:31:498 Planificador/(7836:7848): Entrenador identificado por A se movió a 8;7
+[INFO] 15:13:31:498 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:31:498 Planificador/(7836:7848): ENCOLO NUEVAMENTE
+[INFO] 15:13:31:498 Planificador/(7836:7848): REVISO NUEVMAENTE
+[INFO] 15:13:31:999 Planificador/(7836:7848): Entrenador identificado por M se movió a 7;8
+[INFO] 15:13:31:999 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:32:500 Planificador/(7836:7848): Entrenador identificado por M se movió a 7;7
+[INFO] 15:13:32:500 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:32:1 Planificador/(7836:7848): Entrenador identificado por M se movió a 6;7
+[INFO] 15:13:32:1 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:32:1 Planificador/(7836:7848): ENCOLO NUEVAMENTE
+[INFO] 15:13:32:1 Planificador/(7836:7848): REVISO NUEVMAENTE
+[INFO] 15:13:33:501 Planificador/(7836:7848): Entrenador identificado por A se movió a 8;8
+[INFO] 15:13:33:502 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:33:2 Planificador/(7836:7848): Entrenador identificado por A se movió a 8;9
+[INFO] 15:13:33:2 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:34:503 Planificador/(7836:7848): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 15:13:34:503 Planificador/(7836:7848): Entrenador identificado por A quedó bloqueado por no haber pokemons disponibles
+[INFO] 15:13:34:503 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:34:503 Planificador/(7836:7848): ENCOLO NUEVAMENTE
+[INFO] 15:13:34:503 Planificador/(7836:7848): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 15:13:34:503 Planificador/(7836:7848): REVISO NUEVMAENTE
+[INFO] 15:13:34:503 Planificador/(7836:7848): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 15:13:34:4 Planificador/(7836:7848): Entrenador identificado por M se movió a 6;6
+[INFO] 15:13:34:4 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:35:505 Planificador/(7836:7848): Entrenador identificado por M se movió a 5;6
+[INFO] 15:13:35:505 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:36:6 Planificador/(7836:7848): Entrenador identificado por M se movió a 5;5
+[INFO] 15:13:36:6 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:36:6 Planificador/(7836:7848): ENCOLO NUEVAMENTE
+[INFO] 15:13:36:6 Planificador/(7836:7848): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 15:13:36:6 Planificador/(7836:7848): REVISO NUEVMAENTE
+[INFO] 15:13:36:6 Planificador/(7836:7848): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 15:13:36:507 Planificador/(7836:7848): Entrenador identificado por M se movió a 5;4
+[INFO] 15:13:36:507 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:37:8 Planificador/(7836:7848): Entrenador identificado por M se movió a 5;3
+[INFO] 15:13:37:8 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:37:509 Planificador/(7836:7848): Entrenador identificado por M está solicitando captura pokemon
+[INFO] 15:13:37:509 Planificador/(7836:7848): Entrenador identificado por M quedó bloqueado por no haber pokemons disponibles
+[INFO] 15:13:37:509 Planificador/(7836:7848): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:13:37:509 Planificador/(7836:7848): ENCOLO NUEVAMENTE
+[INFO] 15:13:37:509 Planificador/(7836:7848): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 15:13:37:509 Planificador/(7836:7848): REVISO NUEVMAENTE
+[INFO] 15:13:46:994 Planificador/(7836:7849): SE ABORTA AL ENTRENADOR IDENTIFICADO POR: A
+[INFO] 15:13:46:994 Planificador/(7836:7848): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 15:14:02:518 Planificador/(7836:7923): PUSH (NUEVO) entrenador identificado con el simbolo A y por el socket 12
+[INFO] 15:14:02:518 Planificador/(7836:7850): Iniciando la encolación de nuevos entrenadores
+[INFO] 15:14:02:518 Planificador/(7836:7850): Entrenador conectado por socket 12 modelado
+[INFO] 15:14:02:518 Planificador/(7836:7850): Cola de nuevos vaciada por proceso de encolación
+[INFO] 15:14:02:518 Planificador/(7836:7850): Finalizando la  encolación de entrenadores
+[INFO] 15:15:01:573 Planificador/(7836:7848): Entrenador identificado por M recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu001
+[INFO] 15:15:01:573 Planificador/(7836:7848): YA DI POKEMON
+[INFO] 15:38:29:126 Planificador/(8550:8557): Se crea proceso para encolación de entreanadores
+[INFO] 15:38:45:668 Planificador/(8550:8623): PUSH (NUEVO) entrenador identificado con el simbolo M y por el socket 11
+[INFO] 15:38:45:668 Planificador/(8550:8559): Iniciando la encolación de nuevos entrenadores
+[INFO] 15:38:45:668 Planificador/(8550:8559): Entrenador conectado por socket 11 modelado
+[INFO] 15:38:45:668 Planificador/(8550:8559): Cola de nuevos vaciada por proceso de encolación
+[INFO] 15:38:45:668 Planificador/(8550:8559): Finalizando la  encolación de entrenadores
+[INFO] 15:38:46:168 Planificador/(8550:8557): Entrenador identificado por Mestá buscando coordenadas de pokenest C (8;9)
+[INFO] 15:38:46:169 Planificador/(8550:8557): La coordenada solicitada fue entregada a entrenador identificado por M
+[INFO] 15:38:46:169 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:46:669 Planificador/(8550:8557): Entrenador identificado por M se movió a 1;0
+[INFO] 15:38:46:669 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:47:170 Planificador/(8550:8557): Entrenador identificado por M se movió a 1;1
+[INFO] 15:38:47:170 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:47:170 Planificador/(8550:8557): ENCOLO NUEVAMENTE
+[INFO] 15:38:47:170 Planificador/(8550:8557): REVISO NUEVMAENTE
+[INFO] 15:38:47:604 Planificador/(8550:8625): PUSH (NUEVO) entrenador identificado con el simbolo A y por el socket 12
+[INFO] 15:38:47:604 Planificador/(8550:8559): Iniciando la encolación de nuevos entrenadores
+[INFO] 15:38:47:604 Planificador/(8550:8559): Entrenador conectado por socket 12 modelado
+[INFO] 15:38:47:604 Planificador/(8550:8559): Cola de nuevos vaciada por proceso de encolación
+[INFO] 15:38:47:605 Planificador/(8550:8559): Finalizando la  encolación de entrenadores
+[INFO] 15:38:47:671 Planificador/(8550:8557): Entrenador identificado por M se movió a 2;1
+[INFO] 15:38:47:671 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:48:172 Planificador/(8550:8557): Entrenador identificado por M se movió a 2;2
+[INFO] 15:38:48:172 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:48:672 Planificador/(8550:8557): Entrenador identificado por M se movió a 3;2
+[INFO] 15:38:48:673 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:48:673 Planificador/(8550:8557): ENCOLO NUEVAMENTE
+[INFO] 15:38:48:673 Planificador/(8550:8557): REVISO NUEVMAENTE
+[INFO] 15:38:49:173 Planificador/(8550:8557): Entrenador identificado por Aestá buscando coordenadas de pokenest P (5;3)
+[INFO] 15:38:49:173 Planificador/(8550:8557): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 15:38:49:173 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:49:674 Planificador/(8550:8557): Entrenador identificado por A se movió a 1;0
+[INFO] 15:38:49:674 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:50:175 Planificador/(8550:8557): Entrenador identificado por A se movió a 1;1
+[INFO] 15:38:50:175 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:50:175 Planificador/(8550:8557): ENCOLO NUEVAMENTE
+[INFO] 15:38:50:175 Planificador/(8550:8557): REVISO NUEVMAENTE
+[INFO] 15:38:50:676 Planificador/(8550:8557): Entrenador identificado por M se movió a 3;3
+[INFO] 15:38:50:676 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:51:177 Planificador/(8550:8557): Entrenador identificado por M se movió a 4;3
+[INFO] 15:38:51:177 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:51:678 Planificador/(8550:8557): Entrenador identificado por M se movió a 4;4
+[INFO] 15:38:51:678 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:51:678 Planificador/(8550:8557): ENCOLO NUEVAMENTE
+[INFO] 15:38:51:678 Planificador/(8550:8557): REVISO NUEVMAENTE
+[INFO] 15:38:52:179 Planificador/(8550:8557): Entrenador identificado por A se movió a 2;1
+[INFO] 15:38:52:179 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:52:680 Planificador/(8550:8557): Entrenador identificado por A se movió a 2;2
+[INFO] 15:38:52:680 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:53:181 Planificador/(8550:8557): Entrenador identificado por A se movió a 3;2
+[INFO] 15:38:53:181 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:53:181 Planificador/(8550:8557): ENCOLO NUEVAMENTE
+[INFO] 15:38:53:181 Planificador/(8550:8557): REVISO NUEVMAENTE
+[INFO] 15:38:53:682 Planificador/(8550:8557): Entrenador identificado por M se movió a 5;4
+[INFO] 15:38:53:682 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:54:183 Planificador/(8550:8557): Entrenador identificado por M se movió a 5;5
+[INFO] 15:38:54:183 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:54:684 Planificador/(8550:8557): Entrenador identificado por M se movió a 6;5
+[INFO] 15:38:54:684 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:54:684 Planificador/(8550:8557): ENCOLO NUEVAMENTE
+[INFO] 15:38:54:684 Planificador/(8550:8557): REVISO NUEVMAENTE
+[INFO] 15:38:55:186 Planificador/(8550:8557): Entrenador identificado por A se movió a 3;3
+[INFO] 15:38:55:186 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:55:687 Planificador/(8550:8557): Entrenador identificado por A se movió a 4;3
+[INFO] 15:38:55:687 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:56:188 Planificador/(8550:8557): Entrenador identificado por A se movió a 5;3
+[INFO] 15:38:56:188 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:56:188 Planificador/(8550:8557): ENCOLO NUEVAMENTE
+[INFO] 15:38:56:188 Planificador/(8550:8557): REVISO NUEVMAENTE
+[INFO] 15:38:56:689 Planificador/(8550:8557): Entrenador identificado por M se movió a 6;6
+[INFO] 15:38:56:689 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:57:190 Planificador/(8550:8557): Entrenador identificado por M se movió a 7;6
+[INFO] 15:38:57:190 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:57:690 Planificador/(8550:8557): Entrenador identificado por M se movió a 7;7
+[INFO] 15:38:57:690 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:57:691 Planificador/(8550:8557): ENCOLO NUEVAMENTE
+[INFO] 15:38:57:691 Planificador/(8550:8557): REVISO NUEVMAENTE
+[INFO] 15:38:58:191 Planificador/(8550:8557): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 15:38:58:192 Planificador/(8550:8557): Entrenador identificado por A recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu001
+[INFO] 15:38:58:192 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:58:692 Planificador/(8550:8557): Entrenador identificado por Aestá buscando coordenadas de pokenest C (8;9)
+[INFO] 15:38:58:692 Planificador/(8550:8557): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 15:38:58:692 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:59:193 Planificador/(8550:8557): Entrenador identificado por A se movió a 6;3
+[INFO] 15:38:59:193 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:38:59:193 Planificador/(8550:8557): ENCOLO NUEVAMENTE
+[INFO] 15:38:59:193 Planificador/(8550:8557): REVISO NUEVMAENTE
+[INFO] 15:38:59:694 Planificador/(8550:8557): Entrenador identificado por M se movió a 8;7
+[INFO] 15:38:59:694 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:00:195 Planificador/(8550:8557): Entrenador identificado por M se movió a 8;8
+[INFO] 15:39:00:195 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:00:696 Planificador/(8550:8557): Entrenador identificado por M se movió a 8;9
+[INFO] 15:39:00:697 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:00:697 Planificador/(8550:8557): ENCOLO NUEVAMENTE
+[INFO] 15:39:00:697 Planificador/(8550:8557): REVISO NUEVMAENTE
+[INFO] 15:39:01:197 Planificador/(8550:8557): Entrenador identificado por A se movió a 6;4
+[INFO] 15:39:01:197 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:01:699 Planificador/(8550:8557): Entrenador identificado por A se movió a 7;4
+[INFO] 15:39:01:699 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:02:199 Planificador/(8550:8557): Entrenador identificado por A se movió a 7;5
+[INFO] 15:39:02:199 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:02:199 Planificador/(8550:8557): ENCOLO NUEVAMENTE
+[INFO] 15:39:02:200 Planificador/(8550:8557): REVISO NUEVMAENTE
+[INFO] 15:39:02:700 Planificador/(8550:8557): Entrenador identificado por M está solicitando captura pokemon
+[INFO] 15:39:02:700 Planificador/(8550:8557): Entrenador identificado por M recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/charmander/charmander001
+[INFO] 15:39:02:700 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:03:201 Planificador/(8550:8557): Entrenador identificado por Mestá buscando coordenadas de pokenest P (5;3)
+[INFO] 15:39:03:201 Planificador/(8550:8557): La coordenada solicitada fue entregada a entrenador identificado por M
+[INFO] 15:39:03:201 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:03:701 Planificador/(8550:8557): Entrenador identificado por M se movió a 8;8
+[INFO] 15:39:03:702 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:03:702 Planificador/(8550:8557): ENCOLO NUEVAMENTE
+[INFO] 15:39:03:702 Planificador/(8550:8557): REVISO NUEVMAENTE
+[INFO] 15:39:04:202 Planificador/(8550:8557): Entrenador identificado por A se movió a 8;5
+[INFO] 15:39:04:202 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:04:703 Planificador/(8550:8557): Entrenador identificado por A se movió a 8;6
+[INFO] 15:39:04:703 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:05:203 Planificador/(8550:8557): Entrenador identificado por A se movió a 8;7
+[INFO] 15:39:05:204 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:05:204 Planificador/(8550:8557): ENCOLO NUEVAMENTE
+[INFO] 15:39:05:204 Planificador/(8550:8557): REVISO NUEVMAENTE
+[INFO] 15:39:05:705 Planificador/(8550:8557): Entrenador identificado por M se movió a 7;8
+[INFO] 15:39:05:705 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:06:206 Planificador/(8550:8557): Entrenador identificado por M se movió a 7;7
+[INFO] 15:39:06:206 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:06:707 Planificador/(8550:8557): Entrenador identificado por M se movió a 6;7
+[INFO] 15:39:06:707 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:06:707 Planificador/(8550:8557): ENCOLO NUEVAMENTE
+[INFO] 15:39:06:707 Planificador/(8550:8557): REVISO NUEVMAENTE
+[INFO] 15:39:07:208 Planificador/(8550:8557): Entrenador identificado por A se movió a 8;8
+[INFO] 15:39:07:208 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:07:708 Planificador/(8550:8557): Entrenador identificado por A se movió a 8;9
+[INFO] 15:39:07:708 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:08:209 Planificador/(8550:8557): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 15:39:08:209 Planificador/(8550:8557): Entrenador identificado por A quedó bloqueado por no haber pokemons disponibles
+[INFO] 15:39:08:209 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:08:209 Planificador/(8550:8557): ENCOLO NUEVAMENTE
+[INFO] 15:39:08:209 Planificador/(8550:8557): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 15:39:08:209 Planificador/(8550:8557): REVISO NUEVMAENTE
+[INFO] 15:39:08:209 Planificador/(8550:8557): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 15:39:08:710 Planificador/(8550:8557): Entrenador identificado por M se movió a 6;6
+[INFO] 15:39:08:710 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:09:211 Planificador/(8550:8557): Entrenador identificado por M se movió a 5;6
+[INFO] 15:39:09:211 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:09:712 Planificador/(8550:8557): Entrenador identificado por M se movió a 5;5
+[INFO] 15:39:09:712 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:09:712 Planificador/(8550:8557): ENCOLO NUEVAMENTE
+[INFO] 15:39:09:712 Planificador/(8550:8557): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 15:39:09:712 Planificador/(8550:8557): REVISO NUEVMAENTE
+[INFO] 15:39:09:712 Planificador/(8550:8557): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 15:39:10:213 Planificador/(8550:8557): Entrenador identificado por M se movió a 5;4
+[INFO] 15:39:10:213 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:10:715 Planificador/(8550:8557): Entrenador identificado por M se movió a 5;3
+[INFO] 15:39:10:715 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:11:215 Planificador/(8550:8557): Entrenador identificado por M está solicitando captura pokemon
+[INFO] 15:39:11:215 Planificador/(8550:8557): Entrenador identificado por M quedó bloqueado por no haber pokemons disponibles
+[INFO] 15:39:11:216 Planificador/(8550:8557): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 15:39:11:216 Planificador/(8550:8557): ENCOLO NUEVAMENTE
+[INFO] 15:39:11:216 Planificador/(8550:8557): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 15:39:11:216 Planificador/(8550:8557): REVISO NUEVMAENTE
+[INFO] 15:39:19:139 Planificador/(8550:8558): SE ABORTA AL ENTRENADOR IDENTIFICADO POR: A
+[INFO] 15:39:19:140 Planificador/(8550:8557): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 15:40:15:775 Planificador/(8550:8637): PUSH (NUEVO) entrenador identificado con el simbolo A y por el socket 12
+[INFO] 15:40:15:776 Planificador/(8550:8559): Iniciando la encolación de nuevos entrenadores
+[INFO] 15:40:15:776 Planificador/(8550:8559): Entrenador conectado por socket 12 modelado
+[INFO] 15:40:15:776 Planificador/(8550:8559): Cola de nuevos vaciada por proceso de encolación
+[INFO] 15:40:15:776 Planificador/(8550:8559): Finalizando la  encolación de entrenadores
+[INFO] 17:31:51:441 Planificador/(9534:9542): Se crea proceso para encolación de entreanadores
+[INFO] 17:32:03:851 Planificador/(9534:9606): PUSH (NUEVO) entrenador identificado con el simbolo M y por el socket 11
+[INFO] 17:32:03:851 Planificador/(9534:9544): Iniciando la encolación de nuevos entrenadores
+[INFO] 17:32:03:851 Planificador/(9534:9544): Entrenador conectado por socket 11 modelado
+[INFO] 17:32:03:851 Planificador/(9534:9544): Cola de nuevos vaciada por proceso de encolación
+[INFO] 17:32:03:851 Planificador/(9534:9544): Finalizando la  encolación de entrenadores
+[INFO] 17:32:08:713 Planificador/(9534:9542): Entrenador identificado por Mestá buscando coordenadas de pokenest C (8;9)
+[INFO] 17:32:08:714 Planificador/(9534:9542): La coordenada solicitada fue entregada a entrenador identificado por M
+[INFO] 17:32:08:714 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:09:215 Planificador/(9534:9542): Entrenador identificado por M se movió a 1;0
+[INFO] 17:32:09:215 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:09:716 Planificador/(9534:9542): Entrenador identificado por M se movió a 1;1
+[INFO] 17:32:09:716 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:09:716 Planificador/(9534:9542): ENCOLO NUEVAMENTE
+[INFO] 17:32:09:716 Planificador/(9534:9542): REVISO NUEVMAENTE
+[INFO] 17:32:20:893 Planificador/(9534:9612): PUSH (NUEVO) entrenador identificado con el simbolo A y por el socket 12
+[INFO] 17:32:20:893 Planificador/(9534:9544): Iniciando la encolación de nuevos entrenadores
+[INFO] 17:32:20:893 Planificador/(9534:9544): Entrenador conectado por socket 12 modelado
+[INFO] 17:32:20:893 Planificador/(9534:9544): Cola de nuevos vaciada por proceso de encolación
+[INFO] 17:32:20:893 Planificador/(9534:9544): Finalizando la  encolación de entrenadores
+[INFO] 17:32:21:393 Planificador/(9534:9542): Entrenador identificado por M se movió a 2;1
+[INFO] 17:32:21:393 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:21:894 Planificador/(9534:9542): Entrenador identificado por M se movió a 2;2
+[INFO] 17:32:21:894 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:22:394 Planificador/(9534:9542): Entrenador identificado por M se movió a 3;2
+[INFO] 17:32:22:394 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:22:394 Planificador/(9534:9542): ENCOLO NUEVAMENTE
+[INFO] 17:32:22:394 Planificador/(9534:9542): REVISO NUEVMAENTE
+[INFO] 17:32:24:127 Planificador/(9534:9542): Entrenador identificado por Aestá buscando coordenadas de pokenest P (5;3)
+[INFO] 17:32:24:127 Planificador/(9534:9542): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 17:32:24:127 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:24:628 Planificador/(9534:9542): Entrenador identificado por A se movió a 1;0
+[INFO] 17:32:24:628 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:25:129 Planificador/(9534:9542): Entrenador identificado por A se movió a 1;1
+[INFO] 17:32:25:129 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:25:129 Planificador/(9534:9542): ENCOLO NUEVAMENTE
+[INFO] 17:32:25:129 Planificador/(9534:9542): REVISO NUEVMAENTE
+[INFO] 17:32:30:865 Planificador/(9534:9542): Entrenador identificado por M se movió a 3;3
+[INFO] 17:32:30:865 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:31:366 Planificador/(9534:9542): Entrenador identificado por M se movió a 4;3
+[INFO] 17:32:31:366 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:31:867 Planificador/(9534:9542): Entrenador identificado por M se movió a 4;4
+[INFO] 17:32:31:867 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:31:867 Planificador/(9534:9542): ENCOLO NUEVAMENTE
+[INFO] 17:32:31:867 Planificador/(9534:9542): REVISO NUEVMAENTE
+[INFO] 17:32:33:137 Planificador/(9534:9542): Entrenador identificado por A se movió a 2;1
+[INFO] 17:32:33:137 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:33:637 Planificador/(9534:9542): Entrenador identificado por A se movió a 2;2
+[INFO] 17:32:33:638 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:34:139 Planificador/(9534:9542): Entrenador identificado por A se movió a 3;2
+[INFO] 17:32:34:139 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:34:139 Planificador/(9534:9542): ENCOLO NUEVAMENTE
+[INFO] 17:32:34:139 Planificador/(9534:9542): REVISO NUEVMAENTE
+[INFO] 17:32:35:555 Planificador/(9534:9542): Entrenador identificado por M se movió a 5;4
+[INFO] 17:32:35:555 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:36:56 Planificador/(9534:9542): Entrenador identificado por M se movió a 5;5
+[INFO] 17:32:36:56 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:36:557 Planificador/(9534:9542): Entrenador identificado por M se movió a 6;5
+[INFO] 17:32:36:557 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:36:557 Planificador/(9534:9542): ENCOLO NUEVAMENTE
+[INFO] 17:32:36:557 Planificador/(9534:9542): REVISO NUEVMAENTE
+[INFO] 17:32:41:641 Planificador/(9534:9542): Entrenador identificado por A se movió a 3;3
+[INFO] 17:32:41:641 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:42:141 Planificador/(9534:9542): Entrenador identificado por A se movió a 4;3
+[INFO] 17:32:42:141 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:42:642 Planificador/(9534:9542): Entrenador identificado por A se movió a 5;3
+[INFO] 17:32:42:642 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:42:642 Planificador/(9534:9542): ENCOLO NUEVAMENTE
+[INFO] 17:32:42:642 Planificador/(9534:9542): REVISO NUEVMAENTE
+[INFO] 17:32:47:673 Planificador/(9534:9542): Entrenador identificado por M se movió a 6;6
+[INFO] 17:32:47:673 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:48:173 Planificador/(9534:9542): Entrenador identificado por M se movió a 7;6
+[INFO] 17:32:48:173 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:48:674 Planificador/(9534:9542): Entrenador identificado por M se movió a 7;7
+[INFO] 17:32:48:674 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:48:674 Planificador/(9534:9542): ENCOLO NUEVAMENTE
+[INFO] 17:32:48:674 Planificador/(9534:9542): REVISO NUEVMAENTE
+[INFO] 17:32:49:809 Planificador/(9534:9542): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 17:32:49:809 Planificador/(9534:9542): Entrenador identificado por A recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu001
+[INFO] 17:32:49:809 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:50:310 Planificador/(9534:9542): Entrenador identificado por Aestá buscando coordenadas de pokenest C (8;9)
+[INFO] 17:32:50:310 Planificador/(9534:9542): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 17:32:50:310 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:50:811 Planificador/(9534:9542): Entrenador identificado por A se movió a 6;3
+[INFO] 17:32:50:811 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:50:811 Planificador/(9534:9542): ENCOLO NUEVAMENTE
+[INFO] 17:32:50:811 Planificador/(9534:9542): REVISO NUEVMAENTE
+[INFO] 17:32:51:901 Planificador/(9534:9542): Entrenador identificado por M se movió a 8;7
+[INFO] 17:32:51:901 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:52:401 Planificador/(9534:9542): Entrenador identificado por M se movió a 8;8
+[INFO] 17:32:52:401 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:52:902 Planificador/(9534:9542): Entrenador identificado por M se movió a 8;9
+[INFO] 17:32:52:903 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:52:903 Planificador/(9534:9542): ENCOLO NUEVAMENTE
+[INFO] 17:32:52:903 Planificador/(9534:9542): REVISO NUEVMAENTE
+[INFO] 17:32:58:222 Planificador/(9534:9542): Entrenador identificado por A se movió a 6;4
+[INFO] 17:32:58:223 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:58:724 Planificador/(9534:9542): Entrenador identificado por A se movió a 7;4
+[INFO] 17:32:58:724 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:59:225 Planificador/(9534:9542): Entrenador identificado por A se movió a 7;5
+[INFO] 17:32:59:225 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:32:59:225 Planificador/(9534:9542): ENCOLO NUEVAMENTE
+[INFO] 17:32:59:225 Planificador/(9534:9542): REVISO NUEVMAENTE
+[INFO] 17:33:24:466 Planificador/(9534:9542): Entrenador identificado por M está solicitando captura pokemon
+[INFO] 17:33:24:467 Planificador/(9534:9542): Entrenador identificado por M recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/charmander/charmander001
+[INFO] 17:33:24:467 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:33:24:967 Planificador/(9534:9542): Entrenador identificado por Mestá buscando coordenadas de pokenest P (5;3)
+[INFO] 17:33:24:967 Planificador/(9534:9542): La coordenada solicitada fue entregada a entrenador identificado por M
+[INFO] 17:33:24:967 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:33:25:468 Planificador/(9534:9542): Entrenador identificado por M se movió a 8;8
+[INFO] 17:33:25:468 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:33:25:468 Planificador/(9534:9542): ENCOLO NUEVAMENTE
+[INFO] 17:33:25:468 Planificador/(9534:9542): REVISO NUEVMAENTE
+[INFO] 17:33:26:636 Planificador/(9534:9542): Entrenador identificado por A se movió a 8;5
+[INFO] 17:33:26:636 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:33:27:137 Planificador/(9534:9542): Entrenador identificado por A se movió a 8;6
+[INFO] 17:33:27:137 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:33:27:638 Planificador/(9534:9542): Entrenador identificado por A se movió a 8;7
+[INFO] 17:33:27:638 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:33:27:638 Planificador/(9534:9542): ENCOLO NUEVAMENTE
+[INFO] 17:33:27:638 Planificador/(9534:9542): REVISO NUEVMAENTE
+[INFO] 17:33:34:107 Planificador/(9534:9542): Entrenador identificado por M se movió a 7;8
+[INFO] 17:33:34:107 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:33:34:608 Planificador/(9534:9542): Entrenador identificado por M se movió a 7;7
+[INFO] 17:33:34:608 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:33:35:108 Planificador/(9534:9542): Entrenador identificado por M se movió a 6;7
+[INFO] 17:33:35:109 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:33:35:109 Planificador/(9534:9542): ENCOLO NUEVAMENTE
+[INFO] 17:33:35:109 Planificador/(9534:9542): REVISO NUEVMAENTE
+[INFO] 17:33:40:821 Planificador/(9534:9542): Entrenador identificado por A se movió a 8;8
+[INFO] 17:33:40:821 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:33:41:322 Planificador/(9534:9542): Entrenador identificado por A se movió a 8;9
+[INFO] 17:33:41:322 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:33:41:823 Planificador/(9534:9542): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 17:33:41:823 Planificador/(9534:9542): Entrenador identificado por A quedó bloqueado por no haber pokemons disponibles
+[INFO] 17:33:41:823 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:33:41:823 Planificador/(9534:9542): ENCOLO NUEVAMENTE
+[INFO] 17:33:41:823 Planificador/(9534:9542): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 17:33:41:823 Planificador/(9534:9542): REVISO NUEVMAENTE
+[INFO] 17:33:46:947 Planificador/(9534:9542): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 17:33:47:447 Planificador/(9534:9542): Entrenador identificado por M se movió a 6;6
+[INFO] 17:33:47:447 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:33:47:948 Planificador/(9534:9542): Entrenador identificado por M se movió a 5;6
+[INFO] 17:33:47:948 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:33:48:449 Planificador/(9534:9542): Entrenador identificado por M se movió a 5;5
+[INFO] 17:33:48:449 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:33:48:449 Planificador/(9534:9542): ENCOLO NUEVAMENTE
+[INFO] 17:33:48:449 Planificador/(9534:9542): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 17:33:48:449 Planificador/(9534:9542): REVISO NUEVMAENTE
+[INFO] 17:33:52:168 Planificador/(9534:9542): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 17:33:52:668 Planificador/(9534:9542): Entrenador identificado por M se movió a 5;4
+[INFO] 17:33:52:668 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:33:53:169 Planificador/(9534:9542): Entrenador identificado por M se movió a 5;3
+[INFO] 17:33:53:169 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:33:53:670 Planificador/(9534:9542): Entrenador identificado por M está solicitando captura pokemon
+[INFO] 17:33:53:670 Planificador/(9534:9542): Entrenador identificado por M quedó bloqueado por no haber pokemons disponibles
+[INFO] 17:33:53:670 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:33:53:670 Planificador/(9534:9542): ENCOLO NUEVAMENTE
+[INFO] 17:33:53:670 Planificador/(9534:9542): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 17:33:53:671 Planificador/(9534:9542): REVISO NUEVMAENTE
+[INFO] 17:33:56:952 Planificador/(9534:9543): SE ABORTA AL ENTRENADOR IDENTIFICADO POR: A
+[INFO] 17:34:15:564 Planificador/(9534:9660): PUSH (NUEVO) entrenador identificado con el simbolo A y por el socket 12
+[INFO] 17:34:15:564 Planificador/(9534:9544): Iniciando la encolación de nuevos entrenadores
+[INFO] 17:34:15:564 Planificador/(9534:9544): Entrenador conectado por socket 12 modelado
+[INFO] 17:34:15:564 Planificador/(9534:9544): Cola de nuevos vaciada por proceso de encolación
+[INFO] 17:34:15:564 Planificador/(9534:9544): Finalizando la  encolación de entrenadores
+[INFO] 17:34:21:470 Planificador/(9534:9542): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 17:35:12:934 Planificador/(9534:9542): Entrenador identificado por Aestá buscando coordenadas de pokenest P (5;3)
+[INFO] 17:35:12:934 Planificador/(9534:9542): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 17:35:14:598 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:35:18:839 Planificador/(9534:9542): Entrenador identificado por A se movió a 8;8
+[INFO] 17:35:18:839 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:35:19:340 Planificador/(9534:9542): Entrenador identificado por A se movió a 7;8
+[INFO] 17:35:19:340 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:35:29:108 Planificador/(9534:9542): ENCOLO NUEVAMENTE
+[INFO] 17:35:29:108 Planificador/(9534:9542): REVISO NUEVMAENTE
+[INFO] 17:35:46:460 Planificador/(9534:9542): Entrenador identificado por M recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu001
+[INFO] 17:35:46:460 Planificador/(9534:9542): YA DI POKEMON
+[INFO] 17:35:46:477 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:37:13:524 Planificador/(9534:9542): SE ABORTA AL ENTRENADOR IDENTIFICADO POR: M
+[INFO] 17:37:17:100 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:37:20:565 Planificador/(9534:9542): ENCOLO NUEVAMENTE
+[INFO] 17:37:21:511 Planificador/(9534:9542): REVISO NUEVMAENTE
+[INFO] 17:37:35:642 Planificador/(9534:9542): Entrenador identificado por A se movió a 7;7
+[INFO] 17:37:35:642 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:37:36:143 Planificador/(9534:9542): Entrenador identificado por A se movió a 6;7
+[INFO] 17:37:36:143 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:37:36:645 Planificador/(9534:9542): Entrenador identificado por A se movió a 6;6
+[INFO] 17:37:36:645 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:37:36:645 Planificador/(9534:9542): ENCOLO NUEVAMENTE
+[INFO] 17:37:36:645 Planificador/(9534:9542): REVISO NUEVMAENTE
+[INFO] 17:37:43:675 Planificador/(9534:9542): Entrenador identificado por A se movió a 5;6
+[INFO] 17:37:43:675 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:37:44:176 Planificador/(9534:9542): Entrenador identificado por A se movió a 5;5
+[INFO] 17:37:44:176 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:37:44:677 Planificador/(9534:9542): Entrenador identificado por A se movió a 5;4
+[INFO] 17:37:44:677 Planificador/(9534:9542): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:37:44:677 Planificador/(9534:9542): ENCOLO NUEVAMENTE
+[INFO] 17:37:44:677 Planificador/(9534:9542): REVISO NUEVMAENTE
+[INFO] 17:43:27:271 Planificador/(9846:9854): Se crea proceso para encolación de entreanadores
+[INFO] 17:43:39:126 Planificador/(9846:9918): PUSH (NUEVO) entrenador identificado con el simbolo M y por el socket 11
+[INFO] 17:43:39:126 Planificador/(9846:9856): Iniciando la encolación de nuevos entrenadores
+[INFO] 17:43:39:126 Planificador/(9846:9856): Entrenador conectado por socket 11 modelado
+[INFO] 17:43:39:126 Planificador/(9846:9856): Cola de nuevos vaciada por proceso de encolación
+[INFO] 17:43:39:126 Planificador/(9846:9856): Finalizando la  encolación de entrenadores
+[INFO] 17:43:42:710 Planificador/(9846:9854): Entrenador identificado por Mestá buscando coordenadas de pokenest C (8;9)
+[INFO] 17:43:42:710 Planificador/(9846:9854): La coordenada solicitada fue entregada a entrenador identificado por M
+[INFO] 17:43:42:710 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:43:43:210 Planificador/(9846:9854): Entrenador identificado por M se movió a 1;0
+[INFO] 17:43:43:210 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:43:43:711 Planificador/(9846:9854): Entrenador identificado por M se movió a 1;1
+[INFO] 17:43:43:711 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:43:43:711 Planificador/(9846:9854): ENCOLO NUEVAMENTE
+[INFO] 17:43:43:711 Planificador/(9846:9854): REVISO NUEVMAENTE
+[INFO] 17:43:44:948 Planificador/(9846:9854): Entrenador identificado por M se movió a 2;1
+[INFO] 17:43:44:948 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:43:45:449 Planificador/(9846:9854): Entrenador identificado por M se movió a 2;2
+[INFO] 17:43:45:449 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:43:45:950 Planificador/(9846:9854): Entrenador identificado por M se movió a 3;2
+[INFO] 17:43:45:950 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:43:45:950 Planificador/(9846:9854): ENCOLO NUEVAMENTE
+[INFO] 17:43:45:950 Planificador/(9846:9854): REVISO NUEVMAENTE
+[INFO] 17:43:51:153 Planificador/(9846:9926): PUSH (NUEVO) entrenador identificado con el simbolo A y por el socket 12
+[INFO] 17:43:51:153 Planificador/(9846:9856): Iniciando la encolación de nuevos entrenadores
+[INFO] 17:43:51:153 Planificador/(9846:9856): Entrenador conectado por socket 12 modelado
+[INFO] 17:43:51:153 Planificador/(9846:9856): Cola de nuevos vaciada por proceso de encolación
+[INFO] 17:43:51:153 Planificador/(9846:9856): Finalizando la  encolación de entrenadores
+[INFO] 17:43:51:654 Planificador/(9846:9854): Entrenador identificado por M se movió a 3;3
+[INFO] 17:43:51:654 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:43:52:154 Planificador/(9846:9854): Entrenador identificado por M se movió a 4;3
+[INFO] 17:43:52:155 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:43:52:655 Planificador/(9846:9854): Entrenador identificado por M se movió a 4;4
+[INFO] 17:43:52:656 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:43:52:656 Planificador/(9846:9854): ENCOLO NUEVAMENTE
+[INFO] 17:43:52:656 Planificador/(9846:9854): REVISO NUEVMAENTE
+[INFO] 17:43:53:723 Planificador/(9846:9854): Entrenador identificado por Aestá buscando coordenadas de pokenest P (5;3)
+[INFO] 17:43:53:723 Planificador/(9846:9854): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 17:43:53:723 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:43:54:224 Planificador/(9846:9854): Entrenador identificado por A se movió a 1;0
+[INFO] 17:43:54:224 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:43:54:725 Planificador/(9846:9854): Entrenador identificado por A se movió a 1;1
+[INFO] 17:43:54:725 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:43:54:725 Planificador/(9846:9854): ENCOLO NUEVAMENTE
+[INFO] 17:43:54:725 Planificador/(9846:9854): REVISO NUEVMAENTE
+[INFO] 17:43:55:737 Planificador/(9846:9854): Entrenador identificado por M se movió a 5;4
+[INFO] 17:43:55:737 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:43:56:237 Planificador/(9846:9854): Entrenador identificado por M se movió a 5;5
+[INFO] 17:43:56:238 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:43:56:739 Planificador/(9846:9854): Entrenador identificado por M se movió a 6;5
+[INFO] 17:43:56:739 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:43:56:739 Planificador/(9846:9854): ENCOLO NUEVAMENTE
+[INFO] 17:43:56:739 Planificador/(9846:9854): REVISO NUEVMAENTE
+[INFO] 17:43:58:20 Planificador/(9846:9854): Entrenador identificado por A se movió a 2;1
+[INFO] 17:43:58:20 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:43:58:520 Planificador/(9846:9854): Entrenador identificado por A se movió a 2;2
+[INFO] 17:43:58:520 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:43:59:22 Planificador/(9846:9854): Entrenador identificado por A se movió a 3;2
+[INFO] 17:43:59:22 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:43:59:22 Planificador/(9846:9854): ENCOLO NUEVAMENTE
+[INFO] 17:43:59:22 Planificador/(9846:9854): REVISO NUEVMAENTE
+[INFO] 17:44:00:251 Planificador/(9846:9854): Entrenador identificado por M se movió a 6;6
+[INFO] 17:44:00:251 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:00:752 Planificador/(9846:9854): Entrenador identificado por M se movió a 7;6
+[INFO] 17:44:00:752 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:01:253 Planificador/(9846:9854): Entrenador identificado por M se movió a 7;7
+[INFO] 17:44:01:253 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:01:253 Planificador/(9846:9854): ENCOLO NUEVAMENTE
+[INFO] 17:44:01:253 Planificador/(9846:9854): REVISO NUEVMAENTE
+[INFO] 17:44:05:490 Planificador/(9846:9854): Entrenador identificado por A se movió a 3;3
+[INFO] 17:44:05:490 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:05:990 Planificador/(9846:9854): Entrenador identificado por A se movió a 4;3
+[INFO] 17:44:05:991 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:06:491 Planificador/(9846:9854): Entrenador identificado por A se movió a 5;3
+[INFO] 17:44:06:491 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:06:491 Planificador/(9846:9854): ENCOLO NUEVAMENTE
+[INFO] 17:44:06:491 Planificador/(9846:9854): REVISO NUEVMAENTE
+[INFO] 17:44:08:65 Planificador/(9846:9854): Entrenador identificado por M se movió a 8;7
+[INFO] 17:44:08:65 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:08:566 Planificador/(9846:9854): Entrenador identificado por M se movió a 8;8
+[INFO] 17:44:08:566 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:09:67 Planificador/(9846:9854): Entrenador identificado por M se movió a 8;9
+[INFO] 17:44:09:67 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:09:67 Planificador/(9846:9854): ENCOLO NUEVAMENTE
+[INFO] 17:44:09:67 Planificador/(9846:9854): REVISO NUEVMAENTE
+[INFO] 17:44:12:958 Planificador/(9846:9854): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 17:44:12:959 Planificador/(9846:9854): Entrenador identificado por A recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu001
+[INFO] 17:44:12:959 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:13:460 Planificador/(9846:9854): Entrenador identificado por Aestá buscando coordenadas de pokenest C (8;9)
+[INFO] 17:44:13:460 Planificador/(9846:9854): La coordenada solicitada fue entregada a entrenador identificado por A
+[INFO] 17:44:13:460 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:13:961 Planificador/(9846:9854): Entrenador identificado por A se movió a 6;3
+[INFO] 17:44:13:961 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:13:961 Planificador/(9846:9854): ENCOLO NUEVAMENTE
+[INFO] 17:44:13:961 Planificador/(9846:9854): REVISO NUEVMAENTE
+[INFO] 17:44:15:354 Planificador/(9846:9854): Entrenador identificado por M está solicitando captura pokemon
+[INFO] 17:44:15:354 Planificador/(9846:9854): Entrenador identificado por M recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/charmander/charmander001
+[INFO] 17:44:15:354 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:15:855 Planificador/(9846:9854): Entrenador identificado por Mestá buscando coordenadas de pokenest P (5;3)
+[INFO] 17:44:15:855 Planificador/(9846:9854): La coordenada solicitada fue entregada a entrenador identificado por M
+[INFO] 17:44:15:855 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:16:356 Planificador/(9846:9854): Entrenador identificado por M se movió a 8;8
+[INFO] 17:44:16:356 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:16:356 Planificador/(9846:9854): ENCOLO NUEVAMENTE
+[INFO] 17:44:16:356 Planificador/(9846:9854): REVISO NUEVMAENTE
+[INFO] 17:44:21:350 Planificador/(9846:9854): Entrenador identificado por A se movió a 6;4
+[INFO] 17:44:21:350 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:21:851 Planificador/(9846:9854): Entrenador identificado por A se movió a 7;4
+[INFO] 17:44:21:851 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:22:351 Planificador/(9846:9854): Entrenador identificado por A se movió a 7;5
+[INFO] 17:44:22:351 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:22:351 Planificador/(9846:9854): ENCOLO NUEVAMENTE
+[INFO] 17:44:22:352 Planificador/(9846:9854): REVISO NUEVMAENTE
+[INFO] 17:44:24:322 Planificador/(9846:9854): Entrenador identificado por M se movió a 7;8
+[INFO] 17:44:24:322 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:24:823 Planificador/(9846:9854): Entrenador identificado por M se movió a 7;7
+[INFO] 17:44:24:823 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:25:324 Planificador/(9846:9854): Entrenador identificado por M se movió a 6;7
+[INFO] 17:44:25:324 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:25:324 Planificador/(9846:9854): ENCOLO NUEVAMENTE
+[INFO] 17:44:25:324 Planificador/(9846:9854): REVISO NUEVMAENTE
+[INFO] 17:44:26:481 Planificador/(9846:9854): Entrenador identificado por A se movió a 8;5
+[INFO] 17:44:26:481 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:26:982 Planificador/(9846:9854): Entrenador identificado por A se movió a 8;6
+[INFO] 17:44:26:982 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:27:483 Planificador/(9846:9854): Entrenador identificado por A se movió a 8;7
+[INFO] 17:44:27:483 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:27:483 Planificador/(9846:9854): ENCOLO NUEVAMENTE
+[INFO] 17:44:27:483 Planificador/(9846:9854): REVISO NUEVMAENTE
+[INFO] 17:44:31:643 Planificador/(9846:9854): Entrenador identificado por M se movió a 6;6
+[INFO] 17:44:31:643 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:32:144 Planificador/(9846:9854): Entrenador identificado por M se movió a 5;6
+[INFO] 17:44:32:144 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:32:645 Planificador/(9846:9854): Entrenador identificado por M se movió a 5;5
+[INFO] 17:44:32:645 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:32:645 Planificador/(9846:9854): ENCOLO NUEVAMENTE
+[INFO] 17:44:32:645 Planificador/(9846:9854): REVISO NUEVMAENTE
+[INFO] 17:44:33:916 Planificador/(9846:9854): Entrenador identificado por A se movió a 8;8
+[INFO] 17:44:33:916 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:34:417 Planificador/(9846:9854): Entrenador identificado por A se movió a 8;9
+[INFO] 17:44:34:417 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:34:918 Planificador/(9846:9854): Entrenador identificado por A está solicitando captura pokemon
+[INFO] 17:44:34:918 Planificador/(9846:9854): Entrenador identificado por A quedó bloqueado por no haber pokemons disponibles
+[INFO] 17:44:34:918 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:34:918 Planificador/(9846:9854): ENCOLO NUEVAMENTE
+[INFO] 17:44:34:918 Planificador/(9846:9854): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 17:44:34:918 Planificador/(9846:9854): REVISO NUEVMAENTE
+[INFO] 17:44:36:193 Planificador/(9846:9854): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 17:44:36:694 Planificador/(9846:9854): Entrenador identificado por M se movió a 5;4
+[INFO] 17:44:36:695 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:37:196 Planificador/(9846:9854): Entrenador identificado por M se movió a 5;3
+[INFO] 17:44:37:196 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:37:696 Planificador/(9846:9854): Entrenador identificado por M está solicitando captura pokemon
+[INFO] 17:44:37:696 Planificador/(9846:9854): Entrenador identificado por M quedó bloqueado por no haber pokemons disponibles
+[INFO] 17:44:37:697 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:44:37:697 Planificador/(9846:9854): ENCOLO NUEVAMENTE
+[INFO] 17:44:37:697 Planificador/(9846:9854): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 17:44:37:697 Planificador/(9846:9854): REVISO NUEVMAENTE
+[INFO] 17:44:43:828 Planificador/(9846:9855): SE ABORTA AL ENTRENADOR IDENTIFICADO POR: A
+[INFO] 17:44:53:33 Planificador/(9846:9854): Se revisa si se puede desbloquear algún entrenador 
+[INFO] 17:44:54:732 Planificador/(9846:9965): PUSH (NUEVO) entrenador identificado con el simbolo A y por el socket 12
+[INFO] 17:44:54:732 Planificador/(9846:9856): Iniciando la encolación de nuevos entrenadores
+[INFO] 17:44:54:732 Planificador/(9846:9856): Entrenador conectado por socket 12 modelado
+[INFO] 17:44:54:732 Planificador/(9846:9856): Cola de nuevos vaciada por proceso de encolación
+[INFO] 17:44:54:732 Planificador/(9846:9856): Finalizando la  encolación de entrenadores
+[INFO] 17:45:38:209 Planificador/(9846:9854): Entrenador identificado por M recibio /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu001
+[INFO] 17:45:40:493 Planificador/(9846:9854): YA DI POKEMON
+[INFO] 17:46:26:805 Planificador/(9846:9854): SE ABORTA AL ENTRENADOR IDENTIFICADO POR: M
+[INFO] 17:46:56:828 Planificador/(9846:9854): YA TERMINO TURNO DE ENTRENADOR
+[INFO] 17:47:03:431 Planificador/(9846:9854): ENCOLO NUEVAMENTE
+[INFO] 17:47:12:914 Planificador/(9846:9854): REVISO NUEVMAENTE

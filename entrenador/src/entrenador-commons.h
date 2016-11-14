@@ -34,6 +34,13 @@ enum
 	REINTENTAR=2
 };
 
+enum
+{
+	GANE_DEADLOKC,
+	PERDI_DEADLOCK,
+	ME_DIERON_POKEMON
+};
+
 char *hora_de_inicio;
 char *hora_de_fin;
 
@@ -88,12 +95,15 @@ int entrenador_captura_pokemon(int indice_objetivo);
 int entrenador_trata_deadlock();
 int me_quedan_vidas();
 void bajarvida();
+void entrenador_borra_pokemos_del_mapa();
+
 /*------------------------------------------BUSCAR MEJOR POKEMON-------------------------------------------------*/
 void entrenador_otorga_mejor_pokemon_a_mapa(t_mapa *mapa);
 t_pokemon* entrenador_busca_mejor_pokemon();
 t_list* nombre_de_archivos_del_directorio(char *ruta);
 t_list* recuperar_pokemons(t_list *lista_nombres_pokemons);
-t_pokemon* recuperar_pokemon(char *nombre_file_pokemon);
+t_pokemon* recuperar_pokemon(t_pkmn_factory *factory,char *nombre_file_pokemon);
+int order_mejor_pokemon(void* arg1, void* arg2);
 char* adaptar_nombre_pokemon(char* nombre_sucio);
 void pokemon_destroy(void *arg);
 

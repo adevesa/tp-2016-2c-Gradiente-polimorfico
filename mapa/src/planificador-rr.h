@@ -23,6 +23,6 @@ void planificador_rr_dale_nuevo_turno_a_entrenador(t_entrenador *entrenador_list
 void planificador_rr_volve_a_bloquear_a_entrenador_si_es_necesario(t_entrenador *entrenador, int *quamtum);;
 int quamtum_se_termino(int q);
 void quamtum_disminuite(int *q);
-
-
+void planificador_rr_cambia_semaforo_si_es_necesario();
+void loggear_turno(t_entrenador *entrenador);
 #endif /* PLANIFICADOR_RR_H_ */

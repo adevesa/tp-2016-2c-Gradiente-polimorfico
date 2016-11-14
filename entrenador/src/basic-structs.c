@@ -49,7 +49,10 @@ t_mapa* mapa_create(char* nombre_mapa, char *ruta_pokedex, t_entrenador *entrena
 {
 	t_config *config = configuracion_metadata_mapa_create(nombre_mapa, ruta_pokedex);
 	t_mapa *mapa_new = malloc(sizeof(t_mapa));
-	mapa_new->nombre = nombre_mapa;
+
+	mapa_new->nombre = string_new();
+	string_append(&mapa_new->nombre,nombre_mapa);
+
 	mapa_new->puerto =string_new();
 	string_append(&mapa_new->puerto,config_get_string_value(config, "Puerto"));
 	mapa_new->ip =string_new();
@@ -76,7 +79,9 @@ void mapa_destruite(t_mapa *mapa)
 	free(mapa->nombre);
 	free(mapa->puerto);
 	list_destroy_and_destroy_elements(mapa->objetivos,mapa_element_destroyer);
+	//log_info(info_entrenador, "LISTO. BORRE TODO 1");
 	list_destroy_and_destroy_elements(mapa->pokemons_capturados,mapa_element_destroyer);
+	//log_info(info_entrenador, "LISTO. BORRE TODO 2");
 	//list_destroy(mapa->objetivos);
 	//list_destroy(mapa->pokemons_capturados);
 	free(mapa);

@@ -18,6 +18,7 @@ int se_agrego_nuevo_entrenador = 0;
 int cantidad_entrenadores_nuevos = 0;
 int hay_jugadores;
 int se_ordeno_algo = 0;
+int semaforo_srdf_cambiado_por_deadlock =0;
 
 extern t_log *informe_planificador;
 extern int encolacion_entrenadores_iniciada;
@@ -141,8 +142,14 @@ void planificador_srdf_organiza_entrenadores()
 			hay_jugadores=0;
 			log_info(informe_planificador, "ESPERO A QUE HAYA ALGUN JUGADOR");
 			sem_wait(&semaforo_esperar_por_entrenador_listo);
+			if(semaforo_srdf_cambiado_por_deadlock==1)
+			{
+				hay_jugadores = 1;
+				semaforo_srdf_cambiado_por_deadlock=0;
+			}
 			log_info(informe_planificador, "HAY ALGUIEN PARA JUGAR!");
 		}
+		planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
 		t_entrenador *entrenador_listo = planificador_pop_entrenador_listo(planificador);
 		int estado_anterior = entrenador_listo->estado;
 		mapa_cambiale_estado_a_entrenador(entrenador_listo, EXECUTE, estado_anterior);
@@ -174,7 +181,7 @@ void planificador_srdf_dale_pokemon_si_es_posible(t_entrenador *entrenador)
 		entrenador->esperando_pokemon = NO;
 		planificador_push_entrenador_en_cola_sin_objetivos(entrenador);
 		sem_wait(&semaforo_esperar_ordenamieto);
-		log_info(informe_planificador, "YA ESTA, YA SE ORDENO");
+		//log_info(informe_planificador, "YA ESTA, YA SE ORDENO");
 	}
 	else
 	{
@@ -207,6 +214,13 @@ void planificador_srdf_dale_nuevo_turno_hasta_que_se_bloquee(t_entrenador *entre
 
 }
 
+void planificador_srdf_cambia_semaforo_si_es_necesario()
+{
+	if(hay_jugadores==0)
+	{
+		sem_post(&semaforo_esperar_por_entrenador_listo);
+	}
+}
 /*--------------------------------------------HILOS--------------------------------------------------------*/
 void planificador_srdf_organiza_entrenadores_sin_coordenadas()
 {
@@ -295,3 +309,5 @@ int entrenador_es_nuevo(t_entrenador *entrenador)
 		return 0;
 	}
 }
+
+

@@ -1,202 +1,36 @@
-[INFO] 18:00:31:951 Proceso mapa/(15280:15280): Mapa creado correctamente
-[INFO] 18:00:33:278 Proceso mapa/(15280:15280): Se comienza a ejecutar hilo de escucha
-[INFO] 18:00:36:272 Proceso mapa/(15280:15280): Se crea hilo de planificador RR
-[INFO] 10:54:12:967 Proceso mapa/(23021:23021): Mapa creado correctamente
-[INFO] 10:54:17:40 Proceso mapa/(23021:23021): Se comienza a ejecutar hilo de escucha
-[INFO] 10:54:48:31 Proceso mapa/(23021:23021): Se crea hilo de planificador SRDF
-[INFO] 10:57:11:67 Proceso mapa/(23180:23180): Mapa creado correctamente
-[INFO] 10:57:14:485 Proceso mapa/(23180:23180): Se comienza a ejecutar hilo de escucha
-[INFO] 10:57:26:117 Proceso mapa/(23180:23180): Se crea hilo de planificador SRDF
-[INFO] 10:59:01:969 Proceso mapa/(23332:23332): Mapa creado correctamente
-[INFO] 10:59:03:364 Proceso mapa/(23332:23332): Se comienza a ejecutar hilo de escucha
-[INFO] 10:59:03:916 Proceso mapa/(23332:23332): Se crea hilo de planificador SRDF
-[INFO] 11:03:50:422 Proceso mapa/(23492:23492): Mapa creado correctamente
-[INFO] 11:03:50:767 Proceso mapa/(23492:23492): Se comienza a ejecutar hilo de escucha
-[INFO] 11:03:51:491 Proceso mapa/(23492:23492): Se crea hilo de planificador SRDF
-[INFO] 11:42:11:436 Proceso mapa/(23675:23675): Mapa creado correctamente
-[INFO] 11:42:12:551 Proceso mapa/(23675:23675): Se comienza a ejecutar hilo de escucha
-[INFO] 11:42:13:102 Proceso mapa/(23675:23675): Se crea hilo de planificador SRDF
-[INFO] 11:50:38:269 Proceso mapa/(23837:23837): Mapa creado correctamente
-[INFO] 11:50:38:816 Proceso mapa/(23837:23837): Se comienza a ejecutar hilo de escucha
-[INFO] 11:50:39:304 Proceso mapa/(23837:23837): Se crea hilo de planificador SRDF
-[INFO] 12:07:20:754 Proceso mapa/(23991:23991): Mapa creado correctamente
-[INFO] 12:07:22:58 Proceso mapa/(23991:23991): Se comienza a ejecutar hilo de escucha
-[INFO] 12:07:22:575 Proceso mapa/(23991:23991): Se crea hilo de planificador SRDF
-[INFO] 13:38:49:703 Proceso mapa/(24174:24174): Mapa creado correctamente
-[INFO] 13:38:50:659 Proceso mapa/(24174:24174): Se comienza a ejecutar hilo de escucha
-[INFO] 13:38:51:617 Proceso mapa/(24174:24174): Se crea hilo de planificador SRDF
-[INFO] 13:39:52:475 Proceso mapa/(24255:24255): Mapa creado correctamente
-[INFO] 13:39:53:782 Proceso mapa/(24255:24255): Se comienza a ejecutar hilo de escucha
-[INFO] 13:39:56:460 Proceso mapa/(24255:24255): Se crea hilo de planificador SRDF
-[INFO] 13:41:06:499 Proceso mapa/(24337:24337): Mapa creado correctamente
-[INFO] 13:41:07:453 Proceso mapa/(24337:24337): Se comienza a ejecutar hilo de escucha
-[INFO] 13:41:07:793 Proceso mapa/(24337:24337): Se crea hilo de planificador SRDF
-[INFO] 13:46:10:758 Proceso mapa/(24506:24506): Mapa creado correctamente
-[INFO] 13:46:10:943 Proceso mapa/(24506:24506): Se comienza a ejecutar hilo de escucha
-[INFO] 13:46:11:490 Proceso mapa/(24506:24506): Se crea hilo de planificador SRDF
-[INFO] 13:47:07:728 Proceso mapa/(24583:24583): Mapa creado correctamente
-[INFO] 13:47:08:266 Proceso mapa/(24583:24583): Se comienza a ejecutar hilo de escucha
-[INFO] 13:47:08:392 Proceso mapa/(24583:24583): Se crea hilo de planificador SRDF
-[INFO] 13:54:10:251 Proceso mapa/(24836:24836): Mapa creado correctamente
-[INFO] 13:54:10:891 Proceso mapa/(24836:24836): Se comienza a ejecutar hilo de escucha
-[INFO] 13:54:11:376 Proceso mapa/(24836:24836): Se crea hilo de planificador SRDF
-[INFO] 13:58:43:628 Proceso mapa/(25040:25040): Mapa creado correctamente
-[INFO] 13:58:43:953 Proceso mapa/(25040:25040): Se comienza a ejecutar hilo de escucha
-[INFO] 13:58:44:439 Proceso mapa/(25040:25040): Se crea hilo de planificador SRDF
-[INFO] 14:45:59:58 Proceso mapa/(25445:25445): Mapa creado correctamente
-[INFO] 14:45:59:651 Proceso mapa/(25445:25445): Se comienza a ejecutar hilo de escucha
-[INFO] 14:46:00:319 Proceso mapa/(25445:25445): Se crea hilo de planificador SRDF
-[INFO] 12:19:08:572 Proceso mapa/(3083:3083): Mapa creado correctamente
-[INFO] 12:20:05:729 Proceso mapa/(3140:3140): Mapa creado correctamente
-[INFO] 12:20:25:661 Proceso mapa/(3140:3140): Se comienza a ejecutar hilo de escucha
-[INFO] 12:20:46:29 Proceso mapa/(3140:3140): Se crea hilo de planificador SRDF
-[INFO] 10:10:38:877 Proceso mapa/(18562:18562): Mapa creado correctamente
-[INFO] 10:10:41:9 Proceso mapa/(18562:18562): Se comienza a ejecutar hilo de escucha
-[INFO] 10:10:41:487 Proceso mapa/(18562:18562): Se crea hilo de planificador RR
-[INFO] 10:35:45:787 Proceso mapa/(19718:19718): Mapa creado correctamente
-[INFO] 10:35:45:794 Proceso mapa/(19718:19718): Se comienza a ejecutar hilo de escucha
-[INFO] 10:35:45:800 Proceso mapa/(19718:19718): Se crea hilo de planificador RR
-[INFO] 10:35:56:295 Proceso mapa/(19759:19759): Mapa creado correctamente
-[INFO] 10:35:57:778 Proceso mapa/(19759:19759): Se comienza a ejecutar hilo de escucha
-[INFO] 10:35:58:152 Proceso mapa/(19759:19759): Se crea hilo de planificador RR
-[INFO] 10:55:27:227 Proceso mapa/(20900:20900): Mapa creado correctamente
-[INFO] 10:55:27:490 Proceso mapa/(20900:20900): Se comienza a ejecutar hilo de escucha
-[INFO] 10:55:28:82 Proceso mapa/(20900:20900): Se crea hilo de planificador RR
-[INFO] 11:03:53:161 Proceso mapa/(21365:21365): Mapa creado correctamente
-[INFO] 11:03:53:339 Proceso mapa/(21365:21365): Se comienza a ejecutar hilo de escucha
-[INFO] 11:03:53:538 Proceso mapa/(21365:21365): Se crea hilo de planificador RR
-[INFO] 11:09:19:620 Proceso mapa/(21901:21901): Mapa creado correctamente
-[INFO] 11:09:19:831 Proceso mapa/(21901:21901): Se comienza a ejecutar hilo de escucha
-[INFO] 11:09:20:274 Proceso mapa/(21901:21901): Se crea hilo de planificador RR
-[INFO] 11:13:18:311 Proceso mapa/(22071:22071): Mapa creado correctamente
-[INFO] 11:13:18:475 Proceso mapa/(22071:22071): Se comienza a ejecutar hilo de escucha
-[INFO] 11:13:18:699 Proceso mapa/(22071:22071): Se crea hilo de planificador RR
-[INFO] 11:19:52:454 Proceso mapa/(22538:22538): Mapa creado correctamente
-[INFO] 11:19:52:653 Proceso mapa/(22538:22538): Se comienza a ejecutar hilo de escucha
-[INFO] 11:19:53:232 Proceso mapa/(22538:22538): Se crea hilo de planificador RR
-[INFO] 11:40:05:694 Proceso mapa/(24051:24051): Mapa creado correctamente
-[INFO] 11:40:05:916 Proceso mapa/(24051:24051): Se comienza a ejecutar hilo de escucha
-[INFO] 11:40:06:449 Proceso mapa/(24051:24051): Se crea hilo de planificador SRDF
-[INFO] 11:43:23:729 Proceso mapa/(24253:24253): Mapa creado correctamente
-[INFO] 11:43:23:884 Proceso mapa/(24253:24253): Se comienza a ejecutar hilo de escucha
-[INFO] 11:43:24:89 Proceso mapa/(24253:24253): Se crea hilo de planificador SRDF
-[INFO] 11:44:45:946 Proceso mapa/(24416:24416): Mapa creado correctamente
-[INFO] 11:44:46:109 Proceso mapa/(24416:24416): Se comienza a ejecutar hilo de escucha
-[INFO] 11:44:46:316 Proceso mapa/(24416:24416): Se crea hilo de planificador SRDF
-[INFO] 11:45:08:218 Proceso mapa/(24511:24511): Mapa creado correctamente
-[INFO] 11:45:08:384 Proceso mapa/(24511:24511): Se comienza a ejecutar hilo de escucha
-[INFO] 11:45:08:639 Proceso mapa/(24511:24511): Se crea hilo de planificador SRDF
-[INFO] 11:45:31:278 Proceso mapa/(24606:24606): Mapa creado correctamente
-[INFO] 11:45:31:758 Proceso mapa/(24606:24606): Se comienza a ejecutar hilo de escucha
-[INFO] 11:45:33:24 Proceso mapa/(24606:24606): Se crea hilo de planificador SRDF
-[INFO] 11:50:22:229 Proceso mapa/(25123:25123): Mapa creado correctamente
-[INFO] 11:50:49:643 Proceso mapa/(25279:25279): Mapa creado correctamente
-[INFO] 11:50:49:943 Proceso mapa/(25279:25279): Se comienza a ejecutar hilo de escucha
-[INFO] 11:50:50:557 Proceso mapa/(25279:25279): Se crea hilo de planificador SRDF
-[INFO] 11:56:12:436 Proceso mapa/(25554:25554): Mapa creado correctamente
-[INFO] 11:56:12:626 Proceso mapa/(25554:25554): Se comienza a ejecutar hilo de escucha
-[INFO] 11:56:12:815 Proceso mapa/(25554:25554): Se crea hilo de planificador SRDF
-[INFO] 12:03:03:502 Proceso mapa/(25842:25842): Mapa creado correctamente
-[INFO] 12:03:03:651 Proceso mapa/(25842:25842): Se comienza a ejecutar hilo de escucha
-[INFO] 12:03:03:891 Proceso mapa/(25842:25842): Se crea hilo de planificador SRDF
-[INFO] 12:06:09:892 Proceso mapa/(26113:26113): Mapa creado correctamente
-[INFO] 12:06:10:12 Proceso mapa/(26113:26113): Se comienza a ejecutar hilo de escucha
-[INFO] 12:06:10:233 Proceso mapa/(26113:26113): Se crea hilo de planificador SRDF
-[INFO] 12:06:35:831 Proceso mapa/(26205:26205): Mapa creado correctamente
-[INFO] 12:06:35:975 Proceso mapa/(26205:26205): Se comienza a ejecutar hilo de escucha
-[INFO] 12:06:36:167 Proceso mapa/(26205:26205): Se crea hilo de planificador SRDF
-[INFO] 12:08:43:967 Proceso mapa/(26349:26349): Mapa creado correctamente
-[INFO] 12:08:44:130 Proceso mapa/(26349:26349): Se comienza a ejecutar hilo de escucha
-[INFO] 12:08:44:272 Proceso mapa/(26349:26349): Se crea hilo de planificador SRDF
-[INFO] 12:09:08:309 Proceso mapa/(26445:26445): Mapa creado correctamente
-[INFO] 12:09:08:483 Proceso mapa/(26445:26445): Se comienza a ejecutar hilo de escucha
-[INFO] 12:09:08:710 Proceso mapa/(26445:26445): Se crea hilo de planificador SRDF
-[INFO] 12:14:00:940 Proceso mapa/(26582:26582): Mapa creado correctamente
-[INFO] 12:14:01:90 Proceso mapa/(26582:26582): Se comienza a ejecutar hilo de escucha
-[INFO] 12:14:01:244 Proceso mapa/(26582:26582): Se crea hilo de planificador SRDF
-[INFO] 12:14:20:494 Proceso mapa/(26678:26678): Mapa creado correctamente
-[INFO] 12:14:20:677 Proceso mapa/(26678:26678): Se comienza a ejecutar hilo de escucha
-[INFO] 12:14:20:826 Proceso mapa/(26678:26678): Se crea hilo de planificador SRDF
-[INFO] 12:16:02:829 Proceso mapa/(26854:26854): Mapa creado correctamente
-[INFO] 12:16:02:991 Proceso mapa/(26854:26854): Se comienza a ejecutar hilo de escucha
-[INFO] 12:16:03:164 Proceso mapa/(26854:26854): Se crea hilo de planificador SRDF
-[INFO] 12:29:04:638 Proceso mapa/(27084:27084): Mapa creado correctamente
-[INFO] 12:29:04:860 Proceso mapa/(27084:27084): Se comienza a ejecutar hilo de escucha
-[INFO] 12:29:05:381 Proceso mapa/(27084:27084): Se crea hilo de planificador SRDF
-[INFO] 12:35:09:728 Proceso mapa/(27374:27374): Mapa creado correctamente
-[INFO] 12:35:09:866 Proceso mapa/(27374:27374): Se comienza a ejecutar hilo de escucha
-[INFO] 12:35:10:289 Proceso mapa/(27374:27374): Se crea hilo de planificador SRDF
-[INFO] 12:35:32:133 Proceso mapa/(27468:27468): Mapa creado correctamente
-[INFO] 12:35:32:299 Proceso mapa/(27468:27468): Se comienza a ejecutar hilo de escucha
-[INFO] 12:35:32:411 Proceso mapa/(27468:27468): Se crea hilo de planificador SRDF
-[INFO] 12:38:16:762 Proceso mapa/(27904:27904): Mapa creado correctamente
-[INFO] 12:38:16:908 Proceso mapa/(27904:27904): Se comienza a ejecutar hilo de escucha
-[INFO] 12:38:17:101 Proceso mapa/(27904:27904): Se crea hilo de planificador SRDF
-[INFO] 12:41:20:944 Proceso mapa/(28098:28098): Mapa creado correctamente
-[INFO] 12:41:21:296 Proceso mapa/(28098:28098): Se comienza a ejecutar hilo de escucha
-[INFO] 12:41:21:762 Proceso mapa/(28098:28098): Se crea hilo de planificador SRDF
-[INFO] 15:09:28:465 Proceso mapa/(30123:30123): Mapa creado correctamente
-[INFO] 15:09:54:103 Proceso mapa/(30239:30239): Mapa creado correctamente
-[INFO] 15:09:54:748 Proceso mapa/(30239:30239): Se comienza a ejecutar hilo de escucha
-[INFO] 15:09:55:219 Proceso mapa/(30239:30239): Se crea hilo de planificador SRDF
-[INFO] 15:10:47:787 Proceso mapa/(30367:30367): Mapa creado correctamente
-[INFO] 15:10:47:942 Proceso mapa/(30367:30367): Se comienza a ejecutar hilo de escucha
-[INFO] 15:10:48:138 Proceso mapa/(30367:30367): Se crea hilo de planificador SRDF
-[INFO] 15:18:36:496 Proceso mapa/(30918:30918): Mapa creado correctamente
-[INFO] 15:18:36:661 Proceso mapa/(30918:30918): Se comienza a ejecutar hilo de escucha
-[INFO] 15:18:36:858 Proceso mapa/(30918:30918): Se crea hilo de planificador SRDF
-[INFO] 15:31:06:644 Proceso mapa/(31565:31565): Mapa creado correctamente
-[INFO] 15:31:06:809 Proceso mapa/(31565:31565): Se comienza a ejecutar hilo de escucha
-[INFO] 15:31:07:76 Proceso mapa/(31565:31565): Se crea hilo de planificador SRDF
-[INFO] 15:44:08:952 Proceso mapa/(32279:32279): Mapa creado correctamente
-[INFO] 15:44:09:98 Proceso mapa/(32279:32279): Se comienza a ejecutar hilo de escucha
-[INFO] 15:44:09:347 Proceso mapa/(32279:32279): Se crea hilo de planificador SRDF
-[INFO] 15:56:15:20 Proceso mapa/(492:492): Mapa creado correctamente
-[INFO] 15:56:15:261 Proceso mapa/(492:492): Se comienza a ejecutar hilo de escucha
-[INFO] 15:56:15:402 Proceso mapa/(492:492): Se crea hilo de planificador SRDF
-[INFO] 17:27:44:363 Proceso mapa/(2455:2455): Mapa creado correctamente
-[INFO] 17:27:44:510 Proceso mapa/(2455:2455): Se comienza a ejecutar hilo de escucha
-[INFO] 17:27:44:775 Proceso mapa/(2455:2455): Se crea hilo de planificador SRDF
-[INFO] 17:28:31:843 Proceso mapa/(2558:2558): Mapa creado correctamente
-[INFO] 17:28:32:44 Proceso mapa/(2558:2558): Se comienza a ejecutar hilo de escucha
-[INFO] 17:28:32:267 Proceso mapa/(2558:2558): Se crea hilo de planificador SRDF
-[INFO] 17:30:20:528 Proceso mapa/(2675:2675): Mapa creado correctamente
-[INFO] 17:30:20:740 Proceso mapa/(2675:2675): Se comienza a ejecutar hilo de escucha
-[INFO] 17:30:20:923 Proceso mapa/(2675:2675): Se crea hilo de planificador SRDF
-[INFO] 17:37:47:959 Proceso mapa/(3263:3263): Mapa creado correctamente
-[INFO] 17:37:48:124 Proceso mapa/(3263:3263): Se comienza a ejecutar hilo de escucha
-[INFO] 17:37:48:335 Proceso mapa/(3263:3263): Se crea hilo de planificador SRDF
-[INFO] 17:49:03:408 Proceso mapa/(3714:3714): Mapa creado correctamente
-[INFO] 17:49:03:618 Proceso mapa/(3714:3714): Se comienza a ejecutar hilo de escucha
-[INFO] 17:49:04:478 Proceso mapa/(3714:3714): Se crea hilo de planificador SRDF
-[INFO] 18:04:25:887 Proceso mapa/(4120:4120): Mapa creado correctamente
-[INFO] 18:04:26:30 Proceso mapa/(4120:4120): Se comienza a ejecutar hilo de escucha
-[INFO] 18:04:26:243 Proceso mapa/(4120:4120): Se crea hilo de planificador SRDF
-[INFO] 18:14:46:373 Proceso mapa/(4654:4654): Mapa creado correctamente
-[INFO] 18:14:46:514 Proceso mapa/(4654:4654): Se comienza a ejecutar hilo de escucha
-[INFO] 18:14:46:738 Proceso mapa/(4654:4654): Se crea hilo de planificador SRDF
-[INFO] 18:24:36:518 Proceso mapa/(5597:5597): Mapa creado correctamente
-[INFO] 18:24:36:697 Proceso mapa/(5597:5597): Se comienza a ejecutar hilo de escucha
-[INFO] 18:24:36:911 Proceso mapa/(5597:5597): Se crea hilo de planificador SRDF
-[INFO] 18:48:04:324 Proceso mapa/(6550:6550): Mapa creado correctamente
-[INFO] 18:48:04:477 Proceso mapa/(6550:6550): Se comienza a ejecutar hilo de escucha
-[INFO] 18:48:04:662 Proceso mapa/(6550:6550): Se crea hilo de planificador SRDF
-[INFO] 18:56:43:143 Proceso mapa/(6890:6890): Mapa creado correctamente
-[INFO] 18:56:43:324 Proceso mapa/(6890:6890): Se comienza a ejecutar hilo de escucha
-[INFO] 18:56:43:752 Proceso mapa/(6890:6890): Se crea hilo de planificador SRDF
-[INFO] 18:59:06:920 Proceso mapa/(7052:7052): Mapa creado correctamente
-[INFO] 18:59:07:123 Proceso mapa/(7052:7052): Se comienza a ejecutar hilo de escucha
-[INFO] 18:59:07:249 Proceso mapa/(7052:7052): Se crea hilo de planificador SRDF
-[INFO] 19:26:58:918 Proceso mapa/(8533:8533): Mapa creado correctamente
-[INFO] 19:26:59:104 Proceso mapa/(8533:8533): Se comienza a ejecutar hilo de escucha
-[INFO] 19:26:59:278 Proceso mapa/(8533:8533): Se crea hilo de planificador SRDF
-[INFO] 19:27:29:433 Proceso mapa/(8609:8609): Mapa creado correctamente
-[INFO] 19:27:29:580 Proceso mapa/(8609:8609): Se comienza a ejecutar hilo de escucha
-[INFO] 19:27:29:764 Proceso mapa/(8609:8609): Se crea hilo de planificador SRDF
-[INFO] 19:29:56:597 Proceso mapa/(8731:8731): Mapa creado correctamente
-[INFO] 19:29:56:764 Proceso mapa/(8731:8731): Se comienza a ejecutar hilo de escucha
-[INFO] 19:29:56:985 Proceso mapa/(8731:8731): Se crea hilo de planificador SRDF
-[INFO] 21:05:06:469 Proceso mapa/(12148:12148): Mapa creado correctamente
-[INFO] 21:05:06:623 Proceso mapa/(12148:12148): Se comienza a ejecutar hilo de escucha
-[INFO] 21:05:06:833 Proceso mapa/(12148:12148): Se crea hilo de planificador RR
-[INFO] 10:18:42:881 Proceso mapa/(3888:3888): Mapa creado correctamente
+[INFO] 13:17:35:3 Proceso mapa/(4859:4859): Mapa creado correctamente
+[INFO] 13:17:35:235 Proceso mapa/(4859:4859): Se crea hilo de planificador RR
+[INFO] 13:17:35:436 Proceso mapa/(4859:4859): Se comienza a ejecutar hilo de deadlock
+[INFO] 13:17:35:782 Proceso mapa/(4859:4859): Se comienza a ejecutar hilo de escucha
+[INFO] 13:32:41:159 Proceso mapa/(5334:5334): Mapa creado correctamente
+[INFO] 13:32:41:314 Proceso mapa/(5334:5334): Se crea hilo de planificador RR
+[INFO] 13:32:41:518 Proceso mapa/(5334:5334): Se comienza a ejecutar hilo de deadlock
+[INFO] 13:32:41:795 Proceso mapa/(5334:5334): Se comienza a ejecutar hilo de escucha
+[INFO] 14:35:22:312 Proceso mapa/(6799:6799): Mapa creado correctamente
+[INFO] 14:35:22:327 Proceso mapa/(6799:6799): Se crea hilo de planificador RR
+[INFO] 14:35:22:331 Proceso mapa/(6799:6799): Se comienza a ejecutar hilo de deadlock
+[INFO] 14:35:22:335 Proceso mapa/(6799:6799): Se comienza a ejecutar hilo de escucha
+[INFO] 14:46:25:309 Proceso mapa/(7067:7067): Mapa creado correctamente
+[INFO] 14:46:25:309 Proceso mapa/(7067:7067): Se crea hilo de planificador RR
+[INFO] 14:46:25:309 Proceso mapa/(7067:7067): Se comienza a ejecutar hilo de deadlock
+[INFO] 14:46:25:309 Proceso mapa/(7067:7067): Se comienza a ejecutar hilo de escucha
+[INFO] 14:59:00:475 Proceso mapa/(7344:7344): Mapa creado correctamente
+[INFO] 14:59:00:491 Proceso mapa/(7344:7344): Se crea hilo de planificador RR
+[INFO] 14:59:00:498 Proceso mapa/(7344:7344): Se comienza a ejecutar hilo de deadlock
+[INFO] 14:59:00:500 Proceso mapa/(7344:7344): Se comienza a ejecutar hilo de escucha
+[INFO] 15:12:56:972 Proceso mapa/(7836:7836): Mapa creado correctamente
+[INFO] 15:12:56:983 Proceso mapa/(7836:7836): Se crea hilo de planificador RR
+[INFO] 15:12:56:987 Proceso mapa/(7836:7836): Se comienza a ejecutar hilo de deadlock
+[INFO] 15:12:56:989 Proceso mapa/(7836:7836): Se comienza a ejecutar hilo de escucha
+[INFO] 15:38:29:116 Proceso mapa/(8550:8550): Mapa creado correctamente
+[INFO] 15:38:29:126 Proceso mapa/(8550:8550): Se crea hilo de planificador RR
+[INFO] 15:38:29:132 Proceso mapa/(8550:8550): Se comienza a ejecutar hilo de deadlock
+[INFO] 15:38:29:134 Proceso mapa/(8550:8550): Se comienza a ejecutar hilo de escucha
+[INFO] 17:31:51:431 Proceso mapa/(9534:9534): Mapa creado correctamente
+[INFO] 17:31:51:441 Proceso mapa/(9534:9534): Se crea hilo de planificador RR
+[INFO] 17:31:51:447 Proceso mapa/(9534:9534): Se comienza a ejecutar hilo de deadlock
+[INFO] 17:31:51:449 Proceso mapa/(9534:9534): Se comienza a ejecutar hilo de escucha
+[INFO] 17:43:27:259 Proceso mapa/(9846:9846): Mapa creado correctamente
+[INFO] 17:43:27:271 Proceso mapa/(9846:9846): Se crea hilo de planificador RR
+[INFO] 17:43:27:278 Proceso mapa/(9846:9846): Se comienza a ejecutar hilo de deadlock
+[INFO] 17:43:27:280 Proceso mapa/(9846:9846): Se comienza a ejecutar hilo de escucha

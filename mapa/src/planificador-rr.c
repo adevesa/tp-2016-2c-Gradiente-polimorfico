@@ -11,6 +11,8 @@ extern sem_t semaforo_entrenadores_listos;
 extern int hay_jugadores_online;
 extern int encolacion_entrenadores_iniciada;
 extern int algoritmo_cambio;
+int semaforo_rr_cambiado_por_deadlock =0;
+
 /*-----------------------------------EXECUTE PLANIFICADOR RR---------------------------------------------------------*/
 void* ejecutar_planificador_rr(void* arg)
 {
@@ -46,11 +48,18 @@ void planificador_rr_organiza_entrenadores()
 		{
 			hay_jugadores_online =0;
 			sem_wait(&semaforo_entrenadores_listos);
+			if(semaforo_rr_cambiado_por_deadlock == 1)
+			{
+				hay_jugadores_online = 1;
+				semaforo_rr_cambiado_por_deadlock = 0;
+			}
 		}
+		planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
 		t_entrenador *entrenador_listo = planificador_pop_entrenador_listo(planificador);
 		int quamtum_restante = planificador->quantum;
 		int estado_anterior = entrenador_listo->estado;
 		mapa_cambiale_estado_a_entrenador(entrenador_listo, EXECUTE, estado_anterior);
+		loggear_turno(entrenador_listo);
 		planificador_rr_es_el_turno_de(entrenador_listo, &quamtum_restante);
 		planificador_volve_a_encolar_a_listo_si_es_necesario(entrenador_listo);
 		planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
@@ -61,6 +70,15 @@ void planificador_rr_organiza_entrenadores()
 	 */
 }
 
+void loggear_turno(t_entrenador *entrenador)
+{
+	char* mensaje_a_log_2 = string_new();
+	string_append(&mensaje_a_log_2,"TURNO DEL ENTRENADOR: ");
+	string_append(&mensaje_a_log_2,entrenador->simbolo_identificador);
+	log_info(informe_planificador, mensaje_a_log_2);
+	free(mensaje_a_log_2);
+}
+
 void planificador_rr_es_el_turno_de(t_entrenador *entrenador_listo, int *quamtum)
 {
 	while(!quamtum_se_termino(*quamtum) && (entrenador_listo->objetivo_cumplido != ABORTADO) )
@@ -69,7 +87,10 @@ void planificador_rr_es_el_turno_de(t_entrenador *entrenador_listo, int *quamtum
 		if(mapa_decime_si_entrenador_esta_listo_pero_estaba_bloqueado(entrenador_listo) || entrenador_listo->esperando_pokemon == SI)
 		{
 			planificador_rr_volve_a_bloquear_a_entrenador_si_es_necesario(entrenador_listo, quamtum);
-			planificador_rr_dale_nuevo_turno_a_entrenador(entrenador_listo,quamtum);
+			if(!quamtum_se_termino(*quamtum))
+			{
+				planificador_rr_dale_nuevo_turno_a_entrenador(entrenador_listo,quamtum);
+			}
 		}
 		else
 		{
@@ -83,6 +104,7 @@ void planificador_rr_dale_nuevo_turno_a_entrenador(t_entrenador *entrenador_list
 {
 	enviar_mensaje_a_entrenador(entrenador_listo,OTORGAR_TURNO,NULL);
 	char *mensaje_del_entrenador = escuchar_mensaje_entrenador(entrenador_listo, SOLICITUD_DEL_ENTRENADOR);
+	log_info(informe_planificador,mensaje_del_entrenador);
 	switch(tratar_respuesta(mensaje_del_entrenador,entrenador_listo))
 	{
 		case(ENTRENADOR_DESCONECTADO):
@@ -105,16 +127,17 @@ void planificador_rr_dale_nuevo_turno_a_entrenador(t_entrenador *entrenador_list
 				planificador_entrenador_quiere_capturar_pokemon(entrenador_listo, PERMITIR_SI_ES_POSIBLE);
 				if(entrenador_listo->estado == BLOQUEADO)
 				{
-					quamtum_restante = 0;
+					*quamtum_restante = 0;
 					entrenador_listo->esperando_pokemon = SI;
 				}
 				else { quamtum_disminuite(quamtum_restante); }
 			} break;
 		default:
-			{
-				planificador_aborta_entrenador(entrenador_listo);
-				*quamtum_restante = 0;
-			}
+		{
+			planificador_aborta_entrenador(entrenador_listo);
+			*quamtum_restante = 0;
+		};break;
+
 	}
 }
 
@@ -128,10 +151,17 @@ void planificador_rr_volve_a_bloquear_a_entrenador_si_es_necesario(t_entrenador 
 	}
 	else
 	{
-		mapa_cambiale_estado_a_entrenador(entrenador,BLOQUEADO,LISTO);
+		mapa_cambiale_estado_a_entrenador(entrenador,BLOQUEADO,EXECUTE);
 		planificador_push_entrenador_a_bloqueado(entrenador);
-		int cero = 0;
-		quamtum = &cero;
+		*quamtum = 0;
 	}
 
+}
+
+void planificador_rr_cambia_semaforo_si_es_necesario()
+{
+	if(hay_jugadores_online == 0)
+	{
+		sem_post(&semaforo_entrenadores_listos);
+	}
 }

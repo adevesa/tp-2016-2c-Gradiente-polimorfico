@@ -22,6 +22,7 @@ t_entrenador* entrenador_create(int id_proceso, int socket_entrenador)
 	new_entrenador->pokemones_capturados = list_create();
 	new_entrenador->posicion_actual = posicion_create(0,0);
 	new_entrenador->numero_de_ingreso = numero_entrada_al_mapa;
+	new_entrenador->debe_liberar_solicitud = NO;
 	numero_entrada_al_mapa++;
 	return new_entrenador;
 }
@@ -143,10 +144,11 @@ t_dictionary* obtener_info_mapa_pokenest(char *nombreMapa, char *rutaPokedex)
 	ruta_final = obtener_ruta_especifica(ruta_final, "PokeNest", NULL);
 	t_list *lista_directorios = nombre_de_archivos_del_directorio(ruta_final);
 
-	vector_auxiliar_identificadores_pokenest = malloc((list_size(lista_directorios))*sizeof(char));
+	vector_auxiliar_identificadores_pokenest = malloc((list_size(lista_directorios))*sizeof(char) +1);
 
 	foreach_pokenest_modelate(lista_directorios, new_diccionary_pokenest, ruta_final);
 
+	vector_auxiliar_identificadores_pokenest[list_size(lista_directorios)] = -1;
 
 	return new_diccionary_pokenest;
 }

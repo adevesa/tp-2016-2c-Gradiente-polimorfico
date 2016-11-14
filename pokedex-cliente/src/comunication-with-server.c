@@ -233,7 +233,7 @@ int cliente_pedi_escribir_archivo(const char *path, const char *text, size_t siz
 	log_info(log,respuesta_String);
 	free(respuesta_String);
 	pthread_mutex_unlock(&mutex_operaciones);
-	return respuesta;
+	return size;
 }
 
 /*-------------------------------------------RENAME---------------------------------------------------------------*/

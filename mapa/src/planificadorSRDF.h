@@ -26,7 +26,7 @@ void planificador_srdf_organiza_entrenadores();
 void planificador_srdf_es_el_turno_de(t_entrenador *entrenador);
 void planificador_srdf_dale_nuevo_turno_hasta_que_se_bloquee(t_entrenador *entrenador);
 void planificador_srdf_dale_pokemon_si_es_posible(t_entrenador *entrenador);
-
+void planificador_srdf_cambia_semaforo_si_es_necesario();
 /*--------------------------------------------HILOS--------------------------------------------------------*/
 void planificador_srdf_organiza_entrenadores_sin_coordenadas();
 void planificador_srdf_dale_coordenadas_a_todos();

@@ -42,8 +42,9 @@ void ejecutar_mapa(char *nombre, char *rutaPokedex)
 		mapa_mostrate_en_pantalla();
 	}
 
-	mapa_hacete_visible_para_entrenadores();
 	planificador_create_segun_cual_seas();
+	mapa_ejecuta_deadlock();
+	mapa_hacete_visible_para_entrenadores();
 	sem_wait(&semaforo_terminacion);
 }
 
@@ -409,4 +410,5 @@ void mapa_ejecuta_deadlock()
 	log_info(informe_mapa, "Se comienza a ejecutar hilo de deadlock");
 	pthread_attr_destroy(&attr);
 }
+
 

@@ -140,3 +140,11 @@ void entrenador_movete_alternado(int orientacion_x, int orientacion_y)
 		entrenador->paso_anterior->y = 0;
 	}
 }
+
+void entrenador_resetea_ubicacion()
+{
+	free(entrenador->ubicacion);
+	entrenador->ubicacion = ubicacion_create(0,0);
+	free(entrenador->paso_anterior);
+	entrenador->paso_anterior = ubicacion_create(0,0);
+}

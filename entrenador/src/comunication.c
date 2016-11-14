@@ -110,29 +110,34 @@ void solicitar_moverse(t_mapa *mapa,char *coordenadaDestino)
 char* armar_mejor_pokemon_string(t_pokemon *pokemon)
 {
 	char *msg = string_new();
-	int size_name_pokemon = string_length(pokemon->species);
-	char *name_pokemon_Aux = string_repeat(' ',14-size_name_pokemon);
-	char *namber_aux = string_itoa(size_name_pokemon);
-	string_append(&name_pokemon_Aux,namber_aux);
-	free(namber_aux);
-	string_append(&name_pokemon_Aux, pokemon->species);
+		int size_name_pokemon = string_length(pokemon->species);
 
-	string_append(&msg,name_pokemon_Aux);
-	free(name_pokemon_Aux);
+		char *size_name_string = string_itoa(size_name_pokemon);
+		char *name_pokemon_Aux = string_repeat(' ',14-string_length(size_name_string));
 
-	char* level_String = string_itoa(pokemon->level);
-	int size_level = string_length(level_String);
+		string_append(&name_pokemon_Aux,size_name_string);
+		free(size_name_string);
 
-	char* level_aux = string_repeat(' ',6-size_level);
-	string_append(&level_aux, level_String);
+		string_append(&name_pokemon_Aux, pokemon->species);
 
-	string_append(&msg, level_aux);
-	free(level_aux);
-	free(level_String);
+		string_append(&msg,name_pokemon_Aux);
+		free(name_pokemon_Aux);
 
-	/* 14 bytes para saber size nombre del pokemon, N bytes del nombre del pokemon, 6 bytes para el level */
+		char* level_String = string_itoa(pokemon->level);
+		int size_level = string_length(level_String);
 
-	return msg;
+		char* level_aux = string_repeat(' ',6-size_level);
+		string_append(&level_aux, level_String);
+
+		string_append(&msg, level_aux);
+		free(level_aux);
+		free(level_String);
+
+		log_info(info_entrenador,msg);
+
+		/* 14 bytes para saber size nombre del pokemon, N bytes del nombre del pokemon, 6 bytes para el level */
+
+		return msg;
 
 
 }

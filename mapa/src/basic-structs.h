@@ -85,6 +85,7 @@ typedef struct entrenador
 	int estado_anterior; //<-- será 1 = listo, 0 = bloquedo
 	int esperando_pokemon;
 	int numero_de_ingreso;
+	int debe_liberar_solicitud;
 	t_list *pokemones_capturados;
 	sem_t *semaforo_finalizacon;
 }t_entrenador;

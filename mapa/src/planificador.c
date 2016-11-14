@@ -14,7 +14,7 @@ extern pthread_mutex_t mutex_manipular_cola_bloqueados;
 extern pthread_mutex_t mutex_manipular_cola_nuevos;
 extern sem_t semaforo_hay_algun_entrenador_listo;
 extern sem_t semaforo_cola_entrenadores_sin_objetivos;
-
+extern int semaforo_rr_cambiado_por_deadlock;
 int hay_jugadores_online = 0;
 int encolacion_entrenadores_iniciada = NO_INICIADO;
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
@@ -69,20 +69,20 @@ void planificador_push_entrenador_a_bloqueado(t_entrenador *entrenador)
 	pthread_mutex_unlock(&mutex_manipular_cola_bloqueados);
 
 
-	char *mensaje_A_loggear = string_new();
+	/*char *mensaje_A_loggear = string_new();
 	string_append(&mensaje_A_loggear, "PUSH (BLOQUEADO) entrenador identificado con el simbolo ");
 	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
 	log_info(informe_planificador, mensaje_A_loggear);
-	free(mensaje_A_loggear);
+	free(mensaje_A_loggear);*/
 }
 
 void planificador_push_entrenador_a_listo(t_entrenador *entrenador)
 {
-	char *mensaje_A_loggear = string_new();
+	/*char *mensaje_A_loggear = string_new();
 	string_append(&mensaje_A_loggear, "PUSH (LISTO) entrenador identificado con el simbolo ");
 	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
 	log_info(informe_planificador, mensaje_A_loggear);
-	free(mensaje_A_loggear);
+	free(mensaje_A_loggear);*/
 
 	pthread_mutex_lock(&mutex_manipular_cola_listos);
 	queue_push(mapa->entrenadores->cola_entrenadores_listos, entrenador);
@@ -97,11 +97,11 @@ t_entrenador* planificador_pop_entrenador_listo()
 	t_entrenador *entrenador_que_tiene_el_turno = (t_entrenador*) queue_pop(mapa->entrenadores->cola_entrenadores_listos);
 	pthread_mutex_unlock(&mutex_manipular_cola_listos);
 
-	char *mensaje_A_loggear = string_new();
+	/*char *mensaje_A_loggear = string_new();
 	string_append(&mensaje_A_loggear, "POP (LISTO) entrenador identificado con el simbolo ");
 	string_append(&mensaje_A_loggear, entrenador_que_tiene_el_turno->simbolo_identificador);
 	log_info(informe_planificador, mensaje_A_loggear);
-	free(mensaje_A_loggear);
+	free(mensaje_A_loggear);*/
 
 	return entrenador_que_tiene_el_turno;
 }
@@ -112,11 +112,11 @@ t_entrenador* planificador_pop_entrenador_bloqueado()
 	t_entrenador *entrenador = (t_entrenador *) queue_pop(mapa->entrenadores->cola_entrenadores_bloqueados);
 	pthread_mutex_unlock(&mutex_manipular_cola_bloqueados);
 
-	char *mensaje_A_loggear = string_new();
+	/*char *mensaje_A_loggear = string_new();
 	string_append(&mensaje_A_loggear, "POP (BLOQUEADO) entrenador identificado con el simbolo ");
 	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
 	log_info(informe_planificador, mensaje_A_loggear);
-	free(mensaje_A_loggear);
+	free(mensaje_A_loggear);*/
 
 	return entrenador;
 }
@@ -203,11 +203,16 @@ void planificador_entrenador_quiere_capturar_pokemon(t_entrenador *entrenador, i
 
 	planificador_push_entrenador_a_bloqueado(entrenador);
 
+	//deadlock_actualizar_matriz(entrenador->simbolo_identificador,entrenador->pokenest_objetivo,MATRIZ_SOLICITUD,OTORGAR_RECURSO);
+
 	if(permiso == PERMITIR_SI_ES_POSIBLE)
 	{
 		planificador_trata_captura_pokemon(entrenador);
 	}
-	else{};
+	else
+	{
+		deadlock_actualizar_matriz(entrenador->simbolo_identificador,entrenador->pokenest_objetivo,MATRIZ_SOLICITUD,OTORGAR_RECURSO);
+	};
 }
 
 void planificador_trata_captura_pokemon(t_entrenador *entrenador)
@@ -219,6 +224,7 @@ void planificador_trata_captura_pokemon(t_entrenador *entrenador)
 	}
 	else
 	{
+
 		//INICIO LOG
 		char *mensaje_A_loggear = string_new();
 		string_append(&mensaje_A_loggear, "Entrenador identificado por ");
@@ -227,7 +233,7 @@ void planificador_trata_captura_pokemon(t_entrenador *entrenador)
 		log_info(informe_planificador, mensaje_A_loggear);
 		free(mensaje_A_loggear);
 		//FIN LOG
-
+		deadlock_actualizar_matriz(entrenador->simbolo_identificador,entrenador->pokenest_objetivo,MATRIZ_SOLICITUD,OTORGAR_RECURSO);
 	}
 }
 
@@ -236,6 +242,13 @@ void planificador_entrega_pokemon_a(t_entrenador *entrenador)
 	char* pokemon_a_entregar = mapa_dame_pokemon_de_pokenest(entrenador->pokenest_objetivo);
 	enviar_mensaje_a_entrenador(entrenador,OTORGAR_POKEMON, pokemon_a_entregar);
 
+	if(proceso_porId_tiene_solicitudes(entrenador->simbolo_identificador))
+	{
+		deadlock_actualizar_matriz(entrenador->simbolo_identificador,entrenador->pokenest_objetivo,MATRIZ_SOLICITUD,QUITAR_RECURSO);
+	}
+	//deadlock_actualizar_matriz(entrenador->simbolo_identificador,entrenador->pokenest_objetivo,MATRIZ_SOLICITUD,QUITAR_RECURSO);
+	deadlock_actualizar_matriz(entrenador->simbolo_identificador,entrenador->pokenest_objetivo,MATRIZ_ASIGNACION,OTORGAR_RECURSO);
+
 	char* pokemon_aux = string_new();
 	string_append(&pokemon_aux,pokemon_a_entregar);
 	list_add(entrenador->pokemones_capturados, pokemon_aux);
@@ -243,7 +256,8 @@ void planificador_entrega_pokemon_a(t_entrenador *entrenador)
 	char *mensaje_A_loggear = string_new();
 	string_append(&mensaje_A_loggear, "Entrenador identificado por ");
 	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
-	string_append(&mensaje_A_loggear, " recibio RUTA POKEMON");
+	string_append(&mensaje_A_loggear, " recibio ");
+	string_append(&mensaje_A_loggear,pokemon_a_entregar);
 	log_info(informe_planificador, mensaje_A_loggear);
 	free(mensaje_A_loggear);
 	//FIN LOG
@@ -265,11 +279,11 @@ void planificador_desbloqueame_a(t_entrenador *entrenador)
 	mapa_cambiale_estado_a_entrenador(entrenador, EXECUTE, BLOQUEADO);
 
 	//INICIO LOG
-	char *mensaje_A_loggear = string_new();
+	/*char *mensaje_A_loggear = string_new();
 	string_append(&mensaje_A_loggear, "POP (BLOQUEADO) entrenador identificado con el simbolo ");
 	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
 	log_info(informe_planificador, mensaje_A_loggear);
-	free(mensaje_A_loggear);
+	free(mensaje_A_loggear);*/
 	//FIN LOG
 }
 
@@ -336,13 +350,26 @@ void planificador_desbloquea_entrenador_si_es_posible(int cantidad_bloqueados)
 /*---------------------------------------FINALIZADO---------------------------------------------------------*/
 void planificador_aborta_entrenador(t_entrenador *entrenador)
 {
+	char* mensaje_a_log = string_new();
+	string_append(&mensaje_a_log,"SE ABORTA AL ENTRENADOR IDENTIFICADO POR: ");
+	string_append(&mensaje_a_log,entrenador->simbolo_identificador);
+	log_info(informe_planificador, mensaje_a_log);
+	free(mensaje_a_log);
+
+	if(proceso_porId_tiene_solicitudes(entrenador->simbolo_identificador))
+		{
+			deadlock_actualizar_matriz(entrenador->simbolo_identificador,entrenador->pokenest_objetivo,MATRIZ_SOLICITUD,QUITAR_RECURSO);
+		}
 	mapa_cambiale_estado_a_entrenador(entrenador, MUERTO, EXECUTE);
 	entrenador->objetivo_cumplido = ABORTADO; //Ojo
 	server_cerra_cliente(entrenador->socket_entrenador);
 	char *key = string_itoa(entrenador->socket_entrenador);
 	dictionary_put(mapa->entrenadores->lista_entrenadores_finalizados,key, entrenador);
+	dictionary_remove(mapa->diccionario_de_entrenadores,entrenador->simbolo_identificador);
+
 	planificador_extraele_pokemones_a_entrenador(entrenador);
 	mapa_elimina_entrenador_de_pantalla(entrenador);
+	deadlock_elimina_proceso_de_matrices(entrenador->simbolo_identificador);
 }
 
 void planificador_finaliza_entrenador(t_entrenador *entrenador)
@@ -409,7 +436,7 @@ void* planificador_encola_nuevos_entrenadores()
 		{
 			pthread_mutex_lock(&mutex_manipular_cola_nuevos);
 
-			log_info(informe_planificador, "Iniciando la encolación de nuevos entrenadores");
+			//log_info(informe_planificador, "Iniciando la encolación de nuevos entrenadores");
 			foreach(COLA_LISTOS,mapa->entrenadores->lista_entrenadores_a_planificar,planificador_modela_nuevo_entrenador_y_encolalo);
 			if(!hay_jugadores_online)
 			{
@@ -420,22 +447,22 @@ void* planificador_encola_nuevos_entrenadores()
 			list_clean(mapa->entrenadores->lista_entrenadores_a_planificar);
 			pthread_mutex_unlock(&mutex_manipular_cola_nuevos);
 
-			log_info(informe_planificador, "Cola de nuevos vaciada por proceso de encolación");
-			log_info(informe_planificador, "Finalizando la  encolación de entrenadores");
+			//log_info(informe_planificador, "Cola de nuevos vaciada por proceso de encolación");
+			//log_info(informe_planificador, "Finalizando la  encolación de entrenadores");
 		}
 		else
 		{
 			pthread_mutex_lock(&mutex_manipular_cola_nuevos);
 
-			log_info(informe_planificador, "Iniciando la encolación de nuevos entrenadores");
+			//log_info(informe_planificador, "Iniciando la encolación de nuevos entrenadores");
 			foreach(COLA_SIN_OBJETIVOS,mapa->entrenadores->lista_entrenadores_a_planificar,planificador_modela_nuevo_entrenador_y_encolalo);
 			//sem_post(&semaforo_cola_entrenadores_sin_objetivos);
 
 			list_clean(mapa->entrenadores->lista_entrenadores_a_planificar);
 			pthread_mutex_unlock(&mutex_manipular_cola_nuevos);
 
-			log_info(informe_planificador, "Cola de nuevos vaciada por proceso de encolación");
-			log_info(informe_planificador, "Finalizando la  encolación de entrenadores");
+			//log_info(informe_planificador, "Cola de nuevos vaciada por proceso de encolación");
+			//log_info(informe_planificador, "Finalizando la  encolación de entrenadores");
 		}
 	}
 
@@ -455,27 +482,29 @@ void planificador_modela_nuevo_entrenador_y_encolalo(int cola, void *entrenador)
 	if(cola==COLA_LISTOS)
 	{
 		planificador_push_entrenador_a_listo(new_entrenador);
+		deadlock_agregar_nuevo_proceso_a_matrices(new_entrenador->simbolo_identificador);
 
 		//INICIO LOG
-		char *mensaje_A_loggear = string_new();
+		/*char *mensaje_A_loggear = string_new();
 		string_append(&mensaje_A_loggear, "Entrenador conectado por socket ");
 		string_append(&mensaje_A_loggear, string_itoa(new_entrenador->socket_entrenador));
 		string_append(&mensaje_A_loggear, " modelado");
 		log_info(informe_planificador, mensaje_A_loggear);
-		free(mensaje_A_loggear);
+		free(mensaje_A_loggear);*/
 		//FIN LOG
 	}
 	else
 	{
 		planificador_push_entrenador_en_cola_sin_objetivos(new_entrenador);
+		deadlock_agregar_nuevo_proceso_a_matrices(new_entrenador->simbolo_identificador);
 
 		//INICIO LOG
-		char *mensaje_A_loggear = string_new();
+		/*char *mensaje_A_loggear = string_new();
 		string_append(&mensaje_A_loggear, "Entrenador conectado por socket ");
 		string_append(&mensaje_A_loggear, string_itoa(new_entrenador->socket_entrenador));
 		string_append(&mensaje_A_loggear, " modelado");
 		log_info(informe_planificador, mensaje_A_loggear);
-		free(mensaje_A_loggear);
+		free(mensaje_A_loggear);*/
 		//FIN LOG
 	}
 

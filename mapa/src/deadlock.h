@@ -13,6 +13,18 @@
 #include "deadlock-resolucion.h"
 #include "so-commons/collections/dictionary.h"
 
+enum
+{
+	LOG_INICIALIZACION,
+	LOG_PROCESOS_MARCADOS,
+	LOG_VECTOR_T,
+	LOG_DEADLOCK,
+	LOG_RECURSOS_DISPONIBLES,
+	LOG_RECURSOS_TOTALES,
+	LOG_VECTOR_AUXILIAR_POKENEST
+
+};
+
 typedef struct
 {
 	int posicion;
@@ -73,6 +85,10 @@ int* inicializar_recursos_disponibles();
 int** inicializar_matriz_asignacion();
 int** inicializar_matriz_solicitud();
 void iniciar_vectorT();
+void actualizar_vector_recursos_disponibles();
+void limpiar_vector_marcados();
+
+void loggear_informacion(int caso);
 
 /*----------------------------------------------MANIPULACION ESTRUCTURAS-------------------------------------------------*/
 int identificar_numero_fila(char* id_recurso_solicitado);
@@ -89,6 +105,8 @@ int marcar_proceso_si_se_puede_satisfacer();
 void marcar_proceso(int proceso);
 void resolver_deadlock();
 /*----------------------------------------------AUXILIARES--------------------------------------------------------------*/
+int proceso_porId_tiene_solicitudes(char* id_proceso);
+int algun_proceso_tiene_solicitudes();
 int proceso_tiene_solicitudes(int numero_proceso);
 int proceso_puede_satisfacerce(int numero_proceso);
 int* recuperar_vector_proceso(int num_proceso, int matriz);

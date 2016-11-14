@@ -47,4 +47,5 @@ t_perdedor* efectuar_batalla_pokemon_con_el_anterior_perdedor(t_perdedor* anteri
 int pokemones_son_iguales(t_pokemon *pok_1, t_pokemon *pok_2);
 int retornar_perdedor(t_pokemon *perdedor, t_pokemon *pokemon_entrenador_1, t_pokemon *pokemon_entrenador_2);
 void destroy_pokemon(t_pokemon *pokemon);
+void cambiar_semaforos_si_es_necesario();
 #endif /* DEADLOCK_RESOLUCION_H_ */

@@ -45,5 +45,5 @@ void entrenador_ubicate_para_donde_caminar();
 void entrenador_movete_en_eje(int eje, int orientacion);
 void entrenador_camina_hacia_destino(int orientacion_x, int orientacion_y);
 int diferencia_de_posiciones(t_ubicacion *posicion_actual, t_ubicacion *posicion_final);
-
+void entrenador_resetea_ubicacion();
 #endif /* MOVIMIENTO_H_ */

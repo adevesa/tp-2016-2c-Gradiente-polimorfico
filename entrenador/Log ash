@@ -181,3 +181,60 @@
 [INFO] 10:01:00:799 Proceso entrenador/(18197:18197): CONECTADO con mapa1
 [INFO] 10:01:00:799 Proceso entrenador/(18197:18197): COMIENZO AVENTURA en mapa1
 [INFO] 10:01:01:294 Proceso entrenador/(18197:18197): mapa1 me da COORDENADAS de pokenest P
+[INFO] 09:43:48:868 Proceso entrenador/(26117:26117): COMIENZO: 09:43:48:868
+[INFO] 09:43:54:571 Proceso entrenador/(26117:26117): Entrenador creado con EXITO
+[INFO] 09:44:01:29 Proceso entrenador/(26117:26117): COMIENZO del recorrido de la HOJA DE VIAJE
+[INFO] 09:44:06:383 Proceso entrenador/(26117:26117): Mapa actual: mapa1
+[INFO] 09:44:23:350 Proceso entrenador/(26117:26117): CONECTADO con mapa1
+[INFO] 09:44:32:739 Proceso entrenador/(26117:26117): COMIENZO AVENTURA en mapa1
+[INFO] 09:46:01:518 Proceso entrenador/(26323:26323): COMIENZO: 09:46:01:518
+[INFO] 09:46:02:199 Proceso entrenador/(26323:26323): Entrenador creado con EXITO
+[INFO] 09:46:02:199 Proceso entrenador/(26323:26323): COMIENZO del recorrido de la HOJA DE VIAJE
+[INFO] 09:46:02:199 Proceso entrenador/(26323:26323): Mapa actual: mapa1
+[INFO] 09:46:02:199 Proceso entrenador/(26323:26323): CONECTADO con mapa1
+[INFO] 09:46:02:199 Proceso entrenador/(26323:26323): COMIENZO AVENTURA en mapa1
+[INFO] 09:46:02:711 Proceso entrenador/(26323:26323): mapa1 me da COORDENADAS de pokenest P
+[INFO] 09:46:03:211 Proceso entrenador/(26323:26323): Me moví
+[INFO] 09:46:03:713 Proceso entrenador/(26323:26323): Me moví
+[INFO] 09:46:05:717 Proceso entrenador/(26323:26323): Me moví
+[INFO] 09:46:06:217 Proceso entrenador/(26323:26323): Me moví
+[INFO] 09:46:06:719 Proceso entrenador/(26323:26323): Me moví
+[INFO] 09:46:08:724 Proceso entrenador/(26323:26323): Me moví
+[INFO] 09:46:09:225 Proceso entrenador/(26323:26323): Me moví
+[INFO] 09:46:09:726 Proceso entrenador/(26323:26323): Me moví
+[INFO] 09:46:10:728 Proceso entrenador/(26323:26323): Llegué a destino. Pediré CAPTURAR POKEMON
+[INFO] 09:46:10:728 Proceso entrenador/(26323:26323): mapa1 me dice que el pokemon está en: /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu001
+[INFO] 09:46:10:744 Proceso entrenador/(26323:26323): Pokemon copiado a Dir de Bill
+[INFO] 09:46:11:267 Proceso entrenador/(26323:26323): mapa1 me da COORDENADAS de pokenest C
+[INFO] 09:46:11:730 Proceso entrenador/(26323:26323): Me moví
+[INFO] 09:46:12:231 Proceso entrenador/(26323:26323): Me moví
+[INFO] 09:46:12:731 Proceso entrenador/(26323:26323): Me moví
+[INFO] 09:46:13:232 Proceso entrenador/(26323:26323): Me moví
+[INFO] 09:46:13:738 Proceso entrenador/(26323:26323): Me moví
+[INFO] 09:46:14:242 Proceso entrenador/(26323:26323): Me moví
+[INFO] 09:46:14:743 Proceso entrenador/(26323:26323): Me moví
+[INFO] 09:46:15:244 Proceso entrenador/(26323:26323): Me moví
+[INFO] 09:47:13:124 Proceso entrenador/(26482:26482): COMIENZO: 09:47:13:124
+[INFO] 09:47:13:124 Proceso entrenador/(26482:26482): Entrenador creado con EXITO
+[INFO] 09:47:13:124 Proceso entrenador/(26482:26482): COMIENZO del recorrido de la HOJA DE VIAJE
+[INFO] 09:47:13:124 Proceso entrenador/(26482:26482): Mapa actual: mapa1
+[INFO] 09:47:13:124 Proceso entrenador/(26482:26482): CONECTADO con mapa1
+[INFO] 09:47:13:124 Proceso entrenador/(26482:26482): COMIENZO AVENTURA en mapa1
+[INFO] 09:47:14:483 Proceso entrenador/(26482:26482): mapa1 me da COORDENADAS de pokenest P
+[INFO] 09:47:14:983 Proceso entrenador/(26482:26482): Me moví
+[INFO] 09:47:15:485 Proceso entrenador/(26482:26482): Me moví
+[INFO] 09:47:17:487 Proceso entrenador/(26482:26482): Me moví
+[INFO] 09:47:17:988 Proceso entrenador/(26482:26482): Me moví
+[INFO] 09:47:18:489 Proceso entrenador/(26482:26482): Me moví
+[INFO] 09:47:20:493 Proceso entrenador/(26482:26482): Me moví
+[INFO] 09:47:20:994 Proceso entrenador/(26482:26482): Me moví
+[INFO] 09:47:21:495 Proceso entrenador/(26482:26482): Me moví
+[INFO] 09:47:22:497 Proceso entrenador/(26482:26482): Llegué a destino. Pediré CAPTURAR POKEMON
+[INFO] 09:47:22:498 Proceso entrenador/(26482:26482): mapa1 me dice que el pokemon está en: /home/utnso/Pokedex/Mapas/mapa1/PokeNest/pikachu/pikachu001
+[INFO] 09:47:22:513 Proceso entrenador/(26482:26482): Pokemon copiado a Dir de Bill
+[INFO] 09:47:23:35 Proceso entrenador/(26482:26482): mapa1 me da COORDENADAS de pokenest C
+[INFO] 09:47:23:499 Proceso entrenador/(26482:26482): Me moví
+[INFO] 09:47:23:0 Proceso entrenador/(26482:26482): Me moví
+[INFO] 09:47:24:501 Proceso entrenador/(26482:26482): Me moví
+[INFO] 09:47:25:2 Proceso entrenador/(26482:26482): Me moví
+[INFO] 09:47:25:504 Proceso entrenador/(26482:26482): Me moví
