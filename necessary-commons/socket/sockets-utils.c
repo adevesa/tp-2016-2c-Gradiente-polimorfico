@@ -22,6 +22,21 @@ void activar_reutilizacion_de_direcciones(int valorVerdaderoso, int socket)
 	setsockopt(socket,SOL_SOCKET,SO_REUSEADDR, &valorVerdaderoso, sizeof(valorVerdaderoso));
 }
 
+int sendall(int s, char *buf, int *len)
+ {
+        int total = 0;        // cuántos bytes hemos enviado
+        int bytesleft = *len; // cuántos se han quedado pendientes
+        int n;
+        while(total < *len) {
+            n = send(s, buf+total, bytesleft, 0);
+            if (n == -1) { break; }
+            total += n;
+            bytesleft -= n;
+        }
+        *len = total; // devuelve aquí la cantidad enviada en realidad
+        return n==-1?-1:0; // devuelve -1 si hay fallo, 0 en otro caso
+ }
+
 void enviar_mensaje_cantidad_especifica(int socket, void *buffer, int size)
 {
 	int cantidad_total_enviada = 0;
@@ -50,6 +65,25 @@ void enviar_mensaje(int socket, char *msg)
 	send(socket, msg, strlen(msg),0);
 }
 
+
+void* reciveall(int socket_num, int len)
+{
+	int offset = 0;
+	int len_restante = len;
+	int n=0;
+	void* buffer = malloc(len);
+	memset(buffer, 0, len+1); // Limpiamos el buffer
+
+	while(n<len)
+	{
+		n  = recv(socket_num,buffer+offset,len_restante, 0);
+		offset = n;
+		len_restante = len-n;
+	}
+	return buffer;
+}
+
+
 char* recibir_mensaje(int socket,int payloadSize)
 {
 	char *payload = malloc(payloadSize+1);
@@ -71,7 +105,6 @@ char* recibir_mensaje(int socket,int payloadSize)
 
 void* recibir_mensaje_tipo_indistinto(int socket,int payloadsize)
 {
-
 	void *payload = malloc(payloadsize);
 	int bytes_recibidos = 0;
 	bytes_recibidos = recv(socket,payload,payloadsize,0);
@@ -90,4 +123,18 @@ void* recibir_mensaje_tipo_indistinto(int socket,int payloadsize)
 		}
 	}
 	return payload;
+}
+
+void* recibir_mensaje_tipo_indistinto_2(int socket,int payloadsize)
+{
+		void *payload = malloc(payloadsize);
+		int bytes_recibidos = 0;
+		int offset = 0;
+
+		while(bytes_recibidos != payloadsize)
+		{
+			bytes_recibidos = recv(socket,payload+offset,payloadsize,0) + bytes_recibidos;
+			offset = payloadsize-bytes_recibidos;
+		}
+		return payload;
 }

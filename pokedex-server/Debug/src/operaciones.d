@@ -10,7 +10,8 @@ src/operaciones.d: ../src/operaciones.c ../src/operaciones.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/serializacion_pokedex_cliente_servidor.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/../so-commons/string.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/sockets-utils.h \
- /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/server.h
+ /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/server.h \
+ /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/servidor-select.h
 
 ../src/operaciones.h:
 
@@ -45,3 +46,5 @@ src/operaciones.d: ../src/operaciones.c ../src/operaciones.h \
 /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/sockets-utils.h:
 
 /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/server.h:
+
+/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/servidor-select.h:

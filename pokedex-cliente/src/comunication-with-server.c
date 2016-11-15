@@ -7,11 +7,17 @@
 #include "comunication-with-server.h"
 extern t_cliente_osada* cliente_osada;
 
-pthread_mutex_t mutex_operaciones=PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t mutex_operaciones;
+
+#define LOG_ACTIVADO 1
 
 void iniciar_log()
 {
-	log = log_create("Cliente pokedex", "Cliente",0,LOG_LEVEL_DEBUG);
+	if(LOG_ACTIVADO)
+	{
+		log = log_create("Cliente pokedex", "Cliente",0,LOG_LEVEL_DEBUG);
+	}
+
 }
 /*-------------------------------------------CREACION Y CONEXION CON SERVER----------------------------------------------*/
 void cliente_osada_create()
@@ -27,6 +33,7 @@ void cliente_osada_create()
 	//free(puerto);
 
 	cliente_osada->puerto = 5001;
+	pthread_mutex_init(&mutex_operaciones,NULL);
 }
 
 void cliente_osada_conectate()
@@ -38,11 +45,14 @@ void cliente_osada_conectate()
 int cliente_pedi_atributos(const char *path, struct stat *buffer)
 {
 	pthread_mutex_lock(&mutex_operaciones);
-	char *mensaje_A_log = string_new();
-	string_append(&mensaje_A_log,"ATRIBUTOS: ");
-	string_append(&mensaje_A_log,path);
-	log_info(log,mensaje_A_log);
-	free(mensaje_A_log);
+	if(LOG_ACTIVADO)
+	{
+		char *mensaje_A_log = string_new();
+		string_append(&mensaje_A_log,"ATRIBUTOS: ");
+		string_append(&mensaje_A_log,path);
+		log_info(log,mensaje_A_log);
+		free(mensaje_A_log);
+	}
 
 	char *msg = build_msg(GET_ATRIBUTES,path,NULL,NULL,NULL);
 	enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
@@ -54,11 +64,14 @@ int cliente_pedi_atributos(const char *path, struct stat *buffer)
 int cliente_pedi_listado(const char *path, void *buffer, fuse_fill_dir_t filler)
 {
 	pthread_mutex_lock(&mutex_operaciones);
-	char *mensaje_A_log = string_new();
-	string_append(&mensaje_A_log,"LISTAR: ");
-	string_append(&mensaje_A_log,path);
-	log_info(log,mensaje_A_log);
-	free(mensaje_A_log);
+	if(LOG_ACTIVADO)
+	{
+		char *mensaje_A_log = string_new();
+		string_append(&mensaje_A_log,"LISTAR: ");
+		string_append(&mensaje_A_log,path);
+		log_info(log,mensaje_A_log);
+		free(mensaje_A_log);
+	}
 
 	char *msg = build_msg(LISTAR,path,NULL,NULL,NULL);
 	enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
@@ -71,11 +84,15 @@ int cliente_pedi_listado(const char *path, void *buffer, fuse_fill_dir_t filler)
 int cliente_pedi_crear_directorio(const char *path, mode_t modo_de_creacion)
 {
 	pthread_mutex_lock(&mutex_operaciones);
-	char *mensaje_A_log = string_new();
-	string_append(&mensaje_A_log,"CREAR DIRECTORIO: ");
-	string_append(&mensaje_A_log,path);
-	log_info(log,mensaje_A_log);
-	free(mensaje_A_log);
+	if(LOG_ACTIVADO)
+	{
+		char *mensaje_A_log = string_new();
+			string_append(&mensaje_A_log,"CREAR DIRECTORIO: ");
+			string_append(&mensaje_A_log,path);
+			log_info(log,mensaje_A_log);
+			free(mensaje_A_log);
+	}
+
 
 	char *msg = build_msg(CREATE_DIRECTORY,path,NULL,NULL,NULL);
 	enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
@@ -87,11 +104,14 @@ int cliente_pedi_crear_directorio(const char *path, mode_t modo_de_creacion)
 int cliente_pedi_crear_archivo(const char *path, mode_t modo, dev_t permisos)
 {
 	pthread_mutex_lock(&mutex_operaciones);
-	char *mensaje_A_log = string_new();
-	string_append(&mensaje_A_log,"CREAR ARCHIVO: ");
-	string_append(&mensaje_A_log,path);
-	log_info(log,mensaje_A_log);
-	free(mensaje_A_log);
+	if(LOG_ACTIVADO)
+	{
+		char *mensaje_A_log = string_new();
+		string_append(&mensaje_A_log,"CREAR ARCHIVO: ");
+		string_append(&mensaje_A_log,path);
+		log_info(log,mensaje_A_log);
+		free(mensaje_A_log);
+	}
 
 	char *msg = build_msg(CREATE_FILE,path,NULL,NULL,NULL);
 	enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
@@ -108,11 +128,15 @@ int cliente_pedi_eliminar(int tipo,const char *path)
 		case(DIRECTORIO):
 		{
 			pthread_mutex_lock(&mutex_operaciones);
-			char *mensaje_A_log = string_new();
-			string_append(&mensaje_A_log,"ELIMINAR DIRECTORIO: ");
-			string_append(&mensaje_A_log,path);
-			log_info(log,mensaje_A_log);
-			free(mensaje_A_log);
+			if(LOG_ACTIVADO)
+			{
+							char *mensaje_A_log = string_new();
+							string_append(&mensaje_A_log,"ELIMINAR DIRECTORIO: ");
+							string_append(&mensaje_A_log,path);
+							log_info(log,mensaje_A_log);
+							free(mensaje_A_log);
+			}
+
 
 			char *msg = build_msg(DELETE_DIRECTTORY,path,NULL,NULL,NULL);
 			enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
@@ -123,11 +147,15 @@ int cliente_pedi_eliminar(int tipo,const char *path)
 		case(ARCHIVO):
 		{
 			pthread_mutex_lock(&mutex_operaciones);
-			char *mensaje_A_log = string_new();
-			string_append(&mensaje_A_log,"ELIMINAR ARCHIVO: ");
-			string_append(&mensaje_A_log,path);
-			log_info(log,mensaje_A_log);
-			free(mensaje_A_log);
+			if(LOG_ACTIVADO)
+			{
+				char *mensaje_A_log = string_new();
+							string_append(&mensaje_A_log,"ELIMINAR ARCHIVO: ");
+							string_append(&mensaje_A_log,path);
+							log_info(log,mensaje_A_log);
+							free(mensaje_A_log);
+			}
+
 
 			char *msg = build_msg(DELETE_FILE,path,NULL,NULL,NULL);
 			enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
@@ -142,21 +170,22 @@ int cliente_pedi_eliminar(int tipo,const char *path)
 int cliente_pedi_leer_archivo(const char *path, char *buf, size_t size, off_t offset)
 {
 	pthread_mutex_lock(&mutex_operaciones);
-
-	char *mensaje_A_log = string_new();
-	string_append(&mensaje_A_log,"LEER ");
-	char *size_string = string_itoa(size);
-	char *offset_string = string_itoa(offset);
-	string_append(&mensaje_A_log, size_string);
-	string_append(&mensaje_A_log, " BYTES, OFFSET: ");
-	string_append(&mensaje_A_log, offset_string);
-	string_append(&mensaje_A_log, " DEL PATH: ");
-	string_append(&mensaje_A_log,path);
-	log_info(log,mensaje_A_log);
-	free(mensaje_A_log);
-	free(size_string);
-	free(offset_string);
-
+	if(LOG_ACTIVADO)
+	{
+		char *mensaje_A_log = string_new();
+			string_append(&mensaje_A_log,"LEER ");
+			char *size_string = string_itoa(size);
+			char *offset_string = string_itoa(offset);
+			string_append(&mensaje_A_log, size_string);
+			string_append(&mensaje_A_log, " BYTES, OFFSET: ");
+			string_append(&mensaje_A_log, offset_string);
+			string_append(&mensaje_A_log, " DEL PATH: ");
+			string_append(&mensaje_A_log,path);
+			log_info(log,mensaje_A_log);
+			free(mensaje_A_log);
+			free(size_string);
+			free(offset_string);
+	}
 
 	char *msg = build_msg(READ_FILE,path,NULL,size,offset);
 	enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
@@ -169,18 +198,23 @@ int cliente_pedi_leer_archivo(const char *path, char *buf, size_t size, off_t of
 	else
 	{
 		int tamanio = atoi(primer_byte);
+		log_info(log,"AHORA VOY A ESCUCHAR EL MENSAJE!");
+		//void *lectura_final = reciveall(cliente_osada->socket_pokedex_servidor,tamanio);
 		void *lectura_final = recibir_mensaje_tipo_indistinto(cliente_osada->socket_pokedex_servidor,tamanio);
 		memcpy(buf,lectura_final,tamanio);
 		free(lectura_final);
 
+		if(LOG_ACTIVADO)
+		{
+			char *mensaje_A_log_2 = string_new();
+				string_append(&mensaje_A_log_2,"LECTURA COMPLETADA CON: ");
+					string_append(&mensaje_A_log_2,primer_byte);
+					string_append(&mensaje_A_log_2, " LEIDOS");
+					log_info(log,mensaje_A_log_2);
+					free(mensaje_A_log_2);
+					free(primer_byte);
 
-		char *mensaje_A_log_2 = string_new();
-		string_append(&mensaje_A_log_2,"LECTURA COMPLETADA CON: ");
-		string_append(&mensaje_A_log_2,primer_byte);
-		string_append(&mensaje_A_log_2, " LEIDOS");
-		log_info(log,mensaje_A_log_2);
-		free(mensaje_A_log_2);
-		free(primer_byte);
+		}
 
 		pthread_mutex_unlock(&mutex_operaciones);
 		return tamanio;
@@ -190,63 +224,86 @@ int cliente_pedi_leer_archivo(const char *path, char *buf, size_t size, off_t of
 int cliente_pedi_escribir_archivo(const char *path, const char *text, size_t size, off_t offset, struct fuse_file_info *f)
 {
 	pthread_mutex_lock(&mutex_operaciones);
-	/*char *mensaje_A_log = string_new();
-	string_append(&mensaje_A_log,"ESCRIBIR: ");
-	string_append(&mensaje_A_log, text);
-	char *size_string = string_itoa(size);
-	char *offset_string = string_itoa(offset);
-	string_append(&mensaje_A_log, " ,");
-	string_append(&mensaje_A_log, size_string);
-	string_append(&mensaje_A_log, " BYTES, OFFSET: ");
-	string_append(&mensaje_A_log, offset_string);
-	string_append(&mensaje_A_log, " DEL PATH: ");
-	string_append(&mensaje_A_log,path);
-	log_info(log,mensaje_A_log);
-	free(mensaje_A_log);
-	free(size_string);
-	free(offset_string);*/
 
-	//log_info(log,text);
-	//log_info(log, string_itoa(string_length(text)));
+	if(LOG_ACTIVADO)
+	{	char *mensaje_A_log_2 = string_new();
+		string_append(&mensaje_A_log_2,"ESCRIBIR: ");
+			string_append(&mensaje_A_log_2,path);
+			string_append(&mensaje_A_log_2, " CON ");
+			string_append(&mensaje_A_log_2,string_itoa(size));
+			string_append(&mensaje_A_log_2, " OFFSET ");
+			string_append(&mensaje_A_log_2,string_itoa(offset));
+			log_info(log,mensaje_A_log_2);
+			free(mensaje_A_log_2);
+	}
 
-	//char *to_write = malloc(string_length(text));
-	//memcpy(to_write, (char*) text,size);
-	//log_info(log,to_write);
-	//log_info(log, string_itoa(string_length(to_write)));
 
 	char *msg = build_msg(WRITE_FILE,(char*)path,text,size,offset);
-	//free(to_write);
 
-	/*log_info(log,msg);
-	int tamanio_mensaje_final = string_length(msg);
-	char *tamanio_mensaje_final_string = string_itoa(tamanio_mensaje_final);
-	log_info(log, tamanio_mensaje_final_string);
-	free(tamanio_mensaje_final_string);*/
-
-	int tamanio_a_enviar = size+30+2+string_length(path);
-	enviar_mensaje_cantidad_especifica(cliente_osada->socket_pokedex_servidor,msg, tamanio_a_enviar);
+	//int tamanio_a_enviar = size+30+2+string_length(path);
+	int tamanio_a_enviar = 32 +string_length(path);
+	sendall(cliente_osada->socket_pokedex_servidor,msg,&tamanio_a_enviar);
+	//enviar_mensaje_cantidad_especifica(cliente_osada->socket_pokedex_servidor,msg, tamanio_a_enviar);
 	free(msg);
+
+	int tamanio_mensaje = size;
+	sendall(cliente_osada->socket_pokedex_servidor,text,&tamanio_mensaje);
+
+	if(LOG_ACTIVADO)
+	{
+		char *mensaje_A_log_2 = string_new();
+		string_append(&mensaje_A_log_2,"SE ENVIARON: ");
+		string_append(&mensaje_A_log_2,string_itoa(tamanio_mensaje));
+		string_append(&mensaje_A_log_2," BYTES ");
+		log_info(log,mensaje_A_log_2);
+		free(mensaje_A_log_2);
+	}
+
 	int respuesta = escuchar_respuesta_comun(cliente_osada->socket_pokedex_servidor);
 
-	char *respuesta_String = string_itoa(respuesta);
-	string_append(&respuesta_String, " FUE EL RESULTADO DE LA ESCRITURA");
-	log_info(log,respuesta_String);
-	free(respuesta_String);
-	pthread_mutex_unlock(&mutex_operaciones);
-	return size;
+	if(LOG_ACTIVADO)
+	{
+		char *respuesta_String = string_itoa(respuesta);
+			string_append(&respuesta_String, " FUE EL RESULTADO DE LA ESCRITURA");
+			log_info(log,respuesta_String);
+			free(respuesta_String);
+	}
+
+	switch(respuesta)
+	{
+		case(OPERACION_EXITOSA):
+		{
+			pthread_mutex_unlock(&mutex_operaciones);
+			return size;
+		};break;
+		case(NO_EXISTE):
+		{
+			pthread_mutex_unlock(&mutex_operaciones);
+			return 0;
+		}break;
+		case(NO_HAY_ESPACIO):
+		{
+			pthread_mutex_unlock(&mutex_operaciones);
+			return NO_HAY_ESPACIO;
+		};break;
+	}
+
 }
 
 /*-------------------------------------------RENAME---------------------------------------------------------------*/
 int cliente_pedi_renombra_archivo(const char *old_path, const char *new_path)
 {
 	pthread_mutex_lock(&mutex_operaciones);
-	char *mensaje_A_log = string_new();
-	string_append(&mensaje_A_log,"RENOMBRAR: ");
-	string_append(&mensaje_A_log,old_path);
-	string_append(&mensaje_A_log, new_path);
-	log_info(log,mensaje_A_log);
-	free(mensaje_A_log);
+	if(LOG_ACTIVADO)
+	{
+		char *mensaje_A_log = string_new();
+			string_append(&mensaje_A_log,"RENOMBRAR: ");
+			string_append(&mensaje_A_log,old_path);
+			string_append(&mensaje_A_log, new_path);
+			log_info(log,mensaje_A_log);
+			free(mensaje_A_log);
 
+	}
 	char *msg = build_msg(RENAME_FILE,(char*)old_path,(char*)new_path,NULL,NULL);
 	enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
 	int respuesta=escuchar_respuesta_comun(cliente_osada->socket_pokedex_servidor);
@@ -262,11 +319,15 @@ int cliente_pedi_abrir(int tipo,const char *path, struct fuse_file_info *fi)
 		case(ARCHIVO):
 		{
 			pthread_mutex_lock(&mutex_operaciones);
-			char *mensaje_A_log = string_new();
-			string_append(&mensaje_A_log,"ABRIR ARCHIVO: ");
-			string_append(&mensaje_A_log,path);
-			log_info(log,mensaje_A_log);
-			free(mensaje_A_log);
+			if(LOG_ACTIVADO)
+			{
+				char *mensaje_A_log = string_new();
+				string_append(&mensaje_A_log,"ABRIR ARCHIVO: ");
+				string_append(&mensaje_A_log,path);
+				log_info(log,mensaje_A_log);
+				free(mensaje_A_log);
+			}
+
 
 			char *msg = build_msg(OPEN_FILE,path,NULL,NULL,NULL);
 			enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
@@ -279,11 +340,16 @@ int cliente_pedi_abrir(int tipo,const char *path, struct fuse_file_info *fi)
 		case(DIRECTORIO):
 		{
 			pthread_mutex_lock(&mutex_operaciones);
-			char *mensaje_A_log = string_new();
-			string_append(&mensaje_A_log,"ABRIR DIRECTORIO: ");
-			string_append(&mensaje_A_log,path);
-			log_info(log,mensaje_A_log);
-			free(mensaje_A_log);
+			if(LOG_ACTIVADO)
+			{
+				char *mensaje_A_log = string_new();
+							string_append(&mensaje_A_log,"ABRIR DIRECTORIO: ");
+							string_append(&mensaje_A_log,path);
+							log_info(log,mensaje_A_log);
+							free(mensaje_A_log);
+
+			}
+
 
 
 			char *msg = build_msg(OPEN_FILE,path,NULL,NULL,NULL);

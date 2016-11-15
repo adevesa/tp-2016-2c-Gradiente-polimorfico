@@ -8,6 +8,7 @@ C_SRCS += \
 ../socket/serializacion_mapa_entrenador.c \
 ../socket/serializacion_pokedex_cliente_servidor.c \
 ../socket/server.c \
+../socket/servidor-select.c \
 ../socket/sockets-utils.c 
 
 OBJS += \
@@ -15,6 +16,7 @@ OBJS += \
 ./socket/serializacion_mapa_entrenador.o \
 ./socket/serializacion_pokedex_cliente_servidor.o \
 ./socket/server.o \
+./socket/servidor-select.o \
 ./socket/sockets-utils.o 
 
 C_DEPS += \
@@ -22,6 +24,7 @@ C_DEPS += \
 ./socket/serializacion_mapa_entrenador.d \
 ./socket/serializacion_pokedex_cliente_servidor.d \
 ./socket/server.d \
+./socket/servidor-select.d \
 ./socket/sockets-utils.d 
 
 

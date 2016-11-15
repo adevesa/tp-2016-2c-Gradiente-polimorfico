@@ -16,15 +16,18 @@
 #include "osada_generales.h"
 #include "borrados.h"
 #include "comunication.h"
+#include "semaphore.h"
+
+sem_t semaforo_terminacion;
 
 extern t_disco_osada* disco;
 
 int main(int argc, char* argv[])
 {
-	disco = osada_disco_abrite("/home/utnso/workspace/jejox");
-	pokedex_server_conectate();
-	servidor_acepta_clientes();
-
-
+	disco = osada_disco_abrite("/home/utnso/workspace/challenge.bin");
+	sem_init(&semaforo_terminacion,0,0);
+	iniciar_semaforos();
+	ejecutar_servidor();
+	sem_wait(&semaforo_terminacion);
 	return EXIT_SUCCESS;
 }

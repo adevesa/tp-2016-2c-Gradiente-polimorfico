@@ -14,5 +14,4 @@
 
 
 
-
 #endif /* GLOBAL_VARS_H_ */

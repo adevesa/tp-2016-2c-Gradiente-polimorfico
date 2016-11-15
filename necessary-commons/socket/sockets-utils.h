@@ -14,16 +14,18 @@
 #include <sys/socket.h>
 #include <unistd.h>
 #include "string.h"
-
 typedef struct sockaddr_in address_config_in;
 
 address_config_in configurar_address_in(int puerto, char *ip);
 void activar_reutilizacion_de_direcciones(int valorVerdaderoso, int socket);
+
+int sendall(int s, char *buf, int *len);
+void* reciveall(int sokcet, int len);
 
 int seguir_enviado(int socket, void *buffer, int size);
 void enviar_mensaje(int socket, char *mensaje);
 void enviar_mensaje_cantidad_especifica(int socket, void *buffer, int size);
 char* recibir_mensaje(int socket,int payloadSize);
 void* recibir_mensaje_tipo_indistinto(int socket,int payloadsize);
-
+void* recibir_mensaje_tipo_indistinto_2(int socket,int payloadsize);
 #endif /* SOCKETS_UTILS_H_ */

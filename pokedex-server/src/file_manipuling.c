@@ -5,6 +5,7 @@
  *      Author: utnso
  */
 #include "file_manipuling.h"
+extern pthread_mutex_t mutex_operaciones;
 
 /*------------------------------------------CREAR ARCHIVO------------------------------------------------------------------*/
 t_osada_file_free* osada_b_file_create(int tipo,char* path)
@@ -18,6 +19,7 @@ t_osada_file_free* osada_b_file_create(int tipo,char* path)
 	asignar_bloque_inicial_si_es_necesario(archivo->file, tipo);
 	return archivo;
 }
+
 void asignar_bloque_inicial_si_es_necesario(osada_file *file, int tipo)
 {
 	if(tipo == DIRECTORY)
@@ -27,7 +29,8 @@ void asignar_bloque_inicial_si_es_necesario(osada_file *file, int tipo)
 	}
 	else
 	{
-		file->first_block = osada_b_get_a_new_block_init();
+		//file->first_block = osada_b_get_a_new_block_init();
+		file->first_block = FEOF;
 	}
 }
 
@@ -40,7 +43,10 @@ void setear_nombre(char* nombre, osada_file* archivo)
 		archivo->fname[i] = nombre[i];
 		i++;
 	}
-	archivo->fname[size_name] = '\0';
+	if(size_name!=17)
+	{
+		archivo->fname[size_name] = '\0';
+	}
 }
 
 void setear_bloque_padre(osada_file *file, char *path)
@@ -114,6 +120,7 @@ char* obtener_nuevo_path(char* old_path, char* new_name)
 	string_append(&path_padre, new_name);
 	return path_padre;
 }
+
 /*----------------------------------------------OBTENCION DE NUM BLOQUES ARCHIVO-------------------------------------------*/
 t_list* osada_get_blocks_nums_of_this_file(osada_file *file, t_disco_osada *disco)
 {
@@ -121,7 +128,10 @@ t_list* osada_get_blocks_nums_of_this_file(osada_file *file, t_disco_osada *disc
 	osada_block_pointer before_block = file->first_block;
 	osada_block_pointer byte_inicial_tabla_asignaciones = calcular_byte_inicial_absolut(disco->header->allocations_table_offset);
 
-	list_add(list_blocks,&file->first_block);
+	int* primer_bloque = malloc(sizeof(int));
+	*primer_bloque = file->first_block;
+
+	list_add(list_blocks,primer_bloque);
 
 	int hay_mas_para_leer = 1;
 	while(hay_mas_para_leer)
@@ -340,6 +350,7 @@ void* osada_get_file_called(char *path, t_disco_osada *disco)
 	osada_file *file_1 = malloc(sizeof(osada_file));
 	osada_file *file_2 = malloc(sizeof(osada_file));
 
+	pthread_mutex_lock(&mutex_operaciones);
 	while(!archivo_encontrado && index<=1024)
 	{
 		void *two_files = osada_get_blocks_relative_since(TABLA_DE_ARCHIVOS,index,1,disco);
@@ -362,6 +373,7 @@ void* osada_get_file_called(char *path, t_disco_osada *disco)
 		}
 		index++;
 	}
+	pthread_mutex_unlock(&mutex_operaciones);
 	if(archivo_encontrado == 0)
 	{
 		return "NO_EXISTE";
@@ -408,6 +420,7 @@ int verificar_si_es_archivo_buscado(char *path, osada_file *file)
 		return comprobar_igualdad(path, file);
 	}
 }
+
 
 int comprobar_igualdad(char *path, osada_file *file)
 {
@@ -577,16 +590,15 @@ char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_arch
 		}
 }
 
-
-
 /*----------------------------------------------RENAME----------------------------------------------------------------------*/
-
 void osada_b_rename(t_file_osada *file, char* new_path)
 {
 	char *new_nombre = array_last_element(new_path);
 	setear_nombre(new_nombre,file->file);
 	int offset = calcular_desplazamiento_tabla_de_archivos(file->position_in_block);
+	pthread_mutex_lock(&mutex_operaciones);
 	osada_push_middle_block(TABLA_DE_ARCHIVOS,file->block_relative,offset,file->file,disco);
+	pthread_mutex_unlock(&mutex_operaciones);
 	free(new_nombre);
 }
 

@@ -5,6 +5,7 @@
  *      Author: utnso
  */
 #include "operaciones.h"
+extern pthread_mutex_t mutex_operaciones;
 /*-------------------------------------------ATRIBUTOS------------------------------------------------------------------*/
 void* osada_a_get_attributes(char *path)
 {
@@ -58,16 +59,19 @@ void* osada_a_create_file(char *path)
 	{
 		if(!osada_b_check_repeat_name(REGULAR,path))
 		{
+			pthread_mutex_lock(&mutex_operaciones);
 			if(!osada_b_check_is_bitarray_full(disco))
 			{
 				t_osada_file_free *new_file=osada_b_file_create(REGULAR,path);
 				int offset = calcular_desplazamiento_tabla_de_archivos(new_file->position_in_block);
 				osada_push_middle_block(TABLA_DE_ARCHIVOS,new_file->block_relative,offset,new_file->file,disco);
+				pthread_mutex_unlock(&mutex_operaciones);
 				t_file_osada_destroy((t_file_osada*) new_file);
 				return EXITO;
 			}
 			else
 			{
+				pthread_mutex_unlock(&mutex_operaciones);
 				return NO_HAY_ESPACIO;
 			}
 		}
@@ -88,9 +92,11 @@ void* osada_a_create_dir(char *path)
 	{
 		if(!osada_b_check_repeat_name(DIRECTORY,path))
 		{
+			pthread_mutex_lock(&mutex_operaciones);
 			t_osada_file_free *new_file=osada_b_file_create(DIRECTORY,path);
 			int offset = calcular_desplazamiento_tabla_de_archivos(new_file->position_in_block);
 			osada_push_middle_block(TABLA_DE_ARCHIVOS,new_file->block_relative,offset,new_file->file,disco);
+			pthread_mutex_unlock(&mutex_operaciones);
 			t_file_osada_destroy((t_file_osada*) new_file);
 			return EXITO;
 		}
@@ -147,37 +153,51 @@ void* osada_a_read_file(t_to_be_read *to_read)
 		else
 		{
 			read_content *read = malloc(sizeof(read_content));
-			if(size< to_read->size)
+			int tamanio_final = to_read->offset + to_read->size;
+
+			if(size< tamanio_final)
 			{
-				void *contenido = osada_get_data_of_this_file(file_a_leer->file,disco);
-				void *contenido_a_enviar = malloc(size); //size +1
-				memcpy(contenido_a_enviar,contenido + to_read->offset,size);
-				free(contenido);
-				t_file_osada_destroy(file_a_leer);
-				read->contenido = contenido_a_enviar;
-				read->tamanio = size;
-				return read;
+				if(to_read->offset == 0)
+				{
+					pthread_mutex_lock(&mutex_operaciones);
+					void *contenido = osada_get_data_of_this_file(file_a_leer->file,disco);
+					pthread_mutex_unlock(&mutex_operaciones);
+					void *contenido_a_enviar = malloc(size); //size +1
+					memcpy(contenido_a_enviar,contenido,size);
+					free(contenido);
+					t_file_osada_destroy(file_a_leer);
+					read->contenido = contenido_a_enviar;
+					read->tamanio = size;
+					return read;
+				}
+				else
+				{
+					pthread_mutex_lock(&mutex_operaciones);
+					void *contenido = osada_get_data_of_this_file(file_a_leer->file,disco);
+					pthread_mutex_unlock(&mutex_operaciones);
+					void *contenido_a_enviar = malloc(size); //size +1
+					memcpy(contenido_a_enviar,contenido + to_read->offset,(tamanio_final-size));
+					free(contenido);
+					t_file_osada_destroy(file_a_leer);
+					read->contenido = contenido_a_enviar;
+					read->tamanio = tamanio_final - size;
+					return read;
+				}
 			}
 			else
 			{
-				/*void *contenido = osada_b_read_file(file_a_leer->file,disco,to_read);
-				t_file_osada_destroy(file_a_leer);
-				read->contenido = contenido;
-				read->tamanio = to_read->size;
-				return read;*/
-
+				pthread_mutex_lock(&mutex_operaciones);
 				void *contenido = osada_get_data_of_this_file(file_a_leer->file,disco);
-				void *contenido_a_enviar = malloc(to_read->size);
+				pthread_mutex_unlock(&mutex_operaciones);
+				void *contenido_a_enviar = malloc(to_read->size+1);
 				memcpy(contenido_a_enviar,contenido + to_read->offset,to_read->size);
-				//void *contenido_a_enviar = malloc(size+1);
-				//memcpy(contenido_a_enviar,contenido + to_read->offset,size);
+
 				free(contenido);
 				t_file_osada_destroy(file_a_leer);
 				read->contenido = contenido_a_enviar;
 				read->tamanio = to_read->size;
 				return read;
 			}
-
 		}
 	}
 	else
@@ -194,8 +214,15 @@ void* osada_a_write_file(t_to_be_write *to_write)
 		{
 			t_file_osada *file = osada_get_file_called(to_write->path,disco);
 			t_to_be_truncate *truncate = malloc(sizeof(t_to_be_truncate));
+			if(to_write->offset == 0 && file->file->file_size>=0)
+			{
+				truncate->new_size = to_write->size;
+			}
+			else
+			{
+				truncate->new_size = to_write->size + file->file->file_size;
+			}
 			truncate->file = file;
-			truncate->new_size =to_write->size;
 			osada_b_truncate_file(truncate);
 			to_write->file = file;
 			osada_write_file(to_write);
@@ -216,7 +243,6 @@ void* osada_a_write_file(t_to_be_write *to_write)
 }
 
 /*-------------------------------------------RENAME---------------------------------------------------------------------*/
-
 void* osada_a_rename(t_to_be_rename *to_rename)
 {
 	if(osada_check_exist(to_rename->old_path))

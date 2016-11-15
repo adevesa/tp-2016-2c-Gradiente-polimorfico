@@ -32,5 +32,6 @@ char* armar_numero_de_bytes(int size_payload);
 char* armar_header(int header);
 char* armar_lectura_o_escritura(int tipo,char *path, char *text, int size, int offset);
 
+void* recibir_mensaje_escritura(int socket, int payloadsize);
 /*-----------------------------------------SOBRE ERRORES-------------------------------------------------*/
 #endif /* SOCKET_SERIALIZACION_POKEDEX_CLIENTE_SERVIDOR_H_ */

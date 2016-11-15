@@ -37,9 +37,12 @@ void osada_write_file(t_to_be_write* file);
 
 void osada_b_change_size_file(t_file_osada *file,int new_size);
 void osada_b_alter_data_blocks(t_file_osada *file, void *data_new, t_list *bloques);
+void osada_b_alter_data_blocks_since_ultil(t_file_osada *file, void* data_new, t_list* bloques, int start,int end,int byte_init);
+
 int osada_check_space_to_write(t_to_be_write *to_write);
 int calcular_espacio_disponible_ultimo_bloque(osada_file *file);
 
+int ultimo_bloque_escrito(t_file_osada* file);
 /*----------------------------------------------LECTURA-----------------------------------------------------------*/
 
 /*

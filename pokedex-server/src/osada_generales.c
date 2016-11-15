@@ -6,6 +6,7 @@
  */
 
 #include "osada_generales.h"
+pthread_mutex_t mutex_operaciones= PTHREAD_MUTEX_INITIALIZER;
 
 t_disco_osada* osada_disco_abrite(char *ruta)
 {
@@ -17,6 +18,11 @@ t_disco_osada* osada_disco_abrite(char *ruta)
 	disco_new->header = osada_header_create(disco_new->map);
 	disco_new->bitmap = osada_bitmap_create(disco_new);
 	return disco_new;
+}
+
+void iniciar_semaforos()
+{
+	//pthread_mutex_init(&mutex_operaciones,NULL);
 }
 
 /*-------------------------------------------------------CREATES Y RECUPEROS-----------------------------------------------*/
@@ -386,5 +392,10 @@ void file_listado_eliminate(t_file_listado* file)
 	free(file);
 }
 
+void free_list_blocks(void* arg)
+{
+	int* elem = (int*) arg;
+	free(elem);
+}
 
 

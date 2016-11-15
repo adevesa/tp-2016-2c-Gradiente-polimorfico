@@ -9,7 +9,8 @@ src/pokedex-server.d: ../src/pokedex-server.c ../src/osada.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/../so-commons/string.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/sockets-utils.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/server.h \
- ../src/operaciones.h ../src/lectura_escritura.h
+ ../src/operaciones.h ../src/lectura_escritura.h \
+ /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/servidor-select.h
 
 ../src/osada.h:
 
@@ -44,3 +45,5 @@ src/pokedex-server.d: ../src/pokedex-server.c ../src/osada.h \
 ../src/operaciones.h:
 
 ../src/lectura_escritura.h:
+
+/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/servidor-select.h:

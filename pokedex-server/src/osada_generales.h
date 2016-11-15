@@ -9,6 +9,9 @@
 #include "osada.h"
 #include "file_manipuling.h"
 #include "borrados.h"
+#include "pthread.h"
+
+void iniciar_semaforos();
 /*-------------------------------------------------------CREATES Y RECUPEROS-----------------------------------------------*/
 
 /*
@@ -201,4 +204,5 @@ char* crear_ruta(char* hijo, char* path_padre);
 /*---------------------------------------------DESTROYERS----------------------------------------------------------------*/
 void t_file_osada_destroy(t_file_osada *file);
 void file_listado_eliminate(t_file_listado* file);
+void free_list_blocks(void* arg);
 #endif /* OSADA_GENERALES_H_ */

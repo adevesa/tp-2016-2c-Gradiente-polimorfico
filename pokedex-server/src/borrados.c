@@ -5,19 +5,21 @@
  *      Author: utnso
  */
 #include "borrados.h"
+extern pthread_mutex_t mutex_operaciones;
 /*---------------------------------------------DELETE FILE-----------------------------------------------------------------*/
 void osada_delete_this_file(char *path)
 {
 	t_file_osada *a_file = osada_get_file_called(path, disco);
 	t_list *bloques_a_liberar = osada_get_blocks_nums_of_this_file(a_file->file,disco);
-
-	osada_desocupa_n_bits(bloques_a_liberar);
-	list_destroy(bloques_a_liberar);
-
 	osada_change_file_state(a_file->file,DELETED);
 	int offset = calcular_desplazamiento_tabla_de_archivos(a_file->position_in_block);
-	osada_push_middle_block(TABLA_DE_ARCHIVOS,a_file->block_relative,offset,a_file->file,disco);
 
+	pthread_mutex_lock(&mutex_operaciones);
+	osada_desocupa_n_bits(bloques_a_liberar);
+	osada_push_middle_block(TABLA_DE_ARCHIVOS,a_file->block_relative,offset,a_file->file,disco);
+	pthread_mutex_unlock(&mutex_operaciones);
+
+	list_destroy_and_destroy_elements(bloques_a_liberar,free_list_blocks);
 	t_file_osada_destroy(a_file);
 }
 
@@ -107,10 +109,11 @@ void osada_delete_dir_void(char* path)
 {
 	t_osada_file_free* directorio = osada_get_file_called(path, disco);
 	osada_change_file_state(directorio->file, DELETED);
+	pthread_mutex_lock(&mutex_operaciones);
 	osada_push_middle_block(TABLA_DE_ARCHIVOS, directorio->block_relative, calcular_desplazamiento_tabla_de_archivos(directorio->position_in_block),directorio->file, disco);
+	pthread_mutex_unlock(&mutex_operaciones);
 	t_file_osada_destroy(directorio);
 }
-
 
 void osada_borrar_hijos(char* path)
 {

@@ -14,6 +14,7 @@
 #include "osada.h"
 #include "operaciones.h"
 #include "so-commons/string.h"
+#include "socket/servidor-select.h"
 
 #define BYTES_TO_RCV 10
 #define HEADER 2
@@ -22,8 +23,10 @@
 /*---------------------------------CONEXION------------------------------------------*/
 t_server* servidor_pokedex;
 
+void ejecutar_servidor();
 void pokedex_server_conectate();
 //void pokedex_server_acepta_clientes();
+void servidor_osada_crea_nuevo_cliente(int cliente);
 
 void servidor_acepta_clientes();
 void* server_pokedex_atende_cliente(void* socket_cliente);

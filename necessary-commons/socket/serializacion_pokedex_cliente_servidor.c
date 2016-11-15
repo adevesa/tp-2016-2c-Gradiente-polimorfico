@@ -76,13 +76,14 @@ char* build_msg(int header, char *path_original, char *path_new_or_text, int siz
 		case(WRITE_FILE):
 			{
 				char *header = armar_header(WRITE_FILE);
-				char *mensaje = malloc(string_length(path_original) + 30 + size +2);
+				//char *mensaje = malloc(string_length(path_original) + 30 + size +2);
+				char *mensaje = malloc(string_length(path_original) + 30 +2);
 				memcpy(mensaje,header,2);
 
 				char *msg_model = armar_numero_de_bytes(string_length(path_original));
 				string_append(&msg_model,path_original);
 
-				//int tamanio_texto = string_length(path_new_or_text);
+							//int tamanio_texto = string_length(path_new_or_text);
 				char *size_a_escribir = armar_numero_de_bytes(size); //OJO ACA
 				string_append(&msg_model, size_a_escribir);
 				free(size_a_escribir);
@@ -93,11 +94,10 @@ char* build_msg(int header, char *path_original, char *path_new_or_text, int siz
 
 				int offset_interno = 30 + string_length(path_original);
 
-
 				memcpy(mensaje+2,msg_model,offset_interno);
 				free(msg_model);
 
-				memcpy(mensaje +offset_interno+2,path_new_or_text,size);
+				//memcpy(mensaje +offset_interno+2,path_new_or_text,size);
 				return mensaje;
 			};break;
 		case(RENAME_FILE):
@@ -196,3 +196,34 @@ char* armar_lectura_o_escritura(int tipo,char *path, char *text, int size, int o
 }
 
 /*-----------------------------------------RESPUESTAS-------------------------------------------------*/
+void* recibir_mensaje_escritura(int socket, int payloadsize)
+{
+	void *payload = malloc(payloadsize);
+	int bytes_recibidos = 0;
+	bytes_recibidos = recv(socket,payload,payloadsize,0);
+
+	int last_offset  = 0;
+	if(bytes_recibidos<payloadsize)
+	{
+		while(bytes_recibidos<payloadsize)
+		{
+			int tamanio = payloadsize-bytes_recibidos;
+			int offset_anterior = bytes_recibidos;
+			void *pay_aux = malloc(tamanio);
+			bytes_recibidos = recv(socket,pay_aux,tamanio,0) + bytes_recibidos;
+
+			int nuevo_tamanio = bytes_recibidos - offset_anterior;
+			memcpy(payload + offset_anterior,pay_aux,nuevo_tamanio);
+			free(pay_aux);
+			last_offset = bytes_recibidos;
+		}
+	}
+
+	char* feof= malloc(20);
+	int bytes_recibidos_feof = recv(socket, feof,19,0);
+	if(string_equals_ignore_case(feof,"FIN_ESCRITURA_OSADA"))
+	{
+		return payload;
+	}
+
+}

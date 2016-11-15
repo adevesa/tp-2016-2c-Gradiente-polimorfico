@@ -6,7 +6,35 @@
  */
 #include "comunication.h"
 
+extern pthread_mutex_t mutex_operaciones;
+int se_ejecuta = 1;
+
+void loggear_resultado(int resultado)
+{
+	switch(resultado)
+	{
+	case(EXITO): printf("EXITO!\n");break;
+	case(NO_EXISTE): printf("NO EXISTE\n");break;
+	case(EXISTE): printf("EXITO\n");break;
+	case(NO_HAY_ESPACIO): printf("NO HAY ESPACIO\n");break;
+	case(ARGUMENTO_INVALIDO):printf("ARGUMENTO INVALIDO\n");break;
+	}
+}
+
 /*--------------------------------------CONEXION--------------------------------------------------------------*/
+void ejecutar_servidor()
+{
+	pthread_t thread;
+	pthread_attr_t attr;
+
+	pthread_attr_init(&attr);
+	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+
+	pthread_create(&thread,NULL,servidor_acepta_clientes,NULL);
+
+	pthread_attr_destroy(&attr);
+}
+
 void pokedex_server_conectate()
 {
 	//char *ip = getenv("IP");
@@ -21,44 +49,62 @@ void pokedex_server_conectate()
 
 void servidor_acepta_clientes()
 {
-	while(1)
+	pokedex_server_conectate();
+
+	while(se_ejecuta >0)
 	{
 		int cliente = server_acepta_conexion_cliente(servidor_pokedex);
 
 		//COMO ACCEPT ES BLOQUEANTE --> SI ESTÁ EN ESTE PUNTO ES QUE YA HAY UN CLIENTE ONLINE
 		pthread_attr_t attr;
+
 		pthread_t thread;
 
 		pthread_attr_init(&attr);
 		pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
 
-		pthread_create(&thread,&attr,server_pokedex_atende_cliente,(void*)&cliente);
+		pthread_create(&thread,NULL,server_pokedex_atende_cliente,(void*)&cliente);
 
 		pthread_attr_destroy(&attr);
 
 	}
+	pthread_exit(NULL);
+}
+
+void servidor_osada_crea_nuevo_cliente(int cliente)
+{
+		pthread_attr_t attr;
+		pthread_t thread;
+		pthread_attr_init(&attr);
+		pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+
+		pthread_create(&thread,NULL,server_pokedex_atende_cliente,(void*)&cliente);
+
+		pthread_attr_destroy(&attr);
 }
 
 void* server_pokedex_atende_cliente(void* socket_cliente)
 {
-	int *cliente = (int*) socket_cliente;
+	int* conversion= (int*) socket_cliente;
+	int cliente = *conversion;
 	int cliente_esta_conectado = 1;
+	printf("NUEVO CLIENTE SOCKET: %d\n", cliente);
 
 	while(cliente_esta_conectado)
 	{
-		printf("Espero peticion de cliente\n");
-		char *peticion = server_escucha_peticion(*cliente);
+		char *peticion = server_escucha_peticion(cliente);
 		if(string_equals_ignore_case(peticion, "DESCONECTADO"))
 		{
-			printf("Cliente número %d desconectado\n", *cliente);
+			printf("Cliente número %d desconectado\n", cliente);
 			cliente_esta_conectado = 0;
 		}
 		else
 		{
-			tratar_peticion_de(*cliente, peticion);
+			tratar_peticion_de(cliente, peticion);
+			free(peticion);
 		}
 	}
-	server_cerra_cliente(*cliente);
+	server_cerra_cliente(cliente);
 	pthread_exit(NULL);
 }
 
@@ -76,17 +122,22 @@ void tratar_peticion_de(int cliente,char *peticion)
 	{
 		case(LISTAR):
 		{
+			//pthread_mutex_lock(&mutex_operaciones);
 			char *path = recibir_mensaje_especifico(cliente, LISTAR);
-			printf("LISTAR: %s\n",path);
+			printf("CLIENTE %d PIDE LISTAR: %s\n",cliente,path);
 			void* resultado = osada_a_get_list_dir(path);
+
 			if((int) resultado == NO_EXISTE)
 			{
+				loggear_resultado(resultado);
 				enviar_mensaje(cliente,"FFFF");
+				//pthread_mutex_unlock(&mutex_operaciones);
 			}
 			else
 			{
 				char *listado_string = armar_listado((t_list*) resultado);
 				enviar_mensaje(cliente,listado_string);
+				//pthread_mutex_unlock(&mutex_operaciones);
 				free(listado_string);
 			}
 			free(path);
@@ -95,19 +146,24 @@ void tratar_peticion_de(int cliente,char *peticion)
 		};break;
 		case(GET_ATRIBUTES):
 		{
+			//pthread_mutex_lock(&mutex_operaciones);
+			printf("CLIENTE %d PIDE ATRIBUTOS DE: ", cliente);
 			char *path = recibir_mensaje_especifico(cliente, GET_ATRIBUTES);
-			printf("ATRIBUTOS: %s\n",path);
+			printf("%s\n",path);
 			void* respuesta = osada_a_get_attributes(path);
+
 			if((int) respuesta == NO_EXISTE)
 			{
 				enviar_mensaje(cliente,"F");
 				free(path);
+				//pthread_mutex_unlock(&mutex_operaciones);
 			}
 			else
 			{
 				t_attributes_file *file = (t_attributes_file*) respuesta;
 				char *mensj = armar_attributes(file);
 				enviar_mensaje(cliente, mensj);
+				//pthread_mutex_unlock(&mutex_operaciones);
 				free(file);
 				free(path);
 				free(mensj);
@@ -116,58 +172,77 @@ void tratar_peticion_de(int cliente,char *peticion)
 		case(CREATE_FILE):
 		{
 			char *path = recibir_mensaje_especifico(cliente, CREATE_FILE);
-			printf("CREAR: %s\n",path);
+			//pthread_mutex_lock(&mutex_operaciones);
+			printf("CLIENTE %d PIDE CREAR: %s\n",cliente,path);
 			int resultado_operacion = osada_a_create_file(path);
+			loggear_resultado(resultado_operacion);
+			//pthread_mutex_unlock(&mutex_operaciones);
 			responder_solo_resultado(cliente,resultado_operacion);
+
 			free(path);
 		};break;
 		case(CREATE_DIRECTORY):
 		{
 			char *path = recibir_mensaje_especifico(cliente, CREATE_DIRECTORY);
-			printf("CREAR: %s\n",path);
+			//pthread_mutex_lock(&mutex_operaciones);
+			printf("CLIENTE %d PIDE CREAR: %s\n",cliente,path);
 			int resultado_operacion = osada_a_create_dir(path);
+			loggear_resultado(resultado_operacion);
+			//pthread_mutex_unlock(&mutex_operaciones);
 			responder_solo_resultado(cliente,resultado_operacion);
 			free(path);
 		};break;
 		case(DELETE_FILE):
 		{
 			char *path = recibir_mensaje_especifico(cliente, DELETE_FILE);
-			printf("DELETE: %s\n",path);
+			//pthread_mutex_lock(&mutex_operaciones);
+			printf("CLIENTE %d PIDE DELETE: %s\n",cliente,path);
 			int resultado_operacion = osada_a_delete_file(path);
+			loggear_resultado(resultado_operacion);
+			//pthread_mutex_unlock(&mutex_operaciones);
 			responder_solo_resultado(cliente,resultado_operacion);
 			free(path);
 		};break;
 		case(DELETE_DIRECTTORY):
 		{
 			char *path = recibir_mensaje_especifico(cliente, DELETE_DIRECTTORY);
-			printf("DELETE: %s\n",path);
+			//pthread_mutex_lock(&mutex_operaciones);
+			printf("CLIENTE %d PIDE DELETE: %s\n",cliente,path);
 			int resultado_operacion = osada_a_delete_dir(path);
+			loggear_resultado(resultado_operacion);
+			//pthread_mutex_unlock(&mutex_operaciones);
 			responder_solo_resultado(cliente,resultado_operacion);
 			free(path);
 		};break;
 		case(READ_FILE):
 		{
 			t_to_be_read *file_to_read = recibir_mensaje_especifico(cliente, READ_FILE);
-			printf("LEER: %d BYTES OFFSET: %d DE: %s\n", file_to_read->size,file_to_read->offset,file_to_read->path);
+			//pthread_mutex_lock(&mutex_operaciones);
+			printf("CLIENTE %d PIDE LEER: %d BYTES OFFSET: %d DE: %s\n", cliente,file_to_read->size,file_to_read->offset,file_to_read->path);
 			void *result = osada_a_read_file(file_to_read);
+
 			if((int)result == NO_EXISTE || (int) result == ARGUMENTO_INVALIDO)
 			{
 				enviar_mensaje(cliente,"FFFFFFFFFF");
-
+				loggear_resultado(result);
+				//pthread_mutex_unlock(&mutex_operaciones);
 			}
 			else
 			{
 				read_content *resultado = (read_content*) result;
 				printf("LECTURA COMPLETADA: %d BYTES DE: %s\n",resultado->tamanio ,file_to_read->path);
-				void *buffer = malloc(resultado->tamanio + 10);
+				//pthread_mutex_unlock(&mutex_operaciones);
+
 				char *tam = string_itoa(resultado->tamanio);
 				int tamanio_del_archivo = string_length(tam);
 				char *mensaje = string_repeat(' ', 10 -tamanio_del_archivo);
 				string_append(&mensaje,tam);
 				free(tam);
-				memcpy(buffer,mensaje,10);
-				memcpy(buffer+10,resultado->contenido,resultado->tamanio);
-				enviar_mensaje_cantidad_especifica(cliente,buffer,resultado->tamanio +10);
+				enviar_mensaje(cliente,mensaje);
+
+				int tamanio_final = resultado->tamanio;
+				sendall(cliente,resultado->contenido, &tamanio_final);
+				//printf("%d FUERON LOS BYTES ENVIADOS\n",tamanio_final);
 				free(mensaje);
 				free(resultado->contenido);
 				free(resultado);
@@ -177,9 +252,13 @@ void tratar_peticion_de(int cliente,char *peticion)
 		};break;
 		case(WRITE_FILE):
 		{
+			//printf("ESCRIBIR\n");
 			t_to_be_write *file_to_write = recibir_mensaje_especifico(cliente,WRITE_FILE);
-			printf("ESCRIBIR: %s CON: %s  ,SIZE: %d OFFSET: %d\n", file_to_write->path,file_to_write->text,file_to_write->size,file_to_write->offset);
+			//pthread_mutex_lock(&mutex_operaciones);
+			printf("CLIENTE %d PIDE ESCRIBIR: %s ,SIZE: %d OFFSET: %d\n", cliente,file_to_write->path,file_to_write->size,file_to_write->offset);
 			int resultado = osada_a_write_file(file_to_write);
+			loggear_resultado(resultado);
+			//pthread_mutex_unlock(&mutex_operaciones);
 			responder_solo_resultado(cliente,resultado);
 			free(file_to_write->path);
 			free(file_to_write->text);
@@ -187,8 +266,11 @@ void tratar_peticion_de(int cliente,char *peticion)
 		};break;
 		case(RENAME_FILE):
 		{
+			//pthread_mutex_lock(&mutex_operaciones);
 			t_to_be_rename *file_to_rename= recibir_mensaje_especifico(cliente, RENAME_FILE);
 			int resultado_operacion = osada_a_rename(file_to_rename);
+			loggear_resultado(resultado_operacion);
+			//pthread_mutex_unlock(&mutex_operaciones);
 			responder_solo_resultado(cliente,resultado_operacion);
 			free(file_to_rename->new_path);
 			free(file_to_rename->old_path);
@@ -196,12 +278,16 @@ void tratar_peticion_de(int cliente,char *peticion)
 		};break;
 		case(OPEN_FILE):
 		{
+			//pthread_mutex_lock(&mutex_operaciones);
 			char *path = recibir_mensaje_especifico(cliente, OPEN_FILE);
-			printf("ABRIR: %s\n",path);
+			printf("CLIENTE %d PIDE ABRIR: %s\n",cliente,path);
 			int resultado_operacion = osada_a_open_file(path);
 			responder_solo_resultado(cliente,resultado_operacion);
+			//loggear_resultado(resultado_operacion);
+			//pthread_mutex_unlock(&mutex_operaciones);
 			free(path);
 		};break;
+		default:printf ("%s\n",peticion);
 	}
 }
 
@@ -291,7 +377,9 @@ t_to_be_write* escuchar_mensaje_write(int socket)
 
 	char *bytes_of_path = recibir_mensaje(socket,BYTES_TO_RCV);
 	int bytes_path = atoi(bytes_of_path);
+
 	free(bytes_of_path);
+
 	char *path = recibir_mensaje(socket, bytes_path);
 	to_write->path = path;
 
@@ -305,7 +393,9 @@ t_to_be_write* escuchar_mensaje_write(int socket)
 	free(offset_string);
 	to_write->offset = offset;
 
-	char *text = recibir_mensaje_tipo_indistinto(socket,size_to_write);
+
+	void *text = recibir_mensaje_tipo_indistinto(socket,size_to_write);
+	//void* text = reciveall(socket,size_to_write);
 	to_write->text = text;
 
 	return to_write;
