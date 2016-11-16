@@ -19,6 +19,7 @@ void iniciar_log()
 	}
 
 }
+
 /*-------------------------------------------CREACION Y CONEXION CON SERVER----------------------------------------------*/
 void cliente_osada_create()
 {
@@ -97,8 +98,16 @@ int cliente_pedi_crear_directorio(const char *path, mode_t modo_de_creacion)
 	char *msg = build_msg(CREATE_DIRECTORY,path,NULL,NULL,NULL);
 	enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
 	int respuesta = escuchar_respuesta_comun(cliente_osada->socket_pokedex_servidor);
-	pthread_mutex_unlock(&mutex_operaciones);
-	return respuesta;
+	if(respuesta==ARGUMENTO_INVALIDO)
+	{
+		pthread_mutex_unlock(&mutex_operaciones);
+		return -ENAMETOOLONG;
+	}
+	else
+	{
+		pthread_mutex_unlock(&mutex_operaciones);
+		return respuesta;
+	}
 }
 
 int cliente_pedi_crear_archivo(const char *path, mode_t modo, dev_t permisos)
@@ -116,8 +125,16 @@ int cliente_pedi_crear_archivo(const char *path, mode_t modo, dev_t permisos)
 	char *msg = build_msg(CREATE_FILE,path,NULL,NULL,NULL);
 	enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
 	int respuesta = escuchar_respuesta_comun(cliente_osada->socket_pokedex_servidor);
-	pthread_mutex_unlock(&mutex_operaciones);
-	return respuesta;
+	if(respuesta==ARGUMENTO_INVALIDO)
+	{
+		pthread_mutex_unlock(&mutex_operaciones);
+		return -ENAMETOOLONG;
+	}
+	else
+	{
+		pthread_mutex_unlock(&mutex_operaciones);
+		return respuesta;
+	}
 }
 
 /*-------------------------------------------ELMINACION-----------------------------------------------------------------*/
@@ -307,8 +324,16 @@ int cliente_pedi_renombra_archivo(const char *old_path, const char *new_path)
 	char *msg = build_msg(RENAME_FILE,(char*)old_path,(char*)new_path,NULL,NULL);
 	enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
 	int respuesta=escuchar_respuesta_comun(cliente_osada->socket_pokedex_servidor);
-	pthread_mutex_unlock(&mutex_operaciones);
-	return respuesta;
+	if(respuesta==ARGUMENTO_INVALIDO)
+	{
+		pthread_mutex_unlock(&mutex_operaciones);
+		return ENAMETOOLONG;
+	}
+	else
+	{
+		pthread_mutex_unlock(&mutex_operaciones);
+		return respuesta;
+	}
 }
 
 /*-------------------------------------------OPENS & CLOSER--------------------------------------------------------*/
@@ -350,8 +375,6 @@ int cliente_pedi_abrir(int tipo,const char *path, struct fuse_file_info *fi)
 
 			}
 
-
-
 			char *msg = build_msg(OPEN_FILE,path,NULL,NULL,NULL);
 			enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
 			int respuesta=escuchar_respuesta_comun(cliente_osada->socket_pokedex_servidor);
@@ -359,6 +382,35 @@ int cliente_pedi_abrir(int tipo,const char *path, struct fuse_file_info *fi)
 			return respuesta;
 		};break;
 	}
+}
+
+/*-------------------------------------------TRUNCATE----------------------------------------------------------------*/
+int cliente_pedi_truncar(const char* path, off_t size)
+{
+	pthread_mutex_lock(&mutex_operaciones);
+	if(LOG_ACTIVADO)
+	{
+		char *mensaje_to_log = string_new();
+		string_append(&mensaje_to_log, "TRUNCATE: ");
+		string_append(&mensaje_to_log, path);
+		string_append(&mensaje_to_log, " SIZE: ");
+		char *size_string = string_itoa(size);
+		string_append(&mensaje_to_log, size_string);
+		log_info(log,mensaje_to_log);
+		free(mensaje_to_log);
+		free(size_string);
+	}
+	char* msg = build_msg(11,path,NULL,size,NULL);
+	enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
+	int respuesta = escuchar_respuesta_comun(cliente_osada->socket_pokedex_servidor);
+	pthread_mutex_unlock(&mutex_operaciones);
+	return respuesta;
+}
+
+/*-------------------------------------------TIMES---------------------------------------------------------------*/
+int cliente_pedi_times(const char* path, const struct timespec ts[2])
+{
+
 }
 
 /*-------------------------------------------RESPUESTAS DEL SERVER------------------------------------------------*/
@@ -371,7 +423,7 @@ int escuchar_respuesta_comun(int socket_server)
 		case(EXITO): return OPERACION_EXITOSA; break;
 		case(NO_EXISTEE): return NO_EXISTE; break;
 		case(EXISTEE): return EXISTE; break;
-		case(NO_HAY_ESPACIOO): return NO_HAY_ESPACIO;break;
+		case(NO_HAY_ESPACIOO): return -NO_HAY_ESPACIO;break;
 		case(ARGUMENTO_INVALIDOO): return ARGUMENTO_INVALIDO; break;
 	}
 	free(msj);
@@ -418,6 +470,7 @@ void modelar_stat_buff(struct stat *buffer, int tipo, int size)
 				buffer->st_mode = S_IFREG | 0444;
 				buffer->st_nlink = 1;
 				buffer->st_size = size;
+				//buffer->st_mtim
 			}break;
 	}
 

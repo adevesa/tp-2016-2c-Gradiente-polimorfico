@@ -31,4 +31,7 @@ void* osada_a_rename(t_to_be_rename *to_rename);
 
 /*-------------------------------------------OPENS & CLOSER-------------------------------------------------------------*/
 void* osada_a_open_file(char *path);
+
+/*-------------------------------------------TRUNCATE-------------------------------------------------------------------*/
+void* osada_a_truncate_file(char* path, int new_size);
 #endif /* OPERACIONES_H_ */

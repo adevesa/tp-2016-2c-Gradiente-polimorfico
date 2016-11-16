@@ -99,21 +99,19 @@ static int osada_abri_directorio(const char *path, struct fuse_file_info *fi)
 
 static int osada_trucate_file(const char* path, off_t size)
 {
-	char *mensaje_to_log = string_new();
-	string_append(&mensaje_to_log, "TRUNCATE: ");
-	string_append(&mensaje_to_log, path);
-	string_append(&mensaje_to_log, " SIZE: ");
-	char *size_string = string_itoa(size);
-	string_append(&mensaje_to_log, size_string);
-	log_info(log,mensaje_to_log);
-	free(mensaje_to_log);
-	free(size_string);
-	return OPERACION_EXITOSA;
-};
+	int resultado = cliente_pedi_truncar(path,size);
+	return resultado;
+}
 
 static int osada_acces(const char* path, int mask)
 {
 	int resultado = cliente_pedi_abrir(DIRECTORIO,path, NULL);
+	return resultado;
+}
+
+static int osada_time(const char* path, const struct timespec ts[2])
+{
+	int resultado = cliente_pedi_times(path,ts);
 	return resultado;
 }
 /*-------------------------------------------STRUCTS-----------------------------------------------------------------*/
@@ -130,7 +128,8 @@ static struct fuse_operations osada_operations =
 		.rename = osada_renombra_archivo,
 		.open = osada_abri_archivo,
 		.truncate = osada_trucate_file,
-		.access= osada_acces
+		.access= osada_acces,
+		.utime = osada_time
 };
 
 

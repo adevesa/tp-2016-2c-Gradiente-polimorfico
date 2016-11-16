@@ -40,7 +40,7 @@ char* escuchar_mensaje_operaciones_basicas(int socket);
 t_to_be_read* escuchar_mensaje_read(int socket);
 t_to_be_write* escuchar_mensaje_write(int socket);
 t_to_be_rename* escuchar_mensaje_rename(int socket);
-
+t_to_be_truncate* escuchar_mensaje_truncate(int socket);
 /*--------------------------------------RESPUESTAS AL CLIENTE----------------------------------------------------*/
 void responder_solo_resultado(int cliente, int resultado);
 char* armar_attributes(t_attributes_file *attributes);

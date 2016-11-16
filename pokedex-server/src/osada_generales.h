@@ -61,7 +61,7 @@ void* disco_dame_mapping(int size, int file_descriptor);
 
 
 /*----------------------------------------------OBTENCION DE BLOQUES---------------------------------------------------------*/
-
+void* osada_get_table_asig();
 /*
  * @NAME: void* osada_get_blocks_relative_since(int campo, int num_block_init, int num_blocks,t_disco_osada *disco);
  * @DESC: dado un campo (HEADER, BITMAP, TABLA_DE_ARCHIVOS, TABLA_DE_ASIGNACIONES o BLOQUE_DE_DATOS), un num de bloque relativo dentro de DICHO campo
@@ -134,6 +134,7 @@ void osada_push_middle_block(int campo, int numero_block_relative, int offset, v
 void impactar_en_disco_medio_bloque(int byte_inicial,void *bytes, void *map);
 void impactar_en_disco_n_bloques(int byte_inicial, int cantidad_bloques,void *bloques, void *map);
 
+void impactar_en_disco_tabla_asignaciones(char* new_table);
 
 /*----------------------------------------------OBTENCION DE NUM BLOQUE ARCHIVO-----------------------------------------*/
 /*
@@ -194,6 +195,10 @@ void osada_desocupa_bit(t_disco_osada *disco, int num_block);
 void osada_desocupa_n_bits(t_list *bloques_a_liberar);
 
 
+
+t_list* osada_get_blocks_asig(osada_file* file);
+/*---------------------------------------------TIME---------------------------------------------------------------------*/
+void osada_b_actualiza_time(t_file_osada* file);
 
 /*---------------------------------------------AUXILIARES----------------------------------------------------------------*/
 int array_size(char **array); //<-- Se entiende solo con leer el nombre

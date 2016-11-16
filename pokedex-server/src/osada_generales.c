@@ -117,7 +117,77 @@ void impactar_en_disco_n_bloques(int byte_inicial, int cantidad_bloques,void *bl
 	}
 }
 
+void impactar_en_disco_tabla_asignaciones(char* new_table)
+{
+	int tamanio_tabla_asignaciones = calcular_tamanio_tabla_de_asignaciones(disco->header);
+	osada_block_pointer byte_inicial_tabla_asignaciones = calcular_byte_inicial_absolut(disco->header->allocations_table_offset);
+
+	char* mapping = (char*) disco->map;
+	int i;
+	for(i=byte_inicial_tabla_asignaciones;i<tamanio_tabla_asignaciones;i++)
+	{
+		mapping[i]=new_table[i];
+
+	}
+
+}
 /*----------------------------------------------OBTENCION DE BLOQUES-------------------------------------------------*/
+void* osada_get_table_asig()
+{
+	int tamanio_tabla_asignaciones = calcular_tamanio_tabla_de_asignaciones(disco->header);
+	osada_block_pointer byte_inicial_tabla_asignaciones = calcular_byte_inicial_absolut(disco->header->allocations_table_offset);
+
+	void* tabla_de_asignaciones= malloc(tamanio_tabla_asignaciones);
+	memcpy(tabla_de_asignaciones,disco->map+byte_inicial_tabla_asignaciones,tamanio_tabla_asignaciones);
+	return tabla_de_asignaciones;
+}
+
+t_list* osada_get_blocks_asig(osada_file* file)
+{
+	t_list* list_blocks = list_create();
+
+	int* primer_bloque = malloc(sizeof(int));
+	*primer_bloque = file->first_block;
+	list_add(list_blocks,primer_bloque);
+
+	if(*primer_bloque != FEOF)
+	{
+		int* tabla_de_asignaciones = osada_get_table_asig();
+		int hay_mas_para_leer = 1;
+		int before_block = file->first_block;
+		int byte_inicial_tabla_asig = calcular_byte_inicial_absolut(disco->header->allocations_table_offset);
+		//int desplazamiento = byte_inicial_tabla_asig + 4*before_block;
+
+		while(hay_mas_para_leer)
+		{
+			//int *block = osada_get_bytes_start_in(byte_inicial_tabla_asignaciones + 4*before_block,sizeof(int),disco->map);
+			//int *block = malloc(4);
+			//memcpy(block, disco->map + desplazamiento,4);
+			//memcpy(block,tabla_de_asignaciones[before_block],4);
+			int block = tabla_de_asignaciones[before_block];
+			if(block == FEOF)
+			{
+					hay_mas_para_leer=0;
+			}
+			else
+			{
+				int* new_element = malloc(4);
+				*new_element =block;
+				list_add(list_blocks, new_element);
+				before_block = block;
+				//desplazamiento = byte_inicial_tabla_asig + 4*before_block;
+			}
+		}
+		//free(tabla_de_asignaciones);
+		return list_blocks;
+	}
+	else
+	{
+		return list_blocks;
+	}
+
+}
+
 void* osada_get_blocks_relative_since(int campo, int num_block_init, int num_blocks,t_disco_osada *disco)
 {
 	switch(campo)
@@ -334,7 +404,14 @@ int calcular_cantidad_bloques_admin()
 	return disco->header->bitmap_blocks + 1 +1024 + calcular_tamanio_tabla_de_asignaciones(disco->header);
 }
 
-
+/*---------------------------------------------TIME---------------------------------------------------------------------*/
+void osada_b_actualiza_time(t_file_osada* file)
+{
+	time_t ahora = time(NULL);
+	file->file->lastmod = ahora;
+	int offset = calcular_desplazamiento_tabla_de_archivos(file->position_in_block);
+	osada_push_middle_block(TABLA_DE_ARCHIVOS,file->block_relative,offset,file->file,disco);
+}
 /*---------------------------------------------AUXILIARES----------------------------------------------------------------*/
  int array_size(char **array)
 {

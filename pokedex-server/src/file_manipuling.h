@@ -83,7 +83,7 @@ void osada_change_file_state(osada_file *file, osada_file_state new_state);
 void* osada_get_file_called(char *path, t_disco_osada *disco);
 int verificar_si_es_archivo_buscado(char *path, osada_file *file); //<-- Simple delegación de la función anterior
 int comprobar_igualdad(char *path, osada_file *file);
-int verificar_si_nombre_coincide(char *path, char* file_name);
+int verificar_si_nombre_coincide(char *path, unsigned char* file_name);
 int verificar_si_es_raiz(char *path);
 
 int osada_b_check_parents(char *path, osada_file *file);
@@ -128,4 +128,6 @@ void osada_b_rename(t_file_osada *file, char* new_nombre);
 int osada_b_check_name(char* name);
 char* obtener_nuevo_path(char* old_path, char* new_name);
 
+int string_equals_osada_max_lenght(char* name, unsigned char* name_2);
+void limpiar_bloque_de_datos(int n);
 #endif /* FILE_MANIPULING_H_ */

@@ -60,10 +60,13 @@ void* osada_a_create_file(char *path)
 		if(!osada_b_check_repeat_name(REGULAR,path))
 		{
 			pthread_mutex_lock(&mutex_operaciones);
-			if(!osada_b_check_is_bitarray_full(disco))
+			int resultado_array = osada_b_check_is_bitarray_full(disco);
+			pthread_mutex_unlock(&mutex_operaciones);
+			if(!resultado_array)
 			{
 				t_osada_file_free *new_file=osada_b_file_create(REGULAR,path);
 				int offset = calcular_desplazamiento_tabla_de_archivos(new_file->position_in_block);
+				pthread_mutex_lock(&mutex_operaciones);
 				osada_push_middle_block(TABLA_DE_ARCHIVOS,new_file->block_relative,offset,new_file->file,disco);
 				pthread_mutex_unlock(&mutex_operaciones);
 				t_file_osada_destroy((t_file_osada*) new_file);
@@ -71,7 +74,7 @@ void* osada_a_create_file(char *path)
 			}
 			else
 			{
-				pthread_mutex_unlock(&mutex_operaciones);
+				//pthread_mutex_unlock(&mutex_operaciones);
 				return NO_HAY_ESPACIO;
 			}
 		}
@@ -92,13 +95,26 @@ void* osada_a_create_dir(char *path)
 	{
 		if(!osada_b_check_repeat_name(DIRECTORY,path))
 		{
+
 			pthread_mutex_lock(&mutex_operaciones);
-			t_osada_file_free *new_file=osada_b_file_create(DIRECTORY,path);
-			int offset = calcular_desplazamiento_tabla_de_archivos(new_file->position_in_block);
-			osada_push_middle_block(TABLA_DE_ARCHIVOS,new_file->block_relative,offset,new_file->file,disco);
+			int resultado_array = osada_b_check_is_bitarray_full(disco);
 			pthread_mutex_unlock(&mutex_operaciones);
-			t_file_osada_destroy((t_file_osada*) new_file);
-			return EXITO;
+			if(!resultado_array)
+			{
+
+				t_osada_file_free *new_file=osada_b_file_create(DIRECTORY,path);
+				pthread_mutex_lock(&mutex_operaciones);
+				int offset = calcular_desplazamiento_tabla_de_archivos(new_file->position_in_block);
+				osada_push_middle_block(TABLA_DE_ARCHIVOS,new_file->block_relative,offset,new_file->file,disco);
+				pthread_mutex_unlock(&mutex_operaciones);
+				t_file_osada_destroy((t_file_osada*) new_file);
+				return EXITO;
+			}
+			else
+			{
+
+				return NO_HAY_ESPACIO;
+			}
 		}
 		else
 		{
@@ -210,10 +226,13 @@ void* osada_a_write_file(t_to_be_write *to_write)
 {
 	if(osada_check_exist(to_write->path))
 	{
-		if(osada_check_space_to_write(to_write))
+		t_file_osada *file = osada_get_file_called(to_write->path,disco);
+		//if(osada_check_space_to_write(to_write))
+		int new_size_to_truncate = to_write->size + file->file->file_size;
+		if(osada_check_space_to_truncate(NULL,file,new_size_to_truncate))
 		{
-			t_file_osada *file = osada_get_file_called(to_write->path,disco);
 			t_to_be_truncate *truncate = malloc(sizeof(t_to_be_truncate));
+			to_write->size_inmediatamente_anterior = file->file->file_size;
 			if(to_write->offset == 0 && file->file->file_size>=0)
 			{
 				truncate->new_size = to_write->size;
@@ -225,13 +244,29 @@ void* osada_a_write_file(t_to_be_write *to_write)
 			truncate->file = file;
 			osada_b_truncate_file(truncate);
 			to_write->file = file;
-			osada_write_file(to_write);
+			if(to_write->size_inmediatamente_anterior !=0)
+			{
+				if(to_write->size == PAGE_SIZE_MAX && es_multiplo_de(to_write->offset,to_write->size_inmediatamente_anterior) )
+				{
+					osada_write_aux_file(to_write);
+				}
+				else
+				{
+					osada_write_file(to_write);
+				}
+			}
+			else
+			{
+				osada_write_file(to_write);
+			}
+			osada_b_actualiza_time(to_write->file);
 			t_file_osada_destroy(to_write->file);
 			free(truncate);
 			return EXITO;
 		}
 		else
 		{
+			t_file_osada_destroy(to_write->file);
 			return NO_HAY_ESPACIO;
 		}
 	}
@@ -294,3 +329,46 @@ void* osada_a_open_file(char *path)
 	}
 
 }
+
+/*-------------------------------------------TRUNCATE-------------------------------------------------------------------*/
+void* osada_a_truncate_file(char* path, int new_size)
+{
+	if(osada_check_exist(path))
+	{
+		t_file_osada *file = osada_get_file_called(path,disco);
+		if(new_size == 0 && file->file->file_size == 0)
+		{
+			t_file_osada_destroy(file);
+			return EXITO;
+		}
+		else
+		{
+			if(osada_check_space_to_truncate(NULL,file,new_size))
+			{
+				t_to_be_truncate* trunct = malloc(sizeof(t_to_be_truncate));
+				trunct->path=path;
+				trunct->new_size = new_size;
+				trunct->file=file;
+				osada_b_truncate_file(trunct);
+				osada_b_actualiza_time(file);
+				t_file_osada_destroy(file);
+				free(trunct);
+				return EXITO;
+			}
+			else
+			{
+				t_file_osada_destroy(file);
+				return NO_HAY_ESPACIO;
+			}
+		}
+		}
+	else
+	{
+		return NO_EXISTE;
+	}
+
+}
+
+
+
+

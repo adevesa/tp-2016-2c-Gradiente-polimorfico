@@ -20,7 +20,7 @@
 #define LSB_FIRST 5
 #define FEOF -1
 #define RAIZ  65535
-
+#define PAGE_SIZE_MAX 4096
 /*--------------------------------------------------ENUMS-------------------------------------------------------*/
 enum
 {
@@ -111,6 +111,7 @@ typedef struct
 	int offset;
 	char* path;
 	char* text;
+	int size_inmediatamente_anterior;
 	t_file_osada *file;
 }t_to_be_write;
 

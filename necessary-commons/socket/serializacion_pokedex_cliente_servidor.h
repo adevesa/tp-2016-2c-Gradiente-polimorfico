@@ -12,6 +12,7 @@
 
 #define MAX_BYTES_SIZE 1000000
 #define MAX_BYTES_TO_SEND 10
+
 enum
 {
 	LISTAR = 1,
@@ -23,7 +24,8 @@ enum
 	READ_FILE=7,
 	WRITE_FILE=8,
 	RENAME_FILE=9,
-	OPEN_FILE=10
+	OPEN_FILE=10,
+	TRUNCATE_FILEE=11
 };
 
 /*-----------------------------------------PETICIONES----------------------------------------------------*/

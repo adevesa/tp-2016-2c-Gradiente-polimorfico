@@ -122,6 +122,20 @@ char* build_msg(int header, char *path_original, char *path_new_or_text, int siz
 				free(num_bytes_path);
 				return msg;
 			};break;
+		case(11):
+			{
+				char *msg = armar_header(11);
+				char *num_bytes_path = armar_numero_de_bytes(string_length(path_original));
+				string_append(&msg, num_bytes_path);
+				string_append(&msg, path_original);
+
+				char *size_string = armar_numero_de_bytes(size);
+				string_append(&msg,size_string);
+
+				free(num_bytes_path);
+				free(size_string);
+				return msg;
+			}
 	}
 }
 

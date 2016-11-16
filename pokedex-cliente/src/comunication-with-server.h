@@ -39,8 +39,10 @@ int cliente_pedi_escribir_archivo(const char *path, const char *text, size_t siz
 int cliente_pedi_renombra_archivo(const char *old_path, const char *new_path);
 /*-------------------------------------------OPENS & CLOSER--------------------------------------------------------*/
 int cliente_pedi_abrir(int tipo,const char *path, struct fuse_file_info *fi);
-
-
+/*-------------------------------------------TRUNCATE----------------------------------------------------------------*/
+int cliente_pedi_truncar(const char* path, off_t size);
+/*-------------------------------------------TIMES---------------------------------------------------------------*/
+int cliente_pedi_times(const char* path, const struct timespec ts[2]);
 
 int escuchar_respuesta_comun(int socket_server);
 int escuchar_y_modelar_atributos(struct stat *buffer);
