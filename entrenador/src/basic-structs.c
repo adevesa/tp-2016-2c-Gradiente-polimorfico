@@ -19,8 +19,10 @@ t_config* configuracion_metadata_create(char *nombre, char *ruta)
 t_entrenador* entrenador_create(char* nombre, char* ruta)
   {
   	t_entrenador* entrenador_new  = malloc(sizeof(t_entrenador));
-  	entrenador_new->nombre=nombre;
-  	entrenador_new->ruta_pokedex = ruta;
+  	entrenador_new->nombre=malloc(string_length(nombre));
+  	string_append(&entrenador_new->nombre,nombre);
+  	entrenador_new->ruta_pokedex = malloc(string_length(ruta));
+  	string_append(&entrenador_new->ruta_pokedex,ruta);
   	entrenador_new->configuracion = configuracion_metadata_create(nombre,ruta);
   	entrenador_new->directorio_de_bill = obtener_direccion_directorio_de_bill(ruta, nombre);
   	entrenador_new->simbolo= entrenador_simbolo(entrenador_new->configuracion);
@@ -92,6 +94,26 @@ void mapa_element_destroyer(void* arg)
 	char *elemento = (char*) arg;
 	free(elemento);
 }
+
+
+void entrenador_destruite(t_entrenador *entrenador)
+{
+	config_destroy(entrenador->configuracion);
+	free(entrenador->directorio_de_bill);
+	free(entrenador->nombre);
+	free(entrenador->ruta_pokedex);
+	free(entrenador->simbolo);
+	free(entrenador->ubicacion);
+	mapa_destruite(entrenador->mapa_actual);
+	list_clean_and_destroy_elements(entrenador->hoja_de_viaje,hoja_de_viaje_destruite);
+}
+
+void hoja_de_viaje_destruite(void* arg)
+{
+	char* elemento = (char*) arg;
+	free(elemento);
+}
+
 /*--------------------------------------------OBTENCION DE DATOS DEL ENTRENADOR----------------------------------------------------------*/
 char* obtener_direccion_directorio_de_bill(char* ruta_pokedex, char* nombre)
 {
@@ -107,8 +129,10 @@ t_list* entrenador_hoja_de_viaje(t_config* configuracion)
 	char *resultado = config_get_string_value(configuracion, "hojaDeViaje");
 	char **mapas_a_recorrer = mapas_a_Recorrer(resultado);
 	t_list *hoja_de_viaje = foreach_hoja_de_viaje(mapas_a_recorrer);
-	return hoja_de_viaje;
 	free(resultado);
+	array_free_all_2(mapas_a_recorrer);
+	return hoja_de_viaje;
+
 }
 
 char** mapas_a_Recorrer(char *mapas_con_corchetes)
@@ -124,9 +148,12 @@ char** mapas_a_Recorrer(char *mapas_con_corchetes)
 
 	char **por_separado = string_split(aux_sin_corchete_derecho, ",");
 
-	return (por_separado);
+	array_free_all_2(sin_corchete_derecho);
+	array_free_all_2(sin_corchete_izquierdo);
 	free(aux_sin_corchete_derecho);
 	free(aux_sin_corchete_izquierdo);
+
+	return (por_separado);
 }
 
 t_list* foreach_hoja_de_viaje(char **hoja_de_viaje)
@@ -142,7 +169,9 @@ t_list* foreach_hoja_de_viaje(char **hoja_de_viaje)
 	t_list *lista = list_create();
 	for(i=0; i<cantidad_de_elementos_en_hoja;i++)
 	{
-		list_add(lista, hoja_de_viaje[i]);
+		char* elemento = string_new();
+		string_append(&elemento,hoja_de_viaje[i]);
+		list_add(lista, elemento);
 	}
 	return lista;
 }
@@ -157,6 +186,9 @@ t_list* asociar_objetivos_por_mapa(char *nombre_mapa, t_entrenador *entrenador)
 	char *objetivos = config_get_string_value(entrenador->configuracion, objetivo_especifico);
 	char **objetivos_por_separado = mapas_a_Recorrer(objetivos);
 	t_list *lista = foreach_hoja_de_viaje(objetivos_por_separado);
+	array_free_all_2(objetivos_por_separado);
+	free(objetivos);
+	free(objetivo_especifico);
 	return lista;
 }
 
@@ -169,7 +201,6 @@ int entrenador_vidas(t_config* configuracion)
 {
 	return(config_get_int_value(configuracion, "vidas"));
 }
-
 
 char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_archivo, char *sub_directorio_o_nombre_archivo)
 {
@@ -188,4 +219,15 @@ char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_arch
 			string_trim_left(&ruta);
 			return ruta;
 		}
+}
+
+void array_free_all_2(char **array)
+{
+	int i =0;
+	while(array[i] != NULL)
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
 }

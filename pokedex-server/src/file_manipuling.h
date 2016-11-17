@@ -67,7 +67,7 @@ int verify_file_state(int state,osada_file *file);
  */
 void osada_change_file_state(osada_file *file, osada_file_state new_state);
 
-
+int osada_check_is_table_asig_is_full();
 /*----------------------------------------------OBTENCION DE UN ARCHIVO ESPECIFICO---------------------------------------*/
 
 
@@ -106,7 +106,7 @@ char* path_first_reference(char *path);
 int osada_check_exist(char *path);
 int verificar_existencia(char *file_or_directory, uint16_t dad_block); //<-- La usa la función anterior
 int revisar_resultado(int result);//<-- La usa la función anterior
-
+int existe_posta(void* result);
 
 /*
  * @NAME: int calcular_posicion_en_tabla_de_archivos(int num_block, int position);
@@ -130,4 +130,6 @@ char* obtener_nuevo_path(char* old_path, char* new_name);
 
 int string_equals_osada_max_lenght(char* name, unsigned char* name_2);
 void limpiar_bloque_de_datos(int n);
+
+int verify_correct_file(osada_file *file);
 #endif /* FILE_MANIPULING_H_ */

@@ -13,7 +13,11 @@
 
 void iniciar_semaforos();
 /*-------------------------------------------------------CREATES Y RECUPEROS-----------------------------------------------*/
+int osada_hay_espacio_para_archivos();
+void osada_aumenta_cantidad_de_archivos();
+void osada_disminui_cantidad_de_archivos();
 
+int disco_recupera_cantidad_Archivos();
 /*
  * @NAME:t_disco_osada* osada_disco_abrite(char *ruta)
  * @DESC: dada una ruta que lleva a un DISCO formateado con filesystem OSADA, devuelve una estructura de tipo

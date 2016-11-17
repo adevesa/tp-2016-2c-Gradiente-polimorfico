@@ -26,6 +26,37 @@ void iniciar_semaforos()
 }
 
 /*-------------------------------------------------------CREATES Y RECUPEROS-----------------------------------------------*/
+int disco_recupera_cantidad_Archivos()
+{
+	osada_file *file_1 = malloc(sizeof(osada_file));
+	osada_file *file_2 = malloc(sizeof(osada_file));
+
+	int count = 0;
+	t_osada_file_free *a_file_free = malloc(sizeof(t_osada_file_free));
+	int index = 1;
+	while( index<=2048)
+	{
+		void *two_files = osada_get_blocks_relative_since(TABLA_DE_ARCHIVOS,index,1,disco);
+		memcpy(file_1,two_files, sizeof(osada_file));
+		memcpy(file_2,two_files + sizeof(osada_file), sizeof(osada_file));
+		if(verify_file_state(DELETED,file_1))
+				{
+						count++;
+				}
+		if(verify_file_state(DELETED,file_2))
+			{
+						count++;
+			}
+
+			free(two_files);
+		index++;
+	}
+	free(a_file_free);
+	free(file_1);
+	free(file_2);
+	return count;
+}
+
 int disco_dame_tu_descriptor(char *ruta)
 {
 	int file_descriptor = open(ruta,O_RDWR);
@@ -63,6 +94,32 @@ t_bitarray* osada_bitmap_create(t_disco_osada *disco)
 }
 
 /*----------------------------------------------IMPACTAR CAMBIOS EN DISCO-------------------------------------------------*/
+int osada_hay_espacio_para_archivos()
+{
+	if(disco->cantidad_archivos_libres>0)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+void osada_aumenta_cantidad_de_archivos()
+{
+	pthread_mutex_lock(&mutex_operaciones);
+	disco->cantidad_archivos_libres = disco->cantidad_archivos_libres +1;
+	pthread_mutex_unlock(&mutex_operaciones);
+}
+
+void osada_disminui_cantidad_de_archivos()
+{
+	pthread_mutex_lock(&mutex_operaciones);
+	disco->cantidad_archivos_libres = disco->cantidad_archivos_libres -1;
+	pthread_mutex_unlock(&mutex_operaciones);
+}
+
 void osada_push_middle_block(int campo, int numero_block_relative, int offset, void *bloque, t_disco_osada *disco)
 {
 	int byte_inicial = calcular_byte_inicial_relative(campo,numero_block_relative,disco->header);
@@ -433,6 +490,7 @@ void array_free_all(char **array)
 		free(array[i]);
 		i++;
 	}
+	free(array);
 }
 
 char* array_last_element(char* path)
@@ -440,7 +498,8 @@ char* array_last_element(char* path)
 	char **file_for_file = string_split(path, "/");
 	int size = array_size(file_for_file);
 	char *nombre = string_new();
-	string_append(&nombre,file_for_file[size - 1]);
+	char* ultimo_elemento = file_for_file[size - 1];
+	string_append(&nombre,ultimo_elemento);
 	array_free_all(file_for_file);
  	return nombre;
 }
@@ -464,8 +523,12 @@ void t_file_osada_destroy(t_file_osada *file)
 
 void file_listado_eliminate(t_file_listado* file)
 {
-	free(file->file->file);
-	free(file->file);
+	//free(file->file->path);
+	//free(file->file->file);
+	//free(file->file);
+	//free(file->nombre_del_archivo);
+	//free(file->tamanio);
+	free(file->path);
 	free(file);
 }
 

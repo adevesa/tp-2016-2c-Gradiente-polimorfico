@@ -298,10 +298,10 @@ int cliente_pedi_escribir_archivo(const char *path, const char *text, size_t siz
 			pthread_mutex_unlock(&mutex_operaciones);
 			return 0;
 		}break;
-		case(NO_HAY_ESPACIO):
+		case(-NO_HAY_ESPACIO):
 		{
 			pthread_mutex_unlock(&mutex_operaciones);
-			return NO_HAY_ESPACIO;
+			return -NO_HAY_ESPACIO;
 		};break;
 	}
 

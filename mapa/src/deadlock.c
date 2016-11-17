@@ -190,7 +190,9 @@ void loggear_vector_asignacion_proceso(char* id_proceso ,int proceso)
 	string_append(&mensaje_a_log,"VECTOR ASIGNACIÓN PROCESO ");
 	string_append(&mensaje_a_log, id_proceso);
 	string_append(&mensaje_a_log," ID ");
-	string_append(&mensaje_a_log, string_itoa(proceso));
+	char* proceso_string = string_itoa(proceso);
+	string_append(&mensaje_a_log, proceso_string);
+	free(proceso_string);
 	string_append(&mensaje_a_log," : ");
 	int tamanio = dictionary_size(mapa->pokeNests);
 	int i;
@@ -212,7 +214,9 @@ void loggear_vector_solicitudes_proceso(char* id_proceso ,int proceso)
 		string_append(&mensaje_a_log,"VECTOR SOLICITUDES PROCESO ");
 		string_append(&mensaje_a_log, id_proceso);
 		string_append(&mensaje_a_log," ID ");
-		string_append(&mensaje_a_log, string_itoa(proceso));
+		char* proceso_String = string_itoa(proceso);
+		string_append(&mensaje_a_log, proceso_String);
+		free(proceso_String);
 
 		string_append(&mensaje_a_log," : ");
 		int tamanio = dictionary_size(mapa->pokeNests);
@@ -365,7 +369,9 @@ void deadlock_agregar_nuevo_proceso_a_matrices(char* id_proceso)
 	string_append(&mensaje_a_log,"SE AGREGA A LAS MATRICES AL PROCESO IDENTIFICADO POR: ");
 	string_append(&mensaje_a_log, id_proceso);
 	string_append(&mensaje_a_log," Y SU NUMERO DE ID ES: ");
-	string_append(&mensaje_a_log, string_itoa(indice_posicion_proceso));
+	char* proceso_string = string_itoa(indice_posicion_proceso);
+	string_append(&mensaje_a_log,proceso_string );
+	free(proceso_string);
 	log_info(logger,mensaje_a_log);
 	free(mensaje_a_log);
 
@@ -432,7 +438,9 @@ void deadlock_actualizar_matriz(char* id_proceso, char* id_recurso, int matriz,i
 			string_append(&mensaje_a_log,"Proceso idedentificado por ");
 			string_append(&mensaje_a_log, id_proceso);
 			string_append(&mensaje_a_log," y por ID ");
-			string_append(&mensaje_a_log, string_itoa(proceso->posicion));
+			char* proceso_string = string_itoa(proceso->posicion);
+			string_append(&mensaje_a_log, proceso_string);
+			free(proceso_string);
 			if(tipo_actualizacion==OTORGAR_RECURSO)
 			{
 				string_append(&mensaje_a_log,"  se le dá recurso: ");
@@ -454,7 +462,9 @@ void deadlock_actualizar_matriz(char* id_proceso, char* id_recurso, int matriz,i
 			string_append(&mensaje_a_log,"Proceso idedentificado por ");
 			string_append(&mensaje_a_log, id_proceso);
 			string_append(&mensaje_a_log," y por ID ");
-			string_append(&mensaje_a_log, string_itoa(proceso->posicion));
+			char* proceso_string = string_itoa(proceso->posicion);
+			string_append(&mensaje_a_log, proceso_string);
+			free(proceso_string);
 			string_append(&mensaje_a_log,"  está solicitando: ");
 			string_append(&mensaje_a_log, id_recurso);
 			log_info(logger,mensaje_a_log);
@@ -633,7 +643,7 @@ void deadlock_revisa()
 			pthread_mutex_lock(&mutex_operaciones_deadlock);
 			if(cantidad_columnas_ocupadas>0 && cantidad_procesos>0 && cantidad_procesos !=1)
 			{
-					usleep(2000*1000);
+					//usleep(2000*1000);
 					int se_encontro_proceso = marcar_proceso_si_se_puede_satisfacer();
 
 					pthread_mutex_unlock(&mutex_operaciones_deadlock);
@@ -660,7 +670,7 @@ void deadlock_revisa()
 					}
 					else
 					{
-						se_sigue_ejecutando = 1;
+						se_sigue_ejecutando = 0;
 					}
 
 			}
@@ -685,25 +695,25 @@ void marcar_procesos_que_no_tienen_recursos_asignados()
 		{
 			if(!proceso_tiene_recursos_asignados(i))
 			{
-				char* log = string_new();
+				/*char* log = string_new();
 				string_append(&log,"No tiene recursos asignados el proceso: ");
 				string_append(&log, string_itoa(i));
 				log_info(logger,log);
-				free(log);
+				free(log);*/
 				if(!proceso_esta_marcado(i))
 				{
-					char* log = string_new();
+					/*char* log = string_new();
 					string_append(&log,"No está marcado el proceso: ");
 					string_append(&log, string_itoa(i));
 					log_info(logger,log);
-					free(log);
+					free(log);*/
 					if(proceso_tiene_solicitudes(i))
 					{
-						char* log = string_new();
+						/*char* log = string_new();
 						string_append(&log,"Se marca al proceso: ");
 						string_append(&log, string_itoa(i));
 						log_info(logger,log);
-						free(log);
+						free(log);*/
 						marcar_proceso(i);
 					}
 				}

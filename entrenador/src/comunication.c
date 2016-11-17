@@ -240,4 +240,5 @@ void array_free_all(char **array)
 		free(array[i]);
 		i++;
 	}
+	free(array);
 }

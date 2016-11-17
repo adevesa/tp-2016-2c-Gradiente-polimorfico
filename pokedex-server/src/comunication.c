@@ -44,6 +44,7 @@ void pokedex_server_conectate()
 	char *ip = string_new();
 	string_append(&ip,"127.0.0.1");
 	servidor_pokedex = server_create(5001, ip, 1500);
+	free(ip);
 	server_escucha(servidor_pokedex);
 }
 
@@ -97,6 +98,7 @@ void* server_pokedex_atende_cliente(void* socket_cliente)
 		{
 			printf("Cliente número %d desconectado\n", cliente);
 			cliente_esta_conectado = 0;
+			free(peticion);
 		}
 		else
 		{
@@ -110,6 +112,7 @@ void* server_pokedex_atende_cliente(void* socket_cliente)
 
 char* server_escucha_peticion(int cliente)
 {
+
 	char *peticion = recibir_mensaje(cliente,HEADER);
 	return peticion;
 }
@@ -134,12 +137,12 @@ void tratar_peticion_de(int cliente,char *peticion)
 			else
 			{
 				char *listado_string = armar_listado((t_list*) resultado);
-				enviar_mensaje(cliente,listado_string);
+				//enviar_mensaje(cliente,listado_string);
+				enviar_mensaje_cantidad_especifica(cliente, listado_string,string_length(listado_string));
 				free(listado_string);
+				list_destroy_and_destroy_elements(resultado,file_listado_eliminate);
 			}
 			free(path);
-			list_destroy_and_destroy_elements(resultado,file_listado_eliminate);
-
 		};break;
 		case(GET_ATRIBUTES):
 		{
@@ -178,7 +181,7 @@ void tratar_peticion_de(int cliente,char *peticion)
 			char *path = recibir_mensaje_especifico(cliente, CREATE_DIRECTORY);
 			printf("CLIENTE %d PIDE CREAR DIR: %s\n",cliente,path);
 			int resultado_operacion = osada_a_create_dir(path);
-			printf("TERMINE DE CREAR\n");
+			//printf("TERMINE DE CREAR\n");
 			loggear_resultado(resultado_operacion);
 			responder_solo_resultado(cliente,resultado_operacion);
 			free(path);
@@ -345,6 +348,7 @@ t_to_be_read* escuchar_mensaje_read(int socket)
 	char *bytes_of_path = recibir_mensaje(socket,BYTES_TO_RCV);
 	int bytes_path = atoi(bytes_of_path);
 	free(bytes_of_path);
+
 	char *path = recibir_mensaje(socket, bytes_path);
 	to_read->path = path;
 
@@ -478,6 +482,15 @@ char* armar_listado(t_list *listado)
 void modelar_cantidad_elementos_listado(char* buffer, int size)
 {
 	char *size_string = string_itoa(size);
+	/*int tamanio_del_size_string = string_length(size_string);
+
+	char* reespuesta = string_repeat(' ',4-tamanio_del_size_string);
+	string_append(&reespuesta, size_string);
+
+	free(size_string);
+	string_append(&buffer,reespuesta);
+	free(reespuesta);*/
+
 	if(size < 10)
 	{
 		char* repeat = string_repeat(' ',3);
@@ -522,11 +535,16 @@ char* modelar_elementos_en_listado(t_list *listado, int size)
 	while(i<size)
 	{
 		t_file_listado *file = list_get(listado,i);
-		int tamanio_nombre = string_length((char*)file->file->file->fname);
+		char* last_element = array_last_element(file->path);
+
+		//int tamanio_nombre = string_length((char*)file->file->file->fname);
+		int tamanio_nombre = string_length(last_element);
 		char *size_name=modelar_tamanio_nombre(tamanio_nombre);
 		string_append(&resultado,size_name);
 		free(size_name);
-		string_append(&resultado, (char*) file->file->file->fname);
+		//string_append(&resultado, (char*) file->file->file->fname);
+		string_append(&resultado,last_element);
+		free(last_element);
 		i++;
 	}
 	return resultado;
@@ -534,7 +552,13 @@ char* modelar_elementos_en_listado(t_list *listado, int size)
 
 char* modelar_tamanio_nombre(int size)
 {
+	//char* size_string = string_itoa(size);
+	/*int tamanio_del_size_String = string_length(size_string);
 
+	char* resultado  = string_repeat(' ', 10-tamanio_del_size_String);
+	string_append(&resultado, size_string);
+	free(size_string);
+	return resultado;*/
 	if(size < 10)
 	{
 		char *repeat=string_repeat(' ',1);

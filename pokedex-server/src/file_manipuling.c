@@ -107,13 +107,15 @@ int osada_b_check_repeat_name(int tipo,char* path)
 			while(!esta_repetido && i<size)
 			{
 				t_file_listado *file = list_get(hijos,i);
-				if(string_equals_ignore_case((char*)file->file->file->fname, new_hijo))
+				char* nombre_fijo = array_last_element(file->path);
+				if(string_equals_ignore_case(nombre_fijo, new_hijo))
 				{
-					if(verify_file_state(tipo, file->file->file))
+					if(tipo==file->tipo)
 					{
 						esta_repetido = 1;
 					}
 				}
+				free(nombre_fijo);
 				i++;
 			}
 
@@ -152,6 +154,7 @@ t_list* osada_get_blocks_nums_of_this_file(osada_file *file, t_disco_osada *disc
 		if(*block == FEOF)
 		{
 			hay_mas_para_leer=0;
+			free(block);
 		}
 		else
 		{
@@ -206,9 +209,62 @@ t_osada_file_free* osada_file_table_get_space_free(t_disco_osada *disco)
 	return a_file_free;
 }
 
+int osada_check_is_table_asig_is_full()
+{
+		osada_file *file_1 = malloc(sizeof(osada_file));
+		osada_file *file_2 = malloc(sizeof(osada_file));
+
+		int file_free = 0;
+		t_osada_file_free *a_file_free = malloc(sizeof(t_osada_file_free));
+
+		int index = 1;
+		while(!file_free && index<=2048)
+		{
+			void *two_files = osada_get_blocks_relative_since(TABLA_DE_ARCHIVOS,index,1,disco);
+			memcpy(file_1,two_files, sizeof(osada_file));
+			memcpy(file_2,two_files + sizeof(osada_file), sizeof(osada_file));
+			if(verify_file_state(DELETED,file_1))
+			{
+					file_free = 1;
+			}
+			else
+			{
+				if(verify_file_state(DELETED,file_2))
+				{
+					file_free = 1;
+				}
+			}
+			free(two_files);
+			index++;
+		}
+		free(a_file_free);
+		free(file_1);
+		free(file_2);
+		if(file_free==0)
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+}
+
 int verify_file_state(int state,osada_file *file)
 {
 	if(file->state == state)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+int verify_correct_file(osada_file *file)
+{
+	if(file->state == REGULAR || file->state==DIRECTORY || file->state==DELETED)
 	{
 		return 1;
 	}
@@ -259,7 +315,7 @@ int verificar_existencia(char *file_or_directory, uint16_t dad_block)
 
 	t_file_osada *file = (t_file_osada *) result;
 
-	if(string_equals_ignore_case((char*) result, "NO_EXISTE") || verify_file_state(DELETED,file->file))
+	if(!existe_posta(result))
 	{
 		return -1;
 	}
@@ -271,8 +327,9 @@ int verificar_existencia(char *file_or_directory, uint16_t dad_block)
 		if(dad_block == RAIZ)
 		{
 			satisfy = calcular_posicion_en_tabla_de_archivos(file->block_relative,file->position_in_block);
-			free(file->file);
-			free(file);
+			/*free(file->file);
+			free(file);*/
+			t_file_osada_destroy(file);
 			return satisfy;
 		}
 		else
@@ -280,18 +337,46 @@ int verificar_existencia(char *file_or_directory, uint16_t dad_block)
 			if(file->file->parent_directory == dad_block)
 			{
 				satisfy = calcular_posicion_en_tabla_de_archivos(file->block_relative, file->position_in_block);
-				free(file->file);
-				free(file);
+				t_file_osada_destroy(file);
+				/*free(file->file);
+				free(file);*/
 				return satisfy;
 			}
 			else
 			{
-				free(file->file);
-				free(file);
+				t_file_osada_destroy(file);
+				/*free(file->file);
+				free(file);*/
 				return -1;
 			}
 		}
 
+	}
+}
+
+int existe_posta(void* result)
+{
+
+	t_file_osada *file = (t_file_osada *) result;
+
+	if(!string_equals_ignore_case((char*) result, "NO_EXISTE"))
+	{
+		if(verify_file_state(DELETED,file->file))
+		{
+			t_file_osada_destroy(file);
+			return 0;
+		}
+		else
+		{
+			//t_file_osada_destroy(file);
+			return 1;
+		}
+
+	}
+	else
+	{
+		free(result);
+		return 0;
 	}
 }
 
@@ -382,13 +467,21 @@ void* osada_get_file_called(char *path, t_disco_osada *disco)
 				archivo = 2;
 				free(two_files);
 			}
+			else
+			{
+				free(two_files);
+			}
 		}
 		index++;
 	}
 	pthread_mutex_unlock(&mutex_operaciones);
 	if(archivo_encontrado == 0)
 	{
-		return "NO_EXISTE";
+		free(file_1);
+		free(file_2);
+		char* error_no = string_new();
+		string_append(&error_no,"NO_EXISTE");
+		return error_no;
 	}
 	else
 	{

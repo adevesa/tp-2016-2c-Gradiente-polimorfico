@@ -60,21 +60,21 @@ void* osada_a_create_file(char *path)
 		if(!osada_b_check_repeat_name(REGULAR,path))
 		{
 			pthread_mutex_lock(&mutex_operaciones);
-			int resultado_array = osada_b_check_is_bitarray_full(disco);
+			int hay_lugar = osada_hay_espacio_para_archivos();
 			pthread_mutex_unlock(&mutex_operaciones);
-			if(!resultado_array)
+			if(hay_lugar)
 			{
 				t_osada_file_free *new_file=osada_b_file_create(REGULAR,path);
 				int offset = calcular_desplazamiento_tabla_de_archivos(new_file->position_in_block);
 				pthread_mutex_lock(&mutex_operaciones);
 				osada_push_middle_block(TABLA_DE_ARCHIVOS,new_file->block_relative,offset,new_file->file,disco);
 				pthread_mutex_unlock(&mutex_operaciones);
+				osada_disminui_cantidad_de_archivos();
 				t_file_osada_destroy((t_file_osada*) new_file);
 				return EXITO;
 			}
 			else
 			{
-				//pthread_mutex_unlock(&mutex_operaciones);
 				return NO_HAY_ESPACIO;
 			}
 		}
@@ -97,16 +97,16 @@ void* osada_a_create_dir(char *path)
 		{
 
 			pthread_mutex_lock(&mutex_operaciones);
-			int resultado_array = osada_b_check_is_bitarray_full(disco);
+			int hay_lugar = osada_hay_espacio_para_archivos();
 			pthread_mutex_unlock(&mutex_operaciones);
-			if(!resultado_array)
+			if(hay_lugar)
 			{
-
 				t_osada_file_free *new_file=osada_b_file_create(DIRECTORY,path);
 				pthread_mutex_lock(&mutex_operaciones);
 				int offset = calcular_desplazamiento_tabla_de_archivos(new_file->position_in_block);
 				osada_push_middle_block(TABLA_DE_ARCHIVOS,new_file->block_relative,offset,new_file->file,disco);
 				pthread_mutex_unlock(&mutex_operaciones);
+				osada_disminui_cantidad_de_archivos();
 				t_file_osada_destroy((t_file_osada*) new_file);
 				return EXITO;
 			}
@@ -133,6 +133,7 @@ void* osada_a_delete_file(char *path)
 	if(osada_check_exist(path))
 	{
 		osada_delete_this_file(path);
+		osada_aumenta_cantidad_de_archivos();
 		return EXITO;
 	}
 	else
@@ -146,6 +147,7 @@ void* osada_a_delete_dir(char *path)
 	if(osada_check_exist(path))
 	{
 		osada_delete_this_dir(path);
+		osada_aumenta_cantidad_de_archivos();
 		return EXITO;
 	}
 	else
@@ -266,7 +268,7 @@ void* osada_a_write_file(t_to_be_write *to_write)
 		}
 		else
 		{
-			t_file_osada_destroy(to_write->file);
+			t_file_osada_destroy(file);
 			return NO_HAY_ESPACIO;
 		}
 	}

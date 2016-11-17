@@ -35,9 +35,17 @@ int realizar_sumatoria_size_hijos(char *path)
 	for(i=0; i<size;i++)
 	{
 		t_file_listado *file = list_get(lista_hijos,i);
-		if(verify_file_state(REGULAR,file->file->file))
+		/*if(verify_file_state(REGULAR,file->file->file))
 		{
 			sumatoria = sumatoria + file->file->file->file_size;
+		}
+		else
+		{
+			sumatoria = sumatoria + osada_b_calculate_size_of_directory(file->path);
+		}*/
+		if(file->tipo == REGULAR)
+		{
+				sumatoria = sumatoria + file->tamanio;
 		}
 		else
 		{
@@ -52,7 +60,6 @@ int realizar_sumatoria_size_hijos(char *path)
 t_list* osada_b_listar_hijos(char* path)
 {
 	t_list* lista = list_create();
-	int index = 1;
 
 	if(es_el_directorio_raiz(path))
 	{
@@ -81,6 +88,8 @@ void listar_directorio_raiz(t_list *lista)
 		agregar_a_lista_si_es_hijo_de_raiz(RAIZ,file_1,lista);
 		agregar_a_lista_si_es_hijo_de_raiz(RAIZ,file_2,lista);
 
+		free(two_files);
+
 		index++;
 	}
 	free(file_1);
@@ -105,12 +114,13 @@ void listar_directorio_comun(t_list *lista, char *path)
 					memcpy(file_2,two_files + sizeof(osada_file), sizeof(osada_file));
 				 	agregar_a_lista_si_es_hijo(file_path,file_1,lista);
 				 	agregar_a_lista_si_es_hijo(file_path,file_2,lista);
-
+				 	free(two_files);
 				 	index++;
 				}
-				free(file_1);
-				free(file_2);
+			free(file_1);
+			free(file_2);
 		}
+	t_file_osada_destroy(file_path);
 }
 
 int es_el_directorio_raiz(char *path)
@@ -126,9 +136,11 @@ void agregar_a_lista_si_es_hijo(t_file_osada *path_padre, osada_file* hijo, t_li
 		{
 			t_file_listado* dato_en_lista = malloc(sizeof(t_file_listado));
 			char* path_hijo = crear_ruta((char*) hijo->fname,(char*)path_padre->path);
-			dato_en_lista->file = osada_get_file_called(path_hijo,disco);
+			//dato_en_lista->file = osada_get_file_called(path_hijo,disco);
 			dato_en_lista->path = path_hijo;
-			dato_en_lista->tipo = dato_en_lista->file->file->state;
+			dato_en_lista->tamanio =hijo->file_size;
+			//dato_en_lista->tipo = dato_en_lista->file->file->state;
+			dato_en_lista->tipo = hijo->state;
 			list_add(lista, dato_en_lista);
 		}
 	}
@@ -137,7 +149,7 @@ void agregar_a_lista_si_es_hijo(t_file_osada *path_padre, osada_file* hijo, t_li
 
 void agregar_a_lista_si_es_hijo_de_raiz(int num_raiz, osada_file *file, t_list *lista)
 {
-	if(num_raiz == file->parent_directory)
+	if(num_raiz == file->parent_directory && !verify_file_state(DELETED,file) &&verify_correct_file(file))
 	{
 		t_file_listado* dato_en_lista = malloc(sizeof(t_file_listado));
 		char *path_hijo = string_new();
@@ -145,9 +157,11 @@ void agregar_a_lista_si_es_hijo_de_raiz(int num_raiz, osada_file *file, t_list *
 		string_append(&path_hijo, "/");
 		string_append(&path_hijo, (char*)file->fname);
 
-		dato_en_lista->file = osada_get_file_called(path_hijo,disco);
+		//dato_en_lista->file = osada_get_file_called(path_hijo,disco);
 		dato_en_lista->path = path_hijo;
-		dato_en_lista->tipo = dato_en_lista->file->file->state;
+		dato_en_lista->tamanio = file->file_size;
+		//dato_en_lista->tipo = dato_en_lista->file->file->state;
+		dato_en_lista->tipo = file->state;
 		list_add(lista, dato_en_lista);
 	}
 }

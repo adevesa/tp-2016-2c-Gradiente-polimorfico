@@ -63,6 +63,8 @@ t_mapa* mapa_create(char* nombre_mapa, char *ruta_pokedex, t_entrenador *entrena
 
 void mapa_destruite(t_mapa *mapa);
 void mapa_element_destroyer(void* arg);
+void entrenador_destruite(t_entrenador *entrenador);
+void hoja_de_viaje_destruite(void* arg);
 /*--------------------------------------------OBTENCION DE DATOS---------------------------------------------------------------*/
 char* obtener_direccion_directorio_de_bill(char* ruta_pokedex, char* nombre);
 t_list* entrenador_hoja_de_viaje(t_config* configuracion);
@@ -74,4 +76,5 @@ int entrenador_vidas(t_config* configuracion);
 
 char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_archivo, char *sub_directorio_o_nombre_archivo);
 
+void array_free_all_2(char **array);
 #endif /* BASIC_STRUCTS_H_ */

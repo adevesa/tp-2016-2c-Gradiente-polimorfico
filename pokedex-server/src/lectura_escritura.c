@@ -85,12 +85,6 @@ void osada_b_aumentar_tamanio(t_file_osada *file, int new_size)
 
 void asignar_n_bloques(t_file_osada *file, int n)
 {
-	/*int i;
-	for(i=0; i<n; i++)
-	{
-		asignar_nuevo_bloque_datos(file);
-	}
-	//asignar_n_bloques_aux(file,n);*/
 	asignar_nuevo_bloque_datos_2(file,n);
 }
 
@@ -159,19 +153,12 @@ void asignar_un_unico_bloque_si_es_necesario(t_file_osada *file, int tamanio_a_a
 {
 	if(file->file->first_block == FEOF)
 	{
-		/*file->file->first_block =  osada_b_get_a_new_block_init();
-		int offset = calcular_desplazamiento_tabla_de_archivos(file->position_in_block);
-		osada_push_middle_block(TABLA_DE_ARCHIVOS,file->block_relative,offset,file->file,disco);
-		;*/
+
 		osada_block_pointer byte_inicial_tabla_asignaciones = calcular_byte_inicial_absolut(disco->header->allocations_table_offset);
+
 		int num_bloque_absoluto = osada_ocupa_bit_libre_de(disco);
 		int bloque_Asignado = calcular_bloque_relativo_datos_dado_absoluto(num_bloque_absoluto);
 		limpiar_bloque_de_datos(bloque_Asignado);
-
-		int *value = malloc(4);
-		*value = bloque_Asignado;
-		memcpy(disco->map + byte_inicial_tabla_asignaciones+bloque_Asignado ,value,4);
-		free(value);
 
 		int offset_del_recien_asignado = byte_inicial_tabla_asignaciones + 4*bloque_Asignado;
 		int *feof = malloc(4);
@@ -193,7 +180,7 @@ void asignar_un_unico_bloque_si_es_necesario(t_file_osada *file, int tamanio_a_a
 		int capacidad_satisfaccion = espacio_disponible - tamanio_a_aumentar;
 		if(capacidad_satisfaccion<0)
 		{
-			asignar_nuevo_bloque_datos_2(file,1); //OJO QUE CAMBIE
+			asignar_nuevo_bloque_datos_2(file,1);
 		}
 	}
 }
@@ -494,16 +481,6 @@ void osada_write_aux_file(t_to_be_write* to_write)
 	int cantidad_bloques = list_size(bloques);
 	int ultimo_bloque_escrito = (to_write->size_inmediatamente_anterior / OSADA_BLOCK_SIZE);
 
-	//t_to_be_read* to_read = malloc(sizeof(to_read));
-	//to_read->offset = to_write->offset;
-	//to_read->size = to_write->size;
-	//void* data_espace_free = osada_b_read_file(to_write->file->file,disco,to_read,bloques);
-
-	//memcpy(data_espace_free,to_write->text,to_write->size);
-
-
-	//ALTERO LOS BLOQUES
-
 	int index = ultimo_bloque_escrito;
 	int i=0;
 	pthread_mutex_lock(&mutex_operaciones);
@@ -518,8 +495,7 @@ void osada_write_aux_file(t_to_be_write* to_write)
 		index++;
 	}
 	pthread_mutex_unlock(&mutex_operaciones);
-	//free(data_espace_free);
-	//free(to_read);
+
 	osada_b_change_size_file(to_write->file,to_write->size_inmediatamente_anterior + to_write->size);
 	list_destroy_and_destroy_elements(bloques, free_list_blocks);
 }

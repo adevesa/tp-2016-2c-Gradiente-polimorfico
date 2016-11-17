@@ -78,6 +78,7 @@ typedef struct
 	void *map;
 	osada_header *header;
 	t_bitarray *bitmap;
+	int cantidad_archivos_libres;
 }t_disco_osada;
 
 t_disco_osada* disco; // <-- ES LA VARIABLE GLOBAL DEL DISCO
@@ -92,7 +93,10 @@ typedef struct
 
 typedef t_osada_file_free t_file_osada;
 
-typedef struct{
+typedef struct
+{
+	//char* nombre_del_archivo;
+	int tamanio;
 	t_file_osada* file;
 	char* path;
 	int tipo;

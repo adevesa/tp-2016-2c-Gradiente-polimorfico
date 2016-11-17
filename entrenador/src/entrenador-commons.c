@@ -56,7 +56,9 @@ void bajarvida(int n)
 		log_info(info_entrenador,"PIERDO VIDA POR SEÑAL EXTERNA");
 		if(entrenador->vidas == 0)
 		{
-			log_info(info_entrenador,"TENIA 0 VIDAS, POR LO QUE NO DISMINUYO");
+			log_info(info_entrenador,"MUERTO POR QUITARME LA ULTIMA VIDA!");
+			close(entrenador->mapa_actual->server);
+			entrenador_destruite(entrenador);
 		}
 	}
 	entrenador->vidas--;
@@ -85,6 +87,7 @@ void tratar_respuesta()
 	else if(resp == 'N')
 	{
 		log_info(info_entrenador,"Se decidio no jugar mas\n");
+		entrenador_destruite(entrenador);
 	}
 	else{
 		printf("Respuesta invalida\n");
