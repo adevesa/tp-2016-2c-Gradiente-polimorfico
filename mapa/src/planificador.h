@@ -96,6 +96,7 @@ void planificador_desbloquea_entrenador_si_es_posible(int cantidad_bloqueados);
 
 /*---------------------------------------FINALIZADO---------------------------------------------------------*/
 void planificador_aborta_entrenador(t_entrenador *entrenador);
+void planificador_aborta_entrenador_por_deadlock(t_entrenador* entrenador);
 void planificador_finaliza_entrenador(t_entrenador *entrenador);
 void planificador_espera_que_entrenador_se_desconecte(t_entrenador *entrenador);
 void planificador_extraele_pokemones_a_entrenador(t_entrenador *entrenador);

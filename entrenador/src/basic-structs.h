@@ -29,6 +29,7 @@ typedef struct mapa
 	char* ip;
 	t_list* objetivos;
 	t_list* pokemons_capturados;
+	t_config* config;
 } t_mapa;
 
 

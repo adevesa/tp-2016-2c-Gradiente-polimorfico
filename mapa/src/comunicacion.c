@@ -103,6 +103,10 @@ int tratar_respuesta(char* respuesta_del_entrenador, t_entrenador *entrenador)
 	{
 		return ENTRENADOR_DESCONECTADO;
 	}
+	if(string_equals_ignore_case(respuesta_del_entrenador,"123"))
+	{
+		return ENTRENADOR_SIGUE_VIVO;
+	}
 	else {return 0;}
 }
 
@@ -120,6 +124,7 @@ void enviar_mensaje_a_entrenador(t_entrenador *entrenador, int header, char *pay
 		case(AVISAR_DEADLOCK): enviar_mensaje(entrenador->socket_entrenador, "mpk");break;
 		case(AVISAR_QUE_GANO): enviar_mensaje(entrenador->socket_entrenador, "gnr");break;
 		case(AVISAR_QUE_PERDIO): enviar_mensaje(entrenador->socket_entrenador, "prd");break;
+		case(PREGUNTAR_SI_SIGUE_AHI): enviar_mensaje(entrenador->socket_entrenador,"123");break;
 		default: ;
 	}
 	//pthread_mutex_unlock(&mutex_enviar_al_entrenador);

@@ -48,4 +48,7 @@ int pokemones_son_iguales(t_pokemon *pok_1, t_pokemon *pok_2);
 int retornar_perdedor(t_pokemon *perdedor, t_pokemon *pokemon_entrenador_1, t_pokemon *pokemon_entrenador_2);
 void destroy_pokemon(t_pokemon *pokemon);
 void cambiar_semaforos_si_es_necesario();
+
+void resolver_deadlock_si_es_posible(t_list* involucrados);
+void involucrados_destroyer(void* arg);
 #endif /* DEADLOCK_RESOLUCION_H_ */

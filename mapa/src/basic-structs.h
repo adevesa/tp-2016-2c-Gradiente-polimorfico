@@ -88,6 +88,7 @@ typedef struct entrenador
 	int debe_liberar_solicitud;
 	t_list *pokemones_capturados;
 	sem_t *semaforo_finalizacon;
+	int esta_en_deadlock;
 }t_entrenador;
 
 typedef struct controllers

@@ -21,6 +21,7 @@ char* recibir_mensaje_especifico(int socket)
 	string_trim_left(&solo_tamanio[0]);
 	int tamanio_del_mensaje = atoi(solo_tamanio[0]);
 	char *mensaje_final = recibir_mensaje(socket, tamanio_del_mensaje);
+	free_string_array(solo_tamanio);
 	return mensaje_final;
 
 }
@@ -43,8 +44,9 @@ char* armar_mensaje(char *header, char *payload, int max_bytes)
 			string_append(&mensaje,";");
 			string_append(&mensaje,payload);
 			string_trim_left(&mensaje);
-			return mensaje;
 			free(tamanio_payload_a_enviar);
+			free(tam_payload_char);
+			return mensaje;
 		}
 		else
 		{
@@ -54,17 +56,21 @@ char* armar_mensaje(char *header, char *payload, int max_bytes)
 			string_append(&mensaje,";");
 			string_append(&mensaje,payload);
 			string_trim_left(&mensaje);
-			return mensaje;
 			free(tamanio_payload_a_enviar);
+			free(tam_payload_char);
+			return mensaje;
 		}
 
 	}
 	else
 	{
-		string_append(&mensaje, string_itoa(max_bytes));
+		char* aux =string_itoa(tamanio_payload);
+		string_append(&mensaje, aux);
 		string_append(&mensaje,";");
 		string_append(&mensaje,payload);
 		string_trim_left(&mensaje);
+		free(tam_payload_char);
+		free(aux);
 		return mensaje;
 	}
 }
@@ -87,6 +93,11 @@ char* armar_coordenada(int x, int y, int max_bytes)
 			string_append(&coordenada_final, nueva_coordenada_x);
 			string_append(&coordenada_final, ";");
 			string_append(&coordenada_final, nueva_coordenada_y);
+
+			free(coordenada_x);
+			free(coordenada_y);
+			free(nueva_coordenada_x);
+			free(nueva_coordenada_y);
 			return coordenada_final;
 		}
 		else
@@ -96,13 +107,17 @@ char* armar_coordenada(int x, int y, int max_bytes)
 			string_append(&coordenada_final, nueva_coordenada_x);
 			string_append(&coordenada_final, ";");
 			string_append(&coordenada_final,coordenada_y);
+
+			free(coordenada_x);
+			free(coordenada_y);
+			free(nueva_coordenada_x);
 			return coordenada_final;
 		}
 
 	}
 	else
 	{
-		string_append(&coordenada_x, coordenada_x);
+		//string_append(&coordenada_x, coordenada_x);
 				if(longitud_eje_y < (max_bytes))
 				{
 					char *nueva_coordenada_y = string_repeat(' ', (max_bytes - longitud_eje_y));
@@ -111,15 +126,21 @@ char* armar_coordenada(int x, int y, int max_bytes)
 					string_append(&coordenada_final,coordenada_x);
 					string_append(&coordenada_final, ";");
 					string_append(&coordenada_final, nueva_coordenada_y);
+
+					free(coordenada_x);
+					free(coordenada_y);
+					free(nueva_coordenada_y);
 					return coordenada_final;
 				}
 				else
 				{
-					string_append(&coordenada_y, coordenada_y);
+					//string_append(&coordenada_y, coordenada_y);
 					char *coordenada_final = string_new();
 					string_append(&coordenada_final,coordenada_x);
 					string_append(&coordenada_final, ";");
 					string_append(&coordenada_final,coordenada_y);
+					free(coordenada_x);
+					free(coordenada_y);
 					return coordenada_final;
 				}
 	}
@@ -136,6 +157,7 @@ void free_string_array(char **path)
 		free(path[i]);
 		i++;
 	}
+	free(path);
 }
 
 int string_contains(char *palabra, char *conteiner)

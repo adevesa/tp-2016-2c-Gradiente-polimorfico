@@ -587,7 +587,9 @@ t_list* obtener_las_victimas()
 		{
 			char* index_string = string_itoa(i);
 			t_proceso *proceso = (t_proceso*) dictionary_get(procesos_identificados_por_indice,index_string);
-			list_add(new_list,proceso->id);
+			char* id_proceso = string_new();
+			string_append(&id_proceso, proceso->id);
+			list_add(new_list,id_proceso);
 		}
 	}
 

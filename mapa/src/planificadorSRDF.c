@@ -272,6 +272,9 @@ void planificador_srdf_dale_coordenadas_a_todos()
 	{
 		t_entrenador *entrenador = (t_entrenador*) queue_pop(planificador->cola_entrenadores_sin_objetivo);
 		es_nuevo = entrenador_es_nuevo(entrenador);
+
+		enviar_mensaje_a_entrenador(entrenador,OTORGAR_TURNO,NULL); //<-- AGREGADO
+
 		char *mensaje_del_entrenador = escuchar_mensaje_entrenador(entrenador, SOLICITUD_DEL_ENTRENADOR);
 		int resultado = tratar_respuesta(mensaje_del_entrenador, entrenador);
 		free(mensaje_del_entrenador);
@@ -279,7 +282,7 @@ void planificador_srdf_dale_coordenadas_a_todos()
 		{
 			case(ENTRENADOR_ESTA_BUSCANDO_COORDENADAS_POKENEST):
 					{
-						enviar_mensaje_a_entrenador(entrenador, OTORGAR_TURNO,NULL);
+						//enviar_mensaje_a_entrenador(entrenador, OTORGAR_TURNO,NULL);
 						planificador_dale_coordenadas_a_entrenador(entrenador);
 						planificador_push_entrenador_a_listo_ordenado(entrenador);
 					}break;

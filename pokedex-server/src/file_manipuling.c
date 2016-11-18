@@ -93,7 +93,8 @@ int osada_b_check_repeat_name(int tipo,char* path)
 
 	if(list_is_empty(hijos))
 	{
-		list_destroy_and_destroy_elements(hijos,file_listado_eliminate);
+		//list_destroy_and_destroy_elements(hijos,file_listado_eliminate);
+		list_destroy(hijos);
 		free(new_hijo);
 		free(path_padre);
 		return 0;

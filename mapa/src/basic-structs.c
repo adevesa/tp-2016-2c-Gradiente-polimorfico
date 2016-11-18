@@ -23,6 +23,7 @@ t_entrenador* entrenador_create(int id_proceso, int socket_entrenador)
 	new_entrenador->posicion_actual = posicion_create(0,0);
 	new_entrenador->numero_de_ingreso = numero_entrada_al_mapa;
 	new_entrenador->debe_liberar_solicitud = NO;
+	new_entrenador->esta_en_deadlock = NO;
 	numero_entrada_al_mapa++;
 	return new_entrenador;
 }
@@ -187,6 +188,7 @@ t_posicion* obtener_info_pokenest_posicion(t_config *configuracion)
 	int x =  atoi(array_de_coordenada[0]);
 	int y =  atoi(array_de_coordenada[1]);
 	t_posicion *new_posicion = posicion_create(x,y);
+	array_free_all(array_de_coordenada);
 	return new_posicion;
 }
 
@@ -232,6 +234,7 @@ char* obtener_id_ponekest(char *ruta_pokemon_determinado)
 
 	char* elemento_buscado = array_get_element(ruta_pokemon_determinado,cantidad_elementos-2);
 	char* aux = string_substring_until(elemento_buscado,1);
+	free(elemento_buscado);
 	string_to_upper(aux);
 	return aux;
 }

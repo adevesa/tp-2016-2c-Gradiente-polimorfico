@@ -58,13 +58,14 @@ void entrenador_comenza_a_explorar();
 
 void entrenador_recorre_hoja_de_viaje(void* arg);
 int entrenador_cumpli_objetivos_del_mapa(int index);
-int entrenador_volve_a_empezar_en_este_mapa(int index);
+int entrenador_volve_a_empezar_en_este_mapa(int indexxx);
+
 void entrenador_termina_en_el_mapa();
 int entrenador_cumpli_objetivo(int indice_objetivo);
 void entrenador_busca_mapa(int index);
 void entrenador_copia_medalla_del_mapa();
 
-
+int entrenador_espera_mientras_te_dice_pavadas();
 void entrenador_espera_turno();
 void entrenador_espera_a_que_mapa_te_bloquee();
 void entrenador_espera_a_que_mapa_te_desbloquee();

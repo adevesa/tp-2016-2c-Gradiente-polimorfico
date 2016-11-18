@@ -14,6 +14,6 @@
 
 int main(int argc, char *argv[])
 {
-	ejecutar_entrenador(argv[1],"/home/utnso/Pokedex");
+	ejecutar_entrenador("ash","/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/pokedex-cliente/Debug/disco/Pokedex");
 	return EXIT_SUCCESS;
 }

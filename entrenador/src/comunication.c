@@ -57,6 +57,10 @@ int mapa_me_dice(char *mapa_dice)
 	{
 		return MAPA_ME_DA_TURNO;
 	}
+	if(string_equals_ignore_case(mapa_dice, "123"))
+	{
+		return MAPA_ME_PREGUNTA_SI_ESTOY;
+	}
 	else return 0;
 }
 
@@ -99,12 +103,14 @@ void solicitar_ubicacion_pokenest(t_mapa *mapa,char *pokemonBuscado)
 {
 	char *mensaje = armar_mensaje("up", pokemonBuscado,MAX_BYTES_TOTAL_A_ENVIAR);
 	enviar_mensaje(mapa->server, mensaje);
+	free(mensaje);
 }
 
 void solicitar_moverse(t_mapa *mapa,char *coordenadaDestino)
 {
 	char *mensaje = armar_mensaje("mp", coordenadaDestino, MAX_BYTES_TOTAL_A_ENVIAR);
 	enviar_mensaje(mapa->server, mensaje);
+	free(mensaje);
 }
 
 char* armar_mejor_pokemon_string(t_pokemon *pokemon)
@@ -133,7 +139,7 @@ char* armar_mejor_pokemon_string(t_pokemon *pokemon)
 		free(level_aux);
 		free(level_String);
 
-		log_info(info_entrenador,msg);
+		//log_info(info_entrenador,msg);
 
 		/* 14 bytes para saber size nombre del pokemon, N bytes del nombre del pokemon, 6 bytes para el level */
 
@@ -148,9 +154,8 @@ t_ubicacion* desarmar_coordenada(char *coordenada)
 	string_trim_left(&por_separado[0]);
 	string_trim_left(&por_separado[1]);
 	t_ubicacion *ubi = ubicacion_create(atoi(por_separado[0]),atoi(por_separado[1]));
+	array_free_all(por_separado);
 	return (ubi);
-	free_string_array(por_separado);
-
 }
 
 void copiar(char* origen, char* destino)
@@ -204,6 +209,7 @@ void borrar_todos_los_archivos_del_directorio(char* ruta)
 	char* comando_2 = string_new();
 	string_append(&comando_2, "mkdir -p ");
 	string_append(&comando_2,path_aux);
+
 	system(comando_2);
 	free(comando_2);
 

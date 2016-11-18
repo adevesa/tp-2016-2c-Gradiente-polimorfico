@@ -18,6 +18,7 @@ sem_t semaforo_cola_entrenadores_sin_objetivos;
 sem_t semaforo_esperar_ordenamieto;
 sem_t semaforo_esperar_por_entrenador_listo;
 pthread_mutex_t mutex_manipular_cola_listos = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t mutex_preguntando_si_estan_vivos = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_manipular_cola_nuevos = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_manipular_cola_bloqueados = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_manipular_cola_finalizados = PTHREAD_MUTEX_INITIALIZER;

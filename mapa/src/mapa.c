@@ -14,7 +14,7 @@
 
 int main(int argc, char *argv[])
 {
-	ejecutar_mapa(argv[1],"/home/utnso/Pokedex");
+	ejecutar_mapa("mapa1","/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/pokedex-cliente/Debug/disco/Pokedex");
 	return EXIT_SUCCESS;
 }
 

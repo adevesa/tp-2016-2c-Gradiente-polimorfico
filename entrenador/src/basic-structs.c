@@ -19,9 +19,9 @@ t_config* configuracion_metadata_create(char *nombre, char *ruta)
 t_entrenador* entrenador_create(char* nombre, char* ruta)
   {
   	t_entrenador* entrenador_new  = malloc(sizeof(t_entrenador));
-  	entrenador_new->nombre=malloc(string_length(nombre));
+  	entrenador_new->nombre=string_new();
   	string_append(&entrenador_new->nombre,nombre);
-  	entrenador_new->ruta_pokedex = malloc(string_length(ruta));
+  	entrenador_new->ruta_pokedex = string_new();
   	string_append(&entrenador_new->ruta_pokedex,ruta);
   	entrenador_new->configuracion = configuracion_metadata_create(nombre,ruta);
   	entrenador_new->directorio_de_bill = obtener_direccion_directorio_de_bill(ruta, nombre);
@@ -52,16 +52,28 @@ t_mapa* mapa_create(char* nombre_mapa, char *ruta_pokedex, t_entrenador *entrena
 	t_config *config = configuracion_metadata_mapa_create(nombre_mapa, ruta_pokedex);
 	t_mapa *mapa_new = malloc(sizeof(t_mapa));
 
+	mapa_new->config=config;
 	mapa_new->nombre = string_new();
 	string_append(&mapa_new->nombre,nombre_mapa);
 
+	//log_info(info_entrenador,mapa_new->nombre);
+
 	mapa_new->puerto =string_new();
-	string_append(&mapa_new->puerto,config_get_string_value(config, "Puerto"));
+	char* port = config_get_string_value(config, "Puerto");
+	string_append(&mapa_new->puerto,port);
+	free(port);
+
+	//log_info(info_entrenador,mapa_new->puerto);
+
 	mapa_new->ip =string_new();
-	string_append(&mapa_new->ip,config_get_string_value(config, "IP"));
+	char* tip = config_get_string_value(config, "IP");
+	string_append(&mapa_new->ip,tip);
+	free(tip);
+
+	//log_info(info_entrenador,mapa_new->ip);
 	mapa_new->objetivos = asociar_objetivos_por_mapa(nombre_mapa,entrenador);
 	mapa_new->pokemons_capturados = list_create();
-	config_destroy(config);
+	//config_destroy(config);
 	return mapa_new;
 }
 
@@ -81,11 +93,8 @@ void mapa_destruite(t_mapa *mapa)
 	free(mapa->nombre);
 	free(mapa->puerto);
 	list_destroy_and_destroy_elements(mapa->objetivos,mapa_element_destroyer);
-	//log_info(info_entrenador, "LISTO. BORRE TODO 1");
 	list_destroy_and_destroy_elements(mapa->pokemons_capturados,mapa_element_destroyer);
-	//log_info(info_entrenador, "LISTO. BORRE TODO 2");
-	//list_destroy(mapa->objetivos);
-	//list_destroy(mapa->pokemons_capturados);
+	config_destroy(mapa->config);
 	free(mapa);
 }
 
@@ -104,8 +113,8 @@ void entrenador_destruite(t_entrenador *entrenador)
 	free(entrenador->ruta_pokedex);
 	free(entrenador->simbolo);
 	free(entrenador->ubicacion);
-	mapa_destruite(entrenador->mapa_actual);
-	list_clean_and_destroy_elements(entrenador->hoja_de_viaje,hoja_de_viaje_destruite);
+	//mapa_destruite(entrenador->mapa_actual);
+	list_destroy_and_destroy_elements(entrenador->hoja_de_viaje,hoja_de_viaje_destruite);
 }
 
 void hoja_de_viaje_destruite(void* arg)
@@ -183,6 +192,7 @@ t_list* asociar_objetivos_por_mapa(char *nombre_mapa, t_entrenador *entrenador)
 	string_append(&objetivo_especifico,nombre_mapa);
 	string_append(&objetivo_especifico, "]");
 	string_trim_left(&objetivo_especifico);
+
 	char *objetivos = config_get_string_value(entrenador->configuracion, objetivo_especifico);
 	char **objetivos_por_separado = mapas_a_Recorrer(objetivos);
 	t_list *lista = foreach_hoja_de_viaje(objetivos_por_separado);
