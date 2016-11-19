@@ -303,16 +303,17 @@ void borrar_todos_los_archivos_del_directorio(char* ruta)
 	string_append(&comando, path_aux);
 
 	system(comando);
-	free(comando);
+	//
 
 	char* comando_2 = string_new();
 	string_append(&comando_2, "mkdir -p ");
 	string_append(&comando_2,path_aux);
 
 	system(comando_2);
-	free(comando_2);
 
-	free(path_aux);
+	//free(comando);
+	//free(comando_2);
+	//free(path_aux);
 }
 
 char* array_last_element(char* path)

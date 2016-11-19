@@ -117,15 +117,22 @@ void matar_entrenador(int n)
 
 void entrenador_borra_pokemons()
 {
-	char* directorio_de_pokemons = string_new();
+	//char* directorio_de_pokemons = string_new();
 	/*string_append(&directorio_de_pokemons, entrenador->ruta_pokedex);
 	string_append(&directorio_de_pokemons,"/");
 	string_append(&directorio_de_pokemons, "Entrenadores/");
 	string_append(&directorio_de_pokemons, entrenador->nombre);
 	string_append(&directorio_de_pokemons, "/Dir de Bill");*/
-	string_append(&directorio_de_pokemons,entrenador->directorio_de_bill);
-	borrar_todos_los_archivos_del_directorio(directorio_de_pokemons);
-	free(directorio_de_pokemons);
+	//string_append(&directorio_de_pokemons,entrenador->directorio_de_bill);
+
+	char *ruta_medallas_destino = obtener_ruta_especifica(entrenador->ruta_pokedex, "Entrenadores", entrenador->nombre);
+	ruta_medallas_destino = obtener_ruta_especifica(ruta_medallas_destino,"Dir de Bill",NULL);
+	string_append(&ruta_medallas_destino,"/");
+
+	/*borrar_todos_los_archivos_del_directorio(directorio_de_pokemons);
+	free(directorio_de_pokemons);*/
+	borrar_todos_los_archivos_del_directorio(ruta_medallas_destino);
+	free(ruta_medallas_destino);
 }
 
 void entrenador_borra_medallas()
