@@ -130,14 +130,22 @@ void entrenador_borra_pokemons()
 
 void entrenador_borra_medallas()
 {
-	char* directorio_de_medallas = string_new();
+	/*char* directorio_de_medallas = string_new();
 	string_append(&directorio_de_medallas, entrenador->ruta_pokedex);
 	string_append(&directorio_de_medallas,"/");
 	string_append(&directorio_de_medallas, "Entrenadores/");
 	string_append(&directorio_de_medallas, entrenador->nombre);
-	string_append(&directorio_de_medallas, "/medallas");
-	borrar_todos_los_archivos_del_directorio(directorio_de_medallas);
-	free(directorio_de_medallas);
+	string_append(&directorio_de_medallas, "/medallas");*/
+
+	char *ruta_medallas_destino = obtener_ruta_especifica(entrenador->ruta_pokedex, "Entrenadores", entrenador->nombre);
+	ruta_medallas_destino = obtener_ruta_especifica(ruta_medallas_destino,"medallas",NULL);
+	string_append(&ruta_medallas_destino,"/");
+
+	/*borrar_todos_los_archivos_del_directorio(directorio_de_medallas);
+	free(directorio_de_medallas);*/
+
+	borrar_todos_los_archivos_del_directorio(ruta_medallas_destino);
+	free(ruta_medallas_destino);
 }
 
 void iniciar_log(char *nombre_del_entrenador)
@@ -705,12 +713,12 @@ void entrenador_copia_medalla_del_mapa()
 	free(ruta_medallas_destino);
 
 	//INICIO log
-	char *mensaje = string_new();
+	/*char *mensaje = string_new();
 	string_trim(&mensaje);
 	string_append(&mensaje, "TERMINE objetivos en ");
 	string_append(&mensaje, entrenador->mapa_actual->nombre);
 	log_info(info_entrenador,mensaje);
-	free(mensaje);
+	free(mensaje);*/
 	//FIN log
 }
 

@@ -685,8 +685,6 @@ void mostrarTodo(t_queue* cola, int tipo)
 	}
 
 
-
-
 }
 
 char* convertir_a_string(char caracter)
