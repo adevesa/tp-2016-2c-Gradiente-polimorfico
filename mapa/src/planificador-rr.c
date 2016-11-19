@@ -64,8 +64,8 @@ void planificador_rr_organiza_entrenadores()
 		loggear_fin_turno(entrenador_listo);
 		planificador_volve_a_encolar_a_listo_si_es_necesario(entrenador_listo);
 		planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
-		mostrarTodo(planificador->listas_y_colas->cola_entrenadores_bloqueados,COLA_BLOQUEADOS);
-		mostrarTodo(planificador->listas_y_colas->cola_entrenadores_listos,COLA_LISTOS);
+		//mostrarTodo(planificador->listas_y_colas->cola_entrenadores_bloqueados,COLA_BLOQUEADOS);
+		//mostrarTodo(planificador->listas_y_colas->cola_entrenadores_listos,COLA_LISTOS);
 	}
 	cambiar_algoritmo();
 	/*
@@ -118,7 +118,7 @@ void planificador_rr_dale_nuevo_turno_a_entrenador(t_entrenador *entrenador_list
 {
 	enviar_mensaje_a_entrenador(entrenador_listo,OTORGAR_TURNO,NULL);
 	char *mensaje_del_entrenador = escuchar_mensaje_entrenador(entrenador_listo, SOLICITUD_DEL_ENTRENADOR);
-	log_info(informe_planificador,mensaje_del_entrenador);
+	//log_info(informe_planificador,mensaje_del_entrenador);
 	switch(tratar_respuesta(mensaje_del_entrenador,entrenador_listo))
 	{
 		case(ENTRENADOR_DESCONECTADO):

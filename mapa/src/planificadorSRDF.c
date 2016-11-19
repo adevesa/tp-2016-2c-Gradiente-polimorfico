@@ -156,8 +156,8 @@ void planificador_srdf_organiza_entrenadores()
 		planificador_srdf_es_el_turno_de(entrenador_listo);
 		planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
 		planificador_srdf_reordena_entrenadores_si_es_necesario();
-		mostrarTodo(planificador->listas_y_colas->cola_entrenadores_bloqueados,COLA_BLOQUEADOS);
-		mostrarTodo(planificador->listas_y_colas->cola_entrenadores_listos,COLA_LISTOS);
+		//mostrarTodo(planificador->listas_y_colas->cola_entrenadores_bloqueados,COLA_BLOQUEADOS);
+		//mostrarTodo(planificador->listas_y_colas->cola_entrenadores_listos,COLA_LISTOS);
 
 	}
 	cambiar_algoritmo();

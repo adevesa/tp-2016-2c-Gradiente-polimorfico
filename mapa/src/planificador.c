@@ -71,20 +71,20 @@ void planificador_push_entrenador_a_bloqueado(t_entrenador *entrenador)
 	pthread_mutex_unlock(&mutex_manipular_cola_bloqueados);
 
 
-	/*char *mensaje_A_loggear = string_new();
-	string_append(&mensaje_A_loggear, "PUSH (BLOQUEADO) entrenador identificado con el simbolo ");
+	char *mensaje_A_loggear = string_new();
+	string_append(&mensaje_A_loggear, "PUSH (BLOQUEADO): ");
 	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
 	log_info(informe_planificador, mensaje_A_loggear);
-	free(mensaje_A_loggear);*/
+	free(mensaje_A_loggear);
 }
 
 void planificador_push_entrenador_a_listo(t_entrenador *entrenador)
 {
-	/*char *mensaje_A_loggear = string_new();
-	string_append(&mensaje_A_loggear, "PUSH (LISTO) entrenador identificado con el simbolo ");
+	char *mensaje_A_loggear = string_new();
+	string_append(&mensaje_A_loggear, "PUSH (LISTO): ");
 	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
 	log_info(informe_planificador, mensaje_A_loggear);
-	free(mensaje_A_loggear);*/
+	free(mensaje_A_loggear);
 
 	pthread_mutex_lock(&mutex_manipular_cola_listos);
 	queue_push(mapa->entrenadores->cola_entrenadores_listos, entrenador);
@@ -99,11 +99,11 @@ t_entrenador* planificador_pop_entrenador_listo()
 	t_entrenador *entrenador_que_tiene_el_turno = (t_entrenador*) queue_pop(mapa->entrenadores->cola_entrenadores_listos);
 	pthread_mutex_unlock(&mutex_manipular_cola_listos);
 
-	/*char *mensaje_A_loggear = string_new();
-	string_append(&mensaje_A_loggear, "POP (LISTO) entrenador identificado con el simbolo ");
+	char *mensaje_A_loggear = string_new();
+	string_append(&mensaje_A_loggear, "POP (LISTO): ");
 	string_append(&mensaje_A_loggear, entrenador_que_tiene_el_turno->simbolo_identificador);
 	log_info(informe_planificador, mensaje_A_loggear);
-	free(mensaje_A_loggear);*/
+	free(mensaje_A_loggear);
 
 	return entrenador_que_tiene_el_turno;
 }
@@ -114,11 +114,11 @@ t_entrenador* planificador_pop_entrenador_bloqueado()
 	t_entrenador *entrenador = (t_entrenador *) queue_pop(mapa->entrenadores->cola_entrenadores_bloqueados);
 	pthread_mutex_unlock(&mutex_manipular_cola_bloqueados);
 
-	/*char *mensaje_A_loggear = string_new();
-	string_append(&mensaje_A_loggear, "POP (BLOQUEADO) entrenador identificado con el simbolo ");
+	char *mensaje_A_loggear = string_new();
+	string_append(&mensaje_A_loggear, "POP (BLOQUEADO): ");
 	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
 	log_info(informe_planificador, mensaje_A_loggear);
-	free(mensaje_A_loggear);*/
+	free(mensaje_A_loggear);
 
 	return entrenador;
 }
