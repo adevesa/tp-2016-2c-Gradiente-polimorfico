@@ -24,7 +24,7 @@ extern t_disco_osada* disco;
 
 int main(int argc, char* argv[])
 {
-	disco = osada_disco_abrite("/home/utnso/workspace/challenge.bin");
+	disco = osada_disco_abrite(argv[1]);
 	disco->cantidad_archivos_libres=disco_recupera_cantidad_Archivos();
 	sem_init(&semaforo_terminacion,0,0);
 	iniciar_semaforos();

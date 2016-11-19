@@ -14,6 +14,8 @@ int matan_al_entrenador = 0;
 
 void ejecutar_entrenador(char *nombre_entrenador, char *ruta_pokedex)
 {
+	hora_de_inicio=string_new();
+	hora_de_fin=string_new();
 	iniciar_log(nombre_entrenador);
 	entrenador_registra_hora(INICIO);
 	sem_init(&turno_entrenador,0,0);
@@ -23,12 +25,15 @@ void ejecutar_entrenador(char *nombre_entrenador, char *ruta_pokedex)
 	entrenador_comenza_a_explorar();
 	entrenador_registra_hora(FIN);
 	mostrar_por_pantalla_resultados();
+	free(hora_de_fin);
+	free(hora_de_inicio);
+	//entrenador_destruite(entrenador);
 }
 
 void mostrar_por_pantalla_resultados()
 {
 	printf("LOGRE TERMINAR MI AVENTURA \n");
-	printf("-TIEMPO TOTAL AVENTURA %d \n", entrenador->tiempo_total_aventura);
+	//printf("-TIEMPO TOTAL AVENTURA %d \n", entrenador->tiempo_total_aventura);
 	printf("-TIEMPO BLOQUEADO EN POKENEST: %d \n", entrenador->tiempo_bloqueado_pokenest);
 	printf("-CANTIDAD DE DEADLOCKS: %d \n", entrenador->cantidad_deadlocks);
 	printf("-CANTIDAD DE MUERTES: %d \n", entrenador->muertes);
@@ -113,11 +118,12 @@ void matar_entrenador(int n)
 void entrenador_borra_pokemons()
 {
 	char* directorio_de_pokemons = string_new();
-	string_append(&directorio_de_pokemons, entrenador->ruta_pokedex);
+	/*string_append(&directorio_de_pokemons, entrenador->ruta_pokedex);
 	string_append(&directorio_de_pokemons,"/");
 	string_append(&directorio_de_pokemons, "Entrenadores/");
 	string_append(&directorio_de_pokemons, entrenador->nombre);
-	string_append(&directorio_de_pokemons, "/Dir de Bill");
+	string_append(&directorio_de_pokemons, "/Dir de Bill");*/
+	string_append(&directorio_de_pokemons,entrenador->directorio_de_bill);
 	borrar_todos_los_archivos_del_directorio(directorio_de_pokemons);
 	free(directorio_de_pokemons);
 }
@@ -149,8 +155,9 @@ void entrenador_registra_hora(int rango)
 	{
 	case(INICIO):
 			{
-				hora_de_inicio = temporal_get_string_time();
 
+				char* tiempo= temporal_get_string_time();
+				string_append(&hora_de_inicio,tiempo);
 				char *mensaje=string_new();
 				string_append(&mensaje, "COMIENZO: ");
 				string_append(&mensaje, hora_de_inicio);
@@ -160,21 +167,22 @@ void entrenador_registra_hora(int rango)
 			}break;
 	case(FIN):
 			{
-				hora_de_fin = temporal_get_string_time();
 
+				/*char* tiempo = temporal_get_string_time();
+				string_append(&hora_de_fin,tiempo);
 				char *mensaje=string_new();
 				string_append(&mensaje, "FIN: ");
 				string_append(&mensaje, hora_de_fin);
 				log_info(info_entrenador,mensaje);
-				free(mensaje);
+				free(mensaje);*/
 
-				entrenador->tiempo_total_aventura = (int) diferencia_de_tiempos(hora_de_inicio,hora_de_fin);
+				//entrenador->tiempo_total_aventura = (int) diferencia_de_tiempos(hora_de_inicio,hora_de_fin);
 
-				char *mensaje_2=string_new();
+				/*char *mensaje_2=string_new();
 				string_append(&mensaje_2, "DURACION TOTAL: ");
 				string_append(&mensaje_2, string_itoa(entrenador->tiempo_total_aventura));
 				log_info(info_entrenador,mensaje_2);
-				free(mensaje_2);
+				free(mensaje_2);*/
 
 			}break;
 	}
@@ -219,8 +227,8 @@ void entrenador_recorre_hoja_de_viaje(void* arg)
 		case(EXITO):
 		{
 			log_info(info_entrenador, "FIN del recorrido de la HOJA DE VIAJE");
-			entrenador_borra_medallas();
 			entrenador_borra_pokemons();
+			entrenador_borra_medallas();
 		};break;
 	}
 }

@@ -195,6 +195,105 @@ void eliminar(char* elemento)
 	free(aux);
 }
 
+char* string_path_replace_spaces(char **path, char *este_caracter, char *por_este)
+{
+
+		char **por_separado = string_split(*path,"/");
+		int i = 0;
+		char *aux = string_new();
+		int cantidad_elementos = 0;
+		while(por_separado[i] != NULL)
+		{
+			cantidad_elementos++;
+			i++;
+		}
+		i=0;
+		while(por_separado[i] != NULL)
+		{
+			if( i == (cantidad_elementos -1))
+			{
+				if(string_ends_with(*path, "/"))
+				{
+					if(string_contains(por_separado[i],este_caracter))
+					{
+						char *aux_2 = string_new();
+						string_append(&aux_2, por_separado[i]);
+						char* auxiliar = string_replace(&aux_2,este_caracter,por_este);
+						string_append(&aux, auxiliar);
+						string_append(&aux,"/");
+						free(aux_2);
+						free(auxiliar);
+					}
+					else
+					{
+						string_append(&aux, por_separado[i]);
+					}
+				}
+				else
+				{
+					if(string_contains(por_separado[i],este_caracter))
+					{
+						char *aux_2 = string_new();
+						string_append(&aux_2, por_separado[i]);
+						char* auxiliar = string_replace(&aux_2,este_caracter,por_este);
+						string_append(&aux, auxiliar);
+						string_append(&aux,"/");
+						free(aux_2);
+						free(auxiliar);
+					}
+					else
+					{
+						string_append(&aux, por_separado[i]);
+					}
+				}
+			}
+			else
+			{
+				if(i==0 && string_starts_with(*path, "/"))
+				{
+					string_append(&aux, "/");
+					char *aux_2 = string_new();
+					string_append(&aux_2, por_separado[i]);
+
+					if(string_contains(por_separado[i],este_caracter))
+					{
+						char* auxiliar=string_replace(&aux_2,este_caracter,por_este);
+						string_append(&aux, auxiliar);
+						free(auxiliar);
+					}
+					else
+					{
+						string_append(&aux, aux_2);
+					}
+					string_append(&aux,"/");
+					free(aux_2);
+				}
+				else
+				{
+					char *aux_2 = string_new();
+					string_append(&aux_2, por_separado[i]);
+					if(string_contains(por_separado[i],este_caracter))
+					{
+						char* auxiliar =string_replace(&aux_2,este_caracter,por_este);
+						string_append(&aux,auxiliar);
+						free(auxiliar);
+					}
+					else
+					{
+						string_append(&aux,aux_2);
+					}
+					string_append(&aux,"/");
+					free(aux_2);
+				}
+			}
+			i++;
+		}
+		int tamanio = string_length(aux);
+
+		free_string_array(por_separado);
+		return aux;
+
+}
 void borrar_todos_los_archivos_del_directorio(char* ruta)
 {
 	char* comando = string_new();
