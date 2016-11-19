@@ -15,6 +15,7 @@ src/deadlock.d: ../src/deadlock.c ../src/deadlock.h \
  ../src/planificador.h ../src/planificador-rr.h ../src/comunicacion.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/server.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/sockets-utils.h \
+ /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/process.h \
  ../src/pkmn/factory.h ../src/planificadorSRDF.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/serializacion_mapa_entrenador.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/../so-commons/string.h \
@@ -61,6 +62,8 @@ src/deadlock.d: ../src/deadlock.c ../src/deadlock.h \
 /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/server.h:
 
 /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/sockets-utils.h:
+
+/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/process.h:
 
 ../src/pkmn/factory.h:
 

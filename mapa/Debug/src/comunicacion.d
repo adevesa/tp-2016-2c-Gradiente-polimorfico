@@ -19,6 +19,7 @@ src/comunicacion.d: ../src/comunicacion.c ../src/comunicacion.h \
  ../src/deadlock.h ../src/deadlock-resolucion.h ../src/pkmn/battle.h \
  ../src/pkmn/factory.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/server.h \
+ /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/process.h \
  ../src/pkmn/factory.h
 
 ../src/comunicacion.h:
@@ -74,5 +75,7 @@ src/comunicacion.d: ../src/comunicacion.c ../src/comunicacion.h \
 ../src/pkmn/factory.h:
 
 /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/server.h:
+
+/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/process.h:
 
 ../src/pkmn/factory.h:

@@ -15,6 +15,7 @@ src/planificadorSRDF.d: ../src/planificadorSRDF.c \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/txt.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/server.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/sockets-utils.h \
+ /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/process.h \
  ../src/pkmn/factory.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/serializacion_mapa_entrenador.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/../so-commons/string.h \
@@ -62,6 +63,8 @@ src/planificadorSRDF.d: ../src/planificadorSRDF.c \
 /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/server.h:
 
 /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/socket/sockets-utils.h:
+
+/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/process.h:
 
 ../src/pkmn/factory.h:
 

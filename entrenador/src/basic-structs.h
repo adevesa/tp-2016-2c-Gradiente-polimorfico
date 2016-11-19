@@ -7,9 +7,9 @@
 
 #ifndef BASIC_STRUCTS_H_
 #define BASIC_STRUCTS_H_
-#include "commons/collections/list.h"
-#include "commons/config.h"
-#include "commons/string.h"
+#include "so-commons/collections/list.h"
+#include "so-commons/config.h"
+#include "so-commons/string.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include "string.h"
