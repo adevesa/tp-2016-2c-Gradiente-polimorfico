@@ -289,6 +289,7 @@ int entrenador_cumpli_objetivos_del_mapa(int index)
 	{
 		entrenador_termina_en_el_mapa();
 		mapa_destruite(entrenador->mapa_actual);
+		free(entrenador->mapa_actual);
 		return 0;
 	}
 	else

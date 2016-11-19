@@ -1,0 +1,162 @@
+[INFO] 13:23:32:880 Proceso entrenador/(2929:2929): COMIENZO: 13:23:32:880
+[INFO] 13:23:32:880 Proceso entrenador/(2929:2929): Entrenador creado con EXITO
+[INFO] 13:23:32:880 Proceso entrenador/(2929:2929): COMIENZO del recorrido de la HOJA DE VIAJE
+[INFO] 13:23:38:549 Proceso entrenador/(2929:2929): Mapa actual: bsas
+[INFO] 13:23:38:549 Proceso entrenador/(2929:2929): CONECTADO con bsas
+[INFO] 13:23:38:549 Proceso entrenador/(2929:2929): COMIENZO AVENTURA en bsas
+[INFO] 13:23:38:750 Proceso entrenador/(2929:2929): Voy a solicitar coordenadas de C
+[INFO] 13:23:38:751 Proceso entrenador/(2929:2929): bsas me da COORDENADAS de pokenest C
+[INFO] 13:23:38:951 Proceso entrenador/(2929:2929): Me moví
+[INFO] 13:23:39:152 Proceso entrenador/(2929:2929): Me moví
+[INFO] 13:23:39:354 Proceso entrenador/(2929:2929): Me moví
+[INFO] 13:23:39:555 Proceso entrenador/(2929:2929): Me moví
+[INFO] 13:23:39:756 Proceso entrenador/(2929:2929): Me moví
+[INFO] 13:23:39:957 Proceso entrenador/(2929:2929): Llegué a destino. Pediré CAPTURAR POKEMON
+[INFO] 13:23:39:958 Proceso entrenador/(2929:2929): bsas me dice que el pokemon está en: /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/casos_de_prueba/Pokedex2/Mapas/bsas/PokeNest/charmander/charmander001
+[INFO] 13:23:39:971 Proceso entrenador/(2929:2929): Pokemon copiado a Dir de Bill
+[INFO] 13:23:40:158 Proceso entrenador/(2929:2929): Voy a solicitar coordenadas de P
+[INFO] 13:23:40:159 Proceso entrenador/(2929:2929): bsas me da COORDENADAS de pokenest P
+[INFO] 13:23:40:359 Proceso entrenador/(2929:2929): Me moví
+[INFO] 13:23:40:561 Proceso entrenador/(2929:2929): Me moví
+[INFO] 13:23:40:762 Proceso entrenador/(2929:2929): Me moví
+[INFO] 13:23:40:963 Proceso entrenador/(2929:2929): Me moví
+[INFO] 13:23:41:165 Proceso entrenador/(2929:2929): Me moví
+[INFO] 13:23:41:366 Proceso entrenador/(2929:2929): Me moví
+[INFO] 13:23:41:567 Proceso entrenador/(2929:2929): Me moví
+[INFO] 13:23:41:769 Proceso entrenador/(2929:2929): Me moví
+[INFO] 13:23:41:970 Proceso entrenador/(2929:2929): Me moví
+[INFO] 13:23:42:171 Proceso entrenador/(2929:2929): Me moví
+[INFO] 13:23:42:372 Proceso entrenador/(2929:2929): Llegué a destino. Pediré CAPTURAR POKEMON
+[INFO] 13:23:42:373 Proceso entrenador/(2929:2929): bsas me dice que el pokemon está en: /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/casos_de_prueba/Pokedex2/Mapas/bsas/PokeNest/pikachu/pikachu001
+[INFO] 13:23:42:381 Proceso entrenador/(2929:2929): Pokemon copiado a Dir de Bill
+[INFO] 13:23:42:388 Proceso entrenador/(2929:2929): FIN AVENTURA EN bsas
+[INFO] 13:23:42:389 Proceso entrenador/(2929:2929): FIN del recorrido de la HOJA DE VIAJE
+[INFO] 13:24:11:616 Proceso entrenador/(3010:3010): COMIENZO: 13:24:11:616
+[INFO] 13:24:11:616 Proceso entrenador/(3010:3010): Entrenador creado con EXITO
+[INFO] 13:24:11:616 Proceso entrenador/(3010:3010): COMIENZO del recorrido de la HOJA DE VIAJE
+[INFO] 13:24:18:673 Proceso entrenador/(3010:3010): Mapa actual: bsas
+[INFO] 13:24:18:673 Proceso entrenador/(3010:3010): CONECTADO con bsas
+[INFO] 13:24:18:673 Proceso entrenador/(3010:3010): COMIENZO AVENTURA en bsas
+[INFO] 13:24:19:8 Proceso entrenador/(3010:3010): Voy a solicitar coordenadas de C
+[INFO] 13:24:19:8 Proceso entrenador/(3010:3010): bsas me da COORDENADAS de pokenest C
+[INFO] 13:24:19:410 Proceso entrenador/(3010:3010): Me moví
+[INFO] 13:24:19:812 Proceso entrenador/(3010:3010): Me moví
+[INFO] 13:24:20:215 Proceso entrenador/(3010:3010): Me moví
+[INFO] 13:24:20:617 Proceso entrenador/(3010:3010): Me moví
+[INFO] 13:24:21:19 Proceso entrenador/(3010:3010): Me moví
+[INFO] 13:24:21:422 Proceso entrenador/(3010:3010): Llegué a destino. Pediré CAPTURAR POKEMON
+[INFO] 13:24:21:423 Proceso entrenador/(3010:3010): bsas me dice que el pokemon está en: /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/casos_de_prueba/Pokedex2/Mapas/bsas/PokeNest/charmander/charmander001
+[INFO] 13:24:21:431 Proceso entrenador/(3010:3010): Pokemon copiado a Dir de Bill
+[INFO] 13:24:21:825 Proceso entrenador/(3010:3010): Voy a solicitar coordenadas de P
+[INFO] 13:24:21:825 Proceso entrenador/(3010:3010): bsas me da COORDENADAS de pokenest P
+[INFO] 13:24:22:227 Proceso entrenador/(3010:3010): Me moví
+[INFO] 13:24:22:629 Proceso entrenador/(3010:3010): Me moví
+[INFO] 13:24:23:32 Proceso entrenador/(3010:3010): Me moví
+[INFO] 13:24:23:434 Proceso entrenador/(3010:3010): Me moví
+[INFO] 13:24:23:838 Proceso entrenador/(3010:3010): Me moví
+[INFO] 13:24:24:240 Proceso entrenador/(3010:3010): Me moví
+[INFO] 13:24:24:643 Proceso entrenador/(3010:3010): Me moví
+[INFO] 13:24:25:45 Proceso entrenador/(3010:3010): Me moví
+[INFO] 13:24:25:448 Proceso entrenador/(3010:3010): Me moví
+[INFO] 13:24:25:851 Proceso entrenador/(3010:3010): Me moví
+[INFO] 13:24:26:52 Proceso entrenador/(3010:3010): Llegué a destino. Pediré CAPTURAR POKEMON
+[INFO] 13:24:29:216 Proceso entrenador/(3010:3010): Mapa me avisa que estoy en deadlock
+[INFO] 13:24:29:216 Proceso entrenador/(3010:3010): Voy a buscar mi mejor pokemon
+[INFO] 13:24:29:216 Proceso entrenador/(3010:3010): CHARMANDER
+[INFO] 13:24:29:216 Proceso entrenador/(3010:3010): Charmander
+[INFO] 13:24:29:216 Proceso entrenador/(3010:3010): Charmander
+[INFO] 13:24:29:216 Proceso entrenador/(3010:3010): Tengo mejor pokemon elegido
+[INFO] 13:24:29:216 Proceso entrenador/(3010:3010): Charmander
+[INFO] 13:24:29:217 Proceso entrenador/(3010:3010): Voy a escuchar si gane o perdi
+[INFO] 13:24:29:219 Proceso entrenador/(3010:3010): Mapa me dice que perdí en batalla pokemon.
+[INFO] 13:24:29:219 Proceso entrenador/(3010:3010): No tengo más vidas disponibles para continuar en el mapa.
+[INFO] 13:24:29:219 Proceso entrenador/(3010:3010): FIN por MUERTE
+[INFO] 13:24:38:410 Proceso entrenador/(3010:3010): Se reintentara jugar
+
+[INFO] 13:24:38:423 Proceso entrenador/(3010:3010): COMIENZO del recorrido de la HOJA DE VIAJE
+[INFO] 13:35:54:705 Proceso entrenador/(3650:3650): COMIENZO: 13:35:54:705
+[INFO] 13:35:54:705 Proceso entrenador/(3650:3650): Entrenador creado con EXITO
+[INFO] 13:35:54:705 Proceso entrenador/(3650:3650): COMIENZO del recorrido de la HOJA DE VIAJE
+[INFO] 13:36:05:363 Proceso entrenador/(3650:3650): Mapa actual: bsas
+[INFO] 13:36:05:363 Proceso entrenador/(3650:3650): CONECTADO con bsas
+[INFO] 13:36:05:363 Proceso entrenador/(3650:3650): COMIENZO AVENTURA en bsas
+[INFO] 13:36:05:673 Proceso entrenador/(3650:3650): Voy a solicitar coordenadas de C
+[INFO] 13:36:05:674 Proceso entrenador/(3650:3650): bsas me da COORDENADAS de pokenest C
+[INFO] 13:36:06:76 Proceso entrenador/(3650:3650): Me moví
+[INFO] 13:36:06:478 Proceso entrenador/(3650:3650): Me moví
+[INFO] 13:36:06:879 Proceso entrenador/(3650:3650): Me moví
+[INFO] 13:36:07:281 Proceso entrenador/(3650:3650): Me moví
+[INFO] 13:36:07:683 Proceso entrenador/(3650:3650): Me moví
+[INFO] 13:36:08:85 Proceso entrenador/(3650:3650): Llegué a destino. Pediré CAPTURAR POKEMON
+[INFO] 13:36:08:86 Proceso entrenador/(3650:3650): bsas me dice que el pokemon está en: /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/casos_de_prueba/Pokedex2/Mapas/bsas/PokeNest/charmander/charmander001
+[INFO] 13:36:08:89 Proceso entrenador/(3650:3650): Pokemon copiado a Dir de Bill
+[INFO] 13:36:08:488 Proceso entrenador/(3650:3650): Voy a solicitar coordenadas de P
+[INFO] 13:36:08:488 Proceso entrenador/(3650:3650): bsas me da COORDENADAS de pokenest P
+[INFO] 13:36:08:891 Proceso entrenador/(3650:3650): Me moví
+[INFO] 13:36:09:293 Proceso entrenador/(3650:3650): Me moví
+[INFO] 13:36:09:695 Proceso entrenador/(3650:3650): Me moví
+[INFO] 13:36:10:98 Proceso entrenador/(3650:3650): Me moví
+[INFO] 13:36:10:501 Proceso entrenador/(3650:3650): Me moví
+[INFO] 13:36:10:903 Proceso entrenador/(3650:3650): Me moví
+[INFO] 13:36:11:305 Proceso entrenador/(3650:3650): Me moví
+[INFO] 13:36:11:708 Proceso entrenador/(3650:3650): Me moví
+[INFO] 13:36:12:111 Proceso entrenador/(3650:3650): Me moví
+[INFO] 13:36:12:514 Proceso entrenador/(3650:3650): Me moví
+[INFO] 13:36:12:715 Proceso entrenador/(3650:3650): Llegué a destino. Pediré CAPTURAR POKEMON
+[INFO] 13:36:21:805 Proceso entrenador/(3650:3650): Mapa me avisa que estoy en deadlock
+[INFO] 13:36:21:805 Proceso entrenador/(3650:3650): Voy a buscar mi mejor pokemon
+[INFO] 13:36:21:806 Proceso entrenador/(3650:3650): CHARMANDER
+[INFO] 13:36:21:806 Proceso entrenador/(3650:3650): Charmander
+[INFO] 13:36:21:806 Proceso entrenador/(3650:3650): Charmander
+[INFO] 13:36:21:806 Proceso entrenador/(3650:3650): Tengo mejor pokemon elegido
+[INFO] 13:36:21:806 Proceso entrenador/(3650:3650): Charmander
+[INFO] 13:36:21:806 Proceso entrenador/(3650:3650): Voy a escuchar si gane o perdi
+[INFO] 13:36:21:809 Proceso entrenador/(3650:3650): Mapa me dice que perdí en batalla pokemon.
+[INFO] 13:36:21:809 Proceso entrenador/(3650:3650): No tengo más vidas disponibles para continuar en el mapa.
+[INFO] 13:36:21:809 Proceso entrenador/(3650:3650): FIN por MUERTE
+[INFO] 13:36:29:907 Proceso entrenador/(3650:3650): Se reintentara jugar
+
+[INFO] 13:36:29:921 Proceso entrenador/(3650:3650): COMIENZO del recorrido de la HOJA DE VIAJE
+[INFO] 13:52:21:16 Proceso entrenador/(3987:3987): COMIENZO: 13:52:21:16
+[INFO] 13:52:21:16 Proceso entrenador/(3987:3987): Entrenador creado con EXITO
+[INFO] 13:52:21:16 Proceso entrenador/(3987:3987): COMIENZO del recorrido de la HOJA DE VIAJE
+[INFO] 13:52:30:549 Proceso entrenador/(3987:3987): Mapa actual: bsas
+[INFO] 13:52:30:550 Proceso entrenador/(3987:3987): CONECTADO con bsas
+[INFO] 13:52:30:550 Proceso entrenador/(3987:3987): COMIENZO AVENTURA en bsas
+[INFO] 13:52:30:931 Proceso entrenador/(3987:3987): Voy a solicitar coordenadas de C
+[INFO] 13:52:30:932 Proceso entrenador/(3987:3987): bsas me da COORDENADAS de pokenest C
+[INFO] 13:52:31:334 Proceso entrenador/(3987:3987): Me moví
+[INFO] 13:52:31:737 Proceso entrenador/(3987:3987): Me moví
+[INFO] 13:52:32:139 Proceso entrenador/(3987:3987): Me moví
+[INFO] 13:52:32:541 Proceso entrenador/(3987:3987): Me moví
+[INFO] 13:52:32:944 Proceso entrenador/(3987:3987): Me moví
+[INFO] 13:52:33:347 Proceso entrenador/(3987:3987): Llegué a destino. Pediré CAPTURAR POKEMON
+[INFO] 13:52:33:348 Proceso entrenador/(3987:3987): bsas me dice que el pokemon está en: /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/casos_de_prueba/Pokedex2/Mapas/bsas/PokeNest/charmander/charmander001
+[INFO] 13:52:33:352 Proceso entrenador/(3987:3987): Pokemon copiado a Dir de Bill
+[INFO] 13:52:33:750 Proceso entrenador/(3987:3987): Voy a solicitar coordenadas de P
+[INFO] 13:52:33:750 Proceso entrenador/(3987:3987): bsas me da COORDENADAS de pokenest P
+[INFO] 13:52:34:151 Proceso entrenador/(3987:3987): Me moví
+[INFO] 13:52:34:553 Proceso entrenador/(3987:3987): Me moví
+[INFO] 13:52:34:956 Proceso entrenador/(3987:3987): Me moví
+[INFO] 13:52:35:358 Proceso entrenador/(3987:3987): Me moví
+[INFO] 13:52:35:761 Proceso entrenador/(3987:3987): Me moví
+[INFO] 13:52:36:163 Proceso entrenador/(3987:3987): Me moví
+[INFO] 13:52:36:566 Proceso entrenador/(3987:3987): Me moví
+[INFO] 13:52:36:969 Proceso entrenador/(3987:3987): Me moví
+[INFO] 13:52:37:372 Proceso entrenador/(3987:3987): Me moví
+[INFO] 13:52:37:775 Proceso entrenador/(3987:3987): Me moví
+[INFO] 13:52:37:977 Proceso entrenador/(3987:3987): Llegué a destino. Pediré CAPTURAR POKEMON
+[INFO] 13:52:41:675 Proceso entrenador/(3987:3987): Mapa me avisa que estoy en deadlock
+[INFO] 13:52:41:676 Proceso entrenador/(3987:3987): Voy a buscar mi mejor pokemon
+[INFO] 13:52:41:676 Proceso entrenador/(3987:3987): CHARMANDER
+[INFO] 13:52:41:676 Proceso entrenador/(3987:3987): Charmander
+[INFO] 13:52:41:676 Proceso entrenador/(3987:3987): Charmander
+[INFO] 13:52:41:676 Proceso entrenador/(3987:3987): Tengo mejor pokemon elegido
+[INFO] 13:52:41:676 Proceso entrenador/(3987:3987): Charmander
+[INFO] 13:52:41:676 Proceso entrenador/(3987:3987): Voy a escuchar si gane o perdi
+[INFO] 13:52:41:679 Proceso entrenador/(3987:3987): Mapa me dice que perdí en batalla pokemon.
+[INFO] 13:52:41:679 Proceso entrenador/(3987:3987): No tengo más vidas disponibles para continuar en el mapa.
+[INFO] 13:52:41:679 Proceso entrenador/(3987:3987): FIN por MUERTE
+[INFO] 13:52:52:90 Proceso entrenador/(3987:3987): Se reintentara jugar
+
+[INFO] 13:52:52:103 Proceso entrenador/(3987:3987): COMIENZO del recorrido de la HOJA DE VIAJE

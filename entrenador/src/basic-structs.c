@@ -9,10 +9,11 @@
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
 t_config* configuracion_metadata_create(char *nombre, char *ruta)
 {
-	char *ruta_final = string_new();
-	ruta_final = obtener_ruta_especifica(ruta, "Entrenadores", nombre);
-	ruta_final = obtener_ruta_especifica(ruta_final, "metadata", NULL);
-	t_config *config_new = config_create(ruta_final);
+	//char *ruta_final = string_new();
+	char* ruta_final = obtener_ruta_especifica(ruta, "Entrenadores", nombre);
+	char* ruta_final_2 = obtener_ruta_especifica(ruta_final, "metadata", NULL);
+	t_config *config_new = config_create(ruta_final_2);
+	free(ruta_final);
 	return config_new;
 }
 
@@ -53,26 +54,28 @@ t_ubicacion* ubicacion_create(int x, int y)
 
 t_mapa* mapa_create(char* nombre_mapa, char *ruta_pokedex, t_entrenador *entrenador)
 {
-	t_config *config = configuracion_metadata_mapa_create(nombre_mapa, ruta_pokedex);
 	t_mapa *mapa_new = malloc(sizeof(t_mapa));
-
-	mapa_new->config=config;
 	mapa_new->nombre = string_new();
 	string_append(&mapa_new->nombre,nombre_mapa);
+
+	t_config *config = configuracion_metadata_mapa_create(mapa_new->nombre, ruta_pokedex);
+
+	mapa_new->config=config;
+
 
 	//log_info(info_entrenador,mapa_new->nombre);
 
 	mapa_new->puerto =string_new();
 	char* port = config_get_string_value(config, "Puerto");
 	string_append(&mapa_new->puerto,port);
-	free(port);
+	//free(port);
 
 	//log_info(info_entrenador,mapa_new->puerto);
 
 	mapa_new->ip =string_new();
 	char* tip = config_get_string_value(config, "IP");
 	string_append(&mapa_new->ip,tip);
-	free(tip);
+	//free(tip);
 
 	//log_info(info_entrenador,mapa_new->ip);
 	mapa_new->objetivos = asociar_objetivos_por_mapa(nombre_mapa,entrenador);
@@ -83,23 +86,25 @@ t_mapa* mapa_create(char* nombre_mapa, char *ruta_pokedex, t_entrenador *entrena
 
 t_config* configuracion_metadata_mapa_create(char *nombre, char *ruta)
 {
-	char *ruta_final = string_new();
-	ruta_final = obtener_ruta_especifica(ruta, "Mapas", nombre);
-	ruta_final = obtener_ruta_especifica(ruta_final, "metadata", NULL);
-	t_config *config_new = config_create(ruta_final);
-	return config_new;;
+	//char *ruta_final = string_new();
+	char* ruta_final = obtener_ruta_especifica(ruta, "Mapas", nombre);
+	char* ruta_final_2 = obtener_ruta_especifica(ruta_final, "metadata", NULL);
+	free(ruta_final);
+	t_config *config_new = config_create(ruta_final_2);
+	//free(ruta_final_2);
+	return config_new;
 }
 
 /*------------------------------------------------DESTROYERS---------------------------------------------------------------*/
 void mapa_destruite(t_mapa *mapa)
 {
 	free(mapa->ip);
-	free(mapa->nombre);
+	//free(mapa->nombre);
 	free(mapa->puerto);
 	list_destroy_and_destroy_elements(mapa->objetivos,mapa_element_destroyer);
 	list_destroy_and_destroy_elements(mapa->pokemons_capturados,mapa_element_destroyer);
-	config_destroy(mapa->config);
-	free(mapa);
+	//config_destroy(mapa->config);
+	//free(mapa);
 }
 
 void mapa_element_destroyer(void* arg)
@@ -201,7 +206,7 @@ t_list* asociar_objetivos_por_mapa(char *nombre_mapa, t_entrenador *entrenador)
 	char **objetivos_por_separado = mapas_a_Recorrer(objetivos);
 	t_list *lista = foreach_hoja_de_viaje(objetivos_por_separado);
 	array_free_all_2(objetivos_por_separado);
-	free(objetivos);
+	//free(objetivos);
 	free(objetivo_especifico);
 	return lista;
 }
@@ -225,12 +230,12 @@ char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_arch
 	if(sub_directorio_o_nombre_archivo != NULL)
 	{	string_append(&ruta, "/");
 		string_append(&ruta,sub_directorio_o_nombre_archivo);
-		string_trim_left(&ruta);
+		//string_trim_left(&ruta);
 		return ruta;
 	}
 	else
 		{
-			string_trim_left(&ruta);
+			//string_trim_left(&ruta);
 			return ruta;
 		}
 }
