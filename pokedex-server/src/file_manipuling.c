@@ -89,7 +89,9 @@ int osada_b_check_repeat_name(int tipo,char* path)
 {
 	char *path_padre = obtener_ruta_padre(path);
 	char *new_hijo = array_last_element(path);
+	//pthread_mutex_lock(&mutex_operaciones);
 	t_list *hijos = osada_b_listar_hijos(path_padre);
+	//pthread_mutex_unlock(&mutex_operaciones);
 
 	if(list_is_empty(hijos))
 	{
@@ -278,6 +280,8 @@ int verify_correct_file(osada_file *file)
 /*---------------------------------------------VERIFICACION EXISTENCIA DE UN PATH------------------------------------------*/
 int osada_check_exist(char *path)
 {
+	pthread_mutex_lock(&mutex_operaciones);
+
 	char **file_for_file = string_split(path,"/");
 	int size = array_size(file_for_file);
 
@@ -289,6 +293,7 @@ int osada_check_exist(char *path)
 	int verify = 1;
 	int result = 0;
 
+	//pthread_mutex_lock(&mutex_operaciones);
 	while(verify && i<size)
 	{
 		if(i == 0)
@@ -305,6 +310,10 @@ int osada_check_exist(char *path)
 		}
 		i++;
 	}
+	//pthread_mutex_unlock(&mutex_operaciones);
+
+	pthread_mutex_unlock(&mutex_operaciones);
+
 	array_free_all(file_for_file);
 	free(path_file);
 	return verify;
@@ -313,6 +322,7 @@ int osada_check_exist(char *path)
 int verificar_existencia(char *file_or_directory, uint16_t dad_block)
 {
 	void *result = osada_get_file_called(file_or_directory, disco);
+
 
 	t_file_osada *file = (t_file_osada *) result;
 
@@ -448,7 +458,7 @@ void* osada_get_file_called(char *path, t_disco_osada *disco)
 	osada_file *file_1 = malloc(sizeof(osada_file));
 	osada_file *file_2 = malloc(sizeof(osada_file));
 
-	pthread_mutex_lock(&mutex_operaciones);
+	//pthread_mutex_lock(&mutex_operaciones);
 	while(!archivo_encontrado && index<=1024)
 	{
 		void *two_files = osada_get_blocks_relative_since(TABLA_DE_ARCHIVOS,index,1,disco);
@@ -475,7 +485,7 @@ void* osada_get_file_called(char *path, t_disco_osada *disco)
 		}
 		index++;
 	}
-	pthread_mutex_unlock(&mutex_operaciones);
+	//pthread_mutex_unlock(&mutex_operaciones);
 	if(archivo_encontrado == 0)
 	{
 		free(file_1);
@@ -733,9 +743,9 @@ void osada_b_rename(t_file_osada *file, char* new_path)
 	char *new_nombre = array_last_element(new_path);
 	setear_nombre(new_nombre,file->file);
 	int offset = calcular_desplazamiento_tabla_de_archivos(file->position_in_block);
-	pthread_mutex_lock(&mutex_operaciones);
+	//pthread_mutex_lock(&mutex_operaciones);
 	osada_push_middle_block(TABLA_DE_ARCHIVOS,file->block_relative,offset,file->file,disco);
-	pthread_mutex_unlock(&mutex_operaciones);
+	//pthread_mutex_unlock(&mutex_operaciones);
 	free(new_nombre);
 }
 

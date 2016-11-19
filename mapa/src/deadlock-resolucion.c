@@ -31,6 +31,9 @@ void resolver_deadlock_sin_batalla(t_list *involucrados)
 
 void resolver_deadlock_pokemon(t_list* involucrados)
 {
+	if(mapa->batalla)
+	{
+
 
 	int index_entrenador = 0;
 
@@ -125,7 +128,7 @@ void resolver_deadlock_pokemon(t_list* involucrados)
 			free(perdedor);
 			list_destroy(entrenadores_involucrados);
 		}
-
+	}
 }
 
 void involucrados_destroyer(void* arg)

@@ -101,6 +101,9 @@ void listar_directorio_raiz(t_list *lista)
 void listar_directorio_comun(t_list *lista, char *path)
 {
 	t_file_osada *file_path = osada_get_file_called(path,disco);
+
+	lock_file_full(file_path->block_relative ,file_path->position_in_block);
+
 		if(file_path->file->state == DIRECTORY)
 		{
 			osada_file *file_1 = malloc(sizeof(osada_file));
@@ -120,6 +123,8 @@ void listar_directorio_comun(t_list *lista, char *path)
 			free(file_1);
 			free(file_2);
 		}
+
+	unlock_file_full(file_path->block_relative ,file_path->position_in_block);
 	t_file_osada_destroy(file_path);
 }
 
@@ -188,6 +193,9 @@ enum
 t_attributes_file* osada_b_get_attributes_of_this_file(char *path_file)
 {
 	t_file_osada *file_find = osada_get_file_called(path_file, disco);
+
+	//lock_file_full(file_find->block_relative + file_find->position_in_block);
+
 	t_attributes_file *atributos = malloc(sizeof(t_attributes_file));
 
 	if(file_find->file->state == DIRECTORY)
@@ -200,6 +208,8 @@ t_attributes_file* osada_b_get_attributes_of_this_file(char *path_file)
 		atributos->size = file_find->file->file_size;
 		atributos->tipo =ARCHIVO;
 	}
+
+	//unlock_file_full(file_find->block_relative + file_find->position_in_block);
 
 	t_file_osada_destroy(file_find);
 	return atributos;

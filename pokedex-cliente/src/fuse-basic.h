@@ -129,7 +129,6 @@ static struct fuse_operations osada_operations =
 		.open = osada_abri_archivo,
 		.truncate = osada_trucate_file,
 		.access= osada_acces,
-		.utime = osada_time
 };
 
 

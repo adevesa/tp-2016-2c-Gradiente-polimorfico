@@ -12,6 +12,10 @@
 #include "pthread.h"
 
 void iniciar_semaforos();
+void lock_file_full(int num_block_file, int offset);
+void unlock_file_full(int num_block_file, int offset);
+void lock_file_to_delte(int num_block_file,int offset);
+void unlock_file_to_delte(int num_block_file,int offset);
 /*-------------------------------------------------------CREATES Y RECUPEROS-----------------------------------------------*/
 int osada_hay_espacio_para_archivos();
 void osada_aumenta_cantidad_de_archivos();

@@ -9,7 +9,7 @@ extern t_cliente_osada* cliente_osada;
 
 pthread_mutex_t mutex_operaciones;
 
-#define LOG_ACTIVADO 1
+#define LOG_ACTIVADO 0
 
 void iniciar_log()
 {
@@ -105,8 +105,16 @@ int cliente_pedi_crear_directorio(const char *path, mode_t modo_de_creacion)
 	}
 	else
 	{
-		pthread_mutex_unlock(&mutex_operaciones);
-		return respuesta;
+		if(respuesta== (-NO_HAY_ESPACIO))
+		{
+			pthread_mutex_unlock(&mutex_operaciones);
+		return -NO_SE_PUEDEN_CREAR_MAS_ARCHIVOS;
+		}
+		else
+		{
+			pthread_mutex_unlock(&mutex_operaciones);
+			return respuesta;
+		}
 	}
 }
 
@@ -132,8 +140,17 @@ int cliente_pedi_crear_archivo(const char *path, mode_t modo, dev_t permisos)
 	}
 	else
 	{
-		pthread_mutex_unlock(&mutex_operaciones);
-		return respuesta;
+		if(respuesta==(-NO_HAY_ESPACIO))
+		{
+			pthread_mutex_unlock(&mutex_operaciones);
+			return -NO_SE_PUEDEN_CREAR_MAS_ARCHIVOS;
+		}
+		else
+		{
+			pthread_mutex_unlock(&mutex_operaciones);
+			return respuesta;
+		}
+
 	}
 }
 
@@ -301,7 +318,8 @@ int cliente_pedi_escribir_archivo(const char *path, const char *text, size_t siz
 		case(-NO_HAY_ESPACIO):
 		{
 			pthread_mutex_unlock(&mutex_operaciones);
-			return -NO_HAY_ESPACIO;
+			//return -NO_HAY_ESPACIO;
+			return -ARCHIVO_MUY_GRANDE;
 		};break;
 	}
 

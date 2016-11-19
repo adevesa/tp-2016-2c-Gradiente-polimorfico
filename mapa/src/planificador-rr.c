@@ -61,8 +61,11 @@ void planificador_rr_organiza_entrenadores()
 		mapa_cambiale_estado_a_entrenador(entrenador_listo, EXECUTE, estado_anterior);
 		loggear_turno(entrenador_listo);
 		planificador_rr_es_el_turno_de(entrenador_listo, &quamtum_restante);
+		loggear_fin_turno(entrenador_listo);
 		planificador_volve_a_encolar_a_listo_si_es_necesario(entrenador_listo);
 		planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
+		mostrarTodo(planificador->listas_y_colas->cola_entrenadores_bloqueados,COLA_BLOQUEADOS);
+		mostrarTodo(planificador->listas_y_colas->cola_entrenadores_listos,COLA_LISTOS);
 	}
 	cambiar_algoritmo();
 	/*
@@ -78,6 +81,17 @@ void loggear_turno(t_entrenador *entrenador)
 	log_info(informe_planificador, mensaje_a_log_2);
 	free(mensaje_a_log_2);
 }
+
+void loggear_fin_turno(t_entrenador *entrenador)
+{
+	char* mensaje_a_log_2 = string_new();
+	string_append(&mensaje_a_log_2," FIN TURNO DEL ENTRENADOR: ");
+	string_append(&mensaje_a_log_2,entrenador->simbolo_identificador);
+	log_info(informe_planificador, mensaje_a_log_2);
+	free(mensaje_a_log_2);
+}
+
+
 
 void planificador_rr_es_el_turno_de(t_entrenador *entrenador_listo, int *quamtum)
 {

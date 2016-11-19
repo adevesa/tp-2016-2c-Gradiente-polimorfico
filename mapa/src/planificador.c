@@ -624,3 +624,75 @@ void planificador_volve_a_encolar_a_listo_si_es_necesario(t_entrenador *entrenad
 		planificador_push_entrenador_a_listo(entrenador);
 	}
 }
+
+
+/*---------------------------------------LOGS---------------------------------------------------------*/
+void mostrarTodo(t_queue* cola, int tipo)
+{
+	int z;
+	char* mensaje = string_new();
+	string_append(&mensaje,"ESTADO DE COLA ");
+
+	int tamanio_cola = queue_size(cola);
+	switch(tipo)
+	{
+		case(COLA_BLOQUEADOS):
+		{
+			string_append(&mensaje,"BLOQUEADOS: ");
+			if(tamanio_cola == 0)
+				{
+					string_append(&mensaje,"VACIA");
+				}
+			else
+			{
+				pthread_mutex_lock(&mutex_manipular_cola_bloqueados);
+					for(z=0; z < tamanio_cola; z++)
+					{
+
+						char* como_string = convertir_a_string(list_get(cola->elements,z));
+
+						string_append(&mensaje, como_string);
+					}
+					pthread_mutex_unlock(&mutex_manipular_cola_bloqueados);
+			}
+			log_info(informe_planificador,mensaje);
+			free(mensaje);
+		};break;
+		case(COLA_LISTOS):
+		{
+			string_append(&mensaje,"LISTOS: ");
+			if(tamanio_cola == 0)
+			{
+				string_append(&mensaje,"VACIA");
+			}
+			else
+			{
+				pthread_mutex_lock(&mutex_manipular_cola_listos);
+				for(z=0; z < tamanio_cola; z++)
+				{
+
+					char* como_string = convertir_a_string(list_get(cola->elements,z));
+
+					string_append(&mensaje, como_string);
+				}
+				pthread_mutex_unlock(&mutex_manipular_cola_listos);
+			}
+			log_info(informe_planificador,mensaje);
+			free(mensaje);
+		};break;
+	}
+
+
+
+
+}
+
+char* convertir_a_string(char caracter)
+{
+	char buffer[2];
+	buffer[0] = caracter;
+	buffer[1] = '\0';
+	char* retorno = string_new();
+	string_append(&retorno,buffer);
+	return retorno;
+}

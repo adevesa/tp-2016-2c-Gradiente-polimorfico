@@ -27,8 +27,10 @@ enum
 enum
 {
 	COLA_LISTOS,
+	COLA_BLOQUEADOS,
 	COLA_SIN_OBJETIVOS
 }t_cola;
+
 
 enum
 {
@@ -110,4 +112,7 @@ void foreach(int cola,void *lista,void(*funcion_de_lista)(int,void*));
 /*---------------------------------------EXECUTE->LISTO---------------------------------------------------------*/
 void planificador_volve_a_encolar_a_listo_si_es_necesario(t_entrenador *entrenador);
 
+/*---------------------------------------LOGS---------------------------------------------------------*/
+void mostrarTodo(t_queue* cola, int tipo);
+char* convertir_a_string(char caracter);
 #endif /* MAPA_MAPA_COMMONS_PLANIFICADOR_H_ */
