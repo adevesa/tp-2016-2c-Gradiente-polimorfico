@@ -6,13 +6,7 @@
  */
 #include "operaciones.h"
 
-/*extern pthread_mutex_t mutex_operaciones;
-extern pthread_mutex_t mutex_crear;
-extern pthread_mutex_t mutex_borrar;
-extern pthread_mutex_t mutex_check;
-extern pthread_mutex_t mutex_leer;
-extern pthread_mutex_t mutex_truncate;
-extern pthread_mutex_t mutex_rename;*/
+
 
 extern pthread_mutex_t mutex_check;
 
@@ -270,10 +264,7 @@ void* osada_a_read_file(t_to_be_read *to_read)
 		if(size == 0 || to_read->offset == size)
 		{
 			t_file_osada_destroy(file_a_leer);
-			/*pthread_mutex_unlock(&mutex_borrar);
-			pthread_mutex_unlock(&mutex_escribir);
-			pthread_mutex_unlock(&mutex_leer);
-			pthread_mutex_unlock(&mutex_rename);*/
+
 			unlock_file_to_delte(file_a_leer->block_relative ,file_a_leer->position_in_block);
 			unlock_file_full(file_a_leer->block_relative ,file_a_leer->position_in_block);
 
@@ -291,11 +282,8 @@ void* osada_a_read_file(t_to_be_read *to_read)
 					//pthread_mutex_lock(&mutex_operaciones);
 					void *contenido = osada_get_data_of_this_file(file_a_leer->file,disco);
 
-					/*pthread_mutex_unlock(&mutex_borrar);
-					pthread_mutex_unlock(&mutex_escribir);
-					pthread_mutex_unlock(&mutex_leer);
-					pthread_mutex_unlock(&mutex_rename);*/
 
+					unlock_file_to_delte(file_a_leer->block_relative ,file_a_leer->position_in_block);
 					unlock_file_full(file_a_leer->block_relative ,file_a_leer->position_in_block);
 
 					void *contenido_a_enviar = malloc(size); //size +1
@@ -309,11 +297,6 @@ void* osada_a_read_file(t_to_be_read *to_read)
 				else
 				{
 					void *contenido = osada_get_data_of_this_file(file_a_leer->file,disco);
-
-					/*pthread_mutex_unlock(&mutex_borrar);
-					pthread_mutex_unlock(&mutex_escribir);
-					pthread_mutex_unlock(&mutex_leer);
-					pthread_mutex_unlock(&mutex_rename);*/
 
 					unlock_file_to_delte(file_a_leer->block_relative ,file_a_leer->position_in_block);
 					unlock_file_full(file_a_leer->block_relative ,file_a_leer->position_in_block);
@@ -332,17 +315,11 @@ void* osada_a_read_file(t_to_be_read *to_read)
 			}
 			else
 			{
-				//pthread_mutex_lock(&mutex_operaciones);
 				void *contenido = osada_get_data_of_this_file(file_a_leer->file,disco);
-
-				/*pthread_mutex_unlock(&mutex_borrar);
-				pthread_mutex_unlock(&mutex_escribir);
-				pthread_mutex_unlock(&mutex_leer);
-				pthread_mutex_unlock(&mutex_rename);*/
 
 				unlock_file_to_delte(file_a_leer->block_relative ,file_a_leer->position_in_block);
 				unlock_file_full(file_a_leer->block_relative ,file_a_leer->position_in_block);
-				//pthread_mutex_unlock(&mutex_operaciones);
+
 				void *contenido_a_enviar = malloc(to_read->size+1);
 				memcpy(contenido_a_enviar,contenido + to_read->offset,to_read->size);
 
@@ -368,10 +345,7 @@ void* osada_a_read_file(t_to_be_read *to_read)
 
 void* osada_a_write_file(t_to_be_write *to_write)
 {
-	/*pthread_mutex_lock(&mutex_borrar);
-	pthread_mutex_lock(&mutex_escribir);
-	pthread_mutex_lock(&mutex_truncate);
-	pthread_mutex_lock(&mutex_rename);*/
+
 	pthread_mutex_lock(&mutex_check);
 	if(osada_check_exist(to_write->path))
 	{
