@@ -26,13 +26,13 @@ endif
 all: podekex-cliente
 
 dependents:
-	-cd /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug && $(MAKE) all
+	-cd /tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug && $(MAKE) all
 
 # Tool invocations
-podekex-cliente: $(OBJS) $(USER_OBJS) /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug/libnecessary-commons.so
+podekex-cliente: $(OBJS) $(USER_OBJS) tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug/libnecessary-commons.so
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C Linker'
-	gcc -L"/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug" -o "podekex-cliente" $(OBJS) $(USER_OBJS) $(LIBS)
+	gcc -L"/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug" -o "podekex-cliente" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -43,6 +43,6 @@ clean:
 
 .PHONY: all clean dependents
 .SECONDARY:
-/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug/libnecessary-commons.so:
+/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug/libnecessary-commons.so:
 
 -include ../makefile.targets

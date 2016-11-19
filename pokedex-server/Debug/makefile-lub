@@ -26,13 +26,13 @@ endif
 all: pokedex-server
 
 dependents:
-	-cd /tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug && $(MAKE) all
+	-cd /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug && $(MAKE) all
 
 # Tool invocations
-pokedex-server: $(OBJS) $(USER_OBJS) /tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug/libnecessary-commons.so
+pokedex-server: $(OBJS) $(USER_OBJS) /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug/libnecessary-commons.so
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C Linker'
-	gcc -L"/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug" -o "pokedex-server" $(OBJS) $(USER_OBJS) $(LIBS)
+	gcc -L"/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug" -o "pokedex-server" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -43,6 +43,6 @@ clean:
 
 .PHONY: all clean dependents
 .SECONDARY:
-/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug/libnecessary-commons.so:
+/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/Debug/libnecessary-commons.so:
 
 -include ../makefile.targets
