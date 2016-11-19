@@ -1,0 +1,2 @@
+export IP=$IP:127.0.0.1
+export PUERTO=$PUERTO:5005
