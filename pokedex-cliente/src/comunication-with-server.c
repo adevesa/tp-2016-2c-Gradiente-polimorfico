@@ -24,16 +24,16 @@ void iniciar_log()
 void cliente_osada_create()
 {
 	cliente_osada =malloc(sizeof(t_cliente_osada));
-	//cliente_osada->ip = getenv("IP");
-	cliente_osada->ip = string_new();
-	string_append(&cliente_osada->ip, "127.0.0.1");
+	cliente_osada->ip = getenv("IP_POKEMON");
+	//cliente_osada->ip = string_new();
+	//string_append(&cliente_osada->ip, "127.0.0.1");
 
-	//char *puerto = getenv("PUERTO");
-	//cliente_osada->puerto = atoi(puerto);
+	char *puerto = getenv("PUERTO_POKEMON");
+	cliente_osada->puerto = atoi(puerto);
 
 	//free(puerto);
 
-	cliente_osada->puerto = 5001;
+	//cliente_osada->puerto = 5001;
 	pthread_mutex_init(&mutex_operaciones,NULL);
 }
 
