@@ -11,7 +11,7 @@
 #include "basic-structs.h"
 #include "socket/server.h"
 #include "pthread.h"
-#include "commons/process.h"
+#include "so-commons/process.h"
 #include "pkmn/factory.h"
 
 enum RESPUESTA_DEL_ENTRENADOR

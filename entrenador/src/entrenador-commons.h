@@ -7,7 +7,7 @@
 
 #ifndef ENTRENADOR_COMMONS_H_
 #define ENTRENADOR_COMMONS_H_
-#include <so-commons/log.h>
+#include "so-commons/log.h"
 
 #include "comunication.h"
 #include "basic-structs.h"

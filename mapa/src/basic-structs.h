@@ -13,12 +13,12 @@
 #include "string.h"
 #include <dirent.h>
 #include <ctype.h>
-#include <so-commons/collections/dictionary.h>
-#include <so-commons/collections/list.h>
-#include <so-commons/collections/queue.h>
-#include <so-commons/config.h>
-#include <so-commons/string.h>
-#include <so-commons/txt.h>
+#include "so-commons/collections/dictionary.h"
+#include "so-commons/collections/list.h"
+#include "so-commons/collections/queue.h"
+#include "so-commons/config.h"
+#include "so-commons/string.h"
+#include "so-commons/txt.h"
 #include "semaphore.h"
 #include <signal.h>
 
