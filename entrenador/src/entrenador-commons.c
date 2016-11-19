@@ -34,7 +34,7 @@ void mostrar_por_pantalla_resultados()
 {
 	printf("LOGRE TERMINAR MI AVENTURA \n");
 	//printf("-TIEMPO TOTAL AVENTURA %d \n", entrenador->tiempo_total_aventura);
-	printf("-TIEMPO BLOQUEADO EN POKENEST: %d \n", entrenador->tiempo_bloqueado_pokenest);
+	//printf("-TIEMPO BLOQUEADO EN POKENEST: %d \n", entrenador->tiempo_bloqueado_pokenest);
 	printf("-CANTIDAD DE DEADLOCKS: %d \n", entrenador->cantidad_deadlocks);
 	printf("-CANTIDAD DE MUERTES: %d \n", entrenador->muertes);
 	printf("-CANTIDAD DE REINTENTOS: %d \n",entrenador->reintentos);

@@ -23,8 +23,12 @@ t_entrenador* entrenador_create(char* nombre, char* ruta)
   	string_append(&entrenador_new->nombre,nombre);
   	entrenador_new->ruta_pokedex = string_new();
   	string_append(&entrenador_new->ruta_pokedex,ruta);
-  	entrenador_new->configuracion = configuracion_metadata_create(nombre,ruta);
-  	entrenador_new->directorio_de_bill = obtener_direccion_directorio_de_bill(ruta, nombre);
+  	//entrenador_new->nombre=nombre;
+  	//entrenador_new->ruta_pokedex=ruta;
+  //entrenador_new->configuracion = configuracion_metadata_create(nombre,ruta);
+  	//entrenador_new->directorio_de_bill = obtener_direccion_directorio_de_bill(ruta, nombre);
+  	entrenador_new->configuracion = configuracion_metadata_create(entrenador_new->nombre,entrenador_new->ruta_pokedex);
+  	 entrenador_new->directorio_de_bill = obtener_direccion_directorio_de_bill(entrenador_new->ruta_pokedex, entrenador_new->nombre);
   	entrenador_new->simbolo= entrenador_simbolo(entrenador_new->configuracion);
   	entrenador_new->hoja_de_viaje= entrenador_hoja_de_viaje(entrenador_new->configuracion);
   	entrenador_new->vidas= entrenador_vidas(entrenador_new->configuracion);

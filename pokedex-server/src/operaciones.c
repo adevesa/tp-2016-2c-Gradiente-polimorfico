@@ -94,7 +94,8 @@ void* osada_a_create_file(char *path)
 			{
 				t_osada_file_free *new_file=osada_b_file_create(REGULAR,path);
 
-				lock_file_full(new_file->block_relative ,new_file->position_in_block);
+				int posicion = calcular_desplazamiento_tabla_de_archivos(new_file->position_in_block);
+				lock_file_full(new_file->block_relative ,posicion);
 
 				int offset = calcular_desplazamiento_tabla_de_archivos(new_file->position_in_block);
 				//pthread_mutex_lock(&mutex_operaciones);
@@ -104,7 +105,7 @@ void* osada_a_create_file(char *path)
 				//pthread_mutex_unlock(&mutex_operaciones);
 				t_file_osada_destroy((t_file_osada*) new_file);
 
-				unlock_file_full(new_file->block_relative ,new_file->position_in_block);
+				unlock_file_full(new_file->block_relative ,posicion);
 				/*pthread_mutex_unlock(&mutex_borrar);
 				pthread_mutex_unlock(&mutex_crear);*/
 				return EXITO;
@@ -148,7 +149,8 @@ void* osada_a_create_dir(char *path)
 			{
 
 				t_osada_file_free *new_file=osada_b_file_create(DIRECTORY,path);
-				lock_file_full(new_file->block_relative ,new_file->position_in_block);
+				int posicion = calcular_desplazamiento_tabla_de_archivos(new_file->position_in_block);
+				lock_file_full(new_file->block_relative ,posicion);
 
 				int offset = calcular_desplazamiento_tabla_de_archivos(new_file->position_in_block);
 				osada_push_middle_block(TABLA_DE_ARCHIVOS,new_file->block_relative,offset,new_file->file,disco);
@@ -158,7 +160,7 @@ void* osada_a_create_dir(char *path)
 				/*pthread_mutex_unlock(&mutex_borrar);
 				pthread_mutex_unlock(&mutex_crear);*/
 
-				unlock_file_full(new_file->block_relative ,new_file->position_in_block);
+				unlock_file_full(new_file->block_relative ,posicion);
 
 				t_file_osada_destroy((t_file_osada*) new_file);
 				return EXITO;

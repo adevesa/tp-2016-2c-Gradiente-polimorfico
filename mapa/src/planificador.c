@@ -649,9 +649,10 @@ void mostrarTodo(t_queue* cola, int tipo)
 					for(z=0; z < tamanio_cola; z++)
 					{
 
-						char* como_string = convertir_a_string(list_get(cola->elements,z));
-
-						string_append(&mensaje, como_string);
+						//char* como_string = convertir_a_string(list_get(cola->elements,z));
+						char* elemento = list_get(cola->elements,z);
+						//tring_append(&mensaje, como_string);
+						string_append(&mensaje,elemento);
 					}
 					pthread_mutex_unlock(&mutex_manipular_cola_bloqueados);
 			}
@@ -671,9 +672,10 @@ void mostrarTodo(t_queue* cola, int tipo)
 				for(z=0; z < tamanio_cola; z++)
 				{
 
-					char* como_string = convertir_a_string(list_get(cola->elements,z));
-
-					string_append(&mensaje, como_string);
+					//char* como_string = convertir_a_string(list_get(cola->elements,z));
+					char* elemento = list_get(cola->elements,z);
+					//tring_append(&mensaje, como_string);
+					string_append(&mensaje,elemento);
 				}
 				pthread_mutex_unlock(&mutex_manipular_cola_listos);
 			}

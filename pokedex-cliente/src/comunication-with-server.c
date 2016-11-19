@@ -9,7 +9,7 @@ extern t_cliente_osada* cliente_osada;
 
 pthread_mutex_t mutex_operaciones;
 
-#define LOG_ACTIVADO 0
+#define LOG_ACTIVADO 1
 
 void iniciar_log()
 {
@@ -246,10 +246,10 @@ int cliente_pedi_leer_archivo(const char *path, char *buf, size_t size, off_t of
 					string_append(&mensaje_A_log_2, " LEIDOS");
 					log_info(log,mensaje_A_log_2);
 					free(mensaje_A_log_2);
-					free(primer_byte);
+
 
 		}
-
+		free(primer_byte);
 		pthread_mutex_unlock(&mutex_operaciones);
 		return tamanio;
 	}
