@@ -14,6 +14,7 @@
 #include <pthread.h>
 #include "so-commons/log.h"
 #include "so-commons/collections/list.h"
+#include "so-commons/string.h"
 
 #include "planificador.h"
 #include "basic-structs.h"
