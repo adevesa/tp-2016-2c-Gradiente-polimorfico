@@ -24,12 +24,18 @@ extern t_disco_osada* disco;
 
 int main(int argc, char* argv[])
 {
+	char* nombre_disco = string_new();
+	string_append(&nombre_disco,argv[1]);
+	char* nombre_posta = array_last_element(nombre_disco);
+	free(nombre_disco);
+	printf("Abriendo disco %s \n",nombre_posta);
+	free(nombre_posta);
 	disco = osada_disco_abrite(argv[1]);
+	printf("Recuperando estructuras basicas...\n");
 	disco->cantidad_archivos_libres=disco_recupera_cantidad_Archivos();
-	sem_init(&semaforo_terminacion,0,0);
+	disco->cantidad_bloques_libres=disco_recupera_cantidad_bloques_libres();
+	disco_recupera_tus_archivos();
 	iniciar_semaforos();
 	ejecutar_servidor();
-	sem_wait(&semaforo_terminacion);
-
 	return EXIT_SUCCESS;
 }

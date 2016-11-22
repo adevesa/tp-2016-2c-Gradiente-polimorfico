@@ -5,32 +5,59 @@
  *      Author: utnso
  */
 #include "borrados.h"
-extern pthread_mutex_t mutex_operaciones;
+//extern pthread_mutex_t mutex_operaciones;
+extern pthread_mutex_t mutex_por_archivo[];
+extern pthread_mutex_t mutex_por_archivo_borrado[];
+
 /*---------------------------------------------DELETE FILE-----------------------------------------------------------------*/
 void osada_delete_this_file(char *path)
 {
-	t_file_osada *a_file = osada_get_file_called(path, disco);
+	t_info_file *info_file = dictionary_remove(disco->diccionario_de_archivos,path);
+	pthread_mutex_lock(&mutex_por_archivo_borrado[info_file->posicion_en_tabla_de_archivos]);
+	pthread_mutex_lock(&mutex_por_archivo[info_file->posicion_en_tabla_de_archivos]);
 
-	lock_file_to_delte(a_file->block_relative , a_file->position_in_block);
-	lock_file_full(a_file->block_relative ,a_file->position_in_block);
+	char* posicion_aux = string_itoa(info_file->posicion_en_tabla_de_archivos);
+	t_info_file* info_aux = dictionary_remove(disco->archivos_por_posicion_en_tabla_asig,posicion_aux);
 
+	free(posicion_aux);
 
-	t_list *bloques_a_liberar = osada_get_blocks_nums_of_this_file(a_file->file,disco);
-	osada_change_file_state(a_file->file,DELETED);
-	int offset = calcular_desplazamiento_tabla_de_archivos(a_file->position_in_block);
+	osada_file *file = osada_get_file_for_index(info_file->posicion_en_tabla_de_archivos);
 
-	//pthread_mutex_lock(&mutex_operaciones);
-	osada_desocupa_n_bits(bloques_a_liberar);
-	osada_push_middle_block(TABLA_DE_ARCHIVOS,a_file->block_relative,offset,a_file->file,disco);
-	//pthread_mutex_unlock(&mutex_operaciones);
-
+	if(info_file->last_block_asigned != FEOF)
+	{
+		t_list *bloques_a_liberar = osada_get_blocks_nums_of_this_file(file,disco);
+		osada_desocupa_n_bits(bloques_a_liberar);
+		list_destroy_and_destroy_elements(bloques_a_liberar,free_list_blocks);
+	}
+	osada_change_file_state(file,DELETED);
+	osada_impactar_un_archivo(info_file->posicion_en_tabla_de_archivos,file);
 	osada_aumenta_cantidad_de_archivos();
 
-	list_destroy_and_destroy_elements(bloques_a_liberar,free_list_blocks);
-	t_file_osada_destroy(a_file);
+	free(file);
+	free(info_file->path);
+	free(info_file);
+	pthread_mutex_unlock(&mutex_por_archivo_borrado[info_file->posicion_en_tabla_de_archivos]);
+	pthread_mutex_unlock(&mutex_por_archivo[info_file->posicion_en_tabla_de_archivos]);
 
-	unlock_file_to_delte(a_file->block_relative ,a_file->position_in_block);
-	unlock_file_full(a_file->block_relative ,a_file->position_in_block);
+	//t_file_osada *a_file = osada_get_file_called(path, disco);
+	/*lock_file_to_delte(a_file->block_relative , a_file->position_in_block);
+		lock_file_full(a_file->block_relative ,a_file->position_in_block);*/
+	/*t_list *bloques_a_liberar = osada_get_blocks_nums_of_this_file(file,disco);
+		osada_change_file_state(a_file->file,DELETED);
+		int offset = calcular_desplazamiento_tabla_de_archivos(a_file->position_in_block);
+
+
+		osada_desocupa_n_bits(bloques_a_liberar);
+		osada_push_middle_block(TABLA_DE_ARCHIVOS,a_file->block_relative,offset,a_file->file,disco);
+
+
+		osada_aumenta_cantidad_de_archivos();
+
+		list_destroy_and_destroy_elements(bloques_a_liberar,free_list_blocks);
+		t_file_osada_destroy(a_file);*/
+
+	/*unlock_file_to_delte(a_file->block_relative ,a_file->position_in_block);
+	unlock_file_full(a_file->block_relative ,a_file->position_in_block);*/
 }
 
 int calcular_desplazamiento_tabla_de_archivos(int posicion_relativa)
@@ -110,6 +137,7 @@ int es_directorio_vacio(char* path)
 		return 1;
 	}
 	else{
+
 		list_destroy_and_destroy_elements(lista,file_listado_eliminate);
 		return 0;
 	}
@@ -117,7 +145,27 @@ int es_directorio_vacio(char* path)
 
 void osada_delete_dir_void(char* path)
 {
-	t_osada_file_free* directorio = osada_get_file_called(path, disco);
+	t_info_file *info_file = dictionary_remove(disco->diccionario_de_archivos,path);
+	pthread_mutex_lock(&mutex_por_archivo_borrado[info_file->posicion_en_tabla_de_archivos]);
+	pthread_mutex_lock(&mutex_por_archivo[info_file->posicion_en_tabla_de_archivos]);
+
+	char* posicion_aux = string_itoa(info_file->posicion_en_tabla_de_archivos);
+	t_info_file* info_aux = dictionary_remove(disco->archivos_por_posicion_en_tabla_asig,posicion_aux);
+
+	free(posicion_aux);
+
+	osada_file *file = osada_get_file_for_index(info_file->posicion_en_tabla_de_archivos);
+
+	osada_change_file_state(file,DELETED);
+	osada_impactar_un_archivo(info_file->posicion_en_tabla_de_archivos,file);
+	osada_aumenta_cantidad_de_archivos();
+
+	free(file);
+	free(info_file->path);
+	free(info_file);
+	pthread_mutex_unlock(&mutex_por_archivo_borrado[info_file->posicion_en_tabla_de_archivos]);
+	pthread_mutex_unlock(&mutex_por_archivo[info_file->posicion_en_tabla_de_archivos]);
+	/*t_osada_file_free* directorio = osada_get_file_called(path, disco);
 	lock_file_full(directorio->block_relative ,directorio->position_in_block);
 
 	osada_change_file_state(directorio->file, DELETED);
@@ -127,7 +175,7 @@ void osada_delete_dir_void(char* path)
 	osada_aumenta_cantidad_de_archivos();
 	t_file_osada_destroy(directorio);
 
-	unlock_file_full(directorio->block_relative, directorio->position_in_block);
+	unlock_file_full(directorio->block_relative, directorio->position_in_block);*/
 }
 
 void osada_borrar_hijos(char* path)
@@ -141,10 +189,10 @@ void osada_borrar_hijos(char* path)
 		switch(hijo->tipo)
 		{
 			case(DIRECTORY):
-				osada_delete_this_dir(hijo->path);
+				osada_delete_this_dir(hijo->path_completo);
 				break;
 			case(REGULAR):
-				osada_delete_this_file(hijo->path);
+				osada_delete_this_file(hijo->path_completo);
 				break;
 		}
 		index++;

@@ -12,8 +12,9 @@
 #include "ls_and_atributes.h"
 /*------------------------------------------CREAR ARCHIVO---------------------------------------------------------------------*/
 t_osada_file_free* osada_b_file_create(int tipo, char* path);
+t_osada_file_free* osada_b_crear(int tipo, char* path);
 void setear_nombre(char* nombre, osada_file* archivo);
-
+int calcular_posicion_en_tabla_de_archivos_absoluta(int bloque, int posicion_dentro_del_bloque);
 void asignar_bloque_inicial_si_es_necesario(osada_file *file, int tipo);
 int osada_b_get_a_new_block_init();
 void setear_bloque_padre(osada_file *file, char *path);
@@ -81,6 +82,7 @@ int osada_check_is_table_asig_is_full();
  * 			PARA COMPROBAR ESTO ULTIMO, DEBE USARSE OSADA_CHECH_EXIST (VEASE MÁS ABAJO)
  */
 void* osada_get_file_called(char *path, t_disco_osada *disco);
+t_list* osada_get_blocks_nums_of_this_file_since(int start_block);
 int verificar_si_es_archivo_buscado(char *path, osada_file *file); //<-- Simple delegación de la función anterior
 int comprobar_igualdad(char *path, osada_file *file);
 int verificar_si_nombre_coincide(char *path, unsigned char* file_name);
@@ -123,7 +125,7 @@ int calcular_posicion_en_tabla_de_archivos(int num_block, int position);
 int calcular_bloque_en_tabla_de_archivos_segun_parent_directory(int parent);
 
 
-
+void osada_b_rename_full(t_to_be_rename *to_be_rename);
 void osada_b_rename(t_file_osada *file, char* new_nombre);
 int osada_b_check_name(char* name);
 char* obtener_nuevo_path(char* old_path, char* new_name);

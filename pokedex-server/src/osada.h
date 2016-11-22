@@ -8,6 +8,7 @@
 #include "so-commons/bitarray.h"
 #include "so-commons/string.h"
 #include "so-commons/collections/list.h"
+#include "so-commons/collections/dictionary.h"
 #include "so-commons/string.h"
 #include "math.h"
 #include <string.h>
@@ -79,6 +80,9 @@ typedef struct
 	osada_header *header;
 	t_bitarray *bitmap;
 	int cantidad_archivos_libres;
+	int cantidad_bloques_libres;
+	t_dictionary* diccionario_de_archivos;
+	t_dictionary* archivos_por_posicion_en_tabla_asig;
 }t_disco_osada;
 
 t_disco_osada* disco; // <-- ES LA VARIABLE GLOBAL DEL DISCO
@@ -95,11 +99,22 @@ typedef t_osada_file_free t_file_osada;
 
 typedef struct
 {
+	osada_block_pointer last_block_asigned;
+	osada_block_pointer last_block_write;
+	int cantidad_bloques_asignados;
+	int posicion_en_tabla_de_archivos;
+	osada_block_pointer parent_block;
+	char* path;
+}t_info_file;
+
+typedef struct
+{
 	//char* nombre_del_archivo;
 	int tamanio;
 	t_file_osada* file;
 	char* path;
 	int tipo;
+	char* path_completo;
 }t_file_listado;
 
 typedef struct
@@ -143,4 +158,5 @@ typedef struct
 	char *path;
 	int new_size;
 }t_to_be_truncate;
+
 #endif __OSADA_H__

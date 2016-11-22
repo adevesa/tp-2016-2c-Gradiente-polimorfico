@@ -16,12 +16,29 @@ void lock_file_full(int num_block_file, int offset);
 void unlock_file_full(int num_block_file, int offset);
 void lock_file_to_delte(int num_block_file,int offset);
 void unlock_file_to_delte(int num_block_file,int offset);
+/*----------------------------------------------------RECUPERANDO ARCHIVOS A DICCIONARIO------------------------------------*/
+void disco_recupera_tus_archivos();
+void disco_recupera_archivos_raiz(t_dictionary *diccionario_key_por_path, t_dictionary *diccionario_key_por_posicion);
+int es_archivo_raiz(osada_file *file);
+void agregar_a_diccionario_si_es_necesario(osada_file *file,int posicion,t_dictionary *diccionario_por_path, t_dictionary *diccionario_por_posicion);
+void disco_recupera_arbolada_de_archivos(t_dictionary *diccionario);
+void agregar_a_diccionario_como_arbolada_si_es_necesario(osada_file *file, int posicion, t_dictionary *diccionario);
+osada_file* osada_get_file_for_index(int posicion_en_tabla_de_archivo);
+void osada_impactar_un_archivo(int posicion_en_tabla_de_archivo, osada_file *file);
+/*-------------------------------------------------------DICCIONARIO DE ARCHIVOS------------------------------------------*/
+int osada_check_exists_in_dictionary(char* path);
+void osada_change_info_in_dictionary(char* path, osada_block_pointer last_pointer_asig, osada_block_pointer last_block_writed);
+
 /*-------------------------------------------------------CREATES Y RECUPEROS-----------------------------------------------*/
+t_info_file* info_file_create(osada_file *file, int posicion);
 int osada_hay_espacio_para_archivos();
 void osada_aumenta_cantidad_de_archivos();
 void osada_disminui_cantidad_de_archivos();
+void osada_aumenta_cantidad_bloques_libres(int n);
+void osada_disminui_cantidad_bloques_libres(int n);
 
 int disco_recupera_cantidad_Archivos();
+int disco_recupera_cantidad_bloques_libres();
 /*
  * @NAME:t_disco_osada* osada_disco_abrite(char *ruta)
  * @DESC: dada una ruta que lleva a un DISCO formateado con filesystem OSADA, devuelve una estructura de tipo
@@ -179,6 +196,7 @@ int osada_ocupa_bit_libre_de(t_disco_osada *disco);
  */
 int osada_b_check_is_bitarray_full(t_disco_osada *disco);
 int osada_b_check_is_bitarray_have_n_blocks_free(int n, t_disco_osada *disco);
+int osada_b_check_is_bitarray_have_n_blocks_free_full(int n);
 int calcular_posicion_relativa_en_bloque_de_datos(int posicion_absoluta);
 
 /*
@@ -213,9 +231,9 @@ int array_size(char **array); //<-- Se entiende solo con leer el nombre
 void array_free_all(char **array);//<-- Se entiende solo con leer el nombre
 char* array_last_element(char* path);
 char* crear_ruta(char* hijo, char* path_padre);
-
+char* modelar_nombre_archivo(unsigned char* name_file);
 /*---------------------------------------------DESTROYERS----------------------------------------------------------------*/
 void t_file_osada_destroy(t_file_osada *file);
-void file_listado_eliminate(t_file_listado* file);
+void file_listado_eliminate(void* arg);
 void free_list_blocks(void* arg);
 #endif /* OSADA_GENERALES_H_ */

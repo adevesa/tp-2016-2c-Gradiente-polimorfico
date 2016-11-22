@@ -5,19 +5,117 @@
  *      Author: utnso
  */
 #include "file_manipuling.h"
-extern pthread_mutex_t mutex_operaciones;
+//extern pthread_mutex_t mutex_operaciones;
+extern pthread_mutex_t mutex_por_archivo[];
+
 
 /*------------------------------------------CREAR ARCHIVO------------------------------------------------------------------*/
 t_osada_file_free* osada_b_file_create(int tipo,char* path)
-{
-	t_osada_file_free* archivo = osada_file_table_get_space_free(disco);
+{/*t_osada_file_free* archivo = osada_file_table_get_space_free(disco);
 	char* nombre = array_last_element(path);
 	setear_nombre(nombre,archivo->file);
 	archivo->file->state = tipo;
 	setear_bloque_padre(archivo->file,path);
 	archivo->file->file_size = 0;
 	asignar_bloque_inicial_si_es_necesario(archivo->file, tipo);
+	return archivo;*/
+	return osada_b_crear(tipo,path);
+}
+
+t_osada_file_free* osada_b_crear(int tipo, char* path)
+{
+	t_osada_file_free* archivo = osada_file_table_get_space_free(disco);
+
+	char* path_padre = obtener_ruta_padre(path);
+
+	if(!string_equals_ignore_case(path_padre,"/"))
+	{
+		t_info_file *info_padre = dictionary_get(disco->diccionario_de_archivos,path_padre);
+		free(path_padre);
+
+		char* nombre = array_last_element(path);
+		setear_nombre(nombre,archivo->file);
+		free(nombre);
+		archivo->file->state = tipo;
+		archivo->file->parent_directory = info_padre->posicion_en_tabla_de_archivos;
+		archivo->file->file_size = 0;
+		asignar_bloque_inicial_si_es_necesario(archivo->file, tipo);
+
+		int posicion_absoluta_del_archivo = calcular_posicion_en_tabla_de_archivos_absoluta(archivo->block_relative-1,archivo->position_in_block);
+		t_info_file *info_new = info_file_create(archivo->file,posicion_absoluta_del_archivo);
+		info_new->parent_block=info_padre->posicion_en_tabla_de_archivos;
+		info_new->posicion_en_tabla_de_archivos=posicion_absoluta_del_archivo;
+
+		char* path_aux = string_new();
+		string_append(&path_aux,path);
+
+		info_new->path = string_new();
+		string_append(&info_new->path,path_aux);
+
+		dictionary_put(disco->diccionario_de_archivos,path_aux,info_new);
+		char* pos_aux = string_itoa(posicion_absoluta_del_archivo);
+		dictionary_put(disco->archivos_por_posicion_en_tabla_asig,pos_aux,info_new);
+
+		free(path_aux);
+		free(pos_aux);
+	}
+	else
+	{
+		free(path_padre);
+		char* nombre = array_last_element(path);
+		setear_nombre(nombre,archivo->file);
+		free(nombre);
+		archivo->file->state = tipo;
+		archivo->file->parent_directory = RAIZ;
+		archivo->file->file_size = 0;
+		asignar_bloque_inicial_si_es_necesario(archivo->file, tipo);
+
+		int posicion_absoluta_del_archivo = calcular_posicion_en_tabla_de_archivos_absoluta(archivo->block_relative-1,archivo->position_in_block);
+		t_info_file *info_new = info_file_create(archivo->file,posicion_absoluta_del_archivo);
+		info_new->parent_block=RAIZ;
+		info_new->posicion_en_tabla_de_archivos=posicion_absoluta_del_archivo;
+
+		char* path_aux = string_new();
+		string_append(&path_aux,path);
+
+		info_new->path =string_new();
+		string_append(&info_new->path,path_aux);
+
+		dictionary_put(disco->diccionario_de_archivos,path_aux,info_new);
+		char* pos_aux = string_itoa(posicion_absoluta_del_archivo);
+		dictionary_put(disco->archivos_por_posicion_en_tabla_asig,pos_aux,info_new);
+
+		free(path_aux);
+		free(pos_aux);
+
+	}
 	return archivo;
+}
+
+int calcular_posicion_en_tabla_de_archivos_absoluta(int bloque, int posicion_dentro_del_bloque)
+{
+	if(bloque==0)
+	{
+		if(posicion_dentro_del_bloque==0)
+		{
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	else
+	{
+		if(posicion_dentro_del_bloque==0)
+		{
+			return (bloque*2);
+		}
+		else
+		{
+			return (bloque*2) +1;
+		}
+	}
 }
 
 void asignar_bloque_inicial_si_es_necesario(osada_file *file, int tipo)
@@ -83,11 +181,12 @@ void limpiar_bloque_de_datos(int n)
 		aux[i]= '\0';
 	}
 	osada_push_block(BLOQUE_DE_DATOS,n,aux,disco);
+	free(aux);
 }
 
 int osada_b_check_repeat_name(int tipo,char* path)
 {
-	char *path_padre = obtener_ruta_padre(path);
+	/*char *path_padre = obtener_ruta_padre(path);
 	char *new_hijo = array_last_element(path);
 	//pthread_mutex_lock(&mutex_operaciones);
 	t_list *hijos = osada_b_listar_hijos(path_padre);
@@ -126,6 +225,15 @@ int osada_b_check_repeat_name(int tipo,char* path)
 			free(new_hijo);
 			free(path_padre);
 			return esta_repetido;
+	}*/
+
+	if(!osada_check_exists_in_dictionary(path))
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
 	}
 
 }
@@ -168,6 +276,36 @@ t_list* osada_get_blocks_nums_of_this_file(osada_file *file, t_disco_osada *disc
 	return list_blocks;
 }
 
+
+t_list* osada_get_blocks_nums_of_this_file_since(int start_block)
+{
+	t_list *list_blocks = list_create();
+	osada_block_pointer before_block = start_block;
+	osada_block_pointer byte_inicial_tabla_asignaciones = calcular_byte_inicial_absolut(disco->header->allocations_table_offset);
+
+	int* primer_bloque = malloc(sizeof(int));
+	*primer_bloque = start_block;
+
+	list_add(list_blocks,primer_bloque);
+
+	int hay_mas_para_leer = 1;
+	while(hay_mas_para_leer)
+	{
+		int *block = osada_get_bytes_start_in(byte_inicial_tabla_asignaciones + 4*before_block,sizeof(int),disco->map);
+		if(*block == FEOF)
+		{
+			hay_mas_para_leer=0;
+			free(block);
+		}
+		else
+		{
+			list_add(list_blocks, block);
+			before_block = *block;
+		}
+	}
+	return list_blocks;
+}
+
 /*---------------------------------------------BUSUQEDA DE TABLA DE ARCHIVOS DISPONIBLE------------------------------------*/
 t_osada_file_free* osada_file_table_get_space_free(t_disco_osada *disco)
 {
@@ -189,7 +327,7 @@ t_osada_file_free* osada_file_table_get_space_free(t_disco_osada *disco)
 		if(verify_file_state(DELETED,file_1))
 		{
 				file_free = 1;
-				free(two_files);
+				//free(two_files);
 				free(file_2);
 				a_file_free->file = file_1;
 				a_file_free->block_relative = index;
@@ -200,13 +338,14 @@ t_osada_file_free* osada_file_table_get_space_free(t_disco_osada *disco)
 			if(verify_file_state(DELETED,file_2))
 			{
 				file_free = 1;
-				free(two_files);
+				//free(two_files);
 				free(file_1);
 				a_file_free->file = file_2;
 				a_file_free->block_relative = index;
 				a_file_free->position_in_block = 32;
 			}
 		}
+		free(two_files);
 		index++;
 	}
 	return a_file_free;
@@ -280,7 +419,7 @@ int verify_correct_file(osada_file *file)
 /*---------------------------------------------VERIFICACION EXISTENCIA DE UN PATH------------------------------------------*/
 int osada_check_exist(char *path)
 {
-	pthread_mutex_lock(&mutex_operaciones);
+	/*pthread_mutex_lock(&mutex_operaciones);
 
 	char **file_for_file = string_split(path,"/");
 	int size = array_size(file_for_file);
@@ -315,7 +454,9 @@ int osada_check_exist(char *path)
 	pthread_mutex_unlock(&mutex_operaciones);
 
 	array_free_all(file_for_file);
-	free(path_file);
+	free(path_file);*/
+
+	int verify = osada_check_exists_in_dictionary(path);
 	return verify;
 }
 
@@ -747,6 +888,29 @@ void osada_b_rename(t_file_osada *file, char* new_path)
 	osada_push_middle_block(TABLA_DE_ARCHIVOS,file->block_relative,offset,file->file,disco);
 	//pthread_mutex_unlock(&mutex_operaciones);
 	free(new_nombre);
+}
+
+void osada_b_rename_full(t_to_be_rename *to_be_rename)
+{
+	t_info_file* info_file = dictionary_remove(disco->diccionario_de_archivos,to_be_rename->old_path);
+	pthread_mutex_lock(&mutex_por_archivo[info_file->posicion_en_tabla_de_archivos]);
+
+	free(info_file->path);
+
+	char* aux = string_new();
+	string_append(&aux,to_be_rename->new_path);
+
+	info_file->path=aux;
+
+	dictionary_put(disco->diccionario_de_archivos,aux,info_file);
+
+	osada_file *file = osada_get_file_for_index(info_file->posicion_en_tabla_de_archivos);
+	char *new_nombre = array_last_element(to_be_rename->new_path);
+	setear_nombre(new_nombre,file);
+	free(new_nombre);
+	osada_impactar_un_archivo(info_file->posicion_en_tabla_de_archivos,file);
+	free(file);
+	pthread_mutex_unlock(&mutex_por_archivo[info_file->posicion_en_tabla_de_archivos]);
 }
 
 int osada_b_check_name(char* path)

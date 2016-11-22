@@ -6,7 +6,6 @@
  */
 #include "comunication.h"
 
-extern pthread_mutex_t mutex_operaciones;
 int se_ejecuta = 1;
 
 void loggear_resultado(int resultado)
@@ -15,7 +14,7 @@ void loggear_resultado(int resultado)
 	{
 	case(EXITO): printf("EXITO!\n");break;
 	case(NO_EXISTE): printf("NO EXISTE\n");break;
-	case(EXISTE): printf("EXITO\n");break;
+	case(EXISTE): printf("EL NOMBRE YA EXISTE\n");break;
 	case(NO_HAY_ESPACIO): printf("NO HAY ESPACIO\n");break;
 	case(ARGUMENTO_INVALIDO):printf("ARGUMENTO INVALIDO\n");break;
 	}
@@ -24,31 +23,34 @@ void loggear_resultado(int resultado)
 /*--------------------------------------CONEXION--------------------------------------------------------------*/
 void ejecutar_servidor()
 {
-	pthread_t thread;
-	pthread_attr_t attr;
+	pokedex_server_conectate();
+	printf("Listo para escuchar peticiones!\n");
+	while(se_ejecuta >0)
+	{
+		int cliente = server_acepta_conexion_cliente(servidor_pokedex);
 
-	pthread_attr_init(&attr);
-	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+			//COMO ACCEPT ES BLOQUEANTE --> SI ESTÁ EN ESTE PUNTO ES QUE YA HAY UN CLIENTE ONLINE
+			servidor_osada_crea_nuevo_cliente(&cliente);
 
-	pthread_create(&thread,NULL,servidor_acepta_clientes,NULL);
-
-	pthread_attr_destroy(&attr);
+	}
 }
 
 void pokedex_server_conectate()
 {
-	char *ip_string = getenv("IP_POKEMON");
+	/*char *ip_string = getenv("IP_POKEMON");
 	char *puerto_string = getenv("PUERTO_POKEMON");
 	int puerto = atoi(puerto_string);
-	printf("%s",ip_string);
-	//char *ip = string_new();
-	//string_append(&ip,"127.0.0.1");
 	servidor_pokedex = server_create(puerto, ip_string, 1500);
-	//free(ip);
+	printf("%s",ip_string);*/
+
+	char *ip = string_new();
+	string_append(&ip,"127.0.0.1");
+	servidor_pokedex = server_create(5001, ip, 1500);
+	free(ip);
 	server_escucha(servidor_pokedex);
 }
 
-void servidor_acepta_clientes()
+/*void servidor_acepta_clientes()
 {
 	pokedex_server_conectate();
 
@@ -70,16 +72,16 @@ void servidor_acepta_clientes()
 
 	}
 	pthread_exit(NULL);
-}
+}*/
 
-void servidor_osada_crea_nuevo_cliente(int cliente)
+void servidor_osada_crea_nuevo_cliente(int* cliente)
 {
 		pthread_attr_t attr;
 		pthread_t thread;
 		pthread_attr_init(&attr);
 		pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
 
-		pthread_create(&thread,NULL,server_pokedex_atende_cliente,(void*)&cliente);
+		pthread_create(&thread,NULL,server_pokedex_atende_cliente,(void*)cliente);
 
 		pthread_attr_destroy(&attr);
 }
@@ -137,10 +139,9 @@ void tratar_peticion_de(int cliente,char *peticion)
 			else
 			{
 				char *listado_string = armar_listado((t_list*) resultado);
-				//enviar_mensaje(cliente,listado_string);
 				enviar_mensaje_cantidad_especifica(cliente, listado_string,string_length(listado_string));
 				free(listado_string);
-				list_destroy_and_destroy_elements(resultado,file_listado_eliminate);
+
 			}
 			free(path);
 		};break;
@@ -181,7 +182,6 @@ void tratar_peticion_de(int cliente,char *peticion)
 			char *path = recibir_mensaje_especifico(cliente, CREATE_DIRECTORY);
 			printf("CLIENTE %d PIDE CREAR DIR: %s\n",cliente,path);
 			int resultado_operacion = osada_a_create_dir(path);
-			//printf("TERMINE DE CREAR\n");
 			loggear_resultado(resultado_operacion);
 			responder_solo_resultado(cliente,resultado_operacion);
 			free(path);
@@ -219,7 +219,6 @@ void tratar_peticion_de(int cliente,char *peticion)
 			{
 				read_content *resultado = (read_content*) result;
 				printf("LECTURA COMPLETADA: %d BYTES DE: %s\n",resultado->tamanio ,file_to_read->path);
-
 				char *tam = string_itoa(resultado->tamanio);
 				int tamanio_del_archivo = string_length(tam);
 				char *mensaje = string_repeat(' ', 10 -tamanio_del_archivo);
@@ -250,6 +249,7 @@ void tratar_peticion_de(int cliente,char *peticion)
 		case(RENAME_FILE):
 		{
 			t_to_be_rename *file_to_rename= recibir_mensaje_especifico(cliente, RENAME_FILE);
+			printf("CLIENTE %d PIDE RENAME: %s\n",cliente,file_to_rename->old_path);
 			int resultado_operacion = osada_a_rename(file_to_rename);
 			loggear_resultado(resultado_operacion);
 			responder_solo_resultado(cliente,resultado_operacion);
@@ -259,12 +259,10 @@ void tratar_peticion_de(int cliente,char *peticion)
 		};break;
 		case(OPEN_FILE):
 		{
-			//pthread_mutex_lock(&mutex_operaciones);
 			char *path = recibir_mensaje_especifico(cliente, OPEN_FILE);
 			printf("CLIENTE %d PIDE ABRIR: %s\n",cliente,path);
 			int resultado_operacion = osada_a_open_file(path);
 			responder_solo_resultado(cliente,resultado_operacion);
-			//loggear_resultado(resultado_operacion);
 			free(path);
 		};break;
 		case(11):
@@ -389,7 +387,6 @@ t_to_be_write* escuchar_mensaje_write(int socket)
 
 
 	void *text = recibir_mensaje_tipo_indistinto(socket,size_to_write);
-	//void* text = reciveall(socket,size_to_write);
 	to_write->text = text;
 
 	return to_write;
@@ -465,6 +462,7 @@ char* armar_listado(t_list *listado)
 	if(list_is_empty(listado))
 	{
 		string_append(&listado_string, "0000");
+		list_destroy(listado);
 		return listado_string;
 	}
 	else
@@ -474,6 +472,7 @@ char* armar_listado(t_list *listado)
 		char *list=modelar_elementos_en_listado(listado,size);
 		string_append(&listado_string,list);
 		free(list);
+		list_destroy_and_destroy_elements(listado,file_listado_eliminate);
 		return listado_string;
 	}
 
@@ -482,15 +481,6 @@ char* armar_listado(t_list *listado)
 void modelar_cantidad_elementos_listado(char* buffer, int size)
 {
 	char *size_string = string_itoa(size);
-	/*int tamanio_del_size_string = string_length(size_string);
-
-	char* reespuesta = string_repeat(' ',4-tamanio_del_size_string);
-	string_append(&reespuesta, size_string);
-
-	free(size_string);
-	string_append(&buffer,reespuesta);
-	free(reespuesta);*/
-
 	if(size < 10)
 	{
 		char* repeat = string_repeat(' ',3);
@@ -552,13 +542,6 @@ char* modelar_elementos_en_listado(t_list *listado, int size)
 
 char* modelar_tamanio_nombre(int size)
 {
-	//char* size_string = string_itoa(size);
-	/*int tamanio_del_size_String = string_length(size_string);
-
-	char* resultado  = string_repeat(' ', 10-tamanio_del_size_String);
-	string_append(&resultado, size_string);
-	free(size_string);
-	return resultado;*/
 	if(size < 10)
 	{
 		char *repeat=string_repeat(' ',1);
