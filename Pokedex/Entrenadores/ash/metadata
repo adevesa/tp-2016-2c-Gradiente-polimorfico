@@ -1,0 +1,6 @@
+nombre=Red
+simbolo=@
+hojaDeViaje=[mapa1]
+obj[mapa1]=[P]
+vidas=5
+reintentos=0
