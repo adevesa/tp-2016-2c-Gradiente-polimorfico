@@ -45,6 +45,10 @@ t_osada_file_free* osada_b_crear(int tipo, char* path)
 		t_info_file *info_new = info_file_create(archivo->file,posicion_absoluta_del_archivo);
 		info_new->parent_block=info_padre->posicion_en_tabla_de_archivos;
 		info_new->posicion_en_tabla_de_archivos=posicion_absoluta_del_archivo;
+		if(tipo==DIRECTORY)
+		{
+			info_new->tamanio_del_directorio = 0;
+		}
 
 		char* path_aux = string_new();
 		string_append(&path_aux,path);
@@ -74,6 +78,10 @@ t_osada_file_free* osada_b_crear(int tipo, char* path)
 		t_info_file *info_new = info_file_create(archivo->file,posicion_absoluta_del_archivo);
 		info_new->parent_block=RAIZ;
 		info_new->posicion_en_tabla_de_archivos=posicion_absoluta_del_archivo;
+		if(tipo==DIRECTORY)
+		{
+			info_new->tamanio_del_directorio = 0;
+		}
 
 		char* path_aux = string_new();
 		string_append(&path_aux,path);
@@ -91,6 +99,7 @@ t_osada_file_free* osada_b_crear(int tipo, char* path)
 	}
 	return archivo;
 }
+
 
 int calcular_posicion_en_tabla_de_archivos_absoluta(int bloque, int posicion_dentro_del_bloque)
 {
@@ -118,6 +127,7 @@ int calcular_posicion_en_tabla_de_archivos_absoluta(int bloque, int posicion_den
 	}
 }
 
+
 void asignar_bloque_inicial_si_es_necesario(osada_file *file, int tipo)
 {
 	if(tipo == DIRECTORY)
@@ -131,6 +141,7 @@ void asignar_bloque_inicial_si_es_necesario(osada_file *file, int tipo)
 		file->first_block = FEOF;
 	}
 }
+
 
 void setear_nombre(char* nombre, osada_file* archivo)
 {
@@ -146,6 +157,7 @@ void setear_nombre(char* nombre, osada_file* archivo)
 		archivo->fname[size_name] = '\0';
 	}
 }
+
 
 void setear_bloque_padre(osada_file *file, char *path)
 {
@@ -164,6 +176,7 @@ void setear_bloque_padre(osada_file *file, char *path)
 
 }
 
+
 int osada_b_get_a_new_block_init()
 {
 	int primer_bloque_absoluto = osada_ocupa_bit_libre_de(disco);
@@ -171,6 +184,7 @@ int osada_b_get_a_new_block_init()
 	limpiar_bloque_de_datos(primer_bloque_relativo);
 	return primer_bloque_relativo;
 }
+
 
 void limpiar_bloque_de_datos(int n)
 {
@@ -183,6 +197,7 @@ void limpiar_bloque_de_datos(int n)
 	osada_push_block(BLOQUE_DE_DATOS,n,aux,disco);
 	free(aux);
 }
+
 
 int osada_b_check_repeat_name(int tipo,char* path)
 {
@@ -237,6 +252,7 @@ int osada_b_check_repeat_name(int tipo,char* path)
 	}
 
 }
+
 
 char* obtener_nuevo_path(char* old_path, char* new_name)
 {
@@ -890,6 +906,7 @@ void osada_b_rename(t_file_osada *file, char* new_path)
 	free(new_nombre);
 }
 
+
 void osada_b_rename_full(t_to_be_rename *to_be_rename)
 {
 	t_info_file* info_file = dictionary_remove(disco->diccionario_de_archivos,to_be_rename->old_path);
@@ -905,6 +922,11 @@ void osada_b_rename_full(t_to_be_rename *to_be_rename)
 	dictionary_put(disco->diccionario_de_archivos,aux,info_file);
 
 	osada_file *file = osada_get_file_for_index(info_file->posicion_en_tabla_de_archivos);
+	if(file->state == DIRECTORY)
+	{
+		renombrar_path_hijos(info_file,to_be_rename->new_path);
+	}
+
 	char *new_nombre = array_last_element(to_be_rename->new_path);
 	setear_nombre(new_nombre,file);
 	free(new_nombre);
@@ -912,6 +934,51 @@ void osada_b_rename_full(t_to_be_rename *to_be_rename)
 	free(file);
 	pthread_mutex_unlock(&mutex_por_archivo[info_file->posicion_en_tabla_de_archivos]);
 }
+
+void renombrar_path_hijos(t_info_file *info_file_a_renombrar, char* new_path)
+{
+	t_list *hijos = listar_hijos_para_renombrar(info_file_a_renombrar->posicion_en_tabla_de_archivos);
+	int size = list_size(hijos);
+	if(size!=0)
+	{
+		int i=0;
+		while(i<size)
+		{
+			t_info_file *info_hijo = list_get(hijos,i);
+			t_info_file *info_aux = dictionary_remove(disco->diccionario_de_archivos,info_hijo->path);
+
+			char* aux_new_path = string_new();
+			string_append(&aux_new_path,new_path);
+			string_append(&aux_new_path,"/");
+			char* nombre_posta_del_archivo = array_last_element(info_hijo->path);
+			string_append(&aux_new_path,nombre_posta_del_archivo);
+
+			free(nombre_posta_del_archivo);
+			free(info_hijo->path);
+
+			info_hijo->path = string_new();
+			string_append(&info_hijo->path,aux_new_path);
+
+			dictionary_put(disco->diccionario_de_archivos,aux_new_path,info_hijo);
+
+			free(aux_new_path);
+
+			osada_file *file_hijo = osada_get_file_for_index(info_hijo->posicion_en_tabla_de_archivos);
+			if(file_hijo->state == DIRECTORY)
+			{
+				renombrar_path_hijos(info_hijo,info_hijo->path);
+			}
+			free(file_hijo);
+
+			i++;
+		}
+	}
+	else
+	{
+		list_destroy(hijos);
+	}
+}
+
 
 int osada_b_check_name(char* path)
 {

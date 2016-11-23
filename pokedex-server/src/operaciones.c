@@ -16,7 +16,9 @@ void* osada_a_get_attributes(char *path)
 	{
 		t_attributes_file *atributos = malloc(sizeof(t_attributes_file));
 		atributos->tipo=2;
-		atributos->size = osada_b_calculate_size_of_directory(path);
+		//atributos->size = osada_b_calculate_size_of_directory(path);
+		t_info_file *info_raiz = dictionary_get(disco->diccionario_de_archivos,"/");
+		atributos->size = info_raiz->tamanio_del_directorio;
 		return atributos;
 	}
 	else
@@ -101,14 +103,6 @@ void* osada_a_create_dir(char *path)
 			if(hay_lugar)
 			{
 				t_osada_file_free *new_file=osada_b_file_create(DIRECTORY,path);
-				/*int posicion=0;
-				if(new_file->position_in_block == 32)
-				{
-					posicion = 1;
-				}
-
-				lock_file_full(new_file->block_relative ,posicion);*/
-
 				int offset = calcular_desplazamiento_tabla_de_archivos(new_file->position_in_block);
 				osada_push_middle_block(TABLA_DE_ARCHIVOS,new_file->block_relative,offset,new_file->file,disco);
 				osada_disminui_cantidad_de_archivos();
@@ -166,18 +160,9 @@ void* osada_a_read_file(t_to_be_read *to_read)
 		t_info_file *info = dictionary_get(disco->diccionario_de_archivos,to_read->path);
 		osada_file *file = osada_get_file_for_index(info->posicion_en_tabla_de_archivos);
 
-		//t_file_osada *file_a_leer = osada_get_file_called(to_read->path,disco);
-		//lock_file_to_delte(file_a_leer->block_relative ,file_a_leer->position_in_block);
-		//pthread_mutex_unlock(&mutex_check);
-		//lock_file_full(file_a_leer->block_relative ,file_a_leer->position_in_block);
-
 		int size = file->file_size;
 		if(size == 0 || to_read->offset == size)
 		{
-			//t_file_osada_destroy(file_a_leer);
-
-			/*unlock_file_to_delte(file_a_leer->block_relative ,file_a_leer->position_in_block);
-			unlock_file_full(file_a_leer->block_relative ,file_a_leer->position_in_block);*/
 			free(file);
 			return ARGUMENTO_INVALIDO;
 		}
@@ -297,6 +282,8 @@ void* osada_a_write_file(t_to_be_write *to_write)
 		int new_size_to_truncate = to_write->size + file->file_size;
 		if(osada_check_space_to_truncate_full(file,info_file,new_size_to_truncate))
 		{
+			actualizar_tamanio_del_padre(info_file,to_write->size);
+
 			t_to_be_truncate *truncate = malloc(sizeof(t_to_be_truncate));
 			to_write->size_inmediatamente_anterior = file->file_size;
 			if(to_write->offset == 0 && file->file_size>=0)

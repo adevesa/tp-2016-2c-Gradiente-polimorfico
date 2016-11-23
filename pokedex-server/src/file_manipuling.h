@@ -127,6 +127,8 @@ int calcular_bloque_en_tabla_de_archivos_segun_parent_directory(int parent);
 
 void osada_b_rename_full(t_to_be_rename *to_be_rename);
 void osada_b_rename(t_file_osada *file, char* new_nombre);
+void renombrar_path_hijos(t_info_file *info_file_a_renombrar, char* new_path);
+
 int osada_b_check_name(char* name);
 char* obtener_nuevo_path(char* old_path, char* new_name);
 

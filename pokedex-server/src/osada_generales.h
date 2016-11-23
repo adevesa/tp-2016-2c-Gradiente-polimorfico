@@ -25,6 +25,10 @@ void disco_recupera_arbolada_de_archivos(t_dictionary *diccionario);
 void agregar_a_diccionario_como_arbolada_si_es_necesario(osada_file *file, int posicion, t_dictionary *diccionario);
 osada_file* osada_get_file_for_index(int posicion_en_tabla_de_archivo);
 void osada_impactar_un_archivo(int posicion_en_tabla_de_archivo, osada_file *file);
+void recuperar_tamanio_de_directorios();
+void agregar_y_recuperar_dir_raiz();
+
+void actualizar_tamanio_del_padre(t_info_file *info, int size_a_sumar);
 /*-------------------------------------------------------DICCIONARIO DE ARCHIVOS------------------------------------------*/
 int osada_check_exists_in_dictionary(char* path);
 void osada_change_info_in_dictionary(char* path, osada_block_pointer last_pointer_asig, osada_block_pointer last_block_writed);

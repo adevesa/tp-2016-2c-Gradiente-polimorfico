@@ -13,6 +13,7 @@ extern pthread_mutex_t mutex_por_archivo_borrado[];
 void osada_delete_this_file(char *path)
 {
 	t_info_file *info_file = dictionary_remove(disco->diccionario_de_archivos,path);
+
 	pthread_mutex_lock(&mutex_por_archivo_borrado[info_file->posicion_en_tabla_de_archivos]);
 	pthread_mutex_lock(&mutex_por_archivo[info_file->posicion_en_tabla_de_archivos]);
 
@@ -22,6 +23,8 @@ void osada_delete_this_file(char *path)
 	free(posicion_aux);
 
 	osada_file *file = osada_get_file_for_index(info_file->posicion_en_tabla_de_archivos);
+
+	actualizar_tamanio_del_padre(info_file,(-file->file_size));
 
 	if(info_file->last_block_asigned != FEOF)
 	{
@@ -180,6 +183,9 @@ void osada_delete_dir_void(char* path)
 
 void osada_borrar_hijos(char* path)
 {
+	t_info_file *info_dir = dictionary_get(disco->diccionario_de_archivos,path);
+	actualizar_tamanio_del_padre(info_dir,(-info_dir->tamanio_del_directorio));
+
 	t_list* lista_hijos = osada_b_listar_hijos(path);
 	int size_lista = list_size(lista_hijos);
 	int index = 0;

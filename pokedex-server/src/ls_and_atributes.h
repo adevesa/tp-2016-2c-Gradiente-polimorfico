@@ -26,10 +26,11 @@ void agregar_a_lista_si_es_hijo_de_raiz_full(int numero_bloque_absoluto,t_list *
 int verificar_si_son_mismo_files(osada_file *file_actual, osada_file *file_expected);
 int es_el_padre(osada_file* file_hijo,t_file_osada *path_padre);
 
+t_list* listar_hijos_para_renombrar(int numero_padre);
 /*---------------------------------------------TAMAÑO DE UN DIRECTORIO---------------------------------------------------*/
 int osada_b_calculate_size_of_directory(char *path_directory);
 int realizar_sumatoria_size_hijos(char *path);
-
+int tamanio_del_dir_raiz();
 /*------------------------------------------ATRIBUTOS----------------------------------------------------------------------*/
 t_attributes_file* osada_b_get_attributes_of_this_file(char *path_file);
 

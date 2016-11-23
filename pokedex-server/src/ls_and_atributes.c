@@ -8,6 +8,11 @@
 extern pthread_mutex_t mutex_por_archivo[];
 
 /*---------------------------------------------TAMAÑO DE UN DIRECTORIO---------------------------------------------------*/
+int tamanio_del_dir_raiz()
+{
+	return realizar_sumatoria_size_hijos("/");
+}
+
 int osada_b_calculate_size_of_directory(char *path_directory)
 {
 	if(string_equals_ignore_case(path_directory, "/"))
@@ -168,8 +173,6 @@ void agregar_a_lista_si_es_hijo_full(t_info_file *info_parent, int posicion_file
 				char* name_aux = modelar_nombre_archivo(file->fname);
 				string_append(&path_hijo, name_aux);
 
-
-
 				dato_en_lista->path = path_hijo;
 				dato_en_lista->tamanio = file->file_size;
 
@@ -260,6 +263,34 @@ int verificar_si_son_mismo_files(osada_file *file_actual, osada_file *file_expec
 }
 
 
+t_list* listar_hijos_para_renombrar(int numero_padre)
+{
+	int i = 0;
+	t_list *lista = list_create();
+
+	while(i<2048)
+	{
+		char* posicion_aux = string_itoa(i);
+		if(dictionary_has_key(disco->archivos_por_posicion_en_tabla_asig,posicion_aux))
+		{
+			t_info_file *info_file_a_check = dictionary_get(disco->archivos_por_posicion_en_tabla_asig,posicion_aux);
+			free(posicion_aux);
+
+			if(info_file_a_check->parent_block == numero_padre)
+			{
+
+				list_add(lista,info_file_a_check);
+			}
+		}
+		else
+		{
+			free(posicion_aux);
+		}
+		i++;
+	}
+	return lista;
+}
+
 /*------------------------------------------ATRIBUTOS----------------------------------------------------------------------*/
 enum
 {
@@ -278,7 +309,8 @@ t_attributes_file* osada_b_get_attributes_of_this_file(char *path_file)
 
 	if(file->state == DIRECTORY)
 	{
-			atributos->size = osada_b_calculate_size_of_directory(path_file);
+			//atributos->size = osada_b_calculate_size_of_directory(path_file);
+			atributos->size = info_file_central->tamanio_del_directorio;
 			atributos->tipo=DIRECTORIO;
 	}
 	else

@@ -103,6 +103,7 @@ typedef struct
 	osada_block_pointer last_block_write;
 	int cantidad_bloques_asignados;
 	int posicion_en_tabla_de_archivos;
+	int tamanio_del_directorio;
 	osada_block_pointer parent_block;
 	char* path;
 }t_info_file;

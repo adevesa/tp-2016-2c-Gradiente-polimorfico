@@ -64,6 +64,8 @@ void disco_recupera_tus_archivos()
 {
 	disco_recupera_archivos_raiz(disco->diccionario_de_archivos,disco->archivos_por_posicion_en_tabla_asig);
 	disco_recupera_arbolada_de_archivos(disco->diccionario_de_archivos);
+	recuperar_tamanio_de_directorios();
+	agregar_y_recuperar_dir_raiz();
 }
 
 void disco_recupera_archivos_raiz(t_dictionary *diccionario_key_por_path, t_dictionary *diccionario_key_por_posicion)
@@ -97,14 +99,12 @@ void agregar_a_diccionario_si_es_necesario(osada_file *file,int posicion,t_dicti
 		char* path = string_new();
 		string_append(&path,"/");
 		char* name_file_aux = modelar_nombre_archivo(file->fname);
-		//string_append(&path,(char*)file->fname);
 		string_append(&path,name_file_aux);
 		free(name_file_aux);
 
 		t_info_file *new_info_file = info_file_create(file, posicion);
 		new_info_file->path = string_new();
 		string_append(&new_info_file->path,path);
-		//new_info_file->path=path;
 		new_info_file->parent_block=RAIZ;
 		dictionary_put(diccionario_por_path,path,new_info_file);
 		char* posicion_string = string_itoa(posicion);
@@ -228,6 +228,52 @@ void agregar_a_diccionario_como_arbolada_si_es_necesario(osada_file *file, int p
 	}
 }
 
+void recuperar_tamanio_de_directorios()
+{
+	int index=0;
+	while(index<2048)
+	{
+		char* aux = string_itoa(index);
+		if(dictionary_has_key(disco->archivos_por_posicion_en_tabla_asig,aux))
+		{
+			osada_file* file = osada_get_file_for_index(index);
+			if(file->state == DIRECTORY)
+			{
+				t_info_file *info = dictionary_get(disco->archivos_por_posicion_en_tabla_asig,aux);
+				info->tamanio_del_directorio = osada_b_calculate_size_of_directory(info->path);
+			}
+			free(file);
+		}
+		free(aux);
+		index++;
+	}
+}
+
+void agregar_y_recuperar_dir_raiz()
+{
+	t_info_file *info_raiz = malloc(sizeof(t_info_file));
+	info_raiz->path = string_new();
+	string_append(&info_raiz->path,"/");
+	info_raiz->tamanio_del_directorio = tamanio_del_dir_raiz();
+	dictionary_put(disco->diccionario_de_archivos, "/",info_raiz);
+
+}
+
+void actualizar_tamanio_del_padre(t_info_file *info, int size_a_sumar)
+{
+	if(info->parent_block == RAIZ)
+	{
+		t_info_file *info_raiz = dictionary_get(disco->diccionario_de_archivos,"/");
+		info_raiz->tamanio_del_directorio = info_raiz->tamanio_del_directorio + info->tamanio_del_directorio +size_a_sumar;
+	}
+	else
+	{
+		char* aux = string_itoa(info->parent_block);
+		t_info_file *info_padre  = dictionary_get(disco->archivos_por_posicion_en_tabla_asig,aux);
+		free(aux);
+		info_padre->tamanio_del_directorio = info_padre->tamanio_del_directorio + size_a_sumar;
+	}
+}
 
 /*-------------------------------------------------------CREATES Y RECUPEROS-----------------------------------------------*/
 int disco_recupera_cantidad_bloques_libres()
@@ -910,7 +956,6 @@ char* modelar_nombre_archivo(unsigned char* name_file)
 void t_file_osada_destroy(t_file_osada *file)
 {
 	free(file->file);
-	//free(file->path);
 	free(file);
 }
 
@@ -922,13 +967,6 @@ void file_listado_eliminate(void* arg)
 	free(file);
 }
 
-/*void file_listado_eliminate(t_file_listado* file)
-{
-	free(file->path_completo);
-	free(file->path);
-	free(file);
-}
-*/
 void free_list_blocks(void* arg)
 {
 	int* elem = (int*) arg;
