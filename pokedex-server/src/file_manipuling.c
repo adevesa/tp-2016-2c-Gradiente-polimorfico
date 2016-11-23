@@ -5,9 +5,8 @@
  *      Author: utnso
  */
 #include "file_manipuling.h"
-//extern pthread_mutex_t mutex_operaciones;
 extern pthread_mutex_t mutex_por_archivo[];
-
+extern int *table_asignaciones;
 
 /*------------------------------------------CREAR ARCHIVO------------------------------------------------------------------*/
 t_osada_file_free* osada_b_file_create(int tipo,char* path)
@@ -263,7 +262,7 @@ char* obtener_nuevo_path(char* old_path, char* new_name)
 }
 
 /*----------------------------------------------OBTENCION DE NUM BLOQUES ARCHIVO-------------------------------------------*/
-t_list* osada_get_blocks_nums_of_this_file(osada_file *file, t_disco_osada *disco)
+t_list* osada_get_blocks_nums_of_this_file_Asco(osada_file *file, t_disco_osada *disco)
 {
 	t_list *list_blocks = list_create();
 	osada_block_pointer before_block = file->first_block;
@@ -291,6 +290,37 @@ t_list* osada_get_blocks_nums_of_this_file(osada_file *file, t_disco_osada *disc
 	}
 	return list_blocks;
 }
+
+t_list* osada_get_blocks_nums_of_this_file(osada_file *file, t_disco_osada *disco)
+{
+	t_list *list_blocks = list_create();
+	osada_block_pointer before_block = file->first_block;
+
+
+	int* primer_bloque = malloc(sizeof(int));
+	*primer_bloque = file->first_block;
+
+	list_add(list_blocks,primer_bloque);
+
+	int hay_mas_para_leer = 1;
+	while(hay_mas_para_leer)
+	{
+		int *block = malloc(sizeof(int));
+		 *block = table_asignaciones[before_block];
+		if(*block == FEOF)
+		{
+			hay_mas_para_leer=0;
+			free(block);
+		}
+		else
+		{
+			list_add(list_blocks, block);
+			before_block = *block;
+		}
+	}
+	return list_blocks;
+}
+
 
 
 t_list* osada_get_blocks_nums_of_this_file_since(int start_block)
@@ -367,6 +397,7 @@ t_osada_file_free* osada_file_table_get_space_free(t_disco_osada *disco)
 	return a_file_free;
 }
 
+
 int osada_check_is_table_asig_is_full()
 {
 		osada_file *file_1 = malloc(sizeof(osada_file));
@@ -408,6 +439,7 @@ int osada_check_is_table_asig_is_full()
 		}
 }
 
+
 int verify_file_state(int state,osada_file *file)
 {
 	if(file->state == state)
@@ -419,6 +451,7 @@ int verify_file_state(int state,osada_file *file)
 		return 0;
 	}
 }
+
 
 int verify_correct_file(osada_file *file)
 {
@@ -978,7 +1011,6 @@ void renombrar_path_hijos(t_info_file *info_file_a_renombrar, char* new_path)
 		list_destroy(hijos);
 	}
 }
-
 
 int osada_b_check_name(char* path)
 {

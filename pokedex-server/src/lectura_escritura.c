@@ -5,7 +5,8 @@
  *      Author: utnso
  */
 #include "lectura_escritura.h"
-//extern pthread_mutex_t mutex_operaciones;
+extern int *table_asignaciones;
+
 /*----------------------------------------------TRUNCATE----------------------------------------------------------*/
 void osada_b_truncate_file_full(t_to_be_truncate *to_truncate,osada_file *file,t_info_file *info)
 {
@@ -85,15 +86,15 @@ void asignar_un_unico_bloque_si_es_necesario_full(osada_file *file, t_info_file 
 
 			int num_bloque_absoluto = osada_ocupa_bit_libre_de(disco);
 			int bloque_Asignado = calcular_bloque_relativo_datos_dado_absoluto(num_bloque_absoluto);
-			limpiar_bloque_de_datos(bloque_Asignado);
 
+			settear_valor_en_tabla_asginaciones(bloque_Asignado, FEOF);
+
+			limpiar_bloque_de_datos(bloque_Asignado);
 			int offset_del_recien_asignado = byte_inicial_tabla_asignaciones + 4*bloque_Asignado;
 			int *feof = malloc(4);
 			*feof = FEOF;
 
-			//pthread_mutex_lock(&mutex_operaciones);
 			memcpy(disco->map + offset_del_recien_asignado,feof,4);
-			//pthread_mutex_unlock(&mutex_operaciones);
 
 			free(feof);
 
@@ -138,8 +139,8 @@ void asignar_nuevo_bloque_datos_full(osada_file * file, t_info_file *info,int n)
 
 void impactar_en_tabla_de_asignaciones(int posicion, int valor)
 {
-	//pthread_mutex_lock(&mutex_operaciones);
-
+	settear_valor_en_tabla_asginaciones(posicion, valor);
+	settear_valor_en_tabla_asginaciones(valor, FEOF);
 	osada_block_pointer byte_inicial_tabla_asignaciones = calcular_byte_inicial_absolut(disco->header->allocations_table_offset);
 	int desplazamiento = byte_inicial_tabla_asignaciones + 4*posicion;
 	int *value = malloc(4);
@@ -152,9 +153,6 @@ void impactar_en_tabla_de_asignaciones(int posicion, int valor)
 	*feof = FEOF;
 	memcpy(disco->map + offset_del_recien_asignado,feof,4);
 	free(feof);
-
-	//pthread_mutex_unlock(&mutex_operaciones);
-
 }
 
 int osada_check_space_to_truncate_full(osada_file *file,t_info_file *info,int size)
@@ -409,9 +407,7 @@ void asignar_un_unico_bloque_si_es_necesario(t_file_osada *file, int tamanio_a_a
 		int *feof = malloc(4);
 		*feof = FEOF;
 
-		//pthread_mutex_lock(&mutex_operaciones);
 		memcpy(disco->map + offset_del_recien_asignado,feof,4);
-		//pthread_mutex_unlock(&mutex_operaciones);
 
 		free(feof);
 
@@ -758,7 +754,7 @@ void osada_write_little_file_full_(t_to_be_write* file, osada_file *archivo, t_i
 	int tamanio_del_archivo = file->size_inmediatamente_anterior;
 	t_list *bloques = osada_get_blocks_nums_of_this_file(archivo,disco);
 	int cantidad_bloques = list_size(bloques);
-	void *data = osada_get_data_of_this_file(archivo,disco);
+	void *data = osada_get_data_of_this_file(archivo,disco,bloques);
 	void *aux = malloc(OSADA_BLOCK_SIZE * cantidad_bloques);
 	if(file->offset == 0)
 	{
@@ -844,50 +840,9 @@ void osada_write_big_file_full_(t_to_be_write* to_write, osada_file *archivo, t_
 
 void osada_write_file(t_to_be_write* file)
 {
-	//int tamanio_del_archivo = file->file->file->file_size;
-
-	int tamanio_del_archivo = file->size_inmediatamente_anterior;
-	/*if(tamanio_del_archivo<= file->offset  || tamanio_del_archivo==0)
-	{
-		int ultimo_bloque_escrito_es = ultimo_bloque_escrito(file->file);
-		t_list *bloques = osada_get_blocks_nums_of_this_file(file->file->file,disco);
-		int espacio_disponible_ultimo_bloque = calcular_espacio_disponible_ultimo_bloque(file->file->file);
-		switch(espacio_disponible_ultimo_bloque)
-		{
-			case(0):
-			{
-				osada_b_alter_data_blocks_since_ultil(file->file,file->text,bloques,ultimo_bloque_escrito_es+1,-3,NULL);
-				osada_b_change_size_file(file->file,file->file->file->file_size+file->size);
-			};break;
-			case(OSADA_BLOCK_SIZE):
-			{
-				osada_b_alter_data_blocks_since_ultil(file->file,file->text,bloques,ultimo_bloque_escrito_es,-3,NULL);
-				osada_b_change_size_file(file->file,file->file->file->file_size+file->size);
-
-			};break;
-			default:
-			{
-				void* aux = malloc(espacio_disponible_ultimo_bloque+1);
-				memcpy(aux,file->text,espacio_disponible_ultimo_bloque);
-				int byte_donde_empiezo = calcular_byte_final_a_recuperar_de_file(tamanio_del_archivo);
-				osada_b_alter_data_blocks_since_ultil(file->file,aux,bloques,ultimo_bloque_escrito_es,15,byte_donde_empiezo+1);
-				free(aux);
-
-				int desplazamiento = espacio_disponible_ultimo_bloque;
-				osada_b_alter_data_blocks_since_ultil(file->file,file->text+desplazamiento,bloques,ultimo_bloque_escrito_es+1,-3,NULL);
-				osada_b_change_size_file(file->file,file->file->file->file_size+file->size);
-			}
-		}
-
-		list_destroy_and_destroy_elements(bloques,free_list_blocks);
-	}
-
-	else
-	{*/
-
-	//pthread_mutex_lock(&mutex_operaciones);
+	/*int tamanio_del_archivo = file->size_inmediatamente_anterior;
 	t_list *bloques = osada_get_blocks_nums_of_this_file(file->file->file,disco);
-	//t_list* bloques = osada_get_blocks_asig(file->file->file);
+
 	int cantidad_bloques = list_size(bloques);
 	void *data = osada_get_data_of_this_file(file->file->file,disco);
 	//pthread_mutex_unlock(&mutex_operaciones);
@@ -919,8 +874,8 @@ void osada_write_file(t_to_be_write* file)
 	}
 	free(aux);
 	free(data);
-	list_destroy_and_destroy_elements(bloques,free_list_blocks);
-	//}
+	list_destroy_and_destroy_elements(bloques,free_list_blocks);*/
+
 }
 
 int ultimo_bloque_escrito(t_file_osada* file)
@@ -1011,8 +966,8 @@ void* osada_b_read_file(osada_file *file, t_disco_osada *disco, t_to_be_read *to
 		void *data = malloc(to_read->size);
 		if(bloque_inicial == bloque_final)
 		{
-			int *block_num = list_get(bloques_por_recuperar,bloque_inicial);
-			void *data_recv = osada_get_blocks_relative_since(BLOQUE_DE_DATOS,*block_num,1,disco);
+			int bloque_num = buscar_bloque_numero(file,bloque_inicial);
+			void *data_recv = osada_get_blocks_relative_since(BLOQUE_DE_DATOS,bloque_num,1,disco);
 			memcpy(data,data_recv+to_read->offset,to_read->size);
 			free(data_recv);
 			return( (void*) data);
@@ -1024,11 +979,66 @@ void* osada_b_read_file(osada_file *file, t_disco_osada *disco, t_to_be_read *to
 
 			if(to_read->size <= OSADA_BLOCK_SIZE*(bloque_final-bloque_inicial))
 			{
+						bloque_final = bloque_final -1;
+			}
+			int block_num = buscar_bloque_numero(file,bloque_inicial);
+			while(i<=bloque_final)
+			{
+				void *data_recv = osada_get_blocks_relative_since(BLOQUE_DE_DATOS,block_num,1,disco);
+				if(i == bloque_final)
+				{
+					int cantidad_bloques_enteros_leidos = to_read->size / OSADA_BLOCK_SIZE;
+					int bytes_a_leer_del_ultimo_bloque = to_read->size - (cantidad_bloques_enteros_leidos*OSADA_BLOCK_SIZE);
+					if(bytes_a_leer_del_ultimo_bloque==0)
+					{
+						memcpy(data + (iteracion*OSADA_BLOCK_SIZE),data_recv,OSADA_BLOCK_SIZE);
+					}
+					else
+					{
+						memcpy(data + (iteracion*OSADA_BLOCK_SIZE),data_recv,bytes_a_leer_del_ultimo_bloque);
+					}
+
+				}
+				else
+				{
+					if(i == bloque_inicial)
+					{
+						memcpy(data + (desplazamiento_en_bloque_init),data_recv,OSADA_BLOCK_SIZE);
+					}
+					else
+					{
+						memcpy(data + (iteracion*OSADA_BLOCK_SIZE),data_recv,OSADA_BLOCK_SIZE);
+					}
+				}
+					block_num = table_asignaciones[block_num];
+					free(data_recv);
+					iteracion++;
+					i++;
+				}
+				return data;
+			}
+		/*if(bloque_inicial == bloque_final )
+		{
+			int *block_num = list_get(bloques_por_recuperar,bloque_inicial);
+			//int bloque_num = table_asignaciones[bloque_inicial];
+			void *data_recv = osada_get_blocks_relative_since(BLOQUE_DE_DATOS,*block_num,1,disco);
+			memcpy(data,data_recv+to_read->offset,to_read->size);
+			free(data_recv);
+			return( (void*) data);
+		}*/
+		/*else
+		{
+			int i = bloque_inicial;
+			int iteracion = 0;
+
+			if(to_read->size <= OSADA_BLOCK_SIZE*(bloque_final-bloque_inicial))
+			{
 				bloque_final = bloque_final -1;
 			}
 			while(i<=bloque_final)
 			{
-				int *block_num = list_get(bloques_por_recuperar,i);
+				//int *block_num = list_get(bloques_por_recuperar,i);
+				int block_num = buscar_bloque_numero(file,bloque_inicial);
 				void *data_recv = osada_get_blocks_relative_since(BLOQUE_DE_DATOS,*block_num,1,disco);
 				if(i == bloque_final)
 				{
@@ -1061,7 +1071,7 @@ void* osada_b_read_file(osada_file *file, t_disco_osada *disco, t_to_be_read *to
 			}
 
 			return data;
-		}
+		}*/
 	}
 }
 
@@ -1090,9 +1100,9 @@ int calcular_bloque_final_por_leer(int bloque_inicial,t_to_be_read *to_read)
 }
 
 
-void* osada_get_data_of_this_file(osada_file *file, t_disco_osada *disco)
+void* osada_get_data_of_this_file(osada_file *file, t_disco_osada *disco, t_list *bloques_por_recuperar)
 {
-	t_list *bloques_por_recuperar = osada_get_blocks_nums_of_this_file(file, disco);
+	//t_list *bloques_por_recuperar = osada_get_blocks_nums_of_this_file(file, disco);
 	int size = list_size(bloques_por_recuperar);
 
 	int last_block = size -1;
@@ -1124,7 +1134,7 @@ void* osada_get_data_of_this_file(osada_file *file, t_disco_osada *disco)
 
 		}
 	}
-	list_destroy_and_destroy_elements(bloques_por_recuperar,free_list_blocks);
+	//list_destroy_and_destroy_elements(bloques_por_recuperar,free_list_blocks);
 	return( (void*) data);
 }
 

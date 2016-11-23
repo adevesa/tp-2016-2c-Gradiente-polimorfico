@@ -136,4 +136,5 @@ int string_equals_osada_max_lenght(char* name, unsigned char* name_2);
 void limpiar_bloque_de_datos(int n);
 
 int verify_correct_file(osada_file *file);
+t_list* osada_get_blocks_nums_of_this_file_Asco(osada_file *file, t_disco_osada *disco);
 #endif /* FILE_MANIPULING_H_ */

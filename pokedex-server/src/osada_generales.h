@@ -29,6 +29,15 @@ void recuperar_tamanio_de_directorios();
 void agregar_y_recuperar_dir_raiz();
 
 void actualizar_tamanio_del_padre(t_info_file *info, int size_a_sumar);
+
+/*----------------------------------------------------RECUPERANDO TABLA DE ASIGNACIONES------------------------------------*/
+t_dictionary* inicializar_table_asig(osada_header *header);
+void limpiar_table_asignaciones();
+void recuperar_tabla_de_asignaciones();
+void recuperar_bloques_asigados_array(int posicion);
+void recuperar_bloques_asigados(int posicion);
+int buscar_bloque_numero(osada_file *file,int numero_bloque_a_recuperar);
+void settear_valor_en_tabla_asginaciones(int posicion, int value);
 /*-------------------------------------------------------DICCIONARIO DE ARCHIVOS------------------------------------------*/
 int osada_check_exists_in_dictionary(char* path);
 void osada_change_info_in_dictionary(char* path, osada_block_pointer last_pointer_asig, osada_block_pointer last_block_writed);

@@ -168,7 +168,6 @@ void* osada_a_read_file(t_to_be_read *to_read)
 		}
 		else
 		{
-			t_list *bloques = osada_get_blocks_nums_of_this_file(file,disco);
 			read_content *read = malloc(sizeof(read_content));
 			int tamanio_final = to_read->offset + to_read->size;
 			if(size<tamanio_final)
@@ -177,32 +176,28 @@ void* osada_a_read_file(t_to_be_read *to_read)
 				{
 					int tamanio_que_pidio_leer = to_read->size;
 					to_read->size = size; //CAMBIO EL TAMAÑO QUE VA A LEER
-					void* data = osada_b_read_file(file,disco,to_read,bloques);
+					void* data = osada_b_read_file(file,disco,to_read,NULL);
 					read->contenido = data;
 					read->tamanio = to_read->size;
-					list_destroy_and_destroy_elements(bloques,free_list_blocks);
 					free(file);
 					return read;
 				}
 				else
 				{
 					int tamanio_que_pidio_leer = to_read->size;
-					//to_read->size =tamanio_final - size;//CAMBIO EL TAMAÑO QUE VA A LEER
 					to_read->size = size - to_read->offset;
-					void* data = osada_b_read_file(file,disco,to_read,bloques);
+					void* data = osada_b_read_file(file,disco,to_read,NULL);
 					read->contenido = data;
 					read->tamanio = to_read->size;
-					list_destroy_and_destroy_elements(bloques,free_list_blocks);
 					free(file);
 					return read;
 				}
 			}
 			else
 			{
-				void* data = osada_b_read_file(file,disco,to_read,bloques);
+				void* data = osada_b_read_file(file,disco,to_read,NULL);
 				read->contenido=data;
 				read->tamanio=to_read->size;
-				list_destroy_and_destroy_elements(bloques,free_list_blocks);
 				free(file);
 				return read;
 			}

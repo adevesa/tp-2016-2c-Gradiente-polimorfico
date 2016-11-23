@@ -69,7 +69,8 @@ int es_multiplo_de(int numero_1, int numero_2);
  * @NAME:void* osada_get_data_of_this_file(osada_file *file, t_disco_osada *disco);
  * @DESC: Dado un archivo osada,y un disco, devuelve TODA la información completa de dicho archivo
  */
-void* osada_get_data_of_this_file(osada_file *file, t_disco_osada *disco);
+//void* osada_get_data_of_this_file(osada_file *file, t_disco_osada *disco);
+void* osada_get_data_of_this_file(osada_file *file, t_disco_osada *disco, t_list *bloques_por_recuperar);
 int calcular_byte_final_a_recuperar_de_file(int file_size); //<-- La usa la función anteriror
 
 void* osada_b_read_file(osada_file *file, t_disco_osada *disco, t_to_be_read *to_read, t_list* bloques_por_recuperar );

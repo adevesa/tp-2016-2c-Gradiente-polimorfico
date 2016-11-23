@@ -83,6 +83,7 @@ typedef struct
 	int cantidad_bloques_libres;
 	t_dictionary* diccionario_de_archivos;
 	t_dictionary* archivos_por_posicion_en_tabla_asig;
+	t_dictionary* table_asig;
 }t_disco_osada;
 
 t_disco_osada* disco; // <-- ES LA VARIABLE GLOBAL DEL DISCO
