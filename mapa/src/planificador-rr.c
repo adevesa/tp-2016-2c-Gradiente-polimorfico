@@ -44,13 +44,27 @@ void planificador_rr_organiza_entrenadores()
 	{
 		if(queue_is_empty(planificador->listas_y_colas->cola_entrenadores_listos))
 		{
-			hay_jugadores_online =0;
-			sem_wait(&semaforo_entrenadores_listos);
-			if(semaforo_rr_cambiado_por_deadlock == 1)
+			int se_puede_continuar=0;
+			while(!se_puede_continuar)
 			{
-				hay_jugadores_online = 1;
-				semaforo_rr_cambiado_por_deadlock = 0;
+				hay_jugadores_online =0;
+				sem_wait(&semaforo_entrenadores_listos);
+				if(semaforo_rr_cambiado_por_deadlock == 1)
+				{
+					hay_jugadores_online = 1;
+					semaforo_rr_cambiado_por_deadlock = 0;
+					planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
+					if(!queue_is_empty(planificador->listas_y_colas->cola_entrenadores_listos))
+					{
+						se_puede_continuar = 1;
+					}
+				}
+				else
+				{
+					se_puede_continuar = 1;
+				}
 			}
+
 		}
 		planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
 		t_entrenador *entrenador_listo = planificador_pop_entrenador_listo(planificador);

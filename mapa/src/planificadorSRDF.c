@@ -140,18 +140,28 @@ void planificador_srdf_organiza_entrenadores()
 	{
 		if(queue_is_empty(mapa->entrenadores->cola_entrenadores_listos))
 		{
-			hay_jugadores=0;
-			log_info(informe_planificador, "ESPERO A QUE HAYA ALGUN JUGADOR");
-			sem_wait(&semaforo_esperar_por_entrenador_listo);
-			if(semaforo_srdf_cambiado_por_deadlock==1)
+			int se_puede_continuar = 0;
+			while(!se_puede_continuar)
 			{
-				hay_jugadores = 1;
-				semaforo_srdf_cambiado_por_deadlock=0;
-				log_info(informe_planificador, "HAY ALGUIEN QUE PUEDE VOLVER A JGUAR!");
-			}
-			else
-			{
-				log_info(informe_planificador, "HAY ALGUIEN NUEVO PARA JUGAR!");
+				hay_jugadores=0;
+				log_info(informe_planificador, "ESPERO A QUE HAYA ALGUN JUGADOR");
+				sem_wait(&semaforo_esperar_por_entrenador_listo);
+				if(semaforo_srdf_cambiado_por_deadlock==1)
+				{
+					hay_jugadores = 1;
+					semaforo_srdf_cambiado_por_deadlock=0;
+					planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
+					if(!queue_is_empty(planificador->listas_y_colas->cola_entrenadores_listos))
+					{
+						se_puede_continuar = 1;
+						log_info(informe_planificador, "HAY ALGUIEN QUE PUEDE VOLVER A JGUAR!");
+					}
+				}
+				else
+				{
+					log_info(informe_planificador, "HAY ALGUIEN NUEVO PARA JUGAR!");
+					se_puede_continuar = 1;
+				}
 			}
 
 		}

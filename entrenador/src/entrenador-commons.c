@@ -52,7 +52,8 @@ void entrenador_iniciar_seniales()
 {
 	signal(SIGUSR1, subirvida);
 	signal(SIGTERM, bajarvida);
-	signal(SIGKILL, matar_entrenador);
+	//signal(SIGKILL, matar_entrenador);
+	signal(SIGINT, matar_entrenador);
 }
 
 void subirvida(int n)
@@ -166,11 +167,6 @@ void entrenador_registra_hora(int rango)
 				char* tiempo= temporal_get_string_time();
 				string_append(&hora_de_inicio,tiempo);
 				free(tiempo);
-				/*char *mensaje=string_new();
-				string_append(&mensaje, "COMIENZO: ");
-				string_append(&mensaje, hora_de_inicio);
-				log_info(info_entrenador,mensaje);
-				free(mensaje);*/
 
 			}break;
 	case(FIN):
@@ -179,19 +175,6 @@ void entrenador_registra_hora(int rango)
 				char* tiempo = temporal_get_string_time();
 				string_append(&hora_de_fin,tiempo);
 				free(tiempo);
-				/*char *mensaje=string_new();
-				string_append(&mensaje, "FIN: ");
-				string_append(&mensaje, hora_de_fin);
-				log_info(info_entrenador,mensaje);
-				free(mensaje);*/
-
-				//entrenador->tiempo_total_aventura = (int) diferencia_de_tiempos(hora_de_inicio,hora_de_fin);
-
-				/*char *mensaje_2=string_new();
-				string_append(&mensaje_2, "DURACION TOTAL: ");
-				string_append(&mensaje_2, string_itoa(entrenador->tiempo_total_aventura));
-				log_info(info_entrenador,mensaje_2);
-				free(mensaje_2);*/
 
 			}break;
 	}
@@ -743,7 +726,7 @@ char* adaptar_nombre_pokemon(char* nombre_sucio)
 		new_pokemon_adapter[string_length(aux)] = '\0';*/
 
 
-		char* aux = string_substring(nombre_sucio,0,string_length(nombre_sucio)-3);
+		char* aux = string_substring(nombre_sucio,0,string_length(nombre_sucio)-7);
 		aux[0]= toupper(aux[0]);
 
 		//free(aux);
@@ -769,7 +752,7 @@ t_list* nombre_de_archivos_del_directorio(char *ruta)
 		while ((direntp = readdir(dirp)) != NULL) {
 			 if(!string_equals_ignore_case(direntp->d_name, ".")){
 				  if(!string_equals_ignore_case(direntp->d_name, "..")){
-					  if(!string_equals_ignore_case(direntp->d_name, "metadata"))
+					  if(!string_equals_ignore_case(direntp->d_name, "metadata") && string_ends_with(direntp->d_name,".dat"))
 					  {
 						  char* aux = string_new();
 						  string_append(&aux,direntp->d_name);

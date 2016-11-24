@@ -13,15 +13,15 @@ extern pthread_mutex_t mutex_manipular_cola_listos;
 extern pthread_mutex_t mutex_manipular_cola_bloqueados;
 extern pthread_mutex_t mutex_manipular_cola_nuevos;
 extern sem_t semaforo_hay_algun_entrenador_listo;
-extern sem_t semaforo_cola_entrenadores_sin_objetivos;
-extern int semaforo_rr_cambiado_por_deadlock;
+//extern sem_t semaforo_cola_entrenadores_sin_objetivos;
+//extern int semaforo_rr_cambiado_por_deadlock;
 /*int hay_jugadores_online = 0;
 int hay_jugadores=0;*/
 
 extern int hay_jugadores_online;
 extern int hay_jugadores;
-
-int encolacion_entrenadores_iniciada = NO_INICIADO;
+int encolacion_entrenadores_iniciada;
+//int encolacion_entrenadores_iniciada = NO_INICIADO;
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
 t_listas_y_colas* listas_y_colas_creense()
 {
@@ -466,8 +466,8 @@ void planificador_extraele_pokemones_a_entrenador(t_entrenador *entrenador)
 /*---------------------------------------NUEVO->LISTO---------------------------------------------------------*/
 void planificador_inicia_encolacion_nuevos_entrenadores()
 {
-	encolacion_entrenadores_iniciada = INICIADO;
-	//log_info(informe_planificador, "Se crea proceso para encolación de entreanadores");
+	/*encolacion_entrenadores_iniciada = INICIADO;
+	planificador_encola_nuevos_entrenadores();*/
 	pthread_attr_t attr;
 	pthread_t thread;
 

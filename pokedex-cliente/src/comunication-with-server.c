@@ -24,17 +24,28 @@ void iniciar_log()
 void cliente_osada_create()
 {
 	cliente_osada =malloc(sizeof(t_cliente_osada));
-	//cliente_osada->ip = getenv("IP_POKEMON");
-	cliente_osada->ip = string_new();
-	string_append(&cliente_osada->ip, "127.0.0.1");
+	cliente_osada->ip = getenv("IP_POKEMON");
+	char *puerto = getenv("PUERTO_POKEMON");
 
-	//char *puerto = getenv("PUERTO_POKEMON");
-	//cliente_osada->puerto = atoi(puerto);
-	cliente_osada->puerto =5001;
+	if(cliente_osada->ip == NULL || puerto==NULL)
+	{
+		printf("Necesito IP_POKEMON y PUERTO_POKEMON para ejecutar\n");
+		exit(1);
+	}
+	else
+	{
+		cliente_osada->puerto = atoi(puerto);
+		pthread_mutex_init(&mutex_operaciones,NULL);
+	}
+
+
+
+	/*cliente_osada->ip = string_new();
+	string_append(&cliente_osada->ip, "127.0.0.1");*/
+	//cliente_osada->puerto =5001;
 	//free(puerto);
-
 	//cliente_osada->puerto = 5001;
-	pthread_mutex_init(&mutex_operaciones,NULL);
+
 }
 
 void cliente_osada_conectate()
@@ -380,7 +391,7 @@ int cliente_pedi_abrir(int tipo,const char *path, struct fuse_file_info *fi)
 			char *msg = build_msg(OPEN_FILE,path,NULL,NULL,NULL);
 			pthread_mutex_lock(&mutex_operaciones);
 			enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
-			fi->flags = FUSE_BUF_FORCE_SPLICE;
+			//fi->flags = FUSE_BUF_FORCE_SPLICE;
 			int respuesta=escuchar_respuesta_comun(cliente_osada->socket_pokedex_servidor);
 
 			pthread_mutex_unlock(&mutex_operaciones);
@@ -507,16 +518,14 @@ int escuchar_listado (void *buffer, fuse_fill_dir_t filler)
 
 	if(string_equals_ignore_case(cantidad_de_elementos_string, "FFFF"))
 	{
-		//filler(buffer,"\0",NULL,0);
 		return -NO_EXISTE;
 	}
 	else
 	{
 		if(string_equals_ignore_case(cantidad_de_elementos_string, "0000"))
 		{
-			filler(buffer,".",NULL,0);
+			//filler(buffer,".",NULL,0);
 			return OPERACION_EXITOSA;
-			//return -NO_EXISTE;
 		}
 		else
 		{

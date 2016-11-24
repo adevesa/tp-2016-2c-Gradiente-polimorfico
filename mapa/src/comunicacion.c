@@ -28,7 +28,7 @@ void* ejecutar_servidor(void *argumento)
 		else {conexion_create(&conexion);}
 	}
 
-	pthread_exit(NULL);
+	//pthread_exit(NULL);
 }
 
 void conexion_create(int *conexion)

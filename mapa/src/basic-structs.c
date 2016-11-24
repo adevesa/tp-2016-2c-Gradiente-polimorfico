@@ -131,9 +131,21 @@ void destroy_info_algoritmo(t_info_algoritmo *info)
 
 t_info_socket* obtener_info_mapa_socket(t_config *configuracion)
 {
+	int port=0;
+	char* ip_del_mapa = config_get_string_value(configuracion, "IP");
+	if(ip_del_mapa==NULL)
+	{
+		printf("Se necesita configurar el PUERTO e IP del mapa para iniciar\n");
+		printf("Revisa el archivo metadata!\n");
+		exit(1);
+	}
+	else
+	{
+		port = config_get_int_value(configuracion, "Puerto");
+		t_info_socket *info_socket = info_socket_create(port, ip_del_mapa);
+		return info_socket;
+	}
 
-	t_info_socket *info_socket = info_socket_create(config_get_int_value(configuracion, "Puerto"), config_get_string_value(configuracion, "IP"));
-	return info_socket;
 }
 
 t_info_algoritmo* obtener_info_mapa_algoritmo(t_config *configuracion)

@@ -37,17 +37,27 @@ void ejecutar_servidor()
 
 void pokedex_server_conectate()
 {
-	/*char *ip_string = getenv("IP_POKEMON");
+	char *ip_string = getenv("IP_POKEMON");
 	char *puerto_string = getenv("PUERTO_POKEMON");
-	int puerto = atoi(puerto_string);
-	servidor_pokedex = server_create(puerto, ip_string, 1500);
-	printf("%s",ip_string);*/
+	if(ip_string==NULL || puerto_string==NULL)
+	{
+		printf("Necesito IP_POKEMON y PUERTO_POKEMON para ejecutar\n");
+		exit(1);
+	}
+	else
+	{
+		int puerto = atoi(puerto_string);
+		servidor_pokedex = server_create(puerto, ip_string, 1500);
+		server_escucha(servidor_pokedex);
+		//printf("%s",ip_string);
+	}
 
-	char *ip = string_new();
+
+	/*char *ip = string_new();
 	string_append(&ip,"127.0.0.1");
 	servidor_pokedex = server_create(5001, ip, 1500);
 	free(ip);
-	server_escucha(servidor_pokedex);
+	server_escucha(servidor_pokedex);*/
 }
 
 /*void servidor_acepta_clientes()

@@ -18,12 +18,11 @@ sem_t semaforo_cola_entrenadores_sin_objetivos;
 sem_t semaforo_esperar_ordenamieto;
 sem_t semaforo_esperar_por_entrenador_listo;
 pthread_mutex_t mutex_manipular_cola_listos = PTHREAD_MUTEX_INITIALIZER;
-//pthread_mutex_t mutex_preguntando_si_estan_vivos = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_manipular_cola_nuevos = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_manipular_cola_bloqueados = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_manipular_cola_finalizados = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_cola_entrenadores_sin_objetivos = PTHREAD_MUTEX_INITIALIZER;
-//extern int encolacion_entrenadores_iniciada;
+extern int encolacion_entrenadores_iniciada;
 int servidor_debe_terminar = 0;
 int algoritmo_cambio = 0;
 t_info_algoritmo *nuevo_algoritmo;
@@ -48,8 +47,9 @@ void ejecutar_mapa(char *nombre, char *rutaPokedex)
 	hay_jugadores_online = 0;
 	planificador_create_segun_cual_seas();
 	mapa_ejecuta_deadlock();
+	encolacion_entrenadores_iniciada=NO_INICIADO;
 	mapa_hacete_visible_para_entrenadores();
-	sem_wait(&semaforo_terminacion);
+	//sem_wait(&semaforo_terminacion);
 }
 
 void iniciar_seniales_mapa()
@@ -81,7 +81,7 @@ void iniciar_semaforos()
 	sem_init(&semaforo_hay_algun_entrenador_listo,1,0);
 	sem_init(&semaforo_cola_entrenadores_sin_objetivos,1,0);
 	sem_init(&semaforo_servidor,1,0);
-	sem_init(&semaforo_terminacion,0,0);
+	//sem_init(&semaforo_terminacion,0,0);
 	sem_init(&semaforo_esperar_por_entrenador_listo,1,0);
 	sem_init(&semaforo_esperar_ordenamieto,4,0);
 }
@@ -406,14 +406,15 @@ int mapa_decime_si_planificador_es(int planificador)
 /*----------------------- FUNCIONES PARA MANIPULACION DE ENTRENADORES (MEDIANTE SOCKETS)-------------------------------*/
 void mapa_hacete_visible_para_entrenadores()
 {
-	pthread_attr_t attr;
+	/*thread_attr_t attr;
 	pthread_attr_init(&attr);
 	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
 	pthread_t hilo_servidor;
 	pthread_create(&hilo_servidor,&attr,ejecutar_servidor,(void*)mapa->info_socket);
 
 	log_info(informe_mapa, "Se comienza a ejecutar hilo de escucha");
-	pthread_attr_destroy(&attr);
+	pthread_attr_destroy(&attr);*/
+	ejecutar_servidor((void*)mapa->info_socket);
 }
 
 /*----------------------------------------FUNCIONES PARA DEADLOCK--------------------------------------------------------*/

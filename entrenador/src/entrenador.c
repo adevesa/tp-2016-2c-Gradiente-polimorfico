@@ -14,6 +14,6 @@
 
 int main(int argc, char *argv[])
 {
-	ejecutar_entrenador(argv[1],"/home/utnso/Pokedex");
+	ejecutar_entrenador(argv[1],argv[2]);
 	return EXIT_SUCCESS;
 }
