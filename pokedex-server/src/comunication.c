@@ -268,7 +268,7 @@ void tratar_peticion_de(int cliente,char *peticion)
 		case(11):
 		{
 			t_to_be_truncate* to_truncate = recibir_mensaje_especifico(cliente,11);
-			printf("CLIENTE %d PIDE TRUNCAR: %s CON EL SIZE %d\n",cliente,to_truncate->path,to_truncate->new_size);
+			printf("CLIENTE %d PIDE TRUNCAR: %s CON EL SIZE %d bytes \n",cliente,to_truncate->path,to_truncate->new_size);
 			int resultado_operacion = osada_a_truncate_file(to_truncate->path,to_truncate->new_size);
 			responder_solo_resultado(cliente,resultado_operacion);
 			free(to_truncate->path);

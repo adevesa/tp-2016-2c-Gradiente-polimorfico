@@ -26,7 +26,7 @@ void osada_b_aumentar_tamanio_full(osada_file *file, int new_size,t_info_file *i
 	if(new_size == file->file_size)
 	{
 		tamanio_a_aumentar=new_size;
-		}
+	}
 	else
 	{
 			tamanio_a_aumentar = new_size - file->file_size;
@@ -102,6 +102,7 @@ void asignar_un_unico_bloque_si_es_necesario_full(osada_file *file, t_info_file 
 			file->file_size=OSADA_BLOCK_SIZE;
 			info->last_block_asigned = bloque_Asignado;
 			info->cantidad_bloques_asignados = info->cantidad_bloques_asignados +1;
+			info->last_block_write = FEOF;
 			osada_impactar_un_archivo(info->posicion_en_tabla_de_archivos,file);
 		}
 		else

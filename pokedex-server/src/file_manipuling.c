@@ -191,7 +191,7 @@ void limpiar_bloque_de_datos(int n)
 	int i;
 	for(i=0;i<OSADA_BLOCK_SIZE;i++)
 	{
-		aux[i]= '\0';
+		aux[i]='\0';
 	}
 	osada_push_block(BLOQUE_DE_DATOS,n,aux,disco);
 	free(aux);
@@ -200,47 +200,6 @@ void limpiar_bloque_de_datos(int n)
 
 int osada_b_check_repeat_name(int tipo,char* path)
 {
-	/*char *path_padre = obtener_ruta_padre(path);
-	char *new_hijo = array_last_element(path);
-	//pthread_mutex_lock(&mutex_operaciones);
-	t_list *hijos = osada_b_listar_hijos(path_padre);
-	//pthread_mutex_unlock(&mutex_operaciones);
-
-	if(list_is_empty(hijos))
-	{
-		//list_destroy_and_destroy_elements(hijos,file_listado_eliminate);
-		list_destroy(hijos);
-		free(new_hijo);
-		free(path_padre);
-		return 0;
-	}
-	else
-	{
-		int size = list_size(hijos);
-			int i=0;
-			int esta_repetido=0;
-
-			while(!esta_repetido && i<size)
-			{
-				t_file_listado *file = list_get(hijos,i);
-				char* nombre_fijo = array_last_element(file->path);
-				if(string_equals_ignore_case(nombre_fijo, new_hijo))
-				{
-					if(tipo==file->tipo)
-					{
-						esta_repetido = 1;
-					}
-				}
-				free(nombre_fijo);
-				i++;
-			}
-
-			list_destroy_and_destroy_elements(hijos,file_listado_eliminate);
-			free(new_hijo);
-			free(path_padre);
-			return esta_repetido;
-	}*/
-
 	if(!osada_check_exists_in_dictionary(path))
 	{
 		return 1;

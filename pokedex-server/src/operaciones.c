@@ -403,6 +403,8 @@ void* osada_a_truncate_file(char* path, int new_size)
 				trunct->path=path;
 				trunct->new_size = new_size;
 				osada_b_truncate_file_full(trunct,file,info_file);
+				file->file_size = new_size;
+				osada_impactar_un_archivo(info_file->posicion_en_tabla_de_archivos,file);
 				//osada_b_actualiza_time(file);
 				pthread_mutex_unlock(&mutex_por_archivo[info_file->posicion_en_tabla_de_archivos]);
 				free(trunct);
