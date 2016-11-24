@@ -44,6 +44,7 @@ enum
 
 char** vector_auxiliar_identificadores_pokenest;
 
+void free_names_dir(void* arg);
 /* ----------------------------------------STRUCTS----------------------------------------------------------------*/
 typedef struct posicion
 {
@@ -87,7 +88,7 @@ typedef struct entrenador
 	int numero_de_ingreso;
 	int debe_liberar_solicitud;
 	t_list *pokemones_capturados;
-	sem_t *semaforo_finalizacon;
+	//sem_t *semaforo_finalizacon;
 	int esta_en_deadlock;
 }t_entrenador;
 

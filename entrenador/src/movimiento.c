@@ -147,4 +147,5 @@ void entrenador_resetea_ubicacion()
 	entrenador->ubicacion = ubicacion_create(0,0);
 	free(entrenador->paso_anterior);
 	entrenador->paso_anterior = ubicacion_create(0,0);
+	//free(entrenador->pokenest);
 }

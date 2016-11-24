@@ -7,7 +7,6 @@
 #include "deadlock.h"
 extern char** vector_auxiliar_identificadores_pokenest;
 extern t_mapa* mapa;
-//t_list* lista_auxiliar_entrenadores;
 t_dictionary* procesos;
 t_dictionary* procesos_identificados_por_indice;
 int cantidad_columnas_actuales = 0;
@@ -17,7 +16,7 @@ int indice_posicion_proceso = 0;
 int cantidad_solicitudes = 0;
 
 pthread_mutex_t mutex_operaciones_deadlock = PTHREAD_MUTEX_INITIALIZER;
-sem_t semaforo_esperar_para_revisar;
+//sem_t semaforo_esperar_para_revisar;
 
 int* vector_procesos_sin_recursos_asignados;
 int* vector_T;
@@ -587,6 +586,7 @@ t_list* obtener_las_victimas()
 		{
 			char* index_string = string_itoa(i);
 			t_proceso *proceso = (t_proceso*) dictionary_get(procesos_identificados_por_indice,index_string);
+			free(index_string);
 			char* id_proceso = string_new();
 			string_append(&id_proceso, proceso->id);
 			list_add(new_list,id_proceso);
@@ -605,7 +605,7 @@ void ejecutar_deadlock(void* arg)
 	logger = log_create(nombre_log, "Deadlock",0, LOG_LEVEL_INFO);
 	free(nombre_log);
 
-	sem_init(&semaforo_esperar_para_revisar,0,0);
+	//sem_init(&semaforo_esperar_para_revisar,0,0);
 	deadlock=deadlock_inicializate();
 	loggear_informacion(LOG_INICIALIZACION);
 	loggear_informacion(LOG_RECURSOS_TOTALES);
@@ -633,12 +633,9 @@ void deadlock_revisa()
 		{
 			loggear_informacion(LOG_PROCESOS_MARCADOS);
 		}
-
 		iniciar_vectorT();
 		loggear_informacion(LOG_VECTOR_T);
-
 		int se_sigue_ejecutando = 1;
-
 
 		while(se_sigue_ejecutando)
 		{
@@ -697,25 +694,10 @@ void marcar_procesos_que_no_tienen_recursos_asignados()
 		{
 			if(!proceso_tiene_recursos_asignados(i))
 			{
-				/*char* log = string_new();
-				string_append(&log,"No tiene recursos asignados el proceso: ");
-				string_append(&log, string_itoa(i));
-				log_info(logger,log);
-				free(log);*/
 				if(!proceso_esta_marcado(i))
 				{
-					/*char* log = string_new();
-					string_append(&log,"No está marcado el proceso: ");
-					string_append(&log, string_itoa(i));
-					log_info(logger,log);
-					free(log);*/
 					if(proceso_tiene_solicitudes(i))
 					{
-						/*char* log = string_new();
-						string_append(&log,"Se marca al proceso: ");
-						string_append(&log, string_itoa(i));
-						log_info(logger,log);
-						free(log);*/
 						marcar_proceso(i);
 					}
 				}

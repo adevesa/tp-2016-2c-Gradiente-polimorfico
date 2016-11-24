@@ -18,16 +18,18 @@ sem_t semaforo_cola_entrenadores_sin_objetivos;
 sem_t semaforo_esperar_ordenamieto;
 sem_t semaforo_esperar_por_entrenador_listo;
 pthread_mutex_t mutex_manipular_cola_listos = PTHREAD_MUTEX_INITIALIZER;
-pthread_mutex_t mutex_preguntando_si_estan_vivos = PTHREAD_MUTEX_INITIALIZER;
+//pthread_mutex_t mutex_preguntando_si_estan_vivos = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_manipular_cola_nuevos = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_manipular_cola_bloqueados = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_manipular_cola_finalizados = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_cola_entrenadores_sin_objetivos = PTHREAD_MUTEX_INITIALIZER;
-extern int encolacion_entrenadores_iniciada;
+//extern int encolacion_entrenadores_iniciada;
 int servidor_debe_terminar = 0;
 int algoritmo_cambio = 0;
 t_info_algoritmo *nuevo_algoritmo;
 
+int hay_jugadores_online;
+int hay_jugadores;
 /*------------------------------------------EXECUTE----------------------------------------------------------------*/
 void ejecutar_mapa(char *nombre, char *rutaPokedex)
 {
@@ -42,7 +44,8 @@ void ejecutar_mapa(char *nombre, char *rutaPokedex)
 	{
 		mapa_mostrate_en_pantalla();
 	}
-
+	hay_jugadores = 0;
+	hay_jugadores_online = 0;
 	planificador_create_segun_cual_seas();
 	mapa_ejecuta_deadlock();
 	mapa_hacete_visible_para_entrenadores();
@@ -57,13 +60,18 @@ void iniciar_seniales_mapa()
 void releer_data(int n)
 {
 	t_info_algoritmo *algotirmo_viejo = mapa->info_algoritmo;
+
 	config_destroy(mapa->configuracion);
 	t_config *nueva_configuracion = configuracion_metadata_create(mapa->nombre,mapa->ruta_pokedex);
+	mapa->configuracion = nueva_configuracion;
+
+	mapa->tiempo_chequeo_deadlock = obtener_info_mapa_tiempo_deadlock(mapa->configuracion);
+	mapa->batalla = obtener_info_mapa_batalla(mapa->configuracion);
+
 	t_info_algoritmo *nuevo_algoritmo = obtener_info_mapa_algoritmo(nueva_configuracion);
 	cambiar_algoritmo_si_es_necesario(algotirmo_viejo,nuevo_algoritmo);
 
-	mapa->configuracion = nueva_configuracion;
-
+	//config_destroy(nueva_configuracion);
 }
 
 void iniciar_semaforos()
@@ -107,6 +115,14 @@ void cambiar_algoritmo()
 {
 	destroy_info_algoritmo(mapa->info_algoritmo);
 	mapa->info_algoritmo = nuevo_algoritmo;
+	if(mapa_decime_si_planificador_es(PLANIFICADOR_RR))
+	{
+		hay_jugadores_online = hay_jugadores;
+	}
+	else
+	{
+		hay_jugadores = hay_jugadores_online;
+	}
 	planificador_create_segun_cual_seas();
 	algoritmo_cambio=0;
 }
@@ -127,9 +143,11 @@ t_pokeNest* mapa_buscame_pokenest(char *identificador_pokemon)
 char* mapa_dame_medalla()
 {
 	char *ruta_medalla = obtener_ruta_especifica(mapa->ruta_pokedex, "Mapas",mapa->nombre);
-	ruta_medalla = obtener_ruta_especifica(ruta_medalla,"medalla-",mapa->nombre);
-	ruta_medalla = obtener_ruta_especifica(ruta_medalla,".jpg",NULL);
-	return ruta_medalla;
+	char* ruta_medalla_2 = obtener_ruta_especifica(ruta_medalla,"medalla-",mapa->nombre);
+	char* ruta_medalla_full = obtener_ruta_especifica(ruta_medalla_2,".jpg",NULL);
+	free(ruta_medalla);
+	free(ruta_medalla_2);
+	return ruta_medalla_full;
 }
 
 int mapa_decime_si_hay_pokemones_en_pokenest(char *id_pokenest)
@@ -386,7 +404,6 @@ int mapa_decime_si_planificador_es(int planificador)
 }
 
 /*----------------------- FUNCIONES PARA MANIPULACION DE ENTRENADORES (MEDIANTE SOCKETS)-------------------------------*/
-
 void mapa_hacete_visible_para_entrenadores()
 {
 	pthread_attr_t attr;

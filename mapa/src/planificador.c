@@ -15,10 +15,13 @@ extern pthread_mutex_t mutex_manipular_cola_nuevos;
 extern sem_t semaforo_hay_algun_entrenador_listo;
 extern sem_t semaforo_cola_entrenadores_sin_objetivos;
 extern int semaforo_rr_cambiado_por_deadlock;
-int hay_jugadores_online = 0;
-int encolacion_entrenadores_iniciada = NO_INICIADO;
+/*int hay_jugadores_online = 0;
+int hay_jugadores=0;*/
 
-extern pthread_mutex_t mutex_preguntando_si_estan_vivos;
+extern int hay_jugadores_online;
+extern int hay_jugadores;
+
+int encolacion_entrenadores_iniciada = NO_INICIADO;
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
 t_listas_y_colas* listas_y_colas_creense()
 {
@@ -51,7 +54,6 @@ t_planificador_srdf* planificador_srdf_create()
 
 void planificador_inicia_log()
 {
-
 	char *nombre_log = string_new();
 	string_append(&nombre_log, "Log ");
 	string_append(&nombre_log, mapa->nombre);
@@ -129,6 +131,10 @@ void planificador_dale_coordenadas_a_entrenador(t_entrenador *entrenador)
 	char *identificador_pokenest = escuchar_mensaje_entrenador(entrenador, ENTRENADOR_ESTA_BUSCANDO_COORDENADAS_POKENEST);
 
 	t_pokeNest *pokenest_buscada = mapa_buscame_pokenest(identificador_pokenest);
+	if(entrenador->pokenest_objetivo != NULL)
+	{
+		free(entrenador->pokenest_objetivo);
+	}
 	entrenador->pokenest_objetivo = identificador_pokenest;
 	mapa_actualiza_distancia_del_entrenador(entrenador);
 	char *coordendas_pokenest = armar_coordenada(pokenest_buscada->posicion->x,pokenest_buscada->posicion->y, MAX_BYTES_COORDENADA);
@@ -159,6 +165,8 @@ void planificador_dale_coordenadas_a_entrenador(t_entrenador *entrenador)
 
 	enviar_mensaje_a_entrenador(entrenador, OTORGAR_COORDENADAS_POKENEST, coordendas_pokenest);
 
+	free(coordendas_pokenest);
+
 	//INICIO LOG
 	char *mensaje = string_new();
 	string_append(&mensaje, "La coordenada solicitada fue entregada a entrenador identificado por ");
@@ -171,13 +179,15 @@ void planificador_dale_coordenadas_a_entrenador(t_entrenador *entrenador)
 void planificador_entrenador_se_mueve(t_entrenador *entrenador)
 {
 	char *posicion_destino = escuchar_mensaje_entrenador(entrenador, ENTRENADOR_QUIERE_MOVERSE);
+	free(entrenador->posicion_actual);
 	entrenador->posicion_actual = desarmar_coordenada(posicion_destino);
+	free(posicion_destino);
 
 	//INICIO LOG
 	char *mensaje_A_loggear = string_new();
 	string_append(&mensaje_A_loggear, "Entrenador identificado por ");
 	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
-	string_append(&mensaje_A_loggear, " se movió a ");
+	string_append(&mensaje_A_loggear, " se movio a ");
 	char *x = string_itoa(entrenador->posicion_actual->x);
 	char *y = string_itoa(entrenador->posicion_actual->y);
 	string_append(&mensaje_A_loggear,x);
@@ -200,7 +210,7 @@ void planificador_entrenador_quiere_capturar_pokemon(t_entrenador *entrenador, i
 	char *mensaje_A_loggear = string_new();
 	string_append(&mensaje_A_loggear, "Entrenador identificado por ");
 	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
-	string_append(&mensaje_A_loggear, " está solicitando captura pokemon");
+	string_append(&mensaje_A_loggear, " esta solicitando captura pokemon");
 	log_info(informe_planificador, mensaje_A_loggear);
 	free(mensaje_A_loggear);
 	//FIN LOG
@@ -233,7 +243,7 @@ void planificador_trata_captura_pokemon(t_entrenador *entrenador)
 		char *mensaje_A_loggear = string_new();
 		string_append(&mensaje_A_loggear, "Entrenador identificado por ");
 		string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
-		string_append(&mensaje_A_loggear, " quedó bloqueado por no haber pokemons disponibles");
+		string_append(&mensaje_A_loggear, " quedo bloqueado por no haber pokemons disponibles");
 		log_info(informe_planificador, mensaje_A_loggear);
 		free(mensaje_A_loggear);
 		//FIN LOG
@@ -250,12 +260,12 @@ void planificador_entrega_pokemon_a(t_entrenador *entrenador)
 	{
 		deadlock_actualizar_matriz(entrenador->simbolo_identificador,entrenador->pokenest_objetivo,MATRIZ_SOLICITUD,QUITAR_RECURSO);
 	}
-	//deadlock_actualizar_matriz(entrenador->simbolo_identificador,entrenador->pokenest_objetivo,MATRIZ_SOLICITUD,QUITAR_RECURSO);
 	deadlock_actualizar_matriz(entrenador->simbolo_identificador,entrenador->pokenest_objetivo,MATRIZ_ASIGNACION,OTORGAR_RECURSO);
 
 	char* pokemon_aux = string_new();
 	string_append(&pokemon_aux,pokemon_a_entregar);
 	list_add(entrenador->pokemones_capturados, pokemon_aux);
+
 	//INICIO LOG
 	char *mensaje_A_loggear = string_new();
 	string_append(&mensaje_A_loggear, "Entrenador identificado por ");
@@ -266,12 +276,12 @@ void planificador_entrega_pokemon_a(t_entrenador *entrenador)
 	free(mensaje_A_loggear);
 	//FIN LOG
 
+	free(pokemon_a_entregar);
 	mapa_actualiza_pokemones_disponibles_de_pokenest(entrenador->pokenest_objetivo);
 }
 
 void planificador_bloquea_entrenador(t_entrenador *entrenador)
 {
-	//enviar_mensaje_a_entrenador(entrenador, AVISAR_BLOQUEO_A_ENTRENADOR, NULL);
 	planificador_push_entrenador_a_bloqueado(entrenador);
 }
 
@@ -281,14 +291,6 @@ void planificador_desbloqueame_a(t_entrenador *entrenador)
 	cola_bloqueados_quita_entrenador_especifico(mapa->entrenadores->cola_entrenadores_bloqueados,entrenador->id_proceso);
 	pthread_mutex_unlock(&mutex_manipular_cola_bloqueados);
 	mapa_cambiale_estado_a_entrenador(entrenador, EXECUTE, BLOQUEADO);
-
-	//INICIO LOG
-	/*char *mensaje_A_loggear = string_new();
-	string_append(&mensaje_A_loggear, "POP (BLOQUEADO) entrenador identificado con el simbolo ");
-	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
-	log_info(informe_planificador, mensaje_A_loggear);
-	free(mensaje_A_loggear);*/
-	//FIN LOG
 }
 
 void cola_bloqueados_quita_entrenador_especifico(t_queue *cola, int id_proceso)
@@ -317,7 +319,6 @@ void cola_bloqueados_quita_entrenador_especifico(t_queue *cola, int id_proceso)
 
 void planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores()
 {
-	pthread_mutex_lock(&mutex_preguntando_si_estan_vivos);
 	int cantidad_bloqueados = queue_size(mapa->entrenadores->cola_entrenadores_bloqueados);
 	if(cantidad_bloqueados != 0)
 	{
@@ -328,11 +329,8 @@ void planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores()
 		free(mensaje_A_loggear);
 		//FIN LOG
 
-		//sem_wait(&semaforo_cola_bloqueados);
-
 		planificador_desbloquea_entrenador_si_es_posible(cantidad_bloqueados);
-		//sem_post(&semaforo_cola_bloqueados);
-		pthread_mutex_unlock(&mutex_preguntando_si_estan_vivos);
+
 		//INICIO LOG
 				char *mensaje_A_loggear_2 = string_new();
 				string_append(&mensaje_A_loggear_2, "TERMINE DE REVISAR ");
@@ -341,69 +339,25 @@ void planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores()
 				//FIN LOG
 
 	}
-	else {pthread_mutex_unlock(&mutex_preguntando_si_estan_vivos);}
+	else {}
 }
 
 void planificador_desbloquea_entrenador_si_es_posible(int cantidad_bloqueados)
 {
 	int i;
-	//pthread_mutex_lock(&mutex_manipular_cola_bloqueados);
 	for(i=0; i<cantidad_bloqueados; i++)
 	{
 		t_entrenador *entrenador =  planificador_pop_entrenador_bloqueado();
-		/*if(entrenador->esta_en_deadlock==NO)
+		if(mapa_decime_si_hay_pokemones_en_pokenest(entrenador->pokenest_objetivo))
 		{
-			char *mensaje_A_loggear_2 = string_new();
-			string_append(&mensaje_A_loggear_2, "PREGUNTO SI SIGUE AHI EL ENTRENADOR: ");
-			string_append(&mensaje_A_loggear_2, entrenador->simbolo_identificador);
-			log_info(informe_planificador, mensaje_A_loggear_2);
-			free(mensaje_A_loggear_2);
-
-			enviar_mensaje_a_entrenador(entrenador, PREGUNTAR_SI_SIGUE_AHI,NULL);
-			char* respuesta = escuchar_mensaje_entrenador(entrenador,SOLICITUD_DEL_ENTRENADOR);
-			int respuesta_tratada = tratar_respuesta(respuesta,entrenador);
-			free(respuesta);*/
-
-			/*switch(respuesta_tratada)
-			{
-				case(ENTRENADOR_SIGUE_VIVO):
-				{*/
-					if(mapa_decime_si_hay_pokemones_en_pokenest(entrenador->pokenest_objetivo))
-					{
-						planificador_push_entrenador_a_listo(entrenador);
-						/*char *mensaje_A_loggear_2 = string_new();
-						string_append(&mensaje_A_loggear_2, "SIGUE VIVO: ");
-						string_append(&mensaje_A_loggear_2, entrenador->simbolo_identificador);
-						log_info(informe_planificador, mensaje_A_loggear_2);
-							free(mensaje_A_loggear_2);*/
-					}
-					else
-					{
-						/*char *mensaje_A_loggear_2 = string_new();
-						string_append(&mensaje_A_loggear_2, "NO HAY RECURSOS PARA: ");
-						string_append(&mensaje_A_loggear_2, entrenador->simbolo_identificador);
-						log_info(informe_planificador, mensaje_A_loggear_2);
-						free(mensaje_A_loggear_2);*/
-						planificador_push_entrenador_a_bloqueado(entrenador);
-					}
-				/*};break;
-				case(ENTRENADOR_DESCONECTADO):
-				{
-					char *mensaje_A_loggear_2 = string_new();
-					string_append(&mensaje_A_loggear_2, "SE DESCONECTO: ");
-					string_append(&mensaje_A_loggear_2, entrenador->simbolo_identificador);
-					log_info(informe_planificador, mensaje_A_loggear_2);
-					free(mensaje_A_loggear_2);
-					planificador_aborta_entrenador(entrenador);
-				};break;*/
-			}
-		/*}
+			planificador_push_entrenador_a_listo(entrenador);
+		}
 		else
 		{
 			planificador_push_entrenador_a_bloqueado(entrenador);
-		}*/
-	//}
-	//pthread_mutex_unlock(&mutex_manipular_cola_bloqueados);
+		}
+
+	}
 }
 
 /*---------------------------------------FINALIZADO---------------------------------------------------------*/
@@ -416,19 +370,25 @@ void planificador_aborta_entrenador(t_entrenador *entrenador)
 	free(mensaje_a_log);
 
 	if(proceso_porId_tiene_solicitudes(entrenador->simbolo_identificador))
-		{
-			deadlock_actualizar_matriz(entrenador->simbolo_identificador,entrenador->pokenest_objetivo,MATRIZ_SOLICITUD,QUITAR_RECURSO);
-		}
+	{
+		deadlock_actualizar_matriz(entrenador->simbolo_identificador,entrenador->pokenest_objetivo,MATRIZ_SOLICITUD,QUITAR_RECURSO);
+	}
 	mapa_cambiale_estado_a_entrenador(entrenador, MUERTO, EXECUTE);
 	entrenador->objetivo_cumplido = ABORTADO; //Ojo
 	server_cerra_cliente(entrenador->socket_entrenador);
 	char *key = string_itoa(entrenador->socket_entrenador);
+
 	dictionary_put(mapa->entrenadores->lista_entrenadores_finalizados,key, entrenador);
 	dictionary_remove(mapa->diccionario_de_entrenadores,entrenador->simbolo_identificador);
 
 	planificador_extraele_pokemones_a_entrenador(entrenador);
 	mapa_elimina_entrenador_de_pantalla(entrenador);
 	deadlock_elimina_proceso_de_matrices(entrenador->simbolo_identificador);
+
+	free(key);
+	free(entrenador->pokenest_objetivo);
+	free(entrenador->posicion_actual);
+	free(entrenador->simbolo_identificador);
 }
 
 void planificador_aborta_entrenador_por_deadlock(t_entrenador* entrenador)
@@ -440,9 +400,7 @@ void planificador_aborta_entrenador_por_deadlock(t_entrenador* entrenador)
 		free(mensaje_a_log);
 
 		planificador_extraele_pokemones_a_entrenador(entrenador);
-		pthread_mutex_lock(&mutex_preguntando_si_estan_vivos);
 		planificador_desbloqueame_a(entrenador);
-		pthread_mutex_unlock(&mutex_preguntando_si_estan_vivos);
 
 		if(proceso_porId_tiene_solicitudes(entrenador->simbolo_identificador))
 		{
@@ -461,6 +419,9 @@ void planificador_aborta_entrenador_por_deadlock(t_entrenador* entrenador)
 		server_cerra_cliente(entrenador->socket_entrenador);
 		mapa_elimina_entrenador_de_pantalla(entrenador);
 
+		free(entrenador->pokenest_objetivo);
+		free(entrenador->posicion_actual);
+		free(entrenador->simbolo_identificador);
 }
 
 void planificador_finaliza_entrenador(t_entrenador *entrenador)
@@ -499,6 +460,7 @@ void planificador_extraele_pokemones_a_entrenador(t_entrenador *entrenador)
 			mapa_devolve_pokemon_a_pokenest(pokemon_a_devolver);
 		}
 	}
+	list_destroy(entrenador->pokemones_capturados);
 }
 
 /*---------------------------------------NUEVO->LISTO---------------------------------------------------------*/
@@ -526,8 +488,6 @@ void* planificador_encola_nuevos_entrenadores()
 		if(mapa_decime_si_planificador_es(PLANIFICADOR_RR))
 		{
 			pthread_mutex_lock(&mutex_manipular_cola_nuevos);
-
-			//log_info(informe_planificador, "Iniciando la encolación de nuevos entrenadores");
 			foreach(COLA_LISTOS,mapa->entrenadores->lista_entrenadores_a_planificar,planificador_modela_nuevo_entrenador_y_encolalo);
 			if(!hay_jugadores_online)
 			{
@@ -537,23 +497,13 @@ void* planificador_encola_nuevos_entrenadores()
 
 			list_clean(mapa->entrenadores->lista_entrenadores_a_planificar);
 			pthread_mutex_unlock(&mutex_manipular_cola_nuevos);
-
-			//log_info(informe_planificador, "Cola de nuevos vaciada por proceso de encolación");
-			//log_info(informe_planificador, "Finalizando la  encolación de entrenadores");
 		}
 		else
 		{
 			pthread_mutex_lock(&mutex_manipular_cola_nuevos);
-
-			//log_info(informe_planificador, "Iniciando la encolación de nuevos entrenadores");
 			foreach(COLA_SIN_OBJETIVOS,mapa->entrenadores->lista_entrenadores_a_planificar,planificador_modela_nuevo_entrenador_y_encolalo);
-			//sem_post(&semaforo_cola_entrenadores_sin_objetivos);
-
 			list_clean(mapa->entrenadores->lista_entrenadores_a_planificar);
 			pthread_mutex_unlock(&mutex_manipular_cola_nuevos);
-
-			//log_info(informe_planificador, "Cola de nuevos vaciada por proceso de encolación");
-			//log_info(informe_planificador, "Finalizando la  encolación de entrenadores");
 		}
 	}
 
@@ -563,7 +513,7 @@ void planificador_modela_nuevo_entrenador_y_encolalo(int cola, void *entrenador)
 {
 	t_entrenador_nuevo *entrenador_a_modelar = (t_entrenador_nuevo *) entrenador;
 	t_entrenador *new_entrenador = entrenador_create(entrenador_a_modelar->id_proceso, entrenador_a_modelar->socket_entrenador);
-	new_entrenador->semaforo_finalizacon=entrenador_a_modelar->semaforo_finalizacion;
+	//new_entrenador->semaforo_finalizacon=entrenador_a_modelar->semaforo_finalizacion;
 	new_entrenador->simbolo_identificador = entrenador_a_modelar->simbolo_identificador;
 	free(entrenador_a_modelar);
 	mapa_mostra_nuevo_entrenador_en_pantalla(new_entrenador);
@@ -574,29 +524,11 @@ void planificador_modela_nuevo_entrenador_y_encolalo(int cola, void *entrenador)
 	{
 		planificador_push_entrenador_a_listo(new_entrenador);
 		deadlock_agregar_nuevo_proceso_a_matrices(new_entrenador->simbolo_identificador);
-
-		//INICIO LOG
-		/*char *mensaje_A_loggear = string_new();
-		string_append(&mensaje_A_loggear, "Entrenador conectado por socket ");
-		string_append(&mensaje_A_loggear, string_itoa(new_entrenador->socket_entrenador));
-		string_append(&mensaje_A_loggear, " modelado");
-		log_info(informe_planificador, mensaje_A_loggear);
-		free(mensaje_A_loggear);*/
-		//FIN LOG
 	}
 	else
 	{
 		planificador_push_entrenador_en_cola_sin_objetivos(new_entrenador);
 		deadlock_agregar_nuevo_proceso_a_matrices(new_entrenador->simbolo_identificador);
-
-		//INICIO LOG
-		/*char *mensaje_A_loggear = string_new();
-		string_append(&mensaje_A_loggear, "Entrenador conectado por socket ");
-		string_append(&mensaje_A_loggear, string_itoa(new_entrenador->socket_entrenador));
-		string_append(&mensaje_A_loggear, " modelado");
-		log_info(informe_planificador, mensaje_A_loggear);
-		free(mensaje_A_loggear);*/
-		//FIN LOG
 	}
 
 }

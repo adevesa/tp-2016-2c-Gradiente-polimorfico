@@ -12,7 +12,6 @@ extern int hay_jugadores_online;
 extern int encolacion_entrenadores_iniciada;
 extern int algoritmo_cambio;
 int semaforo_rr_cambiado_por_deadlock =0;
-
 /*-----------------------------------EXECUTE PLANIFICADOR RR---------------------------------------------------------*/
 void* ejecutar_planificador_rr(void* arg)
 {
@@ -36,7 +35,6 @@ int quamtum_se_termino(int q)
 
 void planificador_rr_organiza_entrenadores()
 {
-
 	if(encolacion_entrenadores_iniciada == NO_INICIADO)
 	{
 		planificador_inicia_encolacion_nuevos_entrenadores();
@@ -61,16 +59,13 @@ void planificador_rr_organiza_entrenadores()
 		mapa_cambiale_estado_a_entrenador(entrenador_listo, EXECUTE, estado_anterior);
 		loggear_turno(entrenador_listo);
 		planificador_rr_es_el_turno_de(entrenador_listo, &quamtum_restante);
-		loggear_fin_turno(entrenador_listo);
+		log_info(informe_planificador, "Fin de turno");
 		planificador_volve_a_encolar_a_listo_si_es_necesario(entrenador_listo);
 		planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
 		//mostrarTodo(planificador->listas_y_colas->cola_entrenadores_bloqueados,COLA_BLOQUEADOS);
 		//mostrarTodo(planificador->listas_y_colas->cola_entrenadores_listos,COLA_LISTOS);
 	}
 	cambiar_algoritmo();
-	/*
-	 * DEBO SABER SI EL ENTRENADOR ESTABA BLOQUEADO JUSTO ANTES DE CAMBIAR EL ALGORITMO
-	 */
 }
 
 void loggear_turno(t_entrenador *entrenador)
@@ -90,8 +85,6 @@ void loggear_fin_turno(t_entrenador *entrenador)
 	log_info(informe_planificador, mensaje_a_log_2);
 	free(mensaje_a_log_2);
 }
-
-
 
 void planificador_rr_es_el_turno_de(t_entrenador *entrenador_listo, int *quamtum)
 {
@@ -118,8 +111,10 @@ void planificador_rr_dale_nuevo_turno_a_entrenador(t_entrenador *entrenador_list
 {
 	enviar_mensaje_a_entrenador(entrenador_listo,OTORGAR_TURNO,NULL);
 	char *mensaje_del_entrenador = escuchar_mensaje_entrenador(entrenador_listo, SOLICITUD_DEL_ENTRENADOR);
+	int caso = tratar_respuesta(mensaje_del_entrenador,entrenador_listo);
+	free(mensaje_del_entrenador);
 	//log_info(informe_planificador,mensaje_del_entrenador);
-	switch(tratar_respuesta(mensaje_del_entrenador,entrenador_listo))
+	switch(caso)
 	{
 		case(ENTRENADOR_DESCONECTADO):
 			{
@@ -176,6 +171,7 @@ void planificador_rr_cambia_semaforo_si_es_necesario()
 {
 	if(hay_jugadores_online == 0)
 	{
+		semaforo_rr_cambiado_por_deadlock = 1;
 		sem_post(&semaforo_entrenadores_listos);
 	}
 }

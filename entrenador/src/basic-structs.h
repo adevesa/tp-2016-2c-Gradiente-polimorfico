@@ -78,4 +78,5 @@ int entrenador_vidas(t_config* configuracion);
 char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_archivo, char *sub_directorio_o_nombre_archivo);
 
 void array_free_all_2(char **array);
+
 #endif /* BASIC_STRUCTS_H_ */

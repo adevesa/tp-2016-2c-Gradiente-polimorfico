@@ -109,4 +109,5 @@ char* adaptar_nombre_pokemon(char* nombre_sucio);
 void pokemon_destroy(void *arg);
 
 void destroy_path(void *arg);
+void loggear_posicion_actual();
 #endif /* ENTRENADOR_COMMONS_H_ */

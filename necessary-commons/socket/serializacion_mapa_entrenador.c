@@ -17,10 +17,12 @@ char* recibir_mensaje_especifico(int socket)
 
 	payload[4]= '\0';
 	char **solo_tamanio = string_split(payload, ";");
-
 	string_trim_left(&solo_tamanio[0]);
 	int tamanio_del_mensaje = atoi(solo_tamanio[0]);
+	free(payload);
+
 	char *mensaje_final = recibir_mensaje(socket, tamanio_del_mensaje);
+
 	free_string_array(solo_tamanio);
 	return mensaje_final;
 
@@ -206,10 +208,6 @@ char* string_replace(char **palabra, char *este_caracter,char *por_este)
 		i++;
 	}
 	int tamanio = string_length(aux);
-	/*printf("%d \n", tamanio);
-	*palabra=realloc(*palabra,tamanio);
-	memcpy(*palabra,aux,tamanio);
-	free(aux);*/
 	free_string_array(por_separado);
 	return aux;
 }

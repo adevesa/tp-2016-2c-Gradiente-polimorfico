@@ -14,6 +14,7 @@ t_config* configuracion_metadata_create(char *nombre, char *ruta)
 	char* ruta_final_2 = obtener_ruta_especifica(ruta_final, "metadata", NULL);
 	t_config *config_new = config_create(ruta_final_2);
 	free(ruta_final);
+	free(ruta_final_2);
 	return config_new;
 }
 
@@ -24,12 +25,8 @@ t_entrenador* entrenador_create(char* nombre, char* ruta)
   	string_append(&entrenador_new->nombre,nombre);
   	entrenador_new->ruta_pokedex = string_new();
   	string_append(&entrenador_new->ruta_pokedex,ruta);
-  	//entrenador_new->nombre=nombre;
-  	//entrenador_new->ruta_pokedex=ruta;
-  //entrenador_new->configuracion = configuracion_metadata_create(nombre,ruta);
-  	//entrenador_new->directorio_de_bill = obtener_direccion_directorio_de_bill(ruta, nombre);
   	entrenador_new->configuracion = configuracion_metadata_create(entrenador_new->nombre,entrenador_new->ruta_pokedex);
-  	 entrenador_new->directorio_de_bill = obtener_direccion_directorio_de_bill(entrenador_new->ruta_pokedex, entrenador_new->nombre);
+  	entrenador_new->directorio_de_bill = obtener_direccion_directorio_de_bill(entrenador_new->ruta_pokedex, entrenador_new->nombre);
   	entrenador_new->simbolo= entrenador_simbolo(entrenador_new->configuracion);
   	entrenador_new->hoja_de_viaje= entrenador_hoja_de_viaje(entrenador_new->configuracion);
   	entrenador_new->vidas= entrenador_vidas(entrenador_new->configuracion);
@@ -62,23 +59,13 @@ t_mapa* mapa_create(char* nombre_mapa, char *ruta_pokedex, t_entrenador *entrena
 
 	mapa_new->config=config;
 
-
-	//log_info(info_entrenador,mapa_new->nombre);
-
 	mapa_new->puerto =string_new();
-	char* port = config_get_string_value(config, "Puerto");
-	string_append(&mapa_new->puerto,port);
-	//free(port);
-
-	//log_info(info_entrenador,mapa_new->puerto);
+	string_append(&mapa_new->puerto,config_get_string_value(config, "Puerto"));
 
 	mapa_new->ip =string_new();
-	char* tip = config_get_string_value(config, "IP");
-	string_append(&mapa_new->ip,tip);
-	//free(tip);
+	string_append(&mapa_new->ip,config_get_string_value(config, "IP"));
 
-	//log_info(info_entrenador,mapa_new->ip);
-	mapa_new->objetivos = asociar_objetivos_por_mapa(nombre_mapa,entrenador);
+	mapa_new->objetivos = asociar_objetivos_por_mapa(mapa_new->nombre,entrenador);
 	mapa_new->pokemons_capturados = list_create();
 	//config_destroy(config);
 	return mapa_new;
@@ -86,12 +73,11 @@ t_mapa* mapa_create(char* nombre_mapa, char *ruta_pokedex, t_entrenador *entrena
 
 t_config* configuracion_metadata_mapa_create(char *nombre, char *ruta)
 {
-	//char *ruta_final = string_new();
 	char* ruta_final = obtener_ruta_especifica(ruta, "Mapas", nombre);
 	char* ruta_final_2 = obtener_ruta_especifica(ruta_final, "metadata", NULL);
 	free(ruta_final);
 	t_config *config_new = config_create(ruta_final_2);
-	//free(ruta_final_2);
+	free(ruta_final_2);
 	return config_new;
 }
 
@@ -99,12 +85,12 @@ t_config* configuracion_metadata_mapa_create(char *nombre, char *ruta)
 void mapa_destruite(t_mapa *mapa)
 {
 	free(mapa->ip);
-	//free(mapa->nombre);
+	free(mapa->nombre);
 	free(mapa->puerto);
 	list_destroy_and_destroy_elements(mapa->objetivos,mapa_element_destroyer);
 	list_destroy_and_destroy_elements(mapa->pokemons_capturados,mapa_element_destroyer);
-	//config_destroy(mapa->config);
-	//free(mapa);
+	config_destroy(mapa->config);
+	free(mapa);
 }
 
 void mapa_element_destroyer(void* arg)
@@ -122,7 +108,7 @@ void entrenador_destruite(t_entrenador *entrenador)
 	free(entrenador->ruta_pokedex);
 	free(entrenador->simbolo);
 	free(entrenador->ubicacion);
-	//mapa_destruite(entrenador->mapa_actual);
+	free(entrenador->paso_anterior);
 	list_destroy_and_destroy_elements(entrenador->hoja_de_viaje,hoja_de_viaje_destruite);
 }
 
@@ -138,8 +124,12 @@ char* obtener_direccion_directorio_de_bill(char* ruta_pokedex, char* nombre)
 	char *ruta_final = obtener_ruta_especifica(ruta_pokedex, "Entrenadores",nombre);
 	char *directorio = string_new();
 	string_append(&directorio, "Dir de Bill/");
-	ruta_final = obtener_ruta_especifica(ruta_final, directorio, NULL);
-	return ruta_final;
+
+	char* ruta_final_full = obtener_ruta_especifica(ruta_final, directorio, NULL);
+	free(ruta_final);
+	free(directorio);
+
+	return ruta_final_full;
 }
 
 t_list* entrenador_hoja_de_viaje(t_config* configuracion)
@@ -200,20 +190,27 @@ t_list* asociar_objetivos_por_mapa(char *nombre_mapa, t_entrenador *entrenador)
 	string_append(&objetivo_especifico,"obj[");
 	string_append(&objetivo_especifico,nombre_mapa);
 	string_append(&objetivo_especifico, "]");
-	string_trim_left(&objetivo_especifico);
+	//string_trim_left(&objetivo_especifico);
 
 	char *objetivos = config_get_string_value(entrenador->configuracion, objetivo_especifico);
-	char **objetivos_por_separado = mapas_a_Recorrer(objetivos);
+	char* objetivos_posta = string_new();
+	string_append(&objetivos_posta,objetivos);
+
+	char **objetivos_por_separado = mapas_a_Recorrer(objetivos_posta);
+	free(objetivos_posta);
+
 	t_list *lista = foreach_hoja_de_viaje(objetivos_por_separado);
+
 	array_free_all_2(objetivos_por_separado);
-	//free(objetivos);
 	free(objetivo_especifico);
 	return lista;
 }
 
 char* entrenador_simbolo(t_config* configuracion)
 {
-	return(config_get_string_value(configuracion, "simbolo"));
+	char* aux = string_new();
+	string_append(&aux,config_get_string_value(configuracion, "simbolo"));
+	return aux;
 }
 
 int entrenador_vidas(t_config* configuracion)
@@ -250,3 +247,6 @@ void array_free_all_2(char **array)
 	}
 	free(array);
 }
+
+
+

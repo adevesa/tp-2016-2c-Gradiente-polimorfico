@@ -49,9 +49,9 @@ void* atender_cliente(void* argumento)
 {
 	int *conexion = (int*) argumento;
 	sem_t semaforo_termina_proceso;
-	sem_init(&semaforo_termina_proceso,0,0);
+	//sem_init(&semaforo_termina_proceso,0,0);
 
-	agregar_proceso_a_lista(conexion,&semaforo_termina_proceso);
+	agregar_proceso_a_lista(conexion,NULL);
 	pthread_exit(NULL);
 }
 
@@ -61,7 +61,7 @@ void agregar_proceso_a_lista(int *socket_cliente, sem_t *semaforo_finalizacion)
 	entrenador->id_proceso = (int)process_get_thread_id();
 	entrenador->socket_entrenador = *socket_cliente;
 	entrenador->simbolo_identificador = recibir_mensaje(*socket_cliente,1);
-	entrenador->semaforo_finalizacion = semaforo_finalizacion;
+	//entrenador->semaforo_finalizacion = semaforo_finalizacion;
 
 	pthread_mutex_lock(&mutex_manipular_cola_nuevos);
 	list_add(mapa->entrenadores->lista_entrenadores_a_planificar,entrenador);
@@ -72,9 +72,11 @@ void agregar_proceso_a_lista(int *socket_cliente, sem_t *semaforo_finalizacion)
 	string_append(&mensaje_A_loggear, "PUSH (NUEVO) entrenador identificado con el simbolo ");
 	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
 	string_append(&mensaje_A_loggear, " y por el socket ");
-	string_append(&mensaje_A_loggear,string_itoa(entrenador->socket_entrenador));
+	char* num_aux = string_itoa(entrenador->socket_entrenador);
+	string_append(&mensaje_A_loggear,num_aux);
 	log_info(informe_planificador, mensaje_A_loggear);
 	free(mensaje_A_loggear);
+	free(num_aux);
 	//FIN LOG
 
 	sem_post(&semaforo_hay_algun_entrenador_listo);
@@ -116,7 +118,12 @@ void enviar_mensaje_a_entrenador(t_entrenador *entrenador, int header, char *pay
 	switch(header)
 	{
 		case(OTORGAR_TURNO):enviar_mensaje(entrenador->socket_entrenador, "tr;"); break;
-		case(OTORGAR_COORDENADAS_POKENEST): enviar_mensaje(entrenador->socket_entrenador, armar_mensaje("ur",payload,MAX_BYTES_TOTAL_A_ENVIAR)); break;
+		case(OTORGAR_COORDENADAS_POKENEST):
+		{
+			char* mensaje = armar_mensaje("ur",payload,MAX_BYTES_TOTAL_A_ENVIAR);
+			enviar_mensaje(entrenador->socket_entrenador, mensaje);
+			free(mensaje);
+		};break;
 		case(OTORGAR_MEDALLA_DEL_MAPA): otorgar_ruta_medalla_a_entrenador(entrenador->socket_entrenador, mapa_dame_medalla()); break;
 		case(OTORGAR_POKEMON): dar_pokemon_a_entrenador(entrenador, payload);break;
 		case(AVISAR_BLOQUEO_A_ENTRENADOR): enviar_mensaje(entrenador->socket_entrenador, "bq;");  break;
@@ -149,6 +156,7 @@ void otorgar_ruta_medalla_a_entrenador(int entrenador, char *rutaMedalla)
 	char *mensaje = armar_mensaje("mr", rutaMedalla,MAX_BYTES_TOTAL_A_ENVIAR);
 	enviar_mensaje(entrenador, mensaje);
 	free(mensaje);
+	free(rutaMedalla);
 }
 
 void dar_pokemon_a_entrenador(t_entrenador *entrenador, char *ruta_pokemon)

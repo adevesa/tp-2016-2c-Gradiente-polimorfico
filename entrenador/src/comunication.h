@@ -76,7 +76,7 @@ void solicitar_captura_pokemon(t_mapa *mapa, char *pokemonAcapturar);
 void notificar_fin_objetivos(t_mapa *mapa);
 
 char* armar_mejor_pokemon_string(t_pokemon *pokemon);
-/*---------------------------------------SECUNDARIOS----------------------------------------*/;
+/*---------------------------------------SECUNDARIOS----------------------------------------*/
 t_ubicacion* desarmar_coordenada(char *coordenada);
 void copiar(char* origen, char* destino);
 void eliminar(char* elemento);

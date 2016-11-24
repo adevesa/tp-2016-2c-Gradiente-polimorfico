@@ -21,38 +21,38 @@ long de_seg_a_ms(int segundos){
 	return aux;
 }
 
-long hora(char* tiempo){
-	char* hora = string_new();
-	hora = string_substring(tiempo,0,2);
+long hora(char* tiempo)
+{
+	char* hora = string_substring(tiempo,0,2);
 	int horaint = atoi(hora);
+	free(hora);
 
 	return ((long) horaint);
-	free(hora);
 }
 
-long minutos(char* tiempo){
-	char* minutos = string_new();
-	minutos = string_substring(tiempo,3,2);
+long minutos(char* tiempo)
+{
+	char* minutos = string_substring(tiempo,3,2);
 	int minutosint = atoi(minutos);
-	return ((long) minutosint);
 	free(minutos);
+	return ((long) minutosint);
 }
 
-long segundos(char* tiempo){
-	char *segundos = string_new();
-	segundos = string_substring(tiempo,6,2);
+long segundos(char* tiempo)
+{
+	char* segundos = string_substring(tiempo,6,2);
 	int segundosint = atoi(segundos);
-	return ((long) segundosint);
 	free(segundos);
+	return ((long) segundosint);
 }
 
 
-long milisegundos(char* tiempo){
-	char* milisegundos = string_new();
-	milisegundos = string_substring(tiempo,9,3);
+long milisegundos(char* tiempo)
+{
+	char* milisegundos = string_substring(tiempo,9,3);
 	int milisegundosint = atoi(milisegundos);
-	return ((long) milisegundosint);
 	free(milisegundos);
+	return ((long) milisegundosint);
 }
 
 long tiempo_a_milisegundos(char* tiempo){
@@ -69,6 +69,8 @@ long tiempo_a_milisegundos(char* tiempo){
 long diferencia_de_tiempos(char* tiempoOrigen, char* tiempoFinal){
 	long to= tiempo_a_milisegundos(tiempoOrigen);
 	long tf=tiempo_a_milisegundos(tiempoFinal);
+	free(tiempoOrigen);
+	free(tiempoFinal);
 	return(tf-to);
 }
 

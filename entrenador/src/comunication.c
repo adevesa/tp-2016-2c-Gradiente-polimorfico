@@ -151,8 +151,6 @@ char* armar_mejor_pokemon_string(t_pokemon *pokemon)
 t_ubicacion* desarmar_coordenada(char *coordenada)
 {
 	char **por_separado = string_split(coordenada, ";");
-	string_trim_left(&por_separado[0]);
-	string_trim_left(&por_separado[1]);
 	t_ubicacion *ubi = ubicacion_create(atoi(por_separado[0]),atoi(por_separado[1]));
 	array_free_all(por_separado);
 	return (ubi);
@@ -175,6 +173,7 @@ void copiar(char* origen, char* destino)
 	string_append(&mensaje, destino_aux_2);
 
 	system(mensaje);
+
 	free(mensaje);
 	free(destino_aux);
 	free(origen_aux);
@@ -207,6 +206,7 @@ char* string_path_replace_spaces(char **path, char *este_caracter, char *por_est
 			cantidad_elementos++;
 			i++;
 		}
+
 		i=0;
 		while(por_separado[i] != NULL)
 		{
@@ -288,12 +288,12 @@ char* string_path_replace_spaces(char **path, char *este_caracter, char *por_est
 			}
 			i++;
 		}
-		int tamanio = string_length(aux);
 
 		free_string_array(por_separado);
 		return aux;
 
 }
+
 void borrar_todos_los_archivos_del_directorio(char* ruta)
 {
 	char* comando = string_new();
@@ -303,7 +303,6 @@ void borrar_todos_los_archivos_del_directorio(char* ruta)
 	string_append(&comando, path_aux);
 
 	system(comando);
-	//
 
 	char* comando_2 = string_new();
 	string_append(&comando_2, "mkdir -p ");
@@ -311,9 +310,9 @@ void borrar_todos_los_archivos_del_directorio(char* ruta)
 
 	system(comando_2);
 
-	//free(comando);
-	//free(comando_2);
-	//free(path_aux);
+	free(comando);
+	free(comando_2);
+	free(path_aux);
 }
 
 char* array_last_element(char* path)

@@ -9,8 +9,7 @@
 
 sem_t turno_entrenador;
 int matan_al_entrenador = 0;
-//sem_t bloqueado;
-//sem_t desbloqueado;
+int se_reintenta=0;
 
 void ejecutar_entrenador(char *nombre_entrenador, char *ruta_pokedex)
 {
@@ -27,14 +26,23 @@ void ejecutar_entrenador(char *nombre_entrenador, char *ruta_pokedex)
 	mostrar_por_pantalla_resultados();
 	free(hora_de_fin);
 	free(hora_de_inicio);
-	//entrenador_destruite(entrenador);
+	entrenador_destruite(entrenador);
 }
 
 void mostrar_por_pantalla_resultados()
 {
-	printf("LOGRE TERMINAR MI AVENTURA \n");
+	if(!se_reintenta)
+	{
+		printf("LOGRE TERMINAR MI AVENTURA \n");
+	}
+	else
+	{
+		printf("NO LOGRE TERMINAR MI AVENTURA \n");
+	}
 	//printf("-TIEMPO TOTAL AVENTURA %d \n", entrenador->tiempo_total_aventura);
-	//printf("-TIEMPO BLOQUEADO EN POKENEST: %d \n", entrenador->tiempo_bloqueado_pokenest);
+	printf("-TIEMPO BLOQUEADO EN POKENEST: %d ms. \n", entrenador->tiempo_bloqueado_pokenest);
+	printf("-HORA DE INICIO: %s\n", hora_de_inicio);
+	printf("-HORA DE FIN: %s\n", hora_de_fin);
 	printf("-CANTIDAD DE DEADLOCKS: %d \n", entrenador->cantidad_deadlocks);
 	printf("-CANTIDAD DE MUERTES: %d \n", entrenador->muertes);
 	printf("-CANTIDAD DE REINTENTOS: %d \n",entrenador->reintentos);
@@ -94,7 +102,8 @@ void tratar_respuesta()
 		log_info(info_entrenador,"Se decidio no jugar mas\n");
 		entrenador_borra_medallas();
 		entrenador_borra_pokemons();
-		entrenador_destruite(entrenador);
+		se_reintenta=1;
+		//entrenador_destruite(entrenador);
 	}
 	else{
 		printf("Respuesta invalida\n");
@@ -117,42 +126,25 @@ void matar_entrenador(int n)
 
 void entrenador_borra_pokemons()
 {
-	//char* directorio_de_pokemons = string_new();
-	/*string_append(&directorio_de_pokemons, entrenador->ruta_pokedex);
-	string_append(&directorio_de_pokemons,"/");
-	string_append(&directorio_de_pokemons, "Entrenadores/");
-	string_append(&directorio_de_pokemons, entrenador->nombre);
-	string_append(&directorio_de_pokemons, "/Dir de Bill");*/
-	//string_append(&directorio_de_pokemons,entrenador->directorio_de_bill);
-
 	char *ruta_medallas_destino = obtener_ruta_especifica(entrenador->ruta_pokedex, "Entrenadores", entrenador->nombre);
-	ruta_medallas_destino = obtener_ruta_especifica(ruta_medallas_destino,"Dir de Bill",NULL);
-	string_append(&ruta_medallas_destino,"/");
+	char* ruta_medallas_destino_full = obtener_ruta_especifica(ruta_medallas_destino,"Dir de Bill",NULL);
+	string_append(&ruta_medallas_destino_full,"/");
 
-	/*borrar_todos_los_archivos_del_directorio(directorio_de_pokemons);
-	free(directorio_de_pokemons);*/
-	borrar_todos_los_archivos_del_directorio(ruta_medallas_destino);
+	borrar_todos_los_archivos_del_directorio(ruta_medallas_destino_full);
+
 	free(ruta_medallas_destino);
+	free(ruta_medallas_destino_full);
 }
 
 void entrenador_borra_medallas()
 {
-	/*char* directorio_de_medallas = string_new();
-	string_append(&directorio_de_medallas, entrenador->ruta_pokedex);
-	string_append(&directorio_de_medallas,"/");
-	string_append(&directorio_de_medallas, "Entrenadores/");
-	string_append(&directorio_de_medallas, entrenador->nombre);
-	string_append(&directorio_de_medallas, "/medallas");*/
-
 	char *ruta_medallas_destino = obtener_ruta_especifica(entrenador->ruta_pokedex, "Entrenadores", entrenador->nombre);
-	ruta_medallas_destino = obtener_ruta_especifica(ruta_medallas_destino,"medallas",NULL);
-	string_append(&ruta_medallas_destino,"/");
+	char* ruta_medallas_destino_full = obtener_ruta_especifica(ruta_medallas_destino,"medallas",NULL);
+	string_append(&ruta_medallas_destino_full,"/");
 
-	/*borrar_todos_los_archivos_del_directorio(directorio_de_medallas);
-	free(directorio_de_medallas);*/
-
-	borrar_todos_los_archivos_del_directorio(ruta_medallas_destino);
+	borrar_todos_los_archivos_del_directorio(ruta_medallas_destino_full);
 	free(ruta_medallas_destino);
+	free(ruta_medallas_destino_full);
 }
 
 void iniciar_log(char *nombre_del_entrenador)
@@ -173,19 +165,21 @@ void entrenador_registra_hora(int rango)
 
 				char* tiempo= temporal_get_string_time();
 				string_append(&hora_de_inicio,tiempo);
-				char *mensaje=string_new();
+				free(tiempo);
+				/*char *mensaje=string_new();
 				string_append(&mensaje, "COMIENZO: ");
 				string_append(&mensaje, hora_de_inicio);
 				log_info(info_entrenador,mensaje);
-				free(mensaje);
+				free(mensaje);*/
 
 			}break;
 	case(FIN):
 			{
 
-				/*char* tiempo = temporal_get_string_time();
+				char* tiempo = temporal_get_string_time();
 				string_append(&hora_de_fin,tiempo);
-				char *mensaje=string_new();
+				free(tiempo);
+				/*char *mensaje=string_new();
 				string_append(&mensaje, "FIN: ");
 				string_append(&mensaje, hora_de_fin);
 				log_info(info_entrenador,mensaje);
@@ -217,7 +211,7 @@ void entrenador_recorre_hoja_de_viaje(void* arg)
 	int cantidad = list_size(entrenador->hoja_de_viaje);
 	int estoy_muerto = 0;
 
-	if(comienzo == NULL) {i =0;log_info(info_entrenador, "COMIENZO del recorrido de la HOJA DE VIAJE");}
+	if(comienzo == NULL) {i =0;log_info(info_entrenador, "COMIENZO DEL RECORRIDO!");}
 	else {i = comienzo; log_info(info_entrenador, "NUEVO INTENTO del recorrido de la HOJA DE VIAJE");}
 
 	while(i<cantidad && !estoy_muerto)
@@ -234,14 +228,13 @@ void entrenador_recorre_hoja_de_viaje(void* arg)
 	{
 		case(MUERTO):
 		{
-			log_info(info_entrenador, "FIN por MUERTE");
-			//printf("No me quedaron vidas disponibles y morí en el mapa: %s", entrenador->mapa_actual->nombre);
+			log_info(info_entrenador, "FIN POR MUERTE");
 			mapa_destruite(entrenador->mapa_actual);
 			entrenador_finalizo_muriendo();
 		};break;
 		case(EXITO):
 		{
-			log_info(info_entrenador, "FIN del recorrido de la HOJA DE VIAJE");
+			log_info(info_entrenador, "FIN DEL RECORRIDO!");
 			entrenador_borra_pokemons();
 			entrenador_borra_medallas();
 		};break;
@@ -251,7 +244,6 @@ void entrenador_recorre_hoja_de_viaje(void* arg)
 void entrenador_busca_mapa(int index)
 {
 	char *nombre_mapa = list_get(entrenador->hoja_de_viaje, index);
-	//log_info(info_entrenador,"ACA NO ROMPO");
 	entrenador->mapa_actual = mapa_create(nombre_mapa, entrenador->ruta_pokedex, entrenador);
 
 	//INICIO log
@@ -282,6 +274,7 @@ int entrenador_cumpli_objetivos_del_mapa(int index)
 	{
 		entrenador_pedi_ubicacion_pokenest(ii);
 		estoy_muerto = entrenador_cumpli_objetivo(ii);
+		free(entrenador->pokenest);
 		ii++;
 	}
 
@@ -289,7 +282,7 @@ int entrenador_cumpli_objetivos_del_mapa(int index)
 	{
 		entrenador_termina_en_el_mapa();
 		mapa_destruite(entrenador->mapa_actual);
-		free(entrenador->mapa_actual);
+		//free(entrenador->mapa_actual);
 		return 0;
 	}
 	else
@@ -297,13 +290,13 @@ int entrenador_cumpli_objetivos_del_mapa(int index)
 		if(me_quedan_vidas())
 		{
 			bajarvida(259);
-			log_info(info_entrenador, "Volveré a empezar en el mismo mapa");
+			log_info(info_entrenador, "Volvere a empezar en el mismo mapa");
 			int resultado = entrenador_volve_a_empezar_en_este_mapa(index);
 			return resultado;
 		}
 		else
 		{
-			log_info(info_entrenador, "No tengo más vidas disponibles para continuar en el mapa.");
+			log_info(info_entrenador, "No tengo mas vidas disponibles para continuar en el mapa.");
 			close(entrenador->mapa_actual->server);
 			return 1;
 		}
@@ -313,11 +306,10 @@ int entrenador_cumpli_objetivos_del_mapa(int index)
 int entrenador_volve_a_empezar_en_este_mapa(int indexxx)
 {
 	close(entrenador->mapa_actual->server);
-	//log_info(info_entrenador, "VOY  A BORRAR TODOS LOS POKEMONS DEL MAPA DONDE MORI");
-	//entrenador_borra_pokemos_del_mapa();
 	entrenador_borra_pokemons();
-	list_clean(entrenador->mapa_actual->pokemons_capturados);
-	//mapa_destruite(entrenador->mapa_actual);
+	list_destroy_and_destroy_elements(entrenador->mapa_actual->pokemons_capturados,mapa_element_destroyer);
+	entrenador->mapa_actual->pokemons_capturados = list_create();
+	//list_clean(entrenador->mapa_actual->pokemons_capturados);
 
 	log_info(info_entrenador, "VOY A VOLVER A CONECTARME AL MAPA");
 	//entrenador_busca_mapa(indexxx);
@@ -361,14 +353,14 @@ void entrenador_termina_en_el_mapa()
 	close(entrenador->mapa_actual->server);
 	//entrenador_borra_pokemons();
 
-		//INICIO log
-		char *mensaje_fin = string_new();
-		string_trim(&mensaje_fin);
-		string_append(&mensaje_fin, "FIN AVENTURA EN ");
-		string_append(&mensaje_fin, entrenador->mapa_actual->nombre);
-		log_info(info_entrenador,mensaje_fin);
-		free(mensaje_fin);
-		//FIN log
+	//INICIO log
+	char *mensaje_fin = string_new();
+	string_trim(&mensaje_fin);
+	string_append(&mensaje_fin, "Termine en  ");
+	string_append(&mensaje_fin, entrenador->mapa_actual->nombre);
+	log_info(info_entrenador,mensaje_fin);
+	free(mensaje_fin);
+	//FIN log
 }
 
 void entrenador_espera_turno()
@@ -383,9 +375,6 @@ void entrenador_espera_turno()
 
 void entrenador_pedi_ubicacion_pokenest(int indice_objetivo)
 {
-	/*char *esperar_turno = escuchar_mensaje_mapa(entrenador->mapa_actual,MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR);
-	int turnito =  mapa_me_dice(esperar_turno);
-	free(esperar_turno);*/
 	entrenador_espera_turno();
 	sem_wait(&turno_entrenador);
 
@@ -393,42 +382,27 @@ void entrenador_pedi_ubicacion_pokenest(int indice_objetivo)
 	enviar_mensaje_a_mapa(entrenador->mapa_actual,SOLICITAR_COORDENADAS_POKENEST ,identificador_pokenest);
 
 	char *mensaje_1 = string_new();
-	string_append(&mensaje_1, "Voy a solicitar coordenadas de ");
+	string_append(&mensaje_1, "Quiero coordenadas de:  ");
 	string_append(&mensaje_1,identificador_pokenest);
 	log_info(info_entrenador,mensaje_1);
 	free(mensaje_1);
 
+	char *mapa_me_dice_que_me_envia_2 = escuchar_mensaje_mapa(entrenador->mapa_actual,MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR);
+	int lo_que_me_da_mapa_2 =  mapa_me_dice(mapa_me_dice_que_me_envia_2);
+	free(mapa_me_dice_que_me_envia_2);
 
-	/*char *mapa_me_dice_que_me_envia = escuchar_mensaje_mapa(entrenador->mapa_actual,MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR);
-	int lo_que_me_da_mapa =  mapa_me_dice(mapa_me_dice_que_me_envia);
-	free(mapa_me_dice_que_me_envia);
-	if(lo_que_me_da_mapa == MAPA_ME_DA_TURNO)
-	{*/
-		char *mapa_me_dice_que_me_envia_2 = escuchar_mensaje_mapa(entrenador->mapa_actual,MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR);
-		int lo_que_me_da_mapa_2 =  mapa_me_dice(mapa_me_dice_que_me_envia_2);
-		free(mapa_me_dice_que_me_envia_2);
-		switch(lo_que_me_da_mapa_2)
-			{
-				case(MAPA_ME_DA_COORDENADAS_POKENEST):
-					{
-						char *coordenada = escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_DA_COORDENADAS_POKENEST);
-						t_ubicacion *ubicacion_pokenest = desarmar_coordenada(coordenada);
-						entrenador->pokenest = ubicacion_pokenest;
-					};break;
-			}
+	switch(lo_que_me_da_mapa_2)
+	{
+		case(MAPA_ME_DA_COORDENADAS_POKENEST):
+		{
+			char *coordenada = escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_DA_COORDENADAS_POKENEST);
+			t_ubicacion *ubicacion_pokenest = desarmar_coordenada(coordenada);
+			free(coordenada);
+			entrenador->pokenest = ubicacion_pokenest;
+		};break;
+	}
 
-		//INICIO log
-		char *mensaje = string_new();
-		string_trim(&mensaje);
-		string_append(&mensaje, entrenador->mapa_actual->nombre);
-		string_append(&mensaje, " me da COORDENADAS de pokenest ");
-		string_append(&mensaje, identificador_pokenest);
-		log_info(info_entrenador,mensaje);
-		free(mensaje);
-		//FIN log
-
-	//}
-
+		log_info(info_entrenador,"LISTO! Tengo las coordenadas");
 }
 
 /*--------------------------------------------LOGICA DE CAMINAR HACIA POKENEST--------------------------------*/
@@ -439,7 +413,7 @@ int entrenador_cumpli_objetivo(int indice_obejtivo)
 		entrenador_espera_turno();
 		sem_wait(&turno_entrenador);
 		entrenador_ubicate_para_donde_caminar();
-		log_info(info_entrenador, "Me moví");
+		loggear_posicion_actual();
 		entrenador_informa_movimiento();
 	}
 	entrenador_espera_turno();
@@ -460,8 +434,7 @@ int entrenador_captura_pokemon(int indice_objetivo)
 {
 	//INICIO log
 	char *mensaje = string_new();
-	string_trim(&mensaje);
-	string_append(&mensaje, "Llegué a destino. Pediré CAPTURAR POKEMON");
+	string_append(&mensaje, "Llegue! Voy a intentar capturar pokemon");
 	log_info(info_entrenador,mensaje);
 	free(mensaje);
 	//FIN log
@@ -471,29 +444,7 @@ int entrenador_captura_pokemon(int indice_objetivo)
 
 	char *solicitud = escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR);
 	int respuesta_mapa = mapa_me_dice(solicitud);
-			free(solicitud);
-	//int mapa_me_avisa_algo_coherente =0;
-
-	//int respuesta_mapa;
-	/*while(!mapa_me_avisa_algo_coherente)
-	{
-		char *solicitud = escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR);
-		respuesta_mapa = mapa_me_dice(solicitud);
-		free(solicitud);
-		if(respuesta_mapa==MAPA_ME_PREGUNTA_SI_ESTOY)
-		{
-			char* si = string_new();
-			string_append(&si,"123");
-			enviar_mensaje(entrenador->mapa_actual->server, si);
-			free(si);
-			//log_info(info_entrenador,"SI MAPA, ESTOY ACA 1");
-		}
-		else
-		{
-			mapa_me_avisa_algo_coherente = 1;
-		}
-
-	}*/
+	free(solicitud);
 
 	switch(respuesta_mapa)
 	{
@@ -517,29 +468,7 @@ int entrenador_captura_pokemon(int indice_objetivo)
 				{
 					char* mapa_me_dice_que_me_envia = escuchar_mensaje_mapa(entrenador->mapa_actual,MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR);
 					int resultado = mapa_me_dice(mapa_me_dice_que_me_envia);
-					//int resultado;
-					//int mapa_me_avisa_algo_coherente_2 =0;
-						/*while(!mapa_me_avisa_algo_coherente_2)
-						{
-							char* mapa_me_dice_que_me_envia = escuchar_mensaje_mapa(entrenador->mapa_actual,MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR);
-							resultado = mapa_me_dice(mapa_me_dice_que_me_envia);
-							//log_info(info_entrenador,mapa_me_dice_que_me_envia);
-							free(mapa_me_dice_que_me_envia);
-							if(resultado==MAPA_ME_PREGUNTA_SI_ESTOY)
-							{
-								char* si = string_new();
-								string_append(&si,"123");
-								enviar_mensaje(entrenador->mapa_actual->server, si);
-								free(si);
-								//log_info(info_entrenador,"SI MAPA, ESTOY ACA 3");
-							}
-							else
-							{
-								mapa_me_avisa_algo_coherente_2 = 1;
-							}
-
-						}*/
-
+					free(mapa_me_dice_que_me_envia);
 					if(resultado == MAPA_ME_DA_POKEMON)
 					{
 						entrenador_recibi_y_copia_pokemon();
@@ -560,6 +489,8 @@ int entrenador_captura_pokemon(int indice_objetivo)
 			}
 			else
 			{
+				char *hora_fin_desbloqueado = temporal_get_string_time();
+				entrenador_registra_tiempo_bloqueo(hora_inicio_bloqueado, hora_fin_desbloqueado);
 				return MUERTO;
 			}
 		};break;
@@ -574,7 +505,7 @@ void entrenador_recibi_y_copia_pokemon()
 		//INICIO log
 		char *mensaje = string_new();
 		string_append(&mensaje, entrenador->mapa_actual->nombre);
-		string_append(&mensaje, " me dice que el pokemon está en: ");
+		string_append(&mensaje, " me dice que el pokemon esta en: ");
 		string_append(&mensaje, pokemon);
 		log_info(info_entrenador,mensaje);
 		free(mensaje);
@@ -586,7 +517,7 @@ void entrenador_recibi_y_copia_pokemon()
 		//INICIO log
 		char *mensaje_2 = string_new();
 		string_trim(&mensaje_2);
-		string_append(&mensaje_2, "Pokemon copiado a Dir de Bill");
+		string_append(&mensaje_2, "Pokemon copiado y capturado!");
 		log_info(info_entrenador,mensaje_2);
 		free(mensaje_2);
 		//FIN log
@@ -625,47 +556,24 @@ int entrenador_espera_mientras_te_dice_pavadas()
 }
 
 /*------------------------------------------LOGICA DE CAER EN DEADLOCK--------------------------------------------*/
-
 int entrenador_trata_deadlock()
 {
-	log_info(info_entrenador,"Mapa me avisa que estoy en deadlock");
-	//enviar_mensaje(entrenador->mapa_actual->server, "ESTOY ACA");
+	log_info(info_entrenador,"Uy! Batalla pokemon!");
 	entrenador_otorga_mejor_pokemon_a_mapa(entrenador->mapa_actual);
 	log_info(info_entrenador,"Voy a escuchar si gane o perdi");
 	char* respuesta = escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR);
 	int caso_respuesta = mapa_me_dice(respuesta);
-	/*int mapa_me_avisa_algo_coherente =0;
-	int respuesta_mapa;
-
-	while(!mapa_me_avisa_algo_coherente)
-		{
-			char *solicitud = escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR);
-			respuesta_mapa = mapa_me_dice(solicitud);
-			free(solicitud);
-
-			if(respuesta_mapa==MAPA_ME_PREGUNTA_SI_ESTOY)
-				{
-					char* si = string_new();
-					string_append(&si,"123");
-					enviar_mensaje(entrenador->mapa_actual->server, si);
-					free(si);
-					//log_info(info_entrenador,"SI MAPA, ESTOY ACA 2");
-				}
-			else
-				{
-					mapa_me_avisa_algo_coherente = 1;
-				}
-		}*/
+	free(respuesta);
 	switch(caso_respuesta)
 	{
 		case(MAPA_ME_DICE_QUE_GANE):
 		{
-			log_info(info_entrenador,"Mapa me dice que gané en batalla pokemon. Seguiré esperando por el pokemon solicitado");
+			log_info(info_entrenador,"GANE! Seguire esperando por el pokemon solicitado");
 			return EXITO;
 		}break;
 		case(MAPA_ME_DICE_QUE_PERDI):
 		{
-			log_info(info_entrenador,"Mapa me dice que perdí en batalla pokemon.");
+			log_info(info_entrenador,"Perdi :( ");
 			entrenador->muertes = entrenador->muertes +1;
 			return MUERTO;
 		}break;
@@ -675,13 +583,16 @@ int entrenador_trata_deadlock()
 void entrenador_otorga_mejor_pokemon_a_mapa(t_mapa *mapa)
 {
 	t_pokemon *mejor_pokemon = entrenador_busca_mejor_pokemon();
-	log_info(info_entrenador,"Tengo mejor pokemon elegido");
-	log_info(info_entrenador,mejor_pokemon->species);
+
+	char* mensaje = string_new();
+	string_append(&mensaje,"Mi pokemon elegido es: ");
+	string_append(&mensaje,mejor_pokemon->species);
+	log_info(info_entrenador,mensaje);
+	free(mensaje);
+
 	char *mejor_pokemon_serialized = armar_mejor_pokemon_string(mejor_pokemon);
-	//log_info(info_entrenador,"Ya serialice el pokemon");
-	//log_info(info_entrenador,mejor_pokemon_serialized);
+
 	enviar_mensaje_a_mapa(mapa,ENTREGAR_MEJOR_POKEMON, mejor_pokemon_serialized);
-	//log_info(info_entrenador,"Ya le envié el mejor pokemon");
 	free(mejor_pokemon_serialized);
 	pokemon_destroy(mejor_pokemon);
 }
@@ -709,25 +620,20 @@ void entrenador_copia_medalla_del_mapa()
 	string_append(&aux,"medalla-");
 	string_append(&aux,entrenador->mapa_actual->nombre);
 	string_append(&aux,".jpg");
-	ruta_medalla_origen = obtener_ruta_especifica(ruta_medalla_origen,aux,NULL);
+	char* ruta_medalla_origen_full = obtener_ruta_especifica(ruta_medalla_origen,aux,NULL);
+
 
 	char *ruta_medallas_destino = obtener_ruta_especifica(entrenador->ruta_pokedex, "Entrenadores", entrenador->nombre);
-	ruta_medallas_destino = obtener_ruta_especifica(ruta_medallas_destino,"medallas",NULL);
-	string_append(&ruta_medallas_destino,"/");
-	copiar(ruta_medalla_origen,ruta_medallas_destino);
+	char* ruta_medallas_destino_full = obtener_ruta_especifica(ruta_medallas_destino,"medallas",NULL);
+	string_append(&ruta_medallas_destino_full,"/");
+
+	copiar(ruta_medalla_origen_full,ruta_medallas_destino_full);
 
 	free(aux);
 	free(ruta_medalla_origen);
 	free(ruta_medallas_destino);
-
-	//INICIO log
-	/*char *mensaje = string_new();
-	string_trim(&mensaje);
-	string_append(&mensaje, "TERMINE objetivos en ");
-	string_append(&mensaje, entrenador->mapa_actual->nombre);
-	log_info(info_entrenador,mensaje);
-	free(mensaje);*/
-	//FIN log
+	free(ruta_medalla_origen_full);
+	free(ruta_medallas_destino_full);
 }
 
 /*------------------------------------------BUSCAR MEJOR POKEMON-------------------------------------------------*/
@@ -735,16 +641,11 @@ t_pokemon* entrenador_busca_mejor_pokemon()
 {
 	log_info(info_entrenador,"Voy a buscar mi mejor pokemon");
 	t_list *pokemons_names = nombre_de_archivos_del_directorio(entrenador->directorio_de_bill);
-	//log_info(info_entrenador,"ESTOY EN 1");
 	t_list *pokemos = recuperar_pokemons(pokemons_names);
-	//log_info(info_entrenador,"ESTOY EN 2");
 
-	//list_destroy_and_destroy_elements(pokemons_names,destroy_path);
-	list_destroy(pokemons_names);
+	list_destroy_and_destroy_elements(pokemons_names,destroy_path);
 
-	//log_info(info_entrenador,"ESTOY EN 3");
 	list_sort(pokemos, order_mejor_pokemon);
-	//log_info(info_entrenador,"ESTOY EN 5");
 	t_pokemon* mejor_pok = malloc (sizeof(t_pokemon));
 	t_pokemon* mejor_pok_lista = list_get(pokemos,0);
 
@@ -755,11 +656,7 @@ t_pokemon* entrenador_busca_mejor_pokemon()
 	mejor_pok->second_type = mejor_pok_lista->second_type;
 	mejor_pok->type = mejor_pok_lista->type;
 
-	//log_info(info_entrenador,"ESTOY EN 6");
-	//log_info(info_entrenador,mejor_pok->species);
 	list_destroy_and_destroy_elements(pokemos,pokemon_destroy);
-	//log_info(info_entrenador,"ESTOY EN 7");
-
 	return mejor_pok;
 }
 
@@ -800,14 +697,10 @@ t_list* recuperar_pokemons(t_list *lista_nombres_pokemons)
 	int i;
 	for(i=0; i<size; i++)
 	{
-		//log_info(info_entrenador,"ESTOY EN 1.1");
 		char *name_file = list_get(lista_nombres_pokemons, i);
-		//log_info(info_entrenador,name_file);
 		t_pokemon *new_pokemon = recuperar_pokemon(factory,name_file);
 		list_add(list_pokemons, new_pokemon);
-		//free(name_file);
 	}
-	//log_info(info_entrenador,"ESTOY EN 1.2");
 	destroy_pkmn_factory(factory);
 	return list_pokemons;
 }
@@ -815,28 +708,19 @@ t_list* recuperar_pokemons(t_list *lista_nombres_pokemons)
 t_pokemon* recuperar_pokemon(t_pkmn_factory *factory,char *nombre_file_pokemon)
 {
 	char *aux = obtener_ruta_especifica(entrenador->directorio_de_bill, nombre_file_pokemon,NULL);
-	//log_info(info_entrenador,"ESTOY EN 1.1.1");
 	t_config *config_aux = config_create(aux);
+
 	int nivel = config_get_int_value(config_aux,"Nivel");
 
-	//log_info(info_entrenador,"ESTOY EN 1.1.2");
-
-	//char* nombre_pokemon_sin_modificar = malloc(string_length(nombre_file_pokemon));
-	//memcpy(nombre_pokemon_sin_modificar,nombre_file_pokemon,string_length(nombre_file_pokemon));
 	char* nombre_pokemon_sin_modificar = string_duplicate(nombre_file_pokemon);
-	//log_info(info_entrenador,"ESTOY EN 1.1.2.1");
-	//char* specie_pokemon = adaptar_nombre_pokemon(nombre_file_pokemon);
 	char* specie_pokemon = adaptar_nombre_pokemon(nombre_pokemon_sin_modificar);
 
 	free(nombre_pokemon_sin_modificar);
 
-	//log_info(info_entrenador,"ESTOY EN 1.1.3");
 	t_pokemon *new_pokemon = create_pokemon(factory,specie_pokemon,nivel);
-	log_info(info_entrenador,new_pokemon->species);
-	//log_info(info_entrenador,"ESTOY EN 1.1.4");
+
 	config_destroy(config_aux);
 	free(aux);
-	//log_info(info_entrenador,"ESTOY EN 1.1.5");
 	return new_pokemon;
 }
 
@@ -844,31 +728,27 @@ char* adaptar_nombre_pokemon(char* nombre_sucio)
 {
 		//log_info(info_entrenador,nombre_sucio);
 
-		/*char* nombre_sucio_2 = malloc(string_length(nombre_sucio)-3);
-		memcpy(nombre_sucio_2,nombre_sucio,string_length(nombre_sucio)-3);
-		string_to_upper(nombre_sucio_2);*/
 
-		char* aux = string_substring(nombre_sucio,0,string_length(nombre_sucio)-3);
-		string_to_upper(aux);
-		log_info(info_entrenador,aux);
+		/*char* aux = string_substring(nombre_sucio,0,string_length(nombre_sucio)-3);
+		//string_to_upper(aux);
+		//log_info(info_entrenador,aux);
 
-		char* new_pokemon_adapter = malloc(sizeof(char)*(string_length(aux)));
+		char* new_pokemon_adapter = malloc(sizeof(char)*(string_length(aux)+1));
+
 		memcpy(new_pokemon_adapter, aux,1);
 		string_to_lower(aux);
+
 		memcpy(new_pokemon_adapter+1, aux+1, string_length(aux)-1);
 
-		log_info(info_entrenador,new_pokemon_adapter);
-		free(aux);
+		new_pokemon_adapter[string_length(aux)] = '\0';*/
 
-		/*char* new_pokemon_adapter = malloc((string_length(nombre_sucio_2)));
-		memcpy(new_pokemon_adapter, nombre_sucio_2,1);
-		string_to_lower(nombre_sucio_2);
-		memcpy(new_pokemon_adapter+1, nombre_sucio_2 + 1, string_length(nombre_sucio_2)-1);
 
-		log_info(info_entrenador,new_pokemon_adapter);
-		free(nombre_sucio_2);*/
+		char* aux = string_substring(nombre_sucio,0,string_length(nombre_sucio)-3);
+		aux[0]= toupper(aux[0]);
 
-		return new_pokemon_adapter;
+		//free(aux);
+		//return new_pokemon_adapter;
+		return aux;
 }
 
 /*------------------------------------------AUX --> LS -----------------------------------------------------------*/
@@ -889,13 +769,34 @@ t_list* nombre_de_archivos_del_directorio(char *ruta)
 		while ((direntp = readdir(dirp)) != NULL) {
 			 if(!string_equals_ignore_case(direntp->d_name, ".")){
 				  if(!string_equals_ignore_case(direntp->d_name, "..")){
-					  if(!string_equals_ignore_case(direntp->d_name, "metadata")){
-						 list_add(lista, direntp->d_name);
-					  	 }
+					  if(!string_equals_ignore_case(direntp->d_name, "metadata"))
+					  {
+						  char* aux = string_new();
+						  string_append(&aux,direntp->d_name);
+						  list_add(lista, aux);
+					  	}
 				  }
 			 }
 		}
+			closedir(dirp);
 		 	 return lista;
-		 	 /* Cerramos el directorio */
-		 	 closedir(dirp);
+
 	}
+
+void loggear_posicion_actual()
+{
+	char* mensaje = string_new();
+	char* x = string_itoa(entrenador->ubicacion->x);
+	char* y = string_itoa(entrenador->ubicacion->y);
+
+	string_append(&mensaje,"Me movi a: (");
+	string_append(&mensaje,x);
+	string_append(&mensaje,";");
+	string_append(&mensaje,y);
+	string_append(&mensaje,")");
+
+	log_info(info_entrenador,mensaje);
+	free(mensaje);
+	free(x);
+	free(y);
+}

@@ -25,4 +25,5 @@ int quamtum_se_termino(int q);
 void quamtum_disminuite(int *q);
 void planificador_rr_cambia_semaforo_si_es_necesario();
 void loggear_turno(t_entrenador *entrenador);
+void loggear_fin_turno(t_entrenador *entrenador);
 #endif /* PLANIFICADOR_RR_H_ */
