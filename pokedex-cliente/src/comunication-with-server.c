@@ -9,7 +9,7 @@ extern t_cliente_osada* cliente_osada;
 
 pthread_mutex_t mutex_operaciones;
 
-#define LOG_ACTIVADO 0
+#define LOG_ACTIVADO 1
 
 void iniciar_log()
 {
@@ -66,12 +66,22 @@ int cliente_pedi_atributos(const char *path, struct stat *buffer)
 	}
 
 	memset(buffer, 0, sizeof(struct stat));
-	char *msg = build_msg(GET_ATRIBUTES,path,NULL,NULL,NULL);
-	pthread_mutex_lock(&mutex_operaciones);
-	enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
-	int resultado = escuchar_y_modelar_atributos(buffer);
-	pthread_mutex_unlock(&mutex_operaciones);
-	return resultado;
+	if(string_equals_ignore_case(path,"/"))
+	{
+		buffer->st_mode = S_IFDIR | 0755;
+		buffer->st_nlink = 2;
+		return OPERACION_EXITOSA;
+	}
+	else
+	{
+
+		char *msg = build_msg(GET_ATRIBUTES,path,NULL,NULL,NULL);
+		pthread_mutex_lock(&mutex_operaciones);
+		enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
+		int resultado = escuchar_y_modelar_atributos(buffer);
+		pthread_mutex_unlock(&mutex_operaciones);
+		return resultado;
+	}
 }
 
 int cliente_pedi_listado(const char *path, void *buffer, fuse_fill_dir_t filler)
@@ -322,17 +332,14 @@ int cliente_pedi_escribir_archivo(const char *path, const char *text, size_t siz
 	{
 		case(OPERACION_EXITOSA):
 		{
-			//pthread_mutex_unlock(&mutex_operaciones);
 			return size;
 		};break;
 		case(NO_EXISTE):
 		{
-			//pthread_mutex_unlock(&mutex_operaciones);
 			return 0;
 		}break;
 		case(-NO_HAY_ESPACIO):
 		{
-			//pthread_mutex_unlock(&mutex_operaciones);
 			return -ARCHIVO_MUY_GRANDE;
 		};break;
 	}
@@ -409,13 +416,20 @@ int cliente_pedi_abrir(int tipo,const char *path, struct fuse_file_info *fi)
 							free(mensaje_A_log);
 
 			}
+			if(string_equals_ignore_case(path,"/"))
+			{
+				return OPERACION_EXITOSA;
+			}
+			else
+			{
+				char *msg = build_msg(OPEN_FILE,path,NULL,NULL,NULL);
+				pthread_mutex_lock(&mutex_operaciones);
+				enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
+				int respuesta=escuchar_respuesta_comun(cliente_osada->socket_pokedex_servidor);
+				pthread_mutex_unlock(&mutex_operaciones);
+				return respuesta;
+			}
 
-			char *msg = build_msg(OPEN_FILE,path,NULL,NULL,NULL);
-			pthread_mutex_lock(&mutex_operaciones);
-			enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
-			int respuesta=escuchar_respuesta_comun(cliente_osada->socket_pokedex_servidor);
-			pthread_mutex_unlock(&mutex_operaciones);
-			return respuesta;
 		};break;
 	}
 }
@@ -515,7 +529,7 @@ void modelar_stat_buff(struct stat *buffer, int tipo, int size)
 int escuchar_listado (void *buffer, fuse_fill_dir_t filler)
 {
 	char *cantidad_de_elementos_string = recibir_mensaje(cliente_osada->socket_pokedex_servidor,4);
-
+	//log_info(log,cantidad_de_elementos_string);
 	if(string_equals_ignore_case(cantidad_de_elementos_string, "FFFF"))
 	{
 		return -NO_EXISTE;
@@ -530,6 +544,37 @@ int escuchar_listado (void *buffer, fuse_fill_dir_t filler)
 		else
 		{
 			int cantidad_de_elementos = atoi(cantidad_de_elementos_string);
+			/*int i=0;
+			int total_bytes_a_recibir =  atoi(cantidad_de_elementos_string);
+			char* mensaje_completo = recibir_mensaje_tipo_indistinto_string(cliente_osada->socket_pokedex_servidor,total_bytes_a_recibir);
+			log_info(log, mensaje_completo);
+
+			char* cantidad_elementos_string = malloc(sizeof(char)*4);
+			memcpy(cantidad_elementos_string,mensaje_completo,4);
+
+			int cantidad_de_elementos = atoi(cantidad_elementos_string);
+			free(cantidad_de_elementos_string);
+
+			char* substring = malloc(sizeof(char)*total_bytes_a_recibir-4);
+			memcpy(substring,mensaje_completo+4,total_bytes_a_recibir-4);
+
+			log_info(log, substring);
+
+			int offset =0;
+			while(i<cantidad_de_elementos)
+			{
+					char* tamanio_nombre_aux = string_substring(substring,offset,2);
+					int tamanio = atoi(tamanio_nombre_aux);
+					free(tamanio_nombre_aux);
+
+					offset = offset + 2;
+					char* nombre = string_substring(substring,offset,tamanio);
+					log_info(log, nombre);
+					filler(buffer, nombre,NULL,0);
+					offset = offset+tamanio;
+
+					i++;
+			}*/
 			int i=0;
 			while(i<cantidad_de_elementos)
 				{
@@ -539,6 +584,12 @@ int escuchar_listado (void *buffer, fuse_fill_dir_t filler)
 			return OPERACION_EXITOSA;
 		}
 	}
+}
+
+void modelar_listado_2(char* data,void *buffer, fuse_fill_dir_t filler)
+{
+
+
 }
 
 void modelar_listado(void *buffer, fuse_fill_dir_t filler)

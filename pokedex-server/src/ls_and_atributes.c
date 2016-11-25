@@ -231,11 +231,8 @@ void agregar_a_lista_si_es_hijo_de_raiz_full(int numero_bloque_absoluto,t_list *
 			char* aux_name = modelar_nombre_archivo(file->fname);
 
 			string_append(&path_hijo, aux_name);
-
-				//dato_en_lista->file = osada_get_file_called(path_hijo,disco);
 			dato_en_lista->path = path_hijo;
 			dato_en_lista->tamanio = file->file_size;
-				//dato_en_lista->tipo = dato_en_lista->file->file->state;
 			dato_en_lista->tipo = file->state;
 			list_add(lista, dato_en_lista);
 

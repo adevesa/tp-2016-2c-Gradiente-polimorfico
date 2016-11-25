@@ -37,7 +37,7 @@ void ejecutar_servidor()
 
 void pokedex_server_conectate()
 {
-	char *ip_string = getenv("IP_POKEMON");
+	/*char *ip_string = getenv("IP_POKEMON");
 	char *puerto_string = getenv("PUERTO_POKEMON");
 	if(ip_string==NULL || puerto_string==NULL)
 	{
@@ -50,14 +50,14 @@ void pokedex_server_conectate()
 		servidor_pokedex = server_create(puerto, ip_string, 1500);
 		server_escucha(servidor_pokedex);
 		//printf("%s",ip_string);
-	}
+	}*/
 
 
-	/*char *ip = string_new();
+	char *ip = string_new();
 	string_append(&ip,"127.0.0.1");
 	servidor_pokedex = server_create(5001, ip, 1500);
 	free(ip);
-	server_escucha(servidor_pokedex);*/
+	server_escucha(servidor_pokedex);
 }
 
 /*void servidor_acepta_clientes()
@@ -148,7 +148,10 @@ void tratar_peticion_de(int cliente,char *peticion)
 			}
 			else
 			{
-				char *listado_string = armar_listado((t_list*) resultado);
+				char* bytes_to_send = string_new();
+				char *listado_string = armar_listado((t_list*) resultado,&bytes_to_send);
+				//enviar_mensaje(cliente, bytes_to_send);
+				free(bytes_to_send);
 				enviar_mensaje_cantidad_especifica(cliente, listado_string,string_length(listado_string));
 				free(listado_string);
 
@@ -466,7 +469,7 @@ char* armar_attributes(t_attributes_file *attributes)
 	return msg;
 }
 
-char* armar_listado(t_list *listado)
+char* armar_listado(t_list *listado,char** num_bytes_so_send)
 {
 	char* listado_string = string_new();
 	if(list_is_empty(listado))
@@ -478,8 +481,22 @@ char* armar_listado(t_list *listado)
 	else
 	{
 		int size = list_size(listado);
+		//modelar_cantidad_elementos_listado(listado_string,size);
+		int total_bytes=0;
+		char *list=modelar_elementos_en_listado(listado,size, &total_bytes);
+
+		int total_total = total_bytes + (size*2) +4;
+		char* total_bytes_a_enviar_string = string_itoa(total_total);
+		int tamanio_del_total = string_length(total_bytes_a_enviar_string);
+
+		char* total_a_enviar_final = string_repeat(' ',15-tamanio_del_total);
+		string_append(&total_a_enviar_final,total_bytes_a_enviar_string);
+		free(total_bytes_a_enviar_string);
+		string_append(num_bytes_so_send,total_a_enviar_final);
+		free(total_a_enviar_final);
+
+		//string_append(&listado_string,total_a_enviar_final);
 		modelar_cantidad_elementos_listado(listado_string,size);
-		char *list=modelar_elementos_en_listado(listado,size);
 		string_append(&listado_string,list);
 		free(list);
 		list_destroy_and_destroy_elements(listado,file_listado_eliminate);
@@ -528,23 +545,26 @@ void modelar_cantidad_elementos_listado(char* buffer, int size)
 	}
 }
 
-char* modelar_elementos_en_listado(t_list *listado, int size)
+char* modelar_elementos_en_listado(t_list *listado, int size, int* total_bytes_a_enviar)
 {
 	char *resultado = string_new();
 	int i=0;
 	while(i<size)
 	{
 		t_file_listado *file = list_get(listado,i);
-		char* last_element = array_last_element(file->path);
+		//char* last_element = array_last_element(file->path);
+		int tamanio_nombre = string_length(file->path);
 
-		//int tamanio_nombre = string_length((char*)file->file->file->fname);
-		int tamanio_nombre = string_length(last_element);
-		char *size_name=modelar_tamanio_nombre(tamanio_nombre);
+		*total_bytes_a_enviar=*total_bytes_a_enviar + (tamanio_nombre -1);
+
+		char *size_name=modelar_tamanio_nombre(tamanio_nombre-1);
 		string_append(&resultado,size_name);
 		free(size_name);
-		//string_append(&resultado, (char*) file->file->file->fname);
-		string_append(&resultado,last_element);
-		free(last_element);
+		//string_append(&resultado,last_element);
+		char* elemento = string_substring(file->path,1,tamanio_nombre);
+		string_append(&resultado,elemento);
+		free(elemento);
+		//free(last_element);
 		i++;
 	}
 	return resultado;

@@ -125,6 +125,43 @@ void* recibir_mensaje_tipo_indistinto(int socket,int payloadsize)
 	return payload;
 }
 
+
+char* recibir_mensaje_tipo_indistinto_string(int socket,int payloadsize)
+{
+	char *payload = malloc(payloadsize);
+	limpiar_buff_aux(payload,payloadsize);
+	int bytes_recibidos = 0;
+	bytes_recibidos = recv(socket,payload,payloadsize,0);
+	if(bytes_recibidos<payloadsize)
+	{
+		while(bytes_recibidos<payloadsize)
+		{
+			int tamanio = payloadsize-bytes_recibidos;
+			int offset_anterior = bytes_recibidos;
+			void *pay_aux = malloc(tamanio);
+			limpiar_buff_aux(pay_aux,payloadsize);
+
+			bytes_recibidos = recv(socket,pay_aux,tamanio,0) + bytes_recibidos;
+
+			int nuevo_tamanio = bytes_recibidos - offset_anterior;
+			memcpy(payload + offset_anterior,pay_aux,nuevo_tamanio);
+			free(pay_aux);
+		}
+	}
+	return payload;
+}
+
+void limpiar_buff_aux(char* buff,int tamanio)
+{
+	int i;
+	for(i=0;i<tamanio;i++)
+		{
+			buff[i]='\0';
+		}
+}
+
+
+
 void* recibir_mensaje_tipo_indistinto_2(int socket,int payloadsize)
 {
 		void *payload = malloc(payloadsize);

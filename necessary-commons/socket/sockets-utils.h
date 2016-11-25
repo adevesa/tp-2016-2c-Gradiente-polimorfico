@@ -27,5 +27,7 @@ void enviar_mensaje(int socket, char *mensaje);
 void enviar_mensaje_cantidad_especifica(int socket, void *buffer, int size);
 char* recibir_mensaje(int socket,int payloadSize);
 void* recibir_mensaje_tipo_indistinto(int socket,int payloadsize);
+char* recibir_mensaje_tipo_indistinto_string(int socket,int payloadsize);
 void* recibir_mensaje_tipo_indistinto_2(int socket,int payloadsize);
+void limpiar_buff_aux(char* buff,int tamanio);
 #endif /* SOCKETS_UTILS_H_ */

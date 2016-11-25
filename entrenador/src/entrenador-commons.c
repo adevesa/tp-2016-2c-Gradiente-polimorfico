@@ -104,7 +104,6 @@ void tratar_respuesta()
 		entrenador_borra_medallas();
 		entrenador_borra_pokemons();
 		se_reintenta=1;
-		//entrenador_destruite(entrenador);
 	}
 	else{
 		printf("Respuesta invalida\n");

@@ -44,9 +44,9 @@ t_to_be_truncate* escuchar_mensaje_truncate(int socket);
 /*--------------------------------------RESPUESTAS AL CLIENTE----------------------------------------------------*/
 void responder_solo_resultado(int cliente, int resultado);
 char* armar_attributes(t_attributes_file *attributes);
-char* armar_listado(t_list *listado);
+char* armar_listado(t_list *listado,char** num_bytes_so_send);
 void modelar_cantidad_elementos_listado(char* buffer, int size);
-char* modelar_elementos_en_listado(t_list *listado, int size);
+char* modelar_elementos_en_listado(t_list *listado, int size, int* total_bytes_a_enviar);
 char* modelar_tamanio_nombre(int size);
 void agregar_barra_si_es_necesario(char *path);
 

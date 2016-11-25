@@ -301,17 +301,25 @@ void borrar_todos_los_archivos_del_directorio(char* ruta)
 
 	char* path_aux = string_path_replace_spaces(&ruta, " ", "\\ ");
 	string_append(&comando, path_aux);
+	if(!string_ends_with(comando,"/"))
+	{
+		string_append(&comando, "/*");
+	}
+	else
+	{
+		string_append(&comando, "*");
+	}
 
 	system(comando);
 
-	char* comando_2 = string_new();
-	string_append(&comando_2, "mkdir -p ");
-	string_append(&comando_2,path_aux);
+	//char* comando_2 = string_new();
+	//string_append(&comando_2, "mkdir -p ");
+	//string_append(&comando_2,path_aux);
 
-	system(comando_2);
+	//system(comando_2);
 
 	free(comando);
-	free(comando_2);
+	//free(comando_2);
 	free(path_aux);
 }
 

@@ -50,4 +50,5 @@ void modelar_stat_buff(struct stat *buffer, int tipo, int size);
 
 int escuchar_listado (void *buffer, fuse_fill_dir_t filler);
 void modelar_listado(void *buffer, fuse_fill_dir_t filler);
+void modelar_listado_2(char* data,void *buffer, fuse_fill_dir_t filler);
 #endif /* COMUNICATION_WITH_SERVER_H_ */
