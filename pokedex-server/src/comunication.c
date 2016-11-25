@@ -37,7 +37,7 @@ void ejecutar_servidor()
 
 void pokedex_server_conectate()
 {
-	/*char *ip_string = getenv("IP_POKEMON");
+	char *ip_string = getenv("IP_POKEMON");
 	char *puerto_string = getenv("PUERTO_POKEMON");
 	if(ip_string==NULL || puerto_string==NULL)
 	{
@@ -50,14 +50,14 @@ void pokedex_server_conectate()
 		servidor_pokedex = server_create(puerto, ip_string, 1500);
 		server_escucha(servidor_pokedex);
 		//printf("%s",ip_string);
-	}*/
+	}
 
 
-	char *ip = string_new();
+	/*char *ip = string_new();
 	string_append(&ip,"127.0.0.1");
 	servidor_pokedex = server_create(5001, ip, 1500);
 	free(ip);
-	server_escucha(servidor_pokedex);
+	server_escucha(servidor_pokedex);*/
 }
 
 /*void servidor_acepta_clientes()

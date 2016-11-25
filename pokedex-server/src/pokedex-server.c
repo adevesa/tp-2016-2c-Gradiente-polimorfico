@@ -24,13 +24,13 @@ extern t_disco_osada* disco;
 
 int main(int argc, char* argv[])
 {
-	/*char* nombre_disco = string_new();
+	char* nombre_disco = string_new();
 	string_append(&nombre_disco,argv[1]);
 	char* nombre_posta = array_last_element(nombre_disco);
 	free(nombre_disco);
 	printf("Abriendo disco %s ...\n",nombre_posta);
-	free(nombre_posta);*/
-	disco = osada_disco_abrite("/home/utnso/workspace/01-base.bin");
+	free(nombre_posta);
+	disco = osada_disco_abrite(argv[1]);
 	printf("Iniciando semaforos...\n");
 	iniciar_semaforos();
 	printf("Recuperando estructuras basicas...\n");
