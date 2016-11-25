@@ -141,6 +141,7 @@ void recuperar_bloques_asigados_array(int posicion)
 		if(before_block != FEOF)
 		{
 			int hay_mas_para_leer = 1;
+			controlar_en_bitarray(before_block);
 			while(hay_mas_para_leer)
 			{
 				int *block = osada_get_bytes_start_in(byte_inicial_tabla_asignaciones + 4*before_block,sizeof(int),disco->map);
@@ -152,12 +153,25 @@ void recuperar_bloques_asigados_array(int posicion)
 					}
 				else
 					{
+
 						table_asignaciones[before_block] = *block;
 						before_block = *block;
+						controlar_en_bitarray(before_block);
 						free(block);
 					}
 			}
 		}
+	}
+}
+
+void controlar_en_bitarray(int block_relative_data)
+{
+	int bloque_incial = osada_get_start_block_absolut_of(BLOQUE_DE_DATOS,disco);
+	int result = bitarray_test_bit(disco->bitmap,bloque_incial+ block_relative_data);
+	if(result != 1)
+	{
+		bitarray_set_bit(disco->bitmap,bloque_incial+block_relative_data);
+		osada_disminui_cantidad_bloques_libres(1);
 	}
 }
 
@@ -423,15 +437,19 @@ void actualizar_tamanio_del_padre(t_info_file *info, int size_a_sumar)
 {
 	if(info->parent_block == RAIZ)
 	{
+		pthread_mutex_lock(&mutex_operaciones);
 		t_info_file *info_raiz = dictionary_get(disco->diccionario_de_archivos,"/");
-		info_raiz->tamanio_del_directorio = info_raiz->tamanio_del_directorio + info->tamanio_del_directorio +size_a_sumar;
+		info_raiz->tamanio_del_directorio = info_raiz->tamanio_del_directorio + info->tamanio_del_directorio +size_a_sumar; // REVISAR ACA
+		pthread_mutex_unlock(&mutex_operaciones);
 	}
 	else
 	{
+		pthread_mutex_lock(&mutex_operaciones);
 		char* aux = string_itoa(info->parent_block);
 		t_info_file *info_padre  = dictionary_get(disco->archivos_por_posicion_en_tabla_asig,aux);
 		free(aux);
 		info_padre->tamanio_del_directorio = info_padre->tamanio_del_directorio + size_a_sumar;
+		pthread_mutex_unlock(&mutex_operaciones);
 	}
 }
 
@@ -463,9 +481,9 @@ void osada_aumenta_cantidad_bloques_libres(int n)
 
 void osada_disminui_cantidad_bloques_libres(int n)
 {
-	pthread_mutex_lock(&mutex_operaciones);
+	//pthread_mutex_lock(&mutex_operaciones);
 	disco->cantidad_bloques_libres = disco->cantidad_bloques_libres -n;
-	pthread_mutex_unlock(&mutex_operaciones);
+	//pthread_mutex_unlock(&mutex_operaciones);
 }
 
 
@@ -636,7 +654,7 @@ void impactar_en_disco_medio_bloque(int byte_inicial,void *bytes, void *map)
 
 void impactar_en_disco_n_bloques(int byte_inicial, int cantidad_bloques,void *bloques, void *map)
 {
-	pthread_mutex_lock(&mutex_operaciones);
+	//pthread_mutex_lock(&mutex_operaciones);
 	int i;
 	int byte = 0;
 	int byte_final = byte_inicial + (OSADA_BLOCK_SIZE)*cantidad_bloques -1;
@@ -647,7 +665,7 @@ void impactar_en_disco_n_bloques(int byte_inicial, int cantidad_bloques,void *bl
 			mapping[i] = block[byte];
 			byte++;
 	}
-	pthread_mutex_unlock(&mutex_operaciones);
+	//pthread_mutex_unlock(&mutex_operaciones);
 }
 
 void impactar_en_disco_tabla_asignaciones(char* new_table)
@@ -995,9 +1013,9 @@ int osada_ocupa_bit_libre_de(t_disco_osada *disco)
 		i++;
 	}
 	bitarray_set_bit(disco->bitmap,i);
-	pthread_mutex_unlock(&mutex_operaciones);
 	impactar_en_disco_n_bloques(OSADA_BLOCK_SIZE,disco->header->bitmap_blocks,disco->bitmap->bitarray,disco->map);
 	osada_disminui_cantidad_bloques_libres(1);
+	pthread_mutex_unlock(&mutex_operaciones);
 	return i;
 }
 

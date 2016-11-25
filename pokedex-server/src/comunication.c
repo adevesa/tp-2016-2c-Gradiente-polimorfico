@@ -7,6 +7,7 @@
 #include "comunication.h"
 
 int se_ejecuta = 1;
+extern t_log *logger;
 
 void loggear_resultado(int resultado)
 {
@@ -37,7 +38,7 @@ void ejecutar_servidor()
 
 void pokedex_server_conectate()
 {
-	char *ip_string = getenv("IP_POKEMON");
+	/*char *ip_string = getenv("IP_POKEMON");
 	char *puerto_string = getenv("PUERTO_POKEMON");
 	if(ip_string==NULL || puerto_string==NULL)
 	{
@@ -50,39 +51,15 @@ void pokedex_server_conectate()
 		servidor_pokedex = server_create(puerto, ip_string, 1500);
 		server_escucha(servidor_pokedex);
 		//printf("%s",ip_string);
-	}
+	}*/
 
 
-	/*char *ip = string_new();
+	char *ip = string_new();
 	string_append(&ip,"127.0.0.1");
 	servidor_pokedex = server_create(5001, ip, 1500);
 	free(ip);
-	server_escucha(servidor_pokedex);*/
+	server_escucha(servidor_pokedex);
 }
-
-/*void servidor_acepta_clientes()
-{
-	pokedex_server_conectate();
-
-	while(se_ejecuta >0)
-	{
-		int cliente = server_acepta_conexion_cliente(servidor_pokedex);
-
-		//COMO ACCEPT ES BLOQUEANTE --> SI ESTÁ EN ESTE PUNTO ES QUE YA HAY UN CLIENTE ONLINE
-		pthread_attr_t attr;
-
-		pthread_t thread;
-
-		pthread_attr_init(&attr);
-		pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
-
-		pthread_create(&thread,NULL,server_pokedex_atende_cliente,(void*)&cliente);
-
-		pthread_attr_destroy(&attr);
-
-	}
-	pthread_exit(NULL);
-}*/
 
 void servidor_osada_crea_nuevo_cliente(int* cliente)
 {

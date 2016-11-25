@@ -814,10 +814,8 @@ void osada_b_change_size_file_full(osada_file *file,int new_size, t_info_file *i
 
 void osada_write_big_file_full_(t_to_be_write* to_write, osada_file *archivo, t_info_file *info)
 {
-	t_list *bloques = osada_get_blocks_nums_of_this_file_since(info->last_block_write);
-	//t_list *bloques = osada_get_blocks_nums_of_this_file(to_write->file->file,disco);
+	t_list *bloques = osada_get_blocks_nums_of_this_file_since_full(info->last_block_write);;
 	int cantidad_bloques = list_size(bloques);
-	//int ultimo_bloque_escrito = (to_write->size_inmediatamente_anterior / OSADA_BLOCK_SIZE);
 
 	int index = 1;
 	int i=0;

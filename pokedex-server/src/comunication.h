@@ -15,6 +15,7 @@
 #include "operaciones.h"
 #include "so-commons/string.h"
 #include "socket/servidor-select.h"
+#include "so-commons/log.h"
 
 #define BYTES_TO_RCV 10
 #define HEADER 2

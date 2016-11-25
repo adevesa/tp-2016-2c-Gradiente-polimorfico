@@ -280,6 +280,35 @@ t_list* osada_get_blocks_nums_of_this_file(osada_file *file, t_disco_osada *disc
 	return list_blocks;
 }
 
+t_list* osada_get_blocks_nums_of_this_file_since_full(int start_block)
+{
+	t_list *list_blocks = list_create();
+	osada_block_pointer before_block = start_block;
+	//osada_block_pointer byte_inicial_tabla_asignaciones = calcular_byte_inicial_absolut(disco->header->allocations_table_offset);
+
+	int* primer_bloque = malloc(sizeof(int));
+	*primer_bloque = start_block;
+
+	list_add(list_blocks,primer_bloque);
+
+	int hay_mas_para_leer = 1;
+	while(hay_mas_para_leer)
+	{
+		int *block = malloc(sizeof(int));
+		*block = table_asignaciones[before_block];
+		if(*block == FEOF)
+		{
+			hay_mas_para_leer=0;
+			free(block);
+		}
+		else
+		{
+			list_add(list_blocks, block);
+			before_block = *block;
+		}
+	}
+	return list_blocks;
+}
 
 
 t_list* osada_get_blocks_nums_of_this_file_since(int start_block)

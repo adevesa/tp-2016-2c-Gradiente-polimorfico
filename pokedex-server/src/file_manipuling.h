@@ -137,4 +137,5 @@ void limpiar_bloque_de_datos(int n);
 
 int verify_correct_file(osada_file *file);
 t_list* osada_get_blocks_nums_of_this_file_Asco(osada_file *file, t_disco_osada *disco);
+t_list* osada_get_blocks_nums_of_this_file_since_full(int start_block);
 #endif /* FILE_MANIPULING_H_ */

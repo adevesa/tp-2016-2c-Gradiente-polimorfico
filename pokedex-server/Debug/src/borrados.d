@@ -5,6 +5,7 @@ src/borrados.d: ../src/borrados.c ../src/borrados.h ../src/osada.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/collections/../../so-commons/collections/node.h \
  /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/collections/dictionary.h \
  ../src/global-vars.h ../src/osada_generales.h ../src/file_manipuling.h \
+ /home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/log.h \
  ../src/ls_and_atributes.h
 
 ../src/borrados.h:
@@ -26,5 +27,7 @@ src/borrados.d: ../src/borrados.c ../src/borrados.h ../src/osada.h \
 ../src/osada_generales.h:
 
 ../src/file_manipuling.h:
+
+/home/utnso/workspace/tp-2016-2c-Gradiente-polimorfico/necessary-commons/so-commons/log.h:
 
 ../src/ls_and_atributes.h:

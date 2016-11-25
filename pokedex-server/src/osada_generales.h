@@ -10,6 +10,8 @@
 #include "file_manipuling.h"
 #include "borrados.h"
 #include "pthread.h"
+#include "so-commons/log.h"
+t_log *logger;
 
 void iniciar_semaforos();
 void lock_file_full(int num_block_file, int offset);
@@ -184,6 +186,7 @@ void impactar_en_disco_tabla_asignaciones(char* new_table);
 t_list* osada_get_blocks_nums_of_this_file(osada_file *file, t_disco_osada *disco);
 
 /*----------------------------------------------MANIPULACION BITARRAY----------------------------------------------------*/
+void controlar_en_bitarray(int block_relative_data);
 /*
  * @NAME:int osada_ocupa_bit_libre_de(t_disco_osada *disco);
  * @DESC: Dado un disco osada, OCUPA un bit libre del bitarray (el primero que encuentre) y lo devuelve.
