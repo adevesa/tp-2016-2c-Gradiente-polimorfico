@@ -159,7 +159,7 @@ void loggear_informacion(int caso)
 		char *mensaje_A_loggear = string_new();
 		string_append(&mensaje_A_loggear, "VECTOR AUXILIAR POKENEST:  ");
 
-		int tamanio = tamanio_vector(vector_auxiliar_identificadores_pokenest);
+		int tamanio = tamanio_vector_ids(vector_auxiliar_identificadores_pokenest);
 		if(tamanio == 0)
 			{
 			string_append(&mensaje_A_loggear,"actualmente vacío." );
@@ -240,7 +240,8 @@ int* inicializar_recursos_totales()
 	int i;
 	for(i=0;i<cantidad_pokenest;i++)
 	{
-		t_pokeNest *pokenest = dictionary_get(mapa->pokeNests,vector_auxiliar_identificadores_pokenest[i]);
+		char* id = vector_auxiliar_identificadores_pokenest[i];
+		t_pokeNest *pokenest = dictionary_get(mapa->pokeNests,id);
 		new_vector[i] = pokenest->cantidad_pokemones_disponibles;
 	}
 	new_vector[cantidad_pokenest] = -1;
@@ -919,6 +920,18 @@ int proceso_esta_en_vectorT(int numero_proceso)
 		i++;
 	}
 	return encontrado;
+}
+
+int tamanio_vector_ids(char** vector)
+{
+	int i=0;
+	int elementos = 0;
+	while(!string_equals_ignore_case(vector[i],"-1"))
+	{
+		elementos++;
+		i++;
+	}
+	return elementos;
 }
 
 int tamanio_vector(int* vector)

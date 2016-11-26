@@ -202,64 +202,6 @@ void* osada_a_read_file(t_to_be_read *to_read)
 				return read;
 			}
 		}
-		/*{
-			read_content *read = malloc(sizeof(read_content));
-			int tamanio_final = to_read->offset + to_read->size;//REVISAR HERE
-
-			if(size< tamanio_final)
-			{
-				if(to_read->offset == 0)
-				{
-					//pthread_mutex_lock(&mutex_operaciones);
-					void *contenido = osada_get_data_of_this_file(file,disco);
-
-
-					//unlock_file_to_delte(file_a_leer->block_relative ,file_a_leer->position_in_block);
-					//unlock_file_full(file_a_leer->block_relative ,file_a_leer->position_in_block);
-
-					void *contenido_a_enviar = malloc(size); //size +1
-					memcpy(contenido_a_enviar,contenido,size);
-					free(contenido);
-					//t_file_osada_destroy(file_a_leer);
-					read->contenido = contenido_a_enviar;
-					read->tamanio = size;
-					return read;
-				}
-				else
-				{
-					void *contenido = osada_get_data_of_this_file(file,disco);
-
-					//unlock_file_to_delte(file_a_leer->block_relative ,file_a_leer->position_in_block);
-					//unlock_file_full(file_a_leer->block_relative ,file_a_leer->position_in_block);
-
-					void *contenido_a_enviar = malloc(size); //size +1
-					int cantidad_a_leer = size - to_read->offset;
-					memcpy(contenido_a_enviar,contenido + to_read->offset,cantidad_a_leer);
-					free(contenido);
-					//t_file_osada_destroy(file_a_leer);
-					read->contenido = contenido_a_enviar;
-					//read->tamanio = tamanio_final - size;
-					read->tamanio = cantidad_a_leer;
-					return read;
-				}
-			}
-			else
-			{
-				void *contenido = osada_get_data_of_this_file(file,disco);
-
-				//unlock_file_to_delte(file_a_leer->block_relative ,file_a_leer->position_in_block);
-				//unlock_file_full(file_a_leer->block_relative ,file_a_leer->position_in_block);
-
-				void *contenido_a_enviar = malloc(to_read->size+1);
-				memcpy(contenido_a_enviar,contenido + to_read->offset,to_read->size);
-
-				free(contenido);
-				//t_file_osada_destroy(file_a_leer);
-				read->contenido = contenido_a_enviar;
-				read->tamanio = to_read->size;
-				return read;
-			}
-		}*/
 	}
 	else
 	{

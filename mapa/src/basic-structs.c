@@ -176,11 +176,13 @@ t_dictionary* obtener_info_mapa_pokenest(char *nombreMapa, char *rutaPokedex)
 	free(ruta_final);
 
 	t_list *lista_directorios = nombre_de_archivos_del_directorio(ruta_final_full);
-	vector_auxiliar_identificadores_pokenest = malloc((list_size(lista_directorios))*sizeof(char) +1);
+	vector_auxiliar_identificadores_pokenest = malloc((list_size(lista_directorios))*(sizeof(char)+1) +sizeof(char) +1);
 
 	foreach_pokenest_modelate(lista_directorios, new_diccionary_pokenest, ruta_final_full);
 
-	vector_auxiliar_identificadores_pokenest[list_size(lista_directorios)] = -1;
+	char* menos_uno = string_new();
+	string_append(&menos_uno,"-1");
+	vector_auxiliar_identificadores_pokenest[list_size(lista_directorios)] = menos_uno;
 
 	list_destroy_and_destroy_elements(lista_directorios,free_names_dir);
 
@@ -203,10 +205,16 @@ void foreach_pokenest_modelate(void *lista_origen,void *lista_destino, void *rut
 		char* ruta_final_full = obtener_ruta_especifica(ruta_final, elemento, NULL);
 		t_pokeNest *pokenest = pokenest_create(elemento,ruta_final_full);
 		free(ruta_final_full);
-		dictionary_put(lista_pokemons_a_devolver, pokenest->identificador, pokenest);
-		//vector_auxiliar_identificadores_pokenest[i]=pokenest->identificador;
-		vector_auxiliar_identificadores_pokenest[i]=string_new();
-		string_append(&vector_auxiliar_identificadores_pokenest[i],pokenest->identificador);
+
+		char* id_aux = string_new();
+		string_append(&id_aux,pokenest->identificador);
+
+		dictionary_put(lista_pokemons_a_devolver, id_aux, pokenest);
+
+		vector_auxiliar_identificadores_pokenest[i]=id_aux;
+		//free(id_aux);
+		//vector_auxiliar_identificadores_pokenest[i]=string_new();
+		//string_append(&vector_auxiliar_identificadores_pokenest[i],pokenest->identificador);
 	}
 
 }
@@ -241,9 +249,8 @@ char* obtener_info_pokenest_id(t_config *configuracion)
 t_queue* obtener_info_pokenest_pokemones(char *nombrePokenest, char *ruta_final, char *identificador)
 {
 	t_queue *new_cola_pokemones = queue_create();
-	t_list *lista_directorios = nombre_de_archivos_del_directorio(ruta_final);
+	t_list *lista_directorios = nombre_de_pokemones(ruta_final);
 	foreach_pokenest(lista_directorios, new_cola_pokemones, ruta_final, nombrePokenest);
-	//list_clean(lista_directorios);
 	list_destroy_and_destroy_elements(lista_directorios,free_names_dir);
 	return new_cola_pokemones;
 }
@@ -340,6 +347,36 @@ t_list* nombre_de_archivos_del_directorio(char *ruta)
 
 	}
 
+t_list* nombre_de_pokemones(char *ruta)
+{
+
+	/* Variables */
+		DIR *dirp;
+		struct dirent *direntp;
+
+	/* Abrimos el directorio */
+		dirp = opendir(ruta);
+		if (dirp == NULL){
+			printf("Error: No se puede abrir el directorio\n");
+			exit(1);
+		}
+		t_list *lista = list_create();
+		while ((direntp = readdir(dirp)) != NULL) {
+			 if(!string_equals_ignore_case(direntp->d_name, ".")){
+				  if(!string_equals_ignore_case(direntp->d_name, "..")){
+					  if(!string_equals_ignore_case(direntp->d_name, "metadata") && string_ends_with(direntp->d_name,".dat"))
+					  {
+						  char* path_aux = string_new();
+						  string_append(&path_aux,direntp->d_name);
+						  list_add(lista, path_aux);
+					  }
+				  }
+			 }
+		}
+		 closedir(dirp);
+		 	 return lista;
+
+	}
 
 /*---------------------------------------------AUXILIARES----------------------------------------------------------------*/
  int array_size(char **array)

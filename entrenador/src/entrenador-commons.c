@@ -52,7 +52,6 @@ void entrenador_iniciar_seniales()
 {
 	signal(SIGUSR1, subirvida);
 	signal(SIGTERM, bajarvida);
-	//signal(SIGKILL, matar_entrenador);
 	signal(SIGINT, matar_entrenador);
 }
 
@@ -65,6 +64,7 @@ void subirvida(int n)
 
 void bajarvida(int n)
 {
+	entrenador->vidas--;
 	if(n != 259)
 	{
 		log_info(info_entrenador,"PIERDO VIDA POR SEÑAL EXTERNA");
@@ -72,10 +72,9 @@ void bajarvida(int n)
 		{
 			log_info(info_entrenador,"MUERTO POR QUITARME LA ULTIMA VIDA!");
 			close(entrenador->mapa_actual->server);
-			entrenador_destruite(entrenador);
+			//entrenador_destruite(entrenador);
 		}
 	}
-	entrenador->vidas--;
 }
 
 void entrenador_finalizo_muriendo()
@@ -115,12 +114,11 @@ void matar_entrenador(int n)
 {
 	matan_al_entrenador = 1;
 	close(entrenador->mapa_actual->server);
-	printf("NO LOGRE TERMINAR MI AVENTURA PORQUE ME FINALIZARON \n");
+	printf("\n NO LOGRE TERMINAR MI AVENTURA PORQUE ME FINALIZARON \n");
 	log_destroy(info_entrenador);
 	entrenador_borra_medallas();
 	entrenador_borra_pokemons();
 	entrenador_destruite(entrenador);
-
 	exit(1);
 }
 
@@ -264,7 +262,6 @@ int entrenador_cumpli_objetivos_del_mapa(int index)
 	{
 		entrenador_termina_en_el_mapa();
 		mapa_destruite(entrenador->mapa_actual);
-		//free(entrenador->mapa_actual);
 		return 0;
 	}
 	else
@@ -291,7 +288,6 @@ int entrenador_volve_a_empezar_en_este_mapa(int indexxx)
 	entrenador_borra_pokemons();
 	list_destroy_and_destroy_elements(entrenador->mapa_actual->pokemons_capturados,mapa_element_destroyer);
 	entrenador->mapa_actual->pokemons_capturados = list_create();
-	//list_clean(entrenador->mapa_actual->pokemons_capturados);
 
 	log_info(info_entrenador, "VOY A VOLVER A CONECTARME AL MAPA");
 	//entrenador_busca_mapa(indexxx);
@@ -333,7 +329,6 @@ void entrenador_termina_en_el_mapa()
 {
 	entrenador_copia_medalla_del_mapa();
 	close(entrenador->mapa_actual->server);
-	//entrenador_borra_pokemons();
 
 	//INICIO log
 	char *mensaje_fin = string_new();
@@ -398,10 +393,17 @@ int entrenador_cumpli_objetivo(int indice_obejtivo)
 		loggear_posicion_actual();
 		entrenador_informa_movimiento();
 	}
-	entrenador_espera_turno();
-	sem_wait(&turno_entrenador);
-	int resultado=entrenador_captura_pokemon(indice_obejtivo);
-	return resultado;
+	if(!me_quedan_vidas())
+	{
+		return MUERTO;
+	}
+	else
+	{
+		entrenador_espera_turno();
+		sem_wait(&turno_entrenador);
+		int resultado=entrenador_captura_pokemon(indice_obejtivo);
+		return resultado;
+	}
 }
 
 void entrenador_informa_movimiento()
@@ -425,57 +427,63 @@ int entrenador_captura_pokemon(int indice_objetivo)
 	char *hora_inicio_bloqueado = temporal_get_string_time();
 
 	char *solicitud = escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR);
-	int respuesta_mapa = mapa_me_dice(solicitud);
-	free(solicitud);
-
-	switch(respuesta_mapa)
+	if(!me_quedan_vidas())
 	{
-		case(MAPA_ME_DA_POKEMON):
+		return MUERTO;
+	}
+	else
+	{
+		int respuesta_mapa = mapa_me_dice(solicitud);
+		free(solicitud);
+		switch(respuesta_mapa)
 		{
-			entrenador_recibi_y_copia_pokemon();
-			char *hora_fin_desbloqueado = temporal_get_string_time();
-			entrenador_registra_tiempo_bloqueo(hora_inicio_bloqueado, hora_fin_desbloqueado);
-			return EXITO;
-		};break;
-		case(MAPA_ME_AVISA_DEADLOCK):
-		{
-			int mapa_me_da_pokemon = 0;
-			int gano_deadlocks = 1;
-			while(gano_deadlocks && !mapa_me_da_pokemon)
+			case(MAPA_ME_DA_POKEMON):
 			{
-				entrenador->cantidad_deadlocks = entrenador->cantidad_deadlocks +1;
-				int resultado_deadlock = entrenador_trata_deadlock();
-				if(resultado_deadlock == MUERTO)	{gano_deadlocks=0; }
-				else
-				{
-					char* mapa_me_dice_que_me_envia = escuchar_mensaje_mapa(entrenador->mapa_actual,MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR);
-					int resultado = mapa_me_dice(mapa_me_dice_que_me_envia);
-					free(mapa_me_dice_que_me_envia);
-					if(resultado == MAPA_ME_DA_POKEMON)
-					{
-						entrenador_recibi_y_copia_pokemon();
-						char *hora_fin_desbloqueado = temporal_get_string_time();
-						entrenador_registra_tiempo_bloqueo(hora_inicio_bloqueado, hora_fin_desbloqueado);
-						mapa_me_da_pokemon = 1;
-					}
-					else
-					{
-						gano_deadlocks = 1;
-						mapa_me_da_pokemon = 0;
-					}
-				}
-			}
-			if(mapa_me_da_pokemon == 1)
-			{
-				return EXITO;
-			}
-			else
-			{
+				entrenador_recibi_y_copia_pokemon();
 				char *hora_fin_desbloqueado = temporal_get_string_time();
 				entrenador_registra_tiempo_bloqueo(hora_inicio_bloqueado, hora_fin_desbloqueado);
-				return MUERTO;
-			}
-		};break;
+				return EXITO;
+			};break;
+			case(MAPA_ME_AVISA_DEADLOCK):
+			{
+				int mapa_me_da_pokemon = 0;
+				int gano_deadlocks = 1;
+				while(gano_deadlocks && !mapa_me_da_pokemon)
+				{
+					entrenador->cantidad_deadlocks = entrenador->cantidad_deadlocks +1;
+					int resultado_deadlock = entrenador_trata_deadlock();
+					if(resultado_deadlock == MUERTO)	{gano_deadlocks=0; }
+					else
+					{
+						char* mapa_me_dice_que_me_envia = escuchar_mensaje_mapa(entrenador->mapa_actual,MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR);
+						int resultado = mapa_me_dice(mapa_me_dice_que_me_envia);
+						free(mapa_me_dice_que_me_envia);
+						if(resultado == MAPA_ME_DA_POKEMON)
+						{
+							entrenador_recibi_y_copia_pokemon();
+							char *hora_fin_desbloqueado = temporal_get_string_time();
+							entrenador_registra_tiempo_bloqueo(hora_inicio_bloqueado, hora_fin_desbloqueado);
+							mapa_me_da_pokemon = 1;
+						}
+						else
+						{
+							gano_deadlocks = 1;
+							mapa_me_da_pokemon = 0;
+						}
+					}
+				}
+				if(mapa_me_da_pokemon == 1)
+				{
+					return EXITO;
+				}
+				else
+				{
+					char *hora_fin_desbloqueado = temporal_get_string_time();
+					entrenador_registra_tiempo_bloqueo(hora_inicio_bloqueado, hora_fin_desbloqueado);
+					return MUERTO;
+				}
+			};break;
+		}
 	}
 }
 
@@ -510,31 +518,6 @@ void entrenador_registra_tiempo_bloqueo(char *hora_inicio, char *hora_fin)
 {
 	int tiempo = diferencia_de_tiempos(hora_inicio, hora_fin);
 	entrenador->tiempo_bloqueado_pokenest = entrenador->tiempo_bloqueado_pokenest + tiempo;
-}
-
-int entrenador_espera_mientras_te_dice_pavadas()
-{
-	int mapa_me_avisa_algo_coherente =0;
-	int respuesta_mapa;
-	while(!mapa_me_avisa_algo_coherente)
-		{
-			char *solicitud = escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR);
-			respuesta_mapa = mapa_me_dice(solicitud);
-			free(solicitud);
-			if(respuesta_mapa==MAPA_ME_PREGUNTA_SI_ESTOY)
-			{
-				char* si = string_new();
-				string_append(&si,"123");
-				enviar_mensaje(entrenador->mapa_actual->server, si);
-				free(si);
-			}
-			else
-			{
-				mapa_me_avisa_algo_coherente = 1;
-			}
-
-		}
-	return respuesta_mapa;
 }
 
 /*------------------------------------------LOGICA DE CAER EN DEADLOCK--------------------------------------------*/

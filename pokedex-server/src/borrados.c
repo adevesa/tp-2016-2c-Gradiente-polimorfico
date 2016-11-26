@@ -168,17 +168,6 @@ void osada_delete_dir_void(char* path)
 	free(info_file);
 	pthread_mutex_unlock(&mutex_por_archivo_borrado[info_file->posicion_en_tabla_de_archivos]);
 	pthread_mutex_unlock(&mutex_por_archivo[info_file->posicion_en_tabla_de_archivos]);
-	/*t_osada_file_free* directorio = osada_get_file_called(path, disco);
-	lock_file_full(directorio->block_relative ,directorio->position_in_block);
-
-	osada_change_file_state(directorio->file, DELETED);
-	//pthread_mutex_lock(&mutex_operaciones);
-	osada_push_middle_block(TABLA_DE_ARCHIVOS, directorio->block_relative, calcular_desplazamiento_tabla_de_archivos(directorio->position_in_block),directorio->file, disco);
-	//pthread_mutex_unlock(&mutex_operaciones);
-	osada_aumenta_cantidad_de_archivos();
-	t_file_osada_destroy(directorio);
-
-	unlock_file_full(directorio->block_relative, directorio->position_in_block);*/
 }
 
 void osada_borrar_hijos(char* path)

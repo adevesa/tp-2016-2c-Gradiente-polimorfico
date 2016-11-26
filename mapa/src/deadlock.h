@@ -122,4 +122,6 @@ int tamanio_vector(int* vector);
 void limpiar_filas(int matriz);
 int vector_es_menor_igual_a_vectorT(int* vector);
 void sumar_vector_a_vectorT(int* vector);
+
+int tamanio_vector_ids(char** vector);
 #endif /* DEADLOCK_H_ */

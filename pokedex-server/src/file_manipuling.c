@@ -456,43 +456,6 @@ int verify_correct_file(osada_file *file)
 /*---------------------------------------------VERIFICACION EXISTENCIA DE UN PATH------------------------------------------*/
 int osada_check_exist(char *path)
 {
-	/*pthread_mutex_lock(&mutex_operaciones);
-
-	char **file_for_file = string_split(path,"/");
-	int size = array_size(file_for_file);
-
-	char *path_file = string_new();
-	string_append(&path_file, "/");
-	string_append(&path_file, file_for_file[0]);
-
-	int i = 0;
-	int verify = 1;
-	int result = 0;
-
-	//pthread_mutex_lock(&mutex_operaciones);
-	while(verify && i<size)
-	{
-		if(i == 0)
-		{
-			result = verificar_existencia(path_file,-1);
-			verify = revisar_resultado(result);
-		}
-		else
-		{
-			string_append(&path_file, "/");
-			string_append(&path_file, file_for_file[i]);
-			result = verificar_existencia(path_file,result);
-			verify = revisar_resultado(result);
-		}
-		i++;
-	}
-	//pthread_mutex_unlock(&mutex_operaciones);
-
-	pthread_mutex_unlock(&mutex_operaciones);
-
-	array_free_all(file_for_file);
-	free(path_file);*/
-
 	int verify = osada_check_exists_in_dictionary(path);
 	return verify;
 }
@@ -516,8 +479,6 @@ int verificar_existencia(char *file_or_directory, uint16_t dad_block)
 		if(dad_block == RAIZ)
 		{
 			satisfy = calcular_posicion_en_tabla_de_archivos(file->block_relative,file->position_in_block);
-			/*free(file->file);
-			free(file);*/
 			t_file_osada_destroy(file);
 			return satisfy;
 		}
@@ -557,7 +518,6 @@ int existe_posta(void* result)
 		}
 		else
 		{
-			//t_file_osada_destroy(file);
 			return 1;
 		}
 
