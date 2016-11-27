@@ -76,8 +76,8 @@ void planificador_rr_organiza_entrenadores()
 		log_info(informe_planificador, "Fin de turno");
 		planificador_volve_a_encolar_a_listo_si_es_necesario(entrenador_listo);
 		planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
-		//mostrarTodo(planificador->listas_y_colas->cola_entrenadores_bloqueados,COLA_BLOQUEADOS);
-		//mostrarTodo(planificador->listas_y_colas->cola_entrenadores_listos,COLA_LISTOS);
+		mostrarTodo(planificador->listas_y_colas->cola_entrenadores_bloqueados,COLA_BLOQUEADOS);
+		mostrarTodo(planificador->listas_y_colas->cola_entrenadores_listos,COLA_LISTOS);
 	}
 	cambiar_algoritmo();
 }

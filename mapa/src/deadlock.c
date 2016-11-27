@@ -757,7 +757,8 @@ int resolver_deadlock()
 	}
 	else
 	{
-		resolver_deadlock_pokemon(victimas);
+		resolver_deadlock_si_es_posible(victimas);
+		//resolver_deadlock_pokemon(victimas);
 		return EXITO;
 	}
 }

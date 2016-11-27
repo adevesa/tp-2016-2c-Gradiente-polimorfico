@@ -7,32 +7,53 @@
 #include "deadlock-resolucion.h"
 
 extern t_log* logger;
-/*extern int semaforo_rr_cambiado_por_deadlock;
-extern int semaforo_srdf_cambiado_por_deadlock;*/
-//extern pthread_mutex_t mutex_preguntando_si_estan_vivos;
 
 void resolver_deadlock_si_es_posible(t_list* involucrados)
 {
 	if(mapa->batalla)
 	{
 		resolver_deadlock_pokemon(involucrados);
-		list_destroy_and_destroy_elements(involucrados,involucrados_destroyer);
 	}
 	else
 	{
+		resolver_deadlock_sin_batalla(involucrados);
 
 	}
 }
 
 void resolver_deadlock_sin_batalla(t_list *involucrados)
 {
+	log_info(logger, "EL MODO BATALLA NO ESTA ACTIVADO");
+	t_list *entrenadores_involucrados = recuperar_entrenadores_involucrados(involucrados);
+	list_destroy_and_destroy_elements(involucrados,free_names_dir);
 
+	int size = list_size(entrenadores_involucrados);
+	int i=0;
+	int encontre_desconectado = 0;
+	while(i<size && !encontre_desconectado)
+	{
+		t_entrenador *entrenador = list_get(entrenadores_involucrados,i);
+		enviar_mensaje_a_entrenador(entrenador,PREGUNTAR_SI_SIGUE_AHI,NULL);
+		char* respuesta_string = escuchar_mensaje_entrenador(entrenador,SOLICITUD_DEL_ENTRENADOR);
+		int respuesta_posta = tratar_respuesta(respuesta_string,entrenador);
+		free(respuesta_string);
+		if(respuesta_posta == ENTRENADOR_DESCONECTADO)
+		{
+			planificador_desbloqueame_a(entrenador);
+			planificador_aborta_entrenador(entrenador);
+			encontre_desconectado=1;
+		}
+
+		i++;
+	}
+	list_destroy(entrenadores_involucrados);
+	cambiar_semaforos_si_es_necesario();
 }
 
 void resolver_deadlock_pokemon(t_list* involucrados)
 {
-	if(mapa->batalla)
-	{
+	//if(mapa->batalla)
+	//{
 		int index_entrenador = 0;
 
 		log_info(logger, "SE COMIENZA A RESOLVER EL DEADLOCK");
@@ -119,16 +140,12 @@ void resolver_deadlock_pokemon(t_list* involucrados)
 				log_info(logger, mensaje_a_log_2);
 				free(mensaje_a_log_2);
 			}
-			//log_info(logger,perdedor->victima->simbolo_identificador);
-			//enviar_mensaje_a_entrenador(perdedor->victima,AVISAR_QUE_PERDIO,NULL);
-			//planificador_desbloqueame_a(perdedor->victima);
 			planificador_aborta_entrenador_por_deadlock(perdedor->victima);
-			//planificador_aborta_entrenador(perdedor->victima);
 			cambiar_semaforos_si_es_necesario();
 			free(perdedor);
 			list_destroy(entrenadores_involucrados);
 		}
-	}
+	//}
 }
 
 void involucrados_destroyer(void* arg)
@@ -143,31 +160,25 @@ void cambiar_semaforos_si_es_necesario()
 	{
 		//semaforo_rr_cambiado_por_deadlock = 1;
 		planificador_rr_cambia_semaforo_si_es_necesario();
-		//semaforo_rr_cambiado_por_deadlock = 1;
 	}
 	else
 	{
 		//semaforo_srdf_cambiado_por_deadlock = 1;
 		planificador_srdf_cambia_semaforo_si_es_necesario();
-		//semaforo_srdf_cambiado_por_deadlock = 1;
 	}
 }
 
 t_perdedor* efectuar_batalla_pokemon_con_el_anterior_perdedor(t_perdedor* anterior_perdedor, t_entrenador *entrenador)
 {
-	//pthread_mutex_lock(&mutex_preguntando_si_estan_vivos);
 	enviar_mensaje_a_entrenador(entrenador,AVISAR_DEADLOCK,NULL);
 	void* respuesta_entrenador = escuchar_mejor_pokemon(entrenador->socket_entrenador);
-	//pthread_mutex_unlock(&mutex_preguntando_si_estan_vivos);
 
 	t_perdedor* new_perdedor = malloc(sizeof(t_perdedor));
 
 
 	if(string_equals_ignore_case((char*) respuesta_entrenador, "DESCONECTADO"))
 	{
-		//pthread_mutex_lock(&mutex_preguntando_si_estan_vivos);
 		enviar_mensaje_a_entrenador(anterior_perdedor->victima,AVISAR_QUE_GANO,NULL);
-		//pthread_mutex_unlock(&mutex_preguntando_si_estan_vivos);
 		anterior_perdedor->victima->esta_en_deadlock=NO;
 		new_perdedor->caso = POR_DESCONEXION;
 		new_perdedor->victima = anterior_perdedor->victima;
@@ -201,9 +212,7 @@ t_perdedor* efectuar_batalla_pokemon_con_el_anterior_perdedor(t_perdedor* anteri
 
 		if(resultado == VICTIMA_ENTRENADOR_1)
 		{
-			//pthread_mutex_lock(&mutex_preguntando_si_estan_vivos);
 			enviar_mensaje_a_entrenador(entrenador,AVISAR_QUE_GANO,NULL);
-			//pthread_mutex_unlock(&mutex_preguntando_si_estan_vivos);
 			entrenador->esta_en_deadlock=NO;
 			new_perdedor->caso = POR_BATALLA;
 			new_perdedor->victima = anterior_perdedor->victima;
@@ -214,11 +223,8 @@ t_perdedor* efectuar_batalla_pokemon_con_el_anterior_perdedor(t_perdedor* anteri
 		}
 		else
 		{
-			//pthread_mutex_lock(&mutex_preguntando_si_estan_vivos);
 			enviar_mensaje_a_entrenador(anterior_perdedor->victima,AVISAR_QUE_GANO,NULL);
-			//pthread_mutex_unlock(&mutex_preguntando_si_estan_vivos);
 			anterior_perdedor->victima->esta_en_deadlock=NO;
-			//destroy_pokemon(anterior_perdedor->pokemon_de_la_victima);
 			new_perdedor->caso = POR_BATALLA;
 			new_perdedor->victima= entrenador;
 			new_perdedor->pokemon_de_la_victima = pokemon_entrenador;
@@ -230,13 +236,11 @@ t_perdedor* efectuar_batalla_pokemon_con_el_anterior_perdedor(t_perdedor* anteri
 
 t_perdedor* efectuar_batalla_pokemon_entre(t_entrenador *entrenador_1, t_entrenador *entrenador_2)
 {
-	//pthread_mutex_lock(&mutex_preguntando_si_estan_vivos);
 	enviar_mensaje_a_entrenador(entrenador_1,AVISAR_DEADLOCK,NULL);
 	void* respuesta_entrenador_1 = escuchar_mejor_pokemon(entrenador_1->socket_entrenador);
 
 	enviar_mensaje_a_entrenador(entrenador_2,AVISAR_DEADLOCK,NULL);
 	void* respuesta_entrenador_2 = escuchar_mejor_pokemon(entrenador_2->socket_entrenador);
-	//pthread_mutex_unlock(&mutex_preguntando_si_estan_vivos);
 
 	t_perdedor* new_perdedor = malloc(sizeof(t_perdedor));
 	new_perdedor->pokemon_de_la_victima = malloc(sizeof(t_pokemon));
@@ -244,9 +248,7 @@ t_perdedor* efectuar_batalla_pokemon_entre(t_entrenador *entrenador_1, t_entrena
 
 	if(string_equals_ignore_case((char*) respuesta_entrenador_1, "DESCONECTADO"))
 	{
-		//pthread_mutex_lock(&mutex_preguntando_si_estan_vivos);
 		enviar_mensaje_a_entrenador(entrenador_2,AVISAR_QUE_GANO,NULL);
-		//pthread_mutex_unlock(&mutex_preguntando_si_estan_vivos);
 		entrenador_2->esta_en_deadlock = NO;
 		new_perdedor->caso = POR_DESCONEXION;
 		new_perdedor->victima = entrenador_1;
@@ -256,9 +258,7 @@ t_perdedor* efectuar_batalla_pokemon_entre(t_entrenador *entrenador_1, t_entrena
 	{
 		if(string_equals_ignore_case((char*) respuesta_entrenador_2, "DESCONECTADO"))
 		{
-			//pthread_mutex_lock(&mutex_preguntando_si_estan_vivos);
 			enviar_mensaje_a_entrenador(entrenador_1,AVISAR_QUE_GANO,NULL);
-			//pthread_mutex_unlock(&mutex_preguntando_si_estan_vivos);
 			entrenador_1->esta_en_deadlock=NO;
 			new_perdedor->caso = POR_DESCONEXION;
 			new_perdedor->victima = entrenador_2;
@@ -284,9 +284,7 @@ t_perdedor* efectuar_batalla_pokemon_entre(t_entrenador *entrenador_1, t_entrena
 
 			if(perdedor == VICTIMA_ENTRENADOR_1)
 			{
-				//pthread_mutex_lock(&mutex_preguntando_si_estan_vivos);
 				enviar_mensaje_a_entrenador(entrenador_2,AVISAR_QUE_GANO,NULL);
-				//pthread_mutex_unlock(&mutex_preguntando_si_estan_vivos);
 				entrenador_2->esta_en_deadlock = NO;
 				new_perdedor->caso = POR_BATALLA;
 				new_perdedor->victima = entrenador_1;
@@ -296,14 +294,11 @@ t_perdedor* efectuar_batalla_pokemon_entre(t_entrenador *entrenador_1, t_entrena
 			}
 			else
 			{
-				//pthread_mutex_lock(&mutex_preguntando_si_estan_vivos);
 				enviar_mensaje_a_entrenador(entrenador_1,AVISAR_QUE_GANO,NULL);
-				//pthread_mutex_unlock(&mutex_preguntando_si_estan_vivos);
 				entrenador_1->esta_en_deadlock=NO;
 				new_perdedor->caso = POR_BATALLA;
 				new_perdedor->victima = entrenador_2;
 				memcpy(new_perdedor->pokemon_de_la_victima,pokemon_entrenador_2,sizeof(t_pokemon));
-				//new_perdedor->pokemon_de_la_victima = pokemon_entrenador_2;
 				destroy_pokemon(pokemon_entrenador_1);
 			}
 			return new_perdedor;

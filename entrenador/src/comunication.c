@@ -10,11 +10,11 @@ int conectar_a_mapa(t_mapa *mapa)
 {
 	mapa->server= cliente_create(atoi(mapa->puerto),mapa->ip);
 
-	char *mensaje = string_new();
+	/*char *mensaje = string_new();
 	string_append(&mensaje, "CONECTADO con ");
 	string_append(&mensaje, mapa->nombre);
 	log_info(info_entrenador,mensaje);
-	free(mensaje);
+	free(mensaje);*/
 
 	return mapa->server;
 }
@@ -74,6 +74,7 @@ void enviar_mensaje_a_mapa(t_mapa *mapa, int header, char *payload)
 		case(REPORTAR_MOVIMIENTO): solicitar_moverse(mapa, payload);break;
 		case(REPORTAR_FIN_OBJETIVOS):enviar_mensaje(mapa->server, "fp;");break;
 		case(ENTREGAR_MEJOR_POKEMON): enviar_mensaje(mapa->server,payload);break;
+		case(SIGO_VIVO):enviar_mensaje(mapa->server,"123");break;
 	}
 }
 

@@ -28,7 +28,6 @@ void* ejecutar_servidor(void *argumento)
 		else {conexion_create(&conexion);}
 	}
 
-	//pthread_exit(NULL);
 }
 
 void conexion_create(int *conexion)
@@ -48,9 +47,8 @@ void conexion_create(int *conexion)
 void* atender_cliente(void* argumento)
 {
 	int *conexion = (int*) argumento;
-	sem_t semaforo_termina_proceso;
+	//sem_t semaforo_termina_proceso;
 	//sem_init(&semaforo_termina_proceso,0,0);
-
 	agregar_proceso_a_lista(conexion,NULL);
 	pthread_exit(NULL);
 }
@@ -114,7 +112,6 @@ int tratar_respuesta(char* respuesta_del_entrenador, t_entrenador *entrenador)
 
 void enviar_mensaje_a_entrenador(t_entrenador *entrenador, int header, char *payload)
 {
-	//pthread_mutex_lock(&mutex_enviar_al_entrenador);
 	switch(header)
 	{
 		case(OTORGAR_TURNO):enviar_mensaje(entrenador->socket_entrenador, "tr;"); break;
@@ -134,12 +131,10 @@ void enviar_mensaje_a_entrenador(t_entrenador *entrenador, int header, char *pay
 		case(PREGUNTAR_SI_SIGUE_AHI): enviar_mensaje(entrenador->socket_entrenador,"123");break;
 		default: ;
 	}
-	//pthread_mutex_unlock(&mutex_enviar_al_entrenador);
 }
 
 char* escuchar_mensaje_entrenador(t_entrenador *entrenador, int header)
 {
-	//pthread_mutex_lock(&mutex_escuchar_al_entrenador);
 	switch(header)
 	{
 		case(SOLICITUD_DEL_ENTRENADOR): return(recibir_mensaje(entrenador->socket_entrenador,3));
@@ -148,7 +143,6 @@ char* escuchar_mensaje_entrenador(t_entrenador *entrenador, int header)
 		case(ENTRENADOR_QUIERE_MOVERSE): return(recibir_mensaje_especifico(entrenador->socket_entrenador)); break;
 		default: return("0"); break;
 	}
-	//pthread_mutex_unlock(&mutex_escuchar_al_entrenador);
 }
 
 void otorgar_ruta_medalla_a_entrenador(int entrenador, char *rutaMedalla)

@@ -122,7 +122,6 @@ t_list* cola_listos_a_lista(t_queue *cola_listos)
 void* ejecutar_planificador_srdf(void* arg)
 {
 	planificador_inicia_log();
-	//hay_jugadores=0;
 	planificador = planificador_srdf_create();
 	if(encolacion_entrenadores_iniciada == NO_INICIADO)
 	{
@@ -172,8 +171,8 @@ void planificador_srdf_organiza_entrenadores()
 		planificador_srdf_es_el_turno_de(entrenador_listo);
 		planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
 		planificador_srdf_reordena_entrenadores_si_es_necesario();
-		//mostrarTodo(planificador->listas_y_colas->cola_entrenadores_bloqueados,COLA_BLOQUEADOS);
-		//mostrarTodo(planificador->listas_y_colas->cola_entrenadores_listos,COLA_LISTOS);
+		mostrarTodo(planificador->listas_y_colas->cola_entrenadores_bloqueados,COLA_BLOQUEADOS);
+		mostrarTodo(planificador->listas_y_colas->cola_entrenadores_listos,COLA_LISTOS);
 
 	}
 	cambiar_algoritmo();

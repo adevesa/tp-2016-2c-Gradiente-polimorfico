@@ -33,7 +33,7 @@ void mostrar_por_pantalla_resultados()
 {
 	if(!se_reintenta)
 	{
-		printf("LOGRE TERMINAR MI AVENTURA \n");
+		printf("LOGRE TERMINAR MI AVENTURA! SOY UN MAESTRO POKEMON \n");
 	}
 	else
 	{
@@ -68,10 +68,11 @@ void bajarvida(int n)
 	if(n != 259)
 	{
 		log_info(info_entrenador,"PIERDO VIDA POR SEÑAL EXTERNA");
-		if(entrenador->vidas == 0)
+		if(entrenador->vidas <= 0)
 		{
 			log_info(info_entrenador,"MUERTO POR QUITARME LA ULTIMA VIDA!");
 			close(entrenador->mapa_actual->server);
+			matan_al_entrenador = 1;
 			//entrenador_destruite(entrenador);
 		}
 	}
@@ -86,9 +87,10 @@ void entrenador_finalizo_muriendo()
 
 void tratar_respuesta()
 {
-	char resp;
 	fflush(stdin);
+	char resp;
 	scanf("%c", &resp);
+	setbuf(stdin,NULL);
 	if(resp == 'Y')
 	{
 		log_info(info_entrenador,"Se reintentara jugar\n");
@@ -96,6 +98,7 @@ void tratar_respuesta()
 		entrenador_borra_medallas();
 		entrenador_borra_pokemons();
 		entrenador_resetea_ubicacion();
+		matan_al_entrenador = 0;
 		entrenador_comenza_a_explorar();
 	}
 	else if(resp == 'N')
@@ -228,11 +231,11 @@ void entrenador_busca_mapa(int index)
 	entrenador->mapa_actual = mapa_create(nombre_mapa, entrenador->ruta_pokedex, entrenador);
 
 	//INICIO log
-	char *mensaje = string_new();
+	/*char *mensaje = string_new();
 	string_append(&mensaje, "Mapa actual: ");
 	string_append(&mensaje, entrenador->mapa_actual->nombre);
 	log_info(info_entrenador,mensaje);
-	free(mensaje);
+	free(mensaje);*/
 	//FIN log
 }
 
@@ -242,7 +245,7 @@ int entrenador_cumpli_objetivos_del_mapa(int index)
 	//INICIO log
 	char *mensaje = string_new();
 	string_trim(&mensaje);
-	string_append(&mensaje, "COMIENZO AVENTURA en ");
+	string_append(&mensaje, "COMIENZO AVENTURA EN MAPA ");
 	string_append(&mensaje, entrenador->mapa_actual->nombre);
 	log_info(info_entrenador,mensaje);
 	free(mensaje);
@@ -386,22 +389,27 @@ void entrenador_pedi_ubicacion_pokenest(int indice_objetivo)
 /*--------------------------------------------LOGICA DE CAMINAR HACIA POKENEST--------------------------------*/
 int entrenador_cumpli_objetivo(int indice_obejtivo)
 {
-	while(!entrenador_llego_a_destino())
+	//while(!entrenador_llego_a_destino() && me_quedan_vidas() //REVISAR ACA!!!!
+	while(!entrenador_llego_a_destino() && !matan_al_entrenador)
 	{
 		entrenador_espera_turno();
-		sem_wait(&turno_entrenador);
-		entrenador_ubicate_para_donde_caminar();
-		loggear_posicion_actual();
-		entrenador_informa_movimiento();
+		//sem_wait(&turno_entrenador);
+		if(!matan_al_entrenador)
+		{
+			entrenador_ubicate_para_donde_caminar();
+			loggear_posicion_actual();
+			entrenador_informa_movimiento();
+		}
+
 	}
-	if(!me_quedan_vidas() && se_reintenta)
+	if(!me_quedan_vidas() && matan_al_entrenador)
 	{
 		return MUERTO;
 	}
 	else
 	{
 		entrenador_espera_turno();
-		sem_wait(&turno_entrenador);
+		//sem_wait(&turno_entrenador);
 		int resultado=entrenador_captura_pokemon(indice_obejtivo);
 		return resultado;
 	}
@@ -427,15 +435,30 @@ int entrenador_captura_pokemon(int indice_objetivo)
 	enviar_mensaje_a_mapa(entrenador->mapa_actual,SOLICITAR_CAPTURA_POKEMON,NULL);
 	char *hora_inicio_bloqueado = temporal_get_string_time();
 
-	char *solicitud = escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR);
-	if(!me_quedan_vidas() && se_reintenta)
+	if(!me_quedan_vidas() && matan_al_entrenador)
 	{
+		char *hora_fin_desbloqueado = temporal_get_string_time();
+		entrenador_registra_tiempo_bloqueo(hora_inicio_bloqueado, hora_fin_desbloqueado);
 		return MUERTO;
 	}
 	else
 	{
-		int respuesta_mapa = mapa_me_dice(solicitud);
-		free(solicitud);
+		int me_preguntan_boludeces = 1;
+		int respuesta_mapa;
+		while(me_preguntan_boludeces)
+		{
+			char *solicitud = escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR);
+			respuesta_mapa = mapa_me_dice(solicitud);
+			free(solicitud);
+			if(respuesta_mapa == MAPA_ME_PREGUNTA_SI_ESTOY)
+			{
+				enviar_mensaje_a_mapa(entrenador->mapa_actual,SIGO_VIVO,NULL);
+			}
+			else
+			{
+				me_preguntan_boludeces = 0;
+			}
+		}
 		switch(respuesta_mapa)
 		{
 			case(MAPA_ME_DA_POKEMON):
@@ -562,6 +585,8 @@ void entrenador_otorga_mejor_pokemon_a_mapa(t_mapa *mapa)
 	free(mejor_pokemon_serialized);
 	pokemon_destroy(mejor_pokemon);
 }
+
+
 
 /*------------------------------------------LOGICA DE TERMINAR EN EL MAPA----------------------------------------*/
 void entrenador_avisa_que_terminaste_en_este_mapa()

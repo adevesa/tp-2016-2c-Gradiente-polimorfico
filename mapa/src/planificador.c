@@ -73,20 +73,20 @@ void planificador_push_entrenador_a_bloqueado(t_entrenador *entrenador)
 	pthread_mutex_unlock(&mutex_manipular_cola_bloqueados);
 
 
-	char *mensaje_A_loggear = string_new();
+	/*char *mensaje_A_loggear = string_new();
 	string_append(&mensaje_A_loggear, "PUSH (BLOQUEADO): ");
 	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
 	log_info(informe_planificador, mensaje_A_loggear);
-	free(mensaje_A_loggear);
+	free(mensaje_A_loggear);*/
 }
 
 void planificador_push_entrenador_a_listo(t_entrenador *entrenador)
 {
-	char *mensaje_A_loggear = string_new();
+	/*char *mensaje_A_loggear = string_new();
 	string_append(&mensaje_A_loggear, "PUSH (LISTO): ");
 	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
 	log_info(informe_planificador, mensaje_A_loggear);
-	free(mensaje_A_loggear);
+	free(mensaje_A_loggear);*/
 
 	pthread_mutex_lock(&mutex_manipular_cola_listos);
 	queue_push(mapa->entrenadores->cola_entrenadores_listos, entrenador);
@@ -101,11 +101,11 @@ t_entrenador* planificador_pop_entrenador_listo()
 	t_entrenador *entrenador_que_tiene_el_turno = (t_entrenador*) queue_pop(mapa->entrenadores->cola_entrenadores_listos);
 	pthread_mutex_unlock(&mutex_manipular_cola_listos);
 
-	char *mensaje_A_loggear = string_new();
+	/*char *mensaje_A_loggear = string_new();
 	string_append(&mensaje_A_loggear, "POP (LISTO): ");
 	string_append(&mensaje_A_loggear, entrenador_que_tiene_el_turno->simbolo_identificador);
 	log_info(informe_planificador, mensaje_A_loggear);
-	free(mensaje_A_loggear);
+	free(mensaje_A_loggear);*/
 
 	return entrenador_que_tiene_el_turno;
 }
@@ -116,11 +116,11 @@ t_entrenador* planificador_pop_entrenador_bloqueado()
 	t_entrenador *entrenador = (t_entrenador *) queue_pop(mapa->entrenadores->cola_entrenadores_bloqueados);
 	pthread_mutex_unlock(&mutex_manipular_cola_bloqueados);
 
-	char *mensaje_A_loggear = string_new();
+	/*char *mensaje_A_loggear = string_new();
 	string_append(&mensaje_A_loggear, "POP (BLOQUEADO): ");
 	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
 	log_info(informe_planificador, mensaje_A_loggear);
-	free(mensaje_A_loggear);
+	free(mensaje_A_loggear);*/
 
 	return entrenador;
 }
@@ -141,9 +141,9 @@ void planificador_dale_coordenadas_a_entrenador(t_entrenador *entrenador)
 
 	//INICIO LOG
 	char *mensaje_A_loggear = string_new();
-	string_append(&mensaje_A_loggear, "Entrenador identificado por ");
+	string_append(&mensaje_A_loggear, "Entrenador ");
 	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
-	string_append(&mensaje_A_loggear, "está buscando coordenadas de pokenest ");
+	string_append(&mensaje_A_loggear, "esta buscando coordenadas de pokenest ");
 	string_append(&mensaje_A_loggear, identificador_pokenest);
 	t_posicion *posicion = desarmar_coordenada(coordendas_pokenest);
 
@@ -168,11 +168,11 @@ void planificador_dale_coordenadas_a_entrenador(t_entrenador *entrenador)
 	free(coordendas_pokenest);
 
 	//INICIO LOG
-	char *mensaje = string_new();
+	/*char *mensaje = string_new();
 	string_append(&mensaje, "La coordenada solicitada fue entregada a entrenador identificado por ");
 	string_append(&mensaje, entrenador->simbolo_identificador);
 	log_info(informe_planificador, mensaje);
-	free(mensaje);
+	free(mensaje);*/
 	//FIN LOG
 }
 
@@ -184,7 +184,7 @@ void planificador_entrenador_se_mueve(t_entrenador *entrenador)
 	free(posicion_destino);
 
 	//INICIO LOG
-	char *mensaje_A_loggear = string_new();
+	/*char *mensaje_A_loggear = string_new();
 	string_append(&mensaje_A_loggear, "Entrenador identificado por ");
 	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
 	string_append(&mensaje_A_loggear, " se movio a ");
@@ -196,7 +196,7 @@ void planificador_entrenador_se_mueve(t_entrenador *entrenador)
 	log_info(informe_planificador, mensaje_A_loggear);
 	free(mensaje_A_loggear);
 	free(x);
-	free(y);
+	free(y);*/
 	//FIN LOG
 
 	mapa_actualiza_distancia_del_entrenador(entrenador);
@@ -267,13 +267,13 @@ void planificador_entrega_pokemon_a(t_entrenador *entrenador)
 	list_add(entrenador->pokemones_capturados, pokemon_aux);
 
 	//INICIO LOG
-	char *mensaje_A_loggear = string_new();
+	/*char *mensaje_A_loggear = string_new();
 	string_append(&mensaje_A_loggear, "Entrenador identificado por ");
 	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
 	string_append(&mensaje_A_loggear, " recibio ");
 	string_append(&mensaje_A_loggear,pokemon_a_entregar);
 	log_info(informe_planificador, mensaje_A_loggear);
-	free(mensaje_A_loggear);
+	free(mensaje_A_loggear);*/
 	//FIN LOG
 
 	free(pokemon_a_entregar);
@@ -580,11 +580,8 @@ void mostrarTodo(t_queue* cola, int tipo)
 				pthread_mutex_lock(&mutex_manipular_cola_bloqueados);
 					for(z=0; z < tamanio_cola; z++)
 					{
-
-						//char* como_string = convertir_a_string(list_get(cola->elements,z));
-						char* elemento = list_get(cola->elements,z);
-						//tring_append(&mensaje, como_string);
-						string_append(&mensaje,elemento);
+						t_entrenador *entrener = list_get(cola->elements,z);
+						string_append(&mensaje,entrener->simbolo_identificador);
 					}
 					pthread_mutex_unlock(&mutex_manipular_cola_bloqueados);
 			}
@@ -604,10 +601,8 @@ void mostrarTodo(t_queue* cola, int tipo)
 				for(z=0; z < tamanio_cola; z++)
 				{
 
-					//char* como_string = convertir_a_string(list_get(cola->elements,z));
-					char* elemento = list_get(cola->elements,z);
-					//tring_append(&mensaje, como_string);
-					string_append(&mensaje,elemento);
+					t_entrenador *entrener = list_get(cola->elements,z);
+					string_append(&mensaje,entrener->simbolo_identificador);
 				}
 				pthread_mutex_unlock(&mutex_manipular_cola_listos);
 			}
@@ -615,8 +610,6 @@ void mostrarTodo(t_queue* cola, int tipo)
 			free(mensaje);
 		};break;
 	}
-
-
 }
 
 char* convertir_a_string(char caracter)

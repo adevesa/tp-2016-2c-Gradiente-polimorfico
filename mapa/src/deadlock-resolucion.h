@@ -37,7 +37,10 @@ typedef struct
 	t_entrenador *victima;
 }t_perdedor;
 
+void resolver_deadlock_si_es_posible(t_list* involucrados);
+void resolver_deadlock_sin_batalla(t_list *involucrados);
 void resolver_deadlock_pokemon(t_list* involucrados);
+
 t_list* recuperar_entrenadores_involucrados(t_list* identificadores_involucrados);
 void ordenar_entrenadores_segun_tiempo_de_ingreso(t_list* entrenadores);
 int comparador_para_batalla(void* elem1, void* elem2);
@@ -49,6 +52,5 @@ int retornar_perdedor(t_pokemon *perdedor, t_pokemon *pokemon_entrenador_1, t_po
 void destroy_pokemon(t_pokemon *pokemon);
 void cambiar_semaforos_si_es_necesario();
 
-void resolver_deadlock_si_es_posible(t_list* involucrados);
 void involucrados_destroyer(void* arg);
 #endif /* DEADLOCK_RESOLUCION_H_ */
