@@ -22,7 +22,6 @@ t_disco_osada* osada_disco_abrite(char *ruta)
 	disco_new->bitmap = osada_bitmap_create(disco_new);
 	disco_new->diccionario_de_archivos = dictionary_create();
 	disco_new->archivos_por_posicion_en_tabla_asig = dictionary_create();
-	//disco_new->table_asig = inicializar_table_asig(disco_new->header);
 	table_asignaciones = malloc(sizeof(int) * (calcular_tamanio_tabla_de_asignaciones(disco_new->header)*OSADA_BLOCK_SIZE));
 	return disco_new;
 }
@@ -384,12 +383,10 @@ void agregar_a_diccionario_como_arbolada_si_es_necesario(osada_file *file, int p
 			new_info_file->path = string_new();
 			string_append(&new_info_file->path,aux_path_new);
 
-
 			new_info_file->parent_block = info_padre->posicion_en_tabla_de_archivos;
 			dictionary_put(diccionario,aux_path_new,new_info_file);
 			char* posicion_string = string_itoa(posicion);
 			dictionary_put(disco->archivos_por_posicion_en_tabla_asig,posicion_string,new_info_file);
-
 
 			free(aux_parent_directory);
 			free(aux_path_new);
@@ -439,7 +436,7 @@ void actualizar_tamanio_del_padre(t_info_file *info, int size_a_sumar)
 	{
 		pthread_mutex_lock(&mutex_operaciones);
 		t_info_file *info_raiz = dictionary_get(disco->diccionario_de_archivos,"/");
-		info_raiz->tamanio_del_directorio = info_raiz->tamanio_del_directorio + info->tamanio_del_directorio +size_a_sumar; // REVISAR ACA
+		info_raiz->tamanio_del_directorio = info_raiz->tamanio_del_directorio +size_a_sumar; // REVISAR ACA
 		pthread_mutex_unlock(&mutex_operaciones);
 	}
 	else

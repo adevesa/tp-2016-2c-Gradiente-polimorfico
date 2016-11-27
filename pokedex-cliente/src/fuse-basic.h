@@ -7,6 +7,7 @@
 
 #ifndef FUSE_BASIC_H_
 #define FUSE_BASIC_H_
+
 #include <stdio.h>
 #include <fuse.h>
 #include <sys/mman.h>
@@ -21,14 +22,15 @@
 #include "comunication-with-server.h"
 #include "vars.h"
 
+#define MAX_WRITE 262144
+#define MAX_READ 262144
 
 extern t_log *log;
-
 
 /*-------------------------------------------ATRIBUTOS-----------------------------------------------------------------*/
 static int osada_get_atributes(const char *path, struct stat *buffer)
 {
-	memset(buffer, 0, sizeof(struct stat));
+	//memset(buffer, 0, sizeof(struct stat));
 	int resultado = cliente_pedi_atributos(path, buffer);
 	return resultado;
 }
@@ -114,9 +116,20 @@ static int osada_time(const char* path, const struct timespec ts[2])
 	int resultado = cliente_pedi_times(path,ts);
 	return resultado;
 }
+
+
+static void* osada_init(struct fuse_conn_info *conn)
+{
+	conn->want = FUSE_CAP_BIG_WRITES;
+	conn->max_write = MAX_WRITE;
+	conn->max_readahead = MAX_READ;
+	return fuse_get_context()->private_data;
+}
+
 /*-------------------------------------------STRUCTS-----------------------------------------------------------------*/
 static struct fuse_operations osada_operations =
 {
+		.init =  osada_init,
 		.getattr = osada_get_atributes,
 		.readdir = osada_listame,
 		.mkdir = osada_crea_directorio,
@@ -127,8 +140,7 @@ static struct fuse_operations osada_operations =
 		.write = osada_escribi_archivo,
 		.rename = osada_renombra_archivo,
 		.open = osada_abri_archivo,
-		.truncate = osada_trucate_file,
-		.access= osada_acces,
+		.truncate = osada_trucate_file
 };
 
 

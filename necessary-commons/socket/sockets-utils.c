@@ -91,6 +91,7 @@ char* recibir_mensaje(int socket,int payloadSize)
 	bytes_recibidos=recv(socket, payload, payloadSize,0);
 	if(bytes_recibidos == 0)
 	{
+		free(payload);
 		char *desconectado = string_new();
 		string_append(&desconectado, "DESCONECTADO");
 		return desconectado;

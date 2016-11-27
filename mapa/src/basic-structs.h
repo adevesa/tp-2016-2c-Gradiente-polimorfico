@@ -147,8 +147,9 @@ t_info_socket* obtener_info_mapa_socket(t_config *configuracion);
 t_info_algoritmo* obtener_info_mapa_algoritmo(t_config *configuracion);
 int obtener_info_mapa_batalla(t_config *configuracion);
 int obtener_info_mapa_tiempo_deadlock(t_config *configuracion);
+
 t_dictionary* obtener_info_mapa_pokenest(char *nombreMapa, char *rutaPokedex);
-void foreach_pokenest_modelate(void *lista_origen,void *lista_destino, void *ruta);
+void foreach_pokenest_modelate(void *lista_origen,void *lista_destino, void *ruta, char** vector_aux);
 char* obtener_ruta_especifica(char *ruta_inicial, char *directorio_o_nombre_archivo, char *sub_directorio_o_nombre_archivo);
 t_list* nombre_de_archivos_del_directorio(char *ruta);
 /* ---------------------------------FUNCIONES PARA OBTENER DATOS DE UN POKENEST------------------------------------------*/

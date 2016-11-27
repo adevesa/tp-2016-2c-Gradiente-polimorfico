@@ -87,6 +87,7 @@ void entrenador_finalizo_muriendo()
 void tratar_respuesta()
 {
 	char resp;
+	fflush(stdin);
 	scanf("%c", &resp);
 	if(resp == 'Y')
 	{
@@ -393,7 +394,7 @@ int entrenador_cumpli_objetivo(int indice_obejtivo)
 		loggear_posicion_actual();
 		entrenador_informa_movimiento();
 	}
-	if(!me_quedan_vidas())
+	if(!me_quedan_vidas() && se_reintenta)
 	{
 		return MUERTO;
 	}
@@ -427,7 +428,7 @@ int entrenador_captura_pokemon(int indice_objetivo)
 	char *hora_inicio_bloqueado = temporal_get_string_time();
 
 	char *solicitud = escuchar_mensaje_mapa(entrenador->mapa_actual, MAPA_ME_AVISA_QUE_ME_VA_A_ENVIAR);
-	if(!me_quedan_vidas())
+	if(!me_quedan_vidas() && se_reintenta)
 	{
 		return MUERTO;
 	}

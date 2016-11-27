@@ -14,9 +14,6 @@
 
 int main(int argc, char *argv[])
 {
-	//ejecutar_mapa("Roja","/home/utnso/workspace/disco1");
-	/*mapa=mapa_create("Home","/home/utnso/workspace/disco1");
-	t_pokeNest *pika = dictionary_get(mapa->pokeNests,"B");*/
 	if(argv[1]==NULL || argv[2]==NULL)
 	{
 		printf("Necesito el nombre del mapa y la ruta pokedex!\n");

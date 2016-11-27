@@ -29,7 +29,7 @@ void liberar_n_bloques_full(osada_file *file, int bloques_a_liberar,t_info_file 
 void establecer_nuevo_feof_en_tabla_de_asignaciones(int posicion);
 int calcular_bloque_relativo_datos_dado_absoluto(int numero_bloque_absoluto);
 
-
+int cantidad_de_bloques_a_desasignar(uint32_t tamanio_actual, int new_size);
 /*----------------------------------------------ESCRITURA----------------------------------------------------------*/
 void osada_write_little_file_full_(t_to_be_write* file, osada_file *archivo, t_info_file *info);
 void osada_write_big_file_full_(t_to_be_write* to_write, osada_file *archivo, t_info_file *info);

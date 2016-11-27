@@ -76,14 +76,14 @@ char* build_msg(int header, char *path_original, char *path_new_or_text, int siz
 		case(WRITE_FILE):
 			{
 				char *header = armar_header(WRITE_FILE);
-				//char *mensaje = malloc(string_length(path_original) + 30 + size +2);
 				char *mensaje = malloc(string_length(path_original) + 30 +2);
 				memcpy(mensaje,header,2);
+
+				free(header);
 
 				char *msg_model = armar_numero_de_bytes(string_length(path_original));
 				string_append(&msg_model,path_original);
 
-							//int tamanio_texto = string_length(path_new_or_text);
 				char *size_a_escribir = armar_numero_de_bytes(size); //OJO ACA
 				string_append(&msg_model, size_a_escribir);
 				free(size_a_escribir);
@@ -93,11 +93,8 @@ char* build_msg(int header, char *path_original, char *path_new_or_text, int siz
 				free(a_partir_de);
 
 				int offset_interno = 30 + string_length(path_original);
-
 				memcpy(mensaje+2,msg_model,offset_interno);
 				free(msg_model);
-
-				//memcpy(mensaje +offset_interno+2,path_new_or_text,size);
 				return mensaje;
 			};break;
 		case(RENAME_FILE):

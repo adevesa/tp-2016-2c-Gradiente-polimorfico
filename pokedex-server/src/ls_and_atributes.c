@@ -99,32 +99,6 @@ void listar_directorio_comun(t_list *lista, char *path)
 
 		index++;
 	}
-	/*t_file_osada *file_path = osada_get_file_called(path,disco);
-
-	lock_file_full(file_path->block_relative ,file_path->position_in_block);
-
-		if(file_path->file->state == DIRECTORY)
-		{
-			osada_file *file_1 = malloc(sizeof(osada_file));
-			osada_file *file_2 = malloc(sizeof(osada_file));
-			int index =0;
-				while(index<=1024)
-				{
-
-					void *two_files = osada_get_blocks_relative_since(TABLA_DE_ARCHIVOS,index,1,disco);
-					memcpy(file_1,two_files, sizeof(osada_file));
-					memcpy(file_2,two_files + sizeof(osada_file), sizeof(osada_file));
-				 	agregar_a_lista_si_es_hijo(file_path,file_1,lista);
-				 	agregar_a_lista_si_es_hijo(file_path,file_2,lista);
-				 	free(two_files);
-				 	index++;
-				}
-			free(file_1);
-			free(file_2);
-		}
-
-	unlock_file_full(file_path->block_relative ,file_path->position_in_block);
-	t_file_osada_destroy(file_path);*/
 }
 
 int es_el_directorio_raiz(char *path)
@@ -132,7 +106,7 @@ int es_el_directorio_raiz(char *path)
 	return string_equals_ignore_case(path,"/");
 }
 
-void agregar_a_lista_si_es_hijo(t_file_osada *path_padre, osada_file* hijo, t_list* lista)
+/*void agregar_a_lista_si_es_hijo(t_file_osada *path_padre, osada_file* hijo, t_list* lista)
 {
 	if(!verificar_si_son_mismo_files(path_padre->file,hijo))
 	{
@@ -149,7 +123,7 @@ void agregar_a_lista_si_es_hijo(t_file_osada *path_padre, osada_file* hijo, t_li
 		}
 	}
 
-}
+}*/
 
 void agregar_a_lista_si_es_hijo_full(t_info_file *info_parent, int posicion_file_absoluto,t_list *lista)
 {

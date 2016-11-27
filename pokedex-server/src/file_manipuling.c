@@ -10,14 +10,7 @@ extern int *table_asignaciones;
 
 /*------------------------------------------CREAR ARCHIVO------------------------------------------------------------------*/
 t_osada_file_free* osada_b_file_create(int tipo,char* path)
-{/*t_osada_file_free* archivo = osada_file_table_get_space_free(disco);
-	char* nombre = array_last_element(path);
-	setear_nombre(nombre,archivo->file);
-	archivo->file->state = tipo;
-	setear_bloque_padre(archivo->file,path);
-	archivo->file->file_size = 0;
-	asignar_bloque_inicial_si_es_necesario(archivo->file, tipo);
-	return archivo;*/
+{
 	return osada_b_crear(tipo,path);
 }
 

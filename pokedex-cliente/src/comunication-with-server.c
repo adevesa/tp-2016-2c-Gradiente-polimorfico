@@ -38,8 +38,6 @@ void cliente_osada_create()
 		pthread_mutex_init(&mutex_operaciones,NULL);
 	}
 
-
-
 	/*cliente_osada->ip = string_new();
 	string_append(&cliente_osada->ip, "127.0.0.1");*/
 	//cliente_osada->puerto =5001;
@@ -65,23 +63,15 @@ int cliente_pedi_atributos(const char *path, struct stat *buffer)
 		free(mensaje_A_log);
 	}
 
-	memset(buffer, 0, sizeof(struct stat));
-	if(string_equals_ignore_case(path,"/"))
-	{
-		buffer->st_mode = S_IFDIR | 0755;
-		buffer->st_nlink = 2;
-		return OPERACION_EXITOSA;
-	}
-	else
-	{
+	//memset(buffer, 0, sizeof(struct stat));
+	char *msg = build_msg(GET_ATRIBUTES,path,NULL,NULL,NULL);
+	pthread_mutex_lock(&mutex_operaciones);
+	enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
+	free(msg);
+	int resultado = escuchar_y_modelar_atributos(buffer);
+	pthread_mutex_unlock(&mutex_operaciones);
+	return resultado;
 
-		char *msg = build_msg(GET_ATRIBUTES,path,NULL,NULL,NULL);
-		pthread_mutex_lock(&mutex_operaciones);
-		enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
-		int resultado = escuchar_y_modelar_atributos(buffer);
-		pthread_mutex_unlock(&mutex_operaciones);
-		return resultado;
-	}
 }
 
 int cliente_pedi_listado(const char *path, void *buffer, fuse_fill_dir_t filler)
@@ -99,6 +89,7 @@ int cliente_pedi_listado(const char *path, void *buffer, fuse_fill_dir_t filler)
 	char *msg = build_msg(LISTAR,path,NULL,NULL,NULL);
 	pthread_mutex_lock(&mutex_operaciones);
 	enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
+	free(msg);
 	int resultado = escuchar_listado(buffer,filler);
 	pthread_mutex_unlock(&mutex_operaciones);
 	return resultado;
@@ -120,6 +111,7 @@ int cliente_pedi_crear_directorio(const char *path, mode_t modo_de_creacion)
 	char *msg = build_msg(CREATE_DIRECTORY,path,NULL,NULL,NULL);
 	pthread_mutex_lock(&mutex_operaciones);
 	enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
+	free(msg);
 	int respuesta = escuchar_respuesta_comun(cliente_osada->socket_pokedex_servidor);
 	pthread_mutex_unlock(&mutex_operaciones);
 	if(respuesta==ARGUMENTO_INVALIDO)
@@ -153,6 +145,7 @@ int cliente_pedi_crear_archivo(const char *path, mode_t modo, dev_t permisos)
 	char *msg = build_msg(CREATE_FILE,path,NULL,NULL,NULL);
 	pthread_mutex_lock(&mutex_operaciones);
 	enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
+	free(msg);
 	int respuesta = escuchar_respuesta_comun(cliente_osada->socket_pokedex_servidor);
 	pthread_mutex_unlock(&mutex_operaciones);
 	if(respuesta==ARGUMENTO_INVALIDO)
@@ -193,6 +186,7 @@ int cliente_pedi_eliminar(int tipo,const char *path)
 			char *msg = build_msg(DELETE_DIRECTTORY,path,NULL,NULL,NULL);
 			pthread_mutex_lock(&mutex_operaciones);
 			enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
+			free(msg);
 			int respuesta = escuchar_respuesta_comun(cliente_osada->socket_pokedex_servidor);
 			pthread_mutex_unlock(&mutex_operaciones);
 			return respuesta;
@@ -212,6 +206,7 @@ int cliente_pedi_eliminar(int tipo,const char *path)
 			char *msg = build_msg(DELETE_FILE,path,NULL,NULL,NULL);
 			pthread_mutex_lock(&mutex_operaciones);
 			enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
+			free(msg);
 			int respuesta = escuchar_respuesta_comun(cliente_osada->socket_pokedex_servidor);
 			pthread_mutex_unlock(&mutex_operaciones);
 			return respuesta;
@@ -242,9 +237,11 @@ int cliente_pedi_leer_archivo(const char *path, char *buf, size_t size, off_t of
 	char *msg = build_msg(READ_FILE,path,NULL,size,offset);
 	pthread_mutex_lock(&mutex_operaciones);
 	enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
+	free(msg);
 	char *primer_byte = recibir_mensaje(cliente_osada->socket_pokedex_servidor,10);
 	if(string_equals_ignore_case(primer_byte,"FFFFFFFFFF"))
 	{
+		free(primer_byte);
 		pthread_mutex_unlock(&mutex_operaciones);
 		return 0;
 	}
@@ -286,9 +283,7 @@ int cliente_pedi_escribir_archivo(const char *path, const char *text, size_t siz
 			free(mensaje_A_log_2);
 	}
 
-
 	char *msg = build_msg(WRITE_FILE,(char*)path,text,size,offset);
-
 	int tamanio_a_enviar = 32 +string_length(path);
 	pthread_mutex_lock(&mutex_operaciones);
 	sendall(cliente_osada->socket_pokedex_servidor,msg,&tamanio_a_enviar);
@@ -352,6 +347,7 @@ int cliente_pedi_renombra_archivo(const char *old_path, const char *new_path)
 	char *msg = build_msg(RENAME_FILE,(char*)old_path,(char*)new_path,NULL,NULL);
 	pthread_mutex_lock(&mutex_operaciones);
 	enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
+	free(msg);
 	int respuesta=escuchar_respuesta_comun(cliente_osada->socket_pokedex_servidor);
 	pthread_mutex_unlock(&mutex_operaciones);
 	if(respuesta==ARGUMENTO_INVALIDO)
@@ -384,6 +380,7 @@ int cliente_pedi_abrir(int tipo,const char *path, struct fuse_file_info *fi)
 			char *msg = build_msg(OPEN_FILE,path,NULL,NULL,NULL);
 			pthread_mutex_lock(&mutex_operaciones);
 			enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
+			free(msg);
 			//fi->flags = FUSE_BUF_FORCE_SPLICE;
 			int respuesta=escuchar_respuesta_comun(cliente_osada->socket_pokedex_servidor);
 
@@ -410,6 +407,7 @@ int cliente_pedi_abrir(int tipo,const char *path, struct fuse_file_info *fi)
 				char *msg = build_msg(OPEN_FILE,path,NULL,NULL,NULL);
 				pthread_mutex_lock(&mutex_operaciones);
 				enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
+				free(msg);
 				int respuesta=escuchar_respuesta_comun(cliente_osada->socket_pokedex_servidor);
 				pthread_mutex_unlock(&mutex_operaciones);
 				return respuesta;
@@ -436,6 +434,7 @@ int cliente_pedi_truncar(const char* path, off_t size)
 	}
 	char* msg = build_msg(11,path,NULL,size,NULL);
 	enviar_mensaje(cliente_osada->socket_pokedex_servidor,msg);
+	free(msg);
 	int respuesta = escuchar_respuesta_comun(cliente_osada->socket_pokedex_servidor);
 	return respuesta;
 }
@@ -520,28 +519,33 @@ int escuchar_listado (void *buffer, fuse_fill_dir_t filler)
 	{
 		if(string_equals_ignore_case(cantidad_de_elementos_string, "0000"))
 		{
-			//filler(buffer,".",NULL,0);
-			return OPERACION_EXITOSA;
+			//return OPERACION_EXITOSA;
+			return -errno;
 		}
 		else
 		{
 			int cantidad_de_elementos = atoi(cantidad_de_elementos_string);
+			free(cantidad_de_elementos_string);
 			int i=0;
 			while(i<cantidad_de_elementos)
 				{
 					modelar_listado(buffer,filler);
 					i++;
 				}
+			filler(buffer,".",NULL,0);
+			filler(buffer,"..",NULL,0);
 			return OPERACION_EXITOSA;
 		}
 	}
 }
 
-void modelar_listado(void *buffer, fuse_fill_dir_t filler)
+int modelar_listado(void *buffer, fuse_fill_dir_t filler)
 {
 	char *tamanio_del_nombre_string = recibir_mensaje(cliente_osada->socket_pokedex_servidor,2);
 	int tamanio_del_nombre = atoi(tamanio_del_nombre_string);
 	free(tamanio_del_nombre_string);
 	char *nombre = recibir_mensaje(cliente_osada->socket_pokedex_servidor,tamanio_del_nombre);
-	filler(buffer, nombre,NULL,0);
+	int resultado =filler(buffer, nombre,NULL,0);
+	free(nombre);
+	return resultado;
 }

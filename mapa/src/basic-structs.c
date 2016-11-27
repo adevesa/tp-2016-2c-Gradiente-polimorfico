@@ -168,30 +168,32 @@ int obtener_info_mapa_tiempo_deadlock(t_config *configuracion)
 
 t_dictionary* obtener_info_mapa_pokenest(char *nombreMapa, char *rutaPokedex)
 {
-
-	t_dictionary *new_diccionary_pokenest = dictionary_create();
+	t_dictionary *new_dictionary = dictionary_create();
 
 	char *ruta_final = obtener_ruta_especifica(rutaPokedex, "Mapas", nombreMapa);
 	char* ruta_final_full= obtener_ruta_especifica(ruta_final, "PokeNests", NULL);
 	free(ruta_final);
 
 	t_list *lista_directorios = nombre_de_archivos_del_directorio(ruta_final_full);
-	vector_auxiliar_identificadores_pokenest = malloc((list_size(lista_directorios))*(sizeof(char)+1) +sizeof(char) +1);
 
-	foreach_pokenest_modelate(lista_directorios, new_diccionary_pokenest, ruta_final_full);
+	char **vector = malloc((list_size(lista_directorios) +1)*4);
+
+	foreach_pokenest_modelate(lista_directorios,new_dictionary, ruta_final_full, vector);
 
 	char* menos_uno = string_new();
 	string_append(&menos_uno,"-1");
-	vector_auxiliar_identificadores_pokenest[list_size(lista_directorios)] = menos_uno;
+	vector[list_size(lista_directorios)] = menos_uno;
+
+	vector_auxiliar_identificadores_pokenest = vector;
 
 	list_destroy_and_destroy_elements(lista_directorios,free_names_dir);
 
 	free(ruta_final_full);
 
-	return new_diccionary_pokenest;
+	return new_dictionary;
 }
 
-void foreach_pokenest_modelate(void *lista_origen,void *lista_destino, void *ruta)
+void foreach_pokenest_modelate(void *lista_origen,void *lista_destino, void *ruta,char **vector_aux)
 {
 	t_list *lista_pokemones_a_modelar = (t_list*)lista_origen;
 	t_dictionary *lista_pokemons_a_devolver = (t_dictionary*)lista_destino;
@@ -210,11 +212,7 @@ void foreach_pokenest_modelate(void *lista_origen,void *lista_destino, void *rut
 		string_append(&id_aux,pokenest->identificador);
 
 		dictionary_put(lista_pokemons_a_devolver, id_aux, pokenest);
-
-		vector_auxiliar_identificadores_pokenest[i]=id_aux;
-		//free(id_aux);
-		//vector_auxiliar_identificadores_pokenest[i]=string_new();
-		//string_append(&vector_auxiliar_identificadores_pokenest[i],pokenest->identificador);
+		vector_aux[i] = id_aux;
 	}
 
 }

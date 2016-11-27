@@ -102,7 +102,8 @@ void mapa_element_destroyer(void* arg)
 
 void entrenador_destruite(t_entrenador *entrenador)
 {
-	config_destroy(entrenador->configuracion);
+	//config_destroy(entrenador->configuracion);
+	//printf("ACA NO ROMPO\n");
 	free(entrenador->directorio_de_bill);
 	free(entrenador->nombre);
 	free(entrenador->ruta_pokedex);
@@ -110,6 +111,7 @@ void entrenador_destruite(t_entrenador *entrenador)
 	free(entrenador->ubicacion);
 	free(entrenador->paso_anterior);
 	list_destroy_and_destroy_elements(entrenador->hoja_de_viaje,hoja_de_viaje_destruite);
+	free(entrenador);
 }
 
 void hoja_de_viaje_destruite(void* arg)

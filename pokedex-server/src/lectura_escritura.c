@@ -233,6 +233,7 @@ void liberar_n_bloques_full(osada_file *file, int bloques_a_liberar,t_info_file 
 
 		int *last_new_block = list_get(bloques_actuales,i);
 		establecer_nuevo_feof_en_tabla_de_asignaciones(*last_new_block);
+		settear_valor_en_tabla_asginaciones(*last_new_block, FEOF); //AGREGADO!
 		info->last_block_asigned = *last_new_block;
 
 	}

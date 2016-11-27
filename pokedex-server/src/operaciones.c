@@ -341,6 +341,9 @@ void* osada_a_truncate_file(char* path, int new_size)
 		{
 			if(osada_check_space_to_truncate_full(file,info_file,new_size))
 			{
+				actualizar_tamanio_del_padre(info_file,-(file->file_size));
+				actualizar_tamanio_del_padre(info_file,new_size);
+
 				t_to_be_truncate* trunct = malloc(sizeof(t_to_be_truncate));
 				trunct->path=path;
 				trunct->new_size = new_size;

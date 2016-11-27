@@ -12,6 +12,7 @@
 #include "vars.h"
 #include <fuse.h>
 #include "socket/serializacion_pokedex_cliente_servidor.h"
+#include "socket/cliente.h"
 #include "so-commons/log.h"
 #define MAX_BYTES_TO_ADVISES 1
 #include <pthread.h>
@@ -49,6 +50,6 @@ int escuchar_y_modelar_atributos(struct stat *buffer);
 void modelar_stat_buff(struct stat *buffer, int tipo, int size);
 
 int escuchar_listado (void *buffer, fuse_fill_dir_t filler);
-void modelar_listado(void *buffer, fuse_fill_dir_t filler);
+int modelar_listado(void *buffer, fuse_fill_dir_t filler);
 void modelar_listado_2(char* data,void *buffer, fuse_fill_dir_t filler);
 #endif /* COMUNICATION_WITH_SERVER_H_ */
