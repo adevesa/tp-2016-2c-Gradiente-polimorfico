@@ -10,6 +10,7 @@
 #include "so-commons/string.h"
 #include "so-commons/temporal.h"
 #include <stdlib.h>
+#include "math.h"
 
 long de_hora_a_ms(int hora);
 long de_min_a_ms(int minutos);

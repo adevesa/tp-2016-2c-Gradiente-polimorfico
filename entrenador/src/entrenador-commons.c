@@ -433,6 +433,7 @@ int entrenador_captura_pokemon(int indice_objetivo)
 	//FIN log
 
 	enviar_mensaje_a_mapa(entrenador->mapa_actual,SOLICITAR_CAPTURA_POKEMON,NULL);
+
 	char *hora_inicio_bloqueado = temporal_get_string_time();
 
 	if(!me_quedan_vidas() && matan_al_entrenador)

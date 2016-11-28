@@ -71,7 +71,8 @@ long diferencia_de_tiempos(char* tiempoOrigen, char* tiempoFinal){
 	long tf=tiempo_a_milisegundos(tiempoFinal);
 	free(tiempoOrigen);
 	free(tiempoFinal);
-	return(tf-to);
+	long valor_final =fabs(tf-to);
+	return(valor_final);
 }
 
 
