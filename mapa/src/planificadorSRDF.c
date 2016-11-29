@@ -159,6 +159,7 @@ void planificador_srdf_organiza_entrenadores()
 				}
 				else
 				{
+					planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
 					if(!queue_is_empty(planificador->listas_y_colas->cola_entrenadores_listos))
 					{
 						log_info(informe_planificador, "HAY ALGUIEN NUEVO PARA JUGAR!");
