@@ -83,7 +83,7 @@ void iniciar_semaforos()
 	sem_init(&semaforo_servidor,1,0);
 	//sem_init(&semaforo_terminacion,0,0);
 	sem_init(&semaforo_esperar_por_entrenador_listo,1,0);
-	sem_init(&semaforo_esperar_ordenamieto,4,0);
+	sem_init(&semaforo_esperar_ordenamieto,1,0);
 }
 
 void iniciar_logs(char *nombre)

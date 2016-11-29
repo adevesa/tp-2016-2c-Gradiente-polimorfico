@@ -119,6 +119,7 @@ t_list* cola_listos_a_lista(t_queue *cola_listos)
 }
 
 /*-----------------------------------EXECUTE PLANIFICADOR SRDF--------------------------------------------------------*/
+
 void* ejecutar_planificador_srdf(void* arg)
 {
 	planificador_inicia_log();
@@ -158,8 +159,12 @@ void planificador_srdf_organiza_entrenadores()
 				}
 				else
 				{
-					log_info(informe_planificador, "HAY ALGUIEN NUEVO PARA JUGAR!");
-					se_puede_continuar = 1;
+					if(!queue_is_empty(planificador->listas_y_colas->cola_entrenadores_listos))
+					{
+						log_info(informe_planificador, "HAY ALGUIEN NUEVO PARA JUGAR!");
+						se_puede_continuar = 1;
+					}
+
 				}
 			}
 
@@ -168,7 +173,9 @@ void planificador_srdf_organiza_entrenadores()
 		t_entrenador *entrenador_listo = planificador_pop_entrenador_listo(planificador);
 		int estado_anterior = entrenador_listo->estado;
 		mapa_cambiale_estado_a_entrenador(entrenador_listo, EXECUTE, estado_anterior);
+		loggear_turno(entrenador_listo);
 		planificador_srdf_es_el_turno_de(entrenador_listo);
+		log_info(informe_planificador, "Fin de turno");
 		planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
 		planificador_srdf_reordena_entrenadores_si_es_necesario();
 		mostrarTodo(planificador->listas_y_colas->cola_entrenadores_bloqueados,COLA_BLOQUEADOS);
@@ -197,7 +204,7 @@ void planificador_srdf_dale_pokemon_si_es_posible(t_entrenador *entrenador)
 		planificador_entrega_pokemon_a(entrenador);
 		entrenador->esperando_pokemon = NO;
 		planificador_push_entrenador_en_cola_sin_objetivos(entrenador);
-		sem_wait(&semaforo_esperar_ordenamieto);
+		//sem_wait(&semaforo_esperar_ordenamieto);
 	}
 	else
 	{
@@ -270,9 +277,11 @@ void* planificador_srdf_atende_a_entrenadores_sin_coordenadas()
 		else
 		{
 			se_agrego_nuevo_entrenador = 0;
-			if(se_ordeno_algo != 0)
+			if(se_ordeno_algo != 0 && !hay_jugadores)
 			{
-				sem_post(&semaforo_esperar_ordenamieto);
+				//sem_post(&semaforo_esperar_ordenamieto);
+				sem_post(&semaforo_esperar_por_entrenador_listo);
+				hay_jugadores=1;
 				se_ordeno_algo = 0;
 			}
 		}
