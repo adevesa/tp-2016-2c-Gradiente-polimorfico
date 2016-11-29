@@ -9,13 +9,6 @@
 int conectar_a_mapa(t_mapa *mapa)
 {
 	mapa->server= cliente_create(atoi(mapa->puerto),mapa->ip);
-
-	/*char *mensaje = string_new();
-	string_append(&mensaje, "CONECTADO con ");
-	string_append(&mensaje, mapa->nombre);
-	log_info(info_entrenador,mensaje);
-	free(mensaje);*/
-
 	return mapa->server;
 }
 
@@ -60,6 +53,10 @@ int mapa_me_dice(char *mapa_dice)
 	if(string_equals_ignore_case(mapa_dice, "123"))
 	{
 		return MAPA_ME_PREGUNTA_SI_ESTOY;
+	}
+	if(string_equals_ignore_case(mapa_dice,"DESCONECTADO"))
+	{
+		return MAPA_DESCONECTADO;
 	}
 	else return 0;
 }

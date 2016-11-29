@@ -230,13 +230,6 @@ void entrenador_busca_mapa(int index)
 	char *nombre_mapa = list_get(entrenador->hoja_de_viaje, index);
 	entrenador->mapa_actual = mapa_create(nombre_mapa, entrenador->ruta_pokedex, entrenador);
 
-	//INICIO log
-	/*char *mensaje = string_new();
-	string_append(&mensaje, "Mapa actual: ");
-	string_append(&mensaje, entrenador->mapa_actual->nombre);
-	log_info(info_entrenador,mensaje);
-	free(mensaje);*/
-	//FIN log
 }
 
 /*--------------------------------------------LOGICA DE CUMPLIR LOS OBJETIVOS DE UN MAPA---------------------------------*/
@@ -393,7 +386,6 @@ int entrenador_cumpli_objetivo(int indice_obejtivo)
 	while(!entrenador_llego_a_destino() && !matan_al_entrenador)
 	{
 		entrenador_espera_turno();
-		//sem_wait(&turno_entrenador);
 		if(!matan_al_entrenador)
 		{
 			entrenador_ubicate_para_donde_caminar();
@@ -409,7 +401,6 @@ int entrenador_cumpli_objetivo(int indice_obejtivo)
 	else
 	{
 		entrenador_espera_turno();
-		//sem_wait(&turno_entrenador);
 		int resultado=entrenador_captura_pokemon(indice_obejtivo);
 		return resultado;
 	}
@@ -468,6 +459,15 @@ int entrenador_captura_pokemon(int indice_objetivo)
 				char *hora_fin_desbloqueado = temporal_get_string_time();
 				entrenador_registra_tiempo_bloqueo(hora_inicio_bloqueado, hora_fin_desbloqueado);
 				return EXITO;
+			};break;
+			case(MAPA_DESCONECTADO):
+			{
+				if(!me_quedan_vidas() && matan_al_entrenador)
+				{
+					char *hora_fin_desbloqueado = temporal_get_string_time();
+					entrenador_registra_tiempo_bloqueo(hora_inicio_bloqueado, hora_fin_desbloqueado);
+					return MUERTO;
+				}
 			};break;
 			case(MAPA_ME_AVISA_DEADLOCK):
 			{
