@@ -218,7 +218,8 @@ void planificador_srdf_dale_nuevo_turno_hasta_que_se_bloquee(t_entrenador *entre
 {
 	while(!mapa_decime_si_entrenador_esta_bloqueado(entrenador) && !mapa_decime_si_entrenador_esta_abortado(entrenador))
 	{
-		usleep(planificador->retardo*1000);
+		//usleep(planificador->retardo*1000);
+		usleep(mapa->info_algoritmo->retardo*1000);
 		enviar_mensaje_a_entrenador(entrenador,OTORGAR_TURNO,NULL);
 		char *mensaje_del_entrenador = escuchar_mensaje_entrenador(entrenador, SOLICITUD_DEL_ENTRENADOR);
 		int caso = tratar_respuesta(mensaje_del_entrenador,entrenador);

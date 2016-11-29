@@ -58,7 +58,7 @@ int mapa_me_dice(char *mapa_dice)
 	{
 		return MAPA_DESCONECTADO;
 	}
-	else return 0;
+	else return MAPA_DESCONECTADO;
 }
 
 void enviar_mensaje_a_mapa(t_mapa *mapa, int header, char *payload)

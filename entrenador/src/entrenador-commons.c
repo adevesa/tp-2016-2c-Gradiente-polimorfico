@@ -462,7 +462,7 @@ int entrenador_captura_pokemon(int indice_objetivo)
 			};break;
 			case(MAPA_DESCONECTADO):
 			{
-				if(!me_quedan_vidas() && matan_al_entrenador)
+				if(matan_al_entrenador)
 				{
 					char *hora_fin_desbloqueado = temporal_get_string_time();
 					entrenador_registra_tiempo_bloqueo(hora_inicio_bloqueado, hora_fin_desbloqueado);

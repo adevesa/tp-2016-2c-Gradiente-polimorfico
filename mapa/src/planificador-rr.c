@@ -104,7 +104,8 @@ void planificador_rr_es_el_turno_de(t_entrenador *entrenador_listo, int *quamtum
 {
 	while(!quamtum_se_termino(*quamtum) && (entrenador_listo->objetivo_cumplido != ABORTADO) )
 	{
-		usleep(planificador->retardo*1000);
+		//usleep(planificador->retardo*1000);
+		usleep(mapa->info_algoritmo->retardo*1000);
 		if(mapa_decime_si_entrenador_esta_listo_pero_estaba_bloqueado(entrenador_listo) || entrenador_listo->esperando_pokemon == SI)
 		{
 			planificador_rr_volve_a_bloquear_a_entrenador_si_es_necesario(entrenador_listo, quamtum);
