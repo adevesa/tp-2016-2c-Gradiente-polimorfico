@@ -49,7 +49,6 @@ void ejecutar_mapa(char *nombre, char *rutaPokedex)
 	mapa_ejecuta_deadlock();
 	encolacion_entrenadores_iniciada=NO_INICIADO;
 	mapa_hacete_visible_para_entrenadores();
-	//sem_wait(&semaforo_terminacion);
 }
 
 void iniciar_seniales_mapa()
@@ -81,7 +80,6 @@ void iniciar_semaforos()
 	sem_init(&semaforo_hay_algun_entrenador_listo,1,0);
 	sem_init(&semaforo_cola_entrenadores_sin_objetivos,1,0);
 	sem_init(&semaforo_servidor,1,0);
-	//sem_init(&semaforo_terminacion,0,0);
 	sem_init(&semaforo_esperar_por_entrenador_listo,1,0);
 	sem_init(&semaforo_esperar_ordenamieto,1,0);
 }

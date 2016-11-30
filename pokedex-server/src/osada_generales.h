@@ -33,7 +33,7 @@ void agregar_y_recuperar_dir_raiz();
 void actualizar_tamanio_del_padre(t_info_file *info, int size_a_sumar);
 
 /*----------------------------------------------------RECUPERANDO TABLA DE ASIGNACIONES------------------------------------*/
-t_dictionary* inicializar_table_asig(osada_header *header);
+//t_dictionary* inicializar_table_asig(osada_header *header);
 void limpiar_table_asignaciones();
 void recuperar_tabla_de_asignaciones();
 void recuperar_bloques_asigados_array(int posicion);
@@ -101,7 +101,6 @@ void* disco_dame_mapping(int size, int file_descriptor);
 
 
 /*----------------------------------------------OBTENCION DE BLOQUES---------------------------------------------------------*/
-void* osada_get_table_asig();
 /*
  * @NAME: void* osada_get_blocks_relative_since(int campo, int num_block_init, int num_blocks,t_disco_osada *disco);
  * @DESC: dado un campo (HEADER, BITMAP, TABLA_DE_ARCHIVOS, TABLA_DE_ASIGNACIONES o BLOQUE_DE_DATOS), un num de bloque relativo dentro de DICHO campo
@@ -204,13 +203,8 @@ void controlar_en_bitarray(int block_relative_data);
  */
 int osada_ocupa_bit_libre_de(t_disco_osada *disco);
 
-/*
- * @NAME:int osada_b_check_is_bitarray_full(t_disco_osada *disco);
- * @DESC: Verifa si el disco está completo o todavia hay algún espacio libre. Devuelve:
- * 		- 0 --> HAY ESPACIO LIBRE
- * 		- 1 --> NO HAY MÁS ESPACIO LIBRE
- */
-int osada_b_check_is_bitarray_full(t_disco_osada *disco);
+
+//int osada_b_check_is_bitarray_full(t_disco_osada *disco);
 int osada_b_check_is_bitarray_have_n_blocks_free(int n, t_disco_osada *disco);
 int osada_b_check_is_bitarray_have_n_blocks_free_full(int n);
 int calcular_posicion_relativa_en_bloque_de_datos(int posicion_absoluta);
@@ -235,10 +229,10 @@ void osada_desocupa_bit(t_disco_osada *disco, int num_block);
  * 	WARNING: LOS CAMBIOS SON IMPACTADOS DIRECTAMENTE EN EL DISCO LUEGO DE TERMINAR CON LA EJECUCIÓN DE LA FUNCIÓN.
  */
 void osada_desocupa_n_bits(t_list *bloques_a_liberar);
+void osada_desocupa_archivo_entero(osada_file *file);
 
 
-
-t_list* osada_get_blocks_asig(osada_file* file);
+//t_list* osada_get_blocks_asig(osada_file* file);
 /*---------------------------------------------TIME---------------------------------------------------------------------*/
 void osada_b_actualiza_time(t_file_osada* file);
 

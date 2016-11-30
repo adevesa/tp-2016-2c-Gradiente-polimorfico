@@ -16,7 +16,6 @@ void* osada_a_get_attributes(char *path)
 	{
 		t_attributes_file *atributos = malloc(sizeof(t_attributes_file));
 		atributos->tipo=2;
-		//atributos->size = osada_b_calculate_size_of_directory(path);
 		t_info_file *info_raiz = dictionary_get(disco->diccionario_de_archivos,"/");
 		atributos->size = info_raiz->tamanio_del_directorio;
 		return atributos;
@@ -234,7 +233,8 @@ void* osada_a_write_file(t_to_be_write *to_write)
 			osada_b_truncate_file_full(truncate,file,info_file);
 			if(to_write->size_inmediatamente_anterior !=0)
 			{
-				if(to_write->size == PAGE_SIZE_MAX && es_multiplo_de(to_write->offset,to_write->size_inmediatamente_anterior) )
+				//if(to_write->size == PAGE_SIZE_MAX && es_multiplo_de(to_write->offset,to_write->size_inmediatamente_anterior) )
+				if((es_multiplo_de(to_write->size,PAGE_SIZE_MAX) || es_multiplo_de(to_write->size,PAGE_SIZE_MAX/4)) && es_multiplo_de(to_write->offset,to_write->size_inmediatamente_anterior) )
 				{
 					osada_write_big_file_full_(to_write,file,info_file);
 				}

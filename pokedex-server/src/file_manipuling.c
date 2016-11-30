@@ -129,7 +129,6 @@ void asignar_bloque_inicial_si_es_necesario(osada_file *file, int tipo)
 	}
 	else
 	{
-		//file->first_block = osada_b_get_a_new_block_init();
 		file->first_block = FEOF;
 	}
 }
@@ -481,15 +480,11 @@ int verificar_existencia(char *file_or_directory, uint16_t dad_block)
 			{
 				satisfy = calcular_posicion_en_tabla_de_archivos(file->block_relative, file->position_in_block);
 				t_file_osada_destroy(file);
-				/*free(file->file);
-				free(file);*/
 				return satisfy;
 			}
 			else
 			{
 				t_file_osada_destroy(file);
-				/*free(file->file);
-				free(file);*/
 				return -1;
 			}
 		}

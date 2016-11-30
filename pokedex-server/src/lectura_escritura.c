@@ -523,61 +523,6 @@ void* osada_b_read_file(osada_file *file, t_disco_osada *disco, t_to_be_read *to
 				}
 				return data;
 			}
-		/*if(bloque_inicial == bloque_final )
-		{
-			int *block_num = list_get(bloques_por_recuperar,bloque_inicial);
-			//int bloque_num = table_asignaciones[bloque_inicial];
-			void *data_recv = osada_get_blocks_relative_since(BLOQUE_DE_DATOS,*block_num,1,disco);
-			memcpy(data,data_recv+to_read->offset,to_read->size);
-			free(data_recv);
-			return( (void*) data);
-		}*/
-		/*else
-		{
-			int i = bloque_inicial;
-			int iteracion = 0;
-
-			if(to_read->size <= OSADA_BLOCK_SIZE*(bloque_final-bloque_inicial))
-			{
-				bloque_final = bloque_final -1;
-			}
-			while(i<=bloque_final)
-			{
-				//int *block_num = list_get(bloques_por_recuperar,i);
-				int block_num = buscar_bloque_numero(file,bloque_inicial);
-				void *data_recv = osada_get_blocks_relative_since(BLOQUE_DE_DATOS,*block_num,1,disco);
-				if(i == bloque_final)
-				{
-					int cantidad_bloques_enteros_leidos = to_read->size / OSADA_BLOCK_SIZE;
-					int bytes_a_leer_del_ultimo_bloque = to_read->size - (cantidad_bloques_enteros_leidos*OSADA_BLOCK_SIZE);
-					if(bytes_a_leer_del_ultimo_bloque==0)
-					{
-						memcpy(data + (iteracion*OSADA_BLOCK_SIZE),data_recv,OSADA_BLOCK_SIZE);
-					}
-					else
-					{
-						memcpy(data + (iteracion*OSADA_BLOCK_SIZE),data_recv,bytes_a_leer_del_ultimo_bloque);
-					}
-
-				}
-				else
-				{
-					if(i == bloque_inicial)
-					{
-						memcpy(data + (desplazamiento_en_bloque_init),data_recv,OSADA_BLOCK_SIZE);
-					}
-					else
-					{
-						memcpy(data + (iteracion*OSADA_BLOCK_SIZE),data_recv,OSADA_BLOCK_SIZE);
-					}
-				}
-				free(data_recv);
-				iteracion++;
-				i++;
-			}
-
-			return data;
-		}*/
 	}
 }
 

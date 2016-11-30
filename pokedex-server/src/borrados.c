@@ -28,9 +28,10 @@ void osada_delete_this_file(char *path)
 
 	if(info_file->last_block_asigned != FEOF)
 	{
-		t_list *bloques_a_liberar = osada_get_blocks_nums_of_this_file(file,disco);
-		osada_desocupa_n_bits(bloques_a_liberar);
-		list_destroy_and_destroy_elements(bloques_a_liberar,free_list_blocks);
+		//t_list *bloques_a_liberar = osada_get_blocks_nums_of_this_file(file,disco);
+		//osada_desocupa_n_bits(bloques_a_liberar);
+		//list_destroy_and_destroy_elements(bloques_a_liberar,free_list_blocks);
+		osada_desocupa_archivo_entero(file);
 	}
 	osada_change_file_state(file,DELETED);
 	osada_impactar_un_archivo(info_file->posicion_en_tabla_de_archivos,file);
