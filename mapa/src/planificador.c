@@ -8,19 +8,19 @@
 
 extern t_mapa *mapa;
 extern sem_t semaforo_entrenadores_listos;
-extern sem_t semaforo_cola_bloqueados;
 extern pthread_mutex_t mutex_manipular_cola_listos;
 extern pthread_mutex_t mutex_manipular_cola_bloqueados;
 extern pthread_mutex_t mutex_manipular_cola_nuevos;
-extern sem_t semaforo_hay_algun_entrenador_listo;
+extern int hay_jugadores_online;
+extern int hay_jugadores;
+int encolacion_entrenadores_iniciada;
+
+//extern sem_t semaforo_cola_bloqueados;
+//extern sem_t semaforo_hay_algun_entrenador_listo;
 //extern sem_t semaforo_cola_entrenadores_sin_objetivos;
 //extern int semaforo_rr_cambiado_por_deadlock;
 /*int hay_jugadores_online = 0;
 int hay_jugadores=0;*/
-
-extern int hay_jugadores_online;
-extern int hay_jugadores;
-int encolacion_entrenadores_iniciada;
 //int encolacion_entrenadores_iniciada = NO_INICIADO;
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
 t_listas_y_colas* listas_y_colas_creense()
@@ -63,6 +63,20 @@ void planificador_inicia_log()
 	free(nombre_log);
 }
 
+/*--------------------------------------------DESTROYERS---------------------------------------------------------------*/
+void planificador_rr_destruite(t_planificador_rr *rr)
+{
+	free(rr->listas_y_colas);
+	free(rr);
+}
+
+void planificador_srdf_destruite(t_planificador_srdf *srdf)
+{
+	free(srdf->listas_y_colas);
+	list_destroy(srdf->listos_y_ordenados);
+	queue_destroy(srdf->cola_entrenadores_sin_objetivo);
+	free(srdf);
+}
 /*---------------------------------------PUSH Y POPS DE COLAS---------------------------------------------------------*/
 void planificador_push_entrenador_a_bloqueado(t_entrenador *entrenador)
 {
@@ -431,7 +445,7 @@ void planificador_inicia_encolacion_nuevos_entrenadores()
 	pthread_attr_destroy(&attr);
 }
 
-void* planificador_encola_nuevos_entrenadores()
+/*void* planificador_encola_nuevos_entrenadores()
 {
 	extern t_mapa *mapa;
 	while(1)
@@ -458,6 +472,31 @@ void* planificador_encola_nuevos_entrenadores()
 			pthread_mutex_unlock(&mutex_manipular_cola_nuevos);
 		}
 	}
+
+}*/
+
+void* planificador_encola_nuevos_entrenadores()
+{
+		if(mapa_decime_si_planificador_es(PLANIFICADOR_RR))
+		{
+			pthread_mutex_lock(&mutex_manipular_cola_nuevos);
+			foreach(COLA_LISTOS,mapa->entrenadores->lista_entrenadores_a_planificar,planificador_modela_nuevo_entrenador_y_encolalo);
+			if(!hay_jugadores_online)
+			{
+				hay_jugadores_online=1;
+				sem_post(&semaforo_entrenadores_listos);
+			}
+
+			list_clean(mapa->entrenadores->lista_entrenadores_a_planificar);
+			pthread_mutex_unlock(&mutex_manipular_cola_nuevos);
+		}
+		else
+		{
+			pthread_mutex_lock(&mutex_manipular_cola_nuevos);
+			foreach(COLA_SIN_OBJETIVOS,mapa->entrenadores->lista_entrenadores_a_planificar,planificador_modela_nuevo_entrenador_y_encolalo);
+			list_clean(mapa->entrenadores->lista_entrenadores_a_planificar);
+			pthread_mutex_unlock(&mutex_manipular_cola_nuevos);
+		}
 
 }
 

@@ -9,15 +9,17 @@
 t_planificador_rr *planificador;
 extern sem_t semaforo_entrenadores_listos;
 extern int hay_jugadores_online;
-extern int encolacion_entrenadores_iniciada;
 extern int algoritmo_cambio;
 int semaforo_rr_cambiado_por_deadlock =0;
+//extern int encolacion_entrenadores_iniciada;
+
 /*-----------------------------------EXECUTE PLANIFICADOR RR---------------------------------------------------------*/
 void* ejecutar_planificador_rr(void* arg)
 {
 	planificador_inicia_log();
 	planificador = planificador_rr_create();
 	planificador_rr_organiza_entrenadores();
+	free(informe_planificador);
 	pthread_exit(NULL);
 }
 
@@ -35,11 +37,11 @@ int quamtum_se_termino(int q)
 
 void planificador_rr_organiza_entrenadores()
 {
-	if(encolacion_entrenadores_iniciada == NO_INICIADO)
+	/*if(encolacion_entrenadores_iniciada == NO_INICIADO)
 	{
 		planificador_inicia_encolacion_nuevos_entrenadores();
 		encolacion_entrenadores_iniciada=INICIADO;
-	}
+	}*/
 	while(mapa_decime_si_planificador_es(PLANIFICADOR_RR) && !algoritmo_cambio)
 	{
 		if(queue_is_empty(planificador->listas_y_colas->cola_entrenadores_listos))
@@ -80,6 +82,7 @@ void planificador_rr_organiza_entrenadores()
 		mostrarTodo(planificador->listas_y_colas->cola_entrenadores_listos,COLA_LISTOS);
 	}
 	cambiar_algoritmo();
+	planificador_rr_destruite(planificador);
 }
 
 void loggear_turno(t_entrenador *entrenador)
@@ -104,7 +107,6 @@ void planificador_rr_es_el_turno_de(t_entrenador *entrenador_listo, int *quamtum
 {
 	while(!quamtum_se_termino(*quamtum) && (entrenador_listo->objetivo_cumplido != ABORTADO) )
 	{
-		//usleep(planificador->retardo*1000);
 		usleep(mapa->info_algoritmo->retardo*1000);
 		if(mapa_decime_si_entrenador_esta_listo_pero_estaba_bloqueado(entrenador_listo) || entrenador_listo->esperando_pokemon == SI)
 		{

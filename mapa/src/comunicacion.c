@@ -47,8 +47,6 @@ void conexion_create(int *conexion)
 void* atender_cliente(void* argumento)
 {
 	int *conexion = (int*) argumento;
-	//sem_t semaforo_termina_proceso;
-	//sem_init(&semaforo_termina_proceso,0,0);
 	agregar_proceso_a_lista(conexion,NULL);
 	pthread_exit(NULL);
 }
@@ -59,7 +57,6 @@ void agregar_proceso_a_lista(int *socket_cliente, sem_t *semaforo_finalizacion)
 	entrenador->id_proceso = (int)process_get_thread_id();
 	entrenador->socket_entrenador = *socket_cliente;
 	entrenador->simbolo_identificador = recibir_mensaje(*socket_cliente,1);
-	//entrenador->semaforo_finalizacion = semaforo_finalizacion;
 
 	pthread_mutex_lock(&mutex_manipular_cola_nuevos);
 	list_add(mapa->entrenadores->lista_entrenadores_a_planificar,entrenador);
@@ -77,7 +74,8 @@ void agregar_proceso_a_lista(int *socket_cliente, sem_t *semaforo_finalizacion)
 	free(num_aux);
 	//FIN LOG
 
-	sem_post(&semaforo_hay_algun_entrenador_listo);
+	//sem_post(&semaforo_hay_algun_entrenador_listo);
+	planificador_encola_nuevos_entrenadores();
 }
 
 /*-------------------------------------------DECODIFICACION DE RESPUESTAS------------------------------------------------*/

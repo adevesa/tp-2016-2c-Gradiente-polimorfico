@@ -12,20 +12,19 @@ extern pthread_mutex_t mutex_cola_entrenadores_sin_objetivos;
 pthread_mutex_t mutex_manipular_listos_y_odenados = PTHREAD_MUTEX_INITIALIZER;
 extern sem_t semaforo_esperar_por_entrenador_listo;
 extern pthread_mutex_t mutex_manipular_cola_listos;
-//extern sem_t semaforo_esperar_ordenamieto;
 
 int se_agrego_nuevo_entrenador = 0;
 int cantidad_entrenadores_nuevos = 0;
 extern int hay_jugadores;
 int se_ordeno_algo = 0;
 int semaforo_srdf_cambiado_por_deadlock =0;
-
 extern t_log *informe_planificador;
-extern int encolacion_entrenadores_iniciada;
 extern int algoritmo_cambio;
-
 pthread_t thread_sin_coordenadas;
 int todavia_hay_alguien = 1;
+
+//extern sem_t semaforo_esperar_ordenamieto;
+//extern int encolacion_entrenadores_iniciada;
 
 void planificador_push_entrenador_en_cola_sin_objetivos(t_entrenador *entrenador)
 {
@@ -125,13 +124,15 @@ void* ejecutar_planificador_srdf(void* arg)
 {
 	planificador_inicia_log();
 	planificador = planificador_srdf_create();
-	if(encolacion_entrenadores_iniciada == NO_INICIADO)
+	/*if(encolacion_entrenadores_iniciada == NO_INICIADO)
 	{
 		planificador_inicia_encolacion_nuevos_entrenadores();
 		encolacion_entrenadores_iniciada=INICIADO;
-	}
+	}*/
 	planificador_srdf_organiza_entrenadores_sin_coordenadas();
 	planificador_srdf_organiza_entrenadores();
+	planificador_srdf_destruite(planificador);
+	free(informe_planificador);
 	pthread_exit(NULL);
 }
 

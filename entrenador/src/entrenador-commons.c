@@ -33,11 +33,11 @@ void mostrar_por_pantalla_resultados()
 {
 	if(!se_reintenta)
 	{
-		printf("LOGRE TERMINAR MI AVENTURA! SOY UN MAESTRO POKEMON \n");
+		printf("Logre terminar mi aventura! Llamame %s MAESTRO POKEMON! \n",entrenador->nombre);
 	}
 	else
 	{
-		printf("NO LOGRE TERMINAR MI AVENTURA \n");
+		printf("%s :NO LOGRE TERMINAR MI AVENTURA \n",entrenador->nombre);
 	}
 	//printf("-TIEMPO TOTAL AVENTURA %d \n", entrenador->tiempo_total_aventura);
 	printf("-TIEMPO BLOQUEADO EN POKENEST: %d ms. \n", entrenador->tiempo_bloqueado_pokenest);

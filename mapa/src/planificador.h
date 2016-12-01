@@ -73,7 +73,9 @@ typedef struct srdf
 t_listas_y_colas* listas_y_colas_creense();
 t_planificador_rr* planificador_rr_create();
 t_planificador_srdf* planificador_srdf_create();
-
+/*--------------------------------------------DESTROYERS---------------------------------------------------------------*/
+void planificador_rr_destruite(t_planificador_rr *rr);
+void planificador_srdf_destruite(t_planificador_srdf *srdf);
 
 /*-----------------------------------EXECUTE PLANIFICADOR SRDF--------------------------------------------------------*/
 void* ejecutar_planificador_srdf(void* arg);
