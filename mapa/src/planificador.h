@@ -85,7 +85,7 @@ void planificador_push_entrenador_a_bloqueado(t_entrenador *entrenador);
 void planificador_push_entrenador_a_listo(t_entrenador *entrenador);
 t_entrenador* planificador_pop_entrenador_bloqueado();
 t_entrenador* planificador_pop_entrenador_listo();
-
+t_entrenador* planificador_pop_entrenador_listo_to_srdf();
 /*-------------------------------------------FUNCIONES GENERALES--------------------------------------------------------*/
 void planificador_dale_coordenadas_a_entrenador(t_entrenador *entrenador);
 void planificador_entrenador_se_mueve(t_entrenador *entrenador);

@@ -81,9 +81,9 @@ typedef struct entrenador
 	char *simbolo_identificador;
 	int tiene_objetivo;
 	int distancia_hasta_objetivo;
-	int objetivo_cumplido; //<-- será 1 si ya se cumplió el objetivo, 0 caso default;
-	int estado; //<-- será 1 = listo, 0 = bloquedo, -1 = muerto;
-	int estado_anterior; //<-- será 1 = listo, 0 = bloquedo
+	int objetivo_cumplido;
+	int estado;
+	int estado_anterior;
 	int esperando_pokemon;
 	int numero_de_ingreso;
 	int debe_liberar_solicitud;

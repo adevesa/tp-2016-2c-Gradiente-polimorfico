@@ -69,6 +69,8 @@ void planificador_rr_organiza_entrenadores()
 
 		}
 		planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
+		mostrarTodo(planificador->listas_y_colas->cola_entrenadores_bloqueados,COLA_BLOQUEADOS);
+		mostrarTodo(planificador->listas_y_colas->cola_entrenadores_listos,COLA_LISTOS);
 		t_entrenador *entrenador_listo = planificador_pop_entrenador_listo(planificador);
 		int quamtum_restante = planificador->quantum;
 		int estado_anterior = entrenador_listo->estado;
@@ -78,8 +80,8 @@ void planificador_rr_organiza_entrenadores()
 		log_info(informe_planificador, "Fin de turno");
 		planificador_volve_a_encolar_a_listo_si_es_necesario(entrenador_listo);
 		planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
-		mostrarTodo(planificador->listas_y_colas->cola_entrenadores_bloqueados,COLA_BLOQUEADOS);
-		mostrarTodo(planificador->listas_y_colas->cola_entrenadores_listos,COLA_LISTOS);
+		//mostrarTodo(planificador->listas_y_colas->cola_entrenadores_bloqueados,COLA_BLOQUEADOS);
+		//mostrarTodo(planificador->listas_y_colas->cola_entrenadores_listos,COLA_LISTOS);
 	}
 	cambiar_algoritmo();
 	planificador_rr_destruite(planificador);
@@ -130,7 +132,6 @@ void planificador_rr_dale_nuevo_turno_a_entrenador(t_entrenador *entrenador_list
 	char *mensaje_del_entrenador = escuchar_mensaje_entrenador(entrenador_listo, SOLICITUD_DEL_ENTRENADOR);
 	int caso = tratar_respuesta(mensaje_del_entrenador,entrenador_listo);
 	free(mensaje_del_entrenador);
-	//log_info(informe_planificador,mensaje_del_entrenador);
 	switch(caso)
 	{
 		case(ENTRENADOR_DESCONECTADO):
@@ -142,10 +143,12 @@ void planificador_rr_dale_nuevo_turno_a_entrenador(t_entrenador *entrenador_list
 			{
 				planificador_dale_coordenadas_a_entrenador(entrenador_listo);
 				quamtum_disminuite(quamtum_restante);
+				entrenador_listo->tiene_objetivo = SI;
 			} break;
 		case(ENTRENADOR_QUIERE_MOVERSE):
 			{
 				planificador_entrenador_se_mueve(entrenador_listo);
+				log_info(informe_planificador,"Entrenador se movio");
 				quamtum_disminuite(quamtum_restante);
 			} break;
 		case(ENTRENADOR_QUIERE_CAPTURAR_POKEMON):
@@ -156,7 +159,7 @@ void planificador_rr_dale_nuevo_turno_a_entrenador(t_entrenador *entrenador_list
 					*quamtum_restante = 0;
 					entrenador_listo->esperando_pokemon = SI;
 				}
-				else { quamtum_disminuite(quamtum_restante); }
+				else { quamtum_disminuite(quamtum_restante); entrenador_listo->tiene_objetivo=NO; }
 			} break;
 		default:
 		{
@@ -174,6 +177,7 @@ void planificador_rr_volve_a_bloquear_a_entrenador_si_es_necesario(t_entrenador 
 		planificador_entrega_pokemon_a(entrenador);
 		quamtum_disminuite(quamtum);
 		entrenador->esperando_pokemon = NO;
+		entrenador->tiene_objetivo = NO;
 	}
 	else
 	{

@@ -14,14 +14,9 @@ extern pthread_mutex_t mutex_manipular_cola_nuevos;
 extern int hay_jugadores_online;
 extern int hay_jugadores;
 int encolacion_entrenadores_iniciada;
+extern sem_t semaforo_esperar_por_entrenador_listo;
 
-//extern sem_t semaforo_cola_bloqueados;
-//extern sem_t semaforo_hay_algun_entrenador_listo;
-//extern sem_t semaforo_cola_entrenadores_sin_objetivos;
-//extern int semaforo_rr_cambiado_por_deadlock;
-/*int hay_jugadores_online = 0;
-int hay_jugadores=0;*/
-//int encolacion_entrenadores_iniciada = NO_INICIADO;
+
 /*--------------------------------------------CREATES---------------------------------------------------------------*/
 t_listas_y_colas* listas_y_colas_creense()
 {
@@ -102,6 +97,40 @@ t_entrenador* planificador_pop_entrenador_listo()
 	t_entrenador *entrenador_que_tiene_el_turno = (t_entrenador*) queue_pop(mapa->entrenadores->cola_entrenadores_listos);
 	pthread_mutex_unlock(&mutex_manipular_cola_listos);
 	return entrenador_que_tiene_el_turno;
+}
+
+t_entrenador* planificador_pop_entrenador_listo_to_srdf()
+{
+	pthread_mutex_lock(&mutex_manipular_cola_listos);
+
+	t_list *list_aux = cola_listos_a_lista(mapa->entrenadores->cola_entrenadores_listos);
+	int size = list_size(list_aux);
+	int i = 0;
+	int entrenador_sin_coordenadas = 0;
+	while(i<size && !entrenador_sin_coordenadas)
+	{
+		t_entrenador *entrenador = list_get(list_aux,i);
+		if(!entrenador->tiene_objetivo)
+		{
+			entrenador_sin_coordenadas = 1;
+		}
+		i++;
+	}
+	if(entrenador_sin_coordenadas == 1)
+	{
+		t_entrenador *entrenador_turno_especial = list_get(list_aux,i-1);
+		list_destroy(list_aux);
+		pthread_mutex_unlock(&mutex_manipular_cola_listos);
+		return entrenador_turno_especial;
+	}
+	else
+	{
+		list_destroy(list_aux);
+		t_entrenador *entrenador_que_tiene_el_turno = (t_entrenador*) queue_pop(mapa->entrenadores->cola_entrenadores_listos);
+		pthread_mutex_unlock(&mutex_manipular_cola_listos);
+		return entrenador_que_tiene_el_turno;
+	}
+
 }
 
 t_entrenador* planificador_pop_entrenador_bloqueado()
@@ -242,13 +271,13 @@ void planificador_entrega_pokemon_a(t_entrenador *entrenador)
 	list_add(entrenador->pokemones_capturados, pokemon_aux);
 
 	//INICIO LOG
-	/*char *mensaje_A_loggear = string_new();
-	string_append(&mensaje_A_loggear, "Entrenador identificado por ");
+	char *mensaje_A_loggear = string_new();
+	//string_append(&mensaje_A_loggear, "Entrenador identificado por ");
 	string_append(&mensaje_A_loggear, entrenador->simbolo_identificador);
 	string_append(&mensaje_A_loggear, " recibio ");
 	string_append(&mensaje_A_loggear,pokemon_a_entregar);
 	log_info(informe_planificador, mensaje_A_loggear);
-	free(mensaje_A_loggear);*/
+	free(mensaje_A_loggear);
 	//FIN LOG
 
 	free(pokemon_a_entregar);
@@ -432,48 +461,6 @@ void planificador_extraele_pokemones_a_entrenador(t_entrenador *entrenador)
 }
 
 /*---------------------------------------NUEVO->LISTO---------------------------------------------------------*/
-void planificador_inicia_encolacion_nuevos_entrenadores()
-{
-	pthread_attr_t attr;
-	pthread_t thread;
-
-	pthread_attr_init(&attr);
-	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
-
-	pthread_create(&thread,&attr, planificador_encola_nuevos_entrenadores,NULL);
-
-	pthread_attr_destroy(&attr);
-}
-
-/*void* planificador_encola_nuevos_entrenadores()
-{
-	extern t_mapa *mapa;
-	while(1)
-	{
-		sem_wait(&semaforo_hay_algun_entrenador_listo);
-		if(mapa_decime_si_planificador_es(PLANIFICADOR_RR))
-		{
-			pthread_mutex_lock(&mutex_manipular_cola_nuevos);
-			foreach(COLA_LISTOS,mapa->entrenadores->lista_entrenadores_a_planificar,planificador_modela_nuevo_entrenador_y_encolalo);
-			if(!hay_jugadores_online)
-			{
-				hay_jugadores_online=1;
-				sem_post(&semaforo_entrenadores_listos);
-			}
-
-			list_clean(mapa->entrenadores->lista_entrenadores_a_planificar);
-			pthread_mutex_unlock(&mutex_manipular_cola_nuevos);
-		}
-		else
-		{
-			pthread_mutex_lock(&mutex_manipular_cola_nuevos);
-			foreach(COLA_SIN_OBJETIVOS,mapa->entrenadores->lista_entrenadores_a_planificar,planificador_modela_nuevo_entrenador_y_encolalo);
-			list_clean(mapa->entrenadores->lista_entrenadores_a_planificar);
-			pthread_mutex_unlock(&mutex_manipular_cola_nuevos);
-		}
-	}
-
-}*/
 
 void* planificador_encola_nuevos_entrenadores()
 {
@@ -494,8 +481,18 @@ void* planificador_encola_nuevos_entrenadores()
 		{
 			pthread_mutex_lock(&mutex_manipular_cola_nuevos);
 			foreach(COLA_SIN_OBJETIVOS,mapa->entrenadores->lista_entrenadores_a_planificar,planificador_modela_nuevo_entrenador_y_encolalo);
+			if(!hay_jugadores)
+			{
+				hay_jugadores = SI;
+				sem_post(&semaforo_esperar_por_entrenador_listo);
+			}
 			list_clean(mapa->entrenadores->lista_entrenadores_a_planificar);
 			pthread_mutex_unlock(&mutex_manipular_cola_nuevos);
+
+			/*pthread_mutex_lock(&mutex_manipular_cola_nuevos);
+						foreach(COLA_SIN_OBJETIVOS,mapa->entrenadores->lista_entrenadores_a_planificar,planificador_modela_nuevo_entrenador_y_encolalo);
+						list_clean(mapa->entrenadores->lista_entrenadores_a_planificar);
+						pthread_mutex_unlock(&mutex_manipular_cola_nuevos);*/
 		}
 
 }
@@ -517,7 +514,8 @@ void planificador_modela_nuevo_entrenador_y_encolalo(int cola, void *entrenador)
 	}
 	else
 	{
-		planificador_push_entrenador_en_cola_sin_objetivos(new_entrenador);
+		//planificador_push_entrenador_en_cola_sin_objetivos(new_entrenador);
+		planificador_push_entrenador_a_listo(new_entrenador);
 		deadlock_agregar_nuevo_proceso_a_matrices(new_entrenador->simbolo_identificador);
 	}
 
