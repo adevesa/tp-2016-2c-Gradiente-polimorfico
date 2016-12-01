@@ -286,13 +286,13 @@ int entrenador_volve_a_empezar_en_este_mapa(int indexxx)
 	list_destroy_and_destroy_elements(entrenador->mapa_actual->pokemons_capturados,mapa_element_destroyer);
 	entrenador->mapa_actual->pokemons_capturados = list_create();
 
-	log_info(info_entrenador, "VOY A VOLVER A CONECTARME AL MAPA");
+	//log_info(info_entrenador, "VOY A VOLVER A CONECTARME AL MAPA");
 	//entrenador_busca_mapa(indexxx);
 	usleep(1500*1000);
 	conectar_a_mapa(entrenador->mapa_actual);
 	enviar_mensaje_a_mapa(entrenador->mapa_actual,OTORGAR_SIMBOLO_ENTRENADOR, entrenador->simbolo);
 
-	log_info(info_entrenador, "COMIENZO DE NUEVO EN EL MAPA");
+	//log_info(info_entrenador, "COMIENZO DE NUEVO EN EL MAPA");
 	entrenador_resetea_ubicacion();
 	int resultado =entrenador_cumpli_objetivos_del_mapa(indexxx);
 	return resultado;

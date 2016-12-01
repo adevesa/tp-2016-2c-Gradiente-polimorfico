@@ -12,7 +12,7 @@ extern pthread_mutex_t mutex_cola_entrenadores_sin_objetivos;
 pthread_mutex_t mutex_manipular_listos_y_odenados = PTHREAD_MUTEX_INITIALIZER;
 extern sem_t semaforo_esperar_por_entrenador_listo;
 extern pthread_mutex_t mutex_manipular_cola_listos;
-extern sem_t semaforo_esperar_ordenamieto;
+//extern sem_t semaforo_esperar_ordenamieto;
 
 int se_agrego_nuevo_entrenador = 0;
 int cantidad_entrenadores_nuevos = 0;
@@ -24,6 +24,8 @@ extern t_log *informe_planificador;
 extern int encolacion_entrenadores_iniciada;
 extern int algoritmo_cambio;
 
+pthread_t thread_sin_coordenadas;
+int todavia_hay_alguien = 1;
 
 void planificador_push_entrenador_en_cola_sin_objetivos(t_entrenador *entrenador)
 {
@@ -119,7 +121,6 @@ t_list* cola_listos_a_lista(t_queue *cola_listos)
 }
 
 /*-----------------------------------EXECUTE PLANIFICADOR SRDF--------------------------------------------------------*/
-
 void* ejecutar_planificador_srdf(void* arg)
 {
 	planificador_inicia_log();
@@ -144,7 +145,7 @@ void planificador_srdf_organiza_entrenadores()
 			while(!se_puede_continuar)
 			{
 				hay_jugadores=0;
-				log_info(informe_planificador, "ESPERO A QUE HAYA ALGUN JUGADOR");
+				//log_info(informe_planificador, "ESPERO A QUE HAYA ALGUN JUGADOR");
 				sem_wait(&semaforo_esperar_por_entrenador_listo);
 				if(semaforo_srdf_cambiado_por_deadlock==1)
 				{
@@ -154,7 +155,7 @@ void planificador_srdf_organiza_entrenadores()
 					if(!queue_is_empty(planificador->listas_y_colas->cola_entrenadores_listos))
 					{
 						se_puede_continuar = 1;
-						log_info(informe_planificador, "HAY ALGUIEN QUE PUEDE VOLVER A JGUAR!");
+						//log_info(informe_planificador, "HAY ALGUIEN QUE PUEDE VOLVER A JGUAR!");
 					}
 				}
 				else
@@ -162,7 +163,7 @@ void planificador_srdf_organiza_entrenadores()
 					planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
 					if(!queue_is_empty(planificador->listas_y_colas->cola_entrenadores_listos))
 					{
-						log_info(informe_planificador, "HAY ALGUIEN NUEVO PARA JUGAR!");
+						//log_info(informe_planificador, "HAY ALGUIEN NUEVO PARA JUGAR!");
 						se_puede_continuar = 1;
 					}
 
@@ -170,6 +171,7 @@ void planificador_srdf_organiza_entrenadores()
 			}
 
 		}
+		todavia_hay_alguien = 1;
 		planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores();
 		t_entrenador *entrenador_listo = planificador_pop_entrenador_listo(planificador);
 		int estado_anterior = entrenador_listo->estado;
@@ -183,6 +185,8 @@ void planificador_srdf_organiza_entrenadores()
 		mostrarTodo(planificador->listas_y_colas->cola_entrenadores_listos,COLA_LISTOS);
 
 	}
+	sem_post(&semaforo_cola_entrenadores_sin_objetivos);
+	pthread_join(thread_sin_coordenadas,NULL);
 	cambiar_algoritmo();
 }
 
@@ -216,25 +220,36 @@ void planificador_srdf_dale_pokemon_si_es_posible(t_entrenador *entrenador)
 
 void planificador_srdf_dale_nuevo_turno_hasta_que_se_bloquee(t_entrenador *entrenador)
 {
-	while(!mapa_decime_si_entrenador_esta_bloqueado(entrenador) && !mapa_decime_si_entrenador_esta_abortado(entrenador))
-	{
-		//usleep(planificador->retardo*1000);
-		usleep(mapa->info_algoritmo->retardo*1000);
-		enviar_mensaje_a_entrenador(entrenador,OTORGAR_TURNO,NULL);
-		char *mensaje_del_entrenador = escuchar_mensaje_entrenador(entrenador, SOLICITUD_DEL_ENTRENADOR);
-		int caso = tratar_respuesta(mensaje_del_entrenador,entrenador);
-		free(mensaje_del_entrenador);
 
-		switch(caso)
-		{
-			case(ENTRENADOR_QUIERE_MOVERSE): planificador_entrenador_se_mueve(entrenador);break;
-			case(ENTRENADOR_QUIERE_CAPTURAR_POKEMON):
+	int fin_rafaga = 0;
+	while(!fin_rafaga && !mapa_decime_si_entrenador_esta_abortado(entrenador))
+	{
+			usleep(mapa->info_algoritmo->retardo*1000);
+			enviar_mensaje_a_entrenador(entrenador,OTORGAR_TURNO,NULL);
+			char *mensaje_del_entrenador = escuchar_mensaje_entrenador(entrenador, SOLICITUD_DEL_ENTRENADOR);
+			int caso = tratar_respuesta(mensaje_del_entrenador,entrenador);
+			free(mensaje_del_entrenador);
+
+			switch(caso)
 			{
-				planificador_entrenador_quiere_capturar_pokemon(entrenador, BLOQUEAR_DE_TODOS_MODOS);
-				entrenador->esperando_pokemon =SI ;
-			}break;
-			case(ENTRENADOR_DESCONECTADO): planificador_aborta_entrenador(entrenador);break;
-		};
+				case(ENTRENADOR_QUIERE_MOVERSE): planificador_entrenador_se_mueve(entrenador);break;
+				case(ENTRENADOR_QUIERE_CAPTURAR_POKEMON):
+				{
+					planificador_entrenador_quiere_capturar_pokemon(entrenador, PERMITIR_SI_ES_POSIBLE);
+					if(mapa_decime_si_entrenador_esta_bloqueado(entrenador))
+					{
+						entrenador->esperando_pokemon =SI ;
+						todavia_hay_alguien = 0;
+					}
+					else
+					{
+						todavia_hay_alguien = 0;
+						planificador_push_entrenador_en_cola_sin_objetivos(entrenador);
+					}
+					fin_rafaga = SI;
+				}break;
+				case(ENTRENADOR_DESCONECTADO): planificador_aborta_entrenador(entrenador);break;
+			};
 	}
 
 }
@@ -250,7 +265,7 @@ void planificador_srdf_cambia_semaforo_si_es_necesario()
 /*--------------------------------------------HILOS--------------------------------------------------------*/
 void planificador_srdf_organiza_entrenadores_sin_coordenadas()
 {
-	pthread_attr_t attr;
+	/*pthread_attr_t attr;
 	pthread_t thread;
 
 	pthread_attr_init(&attr);
@@ -258,37 +273,48 @@ void planificador_srdf_organiza_entrenadores_sin_coordenadas()
 
 	pthread_create(&thread,&attr, planificador_srdf_atende_a_entrenadores_sin_coordenadas,NULL);
 
-	pthread_attr_destroy(&attr);
+	pthread_attr_destroy(&attr);*/
+	pthread_create(&thread_sin_coordenadas,NULL, planificador_srdf_atende_a_entrenadores_sin_coordenadas,NULL);
 }
 
 void* planificador_srdf_atende_a_entrenadores_sin_coordenadas()
 {
-	while(mapa_decime_si_planificador_es(PLANIFICADOR_SRDF))
+	int termina = 0;
+	while(mapa_decime_si_planificador_es(PLANIFICADOR_SRDF) && !termina)
 	{
 		if(queue_is_empty(planificador->cola_entrenadores_sin_objetivo))
 		{
 			sem_wait(&semaforo_cola_entrenadores_sin_objetivos);
 		}
-		planificador_srdf_dale_coordenadas_a_todos();
-		if(se_agrego_nuevo_entrenador && !hay_jugadores )
+		if(!queue_is_empty(planificador->cola_entrenadores_sin_objetivo))
 		{
-			sem_post(&semaforo_esperar_por_entrenador_listo);
-			se_agrego_nuevo_entrenador = 0;
-			hay_jugadores=1;
-		}
-		else
-		{
-			se_agrego_nuevo_entrenador = 0;
-			if(se_ordeno_algo != 0 && !hay_jugadores)
+			planificador_srdf_dale_coordenadas_a_todos();
+			if(se_agrego_nuevo_entrenador && !hay_jugadores )
 			{
-				//sem_post(&semaforo_esperar_ordenamieto);
 				sem_post(&semaforo_esperar_por_entrenador_listo);
+				se_agrego_nuevo_entrenador = 0;
 				hay_jugadores=1;
-				se_ordeno_algo = 0;
+			}
+			else
+			{
+				se_agrego_nuevo_entrenador = 0;
+				if(se_ordeno_algo != 0 && !hay_jugadores)
+				{
+					//sem_post(&semaforo_esperar_ordenamieto);
+					sem_post(&semaforo_esperar_por_entrenador_listo);
+					hay_jugadores=1;
+					se_ordeno_algo = 0;
+				}
 			}
 		}
+
+		if(algoritmo_cambio && !todavia_hay_alguien)
+		{
+			log_info(informe_planificador, "SE VA A CAMBIAR EL ALGORITMO");
+			termina=1;
+		}
 	}
-	pthread_exit(NULL);
+	//pthread_exit(NULL);
 }
 
 void planificador_srdf_dale_coordenadas_a_todos()

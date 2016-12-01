@@ -505,14 +505,14 @@ void deadlock_actualizar_matriz(char* id_proceso, char* id_recurso, int matriz,i
 					deadlock->matriz_solicitud[numero_fila_del_recurso][proceso->posicion] = deadlock->matriz_solicitud[numero_fila_del_recurso][proceso->posicion] +1;
 					cantidad_solicitudes++;
 					loggear_vector_solicitudes_proceso(id_proceso,proceso->posicion);
-					log_info(logger, "SE RESERVA RECURSO DE MATRIZ DE SOLICITUD");
+					//log_info(logger, "SE RESERVA RECURSO DE MATRIZ DE SOLICITUD");
 				};break;
 				case(QUITAR_RECURSO):
 				{
 					deadlock->matriz_solicitud[numero_fila_del_recurso][proceso->posicion] = deadlock->matriz_solicitud[numero_fila_del_recurso][proceso->posicion] -1;
 					cantidad_solicitudes--;
 					loggear_vector_solicitudes_proceso(id_proceso,proceso->posicion);
-					log_info(logger, "SE LIBERA RECURSO DE MATRIZ DE SOLICITUD");
+					//log_info(logger, "SE LIBERA RECURSO DE MATRIZ DE SOLICITUD");
 				};break;
 			}
 		};break;
@@ -643,7 +643,6 @@ void deadlock_revisa()
 			pthread_mutex_lock(&mutex_operaciones_deadlock);
 			if(cantidad_columnas_ocupadas>0 && cantidad_procesos>0 && cantidad_procesos !=1)
 			{
-					//usleep(2000*1000);
 					int se_encontro_proceso = marcar_proceso_si_se_puede_satisfacer();
 
 					pthread_mutex_unlock(&mutex_operaciones_deadlock);
@@ -658,12 +657,12 @@ void deadlock_revisa()
 						int resultado = resolver_deadlock();
 						if(resultado==FALSA_ALARMA)
 						{
-							log_info(logger,"FALSA ALAMRA.");
+							//log_info(logger,"FALSA ALAMRA.");
 							se_sigue_ejecutando = 0;
 						}
 						else
 						{
-							log_info(logger,"Se termino de resolver DEADLOCK");
+							//log_info(logger,"Se termino de resolver DEADLOCK");
 							se_sigue_ejecutando = 0;
 						}
 

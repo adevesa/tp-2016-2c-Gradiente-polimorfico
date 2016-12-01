@@ -292,13 +292,6 @@ void planificador_revisa_si_hay_recursos_para_desbloquear_entrenadores()
 
 		planificador_desbloquea_entrenador_si_es_posible(cantidad_bloqueados);
 
-		//INICIO LOG
-				char *mensaje_A_loggear_2 = string_new();
-				string_append(&mensaje_A_loggear_2, "TERMINE DE REVISAR ");
-				log_info(informe_planificador, mensaje_A_loggear_2);
-				free(mensaje_A_loggear_2);
-				//FIN LOG
-
 	}
 	else {}
 }
@@ -521,7 +514,7 @@ void mostrarTodo(t_queue* cola, int tipo)
 {
 	int z;
 	char* mensaje = string_new();
-	string_append(&mensaje,"ESTADO DE COLA ");
+	string_append(&mensaje,"COLA ");
 
 	int tamanio_cola = queue_size(cola);
 	switch(tipo)
@@ -540,6 +533,7 @@ void mostrarTodo(t_queue* cola, int tipo)
 					{
 						t_entrenador *entrener = list_get(cola->elements,z);
 						string_append(&mensaje,entrener->simbolo_identificador);
+						string_append(&mensaje," ");
 					}
 					pthread_mutex_unlock(&mutex_manipular_cola_bloqueados);
 			}
@@ -561,6 +555,7 @@ void mostrarTodo(t_queue* cola, int tipo)
 
 					t_entrenador *entrener = list_get(cola->elements,z);
 					string_append(&mensaje,entrener->simbolo_identificador);
+					string_append(&mensaje," ");
 				}
 				pthread_mutex_unlock(&mutex_manipular_cola_listos);
 			}

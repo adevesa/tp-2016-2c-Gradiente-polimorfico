@@ -58,6 +58,7 @@ void iniciar_seniales_mapa()
 
 void releer_data(int n)
 {
+	log_info(informe_mapa, "SEÑAL DETECTADA!");
 	t_info_algoritmo *algotirmo_viejo = mapa->info_algoritmo;
 
 	config_destroy(mapa->configuracion);
