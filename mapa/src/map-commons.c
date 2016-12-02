@@ -10,25 +10,22 @@
 t_mapa *mapa;
 
 sem_t semaforo_entrenadores_listos;
-//sem_t semaforo_cola_bloqueados;
-//sem_t semaforo_hay_algun_entrenador_listo;
 sem_t semaforo_servidor;
 sem_t semaforo_terminacion;
 sem_t semaforo_cola_entrenadores_sin_objetivos;
-//sem_t semaforo_esperar_ordenamieto;
 sem_t semaforo_esperar_por_entrenador_listo;
 pthread_mutex_t mutex_manipular_cola_listos = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_manipular_cola_nuevos = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_manipular_cola_bloqueados = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_manipular_cola_finalizados = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_cola_entrenadores_sin_objetivos = PTHREAD_MUTEX_INITIALIZER;
-//extern int encolacion_entrenadores_iniciada;
+
 int servidor_debe_terminar = 0;
 int algoritmo_cambio = 0;
 t_info_algoritmo *nuevo_algoritmo;
-
 int hay_jugadores_online;
 int hay_jugadores;
+
 /*------------------------------------------EXECUTE----------------------------------------------------------------*/
 void ejecutar_mapa(char *nombre, char *rutaPokedex)
 {
@@ -77,12 +74,9 @@ void releer_data(int n)
 void iniciar_semaforos()
 {
 	sem_init(&semaforo_entrenadores_listos,1,0);
-	//sem_init(&semaforo_cola_bloqueados,1,0);
-	//sem_init(&semaforo_hay_algun_entrenador_listo,1,0);
 	sem_init(&semaforo_cola_entrenadores_sin_objetivos,1,0);
 	sem_init(&semaforo_servidor,1,0);
 	sem_init(&semaforo_esperar_por_entrenador_listo,1,0);
-	//sem_init(&semaforo_esperar_ordenamieto,1,0);
 }
 
 void iniciar_logs(char *nombre)

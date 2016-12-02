@@ -37,11 +37,6 @@ int quamtum_se_termino(int q)
 
 void planificador_rr_organiza_entrenadores()
 {
-	/*if(encolacion_entrenadores_iniciada == NO_INICIADO)
-	{
-		planificador_inicia_encolacion_nuevos_entrenadores();
-		encolacion_entrenadores_iniciada=INICIADO;
-	}*/
 	while(mapa_decime_si_planificador_es(PLANIFICADOR_RR) && !algoritmo_cambio)
 	{
 		if(queue_is_empty(planificador->listas_y_colas->cola_entrenadores_listos))
@@ -72,7 +67,7 @@ void planificador_rr_organiza_entrenadores()
 		mostrarTodo(planificador->listas_y_colas->cola_entrenadores_bloqueados,COLA_BLOQUEADOS);
 		mostrarTodo(planificador->listas_y_colas->cola_entrenadores_listos,COLA_LISTOS);
 		t_entrenador *entrenador_listo = planificador_pop_entrenador_listo(planificador);
-		int quamtum_restante = planificador->quantum;
+		int quamtum_restante = mapa->info_algoritmo->quamtum;
 		int estado_anterior = entrenador_listo->estado;
 		mapa_cambiale_estado_a_entrenador(entrenador_listo, EXECUTE, estado_anterior);
 		loggear_turno(entrenador_listo);

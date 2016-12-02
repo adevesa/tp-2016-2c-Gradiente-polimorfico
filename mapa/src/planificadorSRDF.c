@@ -106,12 +106,6 @@ void* ejecutar_planificador_srdf(void* arg)
 {
 	planificador_inicia_log();
 	planificador = planificador_srdf_create();
-	/*if(encolacion_entrenadores_iniciada == NO_INICIADO)
-	{
-		planificador_inicia_encolacion_nuevos_entrenadores();
-		encolacion_entrenadores_iniciada=INICIADO;
-	}*/
-	//planificador_srdf_organiza_entrenadores_sin_coordenadas();
 	ultimo_ejecutado = NULL;
 	planificador_srdf_organiza_entrenadores();
 	planificador_srdf_destruite(planificador);
